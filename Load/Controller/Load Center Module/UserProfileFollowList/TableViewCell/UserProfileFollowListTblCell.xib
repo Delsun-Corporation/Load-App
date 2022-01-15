@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="Proxima-Nova-Bold.ttf">
+            <string>ProximaNova-Bold</string>
+        </array>
+        <array key="Proxima-Nova-Regular.ttf">
+            <string>ProximaNova-Regular</string>
+        </array>
+        <array key="Proxima-Nova-Thin.ttf">
+            <string>ProximaNova-Thin</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="0.0" reuseIdentifier="UserProfileFollowListTblCell" id="KGk-i7-Jjw" customClass="UserProfileFollowListTblCell" customModule="Load" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="76"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="76"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qLy-9u-C7N">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="76"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="img1" translatesAutoresizingMaskIntoConstraints="NO" id="kIV-O4-ksl">
+                                <rect key="frame" x="22" y="16" width="45" height="45"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="45" id="Ujx-RR-J2q"/>
+                                    <constraint firstAttribute="width" constant="45" id="lx1-8U-fB1"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Yash Bhikadiya" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ibV-PS-eVE">
+                                <rect key="frame" x="79" y="27" width="166" height="15"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="15" id="SNk-ht-hWD"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="ProximaNova-Bold" family="Proxima Nova" pointSize="12"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="India" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OzR-UA-h00">
+                                <rect key="frame" x="79" y="42" width="22.5" height="15"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="15" id="Zvq-vB-DhI"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="ProximaNova-Thin" family="Proxima Nova" pointSize="11"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eY0-ZT-3bB">
+                                <rect key="frame" x="260" y="27" width="35" height="15"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="15" id="rPp-Bm-V08"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="ProximaNova-Regular" family="Proxima Nova" pointSize="12"/>
+                                <state key="normal" title="Follow">
+                                    <color key="titleColor" red="1" green="0.027450980392156862" blue="0.33725490196078434" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                            </button>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bPr-cf-Kia">
+                                <rect key="frame" x="20" y="74.5" width="280" height="0.5"/>
+                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.29999999999999999" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="0.5" id="PbC-Fg-LUg"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="ibV-PS-eVE" firstAttribute="top" secondItem="qLy-9u-C7N" secondAttribute="top" constant="27" id="0db-Mo-BAq"/>
+                            <constraint firstItem="kIV-O4-ksl" firstAttribute="leading" secondItem="qLy-9u-C7N" secondAttribute="leading" constant="22" id="2Xt-QK-TPS"/>
+                            <constraint firstItem="kIV-O4-ksl" firstAttribute="top" secondItem="qLy-9u-C7N" secondAttribute="top" constant="16" id="D2Y-KH-7km"/>
+                            <constraint firstItem="eY0-ZT-3bB" firstAttribute="leading" secondItem="ibV-PS-eVE" secondAttribute="trailing" constant="15" id="IEG-d7-tOi"/>
+                            <constraint firstItem="ibV-PS-eVE" firstAttribute="leading" secondItem="kIV-O4-ksl" secondAttribute="trailing" constant="12" id="Mz2-o7-DYz"/>
+                            <constraint firstItem="bPr-cf-Kia" firstAttribute="top" secondItem="kIV-O4-ksl" secondAttribute="bottom" constant="13.5" id="Na0-36-dCH"/>
+                            <constraint firstItem="OzR-UA-h00" firstAttribute="top" secondItem="ibV-PS-eVE" secondAttribute="bottom" id="PLc-0n-jEp"/>
+                            <constraint firstItem="bPr-cf-Kia" firstAttribute="leading" secondItem="qLy-9u-C7N" secondAttribute="leading" constant="20" id="PlS-XI-NJ5"/>
+                            <constraint firstAttribute="trailing" secondItem="bPr-cf-Kia" secondAttribute="trailing" constant="20" id="WfK-wX-7w2"/>
+                            <constraint firstItem="eY0-ZT-3bB" firstAttribute="centerY" secondItem="ibV-PS-eVE" secondAttribute="centerY" id="eNp-Yg-SD9"/>
+                            <constraint firstAttribute="trailing" secondItem="eY0-ZT-3bB" secondAttribute="trailing" constant="25" id="h5e-xX-moh"/>
+                            <constraint firstAttribute="bottom" secondItem="bPr-cf-Kia" secondAttribute="bottom" constant="1" id="lsE-c9-ePz"/>
+                            <constraint firstItem="OzR-UA-h00" firstAttribute="leading" secondItem="ibV-PS-eVE" secondAttribute="leading" id="upv-0Z-wOI"/>
+                        </constraints>
+                    </view>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="trailing" secondItem="qLy-9u-C7N" secondAttribute="trailing" id="A5Y-W1-Dyh"/>
+                    <constraint firstItem="qLy-9u-C7N" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="BqR-wH-IiP"/>
+                    <constraint firstItem="qLy-9u-C7N" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="EtL-7y-keF"/>
+                    <constraint firstAttribute="bottom" secondItem="qLy-9u-C7N" secondAttribute="bottom" id="Tg3-uB-PXW"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="btnFollow" destination="eY0-ZT-3bB" id="8yz-7N-4Sh"/>
+                <outlet property="imgUser" destination="kIV-O4-ksl" id="bAN-OO-zSG"/>
+                <outlet property="lblNation" destination="OzR-UA-h00" id="DwT-s5-d5s"/>
+                <outlet property="lblUserName" destination="ibV-PS-eVE" id="0xz-rJ-uUj"/>
+            </connections>
+            <point key="canvasLocation" x="92.753623188405811" y="79.6875"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="img1" width="229" height="213"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

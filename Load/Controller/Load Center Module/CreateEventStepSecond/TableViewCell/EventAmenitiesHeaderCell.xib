@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="EventAmenitiesHeaderCell" rowHeight="104" id="KGk-i7-Jjw" customClass="EventAmenitiesHeaderCell" customModule="Load" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="104"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="103.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DhC-4m-SXw">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="104.5"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="What are the amenities available" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dNg-9b-52P">
+                                <rect key="frame" x="20" y="84.5" width="280" height="18"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="18" id="7lY-pl-J0a"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="12"/>
+                                <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="Let’s get more detailed" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="g4b-J0-PER">
+                                <rect key="frame" x="20" y="30.5" width="280" height="24"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="24" id="Fz3-NC-lYv"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="19"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="g4b-J0-PER" secondAttribute="trailing" constant="20" id="02H-4z-TFE"/>
+                            <constraint firstAttribute="bottom" secondItem="dNg-9b-52P" secondAttribute="bottom" constant="2" id="84L-S4-bMQ"/>
+                            <constraint firstAttribute="height" constant="104" id="Fsm-ul-Cu3"/>
+                            <constraint firstAttribute="trailing" secondItem="dNg-9b-52P" secondAttribute="trailing" constant="20" id="WIr-AQ-3gQ"/>
+                            <constraint firstItem="g4b-J0-PER" firstAttribute="top" secondItem="DhC-4m-SXw" secondAttribute="top" constant="30" id="dJJ-n4-WkD"/>
+                            <constraint firstItem="dNg-9b-52P" firstAttribute="leading" secondItem="DhC-4m-SXw" secondAttribute="leading" constant="20" id="h9r-Vm-vod"/>
+                            <constraint firstItem="dNg-9b-52P" firstAttribute="top" secondItem="g4b-J0-PER" secondAttribute="bottom" constant="30" id="hsr-Nn-7uA"/>
+                            <constraint firstItem="g4b-J0-PER" firstAttribute="leading" secondItem="DhC-4m-SXw" secondAttribute="leading" constant="20" id="rKB-a1-LeE"/>
+                        </constraints>
+                    </view>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="DhC-4m-SXw" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="69d-2P-AdF"/>
+                    <constraint firstItem="DhC-4m-SXw" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="Hga-bG-jAk"/>
+                    <constraint firstAttribute="bottom" secondItem="DhC-4m-SXw" secondAttribute="bottom" id="bUA-sI-RIp"/>
+                    <constraint firstAttribute="trailing" secondItem="DhC-4m-SXw" secondAttribute="trailing" id="f3b-ob-Mnj"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="lblSubTitle" destination="dNg-9b-52P" id="9Wm-rr-KQI"/>
+                <outlet property="lblTitle" destination="g4b-J0-PER" id="d18-Km-TgX"/>
+            </connections>
+            <point key="canvasLocation" x="137.59999999999999" y="170.46476761619192"/>
+        </tableViewCell>
+    </objects>
+</document>

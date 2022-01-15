@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view tag="102" contentMode="scaleToFill" id="iN0-l3-epB" customClass="ViewNavMedium" customModule="Load" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="53"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Q4L-Cp-vvx">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="53"/>
+                    <subviews>
+                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic__custom_nav" translatesAutoresizingMaskIntoConstraints="NO" id="i8U-rB-mk3">
+                            <rect key="frame" x="0.0" y="0.0" width="375" height="53"/>
+                        </imageView>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ax4-Lr-mWB">
+                            <rect key="frame" x="166.5" y="16" width="42" height="21"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XrV-ef-Mr2">
+                            <rect key="frame" x="20" y="15.5" width="12" height="22"/>
+                            <state key="normal" image="ic_back"/>
+                            <connections>
+                                <action selector="btnBackClicked:" destination="iN0-l3-epB" eventType="touchUpInside" id="Rbz-RW-yxc"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RgX-tR-aef">
+                            <rect key="frame" x="316" y="7" width="39" height="34"/>
+                            <state key="normal" title="Save">
+                                <color key="titleColor" red="0.93725490199999995" green="0.2156862745" blue="0.36862745099999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </state>
+                            <connections>
+                                <action selector="btnSaveClicked:" destination="iN0-l3-epB" eventType="touchUpInside" id="nwF-Sd-pmu"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    <constraints>
+                        <constraint firstAttribute="bottom" secondItem="i8U-rB-mk3" secondAttribute="bottom" id="AQy-ND-6j7"/>
+                        <constraint firstAttribute="bottom" secondItem="XrV-ef-Mr2" secondAttribute="bottom" constant="15.5" id="Kp9-Uk-KqY"/>
+                        <constraint firstItem="Ax4-Lr-mWB" firstAttribute="centerX" secondItem="Q4L-Cp-vvx" secondAttribute="centerX" id="NIu-MV-gB2"/>
+                        <constraint firstItem="i8U-rB-mk3" firstAttribute="leading" secondItem="Q4L-Cp-vvx" secondAttribute="leading" id="TfS-ff-CQO"/>
+                        <constraint firstAttribute="bottom" secondItem="RgX-tR-aef" secondAttribute="bottom" constant="12" id="cp5-fw-Tba"/>
+                        <constraint firstItem="i8U-rB-mk3" firstAttribute="top" secondItem="Q4L-Cp-vvx" secondAttribute="top" id="dXU-yH-46o"/>
+                        <constraint firstAttribute="trailing" secondItem="i8U-rB-mk3" secondAttribute="trailing" id="gWr-g3-KDm"/>
+                        <constraint firstItem="XrV-ef-Mr2" firstAttribute="leading" secondItem="Q4L-Cp-vvx" secondAttribute="leading" constant="20" id="j1W-01-WYa"/>
+                        <constraint firstAttribute="bottom" secondItem="Ax4-Lr-mWB" secondAttribute="bottom" constant="16" id="o8D-2S-RKM"/>
+                        <constraint firstAttribute="trailing" secondItem="RgX-tR-aef" secondAttribute="trailing" constant="20" id="w74-q9-1oW"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+            <constraints>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="Q4L-Cp-vvx" secondAttribute="trailing" id="0Se-y5-ehp"/>
+                <constraint firstItem="Q4L-Cp-vvx" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="Vxa-Ju-lP4"/>
+                <constraint firstAttribute="bottom" secondItem="Q4L-Cp-vvx" secondAttribute="bottom" id="dcu-mf-AXR"/>
+                <constraint firstItem="Q4L-Cp-vvx" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="hO8-i1-9G0"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="btnSave" destination="RgX-tR-aef" id="XEA-Yj-Idv"/>
+                <outlet property="btnback" destination="XrV-ef-Mr2" id="Geg-nq-2z1"/>
+                <outlet property="imgBackground" destination="i8U-rB-mk3" id="yuE-eg-QCP"/>
+                <outlet property="lblTitle" destination="Ax4-Lr-mWB" id="hQP-b0-8yd"/>
+            </connections>
+            <point key="canvasLocation" x="132" y="97.601199400299862"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="ic__custom_nav" width="375" height="116"/>
+        <image name="ic_back" width="12" height="20"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

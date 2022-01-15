@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="Proxima-nova.ttf">
+            <string>ProximaNova-Regular</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="70" id="KGk-i7-Jjw" customClass="ExerciseCardioCell" customModule="Load" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="70"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="70"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Iss-AT-nce">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="70"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9af-sk-5GZ">
+                                <rect key="frame" x="14" y="24" width="10" height="22"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="10" id="Bzg-Ev-ZhN"/>
+                                </constraints>
+                                <state key="normal" image="ic_pick"/>
+                                <connections>
+                                    <action selector="btnRemoveClicked:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="c8e-xp-6Xf"/>
+                                </connections>
+                            </button>
+                            <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1x3-gG-5bU">
+                                <rect key="frame" x="30" y="0.0" width="260" height="70"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XfV-WC-FbE">
+                                        <rect key="frame" x="0.0" y="0.0" width="52" height="70"/>
+                                        <subviews>
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="00:00:00" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="hRL-0T-S2P">
+                                                <rect key="frame" x="0.0" y="0.0" width="52" height="70"/>
+                                                <fontDescription key="fontDescription" name="ProximaNova-Regular" family="ProximaNova-Regular" pointSize="12"/>
+                                                <textInputTraits key="textInputTraits" keyboardType="numberPad" returnKeyType="done"/>
+                                            </textField>
+                                        </subviews>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="bottom" secondItem="hRL-0T-S2P" secondAttribute="bottom" id="10V-pB-2pK"/>
+                                            <constraint firstItem="hRL-0T-S2P" firstAttribute="leading" secondItem="XfV-WC-FbE" secondAttribute="leading" id="6ce-y0-vUT"/>
+                                            <constraint firstItem="hRL-0T-S2P" firstAttribute="top" secondItem="XfV-WC-FbE" secondAttribute="top" id="PpP-PT-yum"/>
+                                            <constraint firstAttribute="trailing" secondItem="hRL-0T-S2P" secondAttribute="trailing" id="dbA-Qb-SBI"/>
+                                        </constraints>
+                                    </view>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WBI-kp-vvX">
+                                        <rect key="frame" x="52" y="0.0" width="52" height="70"/>
+                                        <subviews>
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="00 km/hr" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Izg-4S-Rsv">
+                                                <rect key="frame" x="0.0" y="0.0" width="52" height="70"/>
+                                                <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="12"/>
+                                                <textInputTraits key="textInputTraits" keyboardType="numberPad" returnKeyType="done"/>
+                                            </textField>
+                                        </subviews>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstItem="Izg-4S-Rsv" firstAttribute="leading" secondItem="WBI-kp-vvX" secondAttribute="leading" id="3f8-MK-jCn"/>
+                                            <constraint firstItem="Izg-4S-Rsv" firstAttribute="top" secondItem="WBI-kp-vvX" secondAttribute="top" id="QFQ-oQ-7Gf"/>
+                                            <constraint firstAttribute="trailing" secondItem="Izg-4S-Rsv" secondAttribute="trailing" id="g6e-Xw-T0f"/>
+                                            <constraint firstAttribute="bottom" secondItem="Izg-4S-Rsv" secondAttribute="bottom" id="xu9-E9-BB1"/>
+                                        </constraints>
+                                    </view>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jUj-nR-yCA">
+                                        <rect key="frame" x="104" y="0.0" width="52" height="70"/>
+                                        <subviews>
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="00" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Vdw-B8-Mec">
+                                                <rect key="frame" x="0.0" y="0.0" width="52" height="70"/>
+                                                <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="12"/>
+                                                <textInputTraits key="textInputTraits" keyboardType="numberPad" returnKeyType="done"/>
+                                            </textField>
+                                        </subviews>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstItem="Vdw-B8-Mec" firstAttribute="top" secondItem="jUj-nR-yCA" secondAttribute="top" id="FQB-j4-Mfz"/>
+                                            <constraint firstAttribute="bottom" secondItem="Vdw-B8-Mec" secondAttribute="bottom" id="a3j-c2-vbY"/>
+                                            <constraint firstAttribute="trailing" secondItem="Vdw-B8-Mec" secondAttribute="trailing" id="dZn-8f-ZV9"/>
+                                            <constraint firstItem="Vdw-B8-Mec" firstAttribute="leading" secondItem="jUj-nR-yCA" secondAttribute="leading" id="elu-Dv-mXU"/>
+                                        </constraints>
+                                    </view>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="B5s-Ie-dtE">
+                                        <rect key="frame" x="156" y="0.0" width="52" height="70"/>
+                                        <subviews>
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="0" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="hBa-gh-nFt">
+                                                <rect key="frame" x="0.0" y="0.0" width="52" height="70"/>
+                                                <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="12"/>
+                                                <textInputTraits key="textInputTraits" keyboardType="numberPad" returnKeyType="done"/>
+                                            </textField>
+                                        </subviews>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstItem="hBa-gh-nFt" firstAttribute="top" secondItem="B5s-Ie-dtE" secondAttribute="top" id="6v2-gB-Qwx"/>
+                                            <constraint firstItem="hBa-gh-nFt" firstAttribute="leading" secondItem="B5s-Ie-dtE" secondAttribute="leading" id="e0z-hZ-DPX"/>
+                                            <constraint firstAttribute="trailing" secondItem="hBa-gh-nFt" secondAttribute="trailing" id="pXT-bq-xmc"/>
+                                            <constraint firstAttribute="bottom" secondItem="hBa-gh-nFt" secondAttribute="bottom" id="uD6-mh-8ir"/>
+                                        </constraints>
+                                    </view>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gWk-1W-xqX">
+                                        <rect key="frame" x="208" y="0.0" width="52" height="70"/>
+                                        <subviews>
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="00:00" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="qa9-Nc-dqs">
+                                                <rect key="frame" x="0.0" y="0.0" width="52" height="70"/>
+                                                <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="12"/>
+                                                <textInputTraits key="textInputTraits" keyboardType="numberPad" returnKeyType="done"/>
+                                            </textField>
+                                        </subviews>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="trailing" secondItem="qa9-Nc-dqs" secondAttribute="trailing" id="F7b-On-ATT"/>
+                                            <constraint firstItem="qa9-Nc-dqs" firstAttribute="leading" secondItem="gWk-1W-xqX" secondAttribute="leading" id="V3O-rQ-NU6"/>
+                                            <constraint firstItem="qa9-Nc-dqs" firstAttribute="top" secondItem="gWk-1W-xqX" secondAttribute="top" id="X7Y-F6-i7F"/>
+                                            <constraint firstAttribute="bottom" secondItem="qa9-Nc-dqs" secondAttribute="bottom" id="xYB-0J-SBX"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="hRL-0T-S2P" firstAttribute="width" secondItem="Vdw-B8-Mec" secondAttribute="width" id="2QS-zg-2iM"/>
+                                    <constraint firstItem="hRL-0T-S2P" firstAttribute="width" secondItem="qa9-Nc-dqs" secondAttribute="width" id="hUy-Cq-SXn"/>
+                                    <constraint firstItem="hRL-0T-S2P" firstAttribute="width" secondItem="Izg-4S-Rsv" secondAttribute="width" id="joc-hq-gXL"/>
+                                    <constraint firstItem="hRL-0T-S2P" firstAttribute="width" secondItem="hBa-gh-nFt" secondAttribute="width" id="p2p-mA-a2f"/>
+                                </constraints>
+                            </stackView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="w1H-yC-evg">
+                                <rect key="frame" x="20" y="69" width="280" height="1"/>
+                                <color key="backgroundColor" red="0.95686274510000002" green="0.95686274510000002" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="1" id="GUJ-kB-FaY"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstAttribute="bottom" secondItem="w1H-yC-evg" secondAttribute="bottom" id="7Gy-kk-7eI"/>
+                            <constraint firstAttribute="height" constant="70" id="E0T-VY-6Qs"/>
+                            <constraint firstItem="9af-sk-5GZ" firstAttribute="leading" secondItem="Iss-AT-nce" secondAttribute="leading" constant="14" id="IZE-1a-1Bv"/>
+                            <constraint firstAttribute="trailing" secondItem="1x3-gG-5bU" secondAttribute="trailing" constant="30" id="Rpb-l9-rYf"/>
+                            <constraint firstItem="1x3-gG-5bU" firstAttribute="leading" secondItem="9af-sk-5GZ" secondAttribute="trailing" constant="6" id="SXy-eY-ih6"/>
+                            <constraint firstItem="9af-sk-5GZ" firstAttribute="centerY" secondItem="Iss-AT-nce" secondAttribute="centerY" id="ZqT-M5-P1X"/>
+                            <constraint firstItem="1x3-gG-5bU" firstAttribute="top" secondItem="Iss-AT-nce" secondAttribute="top" id="e34-F0-N6f"/>
+                            <constraint firstAttribute="trailing" secondItem="w1H-yC-evg" secondAttribute="trailing" constant="20" id="o0C-BD-p1w"/>
+                            <constraint firstItem="w1H-yC-evg" firstAttribute="leading" secondItem="Iss-AT-nce" secondAttribute="leading" constant="20" id="qD1-RW-K4A"/>
+                            <constraint firstAttribute="bottom" secondItem="1x3-gG-5bU" secondAttribute="bottom" id="qPY-Ev-nJ0"/>
+                        </constraints>
+                    </view>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="Iss-AT-nce" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="ZXF-6Q-vPo"/>
+                    <constraint firstItem="Iss-AT-nce" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="gRC-q7-fBw"/>
+                    <constraint firstAttribute="trailing" secondItem="Iss-AT-nce" secondAttribute="trailing" id="h6R-Cq-FSP"/>
+                    <constraint firstAttribute="bottom" secondItem="Iss-AT-nce" secondAttribute="bottom" id="m6g-SP-Ti0"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="btnRemove" destination="9af-sk-5GZ" id="lZx-Sz-kpm"/>
+                <outlet property="txtDuration" destination="hRL-0T-S2P" id="mLp-Zc-jTL"/>
+                <outlet property="txtLvl" destination="hBa-gh-nFt" id="ysW-Cd-935"/>
+                <outlet property="txtPercentage" destination="Vdw-B8-Mec" id="Hra-y8-iKR"/>
+                <outlet property="txtRest" destination="qa9-Nc-dqs" id="x6s-gV-kwd"/>
+                <outlet property="txtSpeed" destination="Izg-4S-Rsv" id="BXW-c0-6m0"/>
+                <outlet property="viewPercentage" destination="jUj-nR-yCA" id="wDe-o0-U9H"/>
+                <outlet property="vwLvl" destination="B5s-Ie-dtE" id="018-JB-82D"/>
+            </connections>
+            <point key="canvasLocation" x="132.80000000000001" y="127.736131934033"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="ic_pick" width="5" height="21"/>
+    </resources>
+</document>

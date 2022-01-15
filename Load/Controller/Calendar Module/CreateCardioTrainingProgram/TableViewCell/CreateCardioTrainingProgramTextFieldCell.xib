@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="Proxima-Nova-Regular.ttf">
+            <string>ProximaNova-Regular</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="CreateCardioTrainingProgramTextFieldCell" rowHeight="94" id="KGk-i7-Jjw" customClass="CreateCardioTrainingProgramTextFieldCell" customModule="Load" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="94"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="93.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Wj6-bb-XAn">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="93.5"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="B7o-4v-D4O">
+                                <rect key="frame" x="20" y="25" width="28.5" height="21.5"/>
+                                <viewLayoutGuide key="safeArea" id="UUS-ui-RsO"/>
+                                <fontDescription key="fontDescription" name="ProximaNova-Regular" family="Proxima Nova" pointSize="15"/>
+                                <color key="textColor" red="0.60392156862745094" green="0.60392156862745094" blue="0.60392156862745094" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Select" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Xz7-M4-3B8">
+                                <rect key="frame" x="20" y="54.5" width="280" height="14"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="14" id="ogV-vK-I4F"/>
+                                </constraints>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" name="ProximaNova-Regular" family="Proxima Nova" pointSize="15"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_dropdown_long_red" translatesAutoresizingMaskIntoConstraints="NO" id="lwO-Bj-BAh">
+                                <rect key="frame" x="285" y="42.5" width="15" height="9"/>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cS6-4z-Sji">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="93.5"/>
+                                <connections>
+                                    <action selector="btnCellClicked:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="OH3-2T-Zy4"/>
+                                </connections>
+                            </button>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="g9i-JB-PQW">
+                                <rect key="frame" x="20" y="92.5" width="280" height="1"/>
+                                <color key="backgroundColor" red="0.87843137250000003" green="0.87843137250000003" blue="0.88235294119999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="1" id="z2p-um-Y64"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="g9i-JB-PQW" secondAttribute="trailing" constant="20" id="5fT-7R-aY1"/>
+                            <constraint firstAttribute="trailing" secondItem="lwO-Bj-BAh" secondAttribute="trailing" constant="20" id="85d-ab-JEs"/>
+                            <constraint firstAttribute="trailing" secondItem="cS6-4z-Sji" secondAttribute="trailing" id="CPy-DO-6BR"/>
+                            <constraint firstItem="cS6-4z-Sji" firstAttribute="top" secondItem="Wj6-bb-XAn" secondAttribute="top" id="ECN-Ka-2OO"/>
+                            <constraint firstItem="cS6-4z-Sji" firstAttribute="leading" secondItem="Wj6-bb-XAn" secondAttribute="leading" id="GVh-d9-ZhI"/>
+                            <constraint firstItem="Xz7-M4-3B8" firstAttribute="top" secondItem="B7o-4v-D4O" secondAttribute="bottom" constant="8" id="Hfb-ez-cnp"/>
+                            <constraint firstItem="B7o-4v-D4O" firstAttribute="leading" secondItem="Wj6-bb-XAn" secondAttribute="leading" constant="20" id="Pxb-O4-VVm"/>
+                            <constraint firstAttribute="trailing" secondItem="Xz7-M4-3B8" secondAttribute="trailing" constant="20" id="Uwd-V4-QAQ"/>
+                            <constraint firstItem="g9i-JB-PQW" firstAttribute="leading" secondItem="Wj6-bb-XAn" secondAttribute="leading" constant="20" id="a3I-64-gIR"/>
+                            <constraint firstItem="B7o-4v-D4O" firstAttribute="top" secondItem="Wj6-bb-XAn" secondAttribute="top" constant="25" id="guZ-9W-jhl"/>
+                            <constraint firstItem="Xz7-M4-3B8" firstAttribute="leading" secondItem="Wj6-bb-XAn" secondAttribute="leading" constant="20" id="kTA-14-eKC"/>
+                            <constraint firstAttribute="bottom" secondItem="Xz7-M4-3B8" secondAttribute="bottom" constant="25" id="kiv-VO-Kwi"/>
+                            <constraint firstItem="lwO-Bj-BAh" firstAttribute="centerY" secondItem="Wj6-bb-XAn" secondAttribute="centerY" id="p2W-2j-ooS"/>
+                            <constraint firstAttribute="bottom" secondItem="cS6-4z-Sji" secondAttribute="bottom" id="woj-3t-dMx"/>
+                            <constraint firstAttribute="bottom" secondItem="g9i-JB-PQW" secondAttribute="bottom" id="xoE-Kg-Iyo"/>
+                        </constraints>
+                    </view>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="Wj6-bb-XAn" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="8cK-ag-ize"/>
+                    <constraint firstItem="Wj6-bb-XAn" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="Dm2-FT-BC5"/>
+                    <constraint firstAttribute="trailing" secondItem="Wj6-bb-XAn" secondAttribute="trailing" id="rMZ-Os-UVC"/>
+                    <constraint firstAttribute="bottom" secondItem="Wj6-bb-XAn" secondAttribute="bottom" id="vqy-by-2zM"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="lblTitle" destination="B7o-4v-D4O" id="Ukl-ZA-BDF"/>
+                <outlet property="txtText" destination="Xz7-M4-3B8" id="xpk-dn-rtX"/>
+                <outlet property="viewLine" destination="g9i-JB-PQW" id="jsD-DT-wJU"/>
+            </connections>
+            <point key="canvasLocation" x="132.80000000000001" y="190.70464767616193"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="ic_dropdown_long_red" width="15" height="9"/>
+    </resources>
+</document>

@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="Proxima-Nova-Regular.ttf">
+            <string>ProximaNova-Regular</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="IntroductionPremiumCell" id="KGk-i7-Jjw" customClass="IntroductionPremiumCell" customModule="Load" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="87"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="87"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AhB-Cb-CUP">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="87"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Looking for adventure through cycling and peace from yoga." textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mM1-8Y-Hoo">
+                                <rect key="frame" x="30" y="30" width="260" height="17"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="17" id="e12-7a-iOS"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="ProximaNova-Regular" family="Proxima Nova" pointSize="14"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="U3R-e7-1hb">
+                                <rect key="frame" x="0.0" y="77" width="320" height="10"/>
+                                <color key="backgroundColor" red="0.95686274509803915" green="0.95686274509803915" blue="0.95686274509803915" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="10" id="jcU-MV-Q9U"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="U3R-e7-1hb" firstAttribute="leading" secondItem="AhB-Cb-CUP" secondAttribute="leading" id="1pf-L8-aNf"/>
+                            <constraint firstItem="mM1-8Y-Hoo" firstAttribute="top" secondItem="AhB-Cb-CUP" secondAttribute="top" constant="30" id="2gT-qS-dIB"/>
+                            <constraint firstAttribute="trailing" secondItem="mM1-8Y-Hoo" secondAttribute="trailing" constant="30" id="49A-Mv-bQR"/>
+                            <constraint firstAttribute="trailing" secondItem="U3R-e7-1hb" secondAttribute="trailing" id="6hw-1W-IX0"/>
+                            <constraint firstItem="mM1-8Y-Hoo" firstAttribute="leading" secondItem="AhB-Cb-CUP" secondAttribute="leading" constant="30" id="KWE-O2-vZJ"/>
+                            <constraint firstItem="U3R-e7-1hb" firstAttribute="top" secondItem="mM1-8Y-Hoo" secondAttribute="bottom" constant="30" id="bp4-ze-3Er"/>
+                            <constraint firstAttribute="bottom" secondItem="U3R-e7-1hb" secondAttribute="bottom" id="fRU-pF-s4M"/>
+                        </constraints>
+                    </view>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="AhB-Cb-CUP" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="CPb-4a-PWS"/>
+                    <constraint firstItem="AhB-Cb-CUP" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="KGn-gI-kfP"/>
+                    <constraint firstAttribute="trailing" secondItem="AhB-Cb-CUP" secondAttribute="trailing" id="OU4-gg-MiF"/>
+                    <constraint firstAttribute="bottom" secondItem="AhB-Cb-CUP" secondAttribute="bottom" id="hNg-7z-NpS"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="lblValue" destination="mM1-8Y-Hoo" id="if6-rT-83x"/>
+            </connections>
+            <point key="canvasLocation" x="93" y="80"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

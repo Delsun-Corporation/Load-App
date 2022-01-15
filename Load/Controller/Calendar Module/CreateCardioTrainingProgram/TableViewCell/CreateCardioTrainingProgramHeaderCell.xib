@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="Proxima-Nova-Bold.ttf">
+            <string>ProximaNova-Bold</string>
+        </array>
+        <array key="Proxima-nova.ttf">
+            <string>ProximaNova-Regular</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="CreateCardioTrainingProgramHeaderCell" rowHeight="70" id="KGk-i7-Jjw" customClass="CreateCardioTrainingProgramHeaderCell" customModule="Load" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="70"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="69.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4Pl-qj-4Ef">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="69.5"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0 Km training program" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gwi-ec-ska">
+                                <rect key="frame" x="20" y="15" width="280" height="27.5"/>
+                                <fontDescription key="fontDescription" name="ProximaNova-Bold" family="Proxima Nova" pointSize="20"/>
+                                <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jcE-LG-Ouq">
+                                <rect key="frame" x="20" y="44.5" width="24.5" height="15"/>
+                                <fontDescription key="fontDescription" name="ProximaNova-Regular" family="ProximaNova-Regular" pointSize="13"/>
+                                <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="Gwi-ec-ska" secondAttribute="trailing" constant="20" id="8Oz-pp-e7x"/>
+                            <constraint firstItem="Gwi-ec-ska" firstAttribute="leading" secondItem="4Pl-qj-4Ef" secondAttribute="leading" constant="20" id="Jpb-K7-0by"/>
+                            <constraint firstItem="jcE-LG-Ouq" firstAttribute="top" secondItem="Gwi-ec-ska" secondAttribute="bottom" constant="2" id="NGS-rW-gqB"/>
+                            <constraint firstItem="jcE-LG-Ouq" firstAttribute="leading" secondItem="4Pl-qj-4Ef" secondAttribute="leading" constant="20" id="UZB-g4-r85"/>
+                            <constraint firstAttribute="bottom" secondItem="jcE-LG-Ouq" secondAttribute="bottom" constant="10" id="cAr-GQ-8mJ"/>
+                            <constraint firstItem="Gwi-ec-ska" firstAttribute="top" secondItem="4Pl-qj-4Ef" secondAttribute="top" constant="15" id="cyo-dp-aqS"/>
+                        </constraints>
+                    </view>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="bottom" secondItem="4Pl-qj-4Ef" secondAttribute="bottom" id="K2e-0B-F6H"/>
+                    <constraint firstAttribute="trailing" secondItem="4Pl-qj-4Ef" secondAttribute="trailing" id="PPJ-Pg-zK7"/>
+                    <constraint firstItem="4Pl-qj-4Ef" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="kM3-Ha-bDm"/>
+                    <constraint firstItem="4Pl-qj-4Ef" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="oDz-4K-faD"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="lblSubTitle" destination="jcE-LG-Ouq" id="X07-iV-LPK"/>
+                <outlet property="lblTitle" destination="Gwi-ec-ska" id="415-zQ-XnP"/>
+            </connections>
+        </tableViewCell>
+    </objects>
+</document>

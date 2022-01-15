@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="2H5-BE-r3q" customClass="EventDetailsHeaderView" customModule="Load" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="70"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="K4r-qd-fod">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="70"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hND-9o-Bbe">
+                            <rect key="frame" x="30" y="30" width="26.5" height="20"/>
+                            <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="13"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8My-4d-hfb" customClass="FloatRatingView" customModule="FloatRatingView">
+                            <rect key="frame" x="260" y="32.5" width="90" height="15"/>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="15" id="94e-If-6Ch"/>
+                                <constraint firstAttribute="width" constant="90" id="YDF-OP-qXk"/>
+                            </constraints>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="image" keyPath="emptyImage" value="ic_rate_gray"/>
+                                <userDefinedRuntimeAttribute type="image" keyPath="fullImage" value="ic_rate_selected"/>
+                                <userDefinedRuntimeAttribute type="number" keyPath="minRating">
+                                    <integer key="value" value="0"/>
+                                </userDefinedRuntimeAttribute>
+                                <userDefinedRuntimeAttribute type="number" keyPath="maxRating">
+                                    <integer key="value" value="5"/>
+                                </userDefinedRuntimeAttribute>
+                                <userDefinedRuntimeAttribute type="size" keyPath="minImageSize">
+                                    <size key="value" width="15" height="15"/>
+                                </userDefinedRuntimeAttribute>
+                                <userDefinedRuntimeAttribute type="number" keyPath="rating">
+                                    <real key="value" value="0.0"/>
+                                </userDefinedRuntimeAttribute>
+                                <userDefinedRuntimeAttribute type="boolean" keyPath="editable" value="NO"/>
+                            </userDefinedRuntimeAttributes>
+                        </view>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstItem="8My-4d-hfb" firstAttribute="centerY" secondItem="hND-9o-Bbe" secondAttribute="centerY" id="MXE-93-5kZ"/>
+                        <constraint firstAttribute="trailing" secondItem="8My-4d-hfb" secondAttribute="trailing" constant="25" id="N9u-Xq-N4I"/>
+                        <constraint firstItem="hND-9o-Bbe" firstAttribute="leading" secondItem="K4r-qd-fod" secondAttribute="leading" constant="30" id="bFe-ER-1Qp"/>
+                        <constraint firstAttribute="height" constant="70" id="nRv-Ip-GWH"/>
+                        <constraint firstAttribute="bottom" secondItem="hND-9o-Bbe" secondAttribute="bottom" constant="20" id="nX0-eq-7jr"/>
+                        <constraint firstItem="hND-9o-Bbe" firstAttribute="top" secondItem="K4r-qd-fod" secondAttribute="top" constant="30" id="wv5-QY-zJq"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="K4r-qd-fod" firstAttribute="top" secondItem="2H5-BE-r3q" secondAttribute="top" id="Ufm-8S-AVR"/>
+                <constraint firstItem="K4r-qd-fod" firstAttribute="leading" secondItem="yzk-o7-PLq" secondAttribute="leading" id="dDi-hp-ELR"/>
+                <constraint firstAttribute="bottom" secondItem="K4r-qd-fod" secondAttribute="bottom" id="pQh-Qy-JwY"/>
+                <constraint firstItem="yzk-o7-PLq" firstAttribute="trailing" secondItem="K4r-qd-fod" secondAttribute="trailing" id="uD6-uW-ZiZ"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="yzk-o7-PLq"/>
+            <connections>
+                <outlet property="lblTitle" destination="hND-9o-Bbe" id="sjL-YX-V3j"/>
+                <outlet property="rateView" destination="8My-4d-hfb" id="K1Z-sX-2Ig"/>
+            </connections>
+            <point key="canvasLocation" x="132" y="444.82758620689657"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="ic_rate_gray" width="10" height="9"/>
+        <image name="ic_rate_selected" width="10" height="9"/>
+    </resources>
+</document>

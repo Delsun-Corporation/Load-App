@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="Proxima-nova.ttf">
+            <string>ProximaNova-Regular</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="IntroductionCell" rowHeight="202" id="KGk-i7-Jjw" customClass="IntroductionCell" customModule="Load" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="202"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="202"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GT6-WW-fis">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="202"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uZ2-ZG-GFB">
+                                <rect key="frame" x="29" y="156" width="70" height="15"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="15" id="Zsi-wI-1NB"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <state key="normal" title="Read more">
+                                    <color key="titleColor" red="0.93725490199999995" green="0.2156862745" blue="0.36862745099999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="btnReadMoreClicked:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="DVL-yM-rHk"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Introduction" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UXk-Un-72C">
+                                <rect key="frame" x="30" y="20" width="260" height="121"/>
+                                <fontDescription key="fontDescription" name="ProximaNova-Regular" family="Proxima Nova" pointSize="14"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="UXk-Un-72C" firstAttribute="top" secondItem="GT6-WW-fis" secondAttribute="top" constant="20" id="Ih8-fJ-Fxg"/>
+                            <constraint firstItem="uZ2-ZG-GFB" firstAttribute="top" secondItem="UXk-Un-72C" secondAttribute="bottom" constant="15" id="Koa-Rg-04S"/>
+                            <constraint firstAttribute="bottom" secondItem="uZ2-ZG-GFB" secondAttribute="bottom" constant="31" id="PCk-FJ-uAn"/>
+                            <constraint firstAttribute="trailing" secondItem="UXk-Un-72C" secondAttribute="trailing" constant="30" id="U4P-hj-OgK"/>
+                            <constraint firstItem="uZ2-ZG-GFB" firstAttribute="leading" secondItem="GT6-WW-fis" secondAttribute="leading" constant="29" id="sq0-ge-X3i"/>
+                            <constraint firstItem="UXk-Un-72C" firstAttribute="leading" secondItem="GT6-WW-fis" secondAttribute="leading" constant="30" id="yoh-rZ-Wa5"/>
+                        </constraints>
+                    </view>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="GT6-WW-fis" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="6qL-X6-mxr"/>
+                    <constraint firstAttribute="bottom" secondItem="GT6-WW-fis" secondAttribute="bottom" id="IcO-Kv-rXj"/>
+                    <constraint firstAttribute="trailing" secondItem="GT6-WW-fis" secondAttribute="trailing" id="M1a-Iy-F3Z"/>
+                    <constraint firstItem="GT6-WW-fis" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="ZZc-u3-qZw"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="btnReadMore" destination="uZ2-ZG-GFB" id="7T5-kx-9vs"/>
+                <outlet property="btnReadMoreBottom" destination="PCk-FJ-uAn" id="3dG-14-kz3"/>
+                <outlet property="btnReadMoreHeight" destination="Zsi-wI-1NB" id="JXU-DJ-ChB"/>
+                <outlet property="lblDescription" destination="UXk-Un-72C" id="Kb6-JP-GTi"/>
+            </connections>
+            <point key="canvasLocation" x="40" y="117.84107946026987"/>
+        </tableViewCell>
+    </objects>
+</document>

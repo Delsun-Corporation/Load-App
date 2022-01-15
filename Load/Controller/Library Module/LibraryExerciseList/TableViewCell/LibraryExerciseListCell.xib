@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16097.3" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="LibraryExerciseListCell" rowHeight="57" id="KGk-i7-Jjw" customClass="LibraryExerciseListCell" customModule="Load" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="57"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="57"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cvv-Ae-sMt">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="57"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ToT-Ib-an7">
+                                <rect key="frame" x="272" y="17.5" width="20" height="22"/>
+                                <state key="normal" image="ic_round_check_box_unselect"/>
+                                <connections>
+                                    <action selector="btnCheckMarkClicked:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="ZIZ-oY-vah"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Exercise" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cDR-TQ-J6F">
+                                <rect key="frame" x="20" y="20.5" width="155" height="16.5"/>
+                                <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="14"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Mechanics" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lzC-xD-azk">
+                                <rect key="frame" x="187" y="20.5" width="67" height="16.5"/>
+                                <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="14"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kBr-zC-0Vc">
+                                <rect key="frame" x="0.0" y="56" width="320" height="1"/>
+                                <color key="backgroundColor" red="0.84705882349999995" green="0.84705882349999995" blue="0.84705882349999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="1" id="rU1-84-zJl"/>
+                                </constraints>
+                            </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KW3-1L-QZR">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="56"/>
+                                <connections>
+                                    <action selector="btnCheckMarkClicked:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="cnA-0d-OSG"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="kBr-zC-0Vc" secondAttribute="trailing" id="30K-To-DLN"/>
+                            <constraint firstAttribute="bottom" secondItem="kBr-zC-0Vc" secondAttribute="bottom" id="6Ip-0m-t0x"/>
+                            <constraint firstAttribute="trailing" secondItem="cDR-TQ-J6F" secondAttribute="trailing" constant="145" id="9c3-yh-WQl"/>
+                            <constraint firstAttribute="trailing" secondItem="ToT-Ib-an7" secondAttribute="trailing" constant="28" id="CDM-9k-Hel"/>
+                            <constraint firstItem="kBr-zC-0Vc" firstAttribute="top" secondItem="KW3-1L-QZR" secondAttribute="bottom" id="JUY-1U-rke"/>
+                            <constraint firstAttribute="trailing" secondItem="KW3-1L-QZR" secondAttribute="trailing" id="JzB-Ik-6St"/>
+                            <constraint firstItem="ToT-Ib-an7" firstAttribute="leading" secondItem="lzC-xD-azk" secondAttribute="trailing" constant="18" id="Leq-A2-mS0"/>
+                            <constraint firstItem="lzC-xD-azk" firstAttribute="centerY" secondItem="cvv-Ae-sMt" secondAttribute="centerY" id="bjI-8W-F4d"/>
+                            <constraint firstItem="KW3-1L-QZR" firstAttribute="leading" secondItem="cvv-Ae-sMt" secondAttribute="leading" id="fbr-JP-xrf"/>
+                            <constraint firstItem="kBr-zC-0Vc" firstAttribute="leading" secondItem="cvv-Ae-sMt" secondAttribute="leading" id="huY-tc-ppB"/>
+                            <constraint firstItem="KW3-1L-QZR" firstAttribute="top" secondItem="cvv-Ae-sMt" secondAttribute="top" id="iUM-eO-Ey8"/>
+                            <constraint firstItem="cDR-TQ-J6F" firstAttribute="leading" secondItem="cvv-Ae-sMt" secondAttribute="leading" constant="20" id="jIh-Fa-JAe"/>
+                            <constraint firstItem="cDR-TQ-J6F" firstAttribute="centerY" secondItem="cvv-Ae-sMt" secondAttribute="centerY" id="tII-Iy-MGh"/>
+                            <constraint firstItem="ToT-Ib-an7" firstAttribute="centerY" secondItem="cvv-Ae-sMt" secondAttribute="centerY" id="vPa-5a-BKc"/>
+                            <constraint firstAttribute="height" constant="57" id="vjD-jT-eH5"/>
+                        </constraints>
+                    </view>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="cvv-Ae-sMt" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="L58-ni-iYG"/>
+                    <constraint firstItem="cvv-Ae-sMt" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="P15-je-cDx"/>
+                    <constraint firstAttribute="trailing" secondItem="cvv-Ae-sMt" secondAttribute="trailing" id="gme-hY-jgC"/>
+                    <constraint firstAttribute="bottom" secondItem="cvv-Ae-sMt" secondAttribute="bottom" id="lqK-LV-So0"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="btnCheck" destination="ToT-Ib-an7" id="EbD-iq-40c"/>
+                <outlet property="lblExercise" destination="cDR-TQ-J6F" id="n2Z-pK-RVB"/>
+                <outlet property="lblMechanics" destination="lzC-xD-azk" id="Gbo-8Y-V12"/>
+            </connections>
+            <point key="canvasLocation" x="52.799999999999997" y="111.0944527736132"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="ic_round_check_box_unselect" width="20" height="20"/>
+    </resources>
+</document>

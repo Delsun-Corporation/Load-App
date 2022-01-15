@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="Rdr-dW-liR" customClass="AutoTopUpHeaderView" customModule="Load" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="55"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yBD-Gj-107">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="55"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xja-pk-KBU">
+                            <rect key="frame" x="20" y="29.5" width="28" height="17.5"/>
+                            <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="15"/>
+                            <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" red="0.95686274510000002" green="0.95686274510000002" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstItem="xja-pk-KBU" firstAttribute="leading" secondItem="yBD-Gj-107" secondAttribute="leading" constant="20" id="FVV-BO-2n6"/>
+                        <constraint firstAttribute="bottom" secondItem="xja-pk-KBU" secondAttribute="bottom" constant="8" id="mnc-Bo-P9r"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="yBD-Gj-107" secondAttribute="bottom" id="Xg3-Tq-VWo"/>
+                <constraint firstItem="Tqk-cn-ZgD" firstAttribute="trailing" secondItem="yBD-Gj-107" secondAttribute="trailing" id="eei-d9-GhL"/>
+                <constraint firstItem="yBD-Gj-107" firstAttribute="leading" secondItem="Tqk-cn-ZgD" secondAttribute="leading" id="uqw-6N-mDg"/>
+                <constraint firstItem="yBD-Gj-107" firstAttribute="top" secondItem="Rdr-dW-liR" secondAttribute="top" id="xPs-fU-yL1"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="Tqk-cn-ZgD"/>
+            <connections>
+                <outlet property="lblTitle" destination="xja-pk-KBU" id="FMm-Qw-ABQ"/>
+            </connections>
+            <point key="canvasLocation" x="132" y="358.92053973013498"/>
+        </view>
+    </objects>
+</document>

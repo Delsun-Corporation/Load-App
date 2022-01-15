@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="ListingHeaderView" customModule="Load" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="63"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hcN-Yb-wfS">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="63"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WRu-IP-RSv">
+                            <rect key="frame" x="20" y="25" width="28" height="18"/>
+                            <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="15"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_left_arrow" translatesAutoresizingMaskIntoConstraints="NO" id="oFH-10-LKP">
+                            <rect key="frame" x="351" y="28.5" width="7" height="11"/>
+                        </imageView>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IRy-cQ-9ls">
+                            <rect key="frame" x="299" y="20.5" width="44" height="27"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                            <state key="normal" title="View all">
+                                <color key="titleColor" red="0.93725490199999995" green="0.2156862745" blue="0.36862745099999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </state>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstItem="IRy-cQ-9ls" firstAttribute="centerY" secondItem="WRu-IP-RSv" secondAttribute="centerY" id="2sK-fa-ucg"/>
+                        <constraint firstItem="oFH-10-LKP" firstAttribute="centerY" secondItem="WRu-IP-RSv" secondAttribute="centerY" id="6I6-gc-tQc"/>
+                        <constraint firstAttribute="height" constant="63" id="FeJ-YK-apL"/>
+                        <constraint firstItem="WRu-IP-RSv" firstAttribute="leading" secondItem="hcN-Yb-wfS" secondAttribute="leading" constant="20" id="Qj2-ZL-9Ka"/>
+                        <constraint firstAttribute="bottom" secondItem="WRu-IP-RSv" secondAttribute="bottom" constant="20" id="Yzu-Zg-QNX"/>
+                        <constraint firstAttribute="trailing" secondItem="oFH-10-LKP" secondAttribute="trailing" constant="17" id="doa-3N-Cfl"/>
+                        <constraint firstItem="oFH-10-LKP" firstAttribute="leading" secondItem="IRy-cQ-9ls" secondAttribute="trailing" constant="8" id="pqq-ze-Njy"/>
+                        <constraint firstItem="WRu-IP-RSv" firstAttribute="top" secondItem="hcN-Yb-wfS" secondAttribute="top" constant="25" id="rQf-l5-Pqq"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="hcN-Yb-wfS" secondAttribute="bottom" id="Dln-qe-G6d"/>
+                <constraint firstItem="hcN-Yb-wfS" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="KeW-U2-rj4"/>
+                <constraint firstItem="hcN-Yb-wfS" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="bly-kH-9Ly"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="hcN-Yb-wfS" secondAttribute="trailing" id="rXy-0s-tqA"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <connections>
+                <outlet property="btnViewAll" destination="IRy-cQ-9ls" id="97Z-c0-Fdm"/>
+                <outlet property="lblTitle" destination="WRu-IP-RSv" id="Gak-Jt-7ie"/>
+            </connections>
+            <point key="canvasLocation" x="132" y="344.07796101949026"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="ic_left_arrow" width="7" height="11"/>
+    </resources>
+</document>

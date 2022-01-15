@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="FilterRatingCell" rowHeight="50" id="KGk-i7-Jjw" customClass="FilterRatingCell" customModule="Load" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="54"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="53.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Y44-ID-24W">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="54.5"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pHQ-Bt-bWf" customClass="FloatRatingView" customModule="FloatRatingView">
+                                <rect key="frame" x="20" y="2.5" width="115" height="22"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="115" id="UWx-Lp-Ugw"/>
+                                    <constraint firstAttribute="height" constant="22" id="rs1-8c-cTU"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="image" keyPath="emptyImage" value="ic_rate_large"/>
+                                    <userDefinedRuntimeAttribute type="image" keyPath="fullImage" value="ic_rate_large_selected"/>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="minRating">
+                                        <integer key="value" value="0"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="maxRating">
+                                        <integer key="value" value="5"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="size" keyPath="minImageSize">
+                                        <size key="value" width="23" height="22"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ftg-JS-4fn">
+                                <rect key="frame" x="20" y="53.5" width="280" height="1"/>
+                                <color key="backgroundColor" red="0.84705882349999995" green="0.84705882349999995" blue="0.84705882349999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="1" id="S4x-KE-kWR"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstAttribute="bottom" secondItem="ftg-JS-4fn" secondAttribute="bottom" id="1Xh-68-2ak"/>
+                            <constraint firstItem="pHQ-Bt-bWf" firstAttribute="leading" secondItem="Y44-ID-24W" secondAttribute="leading" constant="20" id="Atl-Nk-GQw"/>
+                            <constraint firstItem="ftg-JS-4fn" firstAttribute="leading" secondItem="Y44-ID-24W" secondAttribute="leading" constant="20" id="GI0-m0-bsb"/>
+                            <constraint firstAttribute="trailing" secondItem="ftg-JS-4fn" secondAttribute="trailing" constant="20" id="Hdj-H1-hGF"/>
+                            <constraint firstItem="pHQ-Bt-bWf" firstAttribute="leading" secondItem="Y44-ID-24W" secondAttribute="leading" constant="20" id="Huu-mb-zwE"/>
+                            <constraint firstAttribute="height" constant="54" id="LiV-hK-aeD"/>
+                            <constraint firstItem="pHQ-Bt-bWf" firstAttribute="top" secondItem="Y44-ID-24W" secondAttribute="top" constant="2" id="VWU-yc-jTt"/>
+                        </constraints>
+                    </view>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="Y44-ID-24W" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="7yc-kR-Nhf"/>
+                    <constraint firstItem="Y44-ID-24W" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="MQ1-gG-nyJ"/>
+                    <constraint firstAttribute="bottom" secondItem="Y44-ID-24W" secondAttribute="bottom" id="kUk-jx-JcR"/>
+                    <constraint firstAttribute="trailing" secondItem="Y44-ID-24W" secondAttribute="trailing" id="sxg-Qp-58f"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="rateView" destination="pHQ-Bt-bWf" id="Rva-Zh-ugd"/>
+            </connections>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="ic_rate_large" width="23" height="22"/>
+        <image name="ic_rate_large_selected" width="23" height="22"/>
+    </resources>
+</document>

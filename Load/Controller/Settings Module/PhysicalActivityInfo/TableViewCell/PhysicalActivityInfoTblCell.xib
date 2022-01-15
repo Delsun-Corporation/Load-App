@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina5_5" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="Proxima-Nova-Regular.ttf">
+            <string>ProximaNova-Regular</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="PhysicalActivityInfoTblCell" id="KGk-i7-Jjw" customClass="PhysicalActivityInfoTblCell" customModule="Load" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="112"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="375" height="112"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5Xe-VQ-GG8">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="112"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nk1-bz-QBM">
+                                <rect key="frame" x="22" y="30" width="331" height="20"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="20" id="yvS-lJ-PqO"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Description" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xiM-Yc-hrB">
+                                <rect key="frame" x="23" y="64" width="329" height="18"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="18" id="eyz-mQ-ALL"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="ProximaNova-Regular" family="Proxima Nova" pointSize="15"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UwL-TI-s5A">
+                                <rect key="frame" x="27" y="110" width="321" height="1"/>
+                                <color key="backgroundColor" red="0.84705882352941175" green="0.84705882352941175" blue="0.84705882352941175" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="1" id="AF9-B2-wbu"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="nk1-bz-QBM" secondAttribute="trailing" constant="22" id="CYA-WI-mEK"/>
+                            <constraint firstItem="xiM-Yc-hrB" firstAttribute="leading" secondItem="5Xe-VQ-GG8" secondAttribute="leading" constant="23" id="Gib-sa-YCk"/>
+                            <constraint firstItem="xiM-Yc-hrB" firstAttribute="top" secondItem="nk1-bz-QBM" secondAttribute="bottom" constant="14" id="RQd-AR-SZk"/>
+                            <constraint firstItem="nk1-bz-QBM" firstAttribute="top" secondItem="5Xe-VQ-GG8" secondAttribute="top" constant="30" id="UjL-4N-R4M"/>
+                            <constraint firstItem="UwL-TI-s5A" firstAttribute="top" secondItem="xiM-Yc-hrB" secondAttribute="bottom" constant="28" id="nHG-gS-aJx"/>
+                            <constraint firstAttribute="bottom" secondItem="UwL-TI-s5A" secondAttribute="bottom" constant="1" id="oQF-3K-77D"/>
+                            <constraint firstAttribute="trailing" secondItem="UwL-TI-s5A" secondAttribute="trailing" constant="27" id="pTa-e6-SO2"/>
+                            <constraint firstAttribute="trailing" secondItem="xiM-Yc-hrB" secondAttribute="trailing" constant="23" id="pwh-yC-Nnt"/>
+                            <constraint firstItem="UwL-TI-s5A" firstAttribute="leading" secondItem="5Xe-VQ-GG8" secondAttribute="leading" constant="27" id="sNf-uT-DuL"/>
+                            <constraint firstItem="nk1-bz-QBM" firstAttribute="leading" secondItem="5Xe-VQ-GG8" secondAttribute="leading" constant="22" id="vQH-rp-Yi9"/>
+                        </constraints>
+                    </view>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="trailing" secondItem="5Xe-VQ-GG8" secondAttribute="trailing" id="NNj-aY-ffA"/>
+                    <constraint firstItem="5Xe-VQ-GG8" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="ej6-lA-Os4"/>
+                    <constraint firstItem="5Xe-VQ-GG8" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="fsZ-ri-CF1"/>
+                    <constraint firstAttribute="bottom" secondItem="5Xe-VQ-GG8" secondAttribute="bottom" id="kIw-Mi-Mu8"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="lblDescription" destination="xiM-Yc-hrB" id="ZKW-GA-paI"/>
+                <outlet property="lblTitle" destination="nk1-bz-QBM" id="E9Z-qf-WnZ"/>
+                <outlet property="vwLine" destination="UwL-TI-s5A" id="2ZB-J4-AXJ"/>
+            </connections>
+            <point key="canvasLocation" x="141" y="67"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

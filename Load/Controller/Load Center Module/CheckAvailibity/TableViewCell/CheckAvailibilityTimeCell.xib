@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="CheckAvailibilityTimeCell" id="KGk-i7-Jjw" customClass="CheckAvailibilityTimeCell" customModule="Load" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="47"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="375" height="46.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jeY-re-U6j">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="47.5"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Time" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9DO-ld-a27">
+                                <rect key="frame" x="13" y="16.5" width="28.5" height="15"/>
+                                <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="13"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oXW-jP-823">
+                                <rect key="frame" x="0.0" y="46.5" width="375" height="1"/>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="1" id="ukB-vm-CK8"/>
+                                </constraints>
+                            </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qoF-mp-HHA">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="46.5"/>
+                                <connections>
+                                    <action selector="btnCellClicked:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="RJA-fZ-RxQ"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" red="0.95686274510000002" green="0.95686274510000002" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="qoF-mp-HHA" secondAttribute="trailing" id="I5U-qt-3IM"/>
+                            <constraint firstAttribute="bottom" secondItem="oXW-jP-823" secondAttribute="bottom" id="M3G-eU-4QX"/>
+                            <constraint firstItem="qoF-mp-HHA" firstAttribute="top" secondItem="jeY-re-U6j" secondAttribute="top" id="OTa-4V-tUv"/>
+                            <constraint firstAttribute="trailing" secondItem="oXW-jP-823" secondAttribute="trailing" id="Tjn-je-CFn"/>
+                            <constraint firstItem="oXW-jP-823" firstAttribute="top" secondItem="qoF-mp-HHA" secondAttribute="bottom" id="Uw8-Pk-F6B"/>
+                            <constraint firstItem="oXW-jP-823" firstAttribute="leading" secondItem="jeY-re-U6j" secondAttribute="leading" id="ZGx-9W-ULm"/>
+                            <constraint firstAttribute="height" constant="47" id="obY-Vc-U98"/>
+                            <constraint firstItem="9DO-ld-a27" firstAttribute="centerY" secondItem="jeY-re-U6j" secondAttribute="centerY" id="uhZ-eV-xzd"/>
+                            <constraint firstItem="qoF-mp-HHA" firstAttribute="leading" secondItem="jeY-re-U6j" secondAttribute="leading" id="x5x-o6-MNW"/>
+                            <constraint firstItem="9DO-ld-a27" firstAttribute="leading" secondItem="jeY-re-U6j" secondAttribute="leading" constant="13" id="z0V-mw-Ns7"/>
+                        </constraints>
+                    </view>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="jeY-re-U6j" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="J3c-kn-f8h"/>
+                    <constraint firstAttribute="trailing" secondItem="jeY-re-U6j" secondAttribute="trailing" id="M3y-fM-clO"/>
+                    <constraint firstAttribute="bottom" secondItem="jeY-re-U6j" secondAttribute="bottom" id="guX-6Q-G9K"/>
+                    <constraint firstItem="jeY-re-U6j" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="vQW-pe-BDu"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="btnCell" destination="qoF-mp-HHA" id="EdO-3A-qer"/>
+                <outlet property="lblTime" destination="9DO-ld-a27" id="Wp8-CU-ScI"/>
+                <outlet property="viewBack" destination="jeY-re-U6j" id="ivn-j4-opH"/>
+            </connections>
+        </tableViewCell>
+    </objects>
+</document>

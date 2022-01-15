@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="Proxima-Nova-Regular.ttf">
+            <string>ProximaNova-Regular</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="CountryCodeCell" id="KGk-i7-Jjw" customClass="CountryCodeCell" customModule="Load" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="40"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="39.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="e9x-D0-YCT">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="40.5"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Qhz-nk-HCu">
+                                <rect key="frame" x="10" y="10.5" width="30" height="20"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="30" id="a56-bh-zAI"/>
+                                    <constraint firstAttribute="height" constant="20" id="iDi-jl-WZP"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Select a Country" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JtL-3O-2Oi">
+                                <rect key="frame" x="50" y="13" width="94.5" height="14.5"/>
+                                <fontDescription key="fontDescription" name="ProximaNova-Regular" family="Proxima Nova" pointSize="13"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="+00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hmk-Z8-ODT">
+                                <rect key="frame" x="292.5" y="13" width="22.5" height="14.5"/>
+                                <fontDescription key="fontDescription" name="ProximaNova-Regular" family="Proxima Nova" pointSize="13"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="Qhz-nk-HCu" firstAttribute="top" secondItem="e9x-D0-YCT" secondAttribute="top" constant="10" id="H5M-vr-DQt"/>
+                            <constraint firstItem="JtL-3O-2Oi" firstAttribute="leading" secondItem="Qhz-nk-HCu" secondAttribute="trailing" constant="10" id="ITP-h4-HDt"/>
+                            <constraint firstAttribute="height" constant="40" id="MSB-7v-6FW"/>
+                            <constraint firstItem="Qhz-nk-HCu" firstAttribute="leading" secondItem="e9x-D0-YCT" secondAttribute="leading" constant="10" id="axZ-i7-h90"/>
+                            <constraint firstItem="Hmk-Z8-ODT" firstAttribute="centerY" secondItem="JtL-3O-2Oi" secondAttribute="centerY" id="e9a-bf-KWw"/>
+                            <constraint firstItem="JtL-3O-2Oi" firstAttribute="centerY" secondItem="Qhz-nk-HCu" secondAttribute="centerY" id="fuX-Rw-dg7"/>
+                            <constraint firstAttribute="bottom" secondItem="Qhz-nk-HCu" secondAttribute="bottom" constant="10" id="gI0-ih-0j7"/>
+                            <constraint firstAttribute="trailing" secondItem="Hmk-Z8-ODT" secondAttribute="trailing" constant="5" id="ynh-HQ-PBN"/>
+                        </constraints>
+                    </view>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="e9x-D0-YCT" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="5t8-Kp-AgQ"/>
+                    <constraint firstItem="e9x-D0-YCT" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="bOr-zb-nEL"/>
+                    <constraint firstAttribute="trailing" secondItem="e9x-D0-YCT" secondAttribute="trailing" id="da2-yp-2i9"/>
+                    <constraint firstAttribute="bottom" secondItem="e9x-D0-YCT" secondAttribute="bottom" id="gm9-np-mCt"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="imgCountry" destination="Qhz-nk-HCu" id="kjq-ch-d9P"/>
+                <outlet property="lblCode" destination="Hmk-Z8-ODT" id="hVA-Fl-LjL"/>
+                <outlet property="lblCountry" destination="JtL-3O-2Oi" id="ex2-74-Prz"/>
+            </connections>
+        </tableViewCell>
+    </objects>
+</document>

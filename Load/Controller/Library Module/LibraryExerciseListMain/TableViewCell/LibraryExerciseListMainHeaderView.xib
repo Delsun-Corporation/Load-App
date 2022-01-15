@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="Proxima-Nova-Bold.ttf">
+            <string>ProximaNova-Bold</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="any-BJ-nL5" customClass="LibraryExerciseListMainHeaderView" customModule="Load" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="70"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GmN-Fl-HTk">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="70"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Exercise" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="diZ-8S-g1m">
+                            <rect key="frame" x="20" y="40" width="335" height="18"/>
+                            <fontDescription key="fontDescription" name="ProximaNova-Bold" family="Proxima Nova" pointSize="18"/>
+                            <color key="textColor" red="0.14117647058823529" green="0.14509803921568626" blue="0.23921568627450979" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="trailing" secondItem="diZ-8S-g1m" secondAttribute="trailing" constant="20" id="Cch-Kv-Jsr"/>
+                        <constraint firstItem="diZ-8S-g1m" firstAttribute="top" secondItem="GmN-Fl-HTk" secondAttribute="top" constant="40" id="RDF-go-ZyW"/>
+                        <constraint firstItem="diZ-8S-g1m" firstAttribute="leading" secondItem="GmN-Fl-HTk" secondAttribute="leading" constant="20" id="bOG-02-1VP"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="exM-Rl-qh4" firstAttribute="bottom" secondItem="GmN-Fl-HTk" secondAttribute="bottom" id="EDh-iB-0i2"/>
+                <constraint firstItem="GmN-Fl-HTk" firstAttribute="leading" secondItem="any-BJ-nL5" secondAttribute="leading" id="EYe-hn-Ijm"/>
+                <constraint firstItem="GmN-Fl-HTk" firstAttribute="top" secondItem="any-BJ-nL5" secondAttribute="top" id="Rrl-Sm-cq6"/>
+                <constraint firstItem="exM-Rl-qh4" firstAttribute="trailing" secondItem="GmN-Fl-HTk" secondAttribute="trailing" id="YPY-qa-UU4"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="exM-Rl-qh4"/>
+            <connections>
+                <outlet property="lblExercise" destination="diZ-8S-g1m" id="rbe-4e-bFD"/>
+            </connections>
+        </view>
+    </objects>
+</document>

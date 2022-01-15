@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="zO1-ra-7Pg" customClass="PresetResistanceTrainingProgramHeaderView" customModule="Load" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="68"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1Fg-BC-tNw">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="68"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="Select your preset" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7o1-Vt-UV4">
+                            <rect key="frame" x="34" y="25" width="121" height="16"/>
+                            <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="15"/>
+                            <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fIR-TG-3Di">
+                            <rect key="frame" x="0.0" y="67" width="375" height="1"/>
+                            <color key="backgroundColor" red="0.87843137250000003" green="0.87843137250000003" blue="0.88235294119999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="1" id="pSq-XK-Y4h"/>
+                            </constraints>
+                        </view>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstItem="7o1-Vt-UV4" firstAttribute="top" secondItem="1Fg-BC-tNw" secondAttribute="top" constant="25" id="HeF-qa-HU1"/>
+                        <constraint firstAttribute="bottom" secondItem="7o1-Vt-UV4" secondAttribute="bottom" constant="27" id="UFM-F4-MId"/>
+                        <constraint firstAttribute="trailing" secondItem="fIR-TG-3Di" secondAttribute="trailing" id="f0r-98-nKc"/>
+                        <constraint firstAttribute="bottom" secondItem="fIR-TG-3Di" secondAttribute="bottom" id="oGx-It-Usy"/>
+                        <constraint firstItem="7o1-Vt-UV4" firstAttribute="leading" secondItem="1Fg-BC-tNw" secondAttribute="leading" constant="34" id="r4O-xo-NZk"/>
+                        <constraint firstItem="fIR-TG-3Di" firstAttribute="leading" secondItem="1Fg-BC-tNw" secondAttribute="leading" id="zas-6c-ng2"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="1Fg-BC-tNw" secondAttribute="bottom" id="Dr3-Bc-Lvs"/>
+                <constraint firstItem="7MN-9W-eUl" firstAttribute="trailing" secondItem="1Fg-BC-tNw" secondAttribute="trailing" id="RnT-29-VE8"/>
+                <constraint firstItem="1Fg-BC-tNw" firstAttribute="top" secondItem="zO1-ra-7Pg" secondAttribute="top" id="jlQ-3c-PxI"/>
+                <constraint firstItem="1Fg-BC-tNw" firstAttribute="leading" secondItem="7MN-9W-eUl" secondAttribute="leading" id="xgM-Ve-Wt1"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="7MN-9W-eUl"/>
+            <connections>
+                <outlet property="lblTitle" destination="7o1-Vt-UV4" id="tK6-ez-2Ks"/>
+            </connections>
+            <point key="canvasLocation" x="157.59999999999999" y="71.064467766116948"/>
+        </view>
+    </objects>
+</document>

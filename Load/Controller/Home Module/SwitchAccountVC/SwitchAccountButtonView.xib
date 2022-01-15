@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="SFUIText-Regular.ttf">
+            <string>SFUIText-Regular</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="SwitchAccountButtonView" customModule="Load" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="115" height="39"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qw0-NH-R30">
+                    <rect key="frame" x="0.0" y="0.0" width="115" height="39"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Switch account" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FlE-Vw-7ce">
+                            <rect key="frame" x="5" y="5" width="92" height="14.5"/>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <fontDescription key="fontDescription" name="SFUIText-Regular" family="SF UI Text" pointSize="12"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_switch_account_down_arrow" translatesAutoresizingMaskIntoConstraints="NO" id="QWq-8q-biF">
+                            <rect key="frame" x="100" y="5" width="10" height="14.5"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="14.5" id="CQh-xi-5PC"/>
+                                <constraint firstAttribute="width" constant="10" id="uyE-aS-xZF"/>
+                            </constraints>
+                        </imageView>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="feM-fz-5K5">
+                            <rect key="frame" x="0.0" y="0.0" width="115" height="39"/>
+                            <connections>
+                                <action selector="btnSwitchAccountClicked:" destination="iN0-l3-epB" eventType="touchUpInside" id="y0O-O7-gAD"/>
+                            </connections>
+                        </button>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Free" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wGa-3M-ffO">
+                            <rect key="frame" x="5" y="21.5" width="105" height="12.5"/>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <fontDescription key="fontDescription" name="SFUIText-Regular" family="SF UI Text" pointSize="12"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstItem="QWq-8q-biF" firstAttribute="centerY" secondItem="FlE-Vw-7ce" secondAttribute="centerY" id="3uE-nG-qRe"/>
+                        <constraint firstItem="feM-fz-5K5" firstAttribute="top" secondItem="qw0-NH-R30" secondAttribute="top" id="4sX-U7-jg5"/>
+                        <constraint firstAttribute="trailing" secondItem="QWq-8q-biF" secondAttribute="trailing" constant="5" id="5e5-Om-mu3"/>
+                        <constraint firstItem="QWq-8q-biF" firstAttribute="top" secondItem="qw0-NH-R30" secondAttribute="top" constant="5" id="Im0-rD-MmE"/>
+                        <constraint firstItem="wGa-3M-ffO" firstAttribute="leading" secondItem="qw0-NH-R30" secondAttribute="leading" constant="5" id="KuY-Nh-DnE"/>
+                        <constraint firstItem="feM-fz-5K5" firstAttribute="leading" secondItem="qw0-NH-R30" secondAttribute="leading" id="MKn-gW-OzU"/>
+                        <constraint firstAttribute="trailing" secondItem="feM-fz-5K5" secondAttribute="trailing" id="NC2-0Q-lI9"/>
+                        <constraint firstAttribute="bottom" secondItem="feM-fz-5K5" secondAttribute="bottom" id="Uag-In-nHM"/>
+                        <constraint firstItem="FlE-Vw-7ce" firstAttribute="leading" secondItem="qw0-NH-R30" secondAttribute="leading" constant="5" id="gSI-eV-JBw"/>
+                        <constraint firstAttribute="bottom" secondItem="wGa-3M-ffO" secondAttribute="bottom" constant="5" id="hMs-jR-uQ8"/>
+                        <constraint firstItem="wGa-3M-ffO" firstAttribute="top" secondItem="FlE-Vw-7ce" secondAttribute="bottom" constant="2" id="ip9-es-T3H"/>
+                        <constraint firstItem="QWq-8q-biF" firstAttribute="leading" secondItem="FlE-Vw-7ce" secondAttribute="trailing" constant="3" id="l1e-bb-y34"/>
+                        <constraint firstAttribute="trailing" secondItem="wGa-3M-ffO" secondAttribute="trailing" constant="5" id="meu-Yg-VaW"/>
+                        <constraint firstItem="FlE-Vw-7ce" firstAttribute="top" secondItem="qw0-NH-R30" secondAttribute="top" constant="5" id="tF3-ST-ZeH"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstItem="qw0-NH-R30" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="Chy-Lz-cXq"/>
+                <constraint firstAttribute="trailing" secondItem="qw0-NH-R30" secondAttribute="trailing" id="PvT-DI-7kq"/>
+                <constraint firstAttribute="bottom" secondItem="qw0-NH-R30" secondAttribute="bottom" id="jbT-5P-zK4"/>
+                <constraint firstItem="qw0-NH-R30" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="w8A-EM-Ixv"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <connections>
+                <outlet property="lblFree" destination="wGa-3M-ffO" id="98Y-i2-tl3"/>
+                <outlet property="lblSwitchAccount" destination="FlE-Vw-7ce" id="tid-Wh-DGZ"/>
+            </connections>
+            <point key="canvasLocation" x="-167.19999999999999" y="298.2008995502249"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="ic_switch_account_down_arrow" width="10" height="5"/>
+    </resources>
+</document>

@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="SpecializationCell" id="gTV-IL-0wX" customClass="SpecializationCell" customModule="Load" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="128" height="30"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="128" height="30"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gt0-Mi-Zr9">
+                        <rect key="frame" x="0.0" y="0.0" width="128" height="30"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pQV-2q-LT9" customClass="CustomButton" customModule="Load" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="0.0" width="128" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="0WD-7m-0po"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="15"/>
+                                <state key="normal" title="Marathon">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                        <real key="value" value="1"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                        <color key="value" red="0.93725490199999995" green="0.2156862745" blue="0.36862745099999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="btnTagClicked:" destination="gTV-IL-0wX" eventType="touchUpInside" id="HLl-GP-HXO"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="pQV-2q-LT9" firstAttribute="top" secondItem="gt0-Mi-Zr9" secondAttribute="top" id="Jap-Yo-0NB"/>
+                            <constraint firstAttribute="bottom" secondItem="pQV-2q-LT9" secondAttribute="bottom" id="RqE-jL-lKb"/>
+                            <constraint firstAttribute="trailing" secondItem="pQV-2q-LT9" secondAttribute="trailing" id="aX2-zD-I6a"/>
+                            <constraint firstItem="pQV-2q-LT9" firstAttribute="leading" secondItem="gt0-Mi-Zr9" secondAttribute="leading" id="mwS-3u-B5n"/>
+                        </constraints>
+                    </view>
+                </subviews>
+            </view>
+            <constraints>
+                <constraint firstItem="gt0-Mi-Zr9" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="9pj-VJ-ivd"/>
+                <constraint firstItem="gt0-Mi-Zr9" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="fMT-oz-NfQ"/>
+                <constraint firstAttribute="trailing" secondItem="gt0-Mi-Zr9" secondAttribute="trailing" id="vZf-BU-2qq"/>
+                <constraint firstAttribute="bottom" secondItem="gt0-Mi-Zr9" secondAttribute="bottom" id="z5d-rE-Udo"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
+            <size key="customSize" width="128" height="50"/>
+            <connections>
+                <outlet property="btnTag" destination="pQV-2q-LT9" id="vH8-UB-sfo"/>
+            </connections>
+            <point key="canvasLocation" x="195.19999999999999" y="154.72263868065968"/>
+        </collectionViewCell>
+    </objects>
+</document>

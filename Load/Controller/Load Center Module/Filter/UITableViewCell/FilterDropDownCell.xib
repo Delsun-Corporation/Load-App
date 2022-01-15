@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="FilterDropDownCell" id="KGk-i7-Jjw" customClass="FilterDropDownCell" customModule="Load" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="38"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="37.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rst-xv-k7n">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="38.5"/>
+                        <subviews>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Select" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="DTH-Xq-0GT">
+                                <rect key="frame" x="20" y="2.5" width="260" height="18"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="18" id="t0g-JQ-tP1"/>
+                                </constraints>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="12"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_dropdown_long_red" translatesAutoresizingMaskIntoConstraints="NO" id="mdI-KM-aPb">
+                                <rect key="frame" x="271" y="7" width="15" height="9"/>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="i0t-S3-Uv1">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="38.5"/>
+                                <connections>
+                                    <action selector="btnSelectClicked:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="1au-pD-uVF"/>
+                                </connections>
+                            </button>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VuQ-mS-YFc">
+                                <rect key="frame" x="20" y="37.5" width="280" height="1"/>
+                                <color key="backgroundColor" red="0.95686274510000002" green="0.95686274510000002" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="1" id="FU1-Jw-FBx"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="VuQ-mS-YFc" firstAttribute="leading" secondItem="rst-xv-k7n" secondAttribute="leading" constant="20" id="6Ot-bp-lnn"/>
+                            <constraint firstAttribute="trailing" secondItem="VuQ-mS-YFc" secondAttribute="trailing" constant="20" id="8ox-Wc-ri8"/>
+                            <constraint firstItem="mdI-KM-aPb" firstAttribute="centerY" secondItem="DTH-Xq-0GT" secondAttribute="centerY" id="Cje-KE-0oM"/>
+                            <constraint firstItem="i0t-S3-Uv1" firstAttribute="top" secondItem="rst-xv-k7n" secondAttribute="top" id="Mnu-yX-VQh"/>
+                            <constraint firstAttribute="trailing" secondItem="DTH-Xq-0GT" secondAttribute="trailing" constant="40" id="XMs-hY-ajn"/>
+                            <constraint firstAttribute="height" constant="38" id="ZVd-GQ-wUO"/>
+                            <constraint firstAttribute="trailing" secondItem="i0t-S3-Uv1" secondAttribute="trailing" id="gu1-mH-ZfW"/>
+                            <constraint firstAttribute="bottom" secondItem="VuQ-mS-YFc" secondAttribute="bottom" id="jiZ-Bn-x9r"/>
+                            <constraint firstItem="i0t-S3-Uv1" firstAttribute="leading" secondItem="rst-xv-k7n" secondAttribute="leading" id="nRT-CU-Agg"/>
+                            <constraint firstItem="DTH-Xq-0GT" firstAttribute="leading" secondItem="rst-xv-k7n" secondAttribute="leading" constant="20" id="pWM-WO-T4i"/>
+                            <constraint firstAttribute="bottom" secondItem="i0t-S3-Uv1" secondAttribute="bottom" id="sAX-F4-2L6"/>
+                            <constraint firstItem="DTH-Xq-0GT" firstAttribute="top" secondItem="rst-xv-k7n" secondAttribute="top" constant="2" id="t6T-6W-UH9"/>
+                            <constraint firstAttribute="trailing" secondItem="mdI-KM-aPb" secondAttribute="trailing" constant="34" id="wWc-Fb-jE5"/>
+                        </constraints>
+                    </view>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="bottom" secondItem="rst-xv-k7n" secondAttribute="bottom" id="IYK-fo-jPw"/>
+                    <constraint firstItem="rst-xv-k7n" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="Nyh-oD-Kux"/>
+                    <constraint firstItem="rst-xv-k7n" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="UdV-2K-ale"/>
+                    <constraint firstAttribute="trailing" secondItem="rst-xv-k7n" secondAttribute="trailing" id="ZOf-Lx-hjv"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="txtDropDown" destination="DTH-Xq-0GT" id="3OF-MD-l0C"/>
+            </connections>
+            <point key="canvasLocation" x="40" y="46.776611694152926"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="ic_dropdown_long_red" width="15" height="9"/>
+    </resources>
+</document>

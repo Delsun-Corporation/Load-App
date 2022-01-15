@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="Proxima-Nova-Bold.ttf">
+            <string>ProximaNova-Bold</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="ProfileHeaderView" customModule="Load" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="51"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Xxs-g4-Vax">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="51"/>
+                    <subviews>
+                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_arrow_next" translatesAutoresizingMaskIntoConstraints="NO" id="s30-Sw-iZa">
+                            <rect key="frame" x="346" y="33.5" width="9" height="15"/>
+                        </imageView>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="93z-ea-hxE">
+                            <rect key="frame" x="30" y="31" width="32" height="20"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="20" id="Ke9-Wr-juO"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" name="ProximaNova-Bold" family="Proxima Nova" pointSize="16"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iyv-WQ-gAr">
+                            <rect key="frame" x="0.0" y="0.0" width="375" height="51"/>
+                            <connections>
+                                <action selector="btnSelectClicked:" destination="iN0-l3-epB" eventType="touchUpInside" id="90Z-UV-RUf"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstItem="93z-ea-hxE" firstAttribute="leading" secondItem="Xxs-g4-Vax" secondAttribute="leading" constant="30" id="18g-dQ-1tm"/>
+                        <constraint firstItem="93z-ea-hxE" firstAttribute="top" secondItem="Xxs-g4-Vax" secondAttribute="top" constant="31" id="5Gm-v1-2vi"/>
+                        <constraint firstAttribute="height" constant="51" id="7ke-hl-I99"/>
+                        <constraint firstItem="iyv-WQ-gAr" firstAttribute="top" secondItem="Xxs-g4-Vax" secondAttribute="top" id="Kfd-EF-4Rc"/>
+                        <constraint firstAttribute="bottom" secondItem="93z-ea-hxE" secondAttribute="bottom" id="WeW-Im-2rL"/>
+                        <constraint firstAttribute="trailing" secondItem="iyv-WQ-gAr" secondAttribute="trailing" id="cGS-zA-4oB"/>
+                        <constraint firstItem="s30-Sw-iZa" firstAttribute="centerY" secondItem="93z-ea-hxE" secondAttribute="centerY" id="mgn-jh-iJE"/>
+                        <constraint firstAttribute="bottom" secondItem="iyv-WQ-gAr" secondAttribute="bottom" id="rwD-ak-2ay"/>
+                        <constraint firstItem="iyv-WQ-gAr" firstAttribute="leading" secondItem="Xxs-g4-Vax" secondAttribute="leading" id="sdE-lG-KNM"/>
+                        <constraint firstAttribute="trailing" secondItem="s30-Sw-iZa" secondAttribute="trailing" constant="20" id="ybz-tZ-3A4"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="Xxs-g4-Vax" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="3lf-lQ-M9S"/>
+                <constraint firstAttribute="bottom" secondItem="Xxs-g4-Vax" secondAttribute="bottom" id="afg-Cy-8ho"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="Xxs-g4-Vax" secondAttribute="trailing" id="iOX-WA-GaW"/>
+                <constraint firstItem="Xxs-g4-Vax" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="owc-TZ-8T6"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <connections>
+                <outlet property="btnSelect" destination="iyv-WQ-gAr" id="kD8-Ty-VQ6"/>
+                <outlet property="imgArrow" destination="s30-Sw-iZa" id="AeO-TE-WIs"/>
+                <outlet property="lblTitle" destination="93z-ea-hxE" id="TKN-KI-i75"/>
+            </connections>
+            <point key="canvasLocation" x="132" y="355.32233883058473"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="ic_arrow_next" width="9" height="15"/>
+    </resources>
+</document>

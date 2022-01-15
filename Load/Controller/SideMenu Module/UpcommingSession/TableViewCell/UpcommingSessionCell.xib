@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="106" id="KGk-i7-Jjw" customClass="UpcommingSessionCell" customModule="Load" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="100"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="99.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="J5c-BY-hV5" customClass="CustomView" customModule="Load" customModuleProvider="target">
+                        <rect key="frame" x="20" y="3" width="280" height="93.5"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_gym_pink_color" translatesAutoresizingMaskIntoConstraints="NO" id="X1p-ro-Vd6">
+                                <rect key="frame" x="20" y="10" width="16" height="16"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="16" id="BAL-Jg-7xQ"/>
+                                    <constraint firstAttribute="height" constant="16" id="sQt-38-GdV"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="J75-9v-VvP">
+                                <rect key="frame" x="41" y="10" width="34" height="15"/>
+                                <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="13"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label 3" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sIy-tQ-4jr">
+                                <rect key="frame" x="223.5" y="75.5" width="36.5" height="13"/>
+                                <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="11"/>
+                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label 1" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uNv-s4-D2u">
+                                <rect key="frame" x="223" y="39.5" width="37" height="13"/>
+                                <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="11"/>
+                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label 2" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TF0-1b-Tyq">
+                                <rect key="frame" x="223.5" y="57.5" width="36.5" height="13"/>
+                                <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="11"/>
+                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="J75-9v-VvP" firstAttribute="top" secondItem="J5c-BY-hV5" secondAttribute="top" constant="10" id="44f-ed-uH6"/>
+                            <constraint firstAttribute="trailing" secondItem="sIy-tQ-4jr" secondAttribute="trailing" constant="20" id="5hw-kf-7tp"/>
+                            <constraint firstItem="TF0-1b-Tyq" firstAttribute="top" secondItem="uNv-s4-D2u" secondAttribute="bottom" constant="5" id="EXP-3c-HFT"/>
+                            <constraint firstItem="X1p-ro-Vd6" firstAttribute="top" secondItem="J5c-BY-hV5" secondAttribute="top" constant="10" id="GP1-l0-wz4"/>
+                            <constraint firstAttribute="trailing" secondItem="TF0-1b-Tyq" secondAttribute="trailing" constant="20" id="K6j-SB-ayC"/>
+                            <constraint firstAttribute="trailing" secondItem="uNv-s4-D2u" secondAttribute="trailing" constant="20" id="NiO-Ne-XAc"/>
+                            <constraint firstAttribute="bottom" secondItem="sIy-tQ-4jr" secondAttribute="bottom" constant="5" id="Psu-Du-XBu"/>
+                            <constraint firstItem="X1p-ro-Vd6" firstAttribute="leading" secondItem="J5c-BY-hV5" secondAttribute="leading" constant="20" id="XbB-WP-snj"/>
+                            <constraint firstItem="uNv-s4-D2u" firstAttribute="top" secondItem="J5c-BY-hV5" secondAttribute="top" constant="39.5" id="Z4r-Dj-jaj"/>
+                            <constraint firstItem="sIy-tQ-4jr" firstAttribute="top" secondItem="TF0-1b-Tyq" secondAttribute="bottom" constant="5" id="apz-YH-rHR"/>
+                            <constraint firstItem="J75-9v-VvP" firstAttribute="leading" secondItem="X1p-ro-Vd6" secondAttribute="trailing" constant="5" id="ofo-tz-TRY"/>
+                        </constraints>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                <real key="value" value="5"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="number" keyPath="shadowRadius">
+                                <real key="value" value="2"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="number" keyPath="shadowOpacity">
+                                <real key="value" value="0.20000000000000001"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                    </view>
+                </subviews>
+                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                <constraints>
+                    <constraint firstItem="J5c-BY-hV5" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" id="HnD-yl-ofy"/>
+                    <constraint firstAttribute="trailing" secondItem="J5c-BY-hV5" secondAttribute="trailing" constant="20" id="JeM-Dc-6EZ"/>
+                    <constraint firstItem="J5c-BY-hV5" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="3" id="K7M-SM-pxH"/>
+                    <constraint firstAttribute="bottom" secondItem="J5c-BY-hV5" secondAttribute="bottom" constant="3" id="MaL-qT-0rZ"/>
+                </constraints>
+            </tableViewCellContentView>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="imgType" destination="X1p-ro-Vd6" id="1sg-vL-fbo"/>
+                <outlet property="lbl1" destination="uNv-s4-D2u" id="GjP-au-wYM"/>
+                <outlet property="lbl2" destination="TF0-1b-Tyq" id="AQI-mC-lx4"/>
+                <outlet property="lbl3" destination="sIy-tQ-4jr" id="blu-Kc-XnC"/>
+                <outlet property="lblTitle" destination="J75-9v-VvP" id="WYB-0l-5jp"/>
+            </connections>
+            <point key="canvasLocation" x="132.80000000000001" y="125.93703148425789"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="ic_gym_pink_color" width="16" height="12"/>
+    </resources>
+</document>

@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="Proxima-Nova-Bold.ttf">
+            <string>ProximaNova-Bold</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="EventHeaderView" customModule="Load" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="51"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EOQ-cS-qY4">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="51"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="UPCOMING EVENTS" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oDe-XO-akV">
+                            <rect key="frame" x="25" y="26" width="150.5" height="15"/>
+                            <fontDescription key="fontDescription" name="ProximaNova-Bold" family="Proxima Nova" pointSize="16"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="51" id="PMY-sG-6xv"/>
+                        <constraint firstAttribute="bottom" secondItem="oDe-XO-akV" secondAttribute="bottom" constant="10" id="Uz2-1e-fzE"/>
+                        <constraint firstItem="oDe-XO-akV" firstAttribute="leading" secondItem="EOQ-cS-qY4" secondAttribute="leading" constant="25" id="lSe-ov-CcO"/>
+                        <constraint firstItem="oDe-XO-akV" firstAttribute="top" secondItem="EOQ-cS-qY4" secondAttribute="top" constant="26" id="wtE-Hp-SLR"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="EOQ-cS-qY4" secondAttribute="trailing" id="AJ7-ye-kHS"/>
+                <constraint firstItem="EOQ-cS-qY4" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="gVc-8J-rSl"/>
+                <constraint firstAttribute="bottom" secondItem="EOQ-cS-qY4" secondAttribute="bottom" id="jsc-PQ-SSR"/>
+                <constraint firstItem="EOQ-cS-qY4" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="plJ-Zp-91g"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <connections>
+                <outlet property="lblTitle" destination="oDe-XO-akV" id="NTz-tB-m3F"/>
+            </connections>
+            <point key="canvasLocation" x="132" y="444.82758620689657"/>
+        </view>
+    </objects>
+</document>

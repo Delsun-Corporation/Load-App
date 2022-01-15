@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="CheckAvailibilityHeaderCell" rowHeight="13" id="KGk-i7-Jjw" customClass="CheckAvailibilityHeaderCell" customModule="Load" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="13.5"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="13"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mcZ-yA-OOT">
+                        <rect key="frame" x="0.0" y="8" width="320" height="5"/>
+                        <color key="backgroundColor" red="0.95686274510000002" green="0.95686274510000002" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    </view>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_line" translatesAutoresizingMaskIntoConstraints="NO" id="Pgp-ao-aZk">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="13"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="13" id="9Rx-EJ-zOW"/>
+                        </constraints>
+                    </imageView>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_trokon_image" translatesAutoresizingMaskIntoConstraints="NO" id="ccv-Bs-eMy">
+                        <rect key="frame" x="15" y="0.0" width="10" height="13"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="13" id="FLI-53-qEc"/>
+                        </constraints>
+                    </imageView>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mXs-lb-3fm">
+                        <rect key="frame" x="15" y="0.0" width="10" height="13"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KiV-3e-A5j">
+                                <rect key="frame" x="4" y="6" width="2" height="3"/>
+                                <color key="backgroundColor" red="0.95686274510000002" green="0.95686274510000002" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="3" id="P0I-Ni-33K"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MNL-oE-aOc">
+                                <rect key="frame" x="0.0" y="9" width="10" height="4"/>
+                                <color key="backgroundColor" red="0.95686274510000002" green="0.95686274510000002" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="4" id="TdZ-qu-Cnh"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="KiV-3e-A5j" firstAttribute="leading" secondItem="mXs-lb-3fm" secondAttribute="leading" constant="4" id="Js1-ZV-xnn"/>
+                            <constraint firstItem="MNL-oE-aOc" firstAttribute="leading" secondItem="mXs-lb-3fm" secondAttribute="leading" id="Lch-1a-xSz"/>
+                            <constraint firstItem="MNL-oE-aOc" firstAttribute="top" secondItem="KiV-3e-A5j" secondAttribute="bottom" id="Ngt-bl-HbE"/>
+                            <constraint firstAttribute="trailing" secondItem="KiV-3e-A5j" secondAttribute="trailing" constant="4" id="cP2-lR-NXg"/>
+                            <constraint firstAttribute="bottom" secondItem="MNL-oE-aOc" secondAttribute="bottom" id="tbi-Fi-shS"/>
+                            <constraint firstAttribute="trailing" secondItem="MNL-oE-aOc" secondAttribute="trailing" id="vI9-TK-biH"/>
+                        </constraints>
+                    </view>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="mXs-lb-3fm" firstAttribute="bottom" secondItem="ccv-Bs-eMy" secondAttribute="bottom" id="2uj-n9-rYC"/>
+                    <constraint firstAttribute="trailing" secondItem="Pgp-ao-aZk" secondAttribute="trailing" id="4it-oB-sYO"/>
+                    <constraint firstAttribute="bottom" secondItem="mcZ-yA-OOT" secondAttribute="bottom" id="720-gf-fCO"/>
+                    <constraint firstItem="mcZ-yA-OOT" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="9gR-e7-JtT"/>
+                    <constraint firstItem="ccv-Bs-eMy" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="15" id="A0f-eY-eH3"/>
+                    <constraint firstItem="Pgp-ao-aZk" firstAttribute="bottom" secondItem="ccv-Bs-eMy" secondAttribute="bottom" id="AOj-dH-TcU"/>
+                    <constraint firstItem="mXs-lb-3fm" firstAttribute="leading" secondItem="ccv-Bs-eMy" secondAttribute="leading" id="CYa-Rr-cXs"/>
+                    <constraint firstItem="Pgp-ao-aZk" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="DJA-KL-Ly7"/>
+                    <constraint firstAttribute="trailing" secondItem="mcZ-yA-OOT" secondAttribute="trailing" id="FVs-Y9-jHu"/>
+                    <constraint firstItem="mXs-lb-3fm" firstAttribute="top" secondItem="ccv-Bs-eMy" secondAttribute="top" id="WJM-GY-WwL"/>
+                    <constraint firstItem="mXs-lb-3fm" firstAttribute="trailing" secondItem="ccv-Bs-eMy" secondAttribute="trailing" id="fnA-U4-8YL"/>
+                    <constraint firstItem="mcZ-yA-OOT" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="8" id="foN-Vj-9OA"/>
+                    <constraint firstAttribute="bottom" secondItem="ccv-Bs-eMy" secondAttribute="bottom" id="iJF-h0-XcP"/>
+                    <constraint firstItem="ccv-Bs-eMy" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="q74-Ve-4gZ"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="imgLeftConstant" destination="A0f-eY-eH3" id="akh-BA-TfF"/>
+            </connections>
+            <point key="canvasLocation" x="40" y="46.776611694152926"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="ic_line" width="290" height="13"/>
+        <image name="ic_trokon_image" width="10.5" height="13"/>
+    </resources>
+</document>

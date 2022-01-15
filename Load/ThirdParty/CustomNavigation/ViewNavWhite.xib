@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_0" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view tag="100" contentMode="scaleToFill" id="iN0-l3-epB" customClass="ViewNavWhite" customModule="Load" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="96"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VuY-tT-iJX">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="96"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="cza-lV-fKX">
+                            <rect key="frame" x="193" y="28" width="42" height="20"/>
+                            <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="17"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="h1a-4G-k4v">
+                            <rect key="frame" x="20" y="37" width="12" height="22"/>
+                            <state key="normal" image="ic_back"/>
+                            <connections>
+                                <action selector="btnBackClicked:" destination="iN0-l3-epB" eventType="touchUpInside" id="7cc-Cf-C1K"/>
+                            </connections>
+                        </button>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="1cY-OJ-2Nl">
+                            <rect key="frame" x="240" y="18" width="60" height="60"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="60" id="1tB-HM-QSX"/>
+                                <constraint firstAttribute="height" constant="60" id="Kb5-jt-wRp"/>
+                            </constraints>
+                        </imageView>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7w5-kc-X1T">
+                            <rect key="frame" x="0.0" y="95" width="320" height="1"/>
+                            <color key="backgroundColor" red="0.84705882349999995" green="0.84705882349999995" blue="0.84705882349999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="1" id="0CF-7K-vkt"/>
+                            </constraints>
+                        </view>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="FQ4-un-OId">
+                            <rect key="frame" x="198" y="49.5" width="37" height="17.5"/>
+                            <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="15"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstItem="h1a-4G-k4v" firstAttribute="leading" secondItem="VuY-tT-iJX" secondAttribute="leading" constant="20" id="0Db-L5-gvf"/>
+                        <constraint firstItem="7w5-kc-X1T" firstAttribute="leading" secondItem="VuY-tT-iJX" secondAttribute="leading" id="5fT-li-j9H"/>
+                        <constraint firstItem="h1a-4G-k4v" firstAttribute="centerY" secondItem="VuY-tT-iJX" secondAttribute="centerY" id="E0C-SF-8kn"/>
+                        <constraint firstItem="FQ4-un-OId" firstAttribute="centerY" secondItem="1cY-OJ-2Nl" secondAttribute="centerY" constant="10" id="Mkm-5O-LuT"/>
+                        <constraint firstAttribute="trailing" secondItem="1cY-OJ-2Nl" secondAttribute="trailing" constant="20" id="Xqm-bR-ZCL"/>
+                        <constraint firstItem="1cY-OJ-2Nl" firstAttribute="centerY" secondItem="VuY-tT-iJX" secondAttribute="centerY" id="Zfp-p6-AsM"/>
+                        <constraint firstAttribute="trailing" secondItem="7w5-kc-X1T" secondAttribute="trailing" id="eZN-RW-4fO"/>
+                        <constraint firstAttribute="bottom" secondItem="7w5-kc-X1T" secondAttribute="bottom" id="fFf-NE-LBH"/>
+                        <constraint firstItem="cza-lV-fKX" firstAttribute="centerY" secondItem="1cY-OJ-2Nl" secondAttribute="centerY" constant="-10" id="g4d-3I-3dT"/>
+                        <constraint firstItem="1cY-OJ-2Nl" firstAttribute="leading" secondItem="FQ4-un-OId" secondAttribute="trailing" constant="5" id="rR6-l2-bEs"/>
+                        <constraint firstItem="1cY-OJ-2Nl" firstAttribute="leading" secondItem="cza-lV-fKX" secondAttribute="trailing" constant="5" id="v3t-M5-uhm"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="VuY-tT-iJX" firstAttribute="bottom" secondItem="vUN-kp-3ea" secondAttribute="bottom" id="7yK-dU-zdz"/>
+                <constraint firstItem="VuY-tT-iJX" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="Q0h-s4-bTr"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="VuY-tT-iJX" secondAttribute="trailing" id="bQa-Dj-dXa"/>
+                <constraint firstItem="VuY-tT-iJX" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="jj1-IR-IsR"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <connections>
+                <outlet property="btnBackCenter" destination="E0C-SF-8kn" id="wW3-9w-xpu"/>
+                <outlet property="imgCenter" destination="Zfp-p6-AsM" id="GSO-1d-JKx"/>
+                <outlet property="imgProfile" destination="1cY-OJ-2Nl" id="IDk-di-Sos"/>
+                <outlet property="lblName" destination="cza-lV-fKX" id="KkI-PO-21a"/>
+                <outlet property="lblType" destination="FQ4-un-OId" id="1p8-Gc-POi"/>
+            </connections>
+            <point key="canvasLocation" x="129.375" y="153.16901408450704"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="ic_back" width="12" height="20"/>
+    </resources>
+</document>

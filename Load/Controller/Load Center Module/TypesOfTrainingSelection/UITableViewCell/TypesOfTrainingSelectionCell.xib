@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="TypesOfTrainingSelectionCell" id="KGk-i7-Jjw" customClass="TypesOfTrainingSelectionCell" customModule="Load" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="45"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="44.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Wbt-aD-DWh">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44.5"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ijo-rV-ZdY">
+                                <rect key="frame" x="20" y="0.0" width="280" height="44.5"/>
+                                <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="12"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_round_check_box_select" translatesAutoresizingMaskIntoConstraints="NO" id="drv-JY-ycF">
+                                <rect key="frame" x="280" y="12.5" width="20" height="20"/>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZKZ-j7-k4w">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="44.5"/>
+                                <connections>
+                                    <action selector="btnSelectClicked:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="5LG-l5-k3Z"/>
+                                </connections>
+                            </button>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Zbe-cc-9NG">
+                                <rect key="frame" x="21" y="44" width="278" height="0.5"/>
+                                <color key="backgroundColor" red="0.84705882349999995" green="0.84705882349999995" blue="0.84705882349999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="0.5" id="OJW-sn-zK7"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="ZKZ-j7-k4w" firstAttribute="leading" secondItem="Wbt-aD-DWh" secondAttribute="leading" id="1qe-rd-XjT"/>
+                            <constraint firstItem="Zbe-cc-9NG" firstAttribute="leading" secondItem="Wbt-aD-DWh" secondAttribute="leading" constant="21" id="34z-uG-VST"/>
+                            <constraint firstAttribute="bottom" secondItem="Zbe-cc-9NG" secondAttribute="bottom" id="8bX-Ro-UEd"/>
+                            <constraint firstAttribute="trailing" secondItem="ijo-rV-ZdY" secondAttribute="trailing" constant="20" id="8rF-Sg-nSo"/>
+                            <constraint firstAttribute="bottom" secondItem="ijo-rV-ZdY" secondAttribute="bottom" id="Rru-Ud-Gmh"/>
+                            <constraint firstItem="drv-JY-ycF" firstAttribute="centerY" secondItem="Wbt-aD-DWh" secondAttribute="centerY" id="W0F-bg-yzr"/>
+                            <constraint firstAttribute="bottom" secondItem="ZKZ-j7-k4w" secondAttribute="bottom" id="d8S-LQ-hzl"/>
+                            <constraint firstItem="ijo-rV-ZdY" firstAttribute="leading" secondItem="Wbt-aD-DWh" secondAttribute="leading" constant="20" id="dY8-j2-Ava"/>
+                            <constraint firstAttribute="trailing" secondItem="drv-JY-ycF" secondAttribute="trailing" constant="20" id="h1f-YA-nvV"/>
+                            <constraint firstAttribute="trailing" secondItem="ZKZ-j7-k4w" secondAttribute="trailing" id="ppd-9l-6LQ"/>
+                            <constraint firstItem="ZKZ-j7-k4w" firstAttribute="top" secondItem="Wbt-aD-DWh" secondAttribute="top" id="qCq-sP-DTR"/>
+                            <constraint firstAttribute="trailing" secondItem="Zbe-cc-9NG" secondAttribute="trailing" constant="21" id="xkX-3z-2sV"/>
+                            <constraint firstItem="ijo-rV-ZdY" firstAttribute="top" secondItem="Wbt-aD-DWh" secondAttribute="top" id="zeJ-a9-KIn"/>
+                        </constraints>
+                    </view>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="trailing" secondItem="Wbt-aD-DWh" secondAttribute="trailing" id="9Ax-ku-eBV"/>
+                    <constraint firstAttribute="bottom" secondItem="Wbt-aD-DWh" secondAttribute="bottom" id="LRC-JQ-tRm"/>
+                    <constraint firstItem="Wbt-aD-DWh" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="cf3-DP-zWh"/>
+                    <constraint firstItem="Wbt-aD-DWh" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="qek-g9-0D3"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="imgCheck" destination="drv-JY-ycF" id="wFm-iQ-IG7"/>
+                <outlet property="lblTitle" destination="ijo-rV-ZdY" id="I1H-Qx-zQV"/>
+                <outlet property="viewLine" destination="Zbe-cc-9NG" id="Uch-Mr-6RT"/>
+            </connections>
+            <point key="canvasLocation" x="41.600000000000001" y="46.326836581709152"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="ic_round_check_box_select" width="20" height="20"/>
+    </resources>
+</document>

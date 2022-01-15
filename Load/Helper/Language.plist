@@ -1,0 +1,915 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key></key>
+	<string>* Promote gives a wider search in the database. \n Click the find out more.</string>
+	<key>Types_of_training_provide_key</key>
+	<string>Types of training</string>
+	<key>Regions_key</key>
+	<string>Regions</string>
+	<key>Select_profile_picture_key</key>
+	<string>Please select profile picture.</string>
+	<key>AutoTopUp_key</key>
+	<string>By allowing Auto Top-up feature, Load will automatically top up e-Wallet. when the palace falls below the amount that you set.</string>
+	<key>Sport_specialization_key</key>
+	<string>Sport specialization</string>
+	<key>Please_enter_height_key</key>
+	<string>Please enter height</string>
+	<key>Tota_Load_-_Volume_key</key>
+	<string>Total Load-Volume</string>
+	<key>Specialization_key</key>
+	<string>Specialization</string>
+	<key>Please_enter_exercise_key</key>
+	<string>Please enter exercise.</string>
+	<key>This_will_update_the_weight_in_the_library_for_this_exercise_key</key>
+	<string>This will update the weight in the library for this exercise.</string>
+	<key>Forgot_your_password?_key</key>
+	<string>Forgot your password?</string>
+	<key>Date_of_Birth_key</key>
+	<string>Date of Birth</string>
+	<key>Provide_the_exercise_URL_link_key</key>
+	<string>Provide the exercise URL link</string>
+	<key>Select_years_key</key>
+	<string>Select years</string>
+	<key>Create_Account_key</key>
+	<string>Create Account</string>
+	<key>Auto-Pause_key</key>
+	<string>Auto-Pause</string>
+	<key>Please_enter_avg_speed_key</key>
+	<string>Please enter your average speed</string>
+	<key>You_can&apos;t_select_this_program_key</key>
+	<string>You can&apos;t select this program</string>
+	<key>Back_key</key>
+	<string>Back</string>
+	<key>CREATE_TRAINING_LOG_key</key>
+	<string>CREATE TRAINING LOG</string>
+	<key>This_week_key</key>
+	<string>This week</string>
+	<key>Targeted_Muscles_key</key>
+	<string>Targeted Muscles</string>
+	<key>Select_sex_key</key>
+	<string>Please select sex.</string>
+	<key>Please_select_date_key</key>
+	<string>Please select date.</string>
+	<key>Please_select_languages_key</key>
+	<string>Please select languages</string>
+	<key>Est._Weight_key</key>
+	<string>Est. Weight</string>
+	<key>Password_not_match_key</key>
+	<string>Password and confirm password does not match.</string>
+	<key>Select_region_key</key>
+	<string>Select targeted muscle groups</string>
+	<key>Please_select_program_key</key>
+	<string>Please select program</string>
+	<key>Time_key</key>
+	<string>Time</string>
+	<key>Set_up_your_pricing_key</key>
+	<string>Set up your pricing</string>
+	<key>You_can&apos;t_end_future_workout</key>
+	<string>You can&apos;t end future workout.</string>
+	<key>SIGN_IN_key</key>
+	<string>SIGN IN</string>
+	<key>End_Workout_key</key>
+	<string>End Workout</string>
+	<key>Please_select_categories_key</key>
+	<string>Please select categories</string>
+	<key>Select_time_key</key>
+	<string>Select time</string>
+	<key>Next_key</key>
+	<string>Next</string>
+	<key>Please_enter_weight_lifted_for_the_number_of_repetations_key</key>
+	<string>Please enter weight lifted for the number of repetations</string>
+	<key>Now_the_maximum_number_of_guests_key</key>
+	<string>Now the maximum number of guests</string>
+	<key>Sex_key</key>
+	<string>Sex</string>
+	<key>Fill_up_the_basics_key</key>
+	<string>Fill up the basics</string>
+	<key>Please_select_event_type_key</key>
+	<string>Please select event type</string>
+	<key>Action_/_Force_key</key>
+	<string>Action / Force</string>
+	<key>Please_enter_lastname_key</key>
+	<string>Please enter last name.</string>
+	<key>Please_enter_general_rules_key</key>
+	<string>Please enter general rules.</string>
+	<key>Please_enter_comment_key</key>
+	<string>Please enter comment</string>
+	<key>Ultra_Marathon_key</key>
+	<string>Ultra Marathon</string>
+	<key>General_rules_key</key>
+	<string>General rules</string>
+	<key>Select_the_equipment_used_key</key>
+	<string>Select the equipment used</string>
+	<key>Please_fill_in_the_Reps_first_key</key>
+	<string>Please fill in the Reps first</string>
+	<key>Choose_reason_for_reporting_this_post_key</key>
+	<string>Choose reason for reporting this post</string>
+	<key>Form_key</key>
+	<string>Form</string>
+	<key>Target_HR_key</key>
+	<string>Target HR</string>
+	<key>Today_key</key>
+	<string>Today</string>
+	<key>Please_enter_HR_max_key</key>
+	<string>Please enter HR max</string>
+	<key>Select_event_key</key>
+	<string>Select event</string>
+	<key>Tell_guests_more_about_your_event_key</key>
+	<string>Tell guests more about your event:</string>
+	<key>Is_this_the_event_place?_key</key>
+	<string>Is this the event place?</string>
+	<key>Premium_key</key>
+	<string>Premium</string>
+	<key>Specialized_Activity_(max3)_key</key>
+	<string>Specialized activities (max 3)</string>
+	<key>Intensity_key</key>
+	<string>Intensity</string>
+	<key>Phone_key</key>
+	<string>Phone</string>
+	<key>Please_select_coach_experience_key</key>
+	<string>Please select coach experience.</string>
+	<key>Act._Weight_(kg)_key</key>
+	<string>Act. Weight (kg)</string>
+	<key>Please_select_category_key</key>
+	<string>Please select category.</string>
+	<key>Email_Address_key</key>
+	<string>Email Address</string>
+	<key>Please_select_region_key</key>
+	<string>Please select muscle region.</string>
+	<key>Tell_your_potential_coach_key</key>
+	<string>Tell your potential coach a little bit about yourself
+and your training goal.</string>
+	<key>$0_key</key>
+	<string>$0</string>
+	<key>Are_you_sure_you_want_to_stop_the_workout_key</key>
+	<string>Are you sure you want to stop the workout?</string>
+	<key>Rate_your_workout_key</key>
+	<string>Rate your workout</string>
+	<key>Broadcast_Summery_key</key>
+	<string>Broadcast Summery</string>
+	<key>Time_Under_Tension_key</key>
+	<string>Time Under Tension</string>
+	<key>Please_entrer_HR_Max_key</key>
+	<string>Please entrer HR Max</string>
+	<key>Enter_email_address_key</key>
+	<string>Please enter email address.</string>
+	<key>Part_key</key>
+	<string>Part</string>
+	<key>Please_select_target_hr_key</key>
+	<string>Please select target HR.</string>
+	<key>Select_category_key</key>
+	<string>Select category</string>
+	<key>What_would_you_provide_key</key>
+	<string>What would you provide</string>
+	<key>Select_mode_for_your_program_key</key>
+	<string>Select mode for your program</string>
+	<key>Please_select_minimum_3_categories_key</key>
+	<string>Please select minimum 3 categories</string>
+	<key>Event_Type_key</key>
+	<string>Event Type</string>
+	<key>How_long_is_the_event?_key</key>
+	<string>How long is the event?</string>
+	<key>Title_your_workout_key</key>
+	<string>Name your workout</string>
+	<key>Training_Log_key</key>
+	<string>Training Log</string>
+	<key>Cancel_key</key>
+	<string>Cancel</string>
+	<key>Weight_key</key>
+	<string>Weight (kg)</string>
+	<key>Retrieve_Password_key</key>
+	<string>Retrieve Password</string>
+	<key>Records_key</key>
+	<string>Records</string>
+	<key>Dont_show_this_message_again_key</key>
+	<string>Don&apos;t show this message again</string>
+	<key>Select_date_key</key>
+	<string>Select date</string>
+	<key>Please_select_intensity_key</key>
+	<string>Please select intensity.</string>
+	<key>Please_enter_custom_training_goal_key</key>
+	<string>Please enter custom training goal.</string>
+	<key>Let’s_set_up_event_key</key>
+	<string>Let’s set up your big event. (only for professional)</string>
+	<key>RESET_PASSWORD_key</key>
+	<string>RESET PASSWORD</string>
+	<key>Race_time_key</key>
+	<string>Race time</string>
+	<key>Bike_Setting_key</key>
+	<string>Bike Setting</string>
+	<key>Workout_Name_key</key>
+	<string>Workout Name</string>
+	<key>Profile_key</key>
+	<string>Profile</string>
+	<key>Enter_guest_key</key>
+	<string>Enter guest</string>
+	<key>Select_your_Intensity_key</key>
+	<string>Select your Intensity</string>
+	<key>Weight_(kg)_key</key>
+	<string>Weight (kg)</string>
+	<key>Marathon_key</key>
+	<string>Marathon</string>
+	<key>Do_you_want_to_stop_the_workout_key</key>
+	<string>Do you want to stop the workout?</string>
+	<key>Height_key</key>
+	<string>Height (cm)</string>
+	<key>Requirement_placeholder_key</key>
+	<string>Share us basic client&apos;s requirement, such as age, fitness level, etc.</string>
+	<key>As_a_start_key</key>
+	<string>As a start,</string>
+	<key>Enter_fullname_key</key>
+	<string>Please enter fullname.</string>
+	<key>Language_writen_key</key>
+	<string>Language writen</string>
+	<key>Please_enter_weight_key</key>
+	<string>Please enter weight</string>
+	<key>Enter_time_key</key>
+	<string>Enter time</string>
+	<key>Emergency_key</key>
+	<string>Emergency</string>
+	<key>Select_duration_key</key>
+	<string>Please select duration.</string>
+	<key> I_don’t_have_Load_account._Sign_Up_key</key>
+	<string> I don’t have Load account. Sign Up</string>
+	<key>Select_your_training_program_key</key>
+	<string>Select your\ntraining program</string>
+	<key>Do_you_want_to_continue_key</key>
+	<string>Do you want to continue?</string>
+	<key>Here&apos;s_what_you_just_completed!_key</key>
+	<string>Here&apos;s what you just completed!</string>
+	<key>End_key</key>
+	<string>End</string>
+	<key>Please_select_type_key</key>
+	<string>Please select type.</string>
+	<key>Please_select_targeted_muscles_key</key>
+	<string>Please select targeted muscles.</string>
+	<key>Reps_key</key>
+	<string>Reps</string>
+	<key>UPCOMING_EVENTS_key</key>
+	<string>UPCOMING EVENTS</string>
+	<key>Let’s_get_more_detailed_key</key>
+	<string>Let’s get more detailed</string>
+	<key>Enter_your_full_name_key</key>
+	<string>Enter your full name</string>
+	<key>Kg_key</key>
+	<string>Kg</string>
+	<key>Fill_in_your_training_goal_key</key>
+	<string>Fill in your training goal.</string>
+	<key>Select_height_key</key>
+	<string>Please select height.</string>
+	<key>Terms_&amp;_Agreements_key</key>
+	<string>Terms &amp; Agreements</string>
+	<key>Highest_key</key>
+	<string>Highest</string>
+	<key>Password_key</key>
+	<string>Password</string>
+	<key>You_can&apos;t_start_future_workout</key>
+	<string>You can&apos;t start future workout.</string>
+	<key>Leave_your_notes_here_key</key>
+	<string>Leave your notes here</string>
+	<key>Please_enter_event_key</key>
+	<string>Please enter event.</string>
+	<key>Training_Program_key</key>
+	<string>Training Program</string>
+	<key>Do_goests_required_to_come_earlier?_key</key>
+	<string>Do goests required to come earlier?</string>
+	<key>Please_select_location_key</key>
+	<string>Please select location.</string>
+	<key>Enter_confirm_password_key</key>
+	<string>Please enter confirm password.</string>
+	<key>Ratings_key</key>
+	<string>Ratings</string>
+	<key>Location_key</key>
+	<string>Location</string>
+	<key>Select_DOB_key</key>
+	<string>Please select date of birth.</string>
+	<key>Please_enter_total_distance_key</key>
+	<string>Please enter the total distance covered</string>
+	<key>Select_profile_key</key>
+	<string>Please select picture.</string>
+	<key>What_time_will_it_start?_key</key>
+	<string>What time will it start?</string>
+	<key>No_key</key>
+	<string>No</string>
+	<key>Complete_Workout_key</key>
+	<string>Complete Workout</string>
+	<key>Event_Name_key</key>
+	<string>Event Name</string>
+	<key>Training_saved_successfully_key</key>
+	<string>Training saved successfully</string>
+	<key>Please_accept_terms_key</key>
+	<string>Please accept terms &amp; agreements.</string>
+	<key>Select_your_target_HR_key</key>
+	<string>Select your target HR</string>
+	<key>Please_enter_name_key</key>
+	<string>Please enter name.</string>
+	<key>Please_enter_avg_pace_key</key>
+	<string>Please enter your average pace</string>
+	<key>Facebook_key</key>
+	<string>Facebook</string>
+	<key>I_agree_to_Load’s_key</key>
+	<string>I agree to Load’s</string>
+	<key>Please_fill_all_details_key</key>
+	<string>Please fill all details.</string>
+	<key>Please_enter_description_key</key>
+	<string>Please enter description.</string>
+	<key>What_are_the_amenities_available_key</key>
+	<string>What are the amenities available</string>
+	<key>When_is_your_birthday?_key</key>
+	<string>When is your birthday?</string>
+	<key>Complete_key</key>
+	<string>Complete</string>
+	<key>Region_key</key>
+	<string>Region</string>
+	<key>Please_select_end_date_key</key>
+	<string>Please select end date</string>
+	<key>Please_verify_your_email_address_key</key>
+	<string>Please verify your email address first then login at here again.</string>
+	<key>Billing_information_key</key>
+	<string>Billing information</string>
+	<key>Please_add_some_exercise_key</key>
+	<string>Please add some exercise.</string>
+	<key>New_Message_key</key>
+	<string>New Message</string>
+	<key>Filters_key</key>
+	<string>Filters</string>
+	<key>Please_enter_a_valid_maximum_heart_rate_key</key>
+	<string>Please enter a valid maximum heart rate</string>
+	<key>Please_enter_about_key</key>
+	<string>Please enter about.</string>
+	<key>Update_the_weight_in_the_Library_?_key</key>
+	<string>Update the weight in the Library?</string>
+	<key>Log_it_key</key>
+	<string>Log it</string>
+	<key>Sign_up_key</key>
+	<string>Sign up</string>
+	<key>Latest_key</key>
+	<string>Latest</string>
+	<key>Please_enter_mobile_number_key</key>
+	<string>Please enter mobile number.</string>
+	<key>Free_key</key>
+	<string>Free</string>
+	<key>Measured_key</key>
+	<string>Measured</string>
+	<key>Switch_account_key</key>
+	<string>Switch account</string>
+	<key>Message_key</key>
+	<string>Message</string>
+	<key>Please_select_equipment_key</key>
+	<string>Please select equipment.</string>
+	<key>Please_select_at_least_one_specialization_key</key>
+	<string>Please select at least one specialization.</string>
+	<key>Select_your_date_key</key>
+	<string>Select your date</string>
+	<key>Please_select_cancellation_policy_key</key>
+	<string>Please select cancellation policy.</string>
+	<key>What_sports_specialization_key</key>
+	<string>What sports specialization are you looking for?</string>
+	<key>Account_key</key>
+	<string>Account</string>
+	<key>Cardio_key</key>
+	<string>Cardio</string>
+	<key>Yearly_key</key>
+	<string>Yearly</string>
+	<key>Please_select_part_key</key>
+	<string>Please select part.</string>
+	<key>eg._Please_come_in_workout_attire_and_wear_sport_shoes_key</key>
+	<string>eg. Please come in workout attire and wear sport shoes</string>
+	<key>Auto_top_up_key</key>
+	<string>Auto Top-Up</string>
+	<key>Please_enter_firstname_key</key>
+	<string>Please enter first name.</string>
+	<key>Activity_key</key>
+	<string>Activity</string>
+	<key>Is_it_open_for_public?_key</key>
+	<string>Is it open for public?</string>
+	<key>Please_select_maximum_3_categories_key</key>
+	<string>Please select maximum 3 categories</string>
+	<key>Event_Details_key</key>
+	<string>Event Details</string>
+	<key>Please_enter_title_key</key>
+	<string>Please enter title.</string>
+	<key>Are_you_sure_you_want_to_complete_workout_key</key>
+	<string>Are you sure you want to complete workout?</string>
+	<key>What_is_the_minimum_coach’s_experience?_key</key>
+	<string>What is the minimum coach’s experience?</string>
+	<key>Load_Center_key</key>
+	<string>Load Centre</string>
+	<key>Select_your_goal_key</key>
+	<string>Select your training goal</string>
+	<key>Saved_key</key>
+	<string>Saved</string>
+	<key>Enter_password_minimum_8_characters_key</key>
+	<string>Please enter password minimum 8 characters.</string>
+	<key>Email_key</key>
+	<string>Email</string>
+	<key>Please_fill_in_the_weight_key</key>
+	<string>Please fill in the weigh</string>
+	<key>Performance_Graph_key</key>
+	<string>Performance Graph</string>
+	<key>Mechanics_key</key>
+	<string>Mechanics</string>
+	<key>Please_select_sport_specialization_key</key>
+	<string>Please select sport specialization.</string>
+	<key>DOB_key</key>
+	<string>DOB</string>
+	<key>Types_of_training_key</key>
+	<string>Types of training</string>
+	<key>Please_enter_total_duration_key</key>
+	<string>Please enter your total exercise duration</string>
+	<key>Save_program_key</key>
+	<string>Save Program</string>
+	<key>Coach_Requirement_key</key>
+	<string>Coach Requirement</string>
+	<key>Please_add_rest_between_key</key>
+	<string>Please add rest between 5 seconds to 5 minutes.</string>
+	<key>You_need_selected_maximum_1_training_key</key>
+	<string>You need to selected maximum 1 training</string>
+	<key>Sessions_key</key>
+	<string>Sessions</string>
+	<key>Please_select_types_of_training_key</key>
+	<string>Please select types of training.</string>
+	<key>Language(s)_key</key>
+	<string>Language(s)</string>
+	<key>Professional_key</key>
+	<string>Professional</string>
+	<key>Please_select_rate_key</key>
+	<string>Please select rate.</string>
+	<key>50%_refund-with_5_days_cancellation_prior_to_event_key</key>
+	<string>50% refund with 5 days cancellation prior to event</string>
+	<key>Please_select_time_key</key>
+	<string>Please select time.</string>
+	<key>Account_type_key</key>
+	<string>Account type</string>
+	<key>Please_select_come_earlier_key</key>
+	<string>Please select come earlier.</string>
+	<key>Saved_Workout_key</key>
+	<string>Saved Workout</string>
+	<key>Input_your_weight_lifted_for_the_selected_RM_key</key>
+	<string>Input the weight lifted for the number of repetitions.</string>
+	<key>Enter_password_key</key>
+	<string>Please enter password.</string>
+	<key>Rest_(s)_key</key>
+	<string>Rest (s)</string>
+	<key>Monthly_key</key>
+	<string>Monthly</string>
+	<key>Add_key</key>
+	<string>Add</string>
+	<key>S_key</key>
+	<string>S</string>
+	<key>Front_key</key>
+	<string>Front</string>
+	<key>Credentials_key</key>
+	<string>Credentials</string>
+	<key>Enter_about_key</key>
+	<string>Enter about</string>
+	<key>Training_Goal_key</key>
+	<string>Training Goal</string>
+	<key>Please_enter_notes_key</key>
+	<string>Please enter notes.</string>
+	<key>Currency_key</key>
+	<string>Currency</string>
+	<key>Settings_key</key>
+	<string>Settings</string>
+	<key>Please_enter_contact_key</key>
+	<string>Please enter contact</string>
+	<key>Change_profile_picture_key</key>
+	<string>Change profile picture</string>
+	<key>Are_you_sure_want_to_delete_key</key>
+	<string>Are you sure want to delete?</string>
+	<key>Auto_accept_description_key</key>
+	<string>By allowing Auto-accept feature, all bookings from clients will be accepted automatically.</string>
+	<key>Auto_accept_description_2_key</key>
+	<string>Auto-accept feature does not allow same day booking.</string>
+	<key>Auto_accept_key</key>
+	<string>Auto-accept</string>
+	<key>Select_distance_key</key>
+	<string>Select distance</string>
+	<key>Select_one_of_presets_on_the_list_key</key>
+	<string>Select one of presets on the list provided</string>
+	<key>Hosted_by_key</key>
+	<string>Hosted by</string>
+	<key>Select_the_direction_of_the_force_key</key>
+	<string>Select the direction of the force</string>
+	<key>Start_key</key>
+	<string>Start</string>
+	<key>Are_you_sure_want_to_clear_key</key>
+	<string>Are you sure want to clear.</string>
+	<key>Please_select_at_least_one_key</key>
+	<string>Please select at least one.</string>
+	<key>Please_enter_price_key</key>
+	<string>Please enter price.</string>
+	<key>Start_date_is_greterthan_to_end_date_key</key>
+	<string>Start date is greterthan to end date</string>
+	<key>Do_you_want_to_delete_this_request_key</key>
+	<string>Do you want to delete this request?</string>
+	<key>P_key</key>
+	<string>P</string>
+	<key>Please_select_days_key</key>
+	<string>Please select days</string>
+	<key>Please_enter_number_of_guest_key</key>
+	<string>Please enter number of guest.</string>
+	<key>Select_3_categories_key</key>
+	<string>Select 3 categories</string>
+	<key>Select_the_main_muscle_involved_key</key>
+	<string>Input the primary muscles involved</string>
+	<key>When_will_it_be?_key</key>
+	<string>When will it be?</string>
+	<key>Weekly_key</key>
+	<string>Weekly</string>
+	<key>Select_training_key</key>
+	<string>Select training</string>
+	<key>Yes_key</key>
+	<string>Yes</string>
+	<key>This_workout_is_too_short_to_be_logged_in_Would_you_like_to_continue_key</key>
+	<string>This workout is too short to be logged in. Would you like to continue?</string>
+	<key>Create_a_catchy_title for_your_Request_key</key>
+	<string>Create a catchy title for your Request</string>
+	<key>First,_what_type_of_event_are_you_holding?:_key</key>
+	<string>First, what type of event are you holding?:</string>
+	<key>Please_enter_event_time_key</key>
+	<string>Please enter event time.</string>
+	<key>Please_add_reps_between_key</key>
+	<string>Please add reps between 1 to 99.</string>
+	<key>Save_as_template_key</key>
+	<string>Save as template</string>
+	<key>Select_your_workout_key</key>
+	<string>Select your workout</string>
+	<key>Select_reps_key</key>
+	<string>Please select reps.</string>
+	<key>Please_select_mechanics_key</key>
+	<string>Please select mechanics.</string>
+	<key>Enter_valid_email_address_key</key>
+	<string>Please enter valid email address.</string>
+	<key>Academic_and_certification_key</key>
+	<string>Academic Credentials</string>
+	<key>Please_enter_type_of_event_key</key>
+	<string>Please enter type of event.</string>
+	<key>Please_select_style_key</key>
+	<string>Please select style</string>
+	<key>Are_you_sure_want_to_logout_?_key</key>
+	<string>Are you sure want to logout?</string>
+	<key>SIGN_UP_key</key>
+	<string>SIGN UP</string>
+	<key>Location:_key</key>
+	<string>Location</string>
+	<key>Resistance_key</key>
+	<string>Resistance</string>
+	<key>View_all_key</key>
+	<string>View all</string>
+	<key>Link_key</key>
+	<string>Link</string>
+	<key>Save_key</key>
+	<string>Save</string>
+	<key>Customise_key</key>
+	<string>Customise</string>
+	<key>Now_set_some_ground_rules_key</key>
+	<string>Now set some ground rules</string>
+	<key>Select_option_key</key>
+	<string>Select option</string>
+	<key>Workout_ended_successfully_key</key>
+	<string>Workout ended successfully.</string>
+	<key>Save_and_Continue_key</key>
+	<string>Save and Continue</string>
+	<key>When_would_you_like_to_start_your_training?_key</key>
+	<string>When would you like to start your training?</string>
+	<key>Requests_key</key>
+	<string>Requests</string>
+	<key>Start_Workout_key</key>
+	<string>Start Workout</string>
+	<key>Exercise_key</key>
+	<string>Exercise</string>
+	<key>Enter_event_key</key>
+	<string>Enter event</string>
+	<key>Sign_in_key</key>
+	<string>Sign in</string>
+	<key>Profession_key</key>
+	<string>Profession</string>
+	<key>Heart_Rate_key</key>
+	<string>Heart Rate</string>
+	<key>Physical_Activity_Level_key</key>
+	<string>Physical Activity Level</string>
+	<key>Select_the_exercise_mechanics_key</key>
+	<string>Select the exercise mechanics</string>
+	<key>Please_enter_loation_key</key>
+	<string>Please enter location.</string>
+	<key>Daily_key</key>
+	<string>Daily</string>
+	<key>Secondary_Muscle_key</key>
+	<string>Secondary</string>
+	<key>Are_you_sure_you_want_to_end_the_workout_key</key>
+	<string>Are you sure you want to end the workout?</string>
+	<key>Please_select_frequency_key</key>
+	<string>Please select frequency</string>
+	<key>Confirm_Password_key</key>
+	<string>Confirm Password</string>
+	<key>Send_to_friend_key</key>
+	<string>Send to friend</string>
+	<key>Training_key</key>
+	<string>Training</string>
+	<key>Category_key</key>
+	<string>Category</string>
+	<key>Where_will_it_be?_key</key>
+	<string>Where will it be?</string>
+	<key>Ratings_minimum_key</key>
+	<string>Ratings minimum</string>
+	<key>Do_you_want_to_complete_this_workout_key</key>
+	<string>Do you want to complete this workout?</string>
+	<key>Equipment_key</key>
+	<string>Equipment</string>
+	<key>Select_type_key</key>
+	<string>Select type</string>
+	<key>G_key</key>
+	<string>G</string>
+	<key>Preset_key</key>
+	<string>Preset</string>
+	<key>Are_you_sure_you_want_to_finish_workout_key</key>
+	<string>Are you sure you want to finish workout?</string>
+	<key>Publish_key</key>
+	<string>Publish</string>
+	<key>Details_key</key>
+	<string>Details</string>
+	<key>Language_Spoken_key</key>
+	<string>Language Spoken</string>
+	<key>Please_fill_up_above_details_key</key>
+	<string>Please fill up above details</string>
+	<key>I_already_have_a_Load_account._Sign_in_key</key>
+	<string>I already have a Load account. Sign in</string>
+	<key>Primary_Muscle_key</key>
+	<string>Primary</string>
+	<key>Please_select_activity_key</key>
+	<string>Please select activity.</string>
+	<key>Running_Time_key</key>
+	<string>Running Time</string>
+	<key>Total_Volume_key</key>
+	<string>Total Volume</string>
+	<key>Member_since_key</key>
+	<string>Member since</string>
+	<key>Please_select_action_/_force_key</key>
+	<string>Please select action / force.</string>
+	<key>Please_select_country_code_key</key>
+	<string>Please select country code.</string>
+	<key>Select_the_event&apos;s_cancellation_policy_key</key>
+	<string>Select the event&apos;s cancellation policy</string>
+	<key>Repetition_Max_key</key>
+	<string>Repetition Max</string>
+	<key>Select_type_of_program_you_want_to_create_key</key>
+	<string>Select type of program you want to create</string>
+	<key>Expected_start_date_key</key>
+	<string>Expected start date</string>
+	<key>Exercises_key</key>
+	<string>Exercises</string>
+	<key>Repeat_key</key>
+	<string>Repeat</string>
+	<key>Name_your_exercise_key</key>
+	<string>Name your exercise</string>
+	<key>Customise_your_own_training_program_key</key>
+	<string>Customise your own training program</string>
+	<key>Please_select_training_date_key</key>
+	<string>Please select training date.</string>
+	<key>Create_key</key>
+	<string>Create</string>
+	<key>Please_select_training_goal_key</key>
+	<string>Please select training goal.</string>
+	<key>When_key</key>
+	<string>When</string>
+	<key>Select_your_specialization_key</key>
+	<string>Select your specialization</string>
+	<key>Please_enter_valid_weight_key</key>
+	<string>Please enter valid weight</string>
+	<key>Please_fill_in_your_training_goal_key</key>
+	<string>Please fill in your training goal.</string>
+	<key>Please_enter_link_key</key>
+	<string>Please enter link.</string>
+	<key>Introduction_key</key>
+	<string>Introduction</string>
+	<key>This_will_be_the_event_price_per_person_key</key>
+	<string>This will be the event price per person</string>
+	<key>Please_select_birthday_key</key>
+	<string>Please select birthday.</string>
+	<key>Refers_to_the_number_of_joints_involved_key</key>
+	<string>Refers to the number of joints involved</string>
+	<key>Name_key</key>
+	<string>Name</string>
+	<key>Notifications_key</key>
+	<string>Notifications</string>
+	<key>Event_key</key>
+	<string>Event</string>
+	<key>Please_add_weight_between_key</key>
+	<string>Please add weight between 0.5kg to 999kg.</string>
+	<key>Please_select_currency_key</key>
+	<string>Please select currency.</string>
+	<key>Please_select_start_date_key</key>
+	<string>Please select start date</string>
+	<key>About_key</key>
+	<string>About</string>
+	<key>Activites_key</key>
+	<string>Activities</string>
+	<key>Create_request_title</key>
+	<string>You are one step closer to finding the right Coach</string>
+	<key>Load_key</key>
+	<string>Load</string>
+	<key>Select_weight_key</key>
+	<string>Please select weight.</string>
+	<key>Select_location_key</key>
+	<string>Select location</string>
+	<key>Select_rest_key</key>
+	<string>Please select rest.</string>
+	<key>Notes_key</key>
+	<string>Notes</string>
+	<key>Edit_Resistance_Program_key</key>
+	<string>Edit Resistance Program</string>
+	<key>Edit_Cardio_Program_key</key>
+	<string>Edit Cardio Program</string>
+	<key>Delete_Resistance_Program_key</key>
+	<string>Delete Resistance Program</string>
+	<key>Delete_Cardio_Program_key</key>
+	<string>Delete Cardio Program</string>
+	<key>Pause_key</key>
+	<string>Pause</string>
+	<key>Well_done!_key</key>
+	<string>Well done!</string>
+	<key>Add_Exercise_key</key>
+	<string>Add Exercise</string>
+	<key>Edit_Exercise_key</key>
+	<string>Edit Exercise</string>
+	<key>Please_input_links_from_Youtube_or_Vimeo_key</key>
+	<string>Please input the link from YouTube or Vimeo.</string>
+	<key>Please_input_valid_links_from_Youtube_or_Vimeo_key</key>
+	<string>Please input the link from YouTube or Vimeo.</string>
+	<key>Opps_no_video_msg_key</key>
+	<string>Oops, you have no video for this workout</string>
+	<key>Click_here_to_add_key</key>
+	<string>Click here to add</string>
+	<key>Do_you_want_to_delete_this_workout?_key</key>
+	<string>Do you want to delete this workout?</string>
+	<key>COMPLETED_VOLUME_key</key>
+	<string>COMPLETED VOLUME.</string>
+	<key>TARGETED_VOLUME_key</key>
+	<string>TARGETED VOLUME</string>
+	<key>TOTAL_DURATION_key</key>
+	<string>TOTAL DURATION</string>
+	<key>Delete_program_key</key>
+	<string>Delete program</string>
+	<key>Delete_program_msg_key</key>
+	<string>Are you sure you want to remove your current preset training program?</string>
+	<key>Remove_key</key>
+	<string>Remove</string>
+	<key>Edit_customize_program_key</key>
+	<string>Edit customize program</string>
+	<key>Phase_unavailable_key</key>
+	<string>Phase unavailable</string>
+	<key>Bike_weight_key</key>
+	<string>Bike weight</string>
+	<key>Bike_wheel_diameter_key</key>
+	<string>Bike wheel diameter</string>
+	<key>Front_chainwheel_key</key>
+	<string>Front chainwheel </string>
+	<key>Rear_freewheel_key</key>
+	<string>Rear freewheel</string>
+	<key>HR_max_key</key>
+	<string>HR Max</string>
+	<key>HR_Rest_key</key>
+	<string>HR Rest</string>
+	<key>Information_Guide_key</key>
+	<string>Information Guide</string>
+	<key>PAYMENT_key</key>
+	<string>PAYMENT</string>
+	<key>About_me_key</key>
+	<string>About me</string>
+	<key>Languages_key</key>
+	<string>Languages</string>
+	<key>Permissions_key</key>
+	<string>Permissions</string>
+	<key>Payment_Method_key</key>
+	<string>Payment Method</string>
+	<key>Select_up_to_3_activities_key</key>
+	<string>Select up to 3 activities </string>
+	<key>Select_key</key>
+	<string>Select</string>
+	<key>Basic_Profile_key</key>
+	<string>Basic Profile</string>
+	<key>Share_us_a_little_bit_about_your_profession_key</key>
+	<string>Share us a little bit about your profession</string>
+	<key>Share_us_a_little_bit_about_yourself_key</key>
+	<string>Share us a little bit about yourself.</string>
+	<key>SESSION_DETAILS_key</key>
+	<string>SESSION DETAILS</string>
+	<key>CLIENT&apos;S_REQUIREMENT_key</key>
+	<string>CLIENT&apos;S REQUIREMENT</string>
+	<key>INFORMATION_key</key>
+	<string>INFORMATION</string>
+	<key>CANCELLATION_POLICY_key</key>
+	<string>CANCELLATION POLICY</string>
+	<key>RATES_key</key>
+	<string>RATES</string>
+	<key>AVAILABILITY_key</key>
+	<string>AVAILABILITY</string>
+	<key>Payment_Options_key</key>
+	<string>Payment Options</string>
+	<key>Cancellation_key</key>
+	<string>Cancellation</string>
+	<key>Types_key</key>
+	<string>Types</string>
+	<key>Schedule_management_key</key>
+	<string>Schedule management</string>
+	<key>Allow_auto-accept_key</key>
+	<string>Allow auto-accept</string>
+	<key>Unit_Measurement_key</key>
+	<string>Unit Measurement</string>
+	<key>Under_tension_question_key</key>
+	<string>How to read resistance training tempo guide?</string>
+	<key>Eccentric_key</key>
+	<string>Eccentric</string>
+	<key>Isometric_key</key>
+	<string>Isometric</string>
+	<key>Concentric_key</key>
+	<string>Concentric</string>
+	<key>Contracting_while_lengthening_phase_key</key>
+	<string>Contracting while lengthening phase</string>
+	<key>Pause_after_lengthening_phase_key</key>
+	<string>Pause after lengthening phase</string>
+	<key>Contracting_while_shortening_phase_key</key>
+	<string>Contracting while shortening phase</string>
+	<key>Pause_after_shortening_phase_key</key>
+	<string>Pause after shortening phase</string>
+	<key>Where_would_you_be_running?_key</key>
+	<string>Where would you be running?</string>
+	<key>Indoor_key</key>
+	<string>Indoor</string>
+	<key>Outdoor_key</key>
+	<string>Outdoor</string>
+	<key>Select_your_location_key</key>
+	<string>Select your location</string>
+	<key>Recovery_Phase_key</key>
+	<string>Recovery Phase</string>
+	<key>General_Conditioning_Phase_key</key>
+	<string>General Conditioning Phase</string>
+	<key>Specific_Conditioning_Phase_key</key>
+	<string>Specific Conditioning Phase</string>
+	<key>Maintenance_Phase_key</key>
+	<string>Maintenance Phase</string>
+	<key>Peaking_Phase_key</key>
+	<string>Peaking Phase</string>
+	<key>Avg._Pace_key</key>
+	<string>Avg. Pace</string>
+	<key>Avg._Speed_key</key>
+	<string>Avg. Speed</string>
+	<key>Top_up_key</key>
+	<string>Top up</string>
+	<key>Payment_method_key</key>
+	<string>Payment method</string>
+	<key>Top_up_amount_key</key>
+	<string>Top up amount</string>
+	<key>Balance_key</key>
+	<string>Balance</string>
+	<key>Date_and_time_key</key>
+	<string>Date and time</string>
+	<key>Current_balance_key</key>
+	<string>Current balance</string>
+	<key>Done_key</key>
+	<string>Done</string>
+	<key>Go_to_Setting_key</key>
+	<string>Go to Settings for Enable location permission.</string>
+	<key>Setting_key</key>
+	<string>Settings</string>
+	<key>Location_is_Disabled_key</key>
+	<string>Location is Disabled</string>
+	<key>setting_privacy_off_location_msg_key</key>
+	<string>To use location, go to your Settings  App &gt; Privacy &gt; Location Services.</string>
+	<key>Top-up_amount_key</key>
+	<string>Top-up amount</string>
+	<key>Minimum_balance_key</key>
+	<string>Minimum balance</string>
+	<key>seconds_key</key>
+	<string>seconds</string>
+	<key>Recommended_tempo_key</key>
+	<string>Recommended tempo</string>
+	<key>Basic_requirement_key</key>
+	<string>Basic requirement</string>
+	<key>Duration_key</key>
+	<string>Duration</string>
+	<key>Number_of_sessions_per_package_key</key>
+	<string>Number of sessions per package</string>
+	<key>Number_of_client(s)_per_session_key</key>
+	<string>Number of client(s) per session</string>
+	<key>PAR-Q_Form_key</key>
+	<string>PAR-Q Form</string>
+	<key>Amenities_key</key>
+	<string>Amenities</string>
+	<key>Per_Session_key</key>
+	<string>Per Session</string>
+	<key>Per_package_key</key>
+	<string>Per package</string>
+	<key>Set_as_compulsary_key</key>
+	<string>Set as compulsary</string>
+	<key>Auto_send_key</key>
+	<string>Auto send</string>
+	<key>Auto_send_description_msg</key>
+	<string>By allowing Auto-send Feature, PAR-Q form will be send automatical to first-timer clients.</string>
+	<key>Set_compulsory_description_key</key>
+	<string>By setting as compulsary, Premium user will not be able to book any sessions before filling up their PAR-Q form. </string>
+</dict>
+</plist>

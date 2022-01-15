@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="KGk-i7-Jjw" customClass="LeftChatCell" customModule="Load" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="26M-px-crL">
+                        <rect key="frame" x="15" y="0.0" width="95" height="43.5"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_left_message" translatesAutoresizingMaskIntoConstraints="NO" id="eLK-RP-uK1">
+                                <rect key="frame" x="0.0" y="5" width="95" height="33.5"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UhW-Bg-k1P">
+                                <rect key="frame" x="10" y="10" width="35" height="23.5"/>
+                                <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="13"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="02.37 PM" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ezy-vV-F5T">
+                                <rect key="frame" x="50" y="24" width="35" height="9.5"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="35" id="2bt-Fr-7j6"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="8"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="eLK-RP-uK1" firstAttribute="top" secondItem="26M-px-crL" secondAttribute="top" constant="5" id="9B7-8e-GiH"/>
+                            <constraint firstItem="UhW-Bg-k1P" firstAttribute="top" secondItem="26M-px-crL" secondAttribute="top" constant="10" id="GJN-9G-TX5"/>
+                            <constraint firstAttribute="trailing" secondItem="eLK-RP-uK1" secondAttribute="trailing" id="JZN-d9-mDj"/>
+                            <constraint firstAttribute="bottom" secondItem="Ezy-vV-F5T" secondAttribute="bottom" constant="10" id="JbR-Vp-B3J"/>
+                            <constraint firstAttribute="trailing" secondItem="Ezy-vV-F5T" secondAttribute="trailing" constant="10" id="PYA-X6-Ewj"/>
+                            <constraint firstAttribute="bottom" secondItem="eLK-RP-uK1" secondAttribute="bottom" constant="5" id="VMd-DX-UrQ"/>
+                            <constraint firstItem="UhW-Bg-k1P" firstAttribute="leading" secondItem="26M-px-crL" secondAttribute="leading" constant="10" id="Vma-CJ-G2x"/>
+                            <constraint firstAttribute="bottom" secondItem="UhW-Bg-k1P" secondAttribute="bottom" constant="10" id="cEk-yB-gVH"/>
+                            <constraint firstItem="eLK-RP-uK1" firstAttribute="leading" secondItem="26M-px-crL" secondAttribute="leading" id="fi2-J9-yDh"/>
+                            <constraint firstItem="Ezy-vV-F5T" firstAttribute="leading" secondItem="UhW-Bg-k1P" secondAttribute="trailing" constant="5" id="hG9-8c-rNO"/>
+                        </constraints>
+                    </view>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="26M-px-crL" secondAttribute="trailing" constant="65" id="1hr-jh-9J5"/>
+                    <constraint firstItem="26M-px-crL" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="Mqi-c8-URW"/>
+                    <constraint firstAttribute="bottom" secondItem="26M-px-crL" secondAttribute="bottom" id="ZVl-aD-Ebm"/>
+                    <constraint firstItem="26M-px-crL" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="15" id="hlm-Bl-NLy"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="lblDate" destination="Ezy-vV-F5T" id="A5G-yU-aFv"/>
+                <outlet property="lblMessage" destination="UhW-Bg-k1P" id="VRC-hc-6gu"/>
+            </connections>
+            <point key="canvasLocation" x="41.600000000000001" y="46.776611694152926"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="ic_left_message" width="21" height="36"/>
+    </resources>
+</document>

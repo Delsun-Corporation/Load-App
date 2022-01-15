@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="Proxima-Nova-Regular.ttf">
+            <string>ProximaNova-Regular</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ProfileDescriptionCell" rowHeight="59" id="KGk-i7-Jjw" customClass="ProfileDescriptionCell" customModule="Load" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="69"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="69"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jLh-ax-l1m">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="69"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Description" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2tK-Jl-5Ji">
+                                <rect key="frame" x="30" y="15" width="260" height="23"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="23" id="RIR-Ep-v3V"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="ProximaNova-Regular" family="Proxima Nova" pointSize="14"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="2tK-Jl-5Ji" firstAttribute="top" secondItem="jLh-ax-l1m" secondAttribute="top" constant="15" id="9o6-Di-bMS"/>
+                            <constraint firstAttribute="trailing" secondItem="2tK-Jl-5Ji" secondAttribute="trailing" constant="30" id="Irc-Qh-USZ"/>
+                            <constraint firstItem="2tK-Jl-5Ji" firstAttribute="leading" secondItem="jLh-ax-l1m" secondAttribute="leading" constant="30" id="gAl-fW-HRf"/>
+                            <constraint firstAttribute="bottom" secondItem="2tK-Jl-5Ji" secondAttribute="bottom" constant="31" id="qwy-Ra-1LM"/>
+                        </constraints>
+                    </view>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="jLh-ax-l1m" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="EzA-k5-YUb"/>
+                    <constraint firstItem="jLh-ax-l1m" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="S9k-Fc-32G"/>
+                    <constraint firstAttribute="trailing" secondItem="jLh-ax-l1m" secondAttribute="trailing" id="h5L-wJ-MUo"/>
+                    <constraint firstAttribute="bottom" secondItem="jLh-ax-l1m" secondAttribute="bottom" id="yzZ-qi-kNF"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="bottomHeight" destination="qwy-Ra-1LM" id="tDq-Jl-c8b"/>
+                <outlet property="lblDescription" destination="2tK-Jl-5Ji" id="bZ9-Yl-I7c"/>
+            </connections>
+            <point key="canvasLocation" x="132.80000000000001" y="161.46926536731635"/>
+        </tableViewCell>
+    </objects>
+</document>

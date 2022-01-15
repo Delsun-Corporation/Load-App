@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="PickerView" customModule="Load" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="284" height="30"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IH9-4X-j0x">
+                    <rect key="frame" x="0.0" y="0.0" width="284" height="30"/>
+                    <subviews>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Jtd-JU-rfT">
+                            <rect key="frame" x="107.5" y="0.0" width="69.5" height="30"/>
+                            <subviews>
+                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Vfi-Ac-aVr">
+                                    <rect key="frame" x="5" y="5" width="20" height="20"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="20" id="a6R-gp-g9A"/>
+                                        <constraint firstAttribute="width" constant="20" id="dga-xR-B1Y"/>
+                                    </constraints>
+                                </imageView>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bY5-PF-eSh">
+                                    <rect key="frame" x="30" y="7" width="34.5" height="16.5"/>
+                                    <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="14"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                            </subviews>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <constraints>
+                                <constraint firstAttribute="trailing" secondItem="bY5-PF-eSh" secondAttribute="trailing" constant="5" id="4r3-Bb-8Tq"/>
+                                <constraint firstItem="bY5-PF-eSh" firstAttribute="leading" secondItem="Vfi-Ac-aVr" secondAttribute="trailing" constant="5" id="C0y-h9-d4P"/>
+                                <constraint firstItem="Vfi-Ac-aVr" firstAttribute="leading" secondItem="Jtd-JU-rfT" secondAttribute="leading" constant="5" id="Xzi-cQ-Emg"/>
+                                <constraint firstItem="Vfi-Ac-aVr" firstAttribute="top" secondItem="Jtd-JU-rfT" secondAttribute="top" constant="5" id="lHc-A5-vEq"/>
+                                <constraint firstItem="bY5-PF-eSh" firstAttribute="centerY" secondItem="Jtd-JU-rfT" secondAttribute="centerY" id="yZd-EU-5ZU"/>
+                                <constraint firstAttribute="bottom" secondItem="Vfi-Ac-aVr" secondAttribute="bottom" constant="5" id="zJL-1W-YJw"/>
+                            </constraints>
+                        </view>
+                    </subviews>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstItem="Jtd-JU-rfT" firstAttribute="centerX" secondItem="IH9-4X-j0x" secondAttribute="centerX" id="L7l-oa-gzH"/>
+                        <constraint firstAttribute="height" constant="30" id="Oty-mZ-Kss"/>
+                        <constraint firstItem="Jtd-JU-rfT" firstAttribute="centerY" secondItem="IH9-4X-j0x" secondAttribute="centerY" id="Wmd-U4-W8v"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="IH9-4X-j0x" secondAttribute="trailing" id="SYC-VV-5Kl"/>
+                <constraint firstItem="IH9-4X-j0x" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="Xoh-4I-bFf"/>
+                <constraint firstAttribute="bottom" secondItem="IH9-4X-j0x" secondAttribute="bottom" id="b15-lw-6J4"/>
+                <constraint firstItem="IH9-4X-j0x" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="nmw-kX-VUu"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <connections>
+                <outlet property="imgIcon" destination="Vfi-Ac-aVr" id="Q4J-Xy-NH8"/>
+                <outlet property="imgLeft" destination="Xzi-cQ-Emg" id="asm-lX-uvE"/>
+                <outlet property="imgWidth" destination="dga-xR-B1Y" id="ywi-nn-ug0"/>
+                <outlet property="lblText" destination="bY5-PF-eSh" id="Lc2-rD-SwG"/>
+            </connections>
+            <point key="canvasLocation" x="59.200000000000003" y="438.98050974512745"/>
+        </view>
+    </objects>
+</document>
