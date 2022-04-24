@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import MXScroll
 
 class UserProfileFollowListVc: UIViewController {
     
