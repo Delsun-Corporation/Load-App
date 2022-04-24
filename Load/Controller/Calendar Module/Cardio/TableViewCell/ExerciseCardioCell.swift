@@ -8,7 +8,7 @@
 
 import UIKit
 
-protocol ExerciseCardioCellDelegate: class {
+protocol ExerciseCardioCellDelegate: AnyObject {
     func ExerciseCardioCellFinish(index:Int, Laps:String, Speed:String, Pace:String, Percentage:String, Duration:String, Distance:String, Rest:String, Lvl:String, RPM: String, Watt: String)
     func RemoveRowClicked(tag:Int)
 }
@@ -100,7 +100,6 @@ class ExerciseCardioCell: UITableViewCell, UITextFieldDelegate {
     override func awakeFromNib() {
         super.awakeFromNib()
         
-        //        self.txtLaps.delegate = self
         self.txtSpeed.delegate = self
         self.txtPercentage.delegate = self
         self.txtDuration.delegate = self
@@ -108,6 +107,11 @@ class ExerciseCardioCell: UITableViewCell, UITextFieldDelegate {
         self.txtLvl.delegate = self
         self.txtCyclingOutdoorPercentage.delegate = self
         // Initialization code
+        
+        [pacePickerView, RPMPickerView, speedPickerView, RestPickerView, distancePickerView, LvlPickerView, durationPickerView, percentagePickerView].forEach { pickerView in
+            pickerView.delegate = self
+            pickerView.backgroundColor = .white
+        }
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -122,34 +126,15 @@ class ExerciseCardioCell: UITableViewCell, UITextFieldDelegate {
     }
     
     func setupFont() {
-        //        self.txtLaps.font = themeFont(size: 15, fontname: .ProximaNovaRegular)
-        self.txtSpeed.font = themeFont(size: 15, fontname: .ProximaNovaRegular)
-        self.lblSpeed.font = themeFont(size: 15, fontname: .ProximaNovaRegular)
-        self.txtPercentage.font = themeFont(size: 15, fontname: .ProximaNovaRegular)
-        self.lblPercentage.font = themeFont(size: 15, fontname: .ProximaNovaRegular)
-        self.txtDuration.font = themeFont(size: 15, fontname: .ProximaNovaRegular)
-        self.lblDuration.font = themeFont(size: 15, fontname: .ProximaNovaRegular)
-        self.txtRest.font = themeFont(size: 15, fontname: .ProximaNovaRegular)
-        self.lblRest.font = themeFont(size: 15, fontname: .ProximaNovaRegular)
-        self.txtLvl.font = themeFont(size: 15, fontname: .ProximaNovaRegular)
-        self.lblLvl.font = themeFont(size: 15, fontname: .ProximaNovaRegular)
-        self.txtCyclingOutdoorPercentage.font = themeFont(size: 15, fontname: .ProximaNovaRegular)
-        self.lblCyclingOutdoorPercentage.font = themeFont(size: 15, fontname: .ProximaNovaRegular)
-
+        [txtSpeed, txtPercentage, txtDuration, txtRest, txtLvl, txtCyclingOutdoorPercentage].forEach { label in
+            label?.font = themeFont(size: 15, fontname: .ProximaNovaRegular)
+            label?.setColor(color: .clear)
+        }
         
-        //        self.txtLaps.setColor(color: .appthemeBlackColor)
-        self.txtSpeed.setColor(color: .clear)
-        self.lblSpeed.setColor(color: .appthemeBlackColor)
-        self.txtPercentage.setColor(color: .clear)
-        self.lblPercentage.setColor(color: .appthemeBlackColor)
-        self.txtDuration.setColor(color: .clear)
-        self.lblDuration.setColor(color: .appthemeBlackColor)
-        self.txtRest.setColor(color: .clear)
-        self.lblRest.setColor(color: .appthemeBlackColor)
-        self.txtLvl.setColor(color: .clear)
-        self.lblLvl.setColor(color: .appthemeBlackColor)
-        self.txtCyclingOutdoorPercentage.setColor(color: .clear)
-        self.lblCyclingOutdoorPercentage.setColor(color: .appthemeBlackColor)
+        [lblSpeed, lblPercentage, lblDuration, lblRest, lblLvl, lblCyclingOutdoorPercentage].forEach { label in
+            label?.font = themeFont(size: 15, fontname: .ProximaNovaRegular)
+            label?.setColor(color: .appthemeBlackColor)
+        }
         
         changeHeaderAccordingToActivityName()
     }
@@ -162,39 +147,19 @@ class ExerciseCardioCell: UITableViewCell, UITextFieldDelegate {
         
         print("isEdit:\(isEdit)")
 
-        //        self.txtLaps.text = model.laps
-        if self.isShowDistance {
-            self.txtDuration.placeholder = "00"
-            self.txtDuration.text = model.distance
-            self.lblDuration.text = model.distance
-        }
-        else {
-            self.txtDuration.placeholder = "00:00:00"
-            self.txtDuration.text = model.duration
-            self.lblDuration.text = model.duration
-        }
+        txtDuration.placeholder = isShowDistance ? "00" : "00:00:00"
+        txtDuration.text = isShowDistance ? model.distance : model.duration
+        lblDuration.text = isShowDistance ? model.distance : model.duration
         
-        if self.isShowSpeed {
-            self.txtSpeed.placeholder = "00"
-            self.txtSpeed.text = model.speed
-            self.lblSpeed.text = model.speed
-        }
-        else {
-            self.txtSpeed.placeholder = "00:00"
-            self.txtSpeed.text = model.pace
-            self.lblSpeed.text = model.pace
-        }
+        txtSpeed.placeholder = isShowSpeed ? "00" : "00:00"
+        txtSpeed.text = isShowSpeed ? model.speed : model.pace
+        lblSpeed.text = isShowSpeed ? model.speed : model.pace
         
-        if self.isShowRPM{
-            self.txtPercentage.text = model.rpm
-            self.lblPercentage.text = model.rpm
-        }else{
-            self.txtPercentage.text = model.watt
-            self.lblPercentage.text = model.watt
-        }
+        txtPercentage.text = isShowRPM ? model.rpm : model.watt
+        lblPercentage.text = isShowRPM ? model.rpm : model.watt
         
-        self.txtLvl.text = model.lvl
-        self.lblLvl.text = model.lvl
+        txtLvl.text = model.lvl
+        lblLvl.text = model.lvl
         
         if self.activityName == "Run (Outdoor)".lowercased() || self.activityName == "Run (Indoor)".lowercased() {
             self.txtPercentage.text = model.percentage
@@ -202,19 +167,12 @@ class ExerciseCardioCell: UITableViewCell, UITextFieldDelegate {
         }
         
         self.setupSpeed()
-        self.setupDistance()
         
         //Remove dot and km from DistancePickerView
         reomveKmAndDotFromDistancePickerView()
+        self.setupDistance()
         
-        //setSpeed PickerView
-        setSpeedPickerViewInPartation()
-        
-        //Remove hr/min/sec
-//        removeHrMinSecFromDuration()
-        
-//        //Remove Min/sec
-//        removeMinSecFromRest()
+        setupSpeedPickerView()
         
         setMinSecRest()
         
@@ -263,54 +221,15 @@ class ExerciseCardioCell: UITableViewCell, UITextFieldDelegate {
             self.txtLvl.placeholder = "0"
         }
         
-        RestPickerView.delegate = self
         self.txtRest.inputView = RestPickerView
         
-        
-//       label.font = themeFont(size: 21, fontname: .Regular)
-        let screen = UIScreen.main.bounds.width / 3
-        let screenRest = UIScreen.main.bounds.width / 2
-        for index in 0..<2 {
-            let label = UILabel()
-            label.textAlignment = .center
-            label.tag = 100 + index
-            label.font = themeFont(size: 21, fontname: .Regular) //themeFont(size: 15, fontname: .ProximaNovaRegular)
-            if index == 0 {
-                
-                let x = DEVICE_TYPE.IS_IPHONE_6 ? 98 : 108
-                label.frame = CGRect(x: (screenRest * CGFloat(index)) + CGFloat(x), y: (pacePickerView.frame.height - 30) / 2, width: screenRest, height: 30)
-                label.text = ":"
-            }
-            else {
-                
-                //Frame set for swimming and others
-                label.frame = CGRect(x: (screenRest * CGFloat(index)) + 62, y: (pacePickerView.frame.height - 30) / 2, width: screen, height: 30)
-                
-                if self.activityName.lowercased() == "Swimming".lowercased(){
-                    label.text = "min/100 m"
-                    
-                }else if self.activityName.lowercased() == "Others".lowercased(){
-                    label.text = "min/500 m"
-                }else{
-                    label.text = "min/km"
-                    label.frame = CGRect(x: (screenRest * CGFloat(index)) + 50, y: (pacePickerView.frame.height - 30) / 2, width: screen, height: 30)
-                }
-                
-            }
-            label.textColor = .appthemeRedColor
-            self.pacePickerView.addSubview(label)
-        }
-        
-        
+        setupPacePickerView()
+
         if  self.activityName.lowercased() == "Run (Outdoor)".lowercased() ||  self.activityName.lowercased() == "Run (Indoor)".lowercased()
         {
-            percentagePickerView.delegate = self
-            percentagePickerView.backgroundColor = UIColor.white
             self.txtPercentage.inputView = percentagePickerView
             
         }else{
-            RPMPickerView.delegate = self
-            RPMPickerView.backgroundColor = UIColor.white
             self.txtPercentage.inputView = RPMPickerView
             if !isShowRPM{
                 self.setCustomPickerForRPM(unit: "w")
@@ -319,9 +238,7 @@ class ExerciseCardioCell: UITableViewCell, UITextFieldDelegate {
                 self.setCustomPickerForRPM(unit: "")
             }
         }
-       
-        LvlPickerView.delegate = self
-        LvlPickerView.backgroundColor = UIColor.white
+        
         self.txtLvl.inputView = LvlPickerView
         
         if  self.activityName.lowercased() == "Cycling (Outdoor)".lowercased() {
@@ -330,39 +247,33 @@ class ExerciseCardioCell: UITableViewCell, UITextFieldDelegate {
             
             self.txtCyclingOutdoorPercentage.text = model.percentage
             self.lblCyclingOutdoorPercentage.text = model.percentage
-            
-            percentagePickerView.delegate = self
-            percentagePickerView.backgroundColor = UIColor.white
             self.txtCyclingOutdoorPercentage.inputView = percentagePickerView
             
         }
-
-        //MARK: - yash Changes
-      //  self.showExerciseHeader()
     }
     
-    /*
-    func setPreviewDetails(model: Exercise) {
-        //        self.txtLaps.text = model.laps
-        self.txtSpeed.text = model.speed
-        self.lblSpeed.text = model.speed
-        self.txtPercentage.text = activityId == "2" ? model.rpm : model.percentage
-        self.lblPercentage.text = activityId == "2" ? model.rpm : model.percentage
+    func setupPickerViewLabel(pickerView: UIPickerView, separator: String?, unit: String?) {
+        pickerView.subviews.filter({$0.tag >= 100}).forEach({$0.removeFromSuperview()})
         
-        self.txtDuration.text = model.duration
-        self.lblDuration.text = model.duration
-
-        self.txtRest.text = model.rest?.toTrim() ?? ""
-        self.lblRest.text = model.rest?.toTrim() ?? ""
+        let firstLabel = UILabel()
+        firstLabel.text = separator
+        firstLabel.frame = CGRect(x: 0.36 * UIScreen.main.bounds.width, y: (pacePickerView.frame.height - 30) / 2, width: 0.06 * UIScreen.main.bounds.width, height: 30)
+        firstLabel.textAlignment = .center
+        firstLabel.tag = 101
+        firstLabel.font = themeFont(size: 21, fontname: .Regular)
+        firstLabel.textColor = .appthemeRedColor
         
-        //        self.txtLaps.isUserInteractionEnabled = false
-        self.txtSpeed.isUserInteractionEnabled = false
-        self.txtPercentage.isUserInteractionEnabled = false
-        self.txtDuration.isUserInteractionEnabled = false
-        self.txtRest.isUserInteractionEnabled = false
-        //Yash changes
-        self.showExerciseHeader()
-    }*/
+        let secondLabel = UILabel()
+        secondLabel.text = unit
+        secondLabel.frame = CGRect(x: 0.6 * UIScreen.main.bounds.width, y: (pacePickerView.frame.height - 30) / 2, width: 0.4 * UIScreen.main.bounds.width, height: 30)
+        secondLabel.textAlignment = .left
+        secondLabel.tag = 102
+        secondLabel.textColor = .appthemeRedColor
+        secondLabel.font = themeFont(size: 21, fontname: .Regular)
+        
+        pickerView.addSubview(firstLabel)
+        pickerView.addSubview(secondLabel)
+    }
     
     //MARK: - Yash design changes
     
@@ -409,6 +320,21 @@ class ExerciseCardioCell: UITableViewCell, UITextFieldDelegate {
         
     }
     
+    func setExerciseCardioCellFinish(percentage: String? = nil) {
+        let Laps = "0"
+        let Percentage = percentage ?? self.activityName.lowercased() == "Cycling (Outdoor)".lowercased() ? self.txtCyclingOutdoorPercentage.text ?? "" : self.txtPercentage.text!
+        let Duration = self.isShowDistance ? "" : self.txtDuration.text!
+        let Distance = self.isShowDistance ? self.txtDuration.text! : ""
+        let Rest = self.txtRest.text?.toTrim() ?? ""
+        let Speed = self.isShowSpeed ? self.txtSpeed.text! : ""
+        let Pace = self.isShowSpeed ? "" : self.txtSpeed.text!
+        let Lvl = self.txtLvl.text?.toTrim() ?? ""
+        let RPM = self.isShowRPM ? self.txtPercentage.text! : ""
+        let Watt = self.isShowRPM ?  "" : self.txtPercentage.text!
+        
+        self.delegate?.ExerciseCardioCellFinish(index: self.tag, Laps: Laps, Speed: Speed, Pace: Pace, Percentage: Percentage, Duration: Duration, Distance: Distance, Rest: Rest, Lvl: Lvl, RPM: RPM, Watt: Watt)
+    }
+    
     func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
         
         if self.selectedCardioValidationList == nil{
@@ -421,7 +347,7 @@ class ExerciseCardioCell: UITableViewCell, UITextFieldDelegate {
                 
                 self.calculateSpeedArray(data: self.selectedCardioValidationList?.speedRange ?? "")
                 
-                if textField.text?.toTrim() == ""{
+                if textField.text?.toTrim() == "" {
                     speedFirstScrollndex = 0
                     speedSecondScrollIndex = 0
                     
@@ -429,26 +355,21 @@ class ExerciseCardioCell: UITableViewCell, UITextFieldDelegate {
                     self.speedPickerView.selectRow(0, inComponent: 1, animated: false)
                 }
                 
-//                if isEdit{
-                    if self.txtSpeed.text?.contains(".") ?? false{
+                if self.txtSpeed.text?.contains(".") ?? false{
 
-                        let arraySpeed = self.txtSpeed.text?.split(separator: ".")
-                        if arraySpeed?.count == 2{
+                    let arraySpeed = self.txtSpeed.text?.split(separator: ".")
+                    if arraySpeed?.count == 2{
 
-                            let firstIndex = self.arraySpeedFirstData.firstIndex(where: {$0 == String(arraySpeed?[0] ?? "0")})
-                            let secondIndex = self.arraySpeedSecondData.firstIndex(where: {$0 == String(arraySpeed?[1] ?? "0")})
+                        let firstIndex = self.arraySpeedFirstData.firstIndex(where: {$0 == String(arraySpeed?[0] ?? "0")})
+                        let secondIndex = self.arraySpeedSecondData.firstIndex(where: {$0 == String(arraySpeed?[1] ?? "0")})
 
-                            print("FirstIndex:\(firstIndex) : secondINdex:\(secondIndex)")
+                        self.speedPickerView.selectRow(firstIndex ?? 0, inComponent: 0, animated: false)
+                        self.speedPickerView.selectRow(secondIndex ?? 0, inComponent: 1, animated: false)
 
-                            self.speedPickerView.selectRow(firstIndex ?? 0, inComponent: 0, animated: false)
-                            self.speedPickerView.selectRow(secondIndex ?? 0, inComponent: 1, animated: false)
-
-                            self.speedFirstScrollndex = firstIndex ?? 0
-                            self.speedSecondScrollIndex = secondIndex ?? 0
-                            
-                        }
+                        self.speedFirstScrollndex = firstIndex ?? 0
+                        self.speedSecondScrollIndex = secondIndex ?? 0
                     }
-//                }
+                }
                 
                 self.txtSpeed.text = "\(self.arraySpeedFirstData[speedFirstScrollndex]).\(self.arraySpeedSecondData[speedSecondScrollIndex])"
                 self.lblSpeed.text = "\(self.arraySpeedFirstData[speedFirstScrollndex]).\(self.arraySpeedSecondData[speedSecondScrollIndex])"
@@ -465,47 +386,25 @@ class ExerciseCardioCell: UITableViewCell, UITextFieldDelegate {
                     self.pacePickerView.selectRow(0, inComponent: 0, animated: false)
                     self.pacePickerView.selectRow(0, inComponent: 1, animated: false)
                 }
-                
-//                if isEdit{
-                    if self.txtSpeed.text?.contains(":") ?? false{
+                if self.txtSpeed.text?.contains(":") ?? false {
 
-                        let arrayPace = self.txtSpeed.text?.split(separator: ":")
-                        if arrayPace?.count == 2{
+                    let arrayPace = self.txtSpeed.text?.split(separator: ":")
+                    if arrayPace?.count == 2{
 
-                            let firstIndex = Int(String(arrayPace?[0] ?? "0"))
-                            let secondIndex = Int(String(arrayPace?[1] ?? "0"))
+                        let firstIndex = Int(String(arrayPace?[0] ?? "0"))
+                        let secondIndex = Int(String(arrayPace?[1] ?? "0"))
 
-                            print("FirstIndex:\(firstIndex) : secondINdex:\(secondIndex)")
+                        self.pacePickerView.selectRow(firstIndex ?? 0, inComponent: 0, animated: false)
+                        self.pacePickerView.selectRow(secondIndex ?? 0, inComponent: 1, animated: false)
 
-                            self.pacePickerView.selectRow(firstIndex ?? 0, inComponent: 0, animated: false)
-                            self.pacePickerView.selectRow(secondIndex ?? 0, inComponent: 1, animated: false)
-
-                            self.minutesPace = firstIndex ?? 0
-                            self.secPace = secondIndex ?? 0
-                            
-                        }
+                        self.minutesPace = firstIndex ?? 0
+                        self.secPace = secondIndex ?? 0
                     }
-//                }
-                
+                }
                 self.txtSpeed.text = "\(minutesPace.makeRound()):\(secPace.makeRound())".toTrim()
                 self.lblSpeed.text = "\(minutesPace.makeRound()):\(secPace.makeRound())".toTrim()
-
-                
             }
-            
-            let Laps = "0"
-            let Percentage = self.activityName.lowercased() == "Cycling (Outdoor)".lowercased() ? self.txtCyclingOutdoorPercentage.text ?? "" : self.txtPercentage.text!
-            let Duration = self.isShowDistance ? "" : self.txtDuration.text!
-            let Distance = self.isShowDistance ? self.txtDuration.text! : ""
-            let Rest = self.txtRest.text?.toTrim() ?? ""
-            let Speed = self.isShowSpeed ? self.txtSpeed.text! : ""
-            let Pace = self.isShowSpeed ? "" : self.txtSpeed.text!
-            let Lvl = self.txtLvl.text?.toTrim() ?? ""
-            let RPM = self.isShowRPM ? self.txtPercentage.text! : ""
-            let Watt = self.isShowRPM ?  "" : self.txtPercentage.text!
-            
-            self.delegate?.ExerciseCardioCellFinish(index: self.tag, Laps: Laps, Speed: Speed, Pace: Pace, Percentage: Percentage, Duration: Duration, Distance: Distance, Rest: Rest, Lvl: Lvl, RPM: RPM, Watt: Watt)
-            
+            setExerciseCardioCellFinish()
             return true
         }
         else if textField == self.txtPercentage  {
@@ -524,13 +423,9 @@ class ExerciseCardioCell: UITableViewCell, UITextFieldDelegate {
                         self.txtPercentage.text = self.calculatePercentageArray(data: self.selectedCardioValidationList?.percentageRange ?? "").first ?? ""
                         self.lblPercentage.text = self.calculatePercentageArray(data: self.selectedCardioValidationList?.percentageRange ?? "").first ?? ""
                     }
-                    
-//                    if isEdit{
-                        let array = self.calculatePercentageArray(data: self.selectedCardioValidationList?.percentageRange ?? "")
-                        let firstIndex = array.firstIndex(where: {$0 == self.txtPercentage.text}) ?? 0
-                        self.percentagePickerView.selectRow(firstIndex, inComponent: 0, animated: false)
-//                    }
-                    
+                    let array = self.calculatePercentageArray(data: self.selectedCardioValidationList?.percentageRange ?? "")
+                    let firstIndex = array.firstIndex(where: {$0 == self.txtPercentage.text}) ?? 0
+                    self.percentagePickerView.selectRow(firstIndex, inComponent: 0, animated: false)
                 }else{
                     
                      if textField.text?.toTrim() == ""{
@@ -544,132 +439,9 @@ class ExerciseCardioCell: UITableViewCell, UITextFieldDelegate {
                         self.percentageSecondScrollInex = 0
 
                     }
-                    
-//                    if isEdit{
-                        if self.txtPercentage.text?.contains(".") ?? false{
+                    if self.txtPercentage.text?.contains(".") ?? false{
 
-                            let arrayPercentage = self.txtPercentage.text?.split(separator: ".")
-                            if arrayPercentage?.count == 2{
-
-                                let firstIndex = arrayPercentageFirstData.firstIndex(where: {$0 == String(arrayPercentage?[0] ?? "")}) ?? 0
-                                let secondIndex = arrayPercentageSecondData.firstIndex(where: {$0 == String(arrayPercentage?[1] ?? "")}) ?? 0
-
-                                print("FirstIndex:\(firstIndex) : secondINdex:\(secondIndex)")
-
-                                self.percentagePickerView.selectRow(firstIndex , inComponent: 0, animated: false)
-                                self.percentagePickerView.selectRow(secondIndex , inComponent: 1, animated: false)
-
-                                self.percentageFirstScrollIndex = firstIndex
-                                self.percentageSecondScrollInex = secondIndex
-                                
-                            }
-                        }
-//                    }
-                    
-                    self.txtPercentage.text = "\(self.arrayPercentageFirstData[percentageFirstScrollIndex]).\(self.arrayPercentageSecondData[percentageSecondScrollInex])"
-                    self.lblPercentage.text = "\(self.arrayPercentageFirstData[percentageFirstScrollIndex]).\(self.arrayPercentageSecondData[percentageSecondScrollInex])"
-                    self.percentagePickerView.reloadAllComponents()
-                }
-                
-                let Laps = "0"
-                let Speed = self.isShowSpeed ? self.txtSpeed.text! : ""
-                let Pace = self.isShowSpeed ? "" : self.txtSpeed.text!
-                let Duration = self.isShowDistance ? "" : self.txtDuration.text!
-                let Distance = self.isShowDistance ? self.txtDuration.text! : ""
-                let Rest = self.txtRest.text?.toTrim() ?? ""
-                let Percentage = self.txtPercentage.text?.toTrim() ?? ""
-                let Lvl = self.txtLvl.text?.toTrim() ?? ""
-                let RPM = self.isShowRPM ? self.txtPercentage.text! : ""
-                let Watt = self.isShowRPM ?  "" : self.txtPercentage.text!
-                
-                self.delegate?.ExerciseCardioCellFinish(index: self.tag, Laps: Laps, Speed: Speed, Pace: Pace, Percentage: Percentage, Duration: Duration, Distance: Distance, Rest: Rest, Lvl: Lvl, RPM: RPM, Watt: Watt)
-            }else{
-                
-                if textField.text?.toTrim() == ""{
-                    self.RPMPickerView.selectRow(0, inComponent: 0, animated: false)
-                }
-                
-                if self.isShowRPM {
-                    
-                    if textField.text?.toTrim() == ""{
-                        self.txtPercentage.text = self.calculateRPMWAttArray(data: self.selectedCardioValidationList?.rpmRange ?? "").first ?? ""
-                        self.lblPercentage.text = self.calculateRPMWAttArray(data: self.selectedCardioValidationList?.rpmRange ?? "").first ?? ""
-                    }
-                    
-//                    if isEdit{
-                        let array = self.calculateRPMWAttArray(data: self.selectedCardioValidationList?.rpmRange ?? "")
-                        let firstIndex = array.firstIndex(where: {$0 == self.txtPercentage.text}) ?? 0
-                        self.RPMPickerView.selectRow(firstIndex, inComponent: 0, animated: false)
-//                    }
-                    
-                }
-                else {
-                    
-                    if textField.text?.toTrim() == ""{
-                        self.txtPercentage.text = self.calculateRPMWAttArray(data: self.selectedCardioValidationList?.wattRange ?? "").first ?? ""
-                        self.lblPercentage.text = self.calculateRPMWAttArray(data: self.selectedCardioValidationList?.wattRange ?? "").first ?? ""
-                    }
-                    
-//                    if isEdit{
-                        let array = self.calculateRPMWAttArray(data: self.selectedCardioValidationList?.wattRange ?? "")
-                        let firstIndex = array.firstIndex(where: {$0 == self.txtPercentage.text}) ?? 0
-                        self.RPMPickerView.selectRow(firstIndex, inComponent: 0, animated: false)
-//                    }
-                    
-                }
-                
-                self.RPMPickerView.reloadAllComponents()
-                
-                let Laps = "0"
-                let Percentage = ""
-                let Duration = self.isShowDistance ? "" : self.txtDuration.text!
-                let Distance = self.isShowDistance ? self.txtDuration.text! : ""
-                let Rest = self.txtRest.text?.toTrim() ?? ""
-                let Speed = self.isShowSpeed ? self.txtSpeed.text! : ""
-                let Pace = self.isShowSpeed ? "" : self.txtSpeed.text!
-                let Lvl = self.txtLvl.text?.toTrim() ?? ""
-                let RPM = self.isShowRPM ? self.txtPercentage.text! : ""
-                let Watt = self.isShowRPM ?  "" : self.txtPercentage.text!
-                
-                self.delegate?.ExerciseCardioCellFinish(index: self.tag, Laps: Laps, Speed: Speed, Pace: Pace, Percentage: Percentage, Duration: Duration, Distance: Distance, Rest: Rest, Lvl: Lvl, RPM: RPM, Watt: Watt)
-                
-            }
-
-        }else if textField == self.txtCyclingOutdoorPercentage{
-            
-            reomveDotFromPercentagePickerView()
-            
-            if self.selectedCardioValidationList?.percentageRange.contains(",") ?? false
-            {
-                if textField.text?.toTrim() == ""{
-                    self.percentagePickerView.selectRow(0, inComponent: 0, animated: false)
-
-                    self.txtCyclingOutdoorPercentage.text = self.calculatePercentageArray(data: self.selectedCardioValidationList?.percentageRange ?? "").first ?? ""
-                    self.lblCyclingOutdoorPercentage.text = self.calculatePercentageArray(data: self.selectedCardioValidationList?.percentageRange ?? "").first ?? ""
-                }
-                
-//                if isEdit{
-                    let array = self.calculatePercentageArray(data: self.selectedCardioValidationList?.percentageRange ?? "")
-                    let firstIndex = array.firstIndex(where: {$0 == self.txtCyclingOutdoorPercentage.text}) ?? 0
-                    self.percentagePickerView.selectRow(firstIndex, inComponent: 0, animated: false)
-//                }
-                
-                
-            }else{
-                
-                self.calculatePercentageArray(data: self.selectedCardioValidationList?.percentageRange ?? "")
-                
-                if textField.text?.toTrim() == ""{
-                    self.percentagePickerView.selectRow(0, inComponent: 0, animated: false)
-                     self.percentagePickerView.selectRow(0, inComponent: 1, animated: false)
-                    self.percentageFirstScrollIndex = 0
-                    self.percentageSecondScrollInex = 0
-                }
-                
-//                if isEdit{
-                    if self.txtCyclingOutdoorPercentage.text?.contains(".") ?? false{
-
-                        let arrayPercentage = self.txtCyclingOutdoorPercentage.text?.split(separator: ".")
+                        let arrayPercentage = self.txtPercentage.text?.split(separator: ".")
                         if arrayPercentage?.count == 2{
 
                             let firstIndex = arrayPercentageFirstData.firstIndex(where: {$0 == String(arrayPercentage?[0] ?? "")}) ?? 0
@@ -685,25 +457,90 @@ class ExerciseCardioCell: UITableViewCell, UITextFieldDelegate {
                             
                         }
                     }
-//                }
+                    
+                    self.txtPercentage.text = "\(self.arrayPercentageFirstData[percentageFirstScrollIndex]).\(self.arrayPercentageSecondData[percentageSecondScrollInex])"
+                    self.lblPercentage.text = "\(self.arrayPercentageFirstData[percentageFirstScrollIndex]).\(self.arrayPercentageSecondData[percentageSecondScrollInex])"
+                    self.percentagePickerView.reloadAllComponents()
+                }
+                
+                setExerciseCardioCellFinish(percentage: self.txtPercentage.text?.toTrim() ?? "")
+            }else{
+                
+                if textField.text?.toTrim() == ""{
+                    self.RPMPickerView.selectRow(0, inComponent: 0, animated: false)
+                }
+                
+                if self.isShowRPM {
+                    
+                    if textField.text?.toTrim() == ""{
+                        self.txtPercentage.text = self.calculateRPMWAttArray(data: self.selectedCardioValidationList?.rpmRange ?? "").first ?? ""
+                        self.lblPercentage.text = self.calculateRPMWAttArray(data: self.selectedCardioValidationList?.rpmRange ?? "").first ?? ""
+                    }
+                    let array = self.calculateRPMWAttArray(data: self.selectedCardioValidationList?.rpmRange ?? "")
+                    let firstIndex = array.firstIndex(where: {$0 == self.txtPercentage.text}) ?? 0
+                    self.RPMPickerView.selectRow(firstIndex, inComponent: 0, animated: false)
+                    
+                } else {
+                    if textField.text?.toTrim() == ""{
+                        self.txtPercentage.text = self.calculateRPMWAttArray(data: self.selectedCardioValidationList?.wattRange ?? "").first ?? ""
+                        self.lblPercentage.text = self.calculateRPMWAttArray(data: self.selectedCardioValidationList?.wattRange ?? "").first ?? ""
+                    }
+                    let array = self.calculateRPMWAttArray(data: self.selectedCardioValidationList?.wattRange ?? "")
+                    let firstIndex = array.firstIndex(where: {$0 == self.txtPercentage.text}) ?? 0
+                    self.RPMPickerView.selectRow(firstIndex, inComponent: 0, animated: false)
+                }
+                self.RPMPickerView.reloadAllComponents()
+                setExerciseCardioCellFinish(percentage: "")
+            }
+        } else if textField == self.txtCyclingOutdoorPercentage {
+            
+            reomveDotFromPercentagePickerView()
+            
+            if self.selectedCardioValidationList?.percentageRange.contains(",") ?? false
+            {
+                if textField.text?.toTrim() == ""{
+                    self.percentagePickerView.selectRow(0, inComponent: 0, animated: false)
+
+                    self.txtCyclingOutdoorPercentage.text = self.calculatePercentageArray(data: self.selectedCardioValidationList?.percentageRange ?? "").first ?? ""
+                    self.lblCyclingOutdoorPercentage.text = self.calculatePercentageArray(data: self.selectedCardioValidationList?.percentageRange ?? "").first ?? ""
+                }
+                let array = self.calculatePercentageArray(data: self.selectedCardioValidationList?.percentageRange ?? "")
+                let firstIndex = array.firstIndex(where: {$0 == self.txtCyclingOutdoorPercentage.text}) ?? 0
+                self.percentagePickerView.selectRow(firstIndex, inComponent: 0, animated: false)
+            } else {
+                self.calculatePercentageArray(data: self.selectedCardioValidationList?.percentageRange ?? "")
+                if textField.text?.toTrim() == ""{
+                    self.percentagePickerView.selectRow(0, inComponent: 0, animated: false)
+                     self.percentagePickerView.selectRow(0, inComponent: 1, animated: false)
+                    self.percentageFirstScrollIndex = 0
+                    self.percentageSecondScrollInex = 0
+                }
+                
+                if self.txtCyclingOutdoorPercentage.text?.contains(".") ?? false{
+
+                    let arrayPercentage = self.txtCyclingOutdoorPercentage.text?.split(separator: ".")
+                    if arrayPercentage?.count == 2{
+
+                        let firstIndex = arrayPercentageFirstData.firstIndex(where: {$0 == String(arrayPercentage?[0] ?? "")}) ?? 0
+                        let secondIndex = arrayPercentageSecondData.firstIndex(where: {$0 == String(arrayPercentage?[1] ?? "")}) ?? 0
+
+                        print("FirstIndex:\(firstIndex) : secondINdex:\(secondIndex)")
+
+                        self.percentagePickerView.selectRow(firstIndex , inComponent: 0, animated: false)
+                        self.percentagePickerView.selectRow(secondIndex , inComponent: 1, animated: false)
+
+                        self.percentageFirstScrollIndex = firstIndex
+                        self.percentageSecondScrollInex = secondIndex
+                        
+                    }
+                }
                 
                 self.txtCyclingOutdoorPercentage.text = "\(self.arrayPercentageFirstData[percentageFirstScrollIndex]).\(self.arrayPercentageSecondData[percentageSecondScrollInex])"
                 self.lblCyclingOutdoorPercentage.text = "\(self.arrayPercentageFirstData[percentageFirstScrollIndex]).\(self.arrayPercentageSecondData[percentageSecondScrollInex])"
                 self.percentagePickerView.reloadAllComponents()
             }
             
-            let Laps = "0"
-            let Speed = self.isShowSpeed ? self.txtSpeed.text! : ""
-            let Pace = self.isShowSpeed ? "" : self.txtSpeed.text!
-            let Duration = self.isShowDistance ? "" : self.txtDuration.text!
-            let Distance = self.isShowDistance ? self.txtDuration.text! : ""
-            let Rest = self.txtRest.text?.toTrim() ?? ""
-            let Percentage = self.txtCyclingOutdoorPercentage.text?.toTrim() ?? ""
-            let Lvl = self.txtLvl.text?.toTrim() ?? ""
-            let RPM = self.isShowRPM ? self.txtPercentage.text! : ""
-            let Watt = self.isShowRPM ?  "" : self.txtPercentage.text!
-            
-            self.delegate?.ExerciseCardioCellFinish(index: self.tag, Laps: Laps, Speed: Speed, Pace: Pace, Percentage: Percentage, Duration: Duration, Distance: Distance, Rest: Rest, Lvl: Lvl, RPM: RPM, Watt: Watt)
+            setExerciseCardioCellFinish(percentage: self.txtCyclingOutdoorPercentage.text?.toTrim() ?? "")
         }
         else if textField == self.txtDuration {
             
@@ -737,14 +574,10 @@ class ExerciseCardioCell: UITableViewCell, UITextFieldDelegate {
                             
                         }
                     }
-                    
-//                    if isEdit{
-                        let array = self.calculateDistanceArray(data: self.selectedCardioValidationList?.distanceRange ?? "")
-                        let firstIndex = array.firstIndex(where: {$0 == self.txtDuration.text}) ?? 0
-                        self.distancePickerView.selectRow(firstIndex, inComponent: 0, animated: false)
-//                    }
-                    
-                 }else{
+                    let array = self.calculateDistanceArray(data: self.selectedCardioValidationList?.distanceRange ?? "")
+                    let firstIndex = array.firstIndex(where: {$0 == self.txtDuration.text}) ?? 0
+                    self.distancePickerView.selectRow(firstIndex, inComponent: 0, animated: false)
+                 } else {
                     
                     self.calculateDistanceArray(data: self.selectedCardioValidationList?.distanceRange ?? "")
                     
@@ -753,30 +586,27 @@ class ExerciseCardioCell: UITableViewCell, UITextFieldDelegate {
                         self.distanceSecondData = 0
                         
                         self.distancePickerView.selectRow(0, inComponent: 0, animated: false)
-                        self.distancePickerView.selectRow(0, inComponent: 1, animated: false)
 
                     }
 
-//                    if isEdit{
-                        if self.txtDuration.text?.contains(".") ?? false{
+                    if self.txtDuration.text?.contains(".") ?? false{
 
-                            let arrayDistance = self.txtDuration.text?.split(separator: ".")
-                            if arrayDistance?.count == 2{
+                        let arrayDistance = self.txtDuration.text?.split(separator: ".")
+                        if arrayDistance?.count == 2{
 
-                                let firstIndex = self.arrayDistanceFirstData.firstIndex(where: {$0 == String(arrayDistance?[0] ?? "0")})
-                                let secondIndex = self.arrayDistanceSecondData.firstIndex(where: {$0 == String(arrayDistance?[1] ?? "0")})
+                            let firstIndex = self.arrayDistanceFirstData.firstIndex(where: {$0 == String(arrayDistance?[0] ?? "0")})
+                            let secondIndex = self.arrayDistanceSecondData.firstIndex(where: {$0 == String(arrayDistance?[1] ?? "0")})
 
-                                print("FirstIndex:\(firstIndex) : secondINdex:\(secondIndex)")
+                            print("FirstIndex:\(firstIndex) : secondINdex:\(secondIndex)")
 
-                                self.distancePickerView.selectRow(firstIndex ?? 0, inComponent: 0, animated: false)
-                                self.distancePickerView.selectRow(secondIndex ?? 0, inComponent: 1, animated: false)
+                            self.distancePickerView.selectRow(firstIndex ?? 0, inComponent: 0, animated: false)
+                            self.distancePickerView.selectRow(secondIndex ?? 0, inComponent: 1, animated: false)
 
-                                self.distanceFirstData = firstIndex ?? 0
-                                self.distanceSecondData = secondIndex ?? 0
-                                
-                            }
+                            self.distanceFirstData = firstIndex ?? 0
+                            self.distanceSecondData = secondIndex ?? 0
+                            
                         }
-//                    }
+                    }
 
                     self.txtDuration.text = "\(self.arrayDistanceFirstData[distanceFirstData]).\(self.arrayDistanceSecondData[distanceSecondData])"
                     self.lblDuration.text = "\(self.arrayDistanceFirstData[distanceFirstData]).\(self.arrayDistanceSecondData[distanceSecondData])"
@@ -797,15 +627,13 @@ class ExerciseCardioCell: UITableViewCell, UITextFieldDelegate {
                         self.lblDuration.text = calculateDurationArrayWithGap(data: self.selectedCardioValidationList?.durationRange ?? "", isShowHours: true).first ?? ""
                     }
                     
-//                    if self.isEdit{
-                        let arrayDuration = calculateDurationArrayWithGap(data: self.selectedCardioValidationList?.durationRange ?? "", isShowHours: true)
-                        
-                        let firstIndex = arrayDuration.firstIndex(where: {$0 == String(self.txtDuration.text ?? "")})
-                        print("FirstIndex:\(firstIndex) ")
-                        
-                        self.durationPickerView.selectRow(firstIndex ?? 0, inComponent: 0, animated: false)
+                    let arrayDuration = calculateDurationArrayWithGap(data: self.selectedCardioValidationList?.durationRange ?? "", isShowHours: true)
+                    
+                    let firstIndex = arrayDuration.firstIndex(where: {$0 == String(self.txtDuration.text ?? "")})
+                    print("FirstIndex:\(firstIndex) ")
+                    
+                    self.durationPickerView.selectRow(firstIndex ?? 0, inComponent: 0, animated: false)
 
-//                    }
                     
                 }else{
                     
@@ -819,37 +647,31 @@ class ExerciseCardioCell: UITableViewCell, UITextFieldDelegate {
                         minutes = 0
                         seconds = 0
                     }
+                        
+                    let dataArray = txtDuration.text?.split(separator: ":")
                     
-//                    if self.isEdit{
-                        
-                        let dataArray = txtDuration.text?.split(separator: ":")
-                        
-                        if dataArray?.count == 3{
+                    if dataArray?.count == 3{
 
-                            let firstData = Int(dataArray?[0] ?? "0") ?? 0
-                            let secondData = Int(dataArray?[1] ?? "0") ?? 0
-                            let thirdData = Int(dataArray?[2] ?? "0") ?? 0
+                        let firstData = Int(dataArray?[0] ?? "0") ?? 0
+                        let secondData = Int(dataArray?[1] ?? "0") ?? 0
+                        let thirdData = Int(dataArray?[2] ?? "0") ?? 0
 
-                            let firstIndex = self.arrayHourDuration.firstIndex(where: {$0 == String(firstData)})
-                            let secondIndex = self.arrayMinDuration.firstIndex(where: {$0 == String(secondData)})
-                            let thirdIndex = self.arraySecDuration.firstIndex(where: {$0 == String(thirdData)})
+                        let firstIndex = self.arrayHourDuration.firstIndex(where: {$0 == String(firstData)})
+                        let secondIndex = self.arrayMinDuration.firstIndex(where: {$0 == String(secondData)})
+                        let thirdIndex = self.arraySecDuration.firstIndex(where: {$0 == String(thirdData)})
 
-                            print("FirstIndex:\(firstIndex) : secondINdex:\(secondIndex) : ThirdIndex: \(thirdIndex)")
-
-                            
-                            DispatchQueue.main.async {
-                                self.durationPickerView.selectRow(firstIndex ?? 0, inComponent: 0, animated: false)
-                                self.durationPickerView.selectRow(secondIndex ?? 0, inComponent: 1, animated: false)
-                                self.durationPickerView.selectRow(thirdIndex ?? 0, inComponent: 2, animated: false)
-
-                            }
-                            
-                            hour = firstIndex ?? 0
-                            minutes = secondIndex ?? 0
-                            seconds = thirdIndex ?? 0
+                        DispatchQueue.main.async {
+                            self.durationPickerView.selectRow(firstIndex ?? 0, inComponent: 0, animated: false)
+                            self.durationPickerView.selectRow(secondIndex ?? 0, inComponent: 1, animated: false)
+                            self.durationPickerView.selectRow(thirdIndex ?? 0, inComponent: 2, animated: false)
 
                         }
-//                    }
+                        
+                        hour = firstIndex ?? 0
+                        minutes = secondIndex ?? 0
+                        seconds = thirdIndex ?? 0
+
+                    }
                     
                     
                     if arrayHourDuration.count != 0 && arrayMinDuration.count != 0 && arraySecDuration.count != 0{
@@ -861,20 +683,9 @@ class ExerciseCardioCell: UITableViewCell, UITextFieldDelegate {
                     self.durationPickerView.reloadAllComponents()
                 }
             }
-            let Laps = "0"
-            let Speed = self.isShowSpeed ? self.txtSpeed.text! : ""
-            let Pace = self.isShowSpeed ? "" : self.txtSpeed.text!
-            let Duration = self.isShowDistance ? "" : self.txtDuration.text!
-            let Distance = self.isShowDistance ? self.txtDuration.text! : ""
-            let Percentage = self.activityName.lowercased() == "Cycling (Outdoor)".lowercased() ? self.txtCyclingOutdoorPercentage.text ?? "" : self.txtPercentage.text!
-            let Rest = self.txtRest.text?.toTrim() ?? ""
-            let Lvl = self.txtLvl.text?.toTrim() ?? ""
-            let RPM = self.isShowRPM ? self.txtPercentage.text! : ""
-            let Watt = self.isShowRPM ?  "" : self.txtPercentage.text!
+            setExerciseCardioCellFinish()
             
-            self.delegate?.ExerciseCardioCellFinish(index: self.tag, Laps: Laps, Speed: Speed, Pace: Pace, Percentage: Percentage, Duration: Duration, Distance: Distance, Rest: Rest, Lvl: Lvl, RPM: RPM, Watt: Watt)
-        }
-        else if textField == self.txtRest{
+        } else if textField == self.txtRest{
             
             removeMinSecFromRest()
             
@@ -894,22 +705,14 @@ class ExerciseCardioCell: UITableViewCell, UITextFieldDelegate {
                         self.txtRest.text = calculateRestArrayWithGap(data: self.selectedCardioValidationList?.restRange ?? "", isShowHours: false).first
                         self.lblRest.text = calculateRestArrayWithGap(data: self.selectedCardioValidationList?.restRange ?? "", isShowHours: false).first
                     }
+                    let arrayRest = calculateRestArrayWithGap(data: self.selectedCardioValidationList?.restRange ?? "", isShowHours: false)
                     
-//                    if self.isEdit{
-                        let arrayRest = calculateRestArrayWithGap(data: self.selectedCardioValidationList?.restRange ?? "", isShowHours: false)
-                        
-                        let firstIndex = arrayRest.firstIndex(where: {$0 == String(self.txtRest.text ?? "")})
-                        print("FirstIndex:\(firstIndex) ")
-                        
-                        self.RestPickerView.selectRow(firstIndex ?? 0, inComponent: 0, animated: false)
-
-//                    }
-
+                    let firstIndex = arrayRest.firstIndex(where: {$0 == String(self.txtRest.text ?? "")})
+                    print("FirstIndex:\(firstIndex) ")
                     
+                    self.RestPickerView.selectRow(firstIndex ?? 0, inComponent: 0, animated: false)
                 }
-                
             }else{
-                
                 if textField.text?.toTrim() == ""{
                     self.RestPickerView.selectRow(0, inComponent: 1, animated: false)
                     minutesRest = 0
@@ -917,8 +720,6 @@ class ExerciseCardioCell: UITableViewCell, UITextFieldDelegate {
                 }
                 
                 calculateRestArrayWithGap(data: self.selectedCardioValidationList?.restRange ?? "", isShowHours: false)
-                
-//                if self.isEdit{
                     
                     let dataArray = txtRest.text?.split(separator: ":")
                     
@@ -939,7 +740,6 @@ class ExerciseCardioCell: UITableViewCell, UITextFieldDelegate {
                         secRest = secondIndex ?? 0
 
                     }
-//                }
                 
                 self.txtRest.text = "\(Int(self.arrayMinRest[minutesRest])!.makeRound()):\(Int(self.arraySecRest[secRest])!.makeRound())"
                 self.lblRest.text = "\(Int(self.arrayMinRest[minutesRest])!.makeRound()):\(Int(self.arraySecRest[secRest])!.makeRound())"
@@ -947,19 +747,7 @@ class ExerciseCardioCell: UITableViewCell, UITextFieldDelegate {
             }
             
             self.RestPickerView.reloadAllComponents()
-            
-            let Laps = "0" //self.txtLaps.text!
-            let Speed = self.isShowSpeed ? self.txtSpeed.text! : ""
-            let Pace = self.isShowSpeed ? "" : self.txtSpeed.text!
-            let Duration = self.isShowDistance ? "" : self.txtDuration.text!
-            let Distance = self.isShowDistance ? self.txtDuration.text! : ""
-            let Percentage = self.activityName.lowercased() == "Cycling (Outdoor)".lowercased() ? self.txtCyclingOutdoorPercentage.text ?? "" : self.txtPercentage.text!
-            let Rest = self.txtRest.text?.toTrim() ?? ""
-            let Lvl = self.txtLvl.text?.toTrim() ?? ""
-            let RPM = self.isShowRPM ? self.txtPercentage.text! : ""
-            let Watt = self.isShowRPM ?  "" : self.txtPercentage.text!
-            
-            self.delegate?.ExerciseCardioCellFinish(index: self.tag, Laps: Laps, Speed: Speed, Pace: Pace, Percentage: Percentage, Duration: Duration, Distance: Distance, Rest: Rest, Lvl: Lvl, RPM: RPM, Watt: Watt)
+            setExerciseCardioCellFinish()
         }
         if textField == self.txtLvl {
 
@@ -970,29 +758,11 @@ class ExerciseCardioCell: UITableViewCell, UITextFieldDelegate {
                 self.lblLvl.text = self.calculateLvlArray(data: self.selectedCardioValidationList?.lvlRange ?? "").first
 
             }
-            
-//            if isEdit{
-                let array = self.calculateLvlArray(data: self.selectedCardioValidationList?.lvlRange ?? "")
-                let firstIndex = array.firstIndex(where: {$0 == self.txtLvl.text}) ?? 0
-                self.LvlPickerView.selectRow(firstIndex, inComponent: 0, animated: false)
-//            }
-
+            let array = self.calculateLvlArray(data: self.selectedCardioValidationList?.lvlRange ?? "")
+            let firstIndex = array.firstIndex(where: {$0 == self.txtLvl.text}) ?? 0
+            self.LvlPickerView.selectRow(firstIndex, inComponent: 0, animated: false)
             self.LvlPickerView.reloadAllComponents()
-            
-            
-            let Laps = "0" //self.txtLaps.text!
-            let Speed = self.isShowSpeed ? self.txtSpeed.text! : ""
-            let Pace = self.isShowSpeed ? "" : self.txtSpeed.text!
-            let Duration = self.isShowDistance ? "" : self.txtDuration.text!
-            let Distance = self.isShowDistance ? self.txtDuration.text! : ""
-            let Percentage = self.activityName.lowercased() == "Cycling (Outdoor)".lowercased() ? self.txtCyclingOutdoorPercentage.text ?? "" : self.txtPercentage.text!
-            let Rest = self.txtRest.text?.toTrim() ?? ""
-            let Lvl = self.txtLvl.text?.toTrim() ?? ""
-            let RPM = self.isShowRPM ? self.txtPercentage.text! : ""
-            let Watt = self.isShowRPM ?  "" : self.txtPercentage.text!
-            
-            self.delegate?.ExerciseCardioCellFinish(index: self.tag, Laps: Laps, Speed: Speed, Pace: Pace, Percentage: Percentage, Duration: Duration, Distance: Distance, Rest: Rest, Lvl: Lvl, RPM: RPM, Watt: Watt)
-
+            setExerciseCardioCellFinish()
         }
         return true
     }
@@ -1013,15 +783,6 @@ class ExerciseCardioCell: UITableViewCell, UITextFieldDelegate {
         let Watt = self.txtPercentage.text?.toTrim() ?? ""
         let RPM = self.txtPercentage.text?.toTrim() ?? ""
         
-        print("txtAfterUpdate:\(txtAfterUpdate)")
-        
-        //        if textField == self.txtLaps {
-        //            if (txtAfterUpdate != "" && Double(txtAfterUpdate)! > 100) {
-        //                return false
-        //            }
-        //            self.delegate?.ExerciseCardioCellFinish(index: self.tag, Laps: txtAfterUpdate, Speed: Speed, Percentage: Percentage, Duration: Duration, Rest: Rest)
-        //        }
-        //        else
         if textField == self.txtSpeed {
             self.delegate?.ExerciseCardioCellFinish(index: self.tag, Laps: Laps, Speed: txtAfterUpdate, Pace: txtAfterUpdate, Percentage: Percentage, Duration: Duration, Distance: Distance, Rest: Rest, Lvl: Lvl, RPM: RPM, Watt: Watt)
         }
@@ -1074,20 +835,7 @@ class ExerciseCardioCell: UITableViewCell, UITextFieldDelegate {
                     secPace = 0
                 }
             }
-            
-            let Laps = "0"
-            let Percentage = self.activityName.lowercased() == "Cycling (Outdoor)".lowercased() ? self.txtCyclingOutdoorPercentage.text ?? "" : self.txtPercentage.text!
-            let Duration = self.isShowDistance ? "" : self.txtDuration.text!
-            let Distance = self.isShowDistance ? self.txtDuration.text! : ""
-            let Rest = self.txtRest.text?.toTrim() ?? ""
-            let Speed = self.isShowSpeed ? self.txtSpeed.text! : ""
-            let Pace = self.isShowSpeed ? "" : self.txtSpeed.text!
-            let Lvl = self.txtLvl.text?.toTrim() ?? ""
-            let RPM = self.isShowRPM ? self.txtPercentage.text! : ""
-            let Watt = self.isShowRPM ?  "" : self.txtPercentage.text!
-            
-            
-            self.delegate?.ExerciseCardioCellFinish(index: self.tag, Laps: Laps, Speed: Speed, Pace: Pace, Percentage: Percentage, Duration: Duration, Distance: Distance, Rest: Rest, Lvl: Lvl, RPM: RPM, Watt: Watt)
+            setExerciseCardioCellFinish()
         }
         else if textField == self.txtPercentage {
             
@@ -1112,18 +860,7 @@ class ExerciseCardioCell: UITableViewCell, UITextFieldDelegate {
                     }
                 }
                 
-                let Laps = "0"
-                let Speed = self.isShowSpeed ? self.txtSpeed.text! : ""
-                let Pace = self.isShowSpeed ? "" : self.txtSpeed.text!
-                let Duration = self.isShowDistance ? "" : self.txtDuration.text!
-                let Distance = self.isShowDistance ? self.txtDuration.text! : ""
-                let Rest = self.txtRest.text?.toTrim() ?? ""
-                let Percentage = self.txtPercentage.text?.toTrim() ?? ""
-                let Lvl = self.txtLvl.text?.toTrim() ?? ""
-                let RPM = self.isShowRPM ? self.txtPercentage.text! : ""
-                let Watt = self.isShowRPM ?  "" : self.txtPercentage.text!
-                
-                self.delegate?.ExerciseCardioCellFinish(index: self.tag, Laps: Laps, Speed: Speed, Pace: Pace, Percentage: Percentage, Duration: Duration, Distance: Distance, Rest: Rest, Lvl: Lvl, RPM: RPM, Watt: Watt)
+                setExerciseCardioCellFinish(percentage: self.txtPercentage.text?.toTrim() ?? "")
             }else{
                 
                 if self.isShowRPM {
@@ -1141,20 +878,7 @@ class ExerciseCardioCell: UITableViewCell, UITextFieldDelegate {
                         self.lblPercentage.text = ""
                     }
                 }
-                
-                let Laps = "0"
-                let Percentage = ""
-                let Duration = self.isShowDistance ? "" : self.txtDuration.text!
-                let Distance = self.isShowDistance ? self.txtDuration.text! : ""
-                let Rest = self.txtRest.text?.toTrim() ?? ""
-                let Speed = self.isShowSpeed ? self.txtSpeed.text! : ""
-                let Pace = self.isShowSpeed ? "" : self.txtSpeed.text!
-                let Lvl = self.txtLvl.text?.toTrim() ?? ""
-                let RPM = self.isShowRPM ? self.txtPercentage.text! : ""
-                let Watt = self.isShowRPM ?  "" : self.txtPercentage.text!
-                
-                self.delegate?.ExerciseCardioCellFinish(index: self.tag, Laps: Laps, Speed: Speed, Pace: Pace, Percentage: Percentage, Duration: Duration, Distance: Distance, Rest: Rest, Lvl: Lvl, RPM: RPM, Watt: Watt)
-                
+                setExerciseCardioCellFinish(percentage: "")
             }
 
         }
@@ -1177,18 +901,7 @@ class ExerciseCardioCell: UITableViewCell, UITextFieldDelegate {
                 }
             }
             
-            let Laps = "0"
-            let Speed = self.isShowSpeed ? self.txtSpeed.text! : ""
-            let Pace = self.isShowSpeed ? "" : self.txtSpeed.text!
-            let Duration = self.isShowDistance ? "" : self.txtDuration.text!
-            let Distance = self.isShowDistance ? self.txtDuration.text! : ""
-            let Rest = self.txtRest.text?.toTrim() ?? ""
-            let Percentage = self.txtCyclingOutdoorPercentage.text?.toTrim() ?? ""
-            let Lvl = self.txtLvl.text?.toTrim() ?? ""
-            let RPM = self.isShowRPM ? self.txtPercentage.text! : ""
-            let Watt = self.isShowRPM ?  "" : self.txtPercentage.text!
-            
-            self.delegate?.ExerciseCardioCellFinish(index: self.tag, Laps: Laps, Speed: Speed, Pace: Pace, Percentage: Percentage, Duration: Duration, Distance: Distance, Rest: Rest, Lvl: Lvl, RPM: RPM, Watt: Watt)
+            setExerciseCardioCellFinish(percentage: self.txtCyclingOutdoorPercentage.text?.toTrim() ?? "")
         }
         else if textField == self.txtDuration {
             
@@ -1245,18 +958,7 @@ class ExerciseCardioCell: UITableViewCell, UITextFieldDelegate {
                     
                 }
             }
-            let Laps = "0"
-            let Speed = self.isShowSpeed ? self.txtSpeed.text! : ""
-            let Pace = self.isShowSpeed ? "" : self.txtSpeed.text!
-            let Duration = self.isShowDistance ? "" : self.txtDuration.text!
-            let Distance = self.isShowDistance ? self.txtDuration.text! : ""
-            let Percentage = self.activityName.lowercased() == "Cycling (Outdoor)".lowercased() ? self.txtCyclingOutdoorPercentage.text ?? "" : self.txtPercentage.text!
-            let Rest = self.txtRest.text?.toTrim() ?? ""
-            let Lvl = self.txtLvl.text?.toTrim() ?? ""
-            let RPM = self.isShowRPM ? self.txtPercentage.text! : ""
-            let Watt = self.isShowRPM ?  "" : self.txtPercentage.text!
-            
-            self.delegate?.ExerciseCardioCellFinish(index: self.tag, Laps: Laps, Speed: Speed, Pace: Pace, Percentage: Percentage, Duration: Duration, Distance: Distance, Rest: Rest, Lvl: Lvl, RPM: RPM, Watt: Watt)
+            setExerciseCardioCellFinish()
         }
         else if textField == self.txtRest{
             
@@ -1289,19 +991,7 @@ class ExerciseCardioCell: UITableViewCell, UITextFieldDelegate {
                     secRest = 0
                 }
             }
-            
-            let Laps = "0" //self.txtLaps.text!
-            let Speed = self.isShowSpeed ? self.txtSpeed.text! : ""
-            let Pace = self.isShowSpeed ? "" : self.txtSpeed.text!
-            let Duration = self.isShowDistance ? "" : self.txtDuration.text!
-            let Distance = self.isShowDistance ? self.txtDuration.text! : ""
-            let Percentage = self.activityName.lowercased() == "Cycling (Outdoor)".lowercased() ? self.txtCyclingOutdoorPercentage.text ?? "" : self.txtPercentage.text!
-            let Rest = self.txtRest.text?.toTrim() ?? ""
-            let Lvl = self.txtLvl.text?.toTrim() ?? ""
-            let RPM = self.isShowRPM ? self.txtPercentage.text! : ""
-            let Watt = self.isShowRPM ?  "" : self.txtPercentage.text!
-            
-            self.delegate?.ExerciseCardioCellFinish(index: self.tag, Laps: Laps, Speed: Speed, Pace: Pace, Percentage: Percentage, Duration: Duration, Distance: Distance, Rest: Rest, Lvl: Lvl, RPM: RPM, Watt: Watt)
+            setExerciseCardioCellFinish()
         }
         else if textField == self.txtLvl {
 
@@ -1309,20 +999,7 @@ class ExerciseCardioCell: UITableViewCell, UITextFieldDelegate {
                 self.txtLvl.text = ""
                 self.lblLvl.text = ""
             }
-            
-            let Laps = "0" //self.txtLaps.text!
-            let Speed = self.isShowSpeed ? self.txtSpeed.text! : ""
-            let Pace = self.isShowSpeed ? "" : self.txtSpeed.text!
-            let Duration = self.isShowDistance ? "" : self.txtDuration.text!
-            let Distance = self.isShowDistance ? self.txtDuration.text! : ""
-            let Percentage = self.activityName.lowercased() == "Cycling (Outdoor)".lowercased() ? self.txtCyclingOutdoorPercentage.text ?? "" : self.txtPercentage.text!
-            let Rest = self.txtRest.text?.toTrim() ?? ""
-            let Lvl = self.txtLvl.text?.toTrim() ?? ""
-            let RPM = self.isShowRPM ? self.txtPercentage.text! : ""
-            let Watt = self.isShowRPM ?  "" : self.txtPercentage.text!
-            
-            self.delegate?.ExerciseCardioCellFinish(index: self.tag, Laps: Laps, Speed: Speed, Pace: Pace, Percentage: Percentage, Duration: Duration, Distance: Distance, Rest: Rest, Lvl: Lvl, RPM: RPM, Watt: Watt)
-
+            setExerciseCardioCellFinish()
         }
         
         
@@ -1334,60 +1011,20 @@ class ExerciseCardioCell: UITableViewCell, UITextFieldDelegate {
         self.viewPercentage.isHidden = false
     }
     
-//    func getPercentages() -> [String] {
-//        var str: [String] = []
-//        for i in 0..<51 {
-//            str.append("\(i)")
-//            str.append("\(Double(i)+0.5)")
-//        }
-//        str.removeLast()
-//        return str
-//    }
-    
-//    func getSpeed() -> [String] {
-//        var str: [String] = []
-//        for i in 1..<151 {
-//            str.append("\(i)")
-//            str.append("\(Double(i)+0.5)")
-//        }
-//        str.removeLast()
-//        return str
-//    }
-    
-//    func getDistanceArray() -> [String] {
-//        var distanceArray: [String] = []
-//
-//        for i in 0..<1000 {
-//            for j in 0..<10 {
-//                let value: Double = Double(i) + (Double(j) * 0.10)
-//                distanceArray.append("\(value.rounded(toPlaces: 2))")
-//            }
-//        }
-//        return distanceArray
-//    }
-    
     func setupDistance() {
         if self.isShowDistance {
-            distancePickerView.delegate = self
-            distancePickerView.backgroundColor = UIColor.white
             self.txtDuration.inputView = distancePickerView
         }
         else {
-            durationPickerView.delegate = self
-            durationPickerView.backgroundColor = UIColor.white
             self.txtDuration.inputView = durationPickerView
         }
     }
     
     func setupSpeed() {
         if self.isShowSpeed {
-            speedPickerView.delegate = self
-            speedPickerView.backgroundColor = UIColor.white
             self.txtSpeed.inputView = speedPickerView
         }
         else {
-            pacePickerView.delegate = self
-            pacePickerView.backgroundColor = UIColor.white
             self.txtSpeed.inputView = pacePickerView
         }
     }
@@ -1410,10 +1047,6 @@ class ExerciseCardioCell: UITableViewCell, UITextFieldDelegate {
                 
                 let endValue = endValueArray.first
                 let incrementWith = endValueArray[1]
-                
-                print("startFrom  :\(startFrom)")
-                print("endValue  :\(endValue)")
-                print("incrementWith  :\(incrementWith)")
                 
                 let floatStart = String(startFrom ?? "").toFloat()
                 let floatEnd = String(endValue ?? "").toFloat()
@@ -1473,7 +1106,7 @@ class ExerciseCardioCell: UITableViewCell, UITextFieldDelegate {
                 }
                 
                 reomveKmAndDotFromDistancePickerView()
-                setCustomPickerForDistance()
+                setupDistancePickerView()
                 
             }
             
@@ -1496,53 +1129,14 @@ class ExerciseCardioCell: UITableViewCell, UITextFieldDelegate {
         }
     }
     
-    func setCustomPickerForDistance(){
-        
-        let screenRest = UIScreen.main.bounds.width / 2
-        
-        for index in 0..<2 {
-            let label = UILabel()
-            label.textAlignment = .center
-            label.tag = 100 + index
-            label.font = themeFont(size: 21, fontname: .Regular) //themeFont(size: 15, fontname: .ProximaNovaRegular)
-            if index == 0 {
-                let x = DEVICE_TYPE.IS_IPHONE_6 ? 98 : 108
-                label.frame = CGRect(x: (screenRest * CGFloat(index)) + CGFloat(x), y: (distancePickerView.frame.height - 30) / 2, width: screenRest, height: 30)
-                label.text = "."
-            }
-            else {
-                let x = DEVICE_TYPE.IS_IPHONE_6 ? -2 : 8
-                label.frame = CGRect(x: (screenRest * CGFloat(index)) - CGFloat(x), y: (distancePickerView.frame.height - 30) / 2, width: screenRest, height: 30)
-                label.text = "km"
-            }
-            label.textColor = .appthemeRedColor
-            self.distancePickerView.addSubview(label)
-        }
-        
-        distancePickerView.delegate = self
-        distancePickerView.backgroundColor = UIColor.white
-        
-    }
-    
     func reomveKmAndDotFromDistancePickerView(){
-        if let viewWithTag = self.distancePickerView.viewWithTag(100){
-            viewWithTag.removeFromSuperview()
-        }else{
-            print("No!")
-        }
-        
-        if let viewWithDifferentTag = self.distancePickerView.viewWithTag(101) {
-            viewWithDifferentTag.removeFromSuperview()
-        }else{
-            print("No!")
-        }
+        distancePickerView.subviews.filter({$0.tag >= 100}).forEach({$0.removeFromSuperview()})
         
         self.distancePickerView.layoutIfNeeded()
         self.distancePickerView.layoutSubviews()
     }
     
     //Setup speed pickerview
-    
     
     func calculateSpeedArray(data:String) {
         
@@ -1585,32 +1179,26 @@ class ExerciseCardioCell: UITableViewCell, UITextFieldDelegate {
         }
     }
     
-    func setSpeedPickerViewInPartation(){
+    func setupDistancePickerView() {
+        setupPickerViewLabel(pickerView: distancePickerView, separator: ".", unit: "km")
+    }
+    
+    func setupSpeedPickerView() {
+        setupPickerViewLabel(pickerView: speedPickerView, separator: ".", unit: "km/hr")
+    }
+    
+    func setupPacePickerView() {
+        let pickerViewUnit: String
         
-        let screenRest = UIScreen.main.bounds.width / 2
-        
-        for index in 0..<2 {
-            let label = UILabel()
-            label.textAlignment = .center
-            label.tag = 100 + index
-            label.font = themeFont(size: 21, fontname: .Regular) //themeFont(size: 15, fontname: .ProximaNovaRegular)
-            if index == 0 {
-                let x = DEVICE_TYPE.IS_IPHONE_6 ? 98 : 108
-                label.frame = CGRect(x: (screenRest * CGFloat(index)) + CGFloat(x), y: (speedPickerView.frame.height - 30) / 2, width: screenRest, height: 30)
-                label.text = "."
-            }
-            else {
-                let x = DEVICE_TYPE.IS_IPHONE_6 ? -12 : -2
-                label.frame = CGRect(x: (screenRest * CGFloat(index)) - CGFloat(x), y: (speedPickerView.frame.height - 30) / 2, width: screenRest, height: 30)
-                label.text = "km/hr"
-            }
-            label.textColor = .appthemeRedColor
-            self.speedPickerView.addSubview(label)
+        if self.activityName.lowercased() == "Swimming".lowercased(){
+            pickerViewUnit = "min/100 m"
+        } else if self.activityName.lowercased() == "Others".lowercased(){
+            pickerViewUnit = "min/500 m"
+        } else {
+            pickerViewUnit = "min/km"
         }
         
-        speedPickerView.delegate = self
-        speedPickerView.backgroundColor = UIColor.white
-        
+        setupPickerViewLabel(pickerView: pacePickerView, separator: ".", unit: pickerViewUnit)
     }
     
     //Calcualte Percentage
@@ -1702,27 +1290,15 @@ class ExerciseCardioCell: UITableViewCell, UITextFieldDelegate {
         
         let screenRest = UIScreen.main.bounds.width / 2
         
-//        for index in 0..<1 {
-            let label = UILabel()
-            label.textAlignment = .center
-            label.tag = 100
-            label.font = themeFont(size: 21, fontname: .Regular) //themeFont(size: 15, fontname: .ProximaNovaRegular)
-//            if index == 0 {
-                let x = DEVICE_TYPE.IS_IPHONE_6 ? 98 : 108
-                label.frame = CGRect(x: (screenRest * CGFloat(0)) + CGFloat(x), y: (percentagePickerView.frame.height - 30) / 2, width: screenRest, height: 30)
-                label.text = "."
-//            }
-//            else {
-//                let x = DEVICE_TYPE.IS_IPHONE_6 ? -12 : -2
-//                label.frame = CGRect(x: (screenRest * CGFloat(index)) - CGFloat(x), y: (speedPickerView.frame.height - 30) / 2, width: screenRest, height: 30)
-//                label.text = ""
-//            }
-            label.textColor = .appthemeRedColor
-            self.percentagePickerView.addSubview(label)
-//        }
-        
-        percentagePickerView.delegate = self
-        percentagePickerView.backgroundColor = UIColor.white
+        let label = UILabel()
+        label.textAlignment = .center
+        label.tag = 100
+        label.font = themeFont(size: 21, fontname: .Regular)
+        let x = DEVICE_TYPE.IS_IPHONE_6 ? 98 : 108
+        label.frame = CGRect(x: (screenRest * CGFloat(0)) + CGFloat(x), y: (percentagePickerView.frame.height - 30) / 2, width: screenRest, height: 30)
+        label.text = "."
+        label.textColor = .appthemeRedColor
+        self.percentagePickerView.addSubview(label)
         
     }
 
@@ -1733,13 +1309,6 @@ class ExerciseCardioCell: UITableViewCell, UITextFieldDelegate {
         }else{
             print("No!")
         }
-        
-//        if let viewWithDifferentTag = self.distancePickerView.viewWithTag(101) {
-//            viewWithDifferentTag.removeFromSuperview()
-//        }else{
-//            print("No!")
-//        }
-        
         self.percentagePickerView.layoutIfNeeded()
         self.percentagePickerView.layoutSubviews()
     }
@@ -2089,9 +1658,6 @@ class ExerciseCardioCell: UITableViewCell, UITextFieldDelegate {
             self.RestPickerView.addSubview(label)
         }
         
-        RestPickerView.delegate = self
-        RestPickerView.backgroundColor = UIColor.white
-        
     }
     
     func removeMinSecFromRest(){
@@ -2225,7 +1791,7 @@ class ExerciseCardioCell: UITableViewCell, UITextFieldDelegate {
     
 }
 
-
+// MARK: UIPickerViewDelegate
 extension ExerciseCardioCell: UIPickerViewDataSource, UIPickerViewDelegate {
     
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
@@ -2233,14 +1799,14 @@ extension ExerciseCardioCell: UIPickerViewDataSource, UIPickerViewDelegate {
             if (self.selectedCardioValidationList?.distanceRange.contains("|") ?? false) {
                 return 1
             }else{
-                return 2
+                return 3
             }
         }
         else if pickerView == self.speedPickerView {
-            return 2
+            return 3
         }
         else if pickerView == self.pacePickerView {
-            return 2
+            return 3
         }
         else if pickerView == self.RPMPickerView {
             return 1
@@ -2275,36 +1841,37 @@ extension ExerciseCardioCell: UIPickerViewDataSource, UIPickerViewDelegate {
         return 3
     }
     
+    
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        
         if pickerView == self.distancePickerView {
-//            return self.getTotalDistance.count
             if (self.selectedCardioValidationList?.distanceRange.contains("|") ?? false) {
                 return self.calculateDistanceArray(data: self.selectedCardioValidationList?.distanceRange ?? "").count
             }else{
-                
-                if component == 0{
-                    return self.arrayDistanceFirstData.count
-                }else {
+                switch component {
+                case 0:
+                    return arrayDistanceFirstData.count
+                case 1:
                     return self.arrayDistanceSecondData.count
+                default:
+                    return 0
                 }
             }
             
         }
         else if pickerView == self.speedPickerView {
-            
-            if component == 0{
+            switch component {
+            case 0:
                 return self.arraySpeedFirstData.count
-            }
-            else{
+            case 1:
                 return self.arraySpeedSecondData.count
+            default:
+                return 0
             }
-//            return self.getSpeed().count
         }
         else if pickerView == self.pacePickerView {
             switch component {
-            case 0:
-                return 60
-            case 1:
+            case 0, 1:
                 return 60
             default:
                 return 0
@@ -2358,15 +1925,6 @@ extension ExerciseCardioCell: UIPickerViewDataSource, UIPickerViewDelegate {
                     return arraySecRest.count
                 }
             }
-            
-//            switch component {
-//            case 0:
-//                return 60
-//            case 1:
-//                return 60
-//            default:
-//                return 0
-//            }
         }
         else if pickerView == self.LvlPickerView{
             return self.calculateLvlArray(data: self.selectedCardioValidationList?.lvlRange ?? "").count
@@ -2389,165 +1947,59 @@ extension ExerciseCardioCell: UIPickerViewDataSource, UIPickerViewDelegate {
         return 30
     }
     
-    // MARK: UIPickerViewDelegate
-    
     func pickerView(_ pickerView: UIPickerView, attributedTitleForRow row: Int, forComponent component: Int) -> NSAttributedString? {
         
-//for view in pickerView.subviews{
-//                view.backgroundColor = UIColor.clear
-//            }        
-        if pickerView == self.distancePickerView {
-            
+        let pickerTitle: String
+        
+        switch pickerView {
+        case distancePickerView:
             if (self.selectedCardioValidationList?.distanceRange.contains("|") ?? false) {
-                
-                let attributedString = NSAttributedString(string:self.calculateDistanceArray(data: self.selectedCardioValidationList?.distanceRange ?? "")[row], attributes: [NSAttributedString.Key.foregroundColor : UIColor.appthemeOffRedColor])
-                return attributedString
-                
-            }else{
-                
-                if component == 0{
-                    let attributedString = NSAttributedString(string: self.arrayDistanceFirstData[row], attributes: [NSAttributedString.Key.foregroundColor : UIColor.appthemeOffRedColor])
-                    return attributedString
-                }else{
-                    let attributedString = NSAttributedString(string: self.arrayDistanceSecondData[row], attributes: [NSAttributedString.Key.foregroundColor : UIColor.appthemeOffRedColor])
-                    return attributedString
+                pickerTitle = calculateDistanceArray(data: self.selectedCardioValidationList?.distanceRange ?? "")[row]
+            } else {
+                pickerTitle = component == 0 ? arrayDistanceFirstData[row] : arrayDistanceSecondData[row]
+            }
+        case speedPickerView:
+            pickerTitle = component == 0 ? arraySpeedFirstData[row] : arraySpeedSecondData[row]
+        case pacePickerView:
+            pickerTitle = "\(row)"
+        case RPMPickerView:
+            let rpmWattData = component == 0 ? (selectedCardioValidationList?.rpmRange ?? "") : (selectedCardioValidationList?.wattRange ?? "")
+            pickerTitle = calculateRPMWAttArray(data: rpmWattData)[row]
+        case percentagePickerView:
+            if selectedCardioValidationList?.percentageRange.contains(",") ?? false {
+                pickerTitle = calculatePercentageArray(data: selectedCardioValidationList?.percentageRange ?? "")[row]
+            } else {
+                pickerTitle = component == 0 ? arrayPercentageFirstData[row] : arrayPercentageSecondData[row]
+            }
+        case RestPickerView:
+            if selectedCardioValidationList?.restRange.contains(",") ?? false || selectedCardioValidationList?.restRange == "00:00" {
+                pickerTitle = calculateRestArrayWithGap(data: self.selectedCardioValidationList?.restRange, isShowHours: false)[row]
+            } else {
+                pickerTitle = component == 0 ? arrayMinRest[row] : arraySecRest[row]
+            }
+        case durationPickerView:
+            if self.selectedCardioValidationList?.durationRange.contains(",") ?? false {
+                pickerTitle = calculateDurationArrayWithGap(data: self.selectedCardioValidationList?.durationRange, isShowHours: true)[row]
+            } else {
+                if component == 0 {
+                    pickerTitle = arrayHourDuration[row]
+                } else if component == 1 {
+                    pickerTitle = arrayMinDuration[row]
+                } else {
+                    pickerTitle = arraySecDuration[row]
                 }
-               
             }
-            
+        case LvlPickerView:
+            pickerTitle = calculateLvlArray(data: self.selectedCardioValidationList?.lvlRange ?? "")[row]
+        default:
+            pickerTitle = "\(row)"
         }
-        else if pickerView == self.speedPickerView {
-            
-            if component == 0{
-                let attributedString = NSAttributedString(string: self.arraySpeedFirstData[row], attributes: [NSAttributedString.Key.foregroundColor : UIColor.appthemeOffRedColor])
-                return attributedString
-            }else{
-                let attributedString = NSAttributedString(string: self.arraySpeedSecondData[row], attributes: [NSAttributedString.Key.foregroundColor : UIColor.appthemeOffRedColor])
-                return attributedString
-            }
-            
-        }
-        else if pickerView == self.pacePickerView {
-            let attributedString = NSAttributedString(string: "\(row)", attributes: [NSAttributedString.Key.foregroundColor : UIColor.appthemeOffRedColor])
-            return attributedString
-        }
-        else if pickerView == self.RPMPickerView {
-            
-            if self.isShowRPM{
-                let attributedString = NSAttributedString(string: self.calculateRPMWAttArray(data: self.selectedCardioValidationList?.rpmRange ?? "")[row], attributes: [NSAttributedString.Key.foregroundColor : UIColor.appthemeOffRedColor])
-                return attributedString
-                
-            }else{
-                let attributedString = NSAttributedString(string: self.calculateRPMWAttArray(data: self.selectedCardioValidationList?.wattRange ?? "")[row], attributes: [NSAttributedString.Key.foregroundColor : UIColor.appthemeOffRedColor])
-                return attributedString
-                
-            }
-        }
-        else if pickerView == self.percentagePickerView {
-            
-            
-            if self.selectedCardioValidationList?.percentageRange.contains(",") ?? false
-            {
-                let attributedString = NSAttributedString(string: calculatePercentageArray(data: self.selectedCardioValidationList?.percentageRange ?? "")[row], attributes: [NSAttributedString.Key.foregroundColor : UIColor.appthemeOffRedColor])
-                return attributedString
-                
-            }else{
-                
-                if component == 0{
-                    let attributedString = NSAttributedString(string: self.arrayPercentageFirstData[row], attributes: [NSAttributedString.Key.foregroundColor : UIColor.appthemeOffRedColor])
-                    return attributedString
-                }
-                else{
-                    let attributedString = NSAttributedString(string: self.arrayPercentageSecondData[row], attributes: [NSAttributedString.Key.foregroundColor : UIColor.appthemeOffRedColor])
-                    return attributedString
-                }
-                
-            }
-            
-        }
-        else if pickerView == self.RestPickerView {
-            
-            if self.selectedCardioValidationList?.restRange.contains(",") ?? false || self.selectedCardioValidationList?.restRange == "00:00"{
-                
-                let restRangeValue = calculateRestArrayWithGap(data: self.selectedCardioValidationList?.restRange, isShowHours: false)[row]
-                
-                let attributedString = NSAttributedString(string: restRangeValue, attributes: [NSAttributedString.Key.foregroundColor : UIColor.appthemeOffRedColor])
-                               
-                return attributedString
-                
-                 
-            }else{
-                
-                if component == 0{
-                    let attributedString = NSAttributedString(string: self.arrayMinRest[row], attributes: [NSAttributedString.Key.foregroundColor : UIColor.appthemeOffRedColor])
-                    return attributedString
-                }else{
-                    let attributedString = NSAttributedString(string: self.arraySecRest[row], attributes: [NSAttributedString.Key.foregroundColor : UIColor.appthemeOffRedColor])
-                    return attributedString
-                }
-                
-            }
-            /*
-            switch component {
-            case 0:
-                let attributedString = NSAttributedString(string: "\(row)", attributes: [NSAttributedString.Key.foregroundColor : UIColor.appthemeRedColor])
-                
-                return attributedString
-            case 1:
-                let attributedString = NSAttributedString(string: "\(row)", attributes: [NSAttributedString.Key.foregroundColor : UIColor.appthemeRedColor])
-                return attributedString
-            default:
-                let attributedString = NSAttributedString(string: "", attributes: [NSAttributedString.Key.foregroundColor : UIColor.appthemeRedColor])
-                return attributedString
-            }
-             */
-        }else if pickerView == self.durationPickerView{
-            
-            if self.selectedCardioValidationList?.durationRange.contains(",") ?? false{
-                
-                let attributedString = NSAttributedString(string: self.calculateDurationArrayWithGap(data: self.selectedCardioValidationList?.durationRange,isShowHours: true)[row], attributes: [NSAttributedString.Key.foregroundColor : UIColor.appthemeOffRedColor])
-                return attributedString
-            }else{
-                
-                if component == 0{
-                    let attributedString = NSAttributedString(string: self.arrayHourDuration[row], attributes: [NSAttributedString.Key.foregroundColor : UIColor.appthemeOffRedColor])
-                    return attributedString
-                }else if component == 1{
-                    let attributedString = NSAttributedString(string: self.arrayMinDuration[row], attributes: [NSAttributedString.Key.foregroundColor : UIColor.appthemeOffRedColor])
-                    return attributedString
-                }else{
-                    let attributedString = NSAttributedString(string: self.arraySecDuration[row], attributes: [NSAttributedString.Key.foregroundColor : UIColor.appthemeOffRedColor])
-                    return attributedString
-                }
-                
-            }
-        }else if pickerView == self.LvlPickerView{
-            
-            let attributedString = NSAttributedString(string: self.calculateLvlArray(data: self.selectedCardioValidationList?.lvlRange ?? "")[row], attributes: [NSAttributedString.Key.foregroundColor : UIColor.appthemeOffRedColor])
-            return attributedString
-            
-        }
-        else {
-            switch component {
-            case 0:
-                let attributedString = NSAttributedString(string: "\(row)", attributes: [NSAttributedString.Key.foregroundColor : UIColor.appthemeOffRedColor])
-                return attributedString
-            case 1:
-                let attributedString = NSAttributedString(string: "\(row)", attributes: [NSAttributedString.Key.foregroundColor : UIColor.appthemeOffRedColor])
-                return attributedString
-            case 2:
-                let attributedString = NSAttributedString(string: "\(row)", attributes: [NSAttributedString.Key.foregroundColor : UIColor.appthemeOffRedColor])
-                return attributedString
-            default:
-                let attributedString = NSAttributedString(string: "\(row)", attributes: [NSAttributedString.Key.foregroundColor : UIColor.appthemeOffRedColor])
-                return attributedString
-            }
-        }
+        
+        let attributedString = NSAttributedString(string: pickerTitle, attributes: [NSAttributedString.Key.foregroundColor : UIColor.appthemeOffRedColor])
+        return attributedString
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        
-//        pickerView.subviews[1].backgroundColor = UIColor.clear
         
         if pickerView == self.distancePickerView {
              if (self.selectedCardioValidationList?.distanceRange.contains("|") ?? false) {
@@ -2574,44 +2026,20 @@ extension ExerciseCardioCell: UIPickerViewDataSource, UIPickerViewDelegate {
                 self.lblDuration.text = "\(self.arrayDistanceFirstData[self.distanceFirstData]).\(self.arrayDistanceSecondData[self.distanceSecondData])"
             }
             
-            let Laps = "0" //self.txtLaps.text!
-            let Percentage = self.activityName.lowercased() == "Cycling (Outdoor)".lowercased() ? self.txtCyclingOutdoorPercentage.text ?? "" : self.txtPercentage.text!
-            let Speed = self.isShowSpeed ? self.txtSpeed.text! : ""
-            let Pace = self.isShowSpeed ? "" : self.txtSpeed.text!
-            let Duration = self.isShowDistance ? "" : self.txtDuration.text!
-            let Distance = self.isShowDistance ? self.txtDuration.text! : ""
-            let Rest = self.txtRest.text?.toTrim() ?? ""
-            let Lvl = self.txtLvl.text?.toTrim() ?? ""
-            let RPM = self.isShowRPM ? self.txtPercentage.text! : ""
-            let Watt = self.isShowRPM ?  "" : self.txtPercentage.text!
-            
-            self.delegate?.ExerciseCardioCellFinish(index: self.tag, Laps: Laps, Speed: Speed, Pace: Pace, Percentage: Percentage, Duration: Duration, Distance: Distance, Rest: Rest, Lvl: Lvl, RPM: RPM, Watt: Watt)
+            setExerciseCardioCellFinish()
         }
         else if pickerView == self.speedPickerView {
-//            let value = self.getSpeed()[row].replace(target: ".0", withString: "")
-//            self.txtSpeed.text = value
             
             if component == 0 {
                 self.speedFirstScrollndex = row
-            }else{
+            } else if component == 1 {
                 self.speedSecondScrollIndex = row
             }
             
             self.txtSpeed.text = "\(self.arraySpeedFirstData[self.speedFirstScrollndex]).\(self.arraySpeedSecondData[self.speedSecondScrollIndex])"
             self.lblSpeed.text = "\(self.arraySpeedFirstData[self.speedFirstScrollndex]).\(self.arraySpeedSecondData[self.speedSecondScrollIndex])"
             
-            let Laps = "0" //self.txtLaps.text!
-            let Percentage = self.activityName.lowercased() == "Cycling (Outdoor)".lowercased() ? self.txtCyclingOutdoorPercentage.text ?? "" : self.txtPercentage.text!
-            let Speed = self.isShowSpeed ? self.txtSpeed.text! : ""
-            let Pace = self.isShowSpeed ? "" : self.txtSpeed.text!
-            let Duration = self.isShowDistance ? "" : self.txtDuration.text!
-            let Distance = self.isShowDistance ? self.txtDuration.text! : ""
-            let Rest = self.txtRest.text?.toTrim() ?? ""
-            let Lvl = self.txtLvl.text?.toTrim() ?? ""
-            let RPM = self.isShowRPM ? self.txtPercentage.text! : ""
-            let Watt = self.isShowRPM ?  "" : self.txtPercentage.text!
-            
-            self.delegate?.ExerciseCardioCellFinish(index: self.tag, Laps: Laps, Speed: Speed, Pace: Pace, Percentage: Percentage, Duration: Duration, Distance: Distance, Rest: Rest, Lvl: Lvl, RPM: RPM, Watt: Watt)
+            setExerciseCardioCellFinish()
         }
         else if pickerView == self.pacePickerView {
             switch component {
@@ -2625,18 +2053,7 @@ extension ExerciseCardioCell: UIPickerViewDataSource, UIPickerViewDelegate {
             self.txtSpeed.text = "\(minutesPace.makeRound()):\(secPace.makeRound())".toTrim()
             self.lblSpeed.text = "\(minutesPace.makeRound()):\(secPace.makeRound())".toTrim()
             
-            let Laps = "0" //self.txtLaps.text!
-            let Speed = self.isShowSpeed ? self.txtSpeed.text! : ""
-            let Pace = self.isShowSpeed ? "" : self.txtSpeed.text!
-            let Duration = self.isShowDistance ? "" : self.txtDuration.text!
-            let Distance = self.isShowDistance ? self.txtDuration.text! : ""
-            let Percentage = self.activityName.lowercased() == "Cycling (Outdoor)".lowercased() ? self.txtCyclingOutdoorPercentage.text ?? "" : self.txtPercentage.text!
-            let Rest = self.txtRest.text?.toTrim() ?? ""
-            let Lvl = self.txtLvl.text?.toTrim() ?? ""
-            let RPM = self.isShowRPM ? self.txtPercentage.text! : ""
-            let Watt = self.isShowRPM ?  "" : self.txtPercentage.text!
-            
-            self.delegate?.ExerciseCardioCellFinish(index: self.tag, Laps: Laps, Speed: Speed, Pace: Pace, Percentage: Percentage, Duration: Duration, Distance: Distance, Rest: Rest, Lvl: Lvl, RPM: RPM, Watt: Watt)
+            setExerciseCardioCellFinish()
         }
         else if pickerView == self.RPMPickerView {
             
@@ -2648,17 +2065,7 @@ extension ExerciseCardioCell: UIPickerViewDataSource, UIPickerViewDelegate {
                 self.lblPercentage.text = self.calculateRPMWAttArray(data: self.selectedCardioValidationList?.wattRange ?? "")[row]
             }
             
-            let Laps = "0" //self.txtLaps.text!
-            let Speed = self.isShowSpeed ? self.txtSpeed.text! : ""
-            let Pace = self.isShowSpeed ? "" : self.txtSpeed.text!
-            let Duration = self.isShowDistance ? "" : self.txtDuration.text!
-            let Distance = self.isShowDistance ? self.txtDuration.text! : ""
-            let Rest = self.txtRest.text?.toTrim() ?? ""
-            let Lvl = self.txtLvl.text?.toTrim() ?? ""
-            let RPM = self.isShowRPM ? self.txtPercentage.text! : ""
-            let Watt = self.isShowRPM ?  "" : self.txtPercentage.text!
-            
-            self.delegate?.ExerciseCardioCellFinish(index: self.tag, Laps: Laps, Speed: Speed, Pace: Pace, Percentage: "", Duration: Duration, Distance: Distance, Rest: Rest, Lvl: Lvl, RPM: RPM, Watt: Watt)
+            setExerciseCardioCellFinish(percentage: "")
         }
         else if pickerView == self.percentagePickerView {
             
@@ -2675,49 +2082,29 @@ extension ExerciseCardioCell: UIPickerViewDataSource, UIPickerViewDelegate {
                 }
                 
             }else{
+                if component == 0{
+                    self.percentageFirstScrollIndex = row
+                } else {
+                    self.percentageSecondScrollInex = row
+                }
+                
+                let percentageText =  "\(self.arrayPercentageFirstData[self.percentageFirstScrollIndex]).\(self.arrayPercentageSecondData[self.percentageSecondScrollInex])"
                 
                 if self.activityName.lowercased() == "Cycling (Outdoor)".lowercased(){
-                    if component == 0{
-                        self.percentageFirstScrollIndex = row
-                    }else{
-                        self.percentageSecondScrollInex = row
-                    }
-                    
-                    self.txtCyclingOutdoorPercentage.text = "\(self.arrayPercentageFirstData[self.percentageFirstScrollIndex]).\(self.arrayPercentageSecondData[self.percentageSecondScrollInex])"
-                    self.lblCyclingOutdoorPercentage.text = "\(self.arrayPercentageFirstData[self.percentageFirstScrollIndex]).\(self.arrayPercentageSecondData[self.percentageSecondScrollInex])"
+                    self.txtCyclingOutdoorPercentage.text = percentageText
+                    self.lblCyclingOutdoorPercentage.text = percentageText
+                } else {
+                    self.txtPercentage.text = percentageText
+                    self.lblPercentage.text = percentageText
                 }
-                else{
-                    if component == 0{
-                        self.percentageFirstScrollIndex = row
-                    }else{
-                        self.percentageSecondScrollInex = row
-                    }
-                    
-                    self.txtPercentage.text = "\(self.arrayPercentageFirstData[self.percentageFirstScrollIndex]).\(self.arrayPercentageSecondData[self.percentageSecondScrollInex])"
-                    self.lblPercentage.text = "\(self.arrayPercentageFirstData[self.percentageFirstScrollIndex]).\(self.arrayPercentageSecondData[self.percentageSecondScrollInex])"
-                }
-                
             }
-            
-            let Laps = "0" //self.txtLaps.text!
-            let Speed = self.isShowSpeed ? self.txtSpeed.text! : ""
-            let Pace = self.isShowSpeed ? "" : self.txtSpeed.text!
-            let Duration = self.isShowDistance ? "" : self.txtDuration.text!
-            let Distance = self.isShowDistance ? self.txtDuration.text! : ""
-            let Rest = self.txtRest.text?.toTrim() ?? ""
-            let Lvl = self.txtLvl.text?.toTrim() ?? ""
-            let RPM = self.isShowRPM ? self.txtPercentage.text! : ""
-            let Watt = self.isShowRPM ?  "" : self.txtPercentage.text!
-            
-            var Percentage = ""
             
             if self.activityName.lowercased() == "Cycling (Outdoor)".lowercased(){
-                Percentage = self.txtCyclingOutdoorPercentage.text?.toTrim() ?? ""
-            }else{
-                Percentage = self.txtPercentage.text?.toTrim() ?? ""
+                setExerciseCardioCellFinish(percentage: txtCyclingOutdoorPercentage.text?.toTrim() ?? "")
+            } else {
+                setExerciseCardioCellFinish(percentage: txtPercentage.text?.toTrim() ?? "")
             }
-                        
-            self.delegate?.ExerciseCardioCellFinish(index: self.tag, Laps: Laps, Speed: Speed, Pace: Pace, Percentage: Percentage, Duration: Duration, Distance: Distance, Rest: Rest, Lvl: Lvl, RPM: RPM, Watt: Watt)
+            
         }
         else if pickerView == self.RestPickerView {
             switch component {
@@ -2739,18 +2126,8 @@ extension ExerciseCardioCell: UIPickerViewDataSource, UIPickerViewDelegate {
                 self.lblRest.text = "\(Int(self.arrayMinRest[minutesRest])!.makeRound()):\(Int(self.arraySecRest[secRest])!.makeRound())"
             }
             
-            let Laps = "0" //self.txtLaps.text!
-            let Speed = self.isShowSpeed ? self.txtSpeed.text! : ""
-            let Pace = self.isShowSpeed ? "" : self.txtSpeed.text!
-            let Duration = self.isShowDistance ? "" : self.txtDuration.text!
-            let Distance = self.isShowDistance ? self.txtDuration.text! : ""
-            let Percentage = self.activityName.lowercased() == "Cycling (Outdoor)".lowercased() ? self.txtCyclingOutdoorPercentage.text ?? "" : self.txtPercentage.text!
-            let Rest = self.txtRest.text?.toTrim() ?? ""
-            let Lvl = self.txtLvl.text?.toTrim() ?? ""
-            let RPM = self.isShowRPM ? self.txtPercentage.text! : ""
-            let Watt = self.isShowRPM ?  "" : self.txtPercentage.text!
-            
-            self.delegate?.ExerciseCardioCellFinish(index: self.tag, Laps: Laps, Speed: Speed, Pace: Pace, Percentage: Percentage, Duration: Duration, Distance: Distance, Rest: Rest, Lvl: Lvl, RPM: RPM, Watt: Watt)
+        
+            setExerciseCardioCellFinish()
         }else if pickerView == durationPickerView{
             
             if self.selectedCardioValidationList?.durationRange.contains(",") ?? false{
@@ -2772,19 +2149,7 @@ extension ExerciseCardioCell: UIPickerViewDataSource, UIPickerViewDelegate {
                 }
                 
             }
-            
-            let Laps = "0" //self.txtLaps.text!
-            let Speed = self.isShowSpeed ? self.txtSpeed.text! : ""
-            let Pace = self.isShowSpeed ? "" : self.txtSpeed.text!
-            let Duration = self.isShowDistance ? "" : self.txtDuration.text!
-            let Distance = self.isShowDistance ? self.txtDuration.text! : ""
-            let Percentage = self.activityName.lowercased() == "Cycling (Outdoor)".lowercased() ? self.txtCyclingOutdoorPercentage.text ?? "" : self.txtPercentage.text!
-            let Rest = self.txtRest.text?.toTrim() ?? ""
-            let Lvl = self.txtLvl.text?.toTrim() ?? ""
-            let RPM = self.isShowRPM ? self.txtPercentage.text! : ""
-            let Watt = self.isShowRPM ?  "" : self.txtPercentage.text!
-            
-            self.delegate?.ExerciseCardioCellFinish(index: self.tag, Laps: Laps, Speed: Speed, Pace: Pace, Percentage: Percentage, Duration: Duration, Distance: Distance, Rest: Rest, Lvl: Lvl, RPM: RPM, Watt: Watt)
+            setExerciseCardioCellFinish()
         }
         else if pickerView == self.LvlPickerView{
             self.txtLvl.text = self.calculateLvlArray(data: self.selectedCardioValidationList?.lvlRange ?? "")[row]
@@ -2804,31 +2169,34 @@ extension ExerciseCardioCell: UIPickerViewDataSource, UIPickerViewDelegate {
             self.txtDuration.text = "\(hour.makeRound()):\(minutes.makeRound()):\(seconds.makeRound())"
             self.lblDuration.text = "\(hour.makeRound()):\(minutes.makeRound()):\(seconds.makeRound())"
             
-            let Laps = "0" //self.txtLaps.text!
-            let Speed = self.isShowSpeed ? self.txtSpeed.text! : ""
-            let Pace = self.isShowSpeed ? "" : self.txtSpeed.text!
-            let Duration = self.isShowDistance ? "" : self.txtDuration.text!
-            let Distance = self.isShowDistance ? self.txtDuration.text! : ""
-            let Percentage = self.activityName.lowercased() == "Cycling (Outdoor)".lowercased() ? self.txtCyclingOutdoorPercentage.text ?? "" : self.txtPercentage.text!
-            let Rest = self.txtRest.text?.toTrim() ?? ""
-            let Lvl = self.txtLvl.text?.toTrim() ?? ""
-            let RPM = self.isShowRPM ? self.txtPercentage.text! : ""
-            let Watt = self.isShowRPM ?  "" : self.txtPercentage.text!
-            
-            self.delegate?.ExerciseCardioCellFinish(index: self.tag, Laps: Laps, Speed: Speed, Pace: Pace, Percentage: Percentage, Duration: Duration, Distance: Distance, Rest: Rest, Lvl: Lvl, RPM: RPM, Watt: Watt)
+            setExerciseCardioCellFinish()
         }
     }
     
     func pickerView(_ pickerView: UIPickerView, widthForComponent component: Int) -> CGFloat {
-        if pickerView == durationPickerView {
-            if self.selectedCardioValidationList?.durationRange.contains(",") ?? false{
+        switch pickerView {
+        case durationPickerView:
+            if let list = selectedCardioValidationList,
+                list.durationRange.contains(",") {
                 return 120 - 5
-            }else{
-                let screen = (UIScreen.main.bounds.width - 50) / 3
-                return CGFloat(screen)
+            } else {
+                switch component {
+                
+                case 2:
+                    return 0.2 * (UIScreen.main.bounds.width)
+                default:
+                    return 0.2 * (UIScreen.main.bounds.width)
+                }
             }
-        }
-        else {
+        case pacePickerView, speedPickerView, distancePickerView:
+            switch component {
+           
+            case 2:
+                return 0.2 * (UIScreen.main.bounds.width)
+            default:
+                return 0.2 * (UIScreen.main.bounds.width)
+            }
+        default:
             return CGFloat(120) - 5
         }
     }
