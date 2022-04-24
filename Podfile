@@ -32,7 +32,10 @@ target 'Load' do
   pod 'RealmSwift'
   pod 'XCDYouTubeKit'
   pod 'Firebase/Crashlytics'
-  pod 'MXScroll'  #= MXContentView -> add (self.isScrollEnabled = false) for stop horizontal scrolling
+  pod 'RxRelay'
+  pod 'RxSwift'
+  pod 'RxCocoa'
+  pod 'EasyPeasy'
   
   # Pods for Load
   target 'LoadTests' do

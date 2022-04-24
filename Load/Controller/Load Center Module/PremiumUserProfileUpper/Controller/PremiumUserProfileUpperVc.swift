@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import MXScroll
 
 class PremiumUserProfileUpperVc: UIViewController {
     

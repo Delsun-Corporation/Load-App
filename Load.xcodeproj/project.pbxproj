@@ -1199,6 +1199,15 @@
 		D3B098D2268EF03D004F2BCC /* ChartPremiumUserProfileDetailsVc.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3B098D0268EF03C004F2BCC /* ChartPremiumUserProfileDetailsVc.swift */; };
 		D3B098D3268EF03D004F2BCC /* ChartPremiumUserProfileDetailsVc.xib in Resources */ = {isa = PBXBuildFile; fileRef = D3B098D1268EF03C004F2BCC /* ChartPremiumUserProfileDetailsVc.xib */; };
 		EC2CDEE8D7F942F483D735B5 /* Pods_LoadUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0D039B7A67F8A8612F8C830B /* Pods_LoadUITests.framework */; };
+		FF33206628153BF7007734BA /* MSSegment.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF33206528153BF6007734BA /* MSSegment.swift */; };
+		FF33206828153C34007734BA /* MXContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF33206728153C34007734BA /* MXContentView.swift */; };
+		FF33206A28153C7B007734BA /* MXScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF33206928153C7B007734BA /* MXScrollView.swift */; };
+		FF33206C28153CA2007734BA /* MXSegmentProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF33206B28153CA2007734BA /* MXSegmentProtocol.swift */; };
+		FF33206E28153CBE007734BA /* MXUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF33206D28153CBE007734BA /* MXUtils.swift */; };
+		FF33207028153CDA007734BA /* MXViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF33206F28153CDA007734BA /* MXViewController.swift */; };
+		FF33207228153CF5007734BA /* RXScrollKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF33207128153CF5007734BA /* RXScrollKit.swift */; };
+		FF33207428153D0F007734BA /* RXViewKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF33207328153D0F007734BA /* RXViewKit.swift */; };
+		FF33207628153D32007734BA /* RXWebKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF33207528153D32007734BA /* RXWebKit.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -2428,6 +2437,15 @@
 		D3B098C6268ED0D3004F2BCC /* EventPremiumCollectionCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EventPremiumCollectionCell.xib; sourceTree = "<group>"; };
 		D3B098D0268EF03C004F2BCC /* ChartPremiumUserProfileDetailsVc.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartPremiumUserProfileDetailsVc.swift; sourceTree = "<group>"; };
 		D3B098D1268EF03C004F2BCC /* ChartPremiumUserProfileDetailsVc.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChartPremiumUserProfileDetailsVc.xib; sourceTree = "<group>"; };
+		FF33206528153BF6007734BA /* MSSegment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MSSegment.swift; sourceTree = "<group>"; };
+		FF33206728153C34007734BA /* MXContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MXContentView.swift; sourceTree = "<group>"; };
+		FF33206928153C7B007734BA /* MXScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MXScrollView.swift; sourceTree = "<group>"; };
+		FF33206B28153CA2007734BA /* MXSegmentProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MXSegmentProtocol.swift; sourceTree = "<group>"; };
+		FF33206D28153CBE007734BA /* MXUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MXUtils.swift; sourceTree = "<group>"; };
+		FF33206F28153CDA007734BA /* MXViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MXViewController.swift; sourceTree = "<group>"; };
+		FF33207128153CF5007734BA /* RXScrollKit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RXScrollKit.swift; sourceTree = "<group>"; };
+		FF33207328153D0F007734BA /* RXViewKit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RXViewKit.swift; sourceTree = "<group>"; };
+		FF33207528153D32007734BA /* RXWebKit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RXWebKit.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -4579,6 +4597,7 @@
 		1777D178229D0BDF00F6B2E2 /* ThirdParty */ = {
 			isa = PBXGroup;
 			children = (
+				FF33206428153BD3007734BA /* MXScroll */,
 				88377129247D1FAC009F7ED8 /* LinearProgressBar */,
 				889835A8241A19F4009B37B7 /* CreateCustomKeyboardForHyphen */,
 				88826E7B23BF5FE700F25417 /* SRCountdownTimer.swift */,
@@ -8718,6 +8737,22 @@
 			path = XIB;
 			sourceTree = "<group>";
 		};
+		FF33206428153BD3007734BA /* MXScroll */ = {
+			isa = PBXGroup;
+			children = (
+				FF33206528153BF6007734BA /* MSSegment.swift */,
+				FF33206728153C34007734BA /* MXContentView.swift */,
+				FF33206928153C7B007734BA /* MXScrollView.swift */,
+				FF33206B28153CA2007734BA /* MXSegmentProtocol.swift */,
+				FF33206D28153CBE007734BA /* MXUtils.swift */,
+				FF33206F28153CDA007734BA /* MXViewController.swift */,
+				FF33207128153CF5007734BA /* RXScrollKit.swift */,
+				FF33207328153D0F007734BA /* RXViewKit.swift */,
+				FF33207528153D32007734BA /* RXWebKit.swift */,
+			);
+			path = MXScroll;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -9451,6 +9486,7 @@
 				8829F66B25D6953E00B7D7D6 /* ResistanceConfirmationPageVc.swift in Sources */,
 				175CE1AB2339ECE1005335F7 /* CreateResistanceTrainingProgramVC-TableView+Extension.swift in Sources */,
 				8894A7B823EAB50200269DF5 /* CreateTrainingLogVc + CollectionView.swift in Sources */,
+				FF33207428153D0F007734BA /* RXViewKit.swift in Sources */,
 				175CE19E2339DFF5005335F7 /* PresetResistanceTrainingProgramHeaderView.swift in Sources */,
 				17F8F6BA23211E4800525ADC /* PremiumHeaderView.swift in Sources */,
 				177CDE382313D0AF003AB1D2 /* AccountVC.swift in Sources */,
@@ -9500,6 +9536,7 @@
 				17F507DA23100A45009AA763 /* CheckAvailibilityCalendarCell.swift in Sources */,
 				179CC80E22EEE79E005197D6 /* ChatViewModel.swift in Sources */,
 				179508002344BE23000590FF /* TrainingPreviewCell.swift in Sources */,
+				FF33207628153D32007734BA /* RXWebKit.swift in Sources */,
 				1780122822BB848F00888B67 /* ListingsViewModel.swift in Sources */,
 				179CC80222EEAB2B005197D6 /* NewMessageSelectVC-TableView+Extension.swift in Sources */,
 				17F9BAC022A53E15000D8221 /* CreateTrainingView.swift in Sources */,
@@ -9753,6 +9790,7 @@
 				171A3151230E96AF00E0A45F /* FeedCommentListModelClass.swift in Sources */,
 				1777D175229D0BCE00F6B2E2 /* CustomTextview.swift in Sources */,
 				171770E7232BBC0600B62A5A /* CardModelClass.swift in Sources */,
+				FF33206E28153CBE007734BA /* MXUtils.swift in Sources */,
 				883D789824C567CF000FADEA /* PhysicalActivity_TableView.swift in Sources */,
 				17EA1092231E64210090FAD0 /* FilterActivityHeaderView.swift in Sources */,
 				17AC0CC823B63014002061D3 /* TypesOfTrainingSelectionView.swift in Sources */,
@@ -9760,6 +9798,7 @@
 				1780B32822AB820300647C58 /* ResistanceExercisePreviewHeaderView.swift in Sources */,
 				D3287695262003B500003C80 /* PhysicalActivityInfoView.swift in Sources */,
 				1754DBBD22B3B3EC000C8CF8 /* MultiSelectionViewModel.swift in Sources */,
+				FF33206A28153C7B007734BA /* MXScrollView.swift in Sources */,
 				D3A1BCA6268DA2B600847D0E /* PremiumUserProfileDetailsViewModel.swift in Sources */,
 				17F8F6AC232114CC00525ADC /* PremiumView.swift in Sources */,
 				17F507CA230FAD27009AA763 /* MainCalenderCell.swift in Sources */,
@@ -9851,6 +9890,7 @@
 				8878BA2D2421E71800572554 /* CardioSummaryHeadeTblCell.swift in Sources */,
 				175CE1A92339EBA6005335F7 /* CreateResistanceTrainingProgramViewModel.swift in Sources */,
 				177387BF22A236FC002E31ED /* ChartView.swift in Sources */,
+				FF33206C28153CA2007734BA /* MXSegmentProtocol.swift in Sources */,
 				17EFAB3622E0682B00B4FE25 /* EventOtherEventListCell.swift in Sources */,
 				1777D180229D0C2000F6B2E2 /* Constant.swift in Sources */,
 				1717FA0022EAC6B100E49B98 /* FollowingVC.swift in Sources */,
@@ -9864,6 +9904,7 @@
 				175CE1962339DC78005335F7 /* PresetResistanceTrainingProgramVC-TableView+Extension.swift in Sources */,
 				1721B7982318FABD00BA3968 /* LoadCenterSettingsView.swift in Sources */,
 				17BC0EB222C3339D004FC189 /* CreateEventStepSecondVC-TableView+Extension.swift in Sources */,
+				FF33207028153CDA007734BA /* MXViewController.swift in Sources */,
 				1757EDAC22A79CF900C68174 /* LibraryExerciseListVC-TableView+Extension.swift in Sources */,
 				D32876A4262003FB00003C80 /* PhysicalActivityInfoTblCell.swift in Sources */,
 				88934A532456B0C9008E479C /* RPE + TableView.swift in Sources */,
@@ -10004,6 +10045,7 @@
 				179CC80022EEA888005197D6 /* NewMessageSelectViewModel.swift in Sources */,
 				1763991E23152D380026ADEA /* SendAvailibityViewModel.swift in Sources */,
 				D32E8567266F3EA100001754 /* TopUpPaymentSuccessPopupView.swift in Sources */,
+				FF33206628153BF7007734BA /* MSSegment.swift in Sources */,
 				17F22D83232900BF00C72964 /* AutoTopUpBillingCardCell.swift in Sources */,
 				17FFA775232772BA001683BC /* CredentialsAddCell.swift in Sources */,
 				8833265C24B725EA0002E652 /* OwnRequestListingDetailScreenVc.swift in Sources */,
@@ -10030,6 +10072,7 @@
 				175425B022F434E500944BFC /* SidemenuVC-Tableview+Extension.swift in Sources */,
 				17A38BDA2316433D00C25EA3 /* ClientBookedDatesModelClass.swift in Sources */,
 				1721B7AE231921F800BA3968 /* TrainingSettingsCell.swift in Sources */,
+				FF33207228153CF5007734BA /* RXScrollKit.swift in Sources */,
 				17F9BAA522A52222000D8221 /* SwitchAccountVC.swift in Sources */,
 				1717FA0A22EAC7AD00E49B98 /* MessagesViewModel.swift in Sources */,
 				1780122622BB847F00888B67 /* ListingsView.swift in Sources */,
@@ -10104,6 +10147,7 @@
 				1772226C22E2D72400AC53A8 /* ListingModelClass.swift in Sources */,
 				17F8F6AE232114D700525ADC /* PremiumViewModel.swift in Sources */,
 				17D1134B22C9EDBA004600B4 /* OtherUserProfileDetailsVC.swift in Sources */,
+				FF33206828153C34007734BA /* MXContentView.swift in Sources */,
 				176B787522B0CD3B005B5B25 /* LibraryExerciseListMainCell.swift in Sources */,
 				17E5362022B228E30058A7A4 /* LibraryExercisePreviewDetailsView.swift in Sources */,
 				175CE19D2339DFF5005335F7 /* PresetResistanceTrainingProgramCell.swift in Sources */,
