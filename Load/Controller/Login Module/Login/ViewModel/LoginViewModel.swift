@@ -20,15 +20,19 @@ class LoginViewModel {
     
     //MARK:- Functions
     func ValidateDetails() {
-        let view = (self.theController.view as? LoginView)
-
-        if  view!.txtEmail.text == "" {
+        guard let view = (self.theController.view as? LoginView) else {
+            return
+        }
+        let emailTextValue = (view.txtEmail.text ?? String()).toTrim()
+        let passwordTextValue = view.txtPassword.text ?? String()
+        
+        if  emailTextValue.isEmpty {
             makeToast(strMessage: getCommonString(key: "Enter_email_address_key"))
         }
-        else if !isValidEmail(testStr: view!.txtEmail.text!) {
+        else if !isValidEmail(testStr: emailTextValue) {
             makeToast(strMessage: getCommonString(key: "Enter_valid_email_address_key"))
         }
-        else if  view!.txtPassword.text == "" {
+        else if passwordTextValue.isEmpty {
             makeToast(strMessage: getCommonString(key: "Enter_password_key"))
         }
         else {
