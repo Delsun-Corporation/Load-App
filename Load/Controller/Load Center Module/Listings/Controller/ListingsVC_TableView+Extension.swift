@@ -8,7 +8,6 @@
 
 import UIKit
 import SwiftyJSON
-import MXScroll
 
 extension ListingsVC: UITableViewDelegate, UITableViewDataSource, ListingUserProfileDelegate {
     
