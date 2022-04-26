@@ -743,8 +743,7 @@ extension UINavigationController {
     }
     
     func setColor() {
-        let navigationBarHeight: CGFloat = self.navigationBar.frame.height
-        self.navigationBar.setBackgroundImage(UIImage(named: "ic_header")?.resizeImage(targetSize: CGSize(width: UIScreen.main.bounds.width, height: 85), customHeight: navigationBarHeight), for: .default)
+        self.navigationBar.setBackgroundImage(UIImage(named: "ic_header")?.resizeImage(targetSize: CGSize(width: UIScreen.main.bounds.width, height: 85), customHeight: getBarHeight()), for: .default)
         self.navigationBar.isTranslucent = false
     }
     

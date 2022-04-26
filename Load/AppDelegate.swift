@@ -84,10 +84,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         Realm.Configuration.defaultConfiguration = config
 
         realm = try! Realm(configuration: config)
+    
+        if #available(iOS 15, *) {
+            let appearance = UINavigationBarAppearance()
+            appearance.configureWithTransparentBackground()
+            appearance.backgroundImage = UIImage(named: "ic_header")?.resizableImage(withCapInsets: UIEdgeInsets.zero, resizingMode: .stretch)
+            UINavigationBar.appearance().standardAppearance = appearance
+            UINavigationBar.appearance().scrollEdgeAppearance = appearance
+        }
         
         // Override point for customization after application launch.
         return true
-    }    
+    }
     
     func sidemenu() {
         SocketIOHandler.shared.Connect()
