@@ -28,18 +28,17 @@ class ExerciseResistanceCell: UITableViewCell, UITextFieldDelegate {
     
     weak var delegate: AddSubRowDelegate?
     var index:Int = 0
-    let pickerViewWeight = UIPickerView()
-    
     
     let pickerViewReps = UIPickerView()
-    let pickerViewDuration = UIPickerView()
+    let pickerViewRepsCustom = UIPickerView()
+    let pickerViewWeight = UIPickerView()
+    let pickerViewWeightCustom = UIPickerView()
     let pickerViewRest = UIPickerView()
     let pickerViewRestCustom = UIPickerView()
-    let pickerViewRepsCustom = UIPickerView()
+    let pickerViewDuration = UIPickerView()
     let pickerViewDurationCustom = UIPickerView()
     
     let pickerViewDurationSimple = UIPickerView()
-    let pickerViewWCustomWeightSelection = UIPickerView()
     
     var selectedResistanceValidationList: ResistanceValidationListData?
     var selectedResistanceWeightList : [RepetitionMax]?
@@ -90,17 +89,10 @@ class ExerciseResistanceCell: UITableViewCell, UITextFieldDelegate {
         super.awakeFromNib()
         self.txtWeight.delegate = self
         
-//        self.txtReps.delegate = self
-//        self.txtRest.delegate = self
-        
-        pickerViewWeight.delegate = self
-        pickerViewWeight.backgroundColor = UIColor.white
-        
-        pickerViewReps.delegate = self
-        pickerViewReps.backgroundColor = UIColor.white
-        
-        pickerViewRest.delegate = self
-        pickerViewRest.backgroundColor = UIColor.white
+        [pickerViewReps, pickerViewWeight, pickerViewRest, pickerViewRepsCustom, pickerViewWeightCustom, pickerViewRestCustom].forEach { pickerView in
+            pickerView.delegate = self
+            pickerView.backgroundColor = UIColor.white
+        }
         
         let screenRest = UIScreen.main.bounds.width / 2
         for index in 0..<2 {
@@ -121,9 +113,6 @@ class ExerciseResistanceCell: UITableViewCell, UITextFieldDelegate {
             self.pickerViewRestCustom.addSubview(label)
         }
         
-        pickerViewRestCustom.delegate = self
-        pickerViewRestCustom.backgroundColor = UIColor.white
-        
         //Custom Selection Weight
         for index in 0..<2 {
             let label = UILabel()
@@ -132,20 +121,17 @@ class ExerciseResistanceCell: UITableViewCell, UITextFieldDelegate {
             label.font = themeFont(size: 21, fontname: .Regular) //themeFont(size: 15, fontname: .ProximaNovaRegular)
             if index == 0 {
                 let x = DEVICE_TYPE.IS_IPHONE_6 ? 98 : 108
-                label.frame = CGRect(x: (screenRest * CGFloat(index)) + CGFloat(x), y: (pickerViewWCustomWeightSelection.frame.height - 30) / 2, width: screenRest, height: 30)
+                label.frame = CGRect(x: (screenRest * CGFloat(index)) + CGFloat(x), y: (pickerViewWeightCustom.frame.height - 30) / 2, width: screenRest, height: 30)
                 label.text = "."
             }
             else {
                 let x = DEVICE_TYPE.IS_IPHONE_6 ? -2 : 8
-                label.frame = CGRect(x: (screenRest * CGFloat(index)) - CGFloat(x), y: (pickerViewWCustomWeightSelection.frame.height - 30) / 2, width: screenRest, height: 30)
+                label.frame = CGRect(x: (screenRest * CGFloat(index)) - CGFloat(x), y: (pickerViewWeightCustom.frame.height - 30) / 2, width: screenRest, height: 30)
                 label.text = "Kg"
             }
             label.textColor = .appthemeRedColor
-            self.pickerViewWCustomWeightSelection.addSubview(label)
+            self.pickerViewWeightCustom.addSubview(label)
         }
-        
-        pickerViewWCustomWeightSelection.delegate = self
-        pickerViewWCustomWeightSelection.backgroundColor = UIColor.white
         
         let screenDuration = UIScreen.main.bounds.width / 2
         
@@ -220,12 +206,7 @@ class ExerciseResistanceCell: UITableViewCell, UITextFieldDelegate {
             self.pickerViewRepsCustom.addSubview(label)
         }
         
-        pickerViewRepsCustom.delegate = self
-        pickerViewRepsCustom.backgroundColor = UIColor.white
-        
         self.txtWeight.inputView = pickerViewWeight
-//        self.txtReps.inputView = pickerView
-//        self.txtRest.inputView = pickerView
         self.setRest()
         // Initialization code
     }
@@ -303,7 +284,7 @@ class ExerciseResistanceCell: UITableViewCell, UITextFieldDelegate {
         
         textField.textAlignment = .center
         
-        if  textField == self.txtWeight{
+        if textField == self.txtWeight {
             
             if txtReps.text?.toTrim() == ""{
                 
@@ -314,6 +295,8 @@ class ExerciseResistanceCell: UITableViewCell, UITextFieldDelegate {
             }
             
             self.getArrayFromWeightList()
+            print("🍍 array required weight: \(arrayRequiredWeight)")
+            
             if (self.selectedResistanceWeightList?.count != 0 || self.selectedResistanceWeightList != nil) && !isWeightCustom {
                 self.pickerViewWeight.reloadAllComponents()
                 
@@ -327,74 +310,66 @@ class ExerciseResistanceCell: UITableViewCell, UITextFieldDelegate {
                 
             }
             
-        }
-        
-        if textField == self.txtWeight {
-            
-            if self.selectedResistanceValidationList?.weightRange?.contains("|") ?? false && self.arrayRequiredWeight.count == 0{
-                
-                if textField.text?.toTrim() == ""{
-                    self.pickerViewWeight.selectRow(0, inComponent: 0, animated: true)
-                    self.pickerViewWeight.selectRow(0, inComponent: 1, animated: true)
-                    
-                    self.firstComponent = 0
-                    self.secondComponent = 0
-                }
-                
-                if self.txtWeight.text?.contains(".") ?? false{
-
-                    let arrayWeigt = self.txtWeight.text?.split(separator: ".")
-                    if arrayWeigt?.count == 2{
-
-                        let firstIndex = Int(arrayWeigt?[0] ?? "")
-                        let secondIndex = self.arrayDecimalForCustomTrainingGoal.firstIndex(where: {$0 == Int(arrayWeigt?[1] ?? "")})
-
-                        print("FirstIndex:\(firstIndex) : secondINdex:\(secondIndex)")
-
-                        self.pickerViewWeight.selectRow(firstIndex ?? 0, inComponent: 0, animated: false)
-                        self.pickerViewWeight.selectRow(secondIndex ?? 0, inComponent: 1, animated: false)
-
-                        self.firstComponent = firstIndex ?? 0
-                        self.secondComponent = secondIndex ?? 0
-                        
-                    }
-                }
-                
-                self.txtWeight.text = "\(firstComponent).\(secondComponent)"
-            }else{
-                
-                if (self.selectedResistanceWeightList?.count == 0 || self.selectedResistanceWeightList == nil) && !isWeightCustom
-                {
-                    
-                    if textField.text?.toTrim() == ""{
-                        
-                        self.pickerViewWeight.selectRow(0, inComponent: 0, animated: true)
-                        self.txtWeight.text = calculateDistanceArray(data: self.selectedResistanceValidationList?.weightRange ?? "").first ?? "0"
-                    }
-                    
-                    let array = self.calculateDistanceArray(data: self.selectedResistanceValidationList?.weightRange ?? "")
-                    let firstIndex = array.firstIndex(where: {$0 == self.self.txtWeight.text}) ?? 0
-                    self.pickerViewWeight.selectRow(firstIndex, inComponent: 0, animated: false)
-
-                }
-                else{
-                   // if !isWeightCustom{
-                    
-                    if textField.text?.toTrim() == ""{
-                        self.txtWeight.text = self.arrayRequiredWeight.first ?? ""
-                        self.pickerViewWeight.selectRow(0, inComponent: 0, animated: true)
-                    }
-                    
-                    if !isWeightCustom{
-                        let firstIndex = arrayRequiredWeight.firstIndex(where: {$0 == self.self.txtWeight.text}) ?? 0
-                        self.pickerViewWeight.selectRow(firstIndex, inComponent: 0, animated: false)
-                    }
-                    
-                    self.pickerViewWeight.reloadAllComponents()
-                    
-                   // }
-                }
-            }
+//            if self.selectedResistanceValidationList?.weightRange?.contains("|") ?? false && self.arrayRequiredWeight.count == 0{
+//
+//                if textField.text?.toTrim() == ""{
+//                    self.pickerViewWeight.selectRow(0, inComponent: 0, animated: true)
+//
+//                    self.firstComponent = 0
+//                }
+//
+//                if self.txtWeight.text?.contains(".") ?? false{
+//
+//                    let arrayWeigt = self.txtWeight.text?.split(separator: ".")
+//                    if arrayWeigt?.count == 2{
+//
+//                        let firstIndex = Int(arrayWeigt?[0] ?? "")
+//                        let secondIndex = self.arrayDecimalForCustomTrainingGoal.firstIndex(where: {$0 == Int(arrayWeigt?[1] ?? "")})
+//
+//                        self.pickerViewWeight.selectRow(firstIndex ?? 0, inComponent: 0, animated: false)
+//                        self.pickerViewWeight.selectRow(secondIndex ?? 0, inComponent: 1, animated: false)
+//
+//                        self.firstComponent = firstIndex ?? 0
+//                        self.secondComponent = secondIndex ?? 0
+//
+//                    }
+//                }
+//
+//                self.txtWeight.text = "\(firstComponent).\(secondComponent)"
+//            }else{
+//
+//                if (self.selectedResistanceWeightList?.count == 0 || self.selectedResistanceWeightList == nil) && !isWeightCustom
+//                {
+//
+//                    if textField.text?.toTrim() == ""{
+//
+//                        self.pickerViewWeight.selectRow(0, inComponent: 0, animated: true)
+//                        self.txtWeight.text = calculateDistanceArray(data: self.selectedResistanceValidationList?.weightRange ?? "").first ?? "0"
+//                    }
+//
+//                    let array = self.calculateDistanceArray(data: self.selectedResistanceValidationList?.weightRange ?? "")
+//                    let firstIndex = array.firstIndex(where: {$0 == self.self.txtWeight.text}) ?? 0
+//                    self.pickerViewWeight.selectRow(firstIndex, inComponent: 0, animated: false)
+//
+//                }
+//                else{
+//                   // if !isWeightCustom{
+//
+//                    if textField.text?.toTrim() == ""{
+//                        self.txtWeight.text = self.arrayRequiredWeight.first ?? ""
+//                        self.pickerViewWeight.selectRow(0, inComponent: 0, animated: true)
+//                    }
+//
+//                    if !isWeightCustom{
+//                        let firstIndex = arrayRequiredWeight.firstIndex(where: {$0 == self.self.txtWeight.text}) ?? 0
+//                        self.pickerViewWeight.selectRow(firstIndex, inComponent: 0, animated: false)
+//                    }
+//
+//                    self.pickerViewWeight.reloadAllComponents()
+//
+//                   // }
+//                }
+//            }
             
             var weight = ""
             
@@ -679,23 +654,6 @@ class ExerciseResistanceCell: UITableViewCell, UITextFieldDelegate {
         let textFieldText: NSString = (textField.text ?? "") as NSString
         let txtAfterUpdate = textFieldText.replacingCharacters(in: range, with: string)
         
-//        let allowedCharacters = CharacterSet.decimalDigits
-//        let characterSet = CharacterSet(charactersIn: string)
-//        let isNumber = allowedCharacters.isSuperset(of: characterSet)
-//        if !isNumber {
-//            return false
-//        }
-//        
-//        let weight = self.txtWeight.text!
-//        let reps = self.txtReps.text!
-//        let rest = self.txtRest.text!
-//        
-//        if textField == self.txtWeight {
-//            if (txtAfterUpdate != "" && Double(txtAfterUpdate)! > 999) {
-//                return false
-//            }
-//            self.delegate?.ExerciseResistanceCellFinish(index: self.index, section: self.tag, Weight: txtAfterUpdate, Reps: reps, Rest: rest)
-//        }
         if textField == self.txtReps {
             let weight = self.txtWeight.text ?? ""
             let reps = self.isDurationSelected ? "" : txtAfterUpdate
@@ -724,13 +682,6 @@ class ExerciseResistanceCell: UITableViewCell, UITextFieldDelegate {
     func textFieldShouldEndEditing(_ textField: UITextField) -> Bool {
         
         if textField == self.txtWeight{
-//            self.isWeightCustom = false
-        //
-//            if self.isWeightCustom && isSelectedCustomWeight{
-//                self.setWeight(isSet: true)
-//              //  isSelectedCustomWeight = false
-//                return true
-//            }
             
             if textField.text == "0.0"{
                 self.txtWeight.text = ""
@@ -1132,55 +1083,29 @@ extension ExerciseResistanceCell: UIPickerViewDataSource, UIPickerViewDelegate {
     
     // MARK: UIPickerViewDelegate
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
-        if pickerView == self.pickerViewRestCustom || pickerView == self.pickerViewRepsCustom {
+        switch pickerView {
+        case pickerViewRestCustom, pickerViewRepsCustom:
             return 2
-        }
-        else  if pickerView == self.pickerViewDuration || pickerView == self.pickerViewDurationCustom {
-            
-            if self.strCustomTrainingGoal.lowercased() == "customize"{
-                return 2
-            }else{
-                return 1
-            }
-        }else if pickerView == self.pickerViewWeight{
-            
-            if self.selectedResistanceValidationList?.weightRange?.contains("|") ?? false  && self.arrayRequiredWeight.count == 0 {
-                return 2
-            }else{
-                return 1
-            }
-        }else if pickerView == self.pickerViewRest{
-            if self.strCustomTrainingGoal.lowercased() == "customize"{
-               return 2
-            }else{
-                return 1
-            }
-        }else if pickerView == self.pickerViewWCustomWeightSelection{
+        case pickerViewWeight:
+            return 1
+        case pickerViewWeightCustom:
             return 2
+        case pickerViewRest:
+            return self.strCustomTrainingGoal.lowercased() == "customize" ? 2 : 1
+        case pickerViewDuration, pickerViewDurationCustom:
+            return self.strCustomTrainingGoal.lowercased() == "customize" ? 2 : 1
+        default:
+            return 1
         }
-        
-        return 1
-        
     }
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
        
         if pickerView == self.pickerViewWeight {
+            return arrayRequiredWeight.count
             
-            if self.selectedResistanceValidationList?.weightRange?.contains("|") ?? false && self.arrayRequiredWeight.count == 0{
-                if component == 0{
-                    return 1000
-                }else{
-                    return self.arrayDecimalForCustomTrainingGoal.count
-                }
-            }else{
-                if self.selectedResistanceWeightList?.count == 0 || self.selectedResistanceWeightList == nil{
-                    return calculateDistanceArray(data: self.selectedResistanceValidationList?.weightRange ?? "").count
-                }else{
-                    return arrayRequiredWeight.count
-                }
-            }
-        }else if pickerView == self.pickerViewWCustomWeightSelection{
+        } else if pickerView == self.pickerViewWeightCustom {
+            print("🍍 pickerviewweightcustom ")
             if component == 0{
                 return 1000
             }else{
@@ -1256,32 +1181,16 @@ extension ExerciseResistanceCell: UIPickerViewDataSource, UIPickerViewDelegate {
     
     func pickerView(_ pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusing view: UIView?) -> UIView {
         
-//        for view in pickerView.subviews{
-//            view.backgroundColor = UIColor.clear
-//        }
-        
         let myView = PickerView.instanceFromNib() as! PickerView
         myView.setupUI()
         myView.imgIcon.image = nil
         
         if pickerView == self.pickerViewWeight {
-            
-            if self.selectedResistanceValidationList?.weightRange?.contains("|") ?? false && self.arrayRequiredWeight.count == 0{
-                if component == 0{
-                    myView.lblText.text = String(row)
-                }else {
-                    myView.lblText.text = String(self.arrayDecimalForCustomTrainingGoal[row])
-                }
-            }else{
-                if self.selectedResistanceWeightList?.count == 0 || self.selectedResistanceWeightList == nil{
-                    myView.lblText.text = calculateDistanceArray(data: self.selectedResistanceValidationList?.weightRange ?? "")[row]
-                }else{
-                    myView.lblText.text = arrayRequiredWeight[row]
-                }
-            }
-            
+            print("🍍 showing pickerViewWeight component \(component) row \(row)")
+            myView.lblText.text = arrayRequiredWeight[row]
         }
-        else if pickerView == self.pickerViewWCustomWeightSelection{
+        else if pickerView == self.pickerViewWeightCustom {
+            print("🍍 showing pickerViewWeightCustom")
             if component == 0{
                 myView.lblText.text = String(row)
             }else {
@@ -1362,48 +1271,26 @@ extension ExerciseResistanceCell: UIPickerViewDataSource, UIPickerViewDelegate {
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         if pickerView == self.pickerViewWeight {
-            
-            if self.selectedResistanceValidationList?.weightRange?.contains("|") ?? false && self.arrayRequiredWeight.count == 0{
-                if component == 0{
-                    firstComponent = row
-                }else {
-                    secondComponent = self.arrayDecimalForCustomTrainingGoal[row]
-                }
-                
-                self.txtWeight.text = String("\(firstComponent).\(secondComponent)")
-                    
+            let name = arrayRequiredWeight[row]
+            if name == "Bodyweight" {
+                self.txtWeight.text = "-.-"
+            } else if name == "Customize" {
                 //Show Alert
+                firstComponent = 0
+                secondComponent = 0
                 
+                self.isWeightCustom = true
+                self.endEditing(true)
+                self.setWeight(isSet: false)
+                self.txtWeight.text = String("\(firstComponent).\(secondComponent)")
+
                 self.isSelectedCustomWeight = true
-                
-            }else{
-                if self.selectedResistanceWeightList?.count == 0 || self.selectedResistanceWeightList == nil{
-                    self.txtWeight.text = calculateDistanceArray(data: self.selectedResistanceValidationList?.weightRange ?? "")[row]
-                }else{
-                    
-                    let name = arrayRequiredWeight[row]
-                    if name.lowercased() != "customize".lowercased(){
-                        self.isWeightCustom = false
-                        self.txtWeight.text = name
-
-                    }else{
-                        //Show Alert
-                        
-                        firstComponent = 0
-                        secondComponent = 0
-                        
-                        self.isWeightCustom = true
-                        self.endEditing(true)
-                        self.setWeight(isSet: false)
-                        self.txtWeight.text = String("\(firstComponent).\(secondComponent)")
-
-                        self.isSelectedCustomWeight = true
-                    }
-                }
+            } else {
+                self.isWeightCustom = false
+                self.txtWeight.text = name
             }
-            
         }
-        else if pickerView == self.pickerViewWCustomWeightSelection{
+        else if pickerView == self.pickerViewWeightCustom{
             if component == 0{
                 firstComponent = row
             }else {
@@ -1723,119 +1610,53 @@ extension ExerciseResistanceCell: UIPickerViewDataSource, UIPickerViewDelegate {
         self.txtWeight.delegate = self
         self.txtWeight.backgroundColor = UIColor.white
         if isSet{
+            print("🍍 set weight isSet")
             self.txtWeight.inputView = pickerViewWeight
-        }else{
+        } else {
+            print("🍍 set weight !isSet")
             self.txtWeight.inputView = nil
-            self.pickerViewWCustomWeightSelection.selectRow(0, inComponent: 0, animated: false)
-            self.pickerViewWCustomWeightSelection.selectRow(0, inComponent: 1, animated: false)
-            self.txtWeight.inputView = pickerViewWCustomWeightSelection
+            self.pickerViewWeightCustom.selectRow(0, inComponent: 0, animated: false)
+            self.pickerViewWeightCustom.selectRow(0, inComponent: 1, animated: false)
+            self.txtWeight.inputView = pickerViewWeightCustom
             self.txtWeight.becomeFirstResponder()
         }
     }
     
-    
     func getArrayFromWeightList(){
-        
         self.arrayRequiredWeight = []
+        var selectedRPforWeight: RepetitionMax?
         
-        if self.strCustomTrainingGoal.lowercased() == "customize"{
-           setCustomPickerForWeight()
-           return
+        if let selectedWeight = txtWeight.text, selectedWeight != "-.-" && !selectedWeight.isEmpty {
+            arrayRequiredWeight.append(selectedWeight)
         }
-        
-        var arrayForWeight = [String]()
-        var selectedRPforWeight : RepetitionMax?
-        
-        if selectedResistanceWeightList?.count ?? 0 > 0 && self.selectedResistanceWeightList != nil{
-            if (selectedResistanceWeightList!.contains(where: { (repetation) -> Bool in
-                
-                if repetation.name?.replacingOccurrences(of: " RM", with: "") == self.txtReps.text?.toTrim(){
-                    selectedRPforWeight = repetation
+        if let selectedResistanceWeightList = selectedResistanceWeightList, selectedResistanceWeightList.contains(where: { (rep) -> Bool in
+                if rep.name?.replacingOccurrences(of: " RM", with: "") == self.txtReps.text?.toTrim(){
+                    selectedRPforWeight = rep
                     return true
                 }
                 return false
-            })){
-                
-                print("Estimated Weight:\(selectedRPforWeight?.estWeight)")
-                print("Actual Weight:\(selectedRPforWeight?.actWeight)")
-                
-                if selectedRPforWeight?.actWeight == "" || selectedRPforWeight?.actWeight == "0"{
-                    if selectedRPforWeight?.estWeight == "" || selectedRPforWeight?.estWeight == "0"{
-                        print("Both are blank")
-                        setCustomPickerForWeight()
-                        return
-                    }else{
-                        arrayForWeight.append(selectedRPforWeight?.estWeight ?? "")
-                    }
-                }else{
-                    arrayForWeight.append(selectedRPforWeight?.actWeight ?? "")
-                }
-            }
-            else{
-                
-                let value = self.txtReps.text?.toTrim()
-                
-//                if value == "13" || value == "14"{
-//                    selectedRPforWeight = selectedResistanceWeightList?[11]
-//                }else if value == "16" || value == "17" || value == "18" || value == "19" || value == "20"{
-//                    selectedRPforWeight = selectedResistanceWeightList?[12]
-//                }else{
-                //last change comment this both line
-//                    setCustomPickerForWeight()
-//                    return
-//                }
-                
-                print("Estimated Weight:\(selectedRPforWeight?.estWeight)")
-                print("Actual Weight:\(selectedRPforWeight?.actWeight)")
-
-                if selectedRPforWeight?.actWeight == "" || selectedRPforWeight?.actWeight == "0"{
-                    if selectedRPforWeight?.estWeight == "" || selectedRPforWeight?.estWeight == "0"{
-                        print("Both are blank")
-                        setCustomPickerForWeight()
-                        return
-                    }else{
-                        arrayForWeight.append(selectedRPforWeight?.estWeight ?? "")
-                    }
-                }else{
-                    
-//                    if  !(self.selectedResistanceValidationList?.weightRange?.contains("|") ?? false) {
-                        arrayForWeight.append(selectedRPforWeight?.actWeight ?? "")
-//                    }else{
-                        
-//                        setCustomPickerForWeight()
-//                        return
-//                    }
-                }
-            }
+            }) {
             
-            arrayForWeight.append("Customize")
-            
-            print("aray For Weight :\(arrayForWeight)")
-            
-            self.arrayRequiredWeight = arrayForWeight
-                
-            if let viewWithTag = self.pickerViewWeight.viewWithTag(100){
-                viewWithTag.removeFromSuperview()
-            }else{
-                print("No!")
-            }
-            
-            if let viewWithDifferentTag = self.pickerViewWeight.viewWithTag(101) {
-                viewWithDifferentTag.removeFromSuperview()
-            }else{
-                print("No!")
-            }
-            
-            self.pickerViewWeight.reloadAllComponents()
-            
-            self.pickerViewWeight.layoutIfNeeded()
-            self.pickerViewWeight.layoutSubviews()
-            
-        }else{
-            if (self.selectedResistanceValidationList?.weightRange?.contains("|") ?? false) {
-                setCustomPickerForWeight()
+            if let estWeight = selectedRPforWeight?.estWeight,
+                estWeight != "" && estWeight != "0" && estWeight != txtWeight.text {
+                arrayRequiredWeight.append(selectedRPforWeight?.estWeight ?? "")
+            } else if let actWeight = selectedRPforWeight?.actWeight,
+                        actWeight != "" && actWeight != "0" && actWeight != txtWeight.text {
+                arrayRequiredWeight.append(selectedRPforWeight?.actWeight ?? "")
             }
         }
+        
+        arrayRequiredWeight.append("Bodyweight")
+        if let selectedWeight = txtWeight.text, selectedWeight == "-.-", let shouldSelectIndex = arrayRequiredWeight.firstIndex(of: "Bodyweight") {
+            print("🍍 here \(shouldSelectIndex)")
+            pickerViewWeight.selectRow(shouldSelectIndex, inComponent: 0, animated: false)
+        }
+        
+        arrayRequiredWeight.append("Customize")
+        
+        self.pickerViewWeight.reloadAllComponents()
+//        self.pickerViewWeight.layoutIfNeeded()
+//        self.pickerViewWeight.layoutSubviews()
     }
     
     func changesRepsAndGetWeight(strSelectedReps:String) -> String{
@@ -1869,14 +1690,6 @@ extension ExerciseResistanceCell: UIPickerViewDataSource, UIPickerViewDelegate {
                 
                 let value = self.txtReps.text?.toTrim()
                 
-                //TODO: - Change here for according reps
-                
-//                if value == "13" || value == "14"{
-//                    selectedRPforWeight = selectedResistanceWeightList?[11]
-//                }else if value == "16" || value == "17" || value == "18" || value == "19" || value == "20"{
-//                    selectedRPforWeight = selectedResistanceWeightList?[12]
-//                }
-                
                 print("selectedRPForWeight:\(selectedRPforWeight)")
                 
                 if selectedRPforWeight?.actWeight == "" || selectedRPforWeight?.actWeight == "0"{
@@ -1898,46 +1711,6 @@ extension ExerciseResistanceCell: UIPickerViewDataSource, UIPickerViewDelegate {
     
     
     //MARK: - Custom pickerView
-    
-    func setCustomPickerForWeight(){
-        
-        if let viewWithTag = self.pickerViewWeight.viewWithTag(100){
-            viewWithTag.removeFromSuperview()
-        }else{
-            print("No!")
-        }
-        
-        if let viewWithDifferentTag = self.pickerViewWeight.viewWithTag(101) {
-            viewWithDifferentTag.removeFromSuperview()
-        }else{
-            print("No!")
-        }
-        
-        let screenRest = UIScreen.main.bounds.width / 2
-        
-        for index in 0..<2 {
-            let label = UILabel()
-            label.textAlignment = .center
-            label.tag = 100 + index
-            label.font = themeFont(size: 21, fontname: .Regular) //themeFont(size: 15, fontname: .ProximaNovaRegular)
-            if index == 0 {
-                let x = DEVICE_TYPE.IS_IPHONE_6 ? 98 : 108
-                label.frame = CGRect(x: (screenRest * CGFloat(index)) + CGFloat(x), y: (pickerViewWeight.frame.height - 30) / 2, width: screenRest, height: 30)
-                label.text = "."
-            }
-            else {
-                let x = DEVICE_TYPE.IS_IPHONE_6 ? -2 : 8
-                label.frame = CGRect(x: (screenRest * CGFloat(index)) - CGFloat(x), y: (pickerViewWeight.frame.height - 30) / 2, width: screenRest, height: 30)
-                label.text = "Kg"
-            }
-            label.textColor = .appthemeRedColor
-            self.pickerViewWeight.addSubview(label)
-        }
-        
-        pickerViewWeight.delegate = self
-        pickerViewWeight.backgroundColor = UIColor.white
-        
-    }
     
     func setCustomPickerForRestCustom(){
         
