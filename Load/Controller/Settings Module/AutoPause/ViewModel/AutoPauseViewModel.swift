@@ -31,7 +31,6 @@ class AutoPauseViewModel{
             vwnav.imgBackground.isHidden = true
             vwnav.btnback.isHidden = false
             vwnav.btnSave.isHidden = true
-            vwnav.btnSave.isHidden = true
             
             var hightOfView = 0
             if UIScreen.main.bounds.height >= 812 {
