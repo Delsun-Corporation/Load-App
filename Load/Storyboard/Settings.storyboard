@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina5_5" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -12,11 +12,11 @@
         <array key="Proxima-Nova-Bold.ttf">
             <string>ProximaNova-Bold</string>
         </array>
+        <array key="Proxima-Nova-Regular.ttf">
+            <string>ProximaNova-Regular</string>
+        </array>
         <array key="Proxima-Nova-Thin.ttf">
             <string>ProximaNova-Thin</string>
-        </array>
-        <array key="Proxima-nova.ttf">
-            <string>ProximaNova-Regular</string>
         </array>
         <array key="SFUIText-Regular.ttf">
             <string>SFUIText-Regular</string>
@@ -1277,6 +1277,7 @@
                         </constraints>
                         <connections>
                             <outlet property="tableView" destination="zH9-ar-our" id="48f-C7-lCp"/>
+                            <outlet property="tableViewTopHeight" destination="iRk-EE-rG2" id="vbJ-V9-Fkm"/>
                         </connections>
                     </view>
                     <navigationItem key="navigationItem" id="wCi-f5-W2h">
@@ -2481,7 +2482,7 @@
                                                     <rect key="frame" x="219.33333333333334" y="0.0" width="55.000000000000028" height="30"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="FRI" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="npR-N6-Zxf">
-                                                            <rect key="frame" x="21.333333333333314" y="15" width="12.666666666666664" height="9"/>
+                                                            <rect key="frame" x="21.999999999999972" y="15" width="11.333333333333336" height="9"/>
                                                             <fontDescription key="fontDescription" name="ProximaNova-Regular" family="ProximaNova-Regular" pointSize="8"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
@@ -2512,7 +2513,7 @@
                                                     <rect key="frame" x="329" y="0.0" width="55" height="30"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SUN" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dLU-ea-5Fp">
-                                                            <rect key="frame" x="19" y="15" width="17" height="9"/>
+                                                            <rect key="frame" x="19.666666666666686" y="15" width="16" height="9"/>
                                                             <fontDescription key="fontDescription" name="ProximaNova-Regular" family="ProximaNova-Regular" pointSize="8"/>
                                                             <color key="textColor" red="0.99607843139999996" green="0.0" blue="0.070588235289999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <nil key="highlightedColor"/>
@@ -5382,7 +5383,7 @@
                                                 </constraints>
                                             </view>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Top up amount" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JeP-6J-4oH">
-                                                <rect key="frame" x="24.999999999999993" y="200" width="98.333333333333314" height="18"/>
+                                                <rect key="frame" x="25" y="200" width="100" height="18"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="18" id="qeQ-iW-d9b"/>
                                                 </constraints>
@@ -5391,7 +5392,7 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="$ 100.00" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="NmN-FE-g1D">
-                                                <rect key="frame" x="138.33333333333334" y="195" width="257.66666666666663" height="30"/>
+                                                <rect key="frame" x="140" y="195" width="256" height="30"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="30" id="42G-Rx-QfW"/>
                                                 </constraints>

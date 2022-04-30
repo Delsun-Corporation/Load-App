@@ -14,8 +14,8 @@ class TrainingSettingsVC: UIViewController, UnitstDelegate {
     @IBOutlet weak var btnSave: UIButton!
     
     //MARK:- Variables
-    lazy var mainView: TrainingSettingsView = { [unowned self] in
-        return self.view as! TrainingSettingsView
+    lazy var mainView: TrainingSettingsView? = { [unowned self] in
+        return self.view as? TrainingSettingsView
     }()
     
     lazy var mainModelView: TrainingSettingsViewModel = {
@@ -27,7 +27,7 @@ class TrainingSettingsVC: UIViewController, UnitstDelegate {
         super.viewDidLoad()
         // this save button is set in default navigation bar not in custom
         self.btnSave.isHidden = true
-        self.mainView.setupUI(theController: self)
+        self.mainView?.setupUI(theController: self)
         self.mainModelView.setupUI()
     }
     
@@ -38,7 +38,7 @@ class TrainingSettingsVC: UIViewController, UnitstDelegate {
     }
     
     override func viewWillDisappear(_ animated: Bool) {
-        if let viewWithTag = self.navigationController!.view.viewWithTag(102) {
+        if let viewWithTag = self.navigationController?.view.viewWithTag(102) {
             viewWithTag.removeFromSuperview()
         }
     }
