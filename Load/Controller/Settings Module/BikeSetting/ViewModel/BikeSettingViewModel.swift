@@ -65,7 +65,7 @@ class BikeSettingViewModel{
                 hightOfView = 20
             }
             
-            vwnav.frame = CGRect(x: 0, y: CGFloat(hightOfView), width: self.theController.navigationController?.navigationBar.frame.width ?? 320, height: vwnav.frame.height)
+            vwnav.frame = CGRect(x: 0, y: CGFloat(hightOfView), width: self.theController.navigationController?.navigationBar.frame.width ?? 320, height: 61)
             
             let myMutableString = NSMutableAttributedString()
             

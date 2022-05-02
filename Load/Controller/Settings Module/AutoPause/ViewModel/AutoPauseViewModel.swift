@@ -31,7 +31,6 @@ class AutoPauseViewModel{
             vwnav.imgBackground.isHidden = true
             vwnav.btnback.isHidden = false
             vwnav.btnSave.isHidden = true
-            vwnav.btnSave.isHidden = true
             
             var hightOfView = 0
             if UIScreen.main.bounds.height >= 812 {
@@ -41,7 +40,7 @@ class AutoPauseViewModel{
                 hightOfView = 20
             }
             
-            vwnav.frame = CGRect(x: 0, y: CGFloat(hightOfView), width: self.theController.navigationController?.navigationBar.frame.width ?? 320, height: vwnav.frame.height)
+            vwnav.frame = CGRect(x: 0, y: CGFloat(hightOfView), width: self.theController.navigationController?.navigationBar.frame.width ?? 320, height: 61)
             
             let myMutableString = NSMutableAttributedString()
             

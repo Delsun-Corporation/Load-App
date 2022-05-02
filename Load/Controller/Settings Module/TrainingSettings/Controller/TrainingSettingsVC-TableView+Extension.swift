@@ -86,7 +86,7 @@ extension TrainingSettingsVC:UITableViewDataSource, UITableViewDelegate, Trainin
     }
     
     func TrainingSettingsTextFieldDismissed() {
-        self.mainView.tableView.reloadRows(at: [IndexPath(row: 3, section: 0)], with: .none)
+        self.mainView?.tableView.reloadRows(at: [IndexPath(row: 3, section: 0)], with: .none)
     }
     
     func TrainingSettingsButton(section: Int, row: Int) {
