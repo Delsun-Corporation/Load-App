@@ -1275,9 +1275,10 @@ extension ExerciseResistanceCell: UIPickerViewDataSource, UIPickerViewDelegate {
             if name == "Bodyweight" {
                 self.txtWeight.text = "-.-"
             } else if name == "Customize" {
-                //Show Alert
                 firstComponent = 0
                 secondComponent = 0
+                
+                pickerViewWeight.isUserInteractionEnabled = false
                 
                 self.isWeightCustom = true
                 self.endEditing(true)
@@ -1628,8 +1629,8 @@ extension ExerciseResistanceCell: UIPickerViewDataSource, UIPickerViewDelegate {
         
         if let selectedWeight = txtWeight.text, selectedWeight != "-.-" && !selectedWeight.isEmpty {
             arrayRequiredWeight.append(selectedWeight)
-        }
-        if let selectedResistanceWeightList = selectedResistanceWeightList, selectedResistanceWeightList.contains(where: { (rep) -> Bool in
+            pickerViewWeight.selectRow(0, inComponent: 0, animated: false)
+        } else if let selectedResistanceWeightList = selectedResistanceWeightList, selectedResistanceWeightList.contains(where: { (rep) -> Bool in
                 if rep.name?.replacingOccurrences(of: " RM", with: "") == self.txtReps.text?.toTrim(){
                     selectedRPforWeight = rep
                     return true
@@ -1654,9 +1655,10 @@ extension ExerciseResistanceCell: UIPickerViewDataSource, UIPickerViewDelegate {
         
         arrayRequiredWeight.append("Customize")
         
-        self.pickerViewWeight.reloadAllComponents()
-//        self.pickerViewWeight.layoutIfNeeded()
-//        self.pickerViewWeight.layoutSubviews()
+        pickerViewWeight.isUserInteractionEnabled = true
+        pickerViewWeight.reloadAllComponents()
+        self.pickerViewWeight.layoutIfNeeded()
+        self.pickerViewWeight.layoutSubviews()
     }
     
     func changesRepsAndGetWeight(strSelectedReps:String) -> String{
