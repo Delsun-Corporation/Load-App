@@ -204,22 +204,35 @@ class AccountViewModel {
         }
     }
     
-    @objc func saveButtonAction()
-    {
-        self.setUpNavigationBarRightButton(isRightButtonHidden: true)
-        let view = (self.theController.view as? AccountView)
-        
+    func isSaveIsAvailable() -> Bool {
         if self.selectedDateStart == nil {
             makeToast(strMessage: getCommonString(key: "Please_select_start_date_key"))
+            return false
         }
         else if self.selectedDateEnd == nil {
             makeToast(strMessage: getCommonString(key: "Please_select_end_date_key"))
+            return false
         }
         else if self.selectedDateStart! > self.selectedDateEnd! {
             makeToast(strMessage: getCommonString(key: "Start_date_is_greterthan_to_end_date_key"))
+            return false
         }
-        else {
-            self.apiCallForUpdateAccountSnooze(isSnooze: (view?.btnSnooze.isSelected)!, startDate:(self.selectedDateStart?.iso8601)!, endDate:(self.selectedDateEnd?.iso8601)!)
+        
+        return true
+    }
+    
+    @objc func saveButtonAction() {
+        self.setUpNavigationBarRightButton(isRightButtonHidden: true)
+        let view = (self.theController.view as? AccountView)
+        // Make sure that save is available
+        guard isSaveIsAvailable() == true else {
+            return
         }
+        
+        guard let isSnooze = view?.btnSnooze.isSelected, let startDate = selectedDateStart?.iso8601,
+              let endDate = selectedDateEnd?.iso8601 else {
+                  return
+              }
+        self.apiCallForUpdateAccountSnooze(isSnooze: isSnooze, startDate: startDate, endDate: endDate)
     }
 }

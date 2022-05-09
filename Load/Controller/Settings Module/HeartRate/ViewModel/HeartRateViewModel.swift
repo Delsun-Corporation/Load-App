@@ -8,7 +8,7 @@
 
 import Foundation
 
-protocol HeartRateDelegate: class {
+protocol HeartRateDelegate: AnyObject {
     func HeartRateFinish(HRMaxValue:String, HRRestValue:String,isHrMaxIsEstimated:Bool)
 }
 
