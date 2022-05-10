@@ -197,22 +197,27 @@ class PremiumViewModel: ProfessionalRequirementDelegate, FilterActivitySelectedD
     }
 
     
-    func validateDetails() {
-       
+    func validateDetails() -> Bool {
         if self.txtAbout == "" {
             makeToast(strMessage: getCommonString(key: "Please_enter_about_key"))
+            return false
         }
         else if self.selectedArray.count == 0 {
             makeToast(strMessage: getCommonString(key: "Please_select_activity_key"))
+            return false
         }
         else if self.languagesId == nil {
             makeToast(strMessage: getCommonString(key: "Please_select_languages_key"))
+            return false
         }
-        else {
-            self.theController.btnSave.isHidden = true
-             self.theController.resetNavigationBar()
-            self.apiCallSettingCreateUpdatePrimium(about: self.txtAbout, specializationIds: self.selectedArray, languageIds: self.languagesId!)
-        }
+        
+        return true
+    }
+    
+    func updatePremium() {
+        self.theController.btnSave.isHidden = true
+        self.theController.resetNavigationBar()
+        self.apiCallSettingCreateUpdatePrimium(about: self.txtAbout, specializationIds: self.selectedArray, languageIds: self.languagesId!)
     }
     
     func apiCallSettingCreateUpdatePrimium(about: String, specializationIds: [Int], languageIds: Int, isLoading: Bool = true) {
@@ -342,12 +347,22 @@ class PremiumViewModel: ProfessionalRequirementDelegate, FilterActivitySelectedD
 extension PremiumViewModel: CustomNavigationWithSaveButtonDelegate{
     
     func CustomNavigationClose() {
+        guard validateDetails() == true else {
+            return
+        }
+        
+        updatePremium()
+        
         self.theController.btnCloseClicked()
     }
     
     func CustomNavigationSave() {
         print("save")
-        self.validateDetails()
+        guard validateDetails() == true else {
+            return
+        }
+        
+        updatePremium()
     }
 
 

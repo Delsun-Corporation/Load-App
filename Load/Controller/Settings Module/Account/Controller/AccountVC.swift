@@ -30,6 +30,11 @@ class AccountVC: UIViewController {
     
     //MARK:- @IBAction
     @IBAction func btnBackClicked(_ sender: Any) {
+        // make sure that save method is available
+        guard mainModelView.isSaveIsAvailable() == true else {
+            return
+        }
+        mainModelView.saveButtonAction()
         self.navigationController?.popViewController(animated: true)
     }
     
