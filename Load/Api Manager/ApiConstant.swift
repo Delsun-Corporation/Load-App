@@ -200,11 +200,11 @@ extension Date {
     }
     
     func startOfMonth() -> Date {
-        return Calendar.current.date(from: Calendar.current.dateComponents([.year, .month], from: Calendar.current.startOfDay(for: self)))!
+        return Calendar.current.date(from: Calendar.current.dateComponents([.year, .month], from: Calendar.current.startOfDay(for: self))) ?? Date()
     }
     
     func endOfMonth() -> Date {
-        return Calendar.current.date(byAdding: DateComponents(month: 1, day: -1), to: self.startOfMonth())!
+        return Calendar.current.date(byAdding: DateComponents(month: 1, day: -1), to: self.startOfMonth()) ?? Date()
     }
     
     func position() -> Int {
@@ -214,9 +214,9 @@ extension Date {
     
     func count() -> Int {
         let calendar = Calendar.current
-        let range = calendar.range(of: .day, in: .month, for: self)!
-        let numDays = range.count
-        return numDays
+        let range = calendar.range(of: .day, in: .month, for: self)
+        let numDays = range?.count
+        return numDays ?? 0
     }
     
     var month: String {

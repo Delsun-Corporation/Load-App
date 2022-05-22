@@ -335,7 +335,7 @@ class ResistanceTrainingLogViewModel: DismissPreviewDelegate {
         let txtName = view?.txtName.text ?? ""
         let txtNotes = view?.txtNotes.text ?? ""
 
-        self.apiCallShareFriend(status: TRAINING_LOG_STATUS.RESISTANCE.rawValue, userId: (getUserDetail().data?.user?.id?.stringValue)!, date:  self.selectedDate, workoutName: txtName, trainingGoalId: trainingGoalId, trainingIntensityId: intensityId, isSavedWorkout: true, exercise: exerciseArray, toId: toId, notes: txtNotes)
+        self.apiCallShareFriend(status: TRAINING_LOG_STATUS.RESISTANCE.rawValue, userId: (getUserDetail()?.data?.user?.id?.stringValue) ?? "", date:  self.selectedDate, workoutName: txtName, trainingGoalId: trainingGoalId, trainingIntensityId: intensityId, isSavedWorkout: true, exercise: exerciseArray, toId: toId, notes: txtNotes)
     }
     
     func apiCallShareFriend(status: String, userId: String, date: String, workoutName: String, trainingGoalId: String, trainingIntensityId: String, isSavedWorkout: Bool, exercise: NSMutableArray, toId:String, notes: String) {
@@ -436,10 +436,10 @@ class ResistanceTrainingLogViewModel: DismissPreviewDelegate {
             let txtNotes = view?.txtNotes.text ?? ""
 
             if self.isEdit {
-                self.apiCallForUpdate(status: TRAINING_LOG_STATUS.RESISTANCE.rawValue, userId: (getUserDetail().data?.user?.id?.stringValue)!, date:  self.selectedDate, workoutName: txtName, trainingGoalId: trainingGoalId, trainingIntensityId: intensityId, isSavedWorkout: isSavedWorkout, exercise: exerciseArray, notes: txtNotes)
+                self.apiCallForUpdate(status: TRAINING_LOG_STATUS.RESISTANCE.rawValue, userId: (getUserDetail()?.data?.user?.id?.stringValue) ?? "", date:  self.selectedDate, workoutName: txtName, trainingGoalId: trainingGoalId, trainingIntensityId: intensityId, isSavedWorkout: isSavedWorkout, exercise: exerciseArray, notes: txtNotes)
             }
             else {
-                self.apiCall(status: TRAINING_LOG_STATUS.RESISTANCE.rawValue, userId: (getUserDetail().data?.user?.id?.stringValue)!, date:  self.selectedDate, workoutName: txtName, trainingGoalId: trainingGoalId, trainingIntensityId: intensityId, isSavedWorkout: isSavedWorkout, exercise: exerciseArray, notes: txtNotes)
+                self.apiCall(status: TRAINING_LOG_STATUS.RESISTANCE.rawValue, userId: (getUserDetail()?.data?.user?.id?.stringValue) ?? "", date:  self.selectedDate, workoutName: txtName, trainingGoalId: trainingGoalId, trainingIntensityId: intensityId, isSavedWorkout: isSavedWorkout, exercise: exerciseArray, notes: txtNotes)
             }
         }
     }

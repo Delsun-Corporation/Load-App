@@ -51,7 +51,7 @@ class ConfirmAvailibiltyChatCell: UITableViewCell {
                 self.lblDate.text = convertDateFormater(date, format: "yyyy-MM-dd'T'HH:mm:ss.SSSZ",  dateFormat: "dd MMMM yyyy")
                 self.lblTime.text = name
                 
-                if self.model?.fromId == getUserDetail().data?.user?.id {
+                if self.model?.fromId == getUserDetail()?.data?.user?.id {
                     self.viewAccept.isHidden = true
                     self.viewPending.isHidden = false
                     

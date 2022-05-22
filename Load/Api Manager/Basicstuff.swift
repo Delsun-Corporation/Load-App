@@ -25,11 +25,11 @@ struct GlobalVariables {
 let Defaults = UserDefaults.standard
 
 //MARK: - Realm Object
-var realm = try! Realm()
+var realm = try? Realm()
 
 //MARK: - Setup mapping
 let StringFilePath = Bundle.main.path(forResource: "Language", ofType: "plist")
-let dictStrings = NSDictionary(contentsOfFile: StringFilePath!)
+let dictStrings = NSDictionary(contentsOfFile: StringFilePath ?? "")
 
 func getCommonString(key:String) -> String {
     return dictStrings?.object(forKey: key) as? String ?? ""
@@ -43,10 +43,10 @@ func makeToast(strMessage : String){
     MDCSnackbarManager.default.show(messageSnack)
 }
 
-func getUserDetail() -> LoginModelClass {
+func getUserDetail() -> LoginModelClass? {
     let userDetail = loadJSON(key: USER_DETAILS_KEY)
     let data = JSON(userDetail)
-    return LoginModelClass(JSON: data.dictionaryObject!)!
+    return LoginModelClass(JSON: data.dictionaryObject ?? [String: Any]())
 }
 
 func getUserDetailJSON() -> JSON {
@@ -89,6 +89,6 @@ struct DEVICE_TYPE {
 
 extension NSLayoutConstraint {
     func constraintWithMultiplier(_ multiplier: CGFloat) -> NSLayoutConstraint {
-        return NSLayoutConstraint(item: self.firstItem!, attribute: self.firstAttribute, relatedBy: self.relation, toItem: self.secondItem, attribute: self.secondAttribute, multiplier: multiplier, constant: self.constant)
+        return NSLayoutConstraint(item: self.firstItem as Any, attribute: self.firstAttribute, relatedBy: self.relation, toItem: self.secondItem, attribute: self.secondAttribute, multiplier: multiplier, constant: self.constant)
     }
 }

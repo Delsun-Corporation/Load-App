@@ -247,7 +247,9 @@ class CalendarCell: UITableViewCell {
                 if title == "42" {
                     let array42:[String] = ["MONDAY", "TUESDAY", "WEDNESDAY", "THURSDAY", "FRIDAY", "SATURDAY", "SUNDAY"]
 
-                    let (_, weekNo) = getWeek(startDate: startDate, endDate: endDate, selectedDate: date.convertDateFormater(format: "yyyy-MM-dd"), days: array42)
+                    guard let (_, weekNo) = getWeek(startDate: startDate, endDate: endDate, selectedDate: date.convertDateFormater(format: "yyyy-MM-dd"), days: array42) else {
+                        return false
+                    }
                     if weekNo == 24 {
                         is24 = true
                         isBetween = true
@@ -260,7 +262,9 @@ class CalendarCell: UITableViewCell {
                 let title = list.presetTrainingProgram?.title?.lowercased().replace(target: "km", withString: "").toTrim()
                 if title == "5" {
                     let freq = list.trainingFrequency?.code?.lowercased() == "5x".lowercased()
-                    let (dayNo, weekNo) = getWeek(startDate: startDate, endDate: endDate, selectedDate: date.convertDateFormater(format: "yyyy-MM-dd"), days: list.days ?? [])
+                    guard let (dayNo, weekNo) = getWeek(startDate: startDate, endDate: endDate, selectedDate: date.convertDateFormater(format: "yyyy-MM-dd"), days: list.days ?? []) else {
+                        return false
+                    }
                     if dayNo == 1 && weekNo <= 6 && freq && list.days?.count == 5 {
                         isShowFirst = false
                     }
@@ -275,7 +279,9 @@ class CalendarCell: UITableViewCell {
                 }
                 else if title == "10" {
                     let freq = list.trainingFrequency?.code?.lowercased() == "6x".lowercased()
-                    let (dayNo, weekNo) = getWeek(startDate: startDate, endDate: endDate, selectedDate: date.convertDateFormater(format: "yyyy-MM-dd"), days: list.days ?? [])
+                    guard let (dayNo, weekNo) = getWeek(startDate: startDate, endDate: endDate, selectedDate: date.convertDateFormater(format: "yyyy-MM-dd"), days: list.days ?? []) else {
+                        return false
+                    }
                     if dayNo == 1 && weekNo <= 6 && freq && list.days?.count == 6 {
                         isShowFirst = false
                     }
@@ -298,7 +304,9 @@ class CalendarCell: UITableViewCell {
                 }
                 else if title == "21" {
                     let freq = list.trainingFrequency?.code?.lowercased() == "6x".lowercased()
-                    let (dayNo, weekNo) = getWeek(startDate: startDate, endDate: endDate, selectedDate: date.convertDateFormater(format: "yyyy-MM-dd"), days: list.days ?? [])
+                    guard let (dayNo, weekNo) = getWeek(startDate: startDate, endDate: endDate, selectedDate: date.convertDateFormater(format: "yyyy-MM-dd"), days: list.days ?? []) else {
+                        return false
+                    }
                     if dayNo == 1 && weekNo <= 6 && freq && list.days?.count == 6 {
                         isShowFirst = false
                     }
@@ -323,7 +331,9 @@ class CalendarCell: UITableViewCell {
                     let array42:[String] = ["MONDAY", "TUESDAY", "WEDNESDAY", "THURSDAY", "FRIDAY", "SATURDAY", "SUNDAY"]
 
                     let freq = list.trainingFrequency?.code?.lowercased() == "6x".lowercased()
-                    let (dayNo, weekNo) = getWeek(startDate: startDate, endDate: endDate, selectedDate: date.convertDateFormater(format: "yyyy-MM-dd"), days: is24 ? array42 : list.days ?? [])
+                    guard let (dayNo, weekNo) = getWeek(startDate: startDate, endDate: endDate, selectedDate: date.convertDateFormater(format: "yyyy-MM-dd"), days: is24 ? array42 : list.days ?? []) else {
+                        return false
+                    }
                     if dayNo == 1 && weekNo <= 6 && freq && list.days?.count == 6 {
                         isShowFirst = false
                     }

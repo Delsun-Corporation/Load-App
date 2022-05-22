@@ -52,10 +52,10 @@ class TrainingSettingsViewModel: RaceTimeDelegate {
         self.textArray[1][0] = (getUserDetail().data?.user?.dateOfBirth ?? "") == "" ? "" : self.getHRMax(date: getUserDetail().data?.user?.dateOfBirth ?? "")
         self.txtHRMax = self.textArray[1][0]
         */
-        self.textArray[0][1] = getUserDetail().data?.user?.height?.stringValue ?? ""
+        self.textArray[0][1] = getUserDetail()?.data?.user?.height?.stringValue ?? ""
         self.txtHeight = self.textArray[0][1]
         
-        self.textArray[0][2] = getUserDetail().data?.user?.weight?.stringValue ?? ""
+        self.textArray[0][2] = getUserDetail()?.data?.user?.weight?.stringValue ?? ""
         self.txtWeight = self.textArray[0][2]
         
         self.apiCallGetSettingProgram(isLoading: true)

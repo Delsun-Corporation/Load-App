@@ -157,13 +157,15 @@ func getCountryName(forLocation location: CLLocation, completionHandler: @escapi
     })
 }
 
-func getWeek(startDate:Date, endDate: Date, selectedDate:Date, days: [String]) -> (Int, Int) {
+func getWeek(startDate:Date, endDate: Date, selectedDate:Date, days: [String]) -> (Int, Int)? {
     let weekdayTest = Calendar.current.component(.weekday, from: startDate).makeRealWeekDay()
-    let testStartDate = Calendar.current.date(byAdding: .day, value: -(weekdayTest - 1), to: startDate)
+    guard let testStartDate = Calendar.current.date(byAdding: .day, value: -(weekdayTest - 1), to: startDate) else {
+        return nil
+    }
     
     var weekNumber = 0
-    let diffInDays = (Calendar.current.dateComponents([.day], from: testStartDate!, to: selectedDate).day ?? 0) + 1
-    let datesBetweenArray = Date.dates(from: testStartDate!, to: selectedDate)
+    let diffInDays = (Calendar.current.dateComponents([.day], from: testStartDate, to: selectedDate).day ?? 0) + 1
+    let datesBetweenArray = Date.dates(from: testStartDate, to: selectedDate)
     
     var weekCount = 1
     var dayCount = 0
@@ -245,8 +247,8 @@ func genderArray() -> [String] {
 func getCountryName(id:NSNumber) -> String {
     var name: String = ""
     for data in GetAllData?.data?.countries ?? [] {
-        if id == data.id {
-            name = data.name!
+        if id == data.id, let _name = data.name {
+            name = _name
         }
     }
     return name
@@ -255,8 +257,8 @@ func getCountryName(id:NSNumber) -> String {
 func getRegionName(id:NSNumber) -> String {
     var name: String = ""
     for data in GetAllData?.data?.regions ?? [] {
-        if id == data.id {
-            name = data.name!
+        if id == data.id, let _name = data.name {
+            name = _name
         }
     }
     return name
@@ -267,12 +269,12 @@ func getRegionNames(ids:[String]) -> String {
     
     for dataId in ids {
         for data in GetAllData?.data?.regions ?? [] {
-            if dataId == data.id!.stringValue {
-                if name == "" {
-                    name += data.name!
+            if dataId == data.id?.stringValue {
+                if name.isEmpty {
+                    name += data.name ?? ""
                 }
                 else {
-                    name += ", " + data.name!
+                    name += ", " + (data.name ?? "")
                 }
                 
             }
@@ -282,11 +284,11 @@ func getRegionNames(ids:[String]) -> String {
     return name
 }
 
-func getTrainingGoalName(id:NSNumber) -> String {
+func getTrainingGoalName(id: NSNumber) -> String {
     var name: String = ""
     for data in GetAllData?.data?.trainingGoal ?? [] {
-        if id == data.id {
-            name = data.name!
+        if id == data.id, let _name = data.name {
+            name = _name
         }
     }
     return name
@@ -295,8 +297,8 @@ func getTrainingGoalName(id:NSNumber) -> String {
 func getTrainingGoalTargetHRName(id:NSNumber) -> String {
     var name: String = ""
     for data in GetAllData?.data?.trainingGoal ?? [] {
-        if id == data.id {
-            name = data.targetHr!
+        if id == data.id, let _targetHr = data.targetHr {
+            name = _targetHr
         }
     }
     return name
@@ -305,8 +307,8 @@ func getTrainingGoalTargetHRName(id:NSNumber) -> String {
 func getIntensityName(id:NSNumber) -> String {
     var name: String = ""
     for data in GetAllData?.data?.trainingIntensity ?? [] {
-        if id == data.id {
-            name = data.name!
+        if id == data.id, let _name = data.name {
+            name = _name
         }
     }
     return name
@@ -315,8 +317,8 @@ func getIntensityName(id:NSNumber) -> String {
 func getRaceDistanceName(id:Int) -> String {
     var name: String = ""
     for data in GetAllData?.data?.raceDistance ?? [] {
-        if id == data.id?.intValue {
-            name = data.name!
+        if id == data.id?.intValue, let _name = data.name {
+            name = _name
         }
     }
     return name
@@ -335,8 +337,8 @@ func getTrainingActivityPath(id:Int) -> String {
 func getLanguagesName(id:Int) -> String {
     var name: String = ""
     for data in GetAllData?.data?.languages ?? [] {
-        if id == data.id?.intValue {
-            name = data.name!
+        if id == data.id?.intValue, let _name = data.name {
+            name = _name
         }
     }
     return name
@@ -345,8 +347,8 @@ func getLanguagesName(id:Int) -> String {
 func getAccountName(id:Int) -> String {
     var name: String = "Free"
     for data in GetAllData?.data?.accounts ?? [] {
-        if id == data.id?.intValue {
-            name = data.name!.capitalized
+        if id == data.id?.intValue, let _name = data.name {
+            name = _name.capitalized
         }
     }
     return name
@@ -355,8 +357,8 @@ func getAccountName(id:Int) -> String {
 func getCategoryName(id:NSNumber) -> String {
     var name: String = ""
     for data in GetAllData?.data?.category ?? [] {
-        if id == data.id {
-            name = data.name!
+        if id == data.id, let _name = data.name {
+            name = _name
         }
     }
     return name
@@ -365,8 +367,8 @@ func getCategoryName(id:NSNumber) -> String {
 func getMechanicsName(id:NSNumber) -> String {
     var name: String = ""
     for data in GetAllData?.data?.mechanics ?? [] {
-        if id == data.id {
-            name = data.name!
+        if id == data.id, let _name = data.name {
+            name = _name
         }
     }
     return name
@@ -377,12 +379,12 @@ func getTargetedMusclesName(ids:[String]) -> String {
     
     for dataId in ids {
         for data in GetAllData?.data?.targetedMuscles ?? [] {
-            if dataId == data.id!.stringValue {
-                if name == "" {
-                    name += data.name!
+            if dataId == data.id?.stringValue {
+                if name.isEmpty {
+                    name += data.name ?? ""
                 }
                 else {
-                    name += ", " + data.name!
+                    name += ", " + (data.name ?? "")
                 }
             }
         }
@@ -394,8 +396,8 @@ func getTargetedMusclesName(ids:[String]) -> String {
 func getActionForceName(id:NSNumber) -> String {
     var name: String = ""
     for data in GetAllData?.data?.actionForce ?? [] {
-        if id == data.id {
-            name = data.name!
+        if id == data.id, let _name = data.name {
+            name = _name
         }
     }
     return name
@@ -404,8 +406,8 @@ func getActionForceName(id:NSNumber) -> String {
 func getEquipmentsName(id:NSNumber) -> String {
     var name: String = ""
     for data in GetAllData?.data?.equipments ?? [] {
-        if id == data.id {
-            name = data.name!
+        if id == data.id, let _name = data.name {
+            name = _name
         }
     }
     return name
@@ -416,12 +418,12 @@ func getEquipmentsNames(ids:[String]) -> String {
     
     for dataId in ids {
         for data in GetAllData?.data?.equipments ?? [] {
-            if dataId == data.id!.stringValue {
+            if dataId == data.id?.stringValue {
                 if name == "" {
-                    name += data.name!
+                    name += data.name ?? ""
                 }
                 else {
-                    name += ", " + data.name!
+                    name += ", " + (data.name ?? "")
                 }
             }
         }
@@ -557,7 +559,7 @@ func DismissProgress() {
 }
 
 func convertDate(_ date: String, dateFormat: String) -> Date {
-    if date == "" || date == nil {
+    if date.isEmpty {
         return Date()
     }
     let dateFormatter = DateFormatter()
@@ -567,14 +569,16 @@ func convertDate(_ date: String, dateFormat: String) -> Date {
 }
 
 func convertDateFormater(_ date: String, format:String = "yyyy-MM-dd HH:mm:ss", dateFormat: String) -> String {
-    if date == "" || date == nil{
+    if date.isEmpty {
         return ""
     }
     let dateFormatter = DateFormatter()
     dateFormatter.dateFormat = format
-    let date = dateFormatter.date(from: date)
+    guard let date = dateFormatter.date(from: date) else {
+        return ""
+    }
     dateFormatter.dateFormat = dateFormat
-    return  dateFormatter.string(from: date!)
+    return dateFormatter.string(from: date)
 }
 
 func convertStringToISO8601(_ date: String, dateFormat: String) -> String {
@@ -584,7 +588,7 @@ func convertStringToISO8601(_ date: String, dateFormat: String) -> String {
     let dateFormatter = DateFormatter()
     dateFormatter.dateFormat = dateFormat
     let date = dateFormatter.date(from: date)
-    return  (date?.iso8601)!
+    return (date?.iso8601) ?? ""
 }
 
 func DateToString(Formatter:String,date:Date) -> String{
@@ -650,11 +654,13 @@ extension String {
         dateFormatter.calendar = NSCalendar.current
         dateFormatter.timeZone = TimeZone.current
         
-        let dt = dateFormatter.date(from: self)
+        guard let dt = dateFormatter.date(from: self) else {
+            return ""
+        }
         dateFormatter.timeZone = TimeZone(abbreviation: "UTC")
         dateFormatter.dateFormat = dateFormat
         
-        return dateFormatter.string(from: dt!)
+        return dateFormatter.string(from: dt)
     }
     
     func UTCToLocal(dateFormat:String = "yyyy-MM-dd HH:mm:ss", returnFormat:String = "yyyy-MM-dd HH:mm:ss") -> String {
@@ -664,22 +670,26 @@ extension String {
         if self == "" {
             return ""
         }
-        let dt = dateFormatter.date(from: self)
+        guard let dt = dateFormatter.date(from: self) else {
+            return ""
+        }
         dateFormatter.timeZone = TimeZone.current
         dateFormatter.dateFormat = returnFormat
         
-        return dateFormatter.string(from: dt!)
+        return dateFormatter.string(from: dt)
     }
     
     func getYear() -> Int {
         let start = self        
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "dd-MM-yyyy"
-        let startDate:Date = dateFormatter.date(from: start)!
+        guard let startDate = dateFormatter.date(from: start) else {
+            return 0
+        }
         let endDate:Date = Date()
         let cal = NSCalendar.current
         let components = cal.dateComponents([.year], from: startDate, to: endDate)
-        return components.year!
+        return components.year ?? 0
     }
     
     func widthOfString(usingFont font: UIFont) -> CGFloat {
@@ -709,7 +719,7 @@ extension String {
 //        if date == nil{  
 //            return Date()
 //        }
-        return date!
+        return date ?? Date()
     }
 }
 
@@ -816,7 +826,7 @@ extension UIImage {
         UIGraphicsBeginImageContextWithOptions(rect.size, false, 0.0)
         color.setFill()
         UIRectFill(rect)
-        let image : UIImage = UIGraphicsGetImageFromCurrentImageContext()!
+        let image : UIImage = UIGraphicsGetImageFromCurrentImageContext() ?? UIImage()
         UIGraphicsEndImageContext()
         return image
     }
@@ -830,7 +840,7 @@ extension UIImage {
         var topPadding: CGFloat = 20
         if #available(iOS 11.0, *) {
             let window = UIApplication.shared.keyWindow
-            topPadding = (window?.safeAreaInsets.top)!
+            topPadding = (window?.safeAreaInsets.top) ?? 0
         }
         
         let height = customHeight == 0 ? newSize.height : (customHeight + topPadding+2)
@@ -840,7 +850,7 @@ extension UIImage {
         let newImage = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
         
-        return newImage!
+        return newImage ?? UIImage()
     }
     
     func resize(maxWidthHeight : Double)-> UIImage? {
@@ -929,7 +939,9 @@ func isValidEmail(testStr:String) -> Bool {
 }
 
 func isValidPassword(testStr:String?) -> Bool {
-    guard testStr != nil else { return false }
+    guard let testStr = testStr else {
+        return false
+    }
     // at least one digit
     // at least one lowercase
     // 8 characters total
@@ -949,7 +961,7 @@ func jsonString(from object:Any) -> String? {
 
 func randomString(length: Int) -> String {
     let letters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
-    return String((0...length-1).map{ _ in letters.randomElement()! })
+    return String((0...length-1).map{ _ in (letters.randomElement() ?? String.Element("")) })
 }
 
 func isKeyPresentInUserDefaults(key: String) -> Bool {
@@ -970,57 +982,64 @@ func timeAgoSinceDateNew(date:NSDate, numericDates:Bool) -> String {
     let earliest = now.earlierDate(date as Date)
     let latest = (earliest == now as Date) ? date : now
     let components = calendar.dateComponents(unitFlags, from: earliest as Date,  to: latest as Date)
+    let year = components.year ?? 0
+    let month = components.month ?? 0
+    let day = components.day ?? 0
+    let weekOfYear = components.weekOfYear ?? 0
+    let hour = components.hour ?? 0
+    let minute = components.minute ?? 0
+    let second = components.second ?? 0
     
-    if (components.year! >= 2) {
-        return "\(components.year!) years ago"
-    } else if (components.year! >= 1){
+    if (year >= 2) {
+        return "\(year) years ago"
+    } else if (year >= 1){
         if (numericDates){
             return "1 year ago"
         } else {
             return "Last year"
         }
-    } else if (components.month! >= 2) {
-        return "\(components.month!) months ago"
-    } else if (components.month! >= 1){
+    } else if (month >= 2) {
+        return "\(month) months ago"
+    } else if (month >= 1){
         if (numericDates){
             return "1 month ago"
         } else {
             return "Last month"
         }
-    } else if (components.weekOfYear! >= 2) {
-        return "\(components.weekOfYear!) weeks ago"
-    } else if (components.weekOfYear! >= 1){
+    } else if (weekOfYear >= 2) {
+        return "\(weekOfYear) weeks ago"
+    } else if (weekOfYear >= 1){
         if (numericDates){
             return "1 week ago"
         } else {
             return "Last week"
         }
-    } else if (components.day! >= 2) {
-        return "\(components.day!) days ago"
-    } else if (components.day! >= 1){
+    } else if (day >= 2) {
+        return "\(day) days ago"
+    } else if (day >= 1){
         if (numericDates){
             return "1 day ago"
         } else {
             return "Yesterday"
         }
-    } else if (components.hour! >= 2) {
-        return "\(components.hour!) hours ago"
-    } else if (components.hour! >= 1){
+    } else if (hour >= 2) {
+        return "\(hour) hours ago"
+    } else if (hour >= 1){
         if (numericDates){
             return "1 hour ago"
         } else {
             return "An hour ago"
         }
-    } else if (components.minute! >= 2) {
-        return "\(components.minute!) minutes ago"
-    } else if (components.minute! >= 1){
+    } else if (minute >= 2) {
+        return "\(minute) minutes ago"
+    } else if (minute >= 1){
         if (numericDates){
             return "1 minute ago"
         } else {
             return "A minute ago"
         }
-    } else if (components.second! >= 3) {
-        return "\(components.second!) seconds ago"
+    } else if (second >= 3) {
+        return "\(second) seconds ago"
     } else {
         return "Just now"
     }
@@ -1048,12 +1067,18 @@ func setColorWithName(mainString: String, stringToColor: String) -> NSAttributed
 }
 
 public func saveJSON(j: JSON, key: String) {
-    userDefault.setValue(j.rawString()!, forKey: key)
+    guard let json = j.rawString() else {
+        return
+    }
+    userDefault.setValue(json, forKey: key)
     // here I save my JSON as a string
 }
 
 public func loadJSON(key: String) -> JSON {
-    return isKeyPresentInUserDefaults(key: key) ? JSON.init(parseJSON: userDefault.value(forKey: key) as! String) : JSON()
+    guard let json =  UserDefaults.standard.string(forKey: key)else {
+        return JSON()
+    }
+    return isKeyPresentInUserDefaults(key: key) ? JSON.init(parseJSON: json) : JSON()
     // JSON from string must be initialized using .parse()
 }
 
@@ -1111,7 +1136,7 @@ extension UITapGestureRecognizer {
         // Create instances of NSLayoutManager, NSTextContainer and NSTextStorage
         let layoutManager = NSLayoutManager()
         let textContainer = NSTextContainer(size: CGSize.zero)
-        let textStorage = NSTextStorage(attributedString: label.attributedText!)
+        let textStorage = NSTextStorage(attributedString: label.attributedText ?? NSAttributedString(string: ""))
         
         // Configure layoutManager and textStorage
         layoutManager.addTextContainer(textContainer)
@@ -1186,7 +1211,7 @@ extension UIImage {
             delayObject = unsafeBitCast(CFDictionaryGetValue(gifProperties, Unmanaged.passUnretained(kCGImagePropertyGIFDelayTime).toOpaque()), to: AnyObject.self)
         }
         
-        delay = delayObject as! Double
+        delay = (delayObject as? Double) ?? 0.0
         
         if delay < 0.1 {
             delay = 0.1
@@ -1208,21 +1233,23 @@ extension UIImage {
             }
         }
         
-        if a! < b! {
-            let c = a!
-            a = b!
+        if let _a = a, let _b = b, _a < _b {
+            let c = _a
+            a = _b
             b = c
         }
         
         var rest: Int
         while true {
-            rest = a! % b!
-            
-            if rest == 0 {
-                return b!
-            } else {
-                a = b!
-                b = rest
+            if let _a = a, let _b = b {
+                rest = _a % _b
+                
+                if rest == 0 {
+                    return _b
+                } else {
+                    a = _b
+                    b = rest
+                }
             }
         }
     }
@@ -1502,13 +1529,13 @@ extension Date {
     var yesterday: Date { return Date().dayBefore }
     var tomorrow:  Date { return Date().dayAfter }
     var dayBefore: Date {
-        return Calendar.current.date(byAdding: .day, value: -1, to: noon)!
+        return Calendar.current.date(byAdding: .day, value: -1, to: noon) ?? Date()
     }
     var dayAfter: Date {
-        return Calendar.current.date(byAdding: .day, value: 1, to: noon)!
+        return Calendar.current.date(byAdding: .day, value: 1, to: noon) ?? Date()
     }
     var noon: Date {
-        return Calendar.current.date(bySettingHour: 12, minute: 0, second: 0, of: self)!
+        return Calendar.current.date(bySettingHour: 12, minute: 0, second: 0, of: self) ?? Date()
     }
     var monthNo: Int {
         return Calendar.current.component(.month,  from: self)

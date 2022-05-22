@@ -54,7 +54,7 @@ class FeedCommentVC: UIViewController {
             makeToast(strMessage: getCommonString(key: "Please_enter_comment_key"))
         }
         else {
-            self.mainModelView.apiCallCreateComment(feedId: self.mainModelView.feedId, userId: (getUserDetail().data?.user?.id?.stringValue)!, comment: self.mainView.txtComment.text!.toTrim(), isLoading: false)
+            self.mainModelView.apiCallCreateComment(feedId: self.mainModelView.feedId, userId: (getUserDetail()?.data?.user?.id?.stringValue) ?? "", comment: self.mainView.txtComment.text?.toTrim() ?? "", isLoading: false)
             self.mainView.txtComment.text = ""
         }
     }

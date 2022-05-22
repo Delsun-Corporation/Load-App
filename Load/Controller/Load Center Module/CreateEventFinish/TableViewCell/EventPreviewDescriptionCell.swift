@@ -44,8 +44,8 @@ class EventPreviewDescriptionCell: UITableViewCell {
         self.setupFont()
         self.lblTitle.text = title.capitalized
         self.lblPricePerson.text = "$" + pricePerson + " per person"
-        self.imgProfile.sd_setImage(with: getUserDetail().data?.user?.photo?.toURL(), completed: nil)
-        self.lblName.text = getUserDetail().data?.user?.name
+        self.imgProfile.sd_setImage(with: getUserDetail()?.data?.user?.photo?.toURL(), completed: nil)
+        self.lblName.text = getUserDetail()?.data?.user?.name
         self.lblLocation.text = "Singapore"
         self.lblDescription.text = description
     }

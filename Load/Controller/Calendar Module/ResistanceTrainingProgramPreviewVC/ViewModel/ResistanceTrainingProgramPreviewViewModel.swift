@@ -46,7 +46,7 @@ class ResistanceTrainingProgramPreviewViewModel {
     func apiCallMessagesUserList(trainingFrequenciesId:String, presetTrainingProgramsId:String, startDate:Date, endDate:Date, days:[String]) {
         let param = ["status": TRAINING_LOG_STATUS.RESISTANCE.rawValue,
                      "type": TRAINING_LOG_STATUS.PRESET.rawValue,
-                     "user_id": getUserDetail().data?.user?.id?.stringValue ?? "",
+                     "user_id": getUserDetail()?.data?.user?.id?.stringValue ?? "",
                      "training_frequencies_id": trainingFrequenciesId,
                      "preset_training_programs_id": presetTrainingProgramsId,
                      "start_date": startDate.iso8601,

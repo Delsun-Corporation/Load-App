@@ -123,7 +123,7 @@ class SettingsProfileViewModel {
     func apiCallGetUserDetail() {
         let param = ["": ""] as [String : Any]
         
-        ApiManager.shared.MakeGetAPI(name: USER + "/" + (getUserDetail().data?.user?.id?.stringValue)!, params: param as [String : Any], vc: self.theController, isAuth: false, completionHandler: { (response, error) in
+        ApiManager.shared.MakeGetAPI(name: USER + "/" + (getUserDetail()?.data?.user?.id?.stringValue)!, params: param as [String : Any], vc: self.theController, isAuth: false, completionHandler: { (response, error) in
             if response != nil {
                 let json = JSON(response!)
                 print(json)
@@ -185,7 +185,7 @@ class SettingsProfileViewModel {
         let param = ["name": name, "email": email, "country_code": countryCode, "mobile": mobile, "date_of_birth": convertDateFormater(dateOfBirth, format: "dd / MM / yyyy", dateFormat: "dd-MM-yyyy"), "country_id": countryId, "facebook": facebook] as [String : Any]
         print(param)
         
-        ApiManager.shared.MakePostWithImageAPI(name: USER_UPDATE + "/" + (getUserDetail().data?.user?.id?.stringValue)!, params: param as [String : Any], images: images, vc: self.theController, isAuth: false, completionHandler: { (response, error) in
+        ApiManager.shared.MakePostWithImageAPI(name: USER_UPDATE + "/" + (getUserDetail()?.data?.user?.id?.stringValue)!, params: param as [String : Any], images: images, vc: self.theController, isAuth: false, completionHandler: { (response, error) in
             if response != nil {
                 let json = JSON(response!)
                 print(json)

@@ -60,7 +60,7 @@ class OtherUserProfileViewModel {
     }
     
     func apiCallShowMessages(isLoading:Bool = true) {
-        let param = ["from_id": getUserDetail().data?.user?.id?.stringValue ?? "", "to_id":self.profileDetails?.userId?.stringValue ?? ""] as [String : Any]
+        let param = ["from_id": getUserDetail()?.data?.user?.id?.stringValue ?? "", "to_id":self.profileDetails?.userId?.stringValue ?? ""] as [String : Any]
         print(param)
         
         ApiManager.shared.MakePostAPI(name: GET_CONVERSATION_DETAIL_CUSTOM, params: param as [String : Any], progress: isLoading, vc: self.theController, isAuth: false, completionHandler: { (response, error) in

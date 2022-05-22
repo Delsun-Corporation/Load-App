@@ -168,7 +168,7 @@ class CardioFeedsCell: UITableViewCell {
     }
     
     func setupBubbles(model: FeedList) {
-        let max = model.userId == getUserDetail().data?.user?.id ? 1 : 5
+        let max = model.userId == getUserDetail()?.data?.user?.id ? 1 : 5
         let configFiles = getConfigFiles(images: model.likedDetail?.images ?? [])
         self.collectionWidth.constant = CGFloat(configFiles.count * 15)
         let layoutConfigurator = BPLayoutConfigurator(

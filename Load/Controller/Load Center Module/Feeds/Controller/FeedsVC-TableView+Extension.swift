@@ -66,10 +66,10 @@ extension FeedsVC: UITableViewDelegate, UITableViewDataSource, FeedsActionDelega
     
     func FeedsLikeActionDidFinish(tag: Int) {
         self.mainModelView.feedDetails?.list![tag].likedDetail?.isLiked = !(self.mainModelView.feedDetails?.list![tag].likedDetail?.isLiked ?? false)
-        let id = getUserDetail().data?.user?.id?.stringValue
+        let id = getUserDetail()?.data?.user?.id?.stringValue
         if (self.mainModelView.feedDetails?.list![tag].likedDetail?.isLiked)! {
             self.mainModelView.feedDetails?.list![tag].likedDetail?.userIds?.append(id!)
-            let dict: NSDictionary = ["id":getUserDetail().data?.user?.id ?? 0, "photo":getUserDetail().data?.user?.photo ?? ""]
+            let dict: NSDictionary = ["id":getUserDetail()?.data?.user?.id ?? 0, "photo":getUserDetail()?.data?.user?.photo ?? ""]
             var likeImage = JSON(dict)
             self.mainModelView.feedDetails?.list![tag].likedDetail?.images?.append(LikedImages(JSON: likeImage.dictionaryObject!)!)
         }

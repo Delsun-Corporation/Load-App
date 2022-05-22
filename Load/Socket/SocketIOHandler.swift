@@ -35,7 +35,7 @@ class SocketIOHandler: NSObject {
     
     func Connect() {
         if manager==nil && socket == nil {
-            self.userId = getUserDetail().data!.user!.id!.stringValue
+            self.userId = getUserDetail()?.data?.user?.id?.stringValue ?? ""
             let headers = ["id": self.userId]
             
             manager = SocketManager(socketURL: URL(string: SOCKET_SERVER_PATH)!, config: [.log(true), .compress, .connectParams(headers)])

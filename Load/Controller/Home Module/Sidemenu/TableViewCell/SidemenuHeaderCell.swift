@@ -33,8 +33,8 @@ class SidemenuHeaderCell: UITableViewCell {
     
     func setupUI() {
         self.setupFont()
-        self.lblName.text = getUserDetail().data?.user?.name
-        self.imgProfile.sd_setImage(with: getUserDetail().data?.user?.photo?.toURL(), completed: nil)
+        self.lblName.text = getUserDetail()?.data?.user?.name
+        self.imgProfile.sd_setImage(with: getUserDetail()?.data?.user?.photo?.toURL(), completed: nil)
     }
     
     func setupFont() {

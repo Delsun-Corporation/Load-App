@@ -69,7 +69,7 @@ extension HeartRateVc{
         
         self.mainView.txtHRMaxValue.inputView = self.mainModelView.targatHRMaxPickerView
         
-        let dataCheck = (getUserDetail().data?.user?.dateOfBirth ?? "") == "" ? "" : self.mainModelView.getHRMax(date: getUserDetail().data?.user?.dateOfBirth ?? "")
+        let dataCheck = (getUserDetail()?.data?.user?.dateOfBirth ?? "") == "" ? "" : self.mainModelView.getHRMax(date: getUserDetail()?.data?.user?.dateOfBirth ?? "")
         
         if self.mainModelView.isHrMaxIsEstimated{
             self.mainModelView.targatHRMaxPickerView.selectRow(0, inComponent: 0, animated: false)

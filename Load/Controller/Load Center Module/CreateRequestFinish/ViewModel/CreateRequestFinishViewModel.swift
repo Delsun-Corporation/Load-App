@@ -45,9 +45,9 @@ class CreateRequestFinishViewModel {
         let view = (self.theController.view as? CreateRequestFinishView)
         view?.lblTitle.text = self.requestTitle        
         
-        let str1 = getUserDetail().data!.user!.name
-        let str2 = "\(getUserDetail().data!.user!.dateOfBirth!.getYear())" + " year old"
-        let str3 = getUserDetail().data!.user!.gender
+        let str1 = getUserDetail()?.data!.user!.name
+        let str2 = "\(String(describing: getUserDetail()?.data!.user!.dateOfBirth!.getYear()))" + " year old"
+        let str3 = getUserDetail()?.data!.user!.gender
         
         var countryName = ""
         
@@ -91,7 +91,7 @@ class CreateRequestFinishViewModel {
         if isEdit{
             updateRequest()
         }else{
-            self.apiCallLibraryList(status: LOAD_CENTER_TYPE.REQUEST.rawValue, userId: (getUserDetail().data?.user?.id?.stringValue)!, title: requestTitle, startDate: DateToString(Formatter: "yyyy-MM-dd HH:mm:ss", date: selectedDateStartTraining ?? Date()), birthDate: getUserDetail().data?.user?.dateOfBirth ?? "", yourself: requestDescription, countryId: location, trainingTypeIds: typesOfTraining, specializationIds: self.selectedSpecialization, experienceYear: coachExperience, rating: rate)
+            self.apiCallLibraryList(status: LOAD_CENTER_TYPE.REQUEST.rawValue, userId: (getUserDetail()?.data?.user?.id?.stringValue) ?? "", title: requestTitle, startDate: DateToString(Formatter: "yyyy-MM-dd HH:mm:ss", date: selectedDateStartTraining ?? Date()), birthDate: getUserDetail()?.data?.user?.dateOfBirth ?? "", yourself: requestDescription, countryId: location, trainingTypeIds: typesOfTraining, specializationIds: self.selectedSpecialization, experienceYear: coachExperience, rating: rate)
         }
     }
     

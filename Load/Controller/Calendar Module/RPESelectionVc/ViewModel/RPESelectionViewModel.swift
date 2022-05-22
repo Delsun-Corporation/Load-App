@@ -106,20 +106,27 @@ class RPESelectionViewModel: CustomNavigationDelegate{
                     AppDelegate.shared.delegateUpadateLatLong = nil
 
                     if self.controllerMoveFrom == .trainingLog{
-                        if let valueFound = Defaults.value(forKey: self.trainingLogId){
+                        if let valueFound = Defaults.value(forKey: self.trainingLogId) {
                             Defaults.removeObject(forKey: self.trainingLogId)
                             Defaults.synchronize()
                         }
                         
-                        let routeObjects = Array(realm.objects(CardioActivityRoute.self)).filter { $0.userId == getUserDetail().data!.user!.id!.stringValue && $0.activityId == Int(self.trainingLogId)}
+                        guard let routerArray = realm?.objects(CardioActivityRoute.self) else {
+                            return
+                        }
+                        
+                        let routeObjects = Array(routerArray).filter { $0.userId == getUserDetail()?.data?.user?.id?.stringValue && $0.activityId == Int(self.trainingLogId)}
 
-                        if routeObjects.count > 0{
+                        if routeObjects.count > 0 {
+                            guard let routerLapArray = realm?.objects(LapDetails.self) else {
+                                return
+                            }
                             
-                            let lapObjects = Array(realm.objects(LapDetails.self)).filter { $0.routeId == routeObjects[0].id}
+                            let lapObjects = Array(routerLapArray).filter { $0.routeId == routeObjects[0].id}
 
-                            try! realm.write{
-                                realm.delete(routeObjects[0])
-                                realm.delete(lapObjects)
+                            try? realm?.write{
+                                realm?.delete(routeObjects[0])
+                                realm?.delete(lapObjects)
                             }
                         }
 
@@ -131,15 +138,23 @@ class RPESelectionViewModel: CustomNavigationDelegate{
                             Defaults.synchronize()
                         }
                         
-                        let routeObjects = Array(realm.objects(CardioActivityRouteTrainingProgram.self)).filter { $0.userId == getUserDetail().data!.user!.id!.stringValue && $0.weekWiseProgramId == Int(self.trainingLogId)}
+                        guard let routerArray = realm?.objects(CardioActivityRouteTrainingProgram.self) else {
+                            return
+                        }
+                        
+                        let routeObjects = Array(routerArray).filter { $0.userId == getUserDetail()?.data?.user?.id?.stringValue && $0.weekWiseProgramId == Int(self.trainingLogId)}
 
                         if routeObjects.count > 0{
                             
-                            let lapObjects = Array(realm.objects(LapDetails.self)).filter { $0.routeId == routeObjects[0].id}
+                            guard let routerLapArray = realm?.objects(LapDetails.self) else {
+                                return
+                            }
+                            
+                            let lapObjects = Array(routerLapArray).filter { $0.routeId == routeObjects[0].id}
 
-                            try! realm.write{
-                                realm.delete(routeObjects[0])
-                                realm.delete(lapObjects)
+                            try? realm?.write{
+                                realm?.delete(routeObjects[0])
+                                realm?.delete(lapObjects)
                             }
                         }
 

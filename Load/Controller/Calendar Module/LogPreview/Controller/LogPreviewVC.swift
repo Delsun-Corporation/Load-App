@@ -86,8 +86,10 @@ class LogPreviewVC: UIViewController, NewMessageSelectDelegate, CountDownViewDel
         AppDelegate.shared.locationManager.startUpdatingLocation()
 
         //Get data from database
-        
-        let routeObjects = Array(realm.objects(CardioActivityRoute.self)).filter { $0.userId == getUserDetail().data!.user!.id!.stringValue && $0.activityId == Int(self.mainModelView.trainingLogId)}
+        guard let routerArray = realm?.objects(CardioActivityRoute.self) else {
+            return
+        }
+        let routeObjects = Array(routerArray).filter { $0.userId == getUserDetail()?.data!.user!.id!.stringValue && $0.activityId == Int(self.mainModelView.trainingLogId)}
 
         if routeObjects.count > 0{
             /*
@@ -686,9 +688,12 @@ class LogPreviewVC: UIViewController, NewMessageSelectDelegate, CountDownViewDel
             
             if self.mainModelView.previewData?.exercise?[self.mainModelView.currentWorkedIndex].duration == nil || self.mainModelView.previewData?.exercise?[self.mainModelView.currentWorkedIndex].duration == ""{
                 
-                try! realm.write{
+                try? realm?.write{
+                    guard let routerArray = realm?.objects(CardioActivityRoute.self) else {
+                        return
+                    }
                     
-                    let routeObjects = Array(realm.objects(CardioActivityRoute.self)).filter { $0.userId == getUserDetail().data!.user!.id!.stringValue && $0.activityId == Int(self.mainModelView.trainingLogId)}
+                    let routeObjects = Array(routerArray).filter { $0.userId == getUserDetail()?.data!.user!.id!.stringValue && $0.activityId == Int(self.mainModelView.trainingLogId)}
                     
                     if routeObjects.count > 0 {
                         
@@ -1311,8 +1316,10 @@ extension LogPreviewVC{
             self.removeTimerOfMotion()
             
             var isPaused = false
-            
-            let routeObjects = Array(realm.objects(CardioActivityRoute.self)).filter { $0.userId == getUserDetail().data!.user!.id!.stringValue && $0.activityId == Int(self.mainModelView.trainingLogId)}
+            guard let routerArray = realm?.objects(CardioActivityRoute.self) else {
+                return
+            }
+            let routeObjects = Array(routerArray).filter { $0.userId == getUserDetail()?.data!.user!.id!.stringValue && $0.activityId == Int(self.mainModelView.trainingLogId)}
             
             if self.mainModelView.previewData?.exercise?.count ?? 0 > 0{
                 
@@ -1343,7 +1350,7 @@ extension LogPreviewVC{
                         
                         if self.mainModelView.previewData?.exercise?[(self.mainModelView.previewData?.exercise?.count ?? 0) - 1].isCompleted == true && self.mainModelView.previewData?.exercise?[(self.mainModelView.previewData?.exercise?.count ?? 0) - 1].isCompletedRest == true{
                             
-                            try! realm.write{
+                            try? realm?.write{
                                 
                                 if routeObjects.count > 0{
                                     routeObjects[0].isAutomaticallyPause = false
@@ -1354,7 +1361,7 @@ extension LogPreviewVC{
                         }else{
                             if (self.mainModelView.previewData?.exercise?[self.mainModelView.currentWorkedIndex].isCompleted != true){
                                 
-                                try! realm.write{
+                                try? realm?.write{
                                     
                                     if routeObjects.count > 0{
                                         routeObjects[0].isAutomaticallyPause = false
@@ -1722,8 +1729,10 @@ extension LogPreviewVC: updateLatLongDelegate{
             self.removeTimerOfMotion()
 
             if lattitude != lat && longitude != long {
-                
-                let routeObjects = Array(realm.objects(CardioActivityRoute.self)).filter { $0.userId == getUserDetail().data!.user!.id!.stringValue && $0.activityId == Int(self.mainModelView.trainingLogId)}
+                guard let routerArray = realm?.objects(CardioActivityRoute.self) else {
+                    return
+                }
+                let routeObjects = Array(routerArray).filter { $0.userId == getUserDetail()?.data!.user!.id!.stringValue && $0.activityId == Int(self.mainModelView.trainingLogId)}
                 
                 //When user click on End button that time user goes to 10 second timer so that time isPaused call and Loader continue
                 if self.isEndAlertShowing == true{
@@ -1780,7 +1789,7 @@ extension LogPreviewVC: updateLatLongDelegate{
                 
                 print("TraininngGaolId : \(Int(self.mainModelView.trainingLogId))")
                 
-                try! realm.write{
+                try? realm?.write{
                     if routeObjects.count > 0{
                         routeObjects[0].allTrackRoute = encodedPolyline
                         
@@ -1837,7 +1846,11 @@ extension LogPreviewVC{
     
     func getTrackDistance(){
         
-        let routeObjects = Array(realm.objects(CardioActivityRoute.self)).filter { $0.userId == getUserDetail().data!.user!.id!.stringValue && $0.activityId == Int(self.mainModelView.trainingLogId)}
+        guard let routerArray = realm?.objects(CardioActivityRoute.self) else {
+            return
+        }
+        
+        let routeObjects = Array(routerArray).filter { $0.userId == getUserDetail()?.data!.user!.id!.stringValue && $0.activityId == Int(self.mainModelView.trainingLogId)}
 
         if routeObjects.count > 0 {
             
@@ -1856,8 +1869,10 @@ extension LogPreviewVC{
     }
     
     func getPreviousTrackPolyline(){
-        
-        let routeObjects = Array(realm.objects(CardioActivityRoute.self)).filter { $0.userId == getUserDetail().data!.user!.id!.stringValue && $0.activityId == Int(self.mainModelView.trainingLogId)}
+        guard let routerArray = realm?.objects(CardioActivityRoute.self) else {
+            return
+        }
+        let routeObjects = Array(routerArray).filter { $0.userId == getUserDetail()?.data!.user!.id!.stringValue && $0.activityId == Int(self.mainModelView.trainingLogId)}
         
         if routeObjects.count > 0{
             
@@ -1907,8 +1922,10 @@ extension LogPreviewVC{
         let decodeForElevationGain : [CLLocation] = polyline.locations!
         
         if decodedCoordinates.count > 1{
-            
-            let routeObjects = Array(realm.objects(CardioActivityRoute.self)).filter { $0.userId == getUserDetail().data!.user!.id!.stringValue && $0.activityId == Int(self.mainModelView.trainingLogId)}
+            guard let routerArray = realm?.objects(CardioActivityRoute.self) else {
+                return
+            }
+            let routeObjects = Array(routerArray).filter { $0.userId == getUserDetail()?.data!.user!.id!.stringValue && $0.activityId == Int(self.mainModelView.trainingLogId)}
             
             if routeObjects.count > 0{
                 
@@ -2154,9 +2171,13 @@ extension LogPreviewVC{
             
             if self.mainModelView.previewData?.exercise?[self.mainModelView.currentWorkedIndex].duration == nil || self.mainModelView.previewData?.exercise?[self.mainModelView.currentWorkedIndex].duration == ""{
                     
-                try! realm.write{
+                try? realm?.write{
                     
-                    let routeObjects = Array(realm.objects(CardioActivityRoute.self)).filter { $0.userId == getUserDetail().data!.user!.id!.stringValue && $0.activityId == Int(self.mainModelView.trainingLogId)}
+                    guard let routerArray = realm?.objects(CardioActivityRoute.self) else {
+                        return
+                    }
+                    
+                    let routeObjects = Array(routerArray).filter { $0.userId == getUserDetail()?.data?.user?.id?.stringValue && $0.activityId == Int(self.mainModelView.trainingLogId)}
                     
                     if routeObjects.count > 0 {
                         

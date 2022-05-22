@@ -47,7 +47,7 @@ extension MessagesVC :UITableViewDataSource, UITableViewDelegate, SocketIOHandle
         
         var count:Int = 0
         for data in model {
-            let id = getUserDetail().data?.user?.id
+            let id = getUserDetail()?.data?.user?.id
             count += id == data.fromId ? 0 : data.unreadCount!.intValue
         }
         self.mainModelView.delegate?.ChangeBadge(badgeValue: "\(count)")

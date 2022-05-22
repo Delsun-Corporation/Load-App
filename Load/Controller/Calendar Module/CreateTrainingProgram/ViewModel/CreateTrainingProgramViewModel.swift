@@ -76,7 +76,7 @@ extension CreateTrainingProgramViewModel{
     
     func apiCallForGetProgramDetails() {
     
-        let param = ["user_id": getUserDetail().data?.user?.id] as [String : Any]
+        let param = ["user_id": getUserDetail()?.data?.user?.id ?? ""] as [String : Any]
         
         print(JSON(param))
         

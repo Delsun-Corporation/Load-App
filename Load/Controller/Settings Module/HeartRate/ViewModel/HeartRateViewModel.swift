@@ -96,7 +96,7 @@ class HeartRateViewModel{
 extension HeartRateViewModel{
     
     func getHRList() -> [String] {
-        return [ (getUserDetail().data?.user?.dateOfBirth ?? "") == "" ? "" : self.getHRMax(date: getUserDetail().data?.user?.dateOfBirth ?? ""), "Customize"]
+        return [ (getUserDetail()?.data?.user?.dateOfBirth ?? "") == "" ? "" : self.getHRMax(date: getUserDetail()?.data?.user?.dateOfBirth ?? ""), "Customize"]
     }
 
     func getHRMax(date:String) -> String {

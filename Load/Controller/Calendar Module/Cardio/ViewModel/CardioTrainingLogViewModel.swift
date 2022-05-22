@@ -580,7 +580,7 @@ class CardioTrainingLogViewModel: DismissPreviewDelegate {
         let txtName = view?.txtName.text ?? ""
         let txtNotes = view?.txtNotes.text ?? ""
         
-        self.apiCallShareFriend(status: TRAINING_LOG_STATUS.CARDIO.rawValue, userId: (getUserDetail().data?.user?.id?.stringValue)!, date: self.selectedDate, workoutName: txtName, trainingGoalId: trainingGoalId, trainingIntensityId: intensityId, trainingActivityId: activityId, targetedHr: targatHRId, notes: txtNotes, isSavedWorkout: true, exercise: exerciseArray, toId: toId)        
+        self.apiCallShareFriend(status: TRAINING_LOG_STATUS.CARDIO.rawValue, userId: (getUserDetail()?.data?.user?.id?.stringValue) ?? "", date: self.selectedDate, workoutName: txtName, trainingGoalId: trainingGoalId, trainingIntensityId: intensityId, trainingActivityId: activityId, targetedHr: targatHRId, notes: txtNotes, isSavedWorkout: true, exercise: exerciseArray, toId: toId)
     }
     
     func apiCallShareFriend(status: String, userId: String, date: String, workoutName: String, trainingGoalId: String, trainingIntensityId: String, trainingActivityId: String, targetedHr: String, notes: String, isSavedWorkout: Bool, exercise: NSMutableArray, toId:String) {
@@ -924,10 +924,10 @@ class CardioTrainingLogViewModel: DismissPreviewDelegate {
             }
             
             if self.isEdit {
-                self.apiCallForUpdate(status: TRAINING_LOG_STATUS.CARDIO.rawValue, userId: (getUserDetail().data?.user?.id?.stringValue)!, date: self.selectedDate, workoutName: txtName, trainingGoalId: trainingGoalId, trainingIntensityId: intensityId, trainingActivityId: activityId, targetedHr: targatHRId, notes: txtNotes, isSavedWorkout: isSavedWorkout, exercise: exerciseArray)
+                self.apiCallForUpdate(status: TRAINING_LOG_STATUS.CARDIO.rawValue, userId: (getUserDetail()?.data?.user?.id?.stringValue) ?? "", date: self.selectedDate, workoutName: txtName, trainingGoalId: trainingGoalId, trainingIntensityId: intensityId, trainingActivityId: activityId, targetedHr: targatHRId, notes: txtNotes, isSavedWorkout: isSavedWorkout, exercise: exerciseArray)
             }
             else {
-                self.apiCall(status: TRAINING_LOG_STATUS.CARDIO.rawValue, userId: (getUserDetail().data?.user?.id?.stringValue)!, date: self.selectedDate, workoutName: txtName, trainingGoalId: trainingGoalId, trainingIntensityId: intensityId, trainingActivityId: activityId, targetedHr: targatHRId, notes: txtNotes, isSavedWorkout: isSavedWorkout, exercise: exerciseArray)
+                self.apiCall(status: TRAINING_LOG_STATUS.CARDIO.rawValue, userId: (getUserDetail()?.data?.user?.id?.stringValue) ?? "", date: self.selectedDate, workoutName: txtName, trainingGoalId: trainingGoalId, trainingIntensityId: intensityId, trainingActivityId: activityId, targetedHr: targatHRId, notes: txtNotes, isSavedWorkout: isSavedWorkout, exercise: exerciseArray)
             }
         }
     }
