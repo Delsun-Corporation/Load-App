@@ -84,7 +84,9 @@ extension CalendarVC: UITableViewDelegate, UITableViewDataSource, CalendarSelect
                     if title == "42" {
                         let array42:[String] = ["MONDAY", "TUESDAY", "WEDNESDAY", "THURSDAY", "FRIDAY", "SATURDAY", "SUNDAY"]
                         
-                        let (_, weekNo) = getWeek(startDate: startDate, endDate: endDate, selectedDate: self.mainModelView.expandedDate.convertDateFormater(format: "yyyy-MM-dd"), days: array42)
+                        guard let (_, weekNo) = getWeek(startDate: startDate, endDate: endDate, selectedDate: self.mainModelView.expandedDate.convertDateFormater(format: "yyyy-MM-dd"), days: array42) else {
+                            return false
+                        }
                         
                         if weekNo == 24 {
                             is24 = true
@@ -98,7 +100,9 @@ extension CalendarVC: UITableViewDelegate, UITableViewDataSource, CalendarSelect
                     let title = list.presetTrainingProgram?.title?.lowercased().replace(target: "km", withString: "").toTrim()
                     if title == "5" {
                         let freq = list.trainingFrequency?.code?.lowercased() == "5x".lowercased()
-                        let (dayNo, weekNo) = getWeek(startDate: startDate, endDate: endDate, selectedDate: self.mainModelView.expandedDate.convertDateFormater(format: "yyyy-MM-dd"), days: list.days ?? [])
+                        guard let (dayNo, weekNo) = getWeek(startDate: startDate, endDate: endDate, selectedDate: self.mainModelView.expandedDate.convertDateFormater(format: "yyyy-MM-dd"), days: list.days ?? []) else {
+                            return false
+                        }
                         //                        print(dayNo)
                         //                        print(weekNo)
                         
@@ -116,7 +120,9 @@ extension CalendarVC: UITableViewDelegate, UITableViewDataSource, CalendarSelect
                     }
                     else if title == "10" {
                         let freq = list.trainingFrequency?.code?.lowercased() == "6x".lowercased()
-                        let (dayNo, weekNo) = getWeek(startDate: startDate, endDate: endDate, selectedDate: self.mainModelView.expandedDate.convertDateFormater(format: "yyyy-MM-dd"), days: list.days ?? [])
+                        guard let (dayNo, weekNo) = getWeek(startDate: startDate, endDate: endDate, selectedDate: self.mainModelView.expandedDate.convertDateFormater(format: "yyyy-MM-dd"), days: list.days ?? []) else {
+                            return false
+                        }
                         //                        print(dayNo)
                         //                        print(weekNo)
                         if dayNo == 1 && weekNo <= 6 && freq && list.days?.count == 6 {
@@ -141,7 +147,9 @@ extension CalendarVC: UITableViewDelegate, UITableViewDataSource, CalendarSelect
                     }
                     else if title == "21" {
                         let freq = list.trainingFrequency?.code?.lowercased() == "6x".lowercased()
-                        let (dayNo, weekNo) = getWeek(startDate: startDate, endDate: endDate, selectedDate: self.mainModelView.expandedDate.convertDateFormater(format: "yyyy-MM-dd"), days: list.days ?? [])
+                        guard let (dayNo, weekNo) = getWeek(startDate: startDate, endDate: endDate, selectedDate: self.mainModelView.expandedDate.convertDateFormater(format: "yyyy-MM-dd"), days: list.days ?? []) else {
+                            return false
+                        }
                         //                        print(dayNo)
                         //                        print(weekNo)
                         if dayNo == 1 && weekNo <= 6 && freq && list.days?.count == 6 {
@@ -168,7 +176,9 @@ extension CalendarVC: UITableViewDelegate, UITableViewDataSource, CalendarSelect
                         let array42:[String] = ["MONDAY", "TUESDAY", "WEDNESDAY", "THURSDAY", "FRIDAY", "SATURDAY", "SUNDAY"]
                         
                         let freq = list.trainingFrequency?.code?.lowercased() == "6x".lowercased()
-                        let (dayNo, weekNo) = getWeek(startDate: startDate, endDate: endDate, selectedDate: self.mainModelView.expandedDate.convertDateFormater(format: "yyyy-MM-dd"), days: is24 ? array42 : list.days ?? [])
+                        guard let (dayNo, weekNo) = getWeek(startDate: startDate, endDate: endDate, selectedDate: self.mainModelView.expandedDate.convertDateFormater(format: "yyyy-MM-dd"), days: is24 ? array42 : list.days ?? []) else {
+                            return false
+                        }
                         //                        print(dayNo)
                         //                        print(weekNo)
                         if dayNo == 1 && weekNo <= 6 && freq && list.days?.count == 6 {
@@ -268,7 +278,9 @@ extension CalendarVC: UITableViewDelegate, UITableViewDataSource, CalendarSelect
                     if isBetween {
                         let title = list.presetTrainingProgram?.title?.lowercased().replace(target: "km", withString: "").toTrim()
                         if title == "42" {
-                            let (_, weekNo) = getWeek(startDate: startDate, endDate: endDate, selectedDate: self.mainModelView.expandedDate.convertDateFormater(format: "yyyy-MM-dd"), days: list.days ?? [])
+                            guard let (_, weekNo) = getWeek(startDate: startDate, endDate: endDate, selectedDate: self.mainModelView.expandedDate.convertDateFormater(format: "yyyy-MM-dd"), days: list.days ?? []) else {
+                                return false
+                            }
                             
                             if weekNo == 24 {
                                 isBetween = true
@@ -281,7 +293,9 @@ extension CalendarVC: UITableViewDelegate, UITableViewDataSource, CalendarSelect
                         let title = list.presetTrainingProgram?.title?.lowercased().replace(target: "km", withString: "").toTrim()
                         if title == "5" {
                             let freq = list.trainingFrequency?.code?.lowercased() == "5x".lowercased()
-                            let (dayNo, weekNo) = getWeek(startDate: startDate, endDate: endDate, selectedDate: self.mainModelView.expandedDate.convertDateFormater(format: "yyyy-MM-dd"), days: list.days ?? [])
+                            guard let (dayNo, weekNo) = getWeek(startDate: startDate, endDate: endDate, selectedDate: self.mainModelView.expandedDate.convertDateFormater(format: "yyyy-MM-dd"), days: list.days ?? []) else {
+                                return false
+                            }
                             //                            print(dayNo)
                             //                            print(weekNo)
                             if dayNo == 1 && weekNo <= 6 && freq && list.days?.count == 5 {
@@ -298,7 +312,9 @@ extension CalendarVC: UITableViewDelegate, UITableViewDataSource, CalendarSelect
                         }
                         else if title == "10" {
                             let freq = list.trainingFrequency?.code?.lowercased() == "6x".lowercased()
-                            let (dayNo, weekNo) = getWeek(startDate: startDate, endDate: endDate, selectedDate: self.mainModelView.expandedDate.convertDateFormater(format: "yyyy-MM-dd"), days: list.days ?? [])
+                            guard let (dayNo, weekNo) = getWeek(startDate: startDate, endDate: endDate, selectedDate: self.mainModelView.expandedDate.convertDateFormater(format: "yyyy-MM-dd"), days: list.days ?? []) else {
+                                return false
+                            }
                             //                            print(dayNo)
                             //                            print(weekNo)
                             if dayNo == 1 && weekNo <= 6 && freq && list.days?.count == 6 {
@@ -323,7 +339,9 @@ extension CalendarVC: UITableViewDelegate, UITableViewDataSource, CalendarSelect
                         }
                         else if title == "21" {
                             let freq = list.trainingFrequency?.code?.lowercased() == "6x".lowercased()
-                            let (dayNo, weekNo) = getWeek(startDate: startDate, endDate: endDate, selectedDate: self.mainModelView.expandedDate.convertDateFormater(format: "yyyy-MM-dd"), days: list.days ?? [])
+                            guard let (dayNo, weekNo) = getWeek(startDate: startDate, endDate: endDate, selectedDate: self.mainModelView.expandedDate.convertDateFormater(format: "yyyy-MM-dd"), days: list.days ?? []) else {
+                                return false
+                            }
                             //                            print(dayNo)
                             //                            print(weekNo)
                             if dayNo == 1 && weekNo <= 6 && freq && list.days?.count == 6 {
@@ -348,7 +366,9 @@ extension CalendarVC: UITableViewDelegate, UITableViewDataSource, CalendarSelect
                         }
                         else if title == "42" {
                             let freq = list.trainingFrequency?.code?.lowercased() == "6x".lowercased()
-                            let (dayNo, weekNo) = getWeek(startDate: startDate, endDate: endDate, selectedDate: self.mainModelView.expandedDate.convertDateFormater(format: "yyyy-MM-dd"), days: list.days ?? [])
+                            guard let (dayNo, weekNo) = getWeek(startDate: startDate, endDate: endDate, selectedDate: self.mainModelView.expandedDate.convertDateFormater(format: "yyyy-MM-dd"), days: list.days ?? []) else {
+                                return false
+                            }
                             //                            print(dayNo)
                             //                            print(weekNo)
                             if dayNo == 1 && weekNo <= 6 && freq && list.days?.count == 6 {
@@ -609,7 +629,9 @@ extension CalendarVC: UITableViewDelegate, UITableViewDataSource, CalendarSelect
                 
                 if title == "42" {
                     
-                    let (no, weekNo) = getWeek(startDate: startDate, endDate: endDate, selectedDate: self.mainModelView.expandedDate.convertDateFormater(format: "yyyy-MM-dd"), days: array42)
+                    guard let (no, weekNo) = getWeek(startDate: startDate, endDate: endDate, selectedDate: self.mainModelView.expandedDate.convertDateFormater(format: "yyyy-MM-dd"), days: array42) else {
+                        return false
+                    }
                     
                     if weekNo == 24 {
                         is24 = true
@@ -711,7 +733,9 @@ extension CalendarVC: UITableViewDelegate, UITableViewDataSource, CalendarSelect
             if title == "42" {
                 let array42:[String] = ["MONDAY", "TUESDAY", "WEDNESDAY", "THURSDAY", "FRIDAY", "SATURDAY", "SUNDAY"]
                 
-                let (_, weekNo) = getWeek(startDate: startDate, endDate: endDate, selectedDate: self.mainModelView.expandedDate.convertDateFormater(format: "yyyy-MM-dd"), days: array42)
+                guard let (_, weekNo) = getWeek(startDate: startDate, endDate: endDate, selectedDate: self.mainModelView.expandedDate.convertDateFormater(format: "yyyy-MM-dd"), days: array42) else {
+                    return false
+                }
                 
                 if weekNo == 24 {
                     is24 = true
