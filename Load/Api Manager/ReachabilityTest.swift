@@ -23,9 +23,12 @@ public class ReachabilityTest {
                 SCNetworkReachabilityCreateWithAddress(nil, zeroSockAddress)
             }
         }
+        guard let defaultRouteReachability = defaultRouteReachability else {
+            return false
+        }
         
         var flags = SCNetworkReachabilityFlags()
-        if !SCNetworkReachabilityGetFlags(defaultRouteReachability!, &flags) {
+        if !SCNetworkReachabilityGetFlags(defaultRouteReachability, &flags) {
             return false
         }
         let isReachable = (flags.rawValue & UInt32(kSCNetworkFlagsReachable)) != 0
