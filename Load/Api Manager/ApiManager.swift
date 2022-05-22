@@ -47,7 +47,7 @@ class ApiManager: NSObject {
         
         var headers:[String : String] = [:]
         if getUserDetail().success != nil {
-            let base64Credentials = (getUserDetail().data?.tokenType)! + " " + (getUserDetail().data?.accessToken)!
+            let base64Credentials = (getUserDetail().data?.tokenType ?? "") + " " + (getUserDetail().data?.accessToken ?? "")
             headers = ["Authorization": base64Credentials, "Content-Type": "application/json"]
         }
         else {
@@ -94,7 +94,7 @@ class ApiManager: NSObject {
         
         var headers:[String : String] = [:]
         if getUserDetail().success != nil {
-            let base64Credentials = (getUserDetail().data?.tokenType)! + " " + (getUserDetail().data?.accessToken)!
+            let base64Credentials = (getUserDetail().data?.tokenType ?? "") + " " + (getUserDetail().data?.accessToken ?? "")
             headers = ["Authorization": base64Credentials, "Content-Type": "application/json"]
         }
         else {
@@ -141,7 +141,7 @@ class ApiManager: NSObject {
         
         var headers:[String : String] = [:]
         if getUserDetail().success != nil {
-            let base64Credentials = (getUserDetail().data?.tokenType)! + " " + (getUserDetail().data?.accessToken)!
+            let base64Credentials = (getUserDetail().data?.tokenType ?? "") + " " + (getUserDetail().data?.accessToken ?? "")
             headers = ["Authorization": base64Credentials, "Content-Type": "application/json"]
         }
         else {
@@ -222,7 +222,7 @@ class ApiManager: NSObject {
         
         var headers:[String : String] = [:]
         if getUserDetail().success != nil {
-            let base64Credentials = (getUserDetail().data?.tokenType)! + " " + (getUserDetail().data?.accessToken)!
+            let base64Credentials = (getUserDetail().data?.tokenType ?? "") + " " + (getUserDetail().data?.accessToken ?? "")
             headers = ["Authorization": base64Credentials, "Content-Type": "application/json"]
         }
         else {
@@ -269,7 +269,7 @@ class ApiManager: NSObject {
         
         var headers:[String : String] = [:]
         if getUserDetail().success != nil {
-            let base64Credentials = (getUserDetail().data?.tokenType)! + " " + (getUserDetail().data?.accessToken)!
+            let base64Credentials = (getUserDetail().data?.tokenType ?? "") + " " + (getUserDetail().data?.accessToken ?? "")
             headers = ["Authorization": base64Credentials, "Content-Type": "application/json"]
         }
         else {
@@ -316,7 +316,7 @@ class ApiManager: NSObject {
         
         var headers:[String : String] = [:]
         if getUserDetail().success != nil {
-            let base64Credentials = (getUserDetail().data?.tokenType)! + " " + (getUserDetail().data?.accessToken)!
+            let base64Credentials = (getUserDetail().data?.tokenType ?? "") + " " + (getUserDetail().data?.accessToken ?? "")
             headers = ["Authorization": base64Credentials, "Content-Type": "application/json"]
         }
         else {
@@ -330,11 +330,11 @@ class ApiManager: NSObject {
         print(params)
         Alamofire.upload(multipartFormData: { (multipartFormData) in
             for image in images {
-                multipartFormData.append(image.jpeg(.medium)!, withName: imageName,fileName: "\(randomString(length: 5)).jpg", mimeType: "image/jpg")
+                multipartFormData.append(image.jpeg(.medium) ?? Data(), withName: imageName,fileName: "\(randomString(length: 5)).jpg", mimeType: "image/jpg")
             }
             
             for (key, value) in params {
-                multipartFormData.append((value as! String).data(using: String.Encoding.utf8)!, withName: key)
+                multipartFormData.append((value as? String)?.data(using: String.Encoding.utf8) ?? Data(), withName: key)
             }
         }, to: url, method:.post,
            headers:headers, encodingCompletion: { result in
@@ -372,7 +372,9 @@ class ApiManager: NSObject {
             showProgress(vc: vc)
         }
         
-        let credentialData = "\(PAYPAL_USERNAME):\(PAYPAL_PASSWORD)".data(using: String.Encoding.utf8)!
+        guard let credentialData = "\(PAYPAL_USERNAME):\(PAYPAL_PASSWORD)".data(using: String.Encoding.utf8) else {
+            return
+        }
         let base64Credentials = credentialData.base64EncodedString(options: [])
         
         let headers:[String : String] = ["Authorization": "Basic \(base64Credentials)", "Content-Type": "application/x-www-form-urlencoded"]
