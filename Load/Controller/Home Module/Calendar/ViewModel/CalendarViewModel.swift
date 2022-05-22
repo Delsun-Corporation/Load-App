@@ -47,7 +47,7 @@ class CalendarViewModel: SwitchAccountDelegate, SwitchAccountPickedDelegate, dis
         calendarArray = CalendarModelClass(JSON: JSON(data).dictionaryObject!)
         let sDate = convertStringToISO8601((calendarArray?.date?.first)!, dateFormat: "yyyy-MM-dd")
         let eDate = convertStringToISO8601((calendarArray?.date?.last)!, dateFormat: "yyyy-MM-dd")
-        self.apiCallForTrainingLogList(userId: (getUserDetail().data?.user?.id?.stringValue)!, startDate: sDate, endDate: eDate)
+        self.apiCallForTrainingLogList(userId: (getUserDetail()?.data?.user?.id?.stringValue) ?? "", startDate: sDate, endDate: eDate)
         
         viewSwitchAccount = SwitchAccountButtonView.instanceFromNib() as? SwitchAccountButtonView
         viewSwitchAccount?.setupUI()
@@ -69,7 +69,7 @@ class CalendarViewModel: SwitchAccountDelegate, SwitchAccountPickedDelegate, dis
         let sDate = convertStringToISO8601((calendarArray?.date?.first)!, dateFormat: "yyyy-MM-dd")
         let eDate = convertStringToISO8601((calendarArray?.date?.last)!, dateFormat: "yyyy-MM-dd")
 
-        self.apiCallForTrainingLogList(userId: (getUserDetail().data?.user?.id?.stringValue)!, startDate: sDate, endDate: eDate)
+        self.apiCallForTrainingLogList(userId: (getUserDetail()?.data?.user?.id?.stringValue) ?? "", startDate: sDate, endDate: eDate)
 
     }
     

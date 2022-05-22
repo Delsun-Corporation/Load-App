@@ -54,7 +54,7 @@ class ChatVC: UIViewController {
             makeToast(strMessage: "Please enter message")
         }
         else {
-            let id = getUserDetail().data?.user?.id
+            let id = getUserDetail()?.data?.user?.id
             let toID = self.mainModelView.chatDetails?.fromId == id ? self.mainModelView.chatDetails?.toId : self.mainModelView.chatDetails?.fromId
             
             SocketIOHandler.shared.sendMessage(conversationId: self.mainModelView.conversationId, message: (self.mainView.txtMessage.text?.toTrim() ?? ""), toId: toID?.stringValue ?? "")

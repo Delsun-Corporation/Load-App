@@ -45,13 +45,16 @@ class ListingViewAllLoadCenterViewModel {
 extension ListingViewAllLoadCenterViewModel{
     
      func apiCallDataListFromListing(isLoading:Bool = true) {
-      
-        var param = [
+         guard let userId = getUserDetail()?.data?.user?.id?.intValue else {
+             return
+         }
+         
+         let param = [
             "specialization_id": self.specializationID,
                "relation": [
                    "user_detail"
                ],
-               "expect_user_ids" : [getUserDetail().data!.user!.id!.intValue],
+            "expect_user_ids" : [userId],
                "user_detail_list" : [ "id", "name", "photo" ],
                "list": [
                    "id",
@@ -127,7 +130,7 @@ extension ListingViewAllLoadCenterViewModel{
     
 
     func apiCallShowMessages(toID:String, isLoading:Bool = true) {
-        let param = ["from_id": getUserDetail().data?.user?.id?.stringValue ?? "", "to_id":toID ?? ""] as [String : Any]
+        let param = ["from_id": getUserDetail()?.data?.user?.id?.stringValue ?? "", "to_id":toID] as [String : Any]
         print(param)
         
         ApiManager.shared.MakePostAPI(name: GET_CONVERSATION_DETAIL_CUSTOM, params: param as [String : Any], progress: isLoading, vc: self.theController, isAuth: false, completionHandler: { (response, error) in
@@ -153,7 +156,7 @@ extension ListingViewAllLoadCenterViewModel{
     
     func apiCallDataListFromSaved(isLoading:Bool = true) {
       
-        var param = [
+        let param = [
                 "name": selectedViewAllForName,
                 "relation": [
                     "event_detail",

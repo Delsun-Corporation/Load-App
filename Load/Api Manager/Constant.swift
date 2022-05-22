@@ -1075,7 +1075,7 @@ public func saveJSON(j: JSON, key: String) {
 }
 
 public func loadJSON(key: String) -> JSON {
-    guard let json = UserDefaults.value(forKey: key) as? String else {
+    guard let json =  UserDefaults.standard.string(forKey: key)else {
         return JSON()
     }
     return isKeyPresentInUserDefaults(key: key) ? JSON.init(parseJSON: json) : JSON()

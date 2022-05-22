@@ -285,8 +285,12 @@ class LogPreviewViewModel {
                 if activityName == "Run (Outdoor)".lowercased() || activityName == "Cycling (Outdoor)".lowercased(){
                     
                     self.theController.checkLocationPermissionAvailableOrNot()
-
-                    let routeObjects = Array(realm.objects(CardioActivityRoute.self)).filter { $0.userId == getUserDetail().data!.user!.id!.stringValue && $0.activityId == Int(self.trainingLogId)}
+                    
+                    guard let routerArray = realm?.objects(CardioActivityRoute.self) else {
+                        return
+                    }
+                    
+                    let routeObjects = Array(routerArray).filter { $0.userId == getUserDetail()?.data?.user?.id?.stringValue && $0.activityId == Int(self.trainingLogId)}
                     
                     if routeObjects.count > 0 {
                         
@@ -407,8 +411,12 @@ class LogPreviewViewModel {
         }
         
         if activityName == "Run (Outdoor)".lowercased() || activityName == "Cycling (Outdoor)".lowercased(){
+            
+            guard let routerArray = realm?.objects(CardioActivityRoute.self) else {
+                return
+            }
 
-            let routeObjects = Array(realm.objects(CardioActivityRoute.self)).filter { $0.userId == getUserDetail().data!.user!.id!.stringValue && $0.activityId == Int(programId)}
+            let routeObjects = Array(routerArray).filter { $0.userId == getUserDetail()?.data!.user!.id!.stringValue && $0.activityId == Int(programId)}
 
             if routeObjects.count > 0 {
                 param["outdoor_route_data"] = String(routeObjects[0].allTrackRoute)
@@ -829,7 +837,7 @@ class LogPreviewViewModel {
 extension LogPreviewViewModel{
     
     func ActivityIncrementId() -> Int{
-        return (realm.objects(CardioActivityRoute.self).max(ofProperty: CardioActivityRoute.primaryKey()) as Int? ?? 0) + 1
+        return (realm?.objects(CardioActivityRoute.self).max(ofProperty: CardioActivityRoute.primaryKey()) as Int? ?? 0) + 1
     }
     
 //    func LapIncrementId() -> Int{
@@ -850,8 +858,8 @@ extension LogPreviewViewModel{
         let activityIncrementId = ActivityIncrementId()
         
         objActivityRouteData.id = activityIncrementId
-        objActivityRouteData.userId = getUserDetail().data!.user!.id!.stringValue
-        objActivityRouteData.activityId = previewData.id?.intValue as! Int
+        objActivityRouteData.userId = getUserDetail()?.data!.user!.id!.stringValue ?? ""
+        objActivityRouteData.activityId = (previewData.id?.intValue as? Int) ?? 0
         
         let arrayLap = self.previewData!.exercise ?? []
         
@@ -868,7 +876,7 @@ extension LogPreviewViewModel{
 //                realm.add(objLapDetails)
             }
             
-            realm.add(objActivityRouteData)
+            realm?.add(objActivityRouteData)
 
         }
     }
@@ -878,10 +886,14 @@ extension LogPreviewViewModel{
         guard let previewData = self.previewData else {
             return
         }
-
-        let routeObjects = Array(realm.objects(CardioActivityRoute.self)).filter { $0.userId == getUserDetail().data!.user!.id!.stringValue && $0.activityId == previewData.id?.intValue}
         
-        try! realm.write{
+        guard let routerArray = realm?.objects(CardioActivityRoute.self) else {
+            return
+        }
+
+        let routeObjects = Array(routerArray).filter { $0.userId == getUserDetail()?.data!.user!.id!.stringValue && $0.activityId == previewData.id?.intValue}
+        
+        try! realm?.write{
             
             if routeObjects.count > 0{
                 print("reoutObjects:\(routeObjects)")

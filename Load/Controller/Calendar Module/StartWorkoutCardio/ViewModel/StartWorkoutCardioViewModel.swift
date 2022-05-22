@@ -108,8 +108,12 @@ class StartWorkoutCardioViewModel: SRCountdownTimerDelegate {
             if self.exerciseArray[self.exerciseArray.count-1].isCompleted == true && self.exerciseArray[self.exerciseArray.count-1].isCompletedRest == true{
                 
                 if self.activityName.lowercased() == "Run (Outdoor)".lowercased() || self.activityName.lowercased() == "Cycling (Outdoor)".lowercased(){
+                    
+                    guard let routerArray = realm?.objects(CardioActivityRoute.self) else {
+                        return
+                    }
 
-                    let routeObjects = Array(realm.objects(CardioActivityRoute.self)).filter { $0.userId == getUserDetail().data!.user!.id!.stringValue && $0.activityId == Int(self.trainingLogId)}
+                    let routeObjects = Array(routerArray).filter { $0.userId == getUserDetail()?.data?.user?.id?.stringValue && $0.activityId == Int(self.trainingLogId)}
 
                     if routeObjects.count > 0{
                         
@@ -191,8 +195,11 @@ class StartWorkoutCardioViewModel: SRCountdownTimerDelegate {
                     
                     if self.activityName.lowercased() == "Run (Outdoor)".lowercased() || self.activityName.lowercased() == "Cycling (Outdoor)".lowercased(){
                         
+                        guard let routerArray = realm?.objects(CardioActivityRoute.self) else {
+                            return
+                        }
                         
-                        let routeObjects = Array(realm.objects(CardioActivityRoute.self)).filter { $0.userId == getUserDetail().data!.user!.id!.stringValue && $0.activityId == Int(self.trainingLogId)}
+                        let routeObjects = Array(routerArray).filter { $0.userId == getUserDetail()?.data?.user?.id?.stringValue && $0.activityId == Int(self.trainingLogId)}
 
                         if routeObjects.count > 0{
                             self.theController?.getRouteWhilePause(strPolyline: routeObjects[0].allTrackRoute)
@@ -224,12 +231,13 @@ class StartWorkoutCardioViewModel: SRCountdownTimerDelegate {
                     
                     //                self.getTotalDurationForIndoorWhenPause()
                     
-                }else{
-                    
+                } else {
                     if self.activityName.lowercased() == "Run (Outdoor)".lowercased() || self.activityName.lowercased() == "Cycling (Outdoor)".lowercased(){
                         self.theController?.getTrackDistance()
-                        
-                        let routeObjects = Array(realm.objects(CardioActivityRoute.self)).filter { $0.userId == getUserDetail().data!.user!.id!.stringValue && $0.activityId == Int(self.trainingLogId)}
+                        guard let routerArray = realm?.objects(CardioActivityRoute.self) else {
+                            return
+                        }
+                        let routeObjects = Array(routerArray).filter { $0.userId == getUserDetail()?.data?.user?.id?.stringValue && $0.activityId == Int(self.trainingLogId)}
                         if routeObjects.count > 0{
                             self.theController?.getRouteWhilePause(strPolyline: routeObjects[0].allTrackRoute)
                         }
@@ -369,12 +377,15 @@ class StartWorkoutCardioViewModel: SRCountdownTimerDelegate {
                      data.addedRestTime = convertToStringForRest
 
                     self.delegate?.StartWorkoutFinish(isDone: false, exerciseArray: self.exerciseArray)
-                }else if (data.startTime == ""){
+                } else if (data.startTime == ""){
+                    guard let routerArray = realm?.objects(CardioActivityRoute.self) else {
+                        return
+                    }
                     
-                    let routeObjects = Array(realm.objects(CardioActivityRoute.self)).filter { $0.userId == getUserDetail().data!.user!.id!.stringValue && $0.activityId == Int(self.trainingLogId)}
+                    let routeObjects = Array(routerArray).filter { $0.userId == getUserDetail()?.data!.user!.id!.stringValue && $0.activityId == Int(self.trainingLogId)}
 
                     if routeObjects.count > 0{
-                        try! realm.write{
+                        try? realm?.write{
                             routeObjects[0].startTimeForIndoor = date
                         }
                     }
@@ -1153,8 +1164,11 @@ class StartWorkoutCardioViewModel: SRCountdownTimerDelegate {
                             let lapDistance = (self.exerciseArray[self.index].distance ?? 0.0)*1000
                             
                             if activityName.lowercased() == "Run (Outdoor)".lowercased() || activityName == "Cycling (Outdoor)".lowercased(){
+                                guard let routerArray = realm?.objects(CardioActivityRoute.self) else {
+                                    return
+                                }
                                 
-                                let routeObjects = Array(realm.objects(CardioActivityRoute.self)).filter { $0.userId == getUserDetail().data!.user!.id!.stringValue && $0.activityId == Int(self.trainingLogId)}
+                                let routeObjects = Array(routerArray).filter { $0.userId == getUserDetail()?.data!.user!.id!.stringValue && $0.activityId == Int(self.trainingLogId)}
                                 
                                 if routeObjects.count > 0{
                                     if (routeObjects[0].lapArray[self.index].lapCoverDistance) >= Double(lapDistance){
@@ -1342,8 +1356,11 @@ class StartWorkoutCardioViewModel: SRCountdownTimerDelegate {
                         if self.exerciseArray[self.index].rest == nil{
                             
                             if activityName.lowercased() == "Run (Outdoor)".lowercased() || activityName == "Cycling (Outdoor)".lowercased(){
+                                guard let routerArray = realm?.objects(CardioActivityRoute.self) else {
+                                    return
+                                }
                                 
-                                let routeObjects = Array(realm.objects(CardioActivityRoute.self)).filter { $0.userId == getUserDetail().data!.user!.id!.stringValue && $0.activityId == Int(self.trainingLogId)}
+                                let routeObjects = Array(routerArray).filter { $0.userId == getUserDetail()?.data?.user?.id?.stringValue && $0.activityId == Int(self.trainingLogId)}
                                 
                                 if routeObjects.count > 0{
                                     if (routeObjects[0].lapArray[self.index].lapCoverDistance) >= Double(lapDistance){
@@ -1432,7 +1449,10 @@ class StartWorkoutCardioViewModel: SRCountdownTimerDelegate {
                     }else{
                         
                         //MARK: - For distance round circle purpose only
-                        let routeObjects = Array(realm.objects(CardioActivityRoute.self)).filter { $0.userId == getUserDetail().data!.user!.id!.stringValue && $0.activityId == Int(self.trainingLogId)}
+                        guard let routerArray = realm?.objects(CardioActivityRoute.self) else {
+                            return
+                        }
+                        let routeObjects = Array(routerArray).filter { $0.userId == getUserDetail()?.data?.user?.id?.stringValue && $0.activityId == Int(self.trainingLogId)}
 
                         var lapCoveredDistance : CGFloat = 0.0
                         
@@ -1888,8 +1908,11 @@ extension StartWorkoutCardioViewModel{
         }
         
         if activityName.lowercased() == "Run (Outdoor)".lowercased() || activityName == "Cycling (Outdoor)".lowercased(){
+            guard let routerArray = realm?.objects(CardioActivityRoute.self) else {
+                return
+            }
 
-            let routeObjects = Array(realm.objects(CardioActivityRoute.self)).filter { $0.userId == getUserDetail().data!.user!.id!.stringValue && $0.activityId == Int(programId)}
+            let routeObjects = Array(routerArray).filter { $0.userId == getUserDetail()?.data!.user!.id!.stringValue && $0.activityId == Int(programId)}
 
             if routeObjects.count > 0 {
                 param["outdoor_route_data"] = String(routeObjects[0].allTrackRoute)

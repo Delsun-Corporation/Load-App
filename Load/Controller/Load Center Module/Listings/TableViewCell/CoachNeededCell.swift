@@ -64,8 +64,10 @@ class CoachNeededCell: UITableViewCell, UICollectionViewDelegate, UICollectionVi
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
         print("Dataaa: \(self.requestList[indexPath.row])")
-        
-        if Int(self.requestList[indexPath.row].userId ?? 0) == (getUserDetail().data?.user?.id?.intValue)!{
+        guard let userId = getUserDetail()?.data?.user?.id?.intValue else {
+            return
+        }
+        if Int(truncating: self.requestList[indexPath.row].userId ?? 0) == userId {
             delegate?.redirectToDetailScreen(data: self.requestList[indexPath.row])
         }
     }

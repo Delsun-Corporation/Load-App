@@ -101,8 +101,10 @@ class StartWorkoutViewModel: SRCountdownTimerDelegate {
             if self.exerciseArray[self.exerciseArray.count-1].isCompleted == true && self.exerciseArray[self.exerciseArray.count-1].isCompletedRest == true{
                 
                 if self.activityName.lowercased() == "Outdoor".lowercased() {
-
-                    let routeObjects = Array(realm.objects(CardioActivityRouteTrainingProgram.self)).filter { $0.userId == getUserDetail().data!.user!.id!.stringValue && $0.weekWiseProgramId == Int(self.trainingProgramId)}
+                    guard let routerArray = realm?.objects(CardioActivityRouteTrainingProgram.self) else {
+                        return
+                    }
+                    let routeObjects = Array(routerArray).filter { $0.userId == getUserDetail()?.data!.user!.id!.stringValue && $0.weekWiseProgramId == Int(self.trainingProgramId)}
 
                     if routeObjects.count > 0{
                         
@@ -182,9 +184,11 @@ class StartWorkoutViewModel: SRCountdownTimerDelegate {
                     //                }
                     
                     if self.activityName.lowercased() == "Outdoor".lowercased() {
+                        guard let routerArray = realm?.objects(CardioActivityRouteTrainingProgram.self) else {
+                            return
+                        }
                         
-                        
-                        let routeObjects = Array(realm.objects(CardioActivityRouteTrainingProgram.self)).filter { $0.userId == getUserDetail().data!.user!.id!.stringValue && $0.weekWiseProgramId == Int(self.trainingProgramId)}
+                        let routeObjects = Array(routerArray).filter { $0.userId == getUserDetail()?.data!.user!.id!.stringValue && $0.weekWiseProgramId == Int(self.trainingProgramId)}
 
                         self.theController?.getRouteWhilePause(strPolyline: routeObjects[0].allTrackRoute)
                         
@@ -218,8 +222,10 @@ class StartWorkoutViewModel: SRCountdownTimerDelegate {
                     
                     if self.activityName.lowercased() == "Outdoor".lowercased() {
                         self.theController?.getTrackDistance()
-                        
-                        let routeObjects = Array(realm.objects(CardioActivityRouteTrainingProgram.self)).filter { $0.userId == getUserDetail().data!.user!.id!.stringValue && $0.weekWiseProgramId == Int(self.trainingProgramId)}
+                        guard let routerArray = realm?.objects(CardioActivityRouteTrainingProgram.self) else {
+                            return
+                        }
+                        let routeObjects = Array(routerArray).filter { $0.userId == getUserDetail()?.data!.user!.id!.stringValue && $0.weekWiseProgramId == Int(self.trainingProgramId)}
 
                         if routeObjects.count > 0 {
                             self.theController?.getRouteWhilePause(strPolyline: routeObjects[0].allTrackRoute)
@@ -334,11 +340,13 @@ class StartWorkoutViewModel: SRCountdownTimerDelegate {
                     
                     self.delegate?.StartWorkoutFinish(isDone: false, exerciseArray: self.exerciseArray)
                 }else if (data.startTime == ""){
-                    
-                    let routeObjects = Array(realm.objects(CardioActivityRouteTrainingProgram.self)).filter { $0.userId == getUserDetail().data!.user!.id!.stringValue && $0.weekWiseProgramId == Int(self.trainingProgramId)}
+                    guard let routerArray = realm?.objects(CardioActivityRouteTrainingProgram.self) else {
+                        return
+                    }
+                    let routeObjects = Array(routerArray).filter { $0.userId == getUserDetail()?.data!.user!.id!.stringValue && $0.weekWiseProgramId == Int(self.trainingProgramId)}
                     
                     if routeObjects.count > 0{
-                        try! realm.write{
+                        try? realm?.write{
                             routeObjects[0].startTimeForIndoor = date
                         }
                     }
@@ -997,8 +1005,10 @@ class StartWorkoutViewModel: SRCountdownTimerDelegate {
                             let lapDistance = (self.exerciseArray[self.index].updatedDistance ?? 0.0)*1000
                             
                             if activityName.lowercased() == "Outdoor".lowercased() {
-                                
-                                let routeObjects = Array(realm.objects(CardioActivityRouteTrainingProgram.self)).filter { $0.userId == getUserDetail().data!.user!.id!.stringValue && $0.weekWiseProgramId == Int(self.trainingProgramId)}
+                                guard let routerArray = realm?.objects(CardioActivityRouteTrainingProgram.self) else {
+                                    return
+                                }
+                                let routeObjects = Array(routerArray).filter { $0.userId == getUserDetail()?.data!.user!.id!.stringValue && $0.weekWiseProgramId == Int(self.trainingProgramId)}
                                 
                                 if routeObjects.count > 0{
                                     if (routeObjects[0].lapArray[self.index].lapCoverDistance) >= Double(lapDistance){
@@ -1234,7 +1244,11 @@ class StartWorkoutViewModel: SRCountdownTimerDelegate {
     
     func forDistanceCheckWellDoneAnimationAndRestTime(){
         
-        let routeObjects = Array(realm.objects(CardioActivityRouteTrainingProgram.self)).filter { $0.userId == getUserDetail().data!.user!.id!.stringValue && $0.weekWiseProgramId == Int(self.trainingProgramId)}
+        guard let routerArray = realm?.objects(CardioActivityRouteTrainingProgram.self) else {
+            return
+        }
+        
+        let routeObjects = Array(routerArray).filter { $0.userId == getUserDetail()?.data?.user?.id?.stringValue && $0.weekWiseProgramId == Int(self.trainingProgramId)}
         
         let lapDistance = (self.exerciseArray[self.index].updatedDistance ?? 0.0)*1000
         

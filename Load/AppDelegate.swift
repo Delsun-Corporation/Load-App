@@ -47,7 +47,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         GMSServices.provideAPIKey(GOOGLE_MAP_KEY) //AIzaSyDVZZhqMGMBJo_R-7eGzqRysAcaICxxGt8
         GMSPlacesClient.provideAPIKey(GOOGLE_MAP_KEY)
         self.setUpQuickLocationUpdate()
-        if getUserDetail().success != nil {
+        if getUserDetail()?.success != nil {
             self.apiCallForDynamicData()
             self.sidemenu()
         }
@@ -206,7 +206,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func apiCallForUpdateLatitudeLongitude() {
-        let param = ["id":getUserDetail().data!.user!.id!.stringValue, "latitude": String(self.lattitude), "longitude": String(self.longitude)] as [String : Any]
+        let param = ["id":getUserDetail()?.data!.user!.id!.stringValue, "latitude": String(self.lattitude), "longitude": String(self.longitude)] as [String : Any]
         ApiManager.shared.MakePostAPI(name: UPDATE_LATITUDE_LONGITUDE, params: param as [String : Any], progress: false, vc: UIViewController(), isAuth: false) { (response, error) in
             if response != nil {
                 let json = JSON(response!)
@@ -256,7 +256,7 @@ extension AppDelegate:CLLocationManagerDelegate {
                 lattitude = latestLocation.coordinate.latitude
                 longitude = latestLocation.coordinate.longitude
                 print("lattitude:- \(String(describing: userCurrentLocation?.coordinate.latitude) ), longitude:- \(String(describing: userCurrentLocation?.coordinate.longitude))")
-                if getUserDetail().success != nil && !self.isUpdated {
+                if getUserDetail()?.success != nil && !self.isUpdated {
                     self.isUpdated = true
                     self.apiCallForUpdateLatitudeLongitude()
                 }

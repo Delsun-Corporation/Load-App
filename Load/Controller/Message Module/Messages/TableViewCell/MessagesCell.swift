@@ -32,7 +32,7 @@ class MessagesCell: UITableViewCell {
     
     func setupUI(model: ConversationData) {
         self.setupFont()
-        let id = getUserDetail().data?.user?.id
+        let id = getUserDetail()?.data?.user?.id
         let name = id == model.fromId ? model.toName : model.fromName
         self.lblName.text = name
         self.lblDescription.text = model.lastMessage

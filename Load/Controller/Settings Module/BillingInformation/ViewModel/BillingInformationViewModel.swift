@@ -220,7 +220,7 @@ class BillingInformationViewModel {
     func apiCallAddBillingInformation(id: [String], progress:Bool = true) {
         let array: NSMutableArray = NSMutableArray()
         for data in id {
-            let dict: NSDictionary = ["user_id": getUserDetail().data?.user?.id?.stringValue ?? "", "credit_card_id": data, "is_default": false]
+            let dict: NSDictionary = ["user_id": getUserDetail()?.data?.user?.id?.stringValue ?? "", "credit_card_id": data, "is_default": false]
             array.add(dict)
         }
         let param = ["cards_information": array] as [String : Any]

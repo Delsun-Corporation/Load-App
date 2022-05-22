@@ -56,7 +56,7 @@ class TrainingPreviewViewModel {
             return
         }
         
-        view?.imgProfile.sd_setImage(with: getUserDetail().data?.user?.photo?.toURL(), completed: nil)
+        view?.imgProfile.sd_setImage(with: getUserDetail()?.data?.user?.photo?.toURL(), completed: nil)
 //        view?.lblDate.text = getCountryName(id: getUserDetail().data?.user?.countryId ?? 0) + ". " + convertDateFormater(self.previewData?.date?.UTCToLocal() ?? Date().toString(dateFormat: "yyyy-MM-dd HH:mm:ss"), format: "yyyy-MM-dd HH:mm:ss", dateFormat: "EEEE, dd MMM yyyy")
         
 //        view?.lblDate.text = convertDateFormater(self.previewData?.date ?? "", dateFormat: "EEEE, dd MMM yyyy 'at' hh:mm a")
@@ -280,7 +280,11 @@ class TrainingPreviewViewModel {
                     
                     if self.selectedActivityTypeName.lowercased() == "Outdoor".lowercased() {
                         
-                        let routeObjects = Array(realm.objects(CardioActivityRouteTrainingProgram.self)).filter { $0.userId == getUserDetail().data!.user!.id!.stringValue && $0.weekWiseProgramId == Int(self.weekdayWiseMainID)}
+                        guard let routerArray = realm?.objects(CardioActivityRouteTrainingProgram.self) else {
+                            return
+                        }
+                        
+                        let routeObjects = Array(routerArray).filter { $0.userId == getUserDetail()?.data!.user!.id!.stringValue && $0.weekWiseProgramId == Int(self.weekdayWiseMainID)}
                         
                         if self.previewData?.exercise?.count ?? 0 > 0{
                             
@@ -406,8 +410,12 @@ class TrainingPreviewViewModel {
         }
         
         if selectedActivityTypeName.lowercased() == "Outdoor".lowercased() {
+            
+            guard let routerArray = realm?.objects(CardioActivityRouteTrainingProgram.self) else {
+                return
+            }
 
-            let routeObjects = Array(realm.objects(CardioActivityRouteTrainingProgram.self)).filter { $0.userId == getUserDetail().data!.user!.id!.stringValue && $0.weekWiseProgramId == Int(self.weekdayWiseMainID)}
+            let routeObjects = Array(routerArray).filter { $0.userId == getUserDetail()?.data!.user!.id!.stringValue && $0.weekWiseProgramId == Int(self.weekdayWiseMainID)}
 
             if routeObjects.count > 0 {
                 param["outdoor_route_data"] = String(routeObjects[0].allTrackRoute)
@@ -559,7 +567,10 @@ class TrainingPreviewViewModel {
 extension TrainingPreviewViewModel {
     
     func ActivityIncrementId() -> Int{
-        return (realm.objects(CardioActivityRouteTrainingProgram.self).max(ofProperty: CardioActivityRouteTrainingProgram.primaryKey()) as Int? ?? 0) + 1
+        guard let routerArray = realm?.objects(CardioActivityRouteTrainingProgram.self) else {
+            return 0
+        }
+        return (routerArray.max(ofProperty: CardioActivityRouteTrainingProgram.primaryKey()) as Int? ?? 0) + 1
     }
     
 //    func LapIncrementId() -> Int{
@@ -580,7 +591,7 @@ extension TrainingPreviewViewModel {
         let activityIncrementId = ActivityIncrementId()
         
         objActivityRouteData.id = activityIncrementId
-        objActivityRouteData.userId = getUserDetail().data!.user!.id!.stringValue
+        objActivityRouteData.userId = getUserDetail()?.data!.user!.id!.stringValue ?? ""
         objActivityRouteData.weekWiseProgramId = previewData.id?.intValue ?? 0
         
         let arrayLap = self.previewData!.exercise ?? []
@@ -598,7 +609,7 @@ extension TrainingPreviewViewModel {
 //                realm.add(objLapDetails)
             }
             
-            realm.add(objActivityRouteData)
+            realm?.add(objActivityRouteData)
 
         }
     }
@@ -608,10 +619,14 @@ extension TrainingPreviewViewModel {
         guard let previewData = self.previewData else {
             return
         }
-
-        let routeObjects = Array(realm.objects(CardioActivityRouteTrainingProgram.self)).filter { $0.userId == getUserDetail().data!.user!.id!.stringValue && $0.weekWiseProgramId == previewData.id?.intValue}
         
-        try! realm.write{
+        guard let routerArray = realm?.objects(CardioActivityRouteTrainingProgram.self) else {
+            return
+        }
+
+        let routeObjects = Array(routerArray).filter { $0.userId == getUserDetail()?.data!.user!.id!.stringValue && $0.weekWiseProgramId == previewData.id?.intValue}
+        
+        try? realm?.write{
             
             if routeObjects.count > 0{
 //                print("reoutObjects:\(routeObjects)")

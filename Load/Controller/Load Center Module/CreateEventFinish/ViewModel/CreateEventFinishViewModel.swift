@@ -62,7 +62,24 @@ class CreateEventFinishViewModel {
         let finalDate = self.theController.stringTodate(Formatter: "yyyy-MM-dd HH:mm:ss", strDate: "\(date!) \(time!)")
         let visibleTo = self.selectedPublicType == 0 ? VISIBLE_TO.INVITATION_ONLY.rawValue : VISIBLE_TO.PUBLIC.rawValue
         
-        self.apiCallLibraryList(status: LOAD_CENTER_TYPE.EVENT.rawValue, userId: (getUserDetail().data?.user?.id?.stringValue)!, title: self.eventType, visibleTo: visibleTo, eventName: self.txtEventName, eventPrice: self.txtEventPrice, dateTime: finalDate.iso8601, location: self.selectedAddress, duration: self.eventTime, maxGuests: self.maxGuest, earlierTime: self.txtTimeArlier, lat: String(self.selectedCoordinate!.latitude), long: String(self.selectedCoordinate!.longitude), amenitiesAvailable: self.amenitiesArray, description: self.txtDescription, currencyId: self.currencyId, cancellationPolicyId: self.CancellationRulesId, generalRules: self.GeneralRules)
+        self.apiCallLibraryList(status: LOAD_CENTER_TYPE.EVENT.rawValue,
+                                userId: (getUserDetail()?.data?.user?.id?.stringValue)!,
+                                title: self.eventType,
+                                visibleTo: visibleTo,
+                                eventName: self.txtEventName,
+                                eventPrice: self.txtEventPrice,
+                                dateTime: finalDate.iso8601,
+                                location: self.selectedAddress,
+                                duration: self.eventTime,
+                                maxGuests: self.maxGuest,
+                                earlierTime: self.txtTimeArlier,
+                                lat: String(self.selectedCoordinate!.latitude),
+                                long: String(self.selectedCoordinate!.longitude),
+                                amenitiesAvailable: self.amenitiesArray,
+                                description: self.txtDescription,
+                                currencyId: self.currencyId,
+                                cancellationPolicyId: self.CancellationRulesId,
+                                generalRules: self.GeneralRules)
     }
     
     func jsonToString(json: AnyObject) -> String? {

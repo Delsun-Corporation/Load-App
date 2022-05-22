@@ -24,7 +24,7 @@ extension ChatVC :UITableViewDataSource, UITableViewDelegate, SocketIOHandlerDel
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let id = getUserDetail().data?.user?.id
+        let id = getUserDetail()?.data?.user?.id
         let model = self.mainModelView.responseArray[indexPath.row]
         if model.type == 0 {
             if model.fromId != id {
@@ -139,7 +139,7 @@ extension ChatVC :UITableViewDataSource, UITableViewDelegate, SocketIOHandlerDel
     }
     
     func SocketAddChatResponse(model: MessageListData) {
-        let id = getUserDetail().data?.user?.id
+        let id = getUserDetail()?.data?.user?.id
         if model.fromId != id {
             SocketIOHandler.shared.readMsg(conversationId: self.mainModelView.conversationId)
         }
@@ -153,7 +153,7 @@ extension ChatVC :UITableViewDataSource, UITableViewDelegate, SocketIOHandlerDel
     }
     
     func SocketOnlineUserResponse(model: OnlineModelClass) {
-        let id = getUserDetail().data?.user?.id
+        let id = getUserDetail()?.data?.user?.id
         let otherUserId = self.mainModelView.chatDetails?.fromId == id ? self.mainModelView.chatDetails?.toId : self.mainModelView.chatDetails?.fromId
         if otherUserId?.stringValue == model.id {
             self.mainView.setupTitle(title: (model.message?.lowercased().capitalized ?? ""), theController: self)

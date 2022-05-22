@@ -140,8 +140,10 @@ class StartWorkoutVC: UIViewController {
             }
         }
         */
-        
-        let routeObjects = Array(realm.objects(CardioActivityRouteTrainingProgram.self)).filter { $0.userId == getUserDetail().data!.user!.id!.stringValue && $0.weekWiseProgramId == Int(self.mainModelView.trainingProgramId)}
+        guard let routerArray = realm?.objects(CardioActivityRouteTrainingProgram.self) else {
+            return
+        }
+        let routeObjects = Array(routerArray).filter { $0.userId == getUserDetail()?.data!.user!.id!.stringValue && $0.weekWiseProgramId == Int(self.mainModelView.trainingProgramId)}
 
         if routeObjects.count > 0{
             self.totalDistancConverted = routeObjects[0].totalCoveredDistance
@@ -451,8 +453,11 @@ class StartWorkoutVC: UIViewController {
         //        self.mainView.btnNext.isUserInteractionEnabled = false
         
         if (activityName == "Outdoor".lowercased()){
+            guard let routerArray = realm?.objects(CardioActivityRouteTrainingProgram.self) else {
+                return
+            }
             
-            let routeObjects = Array(realm.objects(CardioActivityRouteTrainingProgram.self)).filter { $0.userId == getUserDetail().data!.user!.id!.stringValue && $0.weekWiseProgramId == Int(self.mainModelView.trainingProgramId)}
+            let routeObjects = Array(routerArray).filter { $0.userId == getUserDetail()?.data!.user!.id!.stringValue && $0.weekWiseProgramId == Int(self.mainModelView.trainingProgramId)}
 
             if routeObjects.count > 0{
                 
@@ -609,12 +614,14 @@ class StartWorkoutVC: UIViewController {
                             self.timerForMotion = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(self.check10secondOrNot), userInfo: nil, repeats: true)
                         }
                     }*/
-                    
-                    let routeObjects = Array(realm.objects(CardioActivityRouteTrainingProgram.self)).filter { $0.userId == getUserDetail().data!.user!.id!.stringValue && $0.weekWiseProgramId == Int(self.mainModelView.trainingProgramId)}
+                    guard let routerArray = realm?.objects(CardioActivityRouteTrainingProgram.self) else {
+                        return
+                    }
+                    let routeObjects = Array(routerArray).filter { $0.userId == getUserDetail()?.data!.user!.id!.stringValue && $0.weekWiseProgramId == Int(self.mainModelView.trainingProgramId)}
 
                     if routeObjects.count > 0 {
                         
-                        try! realm.write{
+                        try? realm?.write{
                             routeObjects[0].isPauseAfterAllLapCompleted = false
 
                         }
@@ -652,9 +659,13 @@ class StartWorkoutVC: UIViewController {
             }
         }
         
-        let routeObjects = Array(realm.objects(CardioActivityRouteTrainingProgram.self)).filter { $0.userId == getUserDetail().data!.user!.id!.stringValue && $0.weekWiseProgramId == Int(self.mainModelView.trainingProgramId)}
+        guard let routerArray = realm?.objects(CardioActivityRouteTrainingProgram.self) else {
+            return
+        }
+        
+        let routeObjects = Array(routerArray).filter { $0.userId == getUserDetail()?.data!.user!.id!.stringValue && $0.weekWiseProgramId == Int(self.mainModelView.trainingProgramId)}
 
-        try! realm.write{
+        try? realm?.write{
             
             if routeObjects.count > 0{
                 routeObjects[0].isAutomaticallyPause = false
@@ -857,9 +868,12 @@ class StartWorkoutVC: UIViewController {
             
             if self.mainModelView.exerciseArray[self.mainModelView.index].updatedDuration == nil || self.mainModelView.exerciseArray[self.mainModelView.index].updatedDuration == ""{
                 
-                try! realm.write{
+                try? realm?.write{
+                    guard let routerArray = realm?.objects(CardioActivityRouteTrainingProgram.self) else {
+                        return
+                    }
                     
-                    let routeObjects = Array(realm.objects(CardioActivityRouteTrainingProgram.self)).filter { $0.userId == getUserDetail().data!.user!.id!.stringValue && $0.weekWiseProgramId == Int(self.mainModelView.trainingProgramId)}
+                    let routeObjects = Array(routerArray).filter { $0.userId == getUserDetail()?.data!.user!.id!.stringValue && $0.weekWiseProgramId == Int(self.mainModelView.trainingProgramId)}
 
                     if routeObjects.count > 0 {
                         
@@ -1293,15 +1307,16 @@ extension StartWorkoutVC{
             if self.mainModelView.isPaused {
                 
                 if self.isCheckForAutoPause == true{
-            
                     if self.mainModelView.exerciseArray[self.mainModelView.exerciseArray.count-1].isCompleted == true && self.mainModelView.exerciseArray[self.mainModelView.exerciseArray.count-1].isCompletedRest == true{
                         
                         self.mainView.btnPlayPause.isSelected = !(self.mainView.btnPlayPause.isSelected)
                         self.mainModelView.isPaused = !(self.mainModelView.isPaused)
+                        guard let routerArray = realm?.objects(CardioActivityRouteTrainingProgram.self) else {
+                            return
+                        }
+                        let routeObjects = Array(routerArray).filter { $0.userId == getUserDetail()?.data!.user!.id!.stringValue && $0.weekWiseProgramId == Int(self.mainModelView.trainingProgramId)}
 
-                        let routeObjects = Array(realm.objects(CardioActivityRouteTrainingProgram.self)).filter { $0.userId == getUserDetail().data!.user!.id!.stringValue && $0.weekWiseProgramId == Int(self.mainModelView.trainingProgramId)}
-
-                        try! realm.write{
+                        try? realm?.write{
                             
                             if routeObjects.count > 0{
                                 
@@ -1317,10 +1332,12 @@ extension StartWorkoutVC{
                         if (self.mainModelView.exerciseArray[self.mainModelView.index].isCompleted != true){
                             self.mainView.btnPlayPause.isSelected = !(self.mainView.btnPlayPause.isSelected)
                             self.mainModelView.isPaused = !(self.mainModelView.isPaused)
-                            
-                            let routeObjects = Array(realm.objects(CardioActivityRouteTrainingProgram.self)).filter { $0.userId == getUserDetail().data!.user!.id!.stringValue && $0.weekWiseProgramId == Int(self.mainModelView.trainingProgramId)}
+                            guard let routerArray = realm?.objects(CardioActivityRouteTrainingProgram.self) else {
+                                return
+                            }
+                            let routeObjects = Array(routerArray).filter { $0.userId == getUserDetail()?.data!.user!.id!.stringValue && $0.weekWiseProgramId == Int(self.mainModelView.trainingProgramId)}
 
-                            try! realm.write{
+                            try? realm?.write{
                                 
                                 if routeObjects.count > 0{
                                     routeObjects[0].isAutomaticallyPause = false
@@ -1398,10 +1415,12 @@ extension StartWorkoutVC{
             if isAutoPauseCheck{
                 if !self.mainModelView.isPaused {
                     self.btnPauseClicked(self.mainView.btnPlayPause)
-                    
-                    let routeObjects = Array(realm.objects(CardioActivityRouteTrainingProgram.self)).filter { $0.userId == getUserDetail().data!.user!.id!.stringValue && $0.weekWiseProgramId == Int(self.mainModelView.trainingProgramId)}
+                    guard let routerArray = realm?.objects(CardioActivityRouteTrainingProgram.self) else {
+                        return
+                    }
+                    let routeObjects = Array(routerArray).filter { $0.userId == getUserDetail()?.data!.user!.id!.stringValue && $0.weekWiseProgramId == Int(self.mainModelView.trainingProgramId)}
 
-                    try! realm.write{
+                    try? realm?.write{
                         
                         if routeObjects.count > 0{
                             routeObjects[0].isAutomaticallyPause = true
@@ -1483,19 +1502,21 @@ extension StartWorkoutVC{
             return
         }
         
-        if (self.mainModelView.totalDurationInSecond) % 3 == 0{
+        if (self.mainModelView.totalDurationInSecond) % 3 == 0 {
             
             let speedinOneDigit = self.setOneDigitWithFloor(value: speed)
             self.calculatedSpeed = speedinOneDigit.toFloat()
+            guard let routerArray = realm?.objects(CardioActivityRouteTrainingProgram.self) else {
+                return
+            }
+            let routeObjects = Array(routerArray).filter { $0.userId == getUserDetail()?.data!.user!.id!.stringValue && $0.weekWiseProgramId == Int(self.mainModelView.trainingProgramId)}
             
-            let routeObjects = Array(realm.objects(CardioActivityRouteTrainingProgram.self)).filter { $0.userId == getUserDetail().data!.user!.id!.stringValue && $0.weekWiseProgramId == Int(self.mainModelView.trainingProgramId)}
-            
-            if routeObjects.count > 0{
+            if routeObjects.count > 0 {
                 
-                if realm.isInWriteTransaction{
+                if ((realm?.isInWriteTransaction) != nil){
                     routeObjects[0].averageSpeed = Double(self.calculatedSpeed)
                 } else {
-                    try! realm.write{
+                    try? realm?.write{
                         routeObjects[0].averageSpeed = Double(self.calculatedSpeed)
                     }
                 }
@@ -1666,8 +1687,10 @@ extension StartWorkoutVC: updateLatLongDelegate{
             self.removeTimerOfMotion()
             
             if lattitude != lat && longitude != long {
-                
-                let routeObjects = Array(realm.objects(CardioActivityRouteTrainingProgram.self)).filter { $0.userId == getUserDetail().data!.user!.id!.stringValue && $0.weekWiseProgramId == Int(self.mainModelView.trainingProgramId)}
+                guard let routerArray = realm?.objects(CardioActivityRouteTrainingProgram.self) else {
+                    return
+                }
+                let routeObjects = Array(routerArray).filter { $0.userId == getUserDetail()?.data!.user!.id!.stringValue && $0.weekWiseProgramId == Int(self.mainModelView.trainingProgramId)}
 
                 //When user click on End button that time user goes to 10 second timer so that time isPaused call and Loader continue
                 if self.isEndAlertShowing == true{
@@ -1729,7 +1752,7 @@ extension StartWorkoutVC: updateLatLongDelegate{
                 
                 print("TraininngGaolId : \(Int(self.mainModelView.trainingProgramId))")
 
-                try! realm.write{
+                try? realm?.write{
                     if routeObjects.count > 0{
                         routeObjects[0].allTrackRoute = encodedPolyline
                         
@@ -2043,8 +2066,11 @@ extension StartWorkoutVC{
     }
     
     func getPreviousTrackPolyline(){
+        guard let routerArray = realm?.objects(CardioActivityRouteTrainingProgram.self) else {
+            return
+        }
         
-        let routeObjects = Array(realm.objects(CardioActivityRouteTrainingProgram.self)).filter { $0.userId == getUserDetail().data!.user!.id!.stringValue && $0.weekWiseProgramId == Int(self.mainModelView.trainingProgramId)}
+        let routeObjects = Array(routerArray).filter { $0.userId == getUserDetail()?.data!.user!.id!.stringValue && $0.weekWiseProgramId == Int(self.mainModelView.trainingProgramId)}
         
         if routeObjects.count > 0{
             let polyline = Polyline(encodedPolyline: routeObjects[0].allTrackRoute)
@@ -2105,7 +2131,11 @@ extension StartWorkoutVC{
 
         if decodedCoordinates.count > 1{
             
-            let routeObjects = Array(realm.objects(CardioActivityRouteTrainingProgram.self)).filter { $0.userId == getUserDetail().data!.user!.id!.stringValue && $0.weekWiseProgramId == Int(self.mainModelView.trainingProgramId)}
+            guard let routerArray = realm?.objects(CardioActivityRouteTrainingProgram.self) else {
+                return
+            }
+            
+            let routeObjects = Array(routerArray).filter { $0.userId == getUserDetail()?.data!.user!.id!.stringValue && $0.weekWiseProgramId == Int(self.mainModelView.trainingProgramId)}
             
             if routeObjects.count > 0{
                 
@@ -2386,9 +2416,11 @@ extension StartWorkoutVC{
 
             if self.mainModelView.exerciseArray[self.mainModelView.index].updatedDuration == nil || self.mainModelView.exerciseArray[self.mainModelView.index].updatedDuration == ""{
                 
-                try! realm.write{
-                    
-                    let routeObjects = Array(realm.objects(CardioActivityRouteTrainingProgram.self)).filter { $0.userId == getUserDetail().data!.user!.id!.stringValue && $0.weekWiseProgramId == Int(self.mainModelView.trainingProgramId)}
+                try? realm?.write{
+                    guard let routerArray = realm?.objects(CardioActivityRouteTrainingProgram.self) else {
+                        return
+                    }
+                    let routeObjects = Array(routerArray).filter { $0.userId == getUserDetail()?.data!.user!.id!.stringValue && $0.weekWiseProgramId == Int(self.mainModelView.trainingProgramId)}
                     
                     if routeObjects.count > 0 {
                         

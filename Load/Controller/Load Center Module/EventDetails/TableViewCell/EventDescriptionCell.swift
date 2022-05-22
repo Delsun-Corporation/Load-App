@@ -39,7 +39,7 @@ class EventDescriptionCell: UITableViewCell {
 
     func setupUI(name:String, description:String) {
         self.setupFont()
-        self.imgProfile.sd_setImage(with: getUserDetail().data?.user?.photo?.toURL(), completed: nil)
+        self.imgProfile.sd_setImage(with: getUserDetail()?.data?.user?.photo?.toURL(), completed: nil)
         self.lblName.text = name
         self.lblLocation.text = "Singapore"
         self.lblDescription.text = description

@@ -135,7 +135,7 @@ class LibraryExercisePreviewRecordsViewModel {
         
         let param = [
             "exercise_name": exercise,
-            "user_id": getUserDetail().data!.user!.id!.stringValue,
+            "user_id": getUserDetail()?.data?.user?.id?.stringValue ?? "",
             "regions_ids": regionIds,
             "category_id": categoryId,
             "mechanics_id": mechanicsId,

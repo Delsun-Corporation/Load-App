@@ -25,13 +25,13 @@ class ChatView: UIView {
 
         SocketIOHandler.shared.readMsg(conversationId: theController.mainModelView.conversationId)
         self.setupTitle(title: "", theController: theController)
-        let id = getUserDetail().data?.user?.id
+        let id = getUserDetail()?.data?.user?.id
         let otherUserId = theController.mainModelView.chatDetails?.fromId == id ? theController.mainModelView.chatDetails?.toId : theController.mainModelView.chatDetails?.fromId
         SocketIOHandler.shared.checkOnline(otherUserId: otherUserId?.stringValue ?? "")
     }
     
     func setupTitle(title:String, theController: ChatVC) {
-        let id = getUserDetail().data?.user?.id
+        let id = getUserDetail()?.data?.user?.id
         let name = theController.mainModelView.chatDetails?.fromId == id ? theController.mainModelView.chatDetails?.toName : theController.mainModelView.chatDetails?.fromName
         let profile = theController.mainModelView.chatDetails?.fromId == id ? theController.mainModelView.chatDetails?.toPhoto : theController.mainModelView.chatDetails?.fromPhoto
         if profile?.contains("http") ?? false {

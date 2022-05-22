@@ -32,16 +32,16 @@ class AccountView: UIView {
         self.setupFont()
         self.viewDate.isHidden = true
         self.lblDescription.isHidden = false
-        self.lblTypeOfAccountValue.text = getAccountName(id: getUserDetail().data?.user?.accountId ?? 0)
-        self.btnSnooze.isSelected = getUserDetail().data?.user?.isSnooze?.intValue == 0 ? false : true
+        self.lblTypeOfAccountValue.text = getAccountName(id: getUserDetail()?.data?.user?.accountId ?? 0)
+        self.btnSnooze.isSelected = getUserDetail()?.data?.user?.isSnooze?.intValue == 0 ? false : true
         if self.btnSnooze.isSelected {
-            if let startDate = getUserDetail().data?.user?.userSnoozeDetail?.startDate {
+            if let startDate = getUserDetail()?.data?.user?.userSnoozeDetail?.startDate {
                 let date: Date = convertDate(startDate, dateFormat: "yyyy-MM-dd HH:mm:ss")
                 theController.mainModelView.selectedDateStart = date
                 self.txtStartDate.text = convertDateFormater(startDate, format: "yyyy-MM-dd HH:mm:ss", dateFormat: "MM/dd/yyyy")
             }
             
-            if let endDate = getUserDetail().data?.user?.userSnoozeDetail?.endDate {
+            if let endDate = getUserDetail()?.data?.user?.userSnoozeDetail?.endDate {
                 let date: Date = convertDate(endDate, dateFormat: "yyyy-MM-dd HH:mm:ss")
                 theController.mainModelView.selectedDateEnd = date
                 self.txtEndDate.text = convertDateFormater(endDate, format: "yyyy-MM-dd HH:mm:ss", dateFormat: "MM/dd/yyyy")

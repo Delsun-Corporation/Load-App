@@ -71,7 +71,7 @@ class LibraryExerciseListMainViewModel {
     
     func apiCallLibraryList(status: String, id: String, isLoading:Bool = true) {
         var param = [
-            "user_id": getUserDetail().data!.user!.id!.stringValue,
+            "user_id": getUserDetail()?.data!.user!.id!.stringValue,
             "status": status,
             "is_group_wise": true,
             "list" : [ "id" , "exercise_name", "category_id", "regions_ids" , "user_id" , "is_favorite", "mechanics_id","repetition_max"],
@@ -217,7 +217,7 @@ class LibraryExerciseListMainViewModel {
     func apiCallSearchLibraryList(searchText: String, status: String, id: String, isLoading:Bool = true) {
         
         var param = [
-            "user_id": getUserDetail().data!.user!.id!.stringValue,
+            "user_id": getUserDetail()?.data!.user!.id!.stringValue,
             "status": status,
             "search": searchText,
             "is_group_wise": true,

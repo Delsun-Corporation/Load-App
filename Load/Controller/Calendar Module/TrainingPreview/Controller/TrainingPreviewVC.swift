@@ -89,7 +89,11 @@ class TrainingPreviewVC: UIViewController, CountDownViewDelegate {
         
         print("weekdayWiseMainID:\(self.mainModelView.weekdayWiseMainID)")
         
-        let routeObjects = Array(realm.objects(CardioActivityRouteTrainingProgram.self)).filter { $0.userId == getUserDetail().data!.user!.id!.stringValue && $0.weekWiseProgramId == Int(self.mainModelView.weekdayWiseMainID)}
+        guard let routerArray = realm?.objects(CardioActivityRouteTrainingProgram.self) else {
+            return
+        }
+        
+        let routeObjects = Array(routerArray).filter { $0.userId == getUserDetail()?.data!.user!.id!.stringValue && $0.weekWiseProgramId == Int(self.mainModelView.weekdayWiseMainID)}
 
         if routeObjects.count > 0{
             /*
@@ -1044,7 +1048,11 @@ extension TrainingPreviewVC{
             
             var isPaused = false
             
-            let routeObjects = Array(realm.objects(CardioActivityRouteTrainingProgram.self)).filter { $0.userId == getUserDetail().data!.user!.id!.stringValue && $0.weekWiseProgramId == Int(self.mainModelView.weekdayWiseMainID)}
+            guard let routerArray = realm?.objects(CardioActivityRouteTrainingProgram.self) else {
+                return
+            }
+            
+            let routeObjects = Array(routerArray).filter { $0.userId == getUserDetail()?.data!.user!.id!.stringValue && $0.weekWiseProgramId == Int(self.mainModelView.weekdayWiseMainID)}
             
             if self.mainModelView.previewData?.exercise?.count ?? 0 > 0{
                 
@@ -1073,7 +1081,7 @@ extension TrainingPreviewVC{
                         
                         if self.mainModelView.previewData?.exercise?[(self.mainModelView.previewData?.exercise?.count ?? 0) - 1].isCompleted == true && self.mainModelView.previewData?.exercise?[(self.mainModelView.previewData?.exercise?.count ?? 0) - 1].isCompletedRest == true{
                             
-                            try! realm.write{
+                            try? realm?.write{
                                 
                                 if routeObjects.count > 0{
                                     routeObjects[0].isAutomaticallyPause = false
@@ -1084,7 +1092,7 @@ extension TrainingPreviewVC{
                         }else{
                             if (self.mainModelView.previewData?.exercise?[self.mainModelView.currentWorkedIndex].isCompleted != true){
                                 
-                                try! realm.write{
+                                try? realm?.write{
                                     
                                     if routeObjects.count > 0{
                                         routeObjects[0].isAutomaticallyPause = false
@@ -1371,7 +1379,11 @@ extension TrainingPreviewVC: updateLatLongDelegate{
 
             if lattitude != lat && longitude != long {
                 
-                let routeObjects = Array(realm.objects(CardioActivityRouteTrainingProgram.self)).filter { $0.userId == getUserDetail().data!.user!.id!.stringValue && $0.weekWiseProgramId == Int(self.mainModelView.weekdayWiseMainID)}
+                guard let routerArray = realm?.objects(CardioActivityRouteTrainingProgram.self) else {
+                    return
+                }
+                
+                let routeObjects = Array(routerArray).filter { $0.userId == getUserDetail()?.data!.user!.id!.stringValue && $0.weekWiseProgramId == Int(self.mainModelView.weekdayWiseMainID)}
                 
                 //When user click on End button that time user goes to 10 second timer so that time isPaused call and Loader continue
                 if self.isEndAlertShowing == true{
@@ -1426,7 +1438,7 @@ extension TrainingPreviewVC: updateLatLongDelegate{
                 
                 print("enocodedPolyline : \(encodedPolyline)")
                 
-                try! realm.write{
+                try? realm?.write{
                     if routeObjects.count > 0{
                         routeObjects[0].allTrackRoute = encodedPolyline
                         
@@ -1482,8 +1494,10 @@ extension TrainingPreviewVC: updateLatLongDelegate{
 extension TrainingPreviewVC{
     
     func getTrackDistance(){
-        
-        let routeObjects = Array(realm.objects(CardioActivityRouteTrainingProgram.self)).filter { $0.userId == getUserDetail().data!.user!.id!.stringValue && $0.weekWiseProgramId == Int(self.mainModelView.weekdayWiseMainID)}
+        guard let routerArray = realm?.objects(CardioActivityRouteTrainingProgram.self) else {
+            return
+        }
+        let routeObjects = Array(routerArray).filter { $0.userId == getUserDetail()?.data!.user!.id!.stringValue && $0.weekWiseProgramId == Int(self.mainModelView.weekdayWiseMainID)}
 
         if routeObjects.count > 0 {
             
@@ -1495,15 +1509,18 @@ extension TrainingPreviewVC{
             self.totalDistancConverted = routeObjects[0].totalCoveredDistance
             
             self.lapCoveredDistance = routeObjects[0].lapArray[self.mainModelView.currentWorkedIndex].lapCoverDistance
-            self.mainModelView.coverdDistanceOfLapWithPedometer  = CGFloat(self.lapCoveredDistance ?? 0.0)
+            self.mainModelView.coverdDistanceOfLapWithPedometer = CGFloat(self.lapCoveredDistance )
             
         }
 
     }
     
     func getPreviousTrackPolyline(){
+        guard let routerArray = realm?.objects(CardioActivityRouteTrainingProgram.self) else {
+            return
+        }
         
-        let routeObjects = Array(realm.objects(CardioActivityRouteTrainingProgram.self)).filter { $0.userId == getUserDetail().data!.user!.id!.stringValue && $0.weekWiseProgramId == Int(self.mainModelView.weekdayWiseMainID)}
+        let routeObjects = Array(routerArray).filter { $0.userId == getUserDetail()?.data!.user!.id!.stringValue && $0.weekWiseProgramId == Int(self.mainModelView.weekdayWiseMainID)}
         
         if routeObjects.count > 0{
             
@@ -1553,8 +1570,10 @@ extension TrainingPreviewVC{
         let decodeForElevationGain : [CLLocation] = polyline.locations!
         
         if decodedCoordinates.count > 1{
-            
-            let routeObjects = Array(realm.objects(CardioActivityRouteTrainingProgram.self)).filter { $0.userId == getUserDetail().data!.user!.id!.stringValue && $0.weekWiseProgramId == Int(self.mainModelView.weekdayWiseMainID)}
+            guard let routerArray = realm?.objects(CardioActivityRouteTrainingProgram.self) else {
+                return
+            }
+            let routeObjects = Array(routerArray).filter { $0.userId == getUserDetail()?.data!.user!.id!.stringValue && $0.weekWiseProgramId == Int(self.mainModelView.weekdayWiseMainID)}
             
             if routeObjects.count > 0{
                 
@@ -1800,9 +1819,13 @@ extension TrainingPreviewVC{
             
             if self.mainModelView.previewData?.exercise?[self.mainModelView.currentWorkedIndex].duration == nil || self.mainModelView.previewData?.exercise?[self.mainModelView.currentWorkedIndex].duration == ""{
                     
-                try! realm.write{
+                try? realm?.write{
                     
-                    let routeObjects = Array(realm.objects(CardioActivityRouteTrainingProgram.self)).filter { $0.userId == getUserDetail().data!.user!.id!.stringValue && $0.weekWiseProgramId == Int(self.mainModelView.weekdayWiseMainID)}
+                    guard let routerArray = realm?.objects(CardioActivityRouteTrainingProgram.self) else {
+                        return
+                    }
+                    
+                    let routeObjects = Array(routerArray).filter { $0.userId == getUserDetail()?.data?.user?.id?.stringValue && $0.weekWiseProgramId == Int(self.mainModelView.weekdayWiseMainID)}
                     
                     if routeObjects.count > 0 {
                         

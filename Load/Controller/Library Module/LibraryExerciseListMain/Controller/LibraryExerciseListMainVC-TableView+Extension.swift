@@ -89,7 +89,10 @@ extension LibraryExerciseListMainVC: UITableViewDelegate, UITableViewDataSource 
                     if self.mainModelView.category?.code?.lowercased() ?? "" != "FAVORITE".lowercased() {
                         tableView.reloadRows(at: [indexPath], with: .none)
                     }
-                    self.LibraryFavoriteDidFinish(isFavorite: !isSelectedCell, id: libraryId, userId: getUserDetail().data!.user!.id!.intValue, indexPath: indexPath)
+                    guard let userId = getUserDetail()?.data?.user?.id?.intValue else {
+                        return false
+                    }
+                    self.LibraryFavoriteDidFinish(isFavorite: !isSelectedCell, id: libraryId, userId: userId, indexPath: indexPath)
                     return true
                 })]
             }

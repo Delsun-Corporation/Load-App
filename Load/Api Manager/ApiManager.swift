@@ -46,8 +46,8 @@ class ApiManager: NSObject {
         }
         
         var headers:[String : String] = [:]
-        if getUserDetail().success != nil {
-            let base64Credentials = (getUserDetail().data?.tokenType ?? "") + " " + (getUserDetail().data?.accessToken ?? "")
+        if getUserDetail()?.success != nil {
+            let base64Credentials = (getUserDetail()?.data?.tokenType ?? "") + " " + (getUserDetail()?.data?.accessToken ?? "")
             headers = ["Authorization": base64Credentials, "Content-Type": "application/json"]
         }
         else {
@@ -93,8 +93,8 @@ class ApiManager: NSObject {
         }
         
         var headers:[String : String] = [:]
-        if getUserDetail().success != nil {
-            let base64Credentials = (getUserDetail().data?.tokenType ?? "") + " " + (getUserDetail().data?.accessToken ?? "")
+        if getUserDetail()?.success != nil {
+            let base64Credentials = (getUserDetail()?.data?.tokenType ?? "") + " " + (getUserDetail()?.data?.accessToken ?? "")
             headers = ["Authorization": base64Credentials, "Content-Type": "application/json"]
         }
         else {
@@ -140,8 +140,8 @@ class ApiManager: NSObject {
         }
         
         var headers:[String : String] = [:]
-        if getUserDetail().success != nil {
-            let base64Credentials = (getUserDetail().data?.tokenType ?? "") + " " + (getUserDetail().data?.accessToken ?? "")
+        if getUserDetail()?.success != nil {
+            let base64Credentials = (getUserDetail()?.data?.tokenType ?? "") + " " + (getUserDetail()?.data?.accessToken ?? "")
             headers = ["Authorization": base64Credentials, "Content-Type": "application/json"]
         }
         else {
@@ -221,8 +221,8 @@ class ApiManager: NSObject {
         }
         
         var headers:[String : String] = [:]
-        if getUserDetail().success != nil {
-            let base64Credentials = (getUserDetail().data?.tokenType ?? "") + " " + (getUserDetail().data?.accessToken ?? "")
+        if getUserDetail()?.success != nil {
+            let base64Credentials = (getUserDetail()?.data?.tokenType ?? "") + " " + (getUserDetail()?.data?.accessToken ?? "")
             headers = ["Authorization": base64Credentials, "Content-Type": "application/json"]
         }
         else {
@@ -268,8 +268,8 @@ class ApiManager: NSObject {
         }
         
         var headers:[String : String] = [:]
-        if getUserDetail().success != nil {
-            let base64Credentials = (getUserDetail().data?.tokenType ?? "") + " " + (getUserDetail().data?.accessToken ?? "")
+        if getUserDetail()?.success != nil {
+            let base64Credentials = (getUserDetail()?.data?.tokenType ?? "") + " " + (getUserDetail()?.data?.accessToken ?? "")
             headers = ["Authorization": base64Credentials, "Content-Type": "application/json"]
         }
         else {
@@ -315,8 +315,8 @@ class ApiManager: NSObject {
         }
         
         var headers:[String : String] = [:]
-        if getUserDetail().success != nil {
-            let base64Credentials = (getUserDetail().data?.tokenType ?? "") + " " + (getUserDetail().data?.accessToken ?? "")
+        if getUserDetail()?.success != nil {
+            let base64Credentials = (getUserDetail()?.data?.tokenType ?? "") + " " + (getUserDetail()?.data?.accessToken ?? "")
             headers = ["Authorization": base64Credentials, "Content-Type": "application/json"]
         }
         else {

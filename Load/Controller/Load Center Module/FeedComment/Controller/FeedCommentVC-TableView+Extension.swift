@@ -53,11 +53,11 @@ extension FeedCommentVC:UITableViewDataSource, UITableViewDelegate, FeedsActionD
     
     func FeedsLikeActionDidFinish(tag: Int) {
         self.mainModelView.feedDetails?.likedDetail?.isLiked = !(self.mainModelView.feedDetails?.likedDetail?.isLiked ?? false)
-        let id = getUserDetail().data?.user?.id?.stringValue
+        let id = getUserDetail()?.data?.user?.id?.stringValue
         if (self.mainModelView.feedDetails?.likedDetail?.isLiked)! {
             self.mainModelView.feedDetails?.likedDetail?.userIds?.append(id!)
-            let dict: NSDictionary = ["id":getUserDetail().data?.user?.id ?? 0, "photo":getUserDetail().data?.user?.photo ?? ""]
-            var likeImage = JSON(dict)
+            let dict: NSDictionary = ["id":getUserDetail()?.data?.user?.id ?? 0, "photo":getUserDetail()?.data?.user?.photo ?? ""]
+            let likeImage = JSON(dict)
             self.mainModelView.feedDetails?.likedDetail?.images?.append(LikedImages(JSON: likeImage.dictionaryObject!)!)
         }
         else {
