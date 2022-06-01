@@ -64,13 +64,16 @@ class CardioTrainingProgramPreviewViewModel {
                     NotificationCenter.default.post(name: NSNotification.Name(rawValue: NOTIFICATION_CENTER_LIST.CALENDAR_RELOADING.rawValue), object: nil)
                     self.theController.navigationController?.popToRootViewController(animated: true)
                     self.theController.delegateDismissCardioTrainingProgram?.dismissCreateCardioTrainingProgram()
-                    DispatchQueue.main.asyncAfter(deadline: DispatchTime.now()+1) {
-                        makeToast(strMessage: message)
+//                        makeToast(strMessage: message)
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                        AlertHelper.shared.showErrorMessage(title: "Success", message: message)
                     }
                 }
                 else {
                     let message = json.getString(key: .message)
-                    makeToast(strMessage: message)
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                        AlertHelper.shared.showErrorMessage(title: "Error", message: message)
+                    }
                 }
             }
         })

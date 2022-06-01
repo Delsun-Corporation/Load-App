@@ -830,13 +830,10 @@ extension CardioTrainingLogVC : UIScrollViewDelegate {
         if self.mainView.mainScrollView.panGestureRecognizer.translation(in: scrollView).y > 0{
             
             if scrollView.contentOffset.y <= (scrollView.contentSize.height - scrollView.frame.size.height){
-                print("Up")
 //                print("scrollView.contentOffset.y :\(scrollView.contentOffset.y)")
 //                print("scrollView.height :\(scrollView.frame.size.height)")
 //
 //                print("Final : \(scrollView.contentOffset.y - scrollView.frame.size.height)")
-
-                print("Height:\((scrollView.contentOffset.y + scrollView.frame.size.height) - scrollView.contentSize.height)")
                 
                 let checkHeight = (scrollView.contentOffset.y + scrollView.frame.size.height) - scrollView.contentSize.height
                 
@@ -902,7 +899,6 @@ extension CardioTrainingLogVC : UIScrollViewDelegate {
         else{
             
             if (scrollView.contentOffset.y > 0 && scrollView.contentOffset.y < (scrollView.contentSize.height - scrollView.frame.size.height) - 80){
-                print("middle")
             }else{
                 
                 if (scrollView.contentOffset.y >= (scrollView.contentSize.height - scrollView.frame.size.height) - 80) {
