@@ -1118,6 +1118,7 @@
 		88FA5C6924754B5E0001569A /* ListingViewAllLoadCenterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88FA5C6824754B5E0001569A /* ListingViewAllLoadCenterView.swift */; };
 		88FB7E3F2434AC370078E75F /* ExerciseCardioCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88FB7E3D2434AC2F0078E75F /* ExerciseCardioCell.swift */; };
 		88FB7E402434AC370078E75F /* ExerciseCardioCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88FB7E3E2434AC350078E75F /* ExerciseCardioCell.xib */; };
+		9DA0A14D28478B06008AA714 /* Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DA0A14C28478B06008AA714 /* Alert.swift */; };
 		D30AD573265B5642005F4293 /* TrainingProgramConfirmationPageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D30AD56E265B5642005F4293 /* TrainingProgramConfirmationPageViewModel.swift */; };
 		D30AD574265B5642005F4293 /* TrainingProgramConfirmationPageVc.swift in Sources */ = {isa = PBXBuildFile; fileRef = D30AD570265B5642005F4293 /* TrainingProgramConfirmationPageVc.swift */; };
 		D30AD575265B5642005F4293 /* TrainingProgramConfirmationPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D30AD572265B5642005F4293 /* TrainingProgramConfirmationPageView.swift */; };
@@ -2357,6 +2358,7 @@
 		88FA5C6824754B5E0001569A /* ListingViewAllLoadCenterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListingViewAllLoadCenterView.swift; sourceTree = "<group>"; };
 		88FB7E3D2434AC2F0078E75F /* ExerciseCardioCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExerciseCardioCell.swift; sourceTree = "<group>"; };
 		88FB7E3E2434AC350078E75F /* ExerciseCardioCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ExerciseCardioCell.xib; sourceTree = "<group>"; };
+		9DA0A14C28478B06008AA714 /* Alert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alert.swift; sourceTree = "<group>"; };
 		A48EC9695D847F1E62A8B02E /* Pods-LoadTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LoadTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-LoadTests/Pods-LoadTests.release.xcconfig"; sourceTree = "<group>"; };
 		B3BED4F1D357FA3A643A46CF /* Pods_Load.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Load.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B3D15C8F1436C5872934A69D /* Pods-Load.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Load.release.xcconfig"; path = "Pods/Target Support Files/Pods-Load/Pods-Load.release.xcconfig"; sourceTree = "<group>"; };
@@ -4706,6 +4708,7 @@
 			children = (
 				1777D18E229D10EE00F6B2E2 /* Language.plist */,
 				884228BA252D89F900F28A02 /* checkmarkAnimation.swift */,
+				9DA0A14C28478B06008AA714 /* Alert.swift */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -10021,6 +10024,7 @@
 				1777D174229D0BCE00F6B2E2 /* CustomImageView.swift in Sources */,
 				1784F93F22C09F770041020D /* CreateRequestStepTwoVC.swift in Sources */,
 				1777D1BD229D404500F6B2E2 /* SignUpVC.swift in Sources */,
+				9DA0A14D28478B06008AA714 /* Alert.swift in Sources */,
 				178366C0231A3CEB0073A7D0 /* ProfessionalLoadCenterViewModel.swift in Sources */,
 				178366C2231A3D880073A7D0 /* ProfessionalLoadCenterVC-TableView+Extension.swift in Sources */,
 				173DDCD222E5865700FC94B6 /* SettingListCell.swift in Sources */,
