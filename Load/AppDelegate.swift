@@ -83,7 +83,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Tell Realm to use this new configuration object for the default Realm
         Realm.Configuration.defaultConfiguration = config
 
-        realm = try! Realm(configuration: config)
+        realm = try? Realm(configuration: config)
     
         if #available(iOS 15, *) {
             let appearance = UINavigationBarAppearance()
