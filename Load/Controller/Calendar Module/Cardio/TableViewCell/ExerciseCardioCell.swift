@@ -1198,7 +1198,7 @@ class ExerciseCardioCell: UITableViewCell, UITextFieldDelegate {
             pickerViewUnit = "min/km"
         }
         
-        setupPickerViewLabel(pickerView: pacePickerView, separator: ".", unit: pickerViewUnit)
+        setupPickerViewLabel(pickerView: pacePickerView, separator: ":", unit: pickerViewUnit)
     }
     
     //Calcualte Percentage
