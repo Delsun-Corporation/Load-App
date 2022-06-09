@@ -186,6 +186,7 @@ class PremiumViewModel: ProfessionalRequirementDelegate, FilterActivitySelectedD
         self.isAutoTopup = isAutoTopup
         self.autoTopupAmount = autoTopupAmount
         self.minimumBalance = minimumBalance
+        updatePremium()
     }
     
     //MARK:- Permission delegate
@@ -228,6 +229,7 @@ class PremiumViewModel: ProfessionalRequirementDelegate, FilterActivitySelectedD
             "language_ids": [languageIds],
             "is_auto_topup": self.isAutoTopup ?? false,
             "auto_topup_amount": self.autoTopupAmount ?? "",
+            "minimum_balance": self.minimumBalance ?? "" ,
             "is_card_default": self.creditCardIdDefault == nil ? false : true,
             "credit_card_id": self.creditCardIdDefault ?? "",
             "premium_profile_permission" : self.selectedViewMyProfile,
