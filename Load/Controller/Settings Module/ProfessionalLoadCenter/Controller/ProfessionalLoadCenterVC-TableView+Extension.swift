@@ -169,8 +169,8 @@ extension ProfessionalLoadCenterVC:UITableViewDataSource, UITableViewDelegate, P
 //            }
 //            else
             if row == 0 {
-                self.mainModelView.textArray[5][0] = text.replacingOccurrences(of: "$", with: "")
-                self.mainModelView.txtPerSession = text
+                self.mainModelView.textArray[5][0] = text
+                self.mainModelView.txtPerSession = text.replacingOccurrences(of: "$", with: "")
             }
             else if row == 1 {
                 self.mainModelView.textArray[5][1] = text
