@@ -66,19 +66,8 @@ class MultiSelectionViewModel {
             
         }
     }
-
-
-}
-
-
-extension MultiSelectionViewModel: CustomNavigationWithSaveButtonDelegate{
     
-    func CustomNavigationClose() {
-        self.theController.dismiss(animated: false, completion: nil)
-        self.delegate?.dismissPopupScreen()
-    }
-    
-    func CustomNavigationSave() {
+    private func saveUpdatedData() {
         let data: [MultiSelectionDataEntry] = self.data.filter { (model) -> Bool in
             model.isSelected == true
         }
@@ -88,7 +77,21 @@ extension MultiSelectionViewModel: CustomNavigationWithSaveButtonDelegate{
         }
         self.theController.dismiss(animated: false, completion: nil)
         self.delegate?.MultiSelectionDidFinish(selectedData: data)
+    }
 
+}
+
+
+extension MultiSelectionViewModel: CustomNavigationWithSaveButtonDelegate{
+    
+    func CustomNavigationClose() {
+        self.theController.dismiss(animated: false, completion: nil)
+        saveUpdatedData()
+        self.delegate?.dismissPopupScreen()
+    }
+    
+    func CustomNavigationSave() {
+        saveUpdatedData()
     }
 
 }
