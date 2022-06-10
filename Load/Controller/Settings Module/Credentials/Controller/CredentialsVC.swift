@@ -30,7 +30,7 @@ class CredentialsVC: UIViewController {
     
     //MARK:- @IBAction
     @IBAction func btnCloseClicked(_ sender: Any) {
-        self.navigationController?.popViewController(animated: true)
+        self.mainModelView.validateDetails()
     }
     
     @IBAction func btnSaveClicked(_ sender: Any) {
