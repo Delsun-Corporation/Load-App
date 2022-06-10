@@ -168,7 +168,7 @@ class ProfessionalLoadCenterViewModel: ProfessionalListDelegate, ProfessionalReq
         obj.mainModelView.delegate = self
         obj.mainModelView.isAgree = isAgreeForm
         obj.mainModelView.isAuto = isAutoForm
-        obj.mainModelView.isSetCompulsory = isSetCompulsory
+        obj.mainModelView.isSetCompulsory = txtAutoAccept
         let nav = UINavigationController(rootViewController: obj)
         nav.modalPresentationStyle = .overCurrentContext
         self.theController.present(nav, animated: true, completion: nil)
@@ -543,7 +543,7 @@ class ProfessionalLoadCenterViewModel: ProfessionalListDelegate, ProfessionalReq
         })
     }
     
-    func SelectFormFinish(isAgree: Bool?, isAuto: Bool?) {
+    func SelectFormFinish(isAgree: Bool?, isAuto: Bool?, isSetCompulsory: Bool?) {
         
         if let viewWithTag = self.theController.navigationController!.view.viewWithTag(102) {
             viewWithTag.removeFromSuperview()
@@ -556,6 +556,7 @@ class ProfessionalLoadCenterViewModel: ProfessionalListDelegate, ProfessionalReq
         }
         self.isAgreeForm = isAgree
         self.isAutoForm = isAuto
+        self.txtAutoAccept = isSetCompulsory ?? false
         
         saveDetails()
     }

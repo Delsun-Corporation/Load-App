@@ -9,7 +9,7 @@
 import UIKit
 
 protocol SelectFormDelegate: class {
-    func SelectFormFinish(isAgree: Bool?, isAuto: Bool?)
+    func SelectFormFinish(isAgree: Bool?, isAuto: Bool?, isSetCompulsory: Bool?)
 }
 
 class SelectFormViewModel {

@@ -30,7 +30,7 @@ class SelectFormVC: UIViewController {
     
     //MARK:- @IBAction
     @IBAction func btnCloseClicked(_ sender: Any) {
-        self.mainModelView.delegate?.SelectFormFinish(isAgree: self.mainModelView.isAgree, isAuto: self.mainModelView.isAuto)
+        self.mainModelView.delegate?.SelectFormFinish(isAgree: self.mainModelView.isAgree, isAuto: self.mainModelView.isAuto, isSetCompulsory: self.mainModelView.isSetCompulsory)
         self.dismiss(animated: true, completion: nil)
     }    
 }
