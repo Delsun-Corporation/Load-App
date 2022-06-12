@@ -23,16 +23,17 @@ class PremiumPaymentMethodViewModel {
     var cardDetails: [CardDetails] = []
     var cardNewDetails: [CardModelClass] = []
     var defaultCard:String?
+    var defaultCardID: Int?
     var accessToken: String = ""
 
     //MARK: - SetupUI
-    
     @objc func setupUI(){
         
         if cardDetails.count != 0 {
             for data in self.cardDetails {
                 if data.isDefault?.boolValue ?? false {
                     self.defaultCard = data.creditCardId ?? ""
+                    self.defaultCardID = Int(data.id ?? 0)
                 }
                 
                 self.apiCallGetCreditCard(cardId: data.creditCardId ?? "")

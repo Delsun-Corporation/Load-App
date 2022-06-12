@@ -37,9 +37,10 @@ extension PremiumPaymentMethodVc: UITableViewDelegate, UITableViewDataSource,Aut
             let number = model.number?.replace(target: "x", withString: "") ?? ""
             let month = model.expireMonth ?? ""
             let year = model.expireYear ?? ""
-            let desc = "Ending  in \(number), Expire on " + month + "/" + year
+            let desc = "Ending in \(number), Expire on " + month + "/" + year
             cell.setupUI(indexPath: indexPath, title: name, text: desc, placeHolder: "")
-            cell.imgChecked.isHidden = self.mainModelView.defaultCard != model.id
+            
+            cell.imgChecked.isHidden = self.mainModelView.defaultCardID != Int(self.mainModelView.cardDetails[indexPath.row - 1].id ?? 0)
             
             cell.rightButtons = [MGSwipeButton(title: "", icon: UIImage(named:"ic_delete_width"), backgroundColor: UIColor.appthemeOffRedColor, callback: { (MGCell) -> Bool in
                 print("Delete API call here")
@@ -73,6 +74,7 @@ extension PremiumPaymentMethodVc: UITableViewDelegate, UITableViewDataSource,Aut
     
     func AutoTopUpBillingCardButton(section: Int, row: Int) {
         self.mainModelView.defaultCard = self.mainModelView.cardNewDetails[row - 1].id ?? ""
+        self.mainModelView.defaultCardID = Int(self.mainModelView.cardDetails[row - 1].id ?? 0)
         UIView.performWithoutAnimation {
             let content = self.mainView.tableView.contentOffset
             self.mainView.tableView.reloadData {
