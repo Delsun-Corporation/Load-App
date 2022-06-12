@@ -406,7 +406,30 @@ class ProfessionalLoadCenterViewModel: ProfessionalListDelegate, ProfessionalReq
         return names
     }
     
-    func apiCallUpdateList(profession:String, introduction: String, rate:Int, specializationIds:[Int], experienceAndAchievements:String, languagesSpokenIds:[Int], languagesWrittenIds:[Int], sessionDuration:String, professionalTypeId:Int, sessionMaximumClients:String, basicRequirement:String, amenities: NSMutableArray, paymentOptionId:Int, perSessionRate:String, perMultipleSessionRate:String, isCustom:Bool, days:[String], isAutoAccept:Bool, latitude:Double, longitude:Double, locationName:String, CredentialsArray: NSMutableArray, isForms:Bool?, isAnswerd:Bool?) {
+    func apiCallUpdateList(profession:String,
+                           introduction: String,
+                           rate:Int,
+                           specializationIds:[Int],
+                           experienceAndAchievements:String,
+                           languagesSpokenIds:[Int],
+                           languagesWrittenIds:[Int],
+                           sessionDuration:String,
+                           professionalTypeId:Int,
+                           sessionMaximumClients:String,
+                           basicRequirement:String,
+                           amenities: NSMutableArray,
+                           paymentOptionId:Int,
+                           perSessionRate:String,
+                           perMultipleSessionRate:String,
+                           isCustom:Bool,
+                           days:[String],
+                           isAutoAccept:Bool,
+                           latitude:Double,
+                           longitude:Double,
+                           locationName:String,
+                           CredentialsArray: NSMutableArray,
+                           isForms:Bool?,
+                           isAnswerd:Bool?) {
         print(amenities)
         print(CredentialsArray)
         var param = ["profession": profession,
