@@ -36,7 +36,7 @@ class MultiSelectionViewModel {
             
             vwnav.imgBackground.isHidden = true
             vwnav.btnback.isHidden = false
-            vwnav.btnSave.isHidden = false
+            vwnav.btnSave.isHidden = true
             
             vwnav.btnback.setImage(UIImage(named: "ic_close_switch_screen_red"), for: .normal)
             vwnav.btnSave.setTitle(str: getCommonString(key: "Select_key"))

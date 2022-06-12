@@ -47,24 +47,18 @@ class AccountVC: UIViewController {
         self.mainView.viewDate.isHidden = sender.isSelected ? false : true
         self.mainView.lblDescription.isHidden = sender.isSelected ? true : false
         if !sender.isSelected {
-            self.mainModelView.setUpNavigationBarRightButton(isRightButtonHidden: true)
             self.mainModelView.apiCallForUpdateAccountSnooze(isSnooze: sender.isSelected, startDate:"", endDate:"")
-        }
-        else {
-            self.mainModelView.setUpNavigationBarRightButton(isRightButtonHidden: false)
         }
     }
     
     @IBAction func btnStartDateClicked(_ sender: Any) {
         self.mainView.txtStartDate.becomeFirstResponder()
-        self.mainModelView.setUpNavigationBarRightButton(isRightButtonHidden: false)
     }
     
     @IBAction func btnEndDateClicked(_ sender: Any) {
         if self.mainView.txtStartDate.text == "" {
             return
         }
-        self.mainModelView.setUpNavigationBarRightButton(isRightButtonHidden: false)
         self.mainView.txtEndDate.becomeFirstResponder()
     }
 }
