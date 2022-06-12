@@ -155,7 +155,7 @@ extension UIViewController : NVActivityIndicatorViewable
         
         let okAction = UIAlertAction(title: getCommonString(key: "Yes_key"), style: UIAlertAction.Style.default) { (result : UIAlertAction) -> Void in
             deleteJSON(key: USER_DETAILS_KEY)
-            AppDelegate.shared.openLoginScreen()
+            AppDelegate.shared?.openLoginScreen()
         }
         
         let cancelAction = UIAlertAction(title: getCommonString(key: "No_key"), style: UIAlertAction.Style.cancel) { (result : UIAlertAction) -> Void in

@@ -210,8 +210,8 @@ class SignUpSetupProfileViewModel {
                     saveJSON(j: json, key: USER_DETAILS_KEY)
 //                    let obj: TabbarVC = AppStoryboard.Home.instance.instantiateViewController(withIdentifier: "TabbarVC") as! TabbarVC
 //                    self.theController.present(obj, animated: true, completion: nil)
-                    AppDelegate.shared.sidemenu()
-                    AppDelegate.shared.apiCallForDynamicData()
+                    AppDelegate.shared?.sidemenu()
+                    AppDelegate.shared?.apiCallForDynamicData()
                 }
                 else {
                     self.theController.navigationController?.popToRootViewController(animated: true)

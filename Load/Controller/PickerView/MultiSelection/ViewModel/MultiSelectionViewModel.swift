@@ -36,7 +36,7 @@ class MultiSelectionViewModel {
             
             vwnav.imgBackground.isHidden = true
             vwnav.btnback.isHidden = false
-            vwnav.btnSave.isHidden = false
+            vwnav.btnSave.isHidden = true
             
             vwnav.btnback.setImage(UIImage(named: "ic_close_switch_screen_red"), for: .normal)
             vwnav.btnSave.setTitle(str: getCommonString(key: "Select_key"))
@@ -66,19 +66,8 @@ class MultiSelectionViewModel {
             
         }
     }
-
-
-}
-
-
-extension MultiSelectionViewModel: CustomNavigationWithSaveButtonDelegate{
     
-    func CustomNavigationClose() {
-        self.theController.dismiss(animated: false, completion: nil)
-        self.delegate?.dismissPopupScreen()
-    }
-    
-    func CustomNavigationSave() {
+    private func saveUpdatedData() {
         let data: [MultiSelectionDataEntry] = self.data.filter { (model) -> Bool in
             model.isSelected == true
         }
@@ -88,7 +77,21 @@ extension MultiSelectionViewModel: CustomNavigationWithSaveButtonDelegate{
         }
         self.theController.dismiss(animated: false, completion: nil)
         self.delegate?.MultiSelectionDidFinish(selectedData: data)
+    }
 
+}
+
+
+extension MultiSelectionViewModel: CustomNavigationWithSaveButtonDelegate{
+    
+    func CustomNavigationClose() {
+        self.theController.dismiss(animated: false, completion: nil)
+        saveUpdatedData()
+        self.delegate?.dismissPopupScreen()
+    }
+    
+    func CustomNavigationSave() {
+        saveUpdatedData()
     }
 
 }

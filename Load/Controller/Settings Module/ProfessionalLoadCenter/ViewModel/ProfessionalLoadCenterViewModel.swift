@@ -168,7 +168,7 @@ class ProfessionalLoadCenterViewModel: ProfessionalListDelegate, ProfessionalReq
         obj.mainModelView.delegate = self
         obj.mainModelView.isAgree = isAgreeForm
         obj.mainModelView.isAuto = isAutoForm
-        obj.mainModelView.isSetCompulsory = isSetCompulsory
+        obj.mainModelView.isSetCompulsory = txtAutoAccept
         let nav = UINavigationController(rootViewController: obj)
         nav.modalPresentationStyle = .overCurrentContext
         self.theController.present(nav, animated: true, completion: nil)
@@ -406,7 +406,30 @@ class ProfessionalLoadCenterViewModel: ProfessionalListDelegate, ProfessionalReq
         return names
     }
     
-    func apiCallUpdateList(profession:String, introduction: String, rate:Int, specializationIds:[Int], experienceAndAchievements:String, languagesSpokenIds:[Int], languagesWrittenIds:[Int], sessionDuration:String, professionalTypeId:Int, sessionMaximumClients:String, basicRequirement:String, amenities: NSMutableArray, paymentOptionId:Int, perSessionRate:String, perMultipleSessionRate:String, isCustom:Bool, days:[String], isAutoAccept:Bool, latitude:Double, longitude:Double, locationName:String, CredentialsArray: NSMutableArray, isForms:Bool?, isAnswerd:Bool?) {
+    func apiCallUpdateList(profession:String,
+                           introduction: String,
+                           rate:Int,
+                           specializationIds:[Int],
+                           experienceAndAchievements:String,
+                           languagesSpokenIds:[Int],
+                           languagesWrittenIds:[Int],
+                           sessionDuration:String,
+                           professionalTypeId:Int,
+                           sessionMaximumClients:String,
+                           basicRequirement:String,
+                           amenities: NSMutableArray,
+                           paymentOptionId:Int,
+                           perSessionRate:String,
+                           perMultipleSessionRate:String,
+                           isCustom:Bool,
+                           days:[String],
+                           isAutoAccept:Bool,
+                           latitude:Double,
+                           longitude:Double,
+                           locationName:String,
+                           CredentialsArray: NSMutableArray,
+                           isForms:Bool?,
+                           isAnswerd:Bool?) {
         print(amenities)
         print(CredentialsArray)
         var param = ["profession": profession,
@@ -543,7 +566,7 @@ class ProfessionalLoadCenterViewModel: ProfessionalListDelegate, ProfessionalReq
         })
     }
     
-    func SelectFormFinish(isAgree: Bool?, isAuto: Bool?) {
+    func SelectFormFinish(isAgree: Bool?, isAuto: Bool?, isSetCompulsory: Bool?) {
         
         if let viewWithTag = self.theController.navigationController!.view.viewWithTag(102) {
             viewWithTag.removeFromSuperview()
@@ -556,6 +579,7 @@ class ProfessionalLoadCenterViewModel: ProfessionalListDelegate, ProfessionalReq
         }
         self.isAgreeForm = isAgree
         self.isAutoForm = isAuto
+        self.txtAutoAccept = isSetCompulsory ?? false
         
         saveDetails()
     }

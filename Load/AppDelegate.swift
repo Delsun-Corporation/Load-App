@@ -25,7 +25,7 @@ import Firebase
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-    static let shared = UIApplication.shared.delegate as! AppDelegate
+    static let shared = UIApplication.shared.delegate as? AppDelegate
     var locationManager = CLLocationManager()
     var lattitude  = Double()
     var longitude = Double()

@@ -70,8 +70,8 @@ extension TrainingPreviewVC: StartWorkoutDelegate{
         self.activityManager = CMMotionActivityManager()
         self.isAutoPauseCheckForAlert = false
         
-        AppDelegate.shared.delegateUpadateLatLong = self
-        AppDelegate.shared.locationManager.startUpdatingLocation()
+        AppDelegate.shared?.delegateUpadateLatLong = self
+        AppDelegate.shared?.locationManager.startUpdatingLocation()
         
         if let value = Defaults.value(forKey: self.mainModelView.weekdayWiseMainID  + " " + "Program") as? Int{
             self.countForTotalStationaryTime = Int(value)
@@ -158,7 +158,7 @@ extension TrainingPreviewVC: delegateSelectLocationProgram{
             //This is for indoors only
             self.startUpdating(fromDate: startDate)
         }else{
-            AppDelegate.shared.locationManager.startUpdatingLocation()
+            AppDelegate.shared?.locationManager.startUpdatingLocation()
         }
 
     }
@@ -202,7 +202,7 @@ extension TrainingPreviewVC: delegateSelectLocationProgram{
             //This is for indoors only
             self.startUpdating(fromDate: self.mainModelView.previewData?.exercise?[0].startTime.convertDateFormater() ?? Date())
         }else{
-            AppDelegate.shared.locationManager.startUpdatingLocation()
+            AppDelegate.shared?.locationManager.startUpdatingLocation()
         }
 
     }

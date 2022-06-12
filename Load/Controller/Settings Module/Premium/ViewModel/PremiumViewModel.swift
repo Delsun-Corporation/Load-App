@@ -106,7 +106,6 @@ class PremiumViewModel: ProfessionalRequirementDelegate, FilterActivitySelectedD
 
     
     func btnActivityClicked() {
-        
         let obj = AppStoryboard.Settings.instance.instantiateViewController(withIdentifier: "ProfessionalActivityVC") as! ProfessionalActivityVC
         obj.mainModelView.delegate = self
         obj.mainModelView.selectedArray = self.selectedArray
@@ -146,18 +145,14 @@ class PremiumViewModel: ProfessionalRequirementDelegate, FilterActivitySelectedD
     
     func ProfessionalRequirementFinish(text: String, isScreen: Int) {
         if self.txtAbout != text {
-            self.theController.btnSave.isHidden = false
             self.theController.resetNavigationBar()
         }
         self.txtAbout = text
         
-        validateDetails()
+        let _ = validateDetails()
     }
     
     func FilterActivitySelectedDidFinish(ids: [Int], names: [String]) {
-        if self.selectedArray != ids {
-            self.theController.btnSave.isHidden = false
-        }
         self.selectedArray = ids
         self.selectedNameArray = names
         let formattedNameString = (names.map{String($0)}).joined(separator: ", ")
@@ -180,12 +175,12 @@ class PremiumViewModel: ProfessionalRequirementDelegate, FilterActivitySelectedD
     
     func AutoTopUpFinish(isAutoTopup: Bool?, autoTopupAmount: String?, minimumBalance :String?) {
         if self.isAutoTopup != isAutoTopup || self.autoTopupAmount != autoTopupAmount  || self.minimumBalance != minimumBalance {
-            self.theController.btnSave.isHidden = false
              self.theController.resetNavigationBar()
         }
         self.isAutoTopup = isAutoTopup
         self.autoTopupAmount = autoTopupAmount
         self.minimumBalance = minimumBalance
+        updatePremium()
     }
     
     //MARK:- Permission delegate
@@ -215,7 +210,6 @@ class PremiumViewModel: ProfessionalRequirementDelegate, FilterActivitySelectedD
     }
     
     func updatePremium() {
-        self.theController.btnSave.isHidden = true
         self.theController.resetNavigationBar()
         self.apiCallSettingCreateUpdatePrimium(about: self.txtAbout, specializationIds: self.selectedArray, languageIds: self.languagesId!)
     }
@@ -228,6 +222,7 @@ class PremiumViewModel: ProfessionalRequirementDelegate, FilterActivitySelectedD
             "language_ids": [languageIds],
             "is_auto_topup": self.isAutoTopup ?? false,
             "auto_topup_amount": self.autoTopupAmount ?? "",
+            "minimum_balance": self.minimumBalance ?? "" ,
             "is_card_default": self.creditCardIdDefault == nil ? false : true,
             "credit_card_id": self.creditCardIdDefault ?? "",
             "premium_profile_permission" : self.selectedViewMyProfile,
@@ -277,8 +272,6 @@ class PremiumViewModel: ProfessionalRequirementDelegate, FilterActivitySelectedD
                         self.selectedNameArray.append(data.name ?? "")
                     }
                     view?.tableView.reloadData()
-                }
-                else {
                 }
             }
         })

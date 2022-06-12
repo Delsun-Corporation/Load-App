@@ -20,7 +20,7 @@ class CredentialsViewModel {
     weak var delegate: CredentialsArrayDelegate?
     
     //MARK:- Functions
-    init(theController:CredentialsVC) {
+    init(theController: CredentialsVC) {
         self.theController = theController
     }
     

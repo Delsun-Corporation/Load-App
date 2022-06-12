@@ -44,7 +44,7 @@ class LoginViewModel {
     func apiCall() {
         let view = (self.theController.view as? LoginView)
 
-        let param = ["email":view?.txtEmail.text?.toTrim() ?? "", "password":view?.txtPassword.text?.toTrim() ?? "", "latitude":AppDelegate.shared.lattitude, "longitude":AppDelegate.shared.longitude] as [String : Any]
+        let param = ["email":view?.txtEmail.text?.toTrim() ?? "", "password":view?.txtPassword.text?.toTrim() ?? "", "latitude": AppDelegate.shared?.lattitude ?? "", "longitude": AppDelegate.shared?.longitude ?? ""] as [String : Any]
         ApiManager.shared.MakePostAPI(name: LOGIN, params: param as [String : Any], vc: self.theController) { (response, error) in
             if response != nil {
                 let json = JSON(response!)
@@ -60,8 +60,8 @@ class LoginViewModel {
                         saveJSON(j: json, key: USER_DETAILS_KEY)
 //                        let obj: TabbarVC = AppStoryboard.Home.instance.instantiateViewController(withIdentifier: "TabbarVC") as! TabbarVC
 //                        self.theController.present(obj, animated: true, completion: nil)
-                        AppDelegate.shared.sidemenu()
-                        AppDelegate.shared.apiCallForDynamicData()
+                        AppDelegate.shared?.sidemenu()
+                        AppDelegate.shared?.apiCallForDynamicData()
                     }
                     else {
                         let obj: SignUpSetupProfileVC = AppStoryboard.Main.instance.instantiateViewController(withIdentifier: "SignUpSetupProfileVC") as! SignUpSetupProfileVC

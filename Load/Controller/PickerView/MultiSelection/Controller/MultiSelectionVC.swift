@@ -42,14 +42,8 @@ class MultiSelectionVC: UIViewController {
         }
 
     }
-
-    //MARK:- @IBAction
-    @IBAction func btnCancelClicked(_ sender: Any) {
-        self.dismiss(animated: false, completion: nil)
-        self.mainModelView.delegate?.dismissPopupScreen()
-    }
     
-    @IBAction func btnDoneClicked(_ sender: Any) {
+    private func saveUpdatedData() {
         let data: [MultiSelectionDataEntry] = self.mainModelView.data.filter { (model) -> Bool in
             model.isSelected == true
         }
@@ -59,5 +53,16 @@ class MultiSelectionVC: UIViewController {
         }
         self.dismiss(animated: false, completion: nil)
         self.mainModelView.delegate?.MultiSelectionDidFinish(selectedData: data)
+    }
+
+    //MARK:- @IBAction
+    @IBAction func btnCancelClicked(_ sender: Any) {
+        self.dismiss(animated: false, completion: nil)
+        self.mainModelView.delegate?.dismissPopupScreen()
+        saveUpdatedData()
+    }
+    
+    @IBAction func btnDoneClicked(_ sender: Any) {
+        saveUpdatedData()
     }
 }

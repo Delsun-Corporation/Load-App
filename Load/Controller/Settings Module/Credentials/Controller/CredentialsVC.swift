@@ -10,6 +10,8 @@ import UIKit
 
 class CredentialsVC: UIViewController {
 
+    @IBOutlet weak var saveButton: UIButton!
+    
     //MARK:- Variables
     lazy var mainView: CredentialsView = { [unowned self] in
         return self.view as! CredentialsView
@@ -26,11 +28,12 @@ class CredentialsVC: UIViewController {
         self.navigationController?.setWhiteColor()
         self.mainModelView.setupUI()
         self.mainView.setupUI(theController: self)
+        saveButton.isHidden = true
     }
     
     //MARK:- @IBAction
     @IBAction func btnCloseClicked(_ sender: Any) {
-        self.navigationController?.popViewController(animated: true)
+        self.mainModelView.validateDetails()
     }
     
     @IBAction func btnSaveClicked(_ sender: Any) {

@@ -90,7 +90,7 @@ class TrainingSettingsVC: UIViewController, UnitstDelegate {
         obj.mainModelView.bikeWeight = self.mainModelView.bikeWeight
         obj.mainModelView.bikeWheelDiameter = self.mainModelView.bikeWheelDiameter
         obj.mainModelView.bikeRearFreeWheel = self.mainModelView.bikeRearFreeWheel
-        obj.mainModelView.bikeFrontChainWheel = self.mainModelView.bikeRearFreeWheel
+        obj.mainModelView.bikeFrontChainWheel = self.mainModelView.bikeFrontChainWheel
         self.navigationController?.pushViewController(obj, animated: true)
     }
     
