@@ -106,7 +106,6 @@ class PremiumViewModel: ProfessionalRequirementDelegate, FilterActivitySelectedD
 
     
     func btnActivityClicked() {
-        
         let obj = AppStoryboard.Settings.instance.instantiateViewController(withIdentifier: "ProfessionalActivityVC") as! ProfessionalActivityVC
         obj.mainModelView.delegate = self
         obj.mainModelView.selectedArray = self.selectedArray
