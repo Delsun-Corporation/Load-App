@@ -1148,7 +1148,6 @@
 		D32E8562266F3E9000001754 /* TopUpPaymentSuccessPopupViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D32E8561266F3E9000001754 /* TopUpPaymentSuccessPopupViewModel.swift */; };
 		D32E8567266F3EA100001754 /* TopUpPaymentSuccessPopupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D32E8566266F3EA100001754 /* TopUpPaymentSuccessPopupView.swift */; };
 		D331B715263992760022498B /* ShowingRouteForTrainingProgram.swift in Sources */ = {isa = PBXBuildFile; fileRef = D331B714263992760022498B /* ShowingRouteForTrainingProgram.swift */; };
-		D3323A5E2661EF7400EE17F5 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D3323A5D2661EF7400EE17F5 /* GoogleService-Info.plist */; };
 		D33A11D42668EBAB0099DC2E /* PremiumPermission + PickerViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D33A11D32668EBAB0099DC2E /* PremiumPermission + PickerViewDelegate.swift */; };
 		D33A11E02668FDB60099DC2E /* PremiumPaymentMethodVc.swift in Sources */ = {isa = PBXBuildFile; fileRef = D33A11DF2668FDB60099DC2E /* PremiumPaymentMethodVc.swift */; };
 		D33A11E52668FDD50099DC2E /* PremiumPaymentMethodViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D33A11E42668FDD50099DC2E /* PremiumPaymentMethodViewModel.swift */; };
@@ -1209,6 +1208,7 @@
 		FF33207228153CF5007734BA /* RXScrollKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF33207128153CF5007734BA /* RXScrollKit.swift */; };
 		FF33207428153D0F007734BA /* RXViewKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF33207328153D0F007734BA /* RXViewKit.swift */; };
 		FF33207628153D32007734BA /* RXWebKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF33207528153D32007734BA /* RXWebKit.swift */; };
+		FF57E3972856442600B90412 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = FF57E3962856442600B90412 /* GoogleService-Info.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -2390,7 +2390,6 @@
 		D32E8561266F3E9000001754 /* TopUpPaymentSuccessPopupViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopUpPaymentSuccessPopupViewModel.swift; sourceTree = "<group>"; };
 		D32E8566266F3EA100001754 /* TopUpPaymentSuccessPopupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopUpPaymentSuccessPopupView.swift; sourceTree = "<group>"; };
 		D331B714263992760022498B /* ShowingRouteForTrainingProgram.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowingRouteForTrainingProgram.swift; sourceTree = "<group>"; };
-		D3323A5D2661EF7400EE17F5 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		D33A11D32668EBAB0099DC2E /* PremiumPermission + PickerViewDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "PremiumPermission + PickerViewDelegate.swift"; sourceTree = "<group>"; };
 		D33A11DF2668FDB60099DC2E /* PremiumPaymentMethodVc.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PremiumPaymentMethodVc.swift; sourceTree = "<group>"; };
 		D33A11E42668FDD50099DC2E /* PremiumPaymentMethodViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PremiumPaymentMethodViewModel.swift; sourceTree = "<group>"; };
@@ -2448,6 +2447,7 @@
 		FF33207128153CF5007734BA /* RXScrollKit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RXScrollKit.swift; sourceTree = "<group>"; };
 		FF33207328153D0F007734BA /* RXViewKit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RXViewKit.swift; sourceTree = "<group>"; };
 		FF33207528153D32007734BA /* RXWebKit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RXWebKit.swift; sourceTree = "<group>"; };
+		FF57E3962856442600B90412 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -5492,7 +5492,7 @@
 				1777D18D229D10E400F6B2E2 /* Helper */,
 				1777D168229D0BCE00F6B2E2 /* IBDesignableX */,
 				1794E0E1229D08C0000FB37F /* Info.plist */,
-				D3323A5D2661EF7400EE17F5 /* GoogleService-Info.plist */,
+				FF57E3962856442600B90412 /* GoogleService-Info.plist */,
 				1794E0DE229D08C0000FB37F /* LaunchScreen.storyboard */,
 				1777D152229D0B9900F6B2E2 /* Load-Bridging-Header.h */,
 				8858667D243EEE48006D96F3 /* Load.entitlements */,
@@ -8898,7 +8898,6 @@
 				17081ADC22E96535004127CD /* KI.png in Resources */,
 				17081A4622E96534004127CD /* MS.png in Resources */,
 				17081B2C22E96536004127CD /* BF.png in Resources */,
-				D3323A5E2661EF7400EE17F5 /* GoogleService-Info.plist in Resources */,
 				1777D1A5229D1B7B00F6B2E2 /* SFUIText-Semibold.ttf in Resources */,
 				17081A5122E96534004127CD /* CZ.png in Resources */,
 				17081A3F22E96534004127CD /* CY.png in Resources */,
@@ -9237,6 +9236,7 @@
 				17081ADB22E96535004127CD /* HR.png in Resources */,
 				D3A1BCC0268DD5AD00847D0E /* EventPremiumUserTblCell.xib in Resources */,
 				882512FA24D5B1BD000D562C /* TimeUndertensionHeaderView.xib in Resources */,
+				FF57E3972856442600B90412 /* GoogleService-Info.plist in Resources */,
 				17081B1E22E96536004127CD /* BS.png in Resources */,
 				17FFA7872327AF48001683BC /* SelectFormAutoSendCell.xib in Resources */,
 				17081A7922E96534004127CD /* BN.png in Resources */,
