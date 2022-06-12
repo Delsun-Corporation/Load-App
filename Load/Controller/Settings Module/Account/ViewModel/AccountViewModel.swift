@@ -12,7 +12,7 @@ import SwiftyJSON
 class AccountViewModel {
     
     //MARK:- Variables
-    fileprivate weak var theController:AccountVC!    
+    fileprivate weak var theController:AccountVC!
     var selectedDateStart:Date?
     var selectedDateEnd:Date?
     
@@ -24,7 +24,7 @@ class AccountViewModel {
     func setupUI() {
         self.DOBSetup()
     }
-
+    
     func DOBSetup() {
         let view = (theController.view as? AccountView)
         let datePickerView:UIDatePicker = UIDatePicker()
@@ -47,7 +47,7 @@ class AccountViewModel {
             datePickerView1.setValue(false, forKey: "highlightsToday")
         }
         datePickerView1.backgroundColor = UIColor.white
-
+        
         datePickerView1.setValue(UIColor.appthemeOffRedColor, forKeyPath: "textColor")
         datePickerView1.datePickerMode = UIDatePicker.Mode.date
         view?.txtEndDate.inputView = datePickerView1
@@ -192,17 +192,18 @@ class AccountViewModel {
         }
     }
     
-    func setUpNavigationBarRightButton(isRightButtonHidden:Bool) {
-        if !isRightButtonHidden
-        {
-            let rightButton = UIBarButtonItem(title: "Save", style: .plain, target: self, action: #selector(saveButtonAction))
-            rightButton.tintColor = UIColor.white
-            self.theController.navigationItem.rightBarButtonItem = rightButton
-        }
-        else {
-            self.theController.navigationItem.rightBarButtonItem = nil
-        }
-    }
+    // Hide for LOAD-29
+    //    func setUpNavigationBarRightButton(isRightButtonHidden:Bool) {
+    //        if !isRightButtonHidden
+    //        {
+    //            let rightButton = UIBarButtonItem(title: "Save", style: .plain, target: self, action: #selector(saveButtonAction))
+    //            rightButton.tintColor = UIColor.white
+    //            self.theController.navigationItem.rightBarButtonItem = rightButton
+    //        }
+    //        else {
+    //            self.theController.navigationItem.rightBarButtonItem = nil
+    //        }
+    //    }
     
     func isSaveIsAvailable() -> Bool {
         if self.selectedDateStart == nil {
@@ -222,7 +223,6 @@ class AccountViewModel {
     }
     
     @objc func saveButtonAction() {
-        self.setUpNavigationBarRightButton(isRightButtonHidden: true)
         let view = (self.theController.view as? AccountView)
         // Make sure that save is available
         guard isSaveIsAvailable() == true else {
@@ -231,8 +231,8 @@ class AccountViewModel {
         
         guard let isSnooze = view?.btnSnooze.isSelected, let startDate = selectedDateStart?.iso8601,
               let endDate = selectedDateEnd?.iso8601 else {
-                  return
-              }
+            return
+        }
         self.apiCallForUpdateAccountSnooze(isSnooze: isSnooze, startDate: startDate, endDate: endDate)
     }
 }

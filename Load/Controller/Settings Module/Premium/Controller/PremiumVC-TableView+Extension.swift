@@ -78,7 +78,7 @@ extension PremiumVC: UITableViewDelegate, UITableViewDataSource, PremiumCellDele
     
     func PremiumCellTextField(text:String, Id: Int, section: Int, row: Int) {
         if self.mainModelView.languagesId != Id {
-            self.btnSave.isHidden = false
+            self.btnSave.isHidden = true
             resetNavigationBar()
             
 //            resetNavigationBar(btnSaveShow: false)

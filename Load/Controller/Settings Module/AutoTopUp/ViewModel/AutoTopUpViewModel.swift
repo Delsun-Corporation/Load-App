@@ -9,19 +9,14 @@
 import UIKit
 import SwiftyJSON
 
-protocol AutoTopUpVCDelegate: class {
+protocol AutoTopUpVCDelegate: AnyObject {
     func AutoTopUpFinish(isAutoTopup: Bool?, autoTopupAmount: String?, minimumBalance:String?)
 }
 
 class AutoTopUpViewModel {
   
     //MARK:- Variables
-    fileprivate weak var theController:AutoTopUpVC!
-//    let headerArray: [String] = ["", "BILLING METHOD"]
-//    let titleArray: [[String]] = [["Auto Top-up", "Minimum balance"], ["", "", ""]]
-//    var textArray: [[String]] = [["", ""], ["", "Ending in 1234, Expire on 01/2019", "Ending in 1234, Expire on 01/2019"]]
-//
-//    let placeHolderArray: [[String]] = [["", "$0"], ["", "", ""]]
+    fileprivate weak var theController: AutoTopUpVC!
 
     let headerArray: [String] = ["",""]
     let titleArray: [[String]] = [[getCommonString(key: "Payment_Method_key")],[getCommonString(key: "Auto_top_up_key") ,getCommonString(key: "Top-up_amount_key") , getCommonString(key: "Minimum_balance_key")]]

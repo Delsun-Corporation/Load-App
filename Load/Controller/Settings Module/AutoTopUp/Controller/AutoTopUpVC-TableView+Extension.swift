@@ -107,7 +107,7 @@ extension AutoTopUpVC: UITableViewDelegate, UITableViewDataSource, AutoTopUpDele
             if row == 1{
                 self.mainModelView.autoTopupAmount = text
                 self.mainModelView.textArray[1][1] = text
-            } else if row == 2{
+            } else if row == 2 {
                 self.mainModelView.minimumBalance = text
                 self.mainModelView.textArray[1][2] = text
             }

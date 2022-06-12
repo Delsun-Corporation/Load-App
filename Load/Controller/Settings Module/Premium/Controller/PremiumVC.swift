@@ -26,7 +26,6 @@ class PremiumVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.btnSave.isHidden = true
-//        setUpNavigationBarTitle(strTitle: getCommonString(key: "Premium_key"), color: .black)
         
         self.mainModelView.setupUI()
         self.mainView.setupUI(theController: self)
@@ -61,6 +60,6 @@ class PremiumVC: UIViewController {
     }
     
     @IBAction func btnSaveClicked(_ sender: Any) {
-        self.mainModelView.validateDetails()
+        let _ = self.mainModelView.validateDetails()
     }
 }

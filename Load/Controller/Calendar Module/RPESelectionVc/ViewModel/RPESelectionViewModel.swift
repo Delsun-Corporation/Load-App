@@ -103,7 +103,7 @@ class RPESelectionViewModel: CustomNavigationDelegate{
                 let success = json.getBool(key: .success)
                 if success {
                     
-                    AppDelegate.shared.delegateUpadateLatLong = nil
+                    AppDelegate.shared?.delegateUpadateLatLong = nil
 
                     if self.controllerMoveFrom == .trainingLog{
                         if let valueFound = Defaults.value(forKey: self.trainingLogId) {

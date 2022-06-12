@@ -111,7 +111,7 @@ class StartWorkoutCardioVC: UIViewController {
             
             let activityName = self.mainModelView.activityName.lowercased()
             if activityName == "Run (Outdoor)".lowercased() || activityName == "Cycling (Outdoor)".lowercased(){
-                AppDelegate.shared.locationManager.allowsBackgroundLocationUpdates = true
+                AppDelegate.shared?.locationManager.allowsBackgroundLocationUpdates = true
             }else{
                 self.startUpdating(fromDate: dateStart)
             }
@@ -133,8 +133,8 @@ class StartWorkoutCardioVC: UIViewController {
         
         //delegate for finding user lat/long
         // get and show google route data in viewModel bcz while opening screen user get latest data otherwise show 0.0
-        AppDelegate.shared.delegateUpadateLatLong = self
-        AppDelegate.shared.locationManager.startUpdatingLocation()
+        AppDelegate.shared?.delegateUpadateLatLong = self
+        AppDelegate.shared?.locationManager.startUpdatingLocation()
         
         //MARK: - COMMENT CHECK
         //Get data from database

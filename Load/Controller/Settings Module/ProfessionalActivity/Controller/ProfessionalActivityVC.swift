@@ -43,15 +43,8 @@ class ProfessionalActivityVC: UIViewController {
         }
 
     }
-
     
-    //MARK:- @IBAction
-    func btnCloseClicked() {
-        self.mainModelView.delegate?.FilterActivityClose()
-        self.dismiss(animated: true, completion: nil)
-    }
-    
-    func btnSelectClicked() {
+    private func saveData() {
         if self.mainModelView.selectedArray.count == 0 {
             makeToast(strMessage: getCommonString(key: "Please_select_categories_key"))
         }
@@ -62,5 +55,15 @@ class ProfessionalActivityVC: UIViewController {
             self.mainModelView.delegate?.FilterActivitySelectedDidFinish(ids: self.mainModelView.selectedArray, names: self.mainModelView.selectedNameArray)
             self.dismiss(animated: true, completion: nil)
         }
+    }
+
+    
+    //MARK:- @IBAction
+    func btnCloseClicked() {
+        saveData()
+    }
+    
+    func btnSelectClicked() {
+        // Hidden in ticket LOAD-29
     }
 }

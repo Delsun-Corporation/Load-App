@@ -1898,6 +1898,9 @@
                             </button>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="saveButton" destination="xIm-ib-6X0" id="ym2-GW-zZZ"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pey-ho-XhJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

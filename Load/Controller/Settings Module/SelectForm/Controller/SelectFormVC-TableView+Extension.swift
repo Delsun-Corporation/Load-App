@@ -31,9 +31,11 @@ extension SelectFormVC: UITableViewDelegate, UITableViewDataSource, SelectFormCe
         if indexPath.section == 0 {
             let cell: SelectFormAutoSendCell = self.mainView.tableView.dequeueReusableCell(withIdentifier: "SelectFormAutoSendCell") as! SelectFormAutoSendCell
             cell.selectionStyle = .none
-//            cell.btnSwitch.isUserInteractionEnabled = false
-            if self.mainModelView.isAuto != nil {
-                cell.btnSwitch.isSelected = self.mainModelView.isAuto!
+            if let _isAuto = self.mainModelView.isAuto {
+                cell.btnSwitch.isSelected = _isAuto
+            }
+            if let _isCompulatory = self.mainModelView.isSetCompulsory {
+                cell.btnSwitchCompulsory.isSelected = _isCompulatory
             }
             cell.delegate = self
             cell.setupUI()
@@ -42,8 +44,8 @@ extension SelectFormVC: UITableViewDelegate, UITableViewDataSource, SelectFormCe
         else {
             let cell: SelectFormQuesionsCell = self.mainView.tableView.dequeueReusableCell(withIdentifier: "SelectFormQuesionsCell") as! SelectFormQuesionsCell
             cell.selectionStyle = .none
-            if self.mainModelView.isAgree != nil {
-//                cell.changeButton(isTrue: self.mainModelView.isAgree!)
+            if let _isAgree = self.mainModelView.isAgree {
+                cell.changeButton(isTrue: _isAgree)
             }
             cell.delegate = self
             cell.setupUI()

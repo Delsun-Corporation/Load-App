@@ -49,6 +49,7 @@ class ProfessionalLoadCenterVC: UIViewController {
     
     //MARK:- @IBAction
      func btnBackClicked() {
+         mainModelView.saveDetails()
         self.navigationController?.popViewController(animated: true)
     }   
     

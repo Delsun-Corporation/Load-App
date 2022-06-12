@@ -82,8 +82,8 @@ class TrainingPreviewVC: UIViewController, CountDownViewDelegate {
         }
 
         //Set for distance check
-        AppDelegate.shared.delegateUpadateLatLong = self
-        AppDelegate.shared.locationManager.startUpdatingLocation()
+        AppDelegate.shared?.delegateUpadateLatLong = self
+        AppDelegate.shared?.locationManager.startUpdatingLocation()
 
         //Get data from database
         
@@ -154,7 +154,7 @@ class TrainingPreviewVC: UIViewController, CountDownViewDelegate {
     //MARK:- IBAction method
     @IBAction func btnCloseClicked(_ sender: Any) {
         self.dismiss(animated: true, completion: nil)
-        AppDelegate.shared.delegateUpadateLatLong = nil
+        AppDelegate.shared?.delegateUpadateLatLong = nil
         self.mainModelView.delegate?.DismissPreviewDidFinish()
     }
     
@@ -547,7 +547,7 @@ class TrainingPreviewVC: UIViewController, CountDownViewDelegate {
                 //This is for indoors only
                 self?.startUpdating(fromDate: self?.mainModelView.previewData?.exercise?[0].startTime.convertDateFormater() ?? Date())
             }else{
-                AppDelegate.shared.locationManager.startUpdatingLocation()
+                AppDelegate.shared?.locationManager.startUpdatingLocation()
             }
         }
 
@@ -566,7 +566,7 @@ class TrainingPreviewVC: UIViewController, CountDownViewDelegate {
                 //This is for indoors only
                 self?.startUpdating(fromDate: startDate)
             }else{
-                AppDelegate.shared.locationManager.startUpdatingLocation()
+                AppDelegate.shared?.locationManager.startUpdatingLocation()
             }
         }
         
@@ -587,8 +587,8 @@ class TrainingPreviewVC: UIViewController, CountDownViewDelegate {
             let activityName = self?.mainModelView.selectedActivityTypeName.lowercased()
             if activityName == "Outdoor".lowercased() {
                 
-                AppDelegate.shared.delegateUpadateLatLong = self
-                AppDelegate.shared.locationManager.startUpdatingLocation()
+                AppDelegate.shared?.delegateUpadateLatLong = self
+                AppDelegate.shared?.locationManager.startUpdatingLocation()
                 
                 if self?.mainModelView.previewData?.exercise?[self?.mainModelView.currentWorkedIndex ?? 0].isPause == false{
                     
@@ -785,7 +785,7 @@ extension TrainingPreviewVC{
     func isCheckForOutdoors() -> Bool{
         if self.mainModelView.selectedActivityTypeName.lowercased() == "Outdoor".lowercased(){
             
-            AppDelegate.shared.locationManager.allowsBackgroundLocationUpdates = true
+            AppDelegate.shared?.locationManager.allowsBackgroundLocationUpdates = true
             return true
         }else{
             return false
