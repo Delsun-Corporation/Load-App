@@ -111,7 +111,7 @@ class StartWorkoutVC: UIViewController {
             
             if activityName == "Outdoor".lowercased() {
                 self.checkLocationPermissionAvailableOrNot()
-                AppDelegate.shared.locationManager.allowsBackgroundLocationUpdates = true
+                AppDelegate.shared?.locationManager.allowsBackgroundLocationUpdates = true
             }else{
                 self.startUpdating(fromDate: dateStart)
             }
@@ -217,8 +217,8 @@ class StartWorkoutVC: UIViewController {
         //TOtal Distance set 0 automatically that's why first assign value and after call method
         
         if activityName == "Outdoor".lowercased() {
-            AppDelegate.shared.delegateUpadateLatLong = self
-            AppDelegate.shared.locationManager.startUpdatingLocation()
+            AppDelegate.shared?.delegateUpadateLatLong = self
+            AppDelegate.shared?.locationManager.startUpdatingLocation()
         }
 
         self.mainView.mapView.camera = GMSCameraPosition(target: CLLocationCoordinate2D(latitude: userCurrentLocation?.coordinate.latitude ?? 0, longitude: userCurrentLocation?.coordinate.longitude ?? 0), zoom: 6)

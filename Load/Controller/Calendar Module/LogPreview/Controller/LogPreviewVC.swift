@@ -82,8 +82,8 @@ class LogPreviewVC: UIViewController, NewMessageSelectDelegate, CountDownViewDel
         }
 
         //Set for distance check
-        AppDelegate.shared.delegateUpadateLatLong = self
-        AppDelegate.shared.locationManager.startUpdatingLocation()
+        AppDelegate.shared?.delegateUpadateLatLong = self
+        AppDelegate.shared?.locationManager.startUpdatingLocation()
 
         //Get data from database
         guard let routerArray = realm?.objects(CardioActivityRoute.self) else {
@@ -184,7 +184,7 @@ class LogPreviewVC: UIViewController, NewMessageSelectDelegate, CountDownViewDel
                
         if activityName.lowercased() == "Cycling (Outdoor)".lowercased() || activityName.lowercased() == "Run (Outdoor)".lowercased(){
             
-              AppDelegate.shared.locationManager.allowsBackgroundLocationUpdates = true
+            AppDelegate.shared?.locationManager.allowsBackgroundLocationUpdates = true
             
             return true
         }else{
@@ -374,7 +374,7 @@ class LogPreviewVC: UIViewController, NewMessageSelectDelegate, CountDownViewDel
     
     @IBAction func btnCloseClicked(_ sender: Any) {
         self.dismiss(animated: true, completion: nil)
-        AppDelegate.shared.delegateUpadateLatLong = nil
+        AppDelegate.shared?.delegateUpadateLatLong = nil
         self.mainModelView.delegate?.DismissPreviewDidFinish()
     }
     
@@ -494,7 +494,7 @@ class LogPreviewVC: UIViewController, NewMessageSelectDelegate, CountDownViewDel
                 //This is for indoors only
                 self?.startUpdating(fromDate: self?.mainModelView.previewData?.exercise?[0].startTime.convertDateFormater() ?? Date())
             }else{
-                AppDelegate.shared.locationManager.startUpdatingLocation()
+                AppDelegate.shared?.locationManager.startUpdatingLocation()
             }
         }
         
@@ -517,7 +517,7 @@ class LogPreviewVC: UIViewController, NewMessageSelectDelegate, CountDownViewDel
                 //This is for indoors only
                 self?.startUpdating(fromDate: startDate)
             }else{
-                AppDelegate.shared.locationManager.startUpdatingLocation()
+                AppDelegate.shared?.locationManager.startUpdatingLocation()
             }
         }
 
@@ -537,8 +537,8 @@ class LogPreviewVC: UIViewController, NewMessageSelectDelegate, CountDownViewDel
             
             let activityName = self?.mainModelView.previewData?.trainingActivity?.name?.lowercased()
             if activityName == "Run (Outdoor)".lowercased() || activityName == "Cycling (Outdoor)".lowercased(){
-                AppDelegate.shared.delegateUpadateLatLong = self
-                AppDelegate.shared.locationManager.startUpdatingLocation()
+                AppDelegate.shared?.delegateUpadateLatLong = self
+                AppDelegate.shared?.locationManager.startUpdatingLocation()
 
                 if self?.mainModelView.previewData?.exercise?[self?.mainModelView.currentWorkedIndex ?? 0].isPause == false{
                     

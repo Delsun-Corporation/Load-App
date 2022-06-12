@@ -439,7 +439,7 @@ class TrainingPreviewViewModel {
                     
 
                     if self.isClickOnCompleteButton == true{
-                        AppDelegate.shared.locationManager.allowsBackgroundLocationUpdates = false
+                        AppDelegate.shared?.locationManager.allowsBackgroundLocationUpdates = false
                         
                         self.theController.redirectionForOutdoor()
                         return
@@ -447,7 +447,7 @@ class TrainingPreviewViewModel {
                     
                     if self.previewData?.isComplete ?? false{
 //                        self.theController.redirectToCardioSummary()
-                        AppDelegate.shared.locationManager.allowsBackgroundLocationUpdates = false
+                        AppDelegate.shared?.locationManager.allowsBackgroundLocationUpdates = false
                         self.theController.redirectToRPESelection()
                     }
 

@@ -447,7 +447,7 @@ class LogPreviewViewModel {
                 if success {
                     
                     if self.isClickOnCompleteButton == true{
-                        AppDelegate.shared.locationManager.allowsBackgroundLocationUpdates = false
+                        AppDelegate.shared?.locationManager.allowsBackgroundLocationUpdates = false
 
                         self.theController.redirectionForOutdoor()
                         return
@@ -455,7 +455,7 @@ class LogPreviewViewModel {
                     
                     if self.previewData?.isComplete ?? false{
 //                        self.theController.redirectToCardioSummary()
-                        AppDelegate.shared.locationManager.allowsBackgroundLocationUpdates = false
+                        AppDelegate.shared?.locationManager.allowsBackgroundLocationUpdates = false
                         self.theController.redirectToRPESelection()
                     }
                     
