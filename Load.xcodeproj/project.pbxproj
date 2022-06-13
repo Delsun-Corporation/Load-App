@@ -1208,7 +1208,7 @@
 		FF33207228153CF5007734BA /* RXScrollKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF33207128153CF5007734BA /* RXScrollKit.swift */; };
 		FF33207428153D0F007734BA /* RXViewKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF33207328153D0F007734BA /* RXViewKit.swift */; };
 		FF33207628153D32007734BA /* RXWebKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF33207528153D32007734BA /* RXWebKit.swift */; };
-		FF57E3972856442600B90412 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = FF57E3962856442600B90412 /* GoogleService-Info.plist */; };
+		FF4091942856E1E300542787 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = FF4091932856E1E300542787 /* GoogleService-Info.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -2447,7 +2447,7 @@
 		FF33207128153CF5007734BA /* RXScrollKit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RXScrollKit.swift; sourceTree = "<group>"; };
 		FF33207328153D0F007734BA /* RXViewKit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RXViewKit.swift; sourceTree = "<group>"; };
 		FF33207528153D32007734BA /* RXWebKit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RXWebKit.swift; sourceTree = "<group>"; };
-		FF57E3962856442600B90412 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		FF4091932856E1E300542787 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -5492,7 +5492,7 @@
 				1777D18D229D10E400F6B2E2 /* Helper */,
 				1777D168229D0BCE00F6B2E2 /* IBDesignableX */,
 				1794E0E1229D08C0000FB37F /* Info.plist */,
-				FF57E3962856442600B90412 /* GoogleService-Info.plist */,
+				FF4091932856E1E300542787 /* GoogleService-Info.plist */,
 				1794E0DE229D08C0000FB37F /* LaunchScreen.storyboard */,
 				1777D152229D0B9900F6B2E2 /* Load-Bridging-Header.h */,
 				8858667D243EEE48006D96F3 /* Load.entitlements */,
@@ -9236,7 +9236,7 @@
 				17081ADB22E96535004127CD /* HR.png in Resources */,
 				D3A1BCC0268DD5AD00847D0E /* EventPremiumUserTblCell.xib in Resources */,
 				882512FA24D5B1BD000D562C /* TimeUndertensionHeaderView.xib in Resources */,
-				FF57E3972856442600B90412 /* GoogleService-Info.plist in Resources */,
+				FF4091942856E1E300542787 /* GoogleService-Info.plist in Resources */,
 				17081B1E22E96536004127CD /* BS.png in Resources */,
 				17FFA7872327AF48001683BC /* SelectFormAutoSendCell.xib in Resources */,
 				17081A7922E96534004127CD /* BN.png in Resources */,
@@ -10379,14 +10379,14 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEVELOPMENT_TEAM = 947422MM24;
+				DEVELOPMENT_TEAM = P4VV3YY3TJ;
 				INFOPLIST_FILE = Load/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.load.test;
+				PRODUCT_BUNDLE_IDENTIFIER = com.timotiusleonardo.loadapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Load/Load-Bridging-Header.h";
@@ -10405,14 +10405,14 @@
 				CODE_SIGN_ENTITLEMENTS = Load/Load.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 947422MM24;
+				DEVELOPMENT_TEAM = P4VV3YY3TJ;
 				INFOPLIST_FILE = Load/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.load.test;
+				PRODUCT_BUNDLE_IDENTIFIER = com.timotiusleonardo.loadapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Load/Load-Bridging-Header.h";
@@ -10426,9 +10426,10 @@
 			baseConfigurationReference = 3F6A3F5E08E58048FBB230D8 /* Pods-LoadTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CODE_SIGN_STYLE = Manual;
-				DEVELOPMENT_TEAM = "";
+				CODE_SIGN_IDENTITY = "Apple Development";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = P4VV3YY3TJ;
 				INFOPLIST_FILE = LoadTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -10438,6 +10439,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.LoadTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=macosx*]" = "";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Load.app/Load";
@@ -10449,9 +10451,10 @@
 			baseConfigurationReference = A48EC9695D847F1E62A8B02E /* Pods-LoadTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CODE_SIGN_STYLE = Manual;
-				DEVELOPMENT_TEAM = "";
+				CODE_SIGN_IDENTITY = "Apple Development";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = P4VV3YY3TJ;
 				INFOPLIST_FILE = LoadTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -10461,6 +10464,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.LoadTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=macosx*]" = "";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Load.app/Load";
@@ -10473,6 +10477,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = P4VV3YY3TJ;
 				INFOPLIST_FILE = LoadUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -10493,6 +10498,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = P4VV3YY3TJ;
 				INFOPLIST_FILE = LoadUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
