@@ -198,11 +198,25 @@ class AddExerciseViewModel {
         return data
     }
     
-    func getActionForce() -> [ActionForce]? {
-        let data = GetAllData?.data?.actionForce?.filter({ (model) -> Bool in
-            return model.name?.lowercased() != "Push And Pull".lowercased()
-        })
-        return data
+    func getActionForce(motion: String) -> [ActionForce]? {
+        if (motion == "") {
+            let data = GetAllData?.data?.actionForce?.filter({ (model) -> Bool in
+                return true
+            })
+            return data
+        }
+        else if (motion == "Static") {
+            let data = GetAllData?.data?.actionForce?.filter({ (model) -> Bool in
+                return model.name?.lowercased() == "hold"
+            })
+            return data
+        }
+        else {
+            let data = GetAllData?.data?.actionForce?.filter({ (model) -> Bool in
+                return model.name?.lowercased() != "hold"
+            })
+            return data
+        }
     }
     
     func showImages() {
