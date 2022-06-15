@@ -8,6 +8,8 @@
 
 import UIKit
 
+var selectedMotion: String = ""
+
 extension AddExerciseVC: UIPickerViewDataSource, UIPickerViewDelegate {
     
     // MARK: UIPickerViewDelegate
@@ -26,7 +28,7 @@ extension AddExerciseVC: UIPickerViewDataSource, UIPickerViewDelegate {
             return GetAllData?.data?.mechanics?.count ?? 0
         }        
         else if pickerView == self.mainModelView.actionForcePickerView {
-            return self.mainModelView.getActionForce()?.count ?? 0
+            return self.mainModelView.getActionForce(motion: selectedMotion)?.count ?? 0
         }
         else if pickerView == self.mainModelView.equipmentPickerView {
             return GetAllData?.data?.equipments?.count ?? 0
@@ -43,6 +45,8 @@ extension AddExerciseVC: UIPickerViewDataSource, UIPickerViewDelegate {
     }
     
     func pickerView(_ pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusing view: UIView?) -> UIView {
+        let motionPickerValue = ["Static", "Dynamic"]
+        let movementPickerValue = ["Bilateral", "Unilateral"]
         
 //for view in pickerView.subviews{
 //                view.backgroundColor = UIColor.clear
@@ -72,7 +76,7 @@ extension AddExerciseVC: UIPickerViewDataSource, UIPickerViewDelegate {
             return myView
         }
         else if pickerView == self.mainModelView.actionForcePickerView {
-            let activity = self.mainModelView.getActionForce()?[row]
+            let activity = self.mainModelView.getActionForce(motion: selectedMotion)?[row]
             let myView = PickerView.instanceFromNib() as! PickerView
             myView.setupUI()
             myView.imgIcon.image = nil
@@ -88,24 +92,27 @@ extension AddExerciseVC: UIPickerViewDataSource, UIPickerViewDelegate {
             return myView
         }
         else if pickerView == self.mainModelView.motionPickerView {
-            let activity = GetAllData?.data?.equipments![row]
+            let activity = motionPickerValue[row]
             let myView = PickerView.instanceFromNib() as! PickerView
             myView.setupUI()
             myView.imgIcon.image = nil
-            myView.lblText.text = activity!.name?.capitalized
+            myView.lblText.text = activity.capitalized
             return myView
         } else if pickerView == self.mainModelView.movementPickerView {
-            let activity = GetAllData?.data?.equipments![row]
+            let activity = movementPickerValue[row]
             let myView = PickerView.instanceFromNib() as! PickerView
             myView.setupUI()
             myView.imgIcon.image = nil
-            myView.lblText.text = activity!.name?.capitalized
+            myView.lblText.text = activity.capitalized
             return myView
         }
         return UIView()
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        let motionPickerValue = ["Static", "Dynamic"]
+        let movementPickerValue = ["Bilateral", "Unilateral"]
+        
         if pickerView == self.mainModelView.partPickerView {
             let activity = self.mainModelView.getCategory()?[row]
             self.mainView.txtCategory.text = activity?.name?.capitalized
@@ -125,7 +132,7 @@ extension AddExerciseVC: UIPickerViewDataSource, UIPickerViewDelegate {
             self.mainModelView.mechanicsId = (activity?.id?.stringValue)!
         }
         else if pickerView == self.mainModelView.actionForcePickerView {
-            let activity = self.mainModelView.getActionForce()?[row]
+            let activity = self.mainModelView.getActionForce(motion: selectedMotion)?[row]
             self.mainView.txtActionForce.text = activity?.name?.capitalized
             self.mainModelView.actionForceId = (activity?.id?.stringValue)!
         }
@@ -136,11 +143,20 @@ extension AddExerciseVC: UIPickerViewDataSource, UIPickerViewDelegate {
             self.mainModelView.equipmentIds.append(activity?.id?.stringValue ?? "")
         }
         else if pickerView == self.mainModelView.motionPickerView {
-            let activity = GetAllData?.data?.equipments![row]
-            self.mainView.txtMotion.text = activity?.name?.capitalized
+            let activity = motionPickerValue[row]
+            selectedMotion = activity
+            
+            let activityForces = self.mainModelView.getActionForce(motion: selectedMotion)
+            if let activityForce = activityForces {
+                self.mainView.txtActionForce.text = activityForce.first?.name?.capitalized
+                self.mainModelView.actionForceId = (activityForce.first?.id?.stringValue) ?? "3"
+            }
+            
+            self.mainModelView.actionForcePickerView.reloadAllComponents()
+            self.mainView.txtMotion.text = selectedMotion.capitalized
         } else if pickerView == self.mainModelView.movementPickerView {
-            let activity = GetAllData?.data?.equipments![row]
-            self.mainView.txtMovement.text = activity?.name?.capitalized
+            let activity = movementPickerValue[row]
+            self.mainView.txtMovement.text = activity.capitalized
         }
     }
     

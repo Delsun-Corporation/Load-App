@@ -131,7 +131,7 @@ class AddExerciseVC: UIViewController, MultiSelectionDelegate, BackToScreenDeleg
     
     @IBAction func btnActionForceClicked(_ sender: Any) {
         if self.mainView.txtActionForce.text?.toTrim() == "" {
-            let activity = self.mainModelView.getActionForce()?.first
+            let activity = self.mainModelView.getActionForce(motion: selectedMotion)?.first
             self.mainView.txtActionForce.text = activity?.name?.capitalized
             self.mainModelView.actionForceId = activity?.id?.stringValue ?? ""
         }
@@ -184,8 +184,8 @@ class AddExerciseVC: UIViewController, MultiSelectionDelegate, BackToScreenDeleg
     @IBAction func btnMovementTapped(_ sender: UIButton) {
         
         if self.mainView.txtMovement.text?.toTrim() == "" {
-            let activity = GetAllData?.data?.equipments?.first
-            self.mainView.txtMovement.text = activity?.name?.capitalized
+            let activity = "Bilateral"
+            self.mainView.txtMovement.text = activity.capitalized
         }
 
         self.mainView.txtMovement.becomeFirstResponder()
@@ -194,8 +194,8 @@ class AddExerciseVC: UIViewController, MultiSelectionDelegate, BackToScreenDeleg
     @IBAction func btnMotionTapped(_ sender: UIButton) {
         
         if self.mainView.txtMotion.text?.toTrim() == "" {
-            let activity = GetAllData?.data?.equipments?.first
-            self.mainView.txtMotion.text = activity?.name?.capitalized
+            let activity = "Static"
+            self.mainView.txtMotion.text = activity.capitalized
         }
 
         self.mainView.txtMotion.becomeFirstResponder()
