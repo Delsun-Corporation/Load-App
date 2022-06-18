@@ -15,6 +15,7 @@ class AccountViewModel {
     fileprivate weak var theController:AccountVC!
     var selectedDateStart:Date?
     var selectedDateEnd:Date?
+    var isSnoozeSelected = false
     
     //MARK:- Functions
     init(theController:AccountVC) {
@@ -23,6 +24,7 @@ class AccountViewModel {
     
     func setupUI() {
         self.DOBSetup()
+        isSnoozeSelected = !theController.snoozeToggleButton.isSelected
     }
     
     func DOBSetup() {
@@ -224,15 +226,20 @@ class AccountViewModel {
     
     @objc func saveButtonAction() {
         let view = (self.theController.view as? AccountView)
-        // Make sure that save is available
-        guard isSaveIsAvailable() == true else {
+        
+        guard let isSnooze = view?.btnSnooze.isSelected, isSnooze else {
+            theController.dismiss()
             return
         }
         
-        guard let isSnooze = view?.btnSnooze.isSelected, let startDate = selectedDateStart?.iso8601,
+        // Make sure that save is available
+        guard isSaveIsAvailable() == true,
+        let startDate = selectedDateStart?.iso8601,
               let endDate = selectedDateEnd?.iso8601 else {
             return
         }
+        
         self.apiCallForUpdateAccountSnooze(isSnooze: isSnooze, startDate: startDate, endDate: endDate)
+        theController.dismiss()
     }
 }
