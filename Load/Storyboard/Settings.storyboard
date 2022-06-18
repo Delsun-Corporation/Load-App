@@ -1114,6 +1114,9 @@
                             </button>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="snoozeToggleButton" destination="eJc-gK-auZ" id="dsY-hA-3nO"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="diy-p4-wAc" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

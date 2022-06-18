@@ -9,6 +9,8 @@
 import UIKit
 
 class AccountVC: UIViewController {
+    
+    @IBOutlet weak var snoozeToggleButton: UIButton!
 
     //MARK:- Variables
     lazy var mainView: AccountView = { [unowned self] in
@@ -30,6 +32,11 @@ class AccountVC: UIViewController {
     
     //MARK:- @IBAction
     @IBAction func btnBackClicked(_ sender: Any) {
+        guard mainModelView.isSnoozeSelected else {
+            mainModelView.saveButtonAction()
+            self.navigationController?.popViewController(animated: true)
+            return
+        }
         // make sure that save method is available
         guard mainModelView.isSaveIsAvailable() == true else {
             return
@@ -44,6 +51,7 @@ class AccountVC: UIViewController {
     
     @IBAction func btnSnoozeClicked(_ sender: UIButton) {
         sender.isSelected = !sender.isSelected
+        mainModelView.isSnoozeSelected = sender.isSelected
         self.mainView.viewDate.isHidden = sender.isSelected ? false : true
         self.mainView.lblDescription.isHidden = sender.isSelected ? true : false
         if !sender.isSelected {

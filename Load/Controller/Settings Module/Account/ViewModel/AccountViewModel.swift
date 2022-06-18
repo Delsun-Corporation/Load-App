@@ -15,6 +15,7 @@ class AccountViewModel {
     fileprivate weak var theController:AccountVC!
     var selectedDateStart:Date?
     var selectedDateEnd:Date?
+    var isSnoozeSelected = false
     
     //MARK:- Functions
     init(theController:AccountVC) {
@@ -23,6 +24,7 @@ class AccountViewModel {
     
     func setupUI() {
         self.DOBSetup()
+        isSnoozeSelected = !theController.snoozeToggleButton.isSelected
     }
     
     func DOBSetup() {
