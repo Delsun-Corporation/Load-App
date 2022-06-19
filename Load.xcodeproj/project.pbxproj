@@ -10417,14 +10417,14 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEVELOPMENT_TEAM = P4VV3YY3TJ;
+				DEVELOPMENT_TEAM = WK5785M82L;
 				INFOPLIST_FILE = Load/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.timotiusleonardo.loadapp;
+				PRODUCT_BUNDLE_IDENTIFIER = com.delsun.load;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Load/Load-Bridging-Header.h";
@@ -10443,14 +10443,14 @@
 				CODE_SIGN_ENTITLEMENTS = Load/Load.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = P4VV3YY3TJ;
+				DEVELOPMENT_TEAM = WK5785M82L;
 				INFOPLIST_FILE = Load/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.timotiusleonardo.loadapp;
+				PRODUCT_BUNDLE_IDENTIFIER = com.delsun.load;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Load/Load-Bridging-Header.h";
@@ -10467,7 +10467,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = P4VV3YY3TJ;
+				DEVELOPMENT_TEAM = WK5785M82L;
 				INFOPLIST_FILE = LoadTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -10492,7 +10492,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = P4VV3YY3TJ;
+				DEVELOPMENT_TEAM = WK5785M82L;
 				INFOPLIST_FILE = LoadTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -10515,7 +10515,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = P4VV3YY3TJ;
+				DEVELOPMENT_TEAM = WK5785M82L;
 				INFOPLIST_FILE = LoadUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -10536,7 +10536,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = P4VV3YY3TJ;
+				DEVELOPMENT_TEAM = WK5785M82L;
 				INFOPLIST_FILE = LoadUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
