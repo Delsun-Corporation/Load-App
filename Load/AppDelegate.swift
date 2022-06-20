@@ -29,6 +29,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var locationManager = CLLocationManager()
     var lattitude  = Double()
     var longitude = Double()
+
     var isUpdated:Bool = false
     
     weak var delegateUpadateLatLong : updateLatLongDelegate?
@@ -36,7 +37,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var statusBarView: UIView? {
         return value(forKey: "statusBar") as? UIView
     }
-
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         IQKeyboardManager.shared.enable = true
