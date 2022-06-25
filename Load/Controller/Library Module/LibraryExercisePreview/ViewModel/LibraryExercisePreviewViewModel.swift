@@ -30,7 +30,7 @@ class LibraryExercisePreviewViewModel {
        
         print("Library Id : \(libraryId)")
         
-         if libraryId != "" {
+        if libraryId != "" {
             theController.mainModelView.apiCallLibraryShow(id: self.libraryId)
         }
         else {

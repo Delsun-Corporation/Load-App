@@ -82,6 +82,8 @@ class LibraryExercisePreviewDetailsViewModel {
         view?.lblTargetedMuscles.text = dataSetPerfectlyInLabel(text: getTargetedMusclesName(ids: self.list?.targetedMusclesIds ?? []))
         view?.lblActionForce.text = getActionForceName(id: self.list?.actionForceId ?? 0)
         view?.lblEquipment.text = getEquipmentsNames(ids: self.list?.equipmentIds ?? [])
+        view?.lblMotion.text = self.list?.motion ?? "Static"
+        view?.lblMovement.text = self.list?.movement ?? "Bilateral"
 //        view?.lblLink.text =  ""
         
         view?.txtLink.text = self.list?.exerciseLink ?? ""
