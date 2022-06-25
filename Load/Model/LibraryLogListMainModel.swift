@@ -43,8 +43,10 @@ class LibraryLogList: Mappable {
     var commonLibraryId = 0
     var libraryId = 0
     var isEdit = false
+    var motion = ""
+    var movement = ""
     
-	required init?(map: Map){ 
+	required init?(map: Map){
 	} 
 
 	func mapping(map: Map) {
@@ -73,6 +75,8 @@ class LibraryLogList: Mappable {
         commonLibraryId <- map["common_library_id"]
         libraryId <- map["library_id"]
         isEdit  <-  map["is_edit"]
+        motion <- map["motion"]
+        movement <- map["movement"]
 	}
 } 
 
