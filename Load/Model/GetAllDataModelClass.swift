@@ -96,6 +96,13 @@ class DataGetAllDataModelClass: Mappable {
         defaultBodyPartImageUrlBack <- map["default_body_part_image_url_back"]
         professionalScheduleAdvanceBooking <- map["professional_schedule_advance_booking"]
 	}
+    
+    func getSortedCategory() -> [Category] {
+        let sortedCategory = category?.sorted(by: { lhs, rhs in
+            return lhs.sequence ?? 0 < rhs.sequence ?? 0
+        })
+        return sortedCategory ?? []
+    }
 }
 
 class Regions: Mappable {
@@ -478,6 +485,7 @@ class Category: Mappable {
     var isActive: NSNumber?
     var updatedAt: Any?
     var createdAt: Any?
+    var sequence: Int?
     
     required init?(map: Map){
     }
@@ -490,6 +498,7 @@ class Category: Mappable {
         isActive <- map["is_active"]
         updatedAt <- map["updated_at"]
         createdAt <- map["created_at"]
+        sequence <- map["sequence"]
     }
 }
 
