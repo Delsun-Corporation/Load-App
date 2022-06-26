@@ -356,7 +356,7 @@ func getAccountName(id:Int) -> String {
 
 func getCategoryName(id:NSNumber) -> String {
     var name: String = ""
-    for data in GetAllData?.data?.category ?? [] {
+    for data in GetAllData?.data?.getSortedCategory() ?? [] {
         if id == data.id, let _name = data.name {
             name = _name
         }

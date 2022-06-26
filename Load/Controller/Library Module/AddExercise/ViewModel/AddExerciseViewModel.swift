@@ -189,10 +189,10 @@ class AddExerciseViewModel {
         obj.mainModelView.libraryPreviewModel = self.libraryPreviewModel
         self.theController.navigationController?.pushViewController(obj, animated: true)
     }
-    
+
     
     func getCategory() -> [Category]? {
-        let data = GetAllData?.data?.category?.filter({ (model) -> Bool in
+        let data = GetAllData?.data?.getSortedCategory().filter({ (model) -> Bool in
             return model.name?.lowercased() != "Favorite".lowercased()
         })
         return data

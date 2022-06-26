@@ -114,16 +114,16 @@ class LibraryExerciseView: UIView, CarbonTabSwipeNavigationDelegate, AddLibraryE
         if !isAdded {
             self.listFavoriteArray.append(favoriteArray)
         }
-        
     }
 
     
     func getAllLibraryType() -> NSMutableArray {
         var array:[String] = [String]()
-        let model = GetAllData?.data?.category ?? []
+        let model = GetAllData?.data?.getSortedCategory() ?? []
         for data in model {
             array.append(data.name!)
         }
+        
         for (index, data) in array.enumerated() {
             if data.lowercased() == "favorite".lowercased() {
                 array.remove(at: index)

@@ -79,7 +79,9 @@ class LibraryView: UIView, CarbonTabSwipeNavigationDelegate, UITextFieldDelegate
     
     func carbonTabSwipeNavigation(_ carbonTabSwipeNavigation: CarbonTabSwipeNavigation, viewControllerAt index: UInt) -> UIViewController {
         let vc = AppStoryboard.Library.instance.instantiateViewController(withIdentifier: "LibraryExerciseListMainVC") as! LibraryExerciseListMainVC
-        vc.mainModelView.category = GetAllData?.data?.category![Int(index)]
+        
+        let categoryArray = GetAllData?.data?.getSortedCategory()
+        vc.mainModelView.category = categoryArray?[Int(index)]
         vc.mainModelView.isFilter = self.txtSearch.text! != ""
         vc.mainModelView.searchText = self.txtSearch.text!
         return vc
@@ -94,8 +96,9 @@ class LibraryView: UIView, CarbonTabSwipeNavigationDelegate, UITextFieldDelegate
     }
     
     func getAllLibraryType() -> NSMutableArray {
+        print("😭 getAllLibraryType")
         var array:[String] = [String]()
-        let model = GetAllData?.data?.category ?? []
+        let model = GetAllData?.data?.getSortedCategory() ?? []
         for data in model {
             array.append(data.name!)
         }
