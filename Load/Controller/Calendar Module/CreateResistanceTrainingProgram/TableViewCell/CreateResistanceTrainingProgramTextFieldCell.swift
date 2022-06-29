@@ -103,7 +103,7 @@ class CreateResistanceTrainingProgramTextFieldCell: UITableViewCell {
         let dateFormatter = DateFormatter()
         dateFormatter.dateStyle = DateFormatter.Style.medium
         dateFormatter.timeStyle = DateFormatter.Style.none
-        dateFormatter.dateFormat = "MM/dd/yyyy"
+        dateFormatter.dateFormat = "dd/MM/yyyy"
         self.txtText.text = dateFormatter.string(from: sender.date)
         self.delegate?.CreateResistanceDateFinish(text: self.txtText.text!, date: sender.date.setTimeZero()!)
     }
@@ -127,7 +127,7 @@ class CreateResistanceTrainingProgramTextFieldCell: UITableViewCell {
                 let dateFormatter = DateFormatter()
                 dateFormatter.dateStyle = DateFormatter.Style.medium
                 dateFormatter.timeStyle = DateFormatter.Style.none
-                dateFormatter.dateFormat = "MM/dd/yyyy"
+                dateFormatter.dateFormat = "dd/MM/yyyy"
                 
                 if self.isStartDate == true {
                     self.txtText.text = dateFormatter.string(from: Date().setTimeZero() ?? Date())
