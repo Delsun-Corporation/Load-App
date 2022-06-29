@@ -1,0 +1,13 @@
+diff --git a/cocoapods-patch-20220629-91913-8bowsh/CarbonKit/CarbonKit/CarbonTabSwipeSegmentedControl.m b/Pods/CarbonKit/CarbonKit/CarbonTabSwipeSegmentedControl.m
+index 30e6ddd..6e4e1c7 100644
+--- a/cocoapods-patch-20220629-91913-8bowsh/CarbonKit/CarbonKit/CarbonTabSwipeSegmentedControl.m
++++ b/Pods/CarbonKit/CarbonKit/CarbonTabSwipeSegmentedControl.m
+@@ -230,4 +230,8 @@ - (BOOL)isRTL {
+     return NO;
+ }
+ 
++- (BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer *)gestureRecognizer {
++return true;
++}
++
+ @end
