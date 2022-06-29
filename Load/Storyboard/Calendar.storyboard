@@ -2219,7 +2219,7 @@
                                                                                 <state key="normal" image="ic_swimming_style"/>
                                                                             </button>
                                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Style" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mzq-H8-Y9E">
-                                                                                <rect key="frame" x="47" y="11" width="31.5" height="16"/>
+                                                                                <rect key="frame" x="47" y="11" width="30.5" height="16"/>
                                                                                 <fontDescription key="fontDescription" name="ProximaNova-Regular" family="ProximaNova-Regular" pointSize="14"/>
                                                                                 <nil key="highlightedColor"/>
                                                                             </label>
@@ -2285,7 +2285,7 @@
                                                                                 <state key="normal" image="ic_rpe_summary"/>
                                                                             </button>
                                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="RPE" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uG3-F6-Sp1">
-                                                                                <rect key="frame" x="47" y="11" width="28" height="16"/>
+                                                                                <rect key="frame" x="47" y="11" width="25" height="16"/>
                                                                                 <fontDescription key="fontDescription" name="ProximaNova-Regular" family="ProximaNova-Regular" pointSize="14"/>
                                                                                 <nil key="highlightedColor"/>
                                                                             </label>
@@ -2351,7 +2351,7 @@
                                                                                 <state key="normal" image="ic_heart_summary_page"/>
                                                                             </button>
                                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Average Heart Rate" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nOd-hy-rcv">
-                                                                                <rect key="frame" x="47" y="11" width="122.5" height="16"/>
+                                                                                <rect key="frame" x="47" y="11" width="121.5" height="16"/>
                                                                                 <fontDescription key="fontDescription" name="ProximaNova-Regular" family="ProximaNova-Regular" pointSize="14"/>
                                                                                 <nil key="highlightedColor"/>
                                                                             </label>
@@ -2417,7 +2417,7 @@
                                                                                 <state key="normal" image="ic_relative_power_cardio_summary"/>
                                                                             </button>
                                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Relative Power" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LAE-m7-NlY">
-                                                                                <rect key="frame" x="47" y="11" width="93" height="16"/>
+                                                                                <rect key="frame" x="47" y="11" width="92" height="16"/>
                                                                                 <fontDescription key="fontDescription" name="ProximaNova-Regular" family="ProximaNova-Regular" pointSize="14"/>
                                                                                 <nil key="highlightedColor"/>
                                                                             </label>
@@ -2450,7 +2450,7 @@
                                                                                 <state key="normal" image="ic_gradinet"/>
                                                                             </button>
                                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Gradient" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kXL-uF-beX">
-                                                                                <rect key="frame" x="47" y="11" width="54" height="16"/>
+                                                                                <rect key="frame" x="47" y="11" width="53" height="16"/>
                                                                                 <fontDescription key="fontDescription" name="ProximaNova-Regular" family="ProximaNova-Regular" pointSize="14"/>
                                                                                 <nil key="highlightedColor"/>
                                                                             </label>
@@ -2475,7 +2475,7 @@
                                                                         <rect key="frame" x="0.0" y="351" width="375" height="38"/>
                                                                         <subviews>
                                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Average Speed" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="30m-BN-uYh">
-                                                                                <rect key="frame" x="47" y="11" width="96.5" height="16"/>
+                                                                                <rect key="frame" x="47" y="11" width="96" height="16"/>
                                                                                 <fontDescription key="fontDescription" name="ProximaNova-Regular" family="ProximaNova-Regular" pointSize="14"/>
                                                                                 <nil key="highlightedColor"/>
                                                                             </label>
@@ -2540,7 +2540,7 @@
                                                                         <rect key="frame" x="0.0" y="429" width="375" height="38"/>
                                                                         <subviews>
                                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Average RPM" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3nW-9q-UJW">
-                                                                                <rect key="frame" x="47" y="11" width="85.5" height="16"/>
+                                                                                <rect key="frame" x="47" y="11" width="84" height="16"/>
                                                                                 <fontDescription key="fontDescription" name="ProximaNova-Regular" family="ProximaNova-Regular" pointSize="14"/>
                                                                                 <nil key="highlightedColor"/>
                                                                             </label>
@@ -2573,7 +2573,7 @@
                                                                         <rect key="frame" x="0.0" y="468" width="375" height="38"/>
                                                                         <subviews>
                                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Active Duration" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FZY-k8-ZJU">
-                                                                                <rect key="frame" x="47" y="11" width="95" height="16"/>
+                                                                                <rect key="frame" x="47" y="11" width="94.5" height="16"/>
                                                                                 <fontDescription key="fontDescription" name="ProximaNova-Regular" family="ProximaNova-Regular" pointSize="14"/>
                                                                                 <nil key="highlightedColor"/>
                                                                             </label>
@@ -2613,7 +2613,7 @@
                                                                                 <state key="normal" image="ic_pizza_summary"/>
                                                                             </button>
                                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Total kcal" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="APx-33-bUu">
-                                                                                <rect key="frame" x="47" y="11" width="57" height="16"/>
+                                                                                <rect key="frame" x="47" y="11" width="59" height="16"/>
                                                                                 <fontDescription key="fontDescription" name="ProximaNova-Regular" family="ProximaNova-Regular" pointSize="14"/>
                                                                                 <nil key="highlightedColor"/>
                                                                             </label>
@@ -2664,7 +2664,7 @@
                                                                 <rect key="frame" x="0.0" y="622.5" width="375" height="37"/>
                                                                 <subviews>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Training Log" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OwW-h9-JMd">
-                                                                        <rect key="frame" x="26" y="10.5" width="76" height="16"/>
+                                                                        <rect key="frame" x="26" y="10.5" width="76.5" height="16"/>
                                                                         <fontDescription key="fontDescription" name="ProximaNova-Regular" family="ProximaNova-Regular" pointSize="14"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
@@ -3291,7 +3291,7 @@
                                                                                 <state key="normal" image="ic_rpe_summary"/>
                                                                             </button>
                                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="RPE" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ePB-f0-3ty">
-                                                                                <rect key="frame" x="47" y="11" width="28" height="16"/>
+                                                                                <rect key="frame" x="47" y="11" width="25" height="16"/>
                                                                                 <fontDescription key="fontDescription" name="ProximaNova-Regular" family="ProximaNova-Regular" pointSize="14"/>
                                                                                 <nil key="highlightedColor"/>
                                                                             </label>
@@ -3323,7 +3323,7 @@
                                                                                 </constraints>
                                                                             </button>
                                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Total volume" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mn5-OE-Lsn">
-                                                                                <rect key="frame" x="47" y="11" width="78" height="16"/>
+                                                                                <rect key="frame" x="47" y="11" width="79.5" height="16"/>
                                                                                 <fontDescription key="fontDescription" name="ProximaNova-Regular" family="ProximaNova-Regular" pointSize="14"/>
                                                                                 <nil key="highlightedColor"/>
                                                                             </label>
@@ -3356,7 +3356,7 @@
                                                                                 <state key="normal" image="ic_weight_lifted"/>
                                                                             </button>
                                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Average weight lifted" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0ru-0F-TbA">
-                                                                                <rect key="frame" x="47" y="11" width="130.5" height="16"/>
+                                                                                <rect key="frame" x="47" y="11" width="131" height="16"/>
                                                                                 <fontDescription key="fontDescription" name="ProximaNova-Regular" family="ProximaNova-Regular" pointSize="14"/>
                                                                                 <nil key="highlightedColor"/>
                                                                             </label>
@@ -3414,7 +3414,7 @@
                                                                 <rect key="frame" x="0.0" y="273" width="375" height="38"/>
                                                                 <subviews>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Training Log" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RP4-F1-y18">
-                                                                        <rect key="frame" x="26" y="11" width="76" height="16"/>
+                                                                        <rect key="frame" x="26" y="11" width="76.5" height="16"/>
                                                                         <fontDescription key="fontDescription" name="ProximaNova-Regular" family="ProximaNova-Regular" pointSize="14"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
@@ -6374,7 +6374,7 @@
                                                         <rect key="frame" x="0.0" y="367" width="375" height="45"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="#Lap(s)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jd7-fR-dUF">
-                                                                <rect key="frame" x="30" y="14" width="48" height="17"/>
+                                                                <rect key="frame" x="30" y="14" width="47.5" height="17"/>
                                                                 <fontDescription key="fontDescription" name="ProximaNova-Regular" family="ProximaNova-Regular" pointSize="15"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
@@ -9432,7 +9432,7 @@
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4oT-nz-sCS">
-                                                        <rect key="frame" x="276" y="15" width="82" height="18"/>
+                                                        <rect key="frame" x="278" y="15" width="80" height="18"/>
                                                         <fontDescription key="fontDescription" name="ProximaNova-Regular" family="ProximaNova-Regular" pointSize="15"/>
                                                         <color key="tintColor" red="0.93725490199999995" green="0.2156862745" blue="0.36862745099999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <state key="normal" title="Switch View">
@@ -9704,7 +9704,7 @@
                                                                 <rect key="frame" x="0.0" y="0.0" width="187.5" height="80"/>
                                                                 <subviews>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Total Distance (km)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2zU-r7-3W4">
-                                                                        <rect key="frame" x="36" y="10" width="115.5" height="17"/>
+                                                                        <rect key="frame" x="35.5" y="10" width="117" height="17"/>
                                                                         <fontDescription key="fontDescription" name="ProximaNova-Regular" family="ProximaNova-Regular" pointSize="14"/>
                                                                         <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                         <nil key="highlightedColor"/>
@@ -9750,7 +9750,7 @@
                                                                 <rect key="frame" x="0.0" y="0.0" width="187.5" height="80"/>
                                                                 <subviews>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" Total Duration" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="edE-M7-sdB">
-                                                                        <rect key="frame" x="49" y="7" width="89.5" height="17"/>
+                                                                        <rect key="frame" x="48.5" y="7" width="90.5" height="17"/>
                                                                         <fontDescription key="fontDescription" name="ProximaNova-Regular" family="ProximaNova-Regular" pointSize="14"/>
                                                                         <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                         <nil key="highlightedColor"/>
@@ -10298,7 +10298,7 @@
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="O7v-iv-H43">
-                                                        <rect key="frame" x="276" y="15" width="82" height="18"/>
+                                                        <rect key="frame" x="278" y="15" width="80" height="18"/>
                                                         <fontDescription key="fontDescription" name="ProximaNova-Regular" family="ProximaNova-Regular" pointSize="15"/>
                                                         <color key="tintColor" red="0.93725490199999995" green="0.2156862745" blue="0.36862745099999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <state key="normal" title="Switch View">
@@ -10579,7 +10579,7 @@
                                                                 <rect key="frame" x="0.0" y="0.0" width="187.5" height="84"/>
                                                                 <subviews>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Completed Volume (kg)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tDv-QW-7pB">
-                                                                        <rect key="frame" x="21.5" y="10" width="144.5" height="17"/>
+                                                                        <rect key="frame" x="21.5" y="10" width="145" height="17"/>
                                                                         <constraints>
                                                                             <constraint firstAttribute="height" constant="17" id="nZt-Uv-VmB"/>
                                                                         </constraints>
@@ -10588,7 +10588,7 @@
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
                                                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_dropdown" translatesAutoresizingMaskIntoConstraints="NO" id="dwf-AT-85b">
-                                                                        <rect key="frame" x="169" y="16.5" width="7" height="4"/>
+                                                                        <rect key="frame" x="169.5" y="16.5" width="7" height="4"/>
                                                                     </imageView>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="35" translatesAutoresizingMaskIntoConstraints="NO" id="6Lb-dF-goe">
                                                                         <rect key="frame" x="22" y="28" width="143.5" height="42"/>
@@ -10645,7 +10645,7 @@
                                                                 <rect key="frame" x="0.0" y="0.0" width="187.5" height="84"/>
                                                                 <subviews>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" Total Duration" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hgm-Sv-9V7">
-                                                                        <rect key="frame" x="49" y="10" width="89.5" height="17"/>
+                                                                        <rect key="frame" x="48.5" y="10" width="90.5" height="17"/>
                                                                         <constraints>
                                                                             <constraint firstAttribute="height" constant="17" id="eRm-rL-Bqb"/>
                                                                         </constraints>
@@ -11519,7 +11519,7 @@
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="viz-bo-BMo">
-                                                        <rect key="frame" x="276" y="15" width="82" height="18"/>
+                                                        <rect key="frame" x="278" y="15" width="80" height="18"/>
                                                         <fontDescription key="fontDescription" name="ProximaNova-Regular" family="ProximaNova-Regular" pointSize="15"/>
                                                         <color key="tintColor" red="0.93725490199999995" green="0.2156862745" blue="0.36862745099999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <state key="normal" title="Switch View">
@@ -11788,7 +11788,7 @@
                                                                 <rect key="frame" x="0.0" y="0.0" width="187.5" height="80"/>
                                                                 <subviews>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Total Distance (km)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MYa-Ee-ADu">
-                                                                        <rect key="frame" x="36" y="10" width="115.5" height="17"/>
+                                                                        <rect key="frame" x="35.5" y="10" width="117" height="17"/>
                                                                         <fontDescription key="fontDescription" name="ProximaNova-Regular" family="ProximaNova-Regular" pointSize="14"/>
                                                                         <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                         <nil key="highlightedColor"/>
@@ -11834,7 +11834,7 @@
                                                                 <rect key="frame" x="0.0" y="0.0" width="187.5" height="80"/>
                                                                 <subviews>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" Total Duration" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yfu-uj-5o0">
-                                                                        <rect key="frame" x="49" y="7" width="89.5" height="17"/>
+                                                                        <rect key="frame" x="48.5" y="7" width="90.5" height="17"/>
                                                                         <fontDescription key="fontDescription" name="ProximaNova-Regular" family="ProximaNova-Regular" pointSize="14"/>
                                                                         <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                         <nil key="highlightedColor"/>

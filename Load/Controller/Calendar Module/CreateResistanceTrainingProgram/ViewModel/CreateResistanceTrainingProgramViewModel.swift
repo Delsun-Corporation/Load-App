@@ -17,7 +17,7 @@ class CreateResistanceTrainingProgramViewModel {
     var titleArray: [String] = ["", "First, how do you set your program?", "Select date", "Select your frequency (weekly)"]
     var textArray: [String] = ["", "", "", ""]
     
-    var placeHolderArray: [String] = ["", "Select program", "MM / DD / YY", "Select frequency"]
+    var placeHolderArray: [String] = ["", "Select program", "DD / MM / YY", "Select frequency"]
     
     var customArray:[String] = ["MONDAY", "TUESDAY", "WEDNESDAY", "THURSDAY", "FRIDAY", "SATURDAY", "SUNDAY"]
     var customArraySelected:[Bool] = [false, false, false, false, false, false, false]
@@ -123,7 +123,7 @@ class CreateResistanceTrainingProgramViewModel {
             str.removeLast()
         }
         
-        let monthsToAdd = 13
+        let monthsToAdd = 3
         
         if self.isStartDate! {
             let newDate = Calendar.current.date(byAdding: .weekOfYear, value: monthsToAdd, to: self.selectedDate)
