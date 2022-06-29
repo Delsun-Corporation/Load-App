@@ -12,8 +12,10 @@ import SwiftyJSON
 //MARK: - Main URLS
 //let SERVER_URL = "http://3.18.106.118/load/" //"http://192.168.0.108:1001"
 let SERVER_URL = "http://178.128.45.110/load/" //http://178.128.56.249/load/"
+let SERVER_URL_v2 = "http://139.59.237.151:5000/"
 let BASE_URL_AUTH = SERVER_URL + "api/auth/"
 let BASE_URL = SERVER_URL + "api/"
+let BASE_URL_v2 = SERVER_URL_v2 + "api/"
 
 
 //MARK: - URLS Names

@@ -102,17 +102,20 @@ class ApiManager: NSObject {
         }
         print(headers)
         
-        let base = isAuth ? BASE_URL_AUTH : BASE_URL
+        var base = isAuth ? BASE_URL_AUTH : BASE_URL
+        if name == "login" {
+            base = BASE_URL_v2
+        }
         let url = base + name
 
         print(url)
         print(params)
-        Alamofire.request(url, method: .get, parameters: params, encoding: URLEncoding.default, headers: headers).validate().responseJSON { (response) in
+        Alamofire.request(url, method: .get, parameters: params, encoding: URLEncoding.default, headers: headers).responseJSON { (response) in
             
             if progress {
                 vc.stopAnimating()
             }
-            print(response)
+            print("This is response \(response)")
 
             switch response.result {
             case .success( _):
