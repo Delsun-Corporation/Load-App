@@ -71,10 +71,10 @@ class LibraryView: UIView, CarbonTabSwipeNavigationDelegate, UITextFieldDelegate
         }
         
         vc.carbonTabSwipeNavigation.pagesScrollView?.decelerationRate = .normal
-        vc.carbonTabSwipeNavigation.pagesScrollView?.isScrollEnabled = false
+        vc.carbonTabSwipeNavigation.pagesScrollView?.isScrollEnabled = true
+        vc.carbonTabSwipeNavigation.carbonTabSwipeScrollView.isScrollEnabled = true
         vc.carbonTabSwipeNavigation.toolbar.shadowImage(forToolbarPosition: .bottom)
         vc.carbonTabSwipeNavigation.setCurrentTabIndex(0, withAnimation: true)
-        vc.carbonTabSwipeNavigation.pagesScrollView?.decelerationRate = .normal        
     }
     
     func carbonTabSwipeNavigation(_ carbonTabSwipeNavigation: CarbonTabSwipeNavigation, viewControllerAt index: UInt) -> UIViewController {

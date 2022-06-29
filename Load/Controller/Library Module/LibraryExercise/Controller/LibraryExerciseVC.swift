@@ -8,7 +8,7 @@
 
 import UIKit
 
-protocol AddExerciseDelegate:class {
+protocol AddExerciseDelegate: AnyObject {
     func AddExerciseDidFinish(listArray: [LibraryExerciseModelClass])
     func AddAllExerciseDidFinish(listArray: [LibraryLogList])
 }
