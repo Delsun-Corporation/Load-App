@@ -55,8 +55,16 @@ class ExerciseCardioCell: UITableViewCell, UITextFieldDelegate {
     var minutes:Int = 0
     var seconds:Int = 0
     
-    var arrayHourDuration : [String] = []
-    var arrayMinDuration : [String] = []
+    var arrayHourDuration : [String] = [] {
+        didSet {
+            print("🍍 arrayHourDuration: ", arrayHourDuration)
+        }
+    }
+    var arrayMinDuration : [String] = [] {
+        didSet {
+            print("🍍 arrayMinDuration: ", arrayMinDuration)
+        }
+    }
     var arraySecDuration : [String] = []
     
     var minutesRest:Int = 0
@@ -1466,17 +1474,17 @@ class ExerciseCardioCell: UITableViewCell, UITextFieldDelegate {
             let label = UILabel()
             label.textAlignment = .center
             label.tag = 100 + index
-            label.font = themeFont(size: 21, fontname: .Regular) //themeFont(size: 15, fontname: .ProximaNovaRegular)
+            label.font = themeFont(size: 21, fontname: .Regular)
             if index == 0 {
-                label.frame = CGRect(x: (screen * CGFloat(index)) + 48, y: (durationPickerView.frame.height - 30) / 2, width: screen, height: 30)
+                label.frame = CGRect(x: 0.26 * UIScreen.main.bounds.width, y: (durationPickerView.frame.height - 30) / 2, width: 0.2 * UIScreen.main.bounds.width, height: 30)
                 label.text = "hrs"
             }
             else if index == 1 {
-                label.frame = CGRect(x: (screen * CGFloat(index)) + 38, y: (durationPickerView.frame.height - 30) / 2, width: screen, height: 30)
+                label.frame = CGRect(x: 0.5 * UIScreen.main.bounds.width, y: (durationPickerView.frame.height - 30) / 2, width: 0.2 * UIScreen.main.bounds.width, height: 30)
                 label.text = "min"
             }
             else {
-                label.frame = CGRect(x: (screen * CGFloat(index)) + 25, y: (durationPickerView.frame.height - 30) / 2, width: screen, height: 30)
+                label.frame = CGRect(x: 0.72 * UIScreen.main.bounds.width, y: (durationPickerView.frame.height - 30) / 2, width: 0.2 * UIScreen.main.bounds.width, height: 30)
                 label.text = "sec"
             }
             label.textColor = .appthemeRedColor
@@ -1982,6 +1990,7 @@ extension ExerciseCardioCell: UIPickerViewDataSource, UIPickerViewDelegate {
                 pickerTitle = calculateDurationArrayWithGap(data: self.selectedCardioValidationList?.durationRange, isShowHours: true)[row]
             } else {
                 if component == 0 {
+                    #warning("Duration Picker View")
                     pickerTitle = arrayHourDuration[row]
                 } else if component == 1 {
                     pickerTitle = arrayMinDuration[row]
@@ -2180,13 +2189,7 @@ extension ExerciseCardioCell: UIPickerViewDataSource, UIPickerViewDelegate {
                 list.durationRange.contains(",") {
                 return 120 - 5
             } else {
-                switch component {
-                
-                case 2:
-                    return 0.2 * (UIScreen.main.bounds.width)
-                default:
-                    return 0.2 * (UIScreen.main.bounds.width)
-                }
+                return 0.22 * (UIScreen.main.bounds.width)
             }
         case pacePickerView, speedPickerView, distancePickerView:
             switch component {
