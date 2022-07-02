@@ -30,6 +30,9 @@ class SignUpSetupProfileVC: UIViewController, UITextFieldDelegate {
         self.mainView.txtFullName.delegate = self
         self.mainView.txtHeight.delegate = self
         self.mainView.txtWeight.delegate = self
+        self.mainView.txtLocation.delegate = self
+        self.mainView.txtPhoneArea.delegate = self
+        self.mainView.txtPhoneNumber.delegate = self
 
         self.mainModelView.setupDropDown()
         self.mainView.setupUI()

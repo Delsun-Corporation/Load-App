@@ -55,11 +55,14 @@ class ApiManager: NSObject {
         }
         print(headers)
         
-        let base = isAuth ? BASE_URL_AUTH : BASE_URL
+        var base = isAuth ? BASE_URL_AUTH : BASE_URL
+        if name == "register" {
+            base = BASE_URL_v2
+        }
         let url = base + name
         print(url)
         print(params)
-        Alamofire.request(url, method: .post, parameters: params, encoding: JSONEncoding.default, headers: headers).validate().responseJSON { (response) in
+        Alamofire.request(url, method: .post, parameters: params, encoding: JSONEncoding.default, headers: headers).responseJSON { (response) in
             print(response)
             
             if progress {
@@ -339,6 +342,7 @@ class ApiManager: NSObject {
             for (key, value) in params {
                 multipartFormData.append((value as? String)?.data(using: String.Encoding.utf8) ?? Data(), withName: key)
             }
+            print(multipartFormData)
         }, to: url, method:.post,
            headers:headers, encodingCompletion: { result in
             switch result {

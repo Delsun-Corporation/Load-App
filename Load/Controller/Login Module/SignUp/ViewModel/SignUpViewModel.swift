@@ -53,7 +53,7 @@ class SignUpViewModel {
 
 //        let param = ["email":view?.txtEmail.text!, "password":view?.txtPassword.text!, "confirm_password":view?.txtPassword.text!,    "step" : "1"]
         
-        let param = ["email":view?.txtEmail.text ?? "", "password":view?.txtPassword.text  ?? "", "confirm_password":view?.txtPassword.text  ?? "",  "step" : "1"]
+        let param = ["email":view?.txtEmail.text ?? "", "password":view?.txtPassword.text  ?? ""]
         
         ApiManager.shared.MakePostAPI(name: SIGN_UP, params: param as [String : Any], vc: self.theController) { (response, error) in
             if response != nil {

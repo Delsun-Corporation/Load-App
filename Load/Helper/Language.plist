@@ -911,5 +911,9 @@ and your training goal.</string>
 	<string>By allowing Auto-send Feature, PAR-Q form will be send automatical to first-timer clients.</string>
 	<key>Set_compulsory_description_key</key>
 	<string>By setting as compulsary, Premium user will not be able to book any sessions before filling up their PAR-Q form. </string>
+	<key>Phone_area_key</key>
+	<string>Phone Area</string>
+	<key>Phone_number_key</key>
+	<string>Phone Number</string>
 </dict>
 </plist>
