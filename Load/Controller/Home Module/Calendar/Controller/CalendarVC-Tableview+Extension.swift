@@ -227,12 +227,12 @@ extension CalendarVC: UITableViewDelegate, UITableViewDataSource, CalendarSelect
                 cell.removeSelectedDate()
                 
                 if !self.mainModelView.isReloaded[indexPath.section] {
-                    if arr != nil {
-                         cell.makeCircle(ofIndex: indexPath.section)
-                        self.mainModelView.lastSelectedSection = indexPath.section
-                        self.mainModelView.isReloaded[indexPath.section] = true
-                    }
-                }else{
+                    #warning("Should investigate if this impacts training log list in calendar")
+                    // if arr != nil {
+                    cell.makeCircle(ofIndex: indexPath.section)
+                    self.mainModelView.lastSelectedSection = indexPath.section
+                    self.mainModelView.isReloaded[indexPath.section] = true
+                } else {
                     cell.makeCircle(ofIndex: indexPath.section)
                 }
                 
