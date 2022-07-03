@@ -48,8 +48,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         GMSPlacesClient.provideAPIKey(GOOGLE_MAP_KEY)
         self.setUpQuickLocationUpdate()
         if getUserDetail()?.success != nil {
-            self.apiCallForDynamicData()
-            self.sidemenu()
+            if getUserDetail()?.data?.user?.isProfileComplete ?? false {
+                self.apiCallForDynamicData()
+                self.sidemenu()
+            }
         }
         
         FirebaseApp.configure()

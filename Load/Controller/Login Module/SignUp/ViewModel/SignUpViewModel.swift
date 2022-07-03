@@ -50,19 +50,27 @@ class SignUpViewModel {
     
     func apiCall() {
         let view = (self.theController.view as? SignUpView)
-
-//        let param = ["email":view?.txtEmail.text!, "password":view?.txtPassword.text!, "confirm_password":view?.txtPassword.text!,    "step" : "1"]
-        
-        let param = ["email":view?.txtEmail.text ?? "", "password":view?.txtPassword.text  ?? "", "confirm_password":view?.txtPassword.text  ?? "",  "step" : "1"]
+        var param: [String: String] = [:]
+        if (newApiConfig) {
+            param = ["email":view?.txtEmail.text ?? "", "password":view?.txtPassword.text ?? ""]
+        }
+        else {
+            param = ["email":view?.txtEmail.text ?? "", "password":view?.txtPassword.text ?? "", "confirm_password":view?.txtPassword.text ?? "", "step" : "1"]
+        }
         
         ApiManager.shared.MakePostAPI(name: SIGN_UP, params: param as [String : Any], vc: self.theController) { (response, error) in
             if response != nil {
                 let json = JSON(response!)
                 let result = LoginModelClass(JSON: json.dictionaryObject!)
                 if result?.success ?? false {
-                    let obj: SignUpSetupProfileVC = AppStoryboard.Main.instance.instantiateViewController(withIdentifier: "SignUpSetupProfileVC") as! SignUpSetupProfileVC
-                    obj.mainModelView.userId = result?.data?.user?.id?.stringValue ?? ""
-                    self.theController.navigationController?.pushViewController(obj, animated: true)
+                    if (newApiConfig) {
+                        self.theController.navigationController?.popToRootViewController(animated: true)
+                    }
+                    else {
+                        let obj: SignUpSetupProfileVC = AppStoryboard.Main.instance.instantiateViewController(withIdentifier: "SignUpSetupProfileVC") as! SignUpSetupProfileVC
+                        obj.mainModelView.userEmail = view?.txtEmail.text ?? ""
+                        self.theController.navigationController?.pushViewController(obj, animated: true)
+                    }
                 }
                 else {
                     makeToast(strMessage: result?.message ?? "")

@@ -21,12 +21,18 @@ class SignUpSetupProfileView: UIView {
     @IBOutlet weak var txtSex: CustomTextField!
     @IBOutlet weak var txtHeight: CustomTextField!
     @IBOutlet weak var txtWeight: CustomTextField!
+    @IBOutlet weak var txtLocation: CustomTextField!
+    @IBOutlet weak var txtPhoneArea: CustomTextField!
+    @IBOutlet weak var txtPhoneNumber: CustomTextField!
     
     @IBOutlet weak var viewFirstName: CustomView!
     @IBOutlet weak var viewDOB: CustomView!
     @IBOutlet weak var viewSex: CustomView!
     @IBOutlet weak var viewHeight: CustomView!
     @IBOutlet weak var viewWeight: CustomView!
+    @IBOutlet weak var viewLocation: CustomView!
+    @IBOutlet weak var viewPhoneArea: CustomView!
+    @IBOutlet weak var viewPhoneNumber: CustomView!
     
     @IBOutlet weak var viewDOBDropDown: UIView!
     @IBOutlet weak var viewSexDropDown: UIView!
@@ -56,6 +62,9 @@ class SignUpSetupProfileView: UIView {
         self.txtSex.font = themeFont(size: 13, fontname: .Regular)
         self.txtHeight.font = themeFont(size: 13, fontname: .Regular)
         self.txtWeight.font = themeFont(size: 13, fontname: .Regular)
+        self.txtLocation.font = themeFont(size: 13, fontname: .Regular)
+        self.txtPhoneArea.font = themeFont(size: 13, fontname: .Regular)
+        self.txtPhoneNumber.font = themeFont(size: 13, fontname: .Regular)
         self.btnNext.titleLabel?.font = themeFont(size: 17, fontname: .Regular)
         
         self.lblCreateAccount.setColor(color: .appthemeWhiteColor)
@@ -65,6 +74,9 @@ class SignUpSetupProfileView: UIView {
         self.txtSex.setColor(color: .appthemeBlackColor)
         self.txtHeight.setColor(color: .appthemeBlackColor)
         self.txtWeight.setColor(color: .appthemeBlackColor)
+        self.txtLocation.setColor(color: .appthemeBlackColor)
+        self.txtPhoneArea.setColor(color: .appthemeBlackColor)
+        self.txtPhoneNumber.setColor(color: .appthemeBlackColor)
         self.btnNext.setColor(color: .appthemeWhiteColor)
         
         self.lblCreateAccount.text = getCommonString(key: "Create_Account_key")
@@ -74,6 +86,9 @@ class SignUpSetupProfileView: UIView {
         self.txtSex.placeholder = getCommonString(key: "Sex_key")
         self.txtHeight.placeholder = getCommonString(key: "Height_key")
         self.txtWeight.placeholder = getCommonString(key: "Weight_key")
+        self.txtLocation.placeholder = getCommonString(key: "Location_key")
+        self.txtPhoneArea.placeholder = getCommonString(key: "Phone_area_key")
+        self.txtPhoneNumber.placeholder = getCommonString(key: "Phone_number_key")
         self.btnNext.setTitle(str: getCommonString(key: "Next_key"))
     }
 }

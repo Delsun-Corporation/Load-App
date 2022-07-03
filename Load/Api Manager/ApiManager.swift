@@ -48,18 +48,29 @@ class ApiManager: NSObject {
         var headers:[String : String] = [:]
         if getUserDetail()?.success != nil {
             let base64Credentials = (getUserDetail()?.data?.tokenType ?? "") + " " + (getUserDetail()?.data?.accessToken ?? "")
-            headers = ["Authorization": base64Credentials, "Content-Type": "application/json"]
+            if newApiConfig {
+                headers = ["Authorization": (getUserDetail()?.data?.accessToken ?? ""), "Content-Type": "application/json"]
+            }
+            else {
+                headers = ["Authorization": base64Credentials, "Content-Type": "application/json"]
+            }
+            
         }
         else {
             headers = ["Content-Type": "application/json"]
         }
         print(headers)
         
-        let base = isAuth ? BASE_URL_AUTH : BASE_URL
+        
+        
+        var base = isAuth ? BASE_URL_AUTH : BASE_URL
+        if (newApiConfig) {
+            base = BASE_URL_v2
+        }
         let url = base + name
         print(url)
         print(params)
-        Alamofire.request(url, method: .post, parameters: params, encoding: JSONEncoding.default, headers: headers).validate().responseJSON { (response) in
+        Alamofire.request(url, method: .post, parameters: params, encoding: JSONEncoding.default, headers: headers).responseJSON { (response) in
             print(response)
             
             if progress {
@@ -95,19 +106,27 @@ class ApiManager: NSObject {
         var headers:[String : String] = [:]
         if getUserDetail()?.success != nil {
             let base64Credentials = (getUserDetail()?.data?.tokenType ?? "") + " " + (getUserDetail()?.data?.accessToken ?? "")
-            headers = ["Authorization": base64Credentials, "Content-Type": "application/json"]
+            if newApiConfig {
+                headers = ["Authorization": (getUserDetail()?.data?.accessToken ?? ""), "Content-Type": "application/json"]
+            }
+            else {
+                headers = ["Authorization": base64Credentials, "Content-Type": "application/json"]
+            }
         }
         else {
             headers = ["Content-Type": "application/json"]
         }
         print(headers)
         
-        let base = isAuth ? BASE_URL_AUTH : BASE_URL
+        var base = isAuth ? BASE_URL_AUTH : BASE_URL
+        if (newApiConfig) {
+            base = BASE_URL_v2
+        }
         let url = base + name
 
         print(url)
         print(params)
-        Alamofire.request(url, method: .get, parameters: params, encoding: URLEncoding.default, headers: headers).validate().responseJSON { (response) in
+        Alamofire.request(url, method: .get, parameters: params, encoding: URLEncoding.default, headers: headers).responseJSON { (response) in
             
             if progress {
                 vc.stopAnimating()
@@ -142,14 +161,22 @@ class ApiManager: NSObject {
         var headers:[String : String] = [:]
         if getUserDetail()?.success != nil {
             let base64Credentials = (getUserDetail()?.data?.tokenType ?? "") + " " + (getUserDetail()?.data?.accessToken ?? "")
-            headers = ["Authorization": base64Credentials, "Content-Type": "application/json"]
+            if newApiConfig {
+                headers = ["Authorization": (getUserDetail()?.data?.accessToken ?? ""), "Content-Type": "application/json"]
+            }
+            else {
+                headers = ["Authorization": base64Credentials, "Content-Type": "application/json"]
+            }
         }
         else {
             headers = ["Content-Type": "application/json"]
         }
         print(headers)
         
-        let url = BASE_URL + name
+        var url = BASE_URL + name
+        if (newApiConfig) {
+            url = BASE_URL_v2 + name
+        }
         print(url)
         print(params)
         Alamofire.request(url, method: .get, parameters: params, encoding: URLEncoding.default, headers: headers).validate().responseJSON { (response) in
@@ -223,14 +250,22 @@ class ApiManager: NSObject {
         var headers:[String : String] = [:]
         if getUserDetail()?.success != nil {
             let base64Credentials = (getUserDetail()?.data?.tokenType ?? "") + " " + (getUserDetail()?.data?.accessToken ?? "")
-            headers = ["Authorization": base64Credentials, "Content-Type": "application/json"]
+            if newApiConfig {
+                headers = ["Authorization": (getUserDetail()?.data?.accessToken ?? ""), "Content-Type": "application/json"]
+            }
+            else {
+                headers = ["Authorization": base64Credentials, "Content-Type": "application/json"]
+            }
         }
         else {
             headers = ["Content-Type": "application/json"]
         }
         print(headers)
         
-        let base = isAuth ? BASE_URL_AUTH : BASE_URL
+        var base = isAuth ? BASE_URL_AUTH : BASE_URL
+        if (newApiConfig) {
+            base = BASE_URL_v2
+        }
         let url = base + name
         print(url)
         print(JSON(params))
@@ -270,14 +305,22 @@ class ApiManager: NSObject {
         var headers:[String : String] = [:]
         if getUserDetail()?.success != nil {
             let base64Credentials = (getUserDetail()?.data?.tokenType ?? "") + " " + (getUserDetail()?.data?.accessToken ?? "")
-            headers = ["Authorization": base64Credentials, "Content-Type": "application/json"]
+            if newApiConfig {
+                headers = ["Authorization": (getUserDetail()?.data?.accessToken ?? ""), "Content-Type": "application/json"]
+            }
+            else {
+                headers = ["Authorization": base64Credentials, "Content-Type": "application/json"]
+            }
         }
         else {
             headers = ["Content-Type": "application/json"]
         }
         print(headers)
         
-        let base = isAuth ? BASE_URL_AUTH : BASE_URL
+        var base = isAuth ? BASE_URL_AUTH : BASE_URL
+        if (newApiConfig) {
+            base = BASE_URL_v2
+        }
         let url = base + name
         print(url)
         print(JSON(params))
@@ -317,14 +360,22 @@ class ApiManager: NSObject {
         var headers:[String : String] = [:]
         if getUserDetail()?.success != nil {
             let base64Credentials = (getUserDetail()?.data?.tokenType ?? "") + " " + (getUserDetail()?.data?.accessToken ?? "")
-            headers = ["Authorization": base64Credentials, "Content-Type": "application/json"]
+            if newApiConfig {
+                headers = ["Authorization": (getUserDetail()?.data?.accessToken ?? ""), "Content-Type": "application/json"]
+            }
+            else {
+                headers = ["Authorization": base64Credentials, "Content-Type": "application/json"]
+            }
         }
         else {
             headers = ["Content-Type": "application/json"]
         }
         print(headers)
         
-        let base = isAuth ? BASE_URL_AUTH : BASE_URL
+        var base = isAuth ? BASE_URL_AUTH : BASE_URL
+        if (newApiConfig) {
+            base = BASE_URL_v2
+        }
         let url = base + name
         print(url)
         print(params)

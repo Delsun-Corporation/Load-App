@@ -28,7 +28,11 @@ class SignUpSetupProfileViewModel {
     var isSexSelected:Bool = false
     var isHeightSelected:Bool = false
     var isWeightSelected:Bool = false
+    var isLocationSelected:Bool = false
+    var isPhoneAreaSelected:Bool = false
+    var isPhoneNumberSelected:Bool = false
     var userId:String = "1"
+    var userEmail: String = ""
     var strDOB:String = ""
     var profileImage:UIImage?
     var isComeLogin:Bool = false
@@ -132,7 +136,7 @@ class SignUpSetupProfileViewModel {
         view?.viewDOBDropDown.backgroundColor = UIColor.appthemeRedColor
         view?.txtDOB.textColor = UIColor.appthemeRedColor
         view?.imgDOBDropDown.isHidden = false
-        self.showNext(txtFullName: view?.txtFullName.text ?? "")
+        self.showNext(txtFullName: view?.txtFullName.text ?? "", txtPhoneArea: view?.txtPhoneArea.text ?? "", txtPhoneNumber: view?.txtPhoneNumber.text ?? "", txtLocation: view?.txtLocation.text ?? "")
     }
     
     func sexDropDownSetupUI() {
@@ -150,18 +154,19 @@ class SignUpSetupProfileViewModel {
             view?.txtSex.textColor = UIColor.appthemeRedColor
             view?.viewSexDropDown.backgroundColor = UIColor.appthemeRedColor
             view?.imgSexDropDown.image = UIImage(named: "ic_right_birthday")
-            self.showNext(txtFullName: view?.txtFullName.text ?? "")
+            self.showNext(txtFullName: view?.txtFullName.text ?? "", txtPhoneArea: view?.txtPhoneArea.text ?? "", txtPhoneNumber: view?.txtPhoneNumber.text ?? "", txtLocation: view?.txtLocation.text ?? "")
+            
         }
         sexDropDown.backgroundColor = .white
         sexDropDown.width = view?.btnSex.frame.width ?? 0
         sexDropDown.bottomOffset = CGPoint(x: 0, y: sexDropDown.anchorView?.plainView.bounds.height ?? 0)
     }
     
-    func showNext(txtFullName:String) {
+    func showNext(txtFullName:String, txtPhoneArea: String, txtPhoneNumber: String, txtLocation: String) {
         let view = (self.theController.view as? SignUpSetupProfileView)
 
         if txtFullName != "" && isProfileSelected && isDOBSelected
-             && isSexSelected && isHeightSelected && isWeightSelected {
+             && isSexSelected && isHeightSelected && isWeightSelected && txtPhoneArea != "" && txtPhoneNumber != "" && txtLocation != "" {
             view?.viewNext.backgroundColor = UIColor.appthemeRedColor
             view?.btnNext.isUserInteractionEnabled = true
         }
@@ -200,13 +205,17 @@ class SignUpSetupProfileViewModel {
     //MARK:- API Integration
     func apiCall() {
         let view = (self.theController.view as? SignUpSetupProfileView)
-
-        let param = ["id":self.userId, "step" : "2", "name":view?.txtFullName.text!, "date_of_birth":self.strDOB, "gender" : self.checkGender(str: (view?.txtSex.text?.toTrim() ?? "")), "weight" : view?.txtWeight.text!, "height" : view?.txtHeight.text!]
         
-        ApiManager.shared.MakePostWithImageAPI(name: SIGN_UP, params: param as [String : Any], images: [self.profileImage!], vc: self.theController) { (response, error) in
+        let weightInt: Int = Int(view?.txtWeight.text ?? "0") ?? 0
+        let heightInt: Int = Int(view?.txtHeight.text ?? "0") ?? 0
+
+        let param = ["name":view?.txtFullName.text! ?? "", "date_of_birth":self.strDOB, "gender" : self.checkGender(str: (view?.txtSex.text?.toTrim() ?? "")), "weight" : weightInt, "height" : heightInt, "location" : view?.txtLocation.text ?? "", "phone_area" : view?.txtPhoneArea.text ?? "", "phone_number" : view?.txtPhoneNumber.text ?? "", "email": self.userEmail] as [String : Any]
+        
+        ApiManager.shared.MakePostAPI(name: SIGN_UP_PROFILE, params: param as [String : Any], vc: self.theController) { (response, error) in
             if response != nil {
                 let json = JSON(response!)
-                if self.isComeLogin {
+                let result = LoginModelClass(JSON: json.dictionaryObject!)
+                if (result?.success ?? false) {
                     saveJSON(j: json, key: USER_DETAILS_KEY)
 //                    let obj: TabbarVC = AppStoryboard.Home.instance.instantiateViewController(withIdentifier: "TabbarVC") as! TabbarVC
 //                    self.theController.present(obj, animated: true, completion: nil)
@@ -214,7 +223,7 @@ class SignUpSetupProfileViewModel {
                     AppDelegate.shared?.apiCallForDynamicData()
                 }
                 else {
-                    self.theController.navigationController?.popToRootViewController(animated: true)
+                    makeToast(strMessage: result?.message ?? "")
                 }
             }
         }

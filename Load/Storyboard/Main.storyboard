@@ -5,6 +5,7 @@
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -29,13 +30,13 @@
                                 <rect key="frame" x="0.0" y="44" width="375" height="623"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SIGN IN" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pal-KH-ioe">
-                                        <rect key="frame" x="154.5" y="65" width="66.5" height="21.5"/>
+                                        <rect key="frame" x="154.5" y="65" width="66" height="21"/>
                                         <fontDescription key="fontDescription" name="SFUIText-Regular" family="SF UI Text" pointSize="18"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dQB-gc-tk3" customClass="CustomView" customModule="Load" customModuleProvider="target">
-                                        <rect key="frame" x="44" y="133.5" width="287" height="232"/>
+                                        <rect key="frame" x="44" y="133" width="287" height="232"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Cto-5x-pP7">
                                                 <rect key="frame" x="39" y="39" width="209" height="36"/>
@@ -150,7 +151,7 @@
                                         </userDefinedRuntimeAttributes>
                                     </view>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1hD-bo-dV1">
-                                        <rect key="frame" x="117.5" y="383" width="140" height="28"/>
+                                        <rect key="frame" x="120" y="382.5" width="135" height="28"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <fontDescription key="fontDescription" name="SFUIText-Regular" family="SF UI Text" pointSize="13"/>
                                         <state key="normal" title="Forgot your password?">
@@ -161,7 +162,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BmU-9V-ubn">
-                                        <rect key="frame" x="78.5" y="545" width="218" height="28"/>
+                                        <rect key="frame" x="82.5" y="545" width="210" height="28"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <fontDescription key="fontDescription" name="SFUIText-Regular" family="SF UI Text" pointSize="13"/>
                                         <state key="normal" title=" I don’t have Load account. Sign Up">
@@ -243,7 +244,7 @@
                                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Email Address" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="QZx-Qq-srF">
                                                         <rect key="frame" x="5" y="5" width="199" height="25"/>
                                                         <fontDescription key="fontDescription" name="SFUIText-Regular" family="SF UI Text" pointSize="13"/>
-                                                        <textInputTraits key="textInputTraits" keyboardType="emailAddress" returnKeyType="done"/>
+                                                        <textInputTraits key="textInputTraits" keyboardType="emailAddress" returnKeyType="done" textContentType="email"/>
                                                     </textField>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="01m-3A-f84">
                                                         <rect key="frame" x="0.0" y="35" width="209" height="1"/>
@@ -417,7 +418,7 @@
                                         </userDefinedRuntimeAttributes>
                                     </view>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aY4-cW-EbP">
-                                        <rect key="frame" x="72" y="589" width="231" height="28"/>
+                                        <rect key="frame" x="76.5" y="589" width="222" height="28"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <fontDescription key="fontDescription" name="SFUIText-Regular" family="SF UI Text" pointSize="13"/>
                                         <state key="normal" title="I already have a Load account. Sign in">
@@ -836,6 +837,46 @@
                                                     <constraint firstAttribute="bottom" secondItem="Y3H-DX-1wh" secondAttribute="bottom" id="sRQ-WV-KkG"/>
                                                 </constraints>
                                             </view>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4Rv-1b-wUT" customClass="CustomView" customModule="Load" customModuleProvider="target">
+                                                <rect key="frame" x="20" y="203" width="335" height="45"/>
+                                                <subviews>
+                                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Enter your full name" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="pwO-Pg-6mt" customClass="CustomTextField" customModule="Load" customModuleProvider="target">
+                                                        <rect key="frame" x="5" y="5" width="325" height="35"/>
+                                                        <fontDescription key="fontDescription" name="SFUIText-Regular" family="SF UI Text" pointSize="13"/>
+                                                        <textInputTraits key="textInputTraits"/>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="leftPaddingView">
+                                                                <integer key="value" value="15"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                        </userDefinedRuntimeAttributes>
+                                                    </textField>
+                                                </subviews>
+                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="45" id="13N-qt-HIP"/>
+                                                    <constraint firstAttribute="trailing" secondItem="pwO-Pg-6mt" secondAttribute="trailing" constant="5" id="2Dm-Ap-g5Z"/>
+                                                    <constraint firstItem="pwO-Pg-6mt" firstAttribute="leading" secondItem="4Rv-1b-wUT" secondAttribute="leading" constant="5" id="NRl-P9-Xdm"/>
+                                                    <constraint firstAttribute="bottom" secondItem="pwO-Pg-6mt" secondAttribute="bottom" constant="5" id="O6t-xF-Xs2"/>
+                                                    <constraint firstItem="pwO-Pg-6mt" firstAttribute="top" secondItem="4Rv-1b-wUT" secondAttribute="top" constant="5" id="bji-fs-Q9a"/>
+                                                </constraints>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColors">
+                                                        <color key="value" red="0.8784313725490196" green="0.8784313725490196" blue="0.88235294117647056" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="shadowRadius">
+                                                        <integer key="value" value="0"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="shadowOpacity">
+                                                        <integer key="value" value="0"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                        <integer key="value" value="0"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                        <integer key="value" value="1"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                            </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xcK-8F-2qR">
                                                 <rect key="frame" x="20" y="372" width="335" height="56"/>
                                                 <subviews>
@@ -872,20 +913,123 @@
                                                     <constraint firstAttribute="bottom" secondItem="bnz-bp-FK8" secondAttribute="bottom" id="k4m-Zi-ifJ"/>
                                                 </constraints>
                                             </view>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="j6c-u2-5d2">
+                                                <rect key="frame" x="20" y="259" width="335" height="45"/>
+                                                <subviews>
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ftb-pO-6RV" customClass="CustomView" customModule="Load" customModuleProvider="target">
+                                                        <rect key="frame" x="0.0" y="0.0" width="100.5" height="45"/>
+                                                        <subviews>
+                                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Enter your full name" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Fp9-I4-p9k" customClass="CustomTextField" customModule="Load" customModuleProvider="target">
+                                                                <rect key="frame" x="5" y="5" width="90.5" height="35"/>
+                                                                <fontDescription key="fontDescription" name="SFUIText-Regular" family="SF UI Text" pointSize="13"/>
+                                                                <textInputTraits key="textInputTraits" keyboardType="phonePad" textContentType="tel"/>
+                                                                <userDefinedRuntimeAttributes>
+                                                                    <userDefinedRuntimeAttribute type="number" keyPath="leftPaddingView">
+                                                                        <integer key="value" value="15"/>
+                                                                    </userDefinedRuntimeAttribute>
+                                                                </userDefinedRuntimeAttributes>
+                                                            </textField>
+                                                        </subviews>
+                                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="trailing" secondItem="Fp9-I4-p9k" secondAttribute="trailing" constant="5" id="2Ko-xp-OAe"/>
+                                                            <constraint firstItem="Fp9-I4-p9k" firstAttribute="top" secondItem="Ftb-pO-6RV" secondAttribute="top" constant="5" id="Oad-Ar-BXd"/>
+                                                            <constraint firstAttribute="bottom" secondItem="Fp9-I4-p9k" secondAttribute="bottom" constant="5" id="npq-iE-Bjb"/>
+                                                            <constraint firstItem="Fp9-I4-p9k" firstAttribute="leading" secondItem="Ftb-pO-6RV" secondAttribute="leading" constant="5" id="pb4-U1-RkM"/>
+                                                            <constraint firstAttribute="height" constant="45" id="phI-26-A6o"/>
+                                                        </constraints>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="color" keyPath="borderColors">
+                                                                <color key="value" red="0.87843137250000003" green="0.87843137250000003" blue="0.88235294119999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="shadowRadius">
+                                                                <integer key="value" value="0"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="shadowOpacity">
+                                                                <integer key="value" value="0"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                                <integer key="value" value="0"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                                <integer key="value" value="1"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                        </userDefinedRuntimeAttributes>
+                                                    </view>
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sdX-Az-Lsb" customClass="CustomView" customModule="Load" customModuleProvider="target">
+                                                        <rect key="frame" x="110.5" y="0.0" width="224.5" height="45"/>
+                                                        <subviews>
+                                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Enter your full name" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="4HA-Us-Vpt" customClass="CustomTextField" customModule="Load" customModuleProvider="target">
+                                                                <rect key="frame" x="5" y="5" width="214.5" height="35"/>
+                                                                <fontDescription key="fontDescription" name="SFUIText-Regular" family="SF UI Text" pointSize="13"/>
+                                                                <textInputTraits key="textInputTraits" keyboardType="phonePad" textContentType="tel"/>
+                                                                <userDefinedRuntimeAttributes>
+                                                                    <userDefinedRuntimeAttribute type="number" keyPath="leftPaddingView">
+                                                                        <integer key="value" value="15"/>
+                                                                    </userDefinedRuntimeAttribute>
+                                                                </userDefinedRuntimeAttributes>
+                                                            </textField>
+                                                        </subviews>
+                                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="45" id="3zY-pq-czu"/>
+                                                            <constraint firstAttribute="bottom" secondItem="4HA-Us-Vpt" secondAttribute="bottom" constant="5" id="7HX-IL-T8r"/>
+                                                            <constraint firstItem="4HA-Us-Vpt" firstAttribute="top" secondItem="sdX-Az-Lsb" secondAttribute="top" constant="5" id="i5U-M0-UcZ"/>
+                                                            <constraint firstAttribute="trailing" secondItem="4HA-Us-Vpt" secondAttribute="trailing" constant="5" id="l5c-Rf-TA1"/>
+                                                            <constraint firstItem="4HA-Us-Vpt" firstAttribute="leading" secondItem="sdX-Az-Lsb" secondAttribute="leading" constant="5" id="xgm-zb-zrF"/>
+                                                        </constraints>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="color" keyPath="borderColors">
+                                                                <color key="value" red="0.87843137250000003" green="0.87843137250000003" blue="0.88235294119999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="shadowRadius">
+                                                                <integer key="value" value="0"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="shadowOpacity">
+                                                                <integer key="value" value="0"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                                <integer key="value" value="0"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                                <integer key="value" value="1"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                        </userDefinedRuntimeAttributes>
+                                                    </view>
+                                                </subviews>
+                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                <constraints>
+                                                    <constraint firstItem="Ftb-pO-6RV" firstAttribute="top" secondItem="j6c-u2-5d2" secondAttribute="top" id="2vY-x1-N2k"/>
+                                                    <constraint firstItem="sdX-Az-Lsb" firstAttribute="top" secondItem="j6c-u2-5d2" secondAttribute="top" id="8qe-6E-NPM"/>
+                                                    <constraint firstAttribute="bottom" secondItem="Ftb-pO-6RV" secondAttribute="bottom" id="AnV-9L-J1Q"/>
+                                                    <constraint firstAttribute="trailing" secondItem="sdX-Az-Lsb" secondAttribute="trailing" id="Hyd-hq-EIw"/>
+                                                    <constraint firstItem="Ftb-pO-6RV" firstAttribute="width" secondItem="j6c-u2-5d2" secondAttribute="width" multiplier="0.3" id="LnM-Hw-lAE"/>
+                                                    <constraint firstAttribute="height" constant="45" id="e5e-r0-woi"/>
+                                                    <constraint firstItem="Ftb-pO-6RV" firstAttribute="leading" secondItem="j6c-u2-5d2" secondAttribute="leading" id="izY-xe-gem"/>
+                                                    <constraint firstItem="sdX-Az-Lsb" firstAttribute="leading" secondItem="Ftb-pO-6RV" secondAttribute="trailing" constant="10" id="vwj-g1-5aM"/>
+                                                    <constraint firstAttribute="bottom" secondItem="sdX-Az-Lsb" secondAttribute="bottom" id="yli-71-vfV"/>
+                                                </constraints>
+                                            </view>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstItem="XTL-yS-CGN" firstAttribute="top" secondItem="lOJ-pJ-rvb" secondAttribute="top" constant="35" id="2ai-lp-MVi"/>
+                                            <constraint firstItem="4Rv-1b-wUT" firstAttribute="leading" secondItem="lOJ-pJ-rvb" secondAttribute="leading" constant="20" id="3CJ-lt-7Vo"/>
                                             <constraint firstAttribute="trailing" secondItem="XTL-yS-CGN" secondAttribute="trailing" constant="20" id="9ON-Ek-xKg"/>
+                                            <constraint firstAttribute="trailing" secondItem="4Rv-1b-wUT" secondAttribute="trailing" constant="20" id="C8L-Jn-JFC"/>
                                             <constraint firstItem="XTL-yS-CGN" firstAttribute="leading" secondItem="lOJ-pJ-rvb" secondAttribute="leading" constant="20" id="DW2-BP-diy"/>
                                             <constraint firstAttribute="bottom" secondItem="xcK-8F-2qR" secondAttribute="bottom" constant="24" id="I2V-4h-ad5"/>
                                             <constraint firstAttribute="trailing" secondItem="xcK-8F-2qR" secondAttribute="trailing" constant="20" id="MEp-HL-5Wz"/>
                                             <constraint firstItem="3eN-lR-BbL" firstAttribute="top" secondItem="X6A-GH-Mu6" secondAttribute="bottom" constant="11" id="Qel-Xa-J93"/>
+                                            <constraint firstItem="4Rv-1b-wUT" firstAttribute="top" secondItem="3eN-lR-BbL" secondAttribute="bottom" constant="11" id="QlX-sr-mTi"/>
+                                            <constraint firstItem="j6c-u2-5d2" firstAttribute="leading" secondItem="lOJ-pJ-rvb" secondAttribute="leading" constant="20" id="a3U-Uu-zne"/>
                                             <constraint firstItem="3eN-lR-BbL" firstAttribute="leading" secondItem="lOJ-pJ-rvb" secondAttribute="leading" constant="20" id="c94-xk-n8O"/>
+                                            <constraint firstItem="j6c-u2-5d2" firstAttribute="top" secondItem="4Rv-1b-wUT" secondAttribute="bottom" constant="11" id="e9O-5q-fAy"/>
                                             <constraint firstAttribute="trailing" secondItem="3eN-lR-BbL" secondAttribute="trailing" constant="20" id="fOp-s1-Mym"/>
                                             <constraint firstAttribute="trailing" secondItem="X6A-GH-Mu6" secondAttribute="trailing" constant="20" id="hC7-rA-6PS"/>
                                             <constraint firstItem="X6A-GH-Mu6" firstAttribute="leading" secondItem="lOJ-pJ-rvb" secondAttribute="leading" constant="20" id="lCX-VN-nYs"/>
                                             <constraint firstItem="X6A-GH-Mu6" firstAttribute="top" secondItem="XTL-yS-CGN" secondAttribute="bottom" constant="11" id="vFC-1C-L65"/>
+                                            <constraint firstAttribute="trailing" secondItem="j6c-u2-5d2" secondAttribute="trailing" constant="20" id="wcQ-d2-pjl"/>
                                             <constraint firstItem="xcK-8F-2qR" firstAttribute="leading" secondItem="lOJ-pJ-rvb" secondAttribute="leading" constant="20" id="x4w-uk-R1u"/>
                                         </constraints>
                                     </view>
@@ -921,13 +1065,19 @@
                             <outlet property="txtDOB" destination="UJa-B7-dmv" id="EM3-gg-yKh"/>
                             <outlet property="txtFullName" destination="DsB-nv-0Wf" id="cId-bN-k0R"/>
                             <outlet property="txtHeight" destination="tSb-b8-Z9c" id="mPa-SU-Gr4"/>
+                            <outlet property="txtLocation" destination="pwO-Pg-6mt" id="H4b-7V-K9P"/>
+                            <outlet property="txtPhoneArea" destination="Fp9-I4-p9k" id="byj-Ze-F0w"/>
+                            <outlet property="txtPhoneNumber" destination="4HA-Us-Vpt" id="VSG-R7-k8w"/>
                             <outlet property="txtSex" destination="T1C-7f-UU0" id="rIU-2c-A9A"/>
                             <outlet property="txtWeight" destination="4M4-qa-zHD" id="eEa-kD-Jq0"/>
                             <outlet property="viewDOB" destination="D9k-70-PmG" id="4FE-jk-PXe"/>
                             <outlet property="viewDOBDropDown" destination="P7t-it-bwa" id="MlT-e6-tHe"/>
                             <outlet property="viewFirstName" destination="XTL-yS-CGN" id="hvD-FQ-tId"/>
                             <outlet property="viewHeight" destination="odf-IA-060" id="umk-M8-wvN"/>
+                            <outlet property="viewLocation" destination="4Rv-1b-wUT" id="h3t-RA-LcN"/>
                             <outlet property="viewNext" destination="bnz-bp-FK8" id="YdY-a2-vf6"/>
+                            <outlet property="viewPhoneArea" destination="Ftb-pO-6RV" id="mfb-t6-mF0"/>
+                            <outlet property="viewPhoneNumber" destination="sdX-Az-Lsb" id="ld8-08-311"/>
                             <outlet property="viewSex" destination="W7t-df-v6y" id="4dn-DN-7Xo"/>
                             <outlet property="viewSexDropDown" destination="uzh-Be-Wl1" id="vbz-dK-9K5"/>
                             <outlet property="viewWeight" destination="Y3H-DX-1wh" id="Xpk-nZ-g18"/>
@@ -1115,10 +1265,16 @@
         </scene>
     </scenes>
     <designables>
+        <designable name="4HA-Us-Vpt">
+            <size key="intrinsicContentSize" width="138" height="17.5"/>
+        </designable>
         <designable name="4M4-qa-zHD">
             <size key="intrinsicContentSize" width="86" height="17.5"/>
         </designable>
         <designable name="DsB-nv-0Wf">
+            <size key="intrinsicContentSize" width="138" height="17.5"/>
+        </designable>
+        <designable name="Fp9-I4-p9k">
             <size key="intrinsicContentSize" width="138" height="17.5"/>
         </designable>
         <designable name="T1C-7f-UU0">
@@ -1129,6 +1285,9 @@
         </designable>
         <designable name="UJa-B7-dmv">
             <size key="intrinsicContentSize" width="93" height="17.5"/>
+        </designable>
+        <designable name="pwO-Pg-6mt">
+            <size key="intrinsicContentSize" width="138" height="17.5"/>
         </designable>
         <designable name="tSb-b8-Z9c">
             <size key="intrinsicContentSize" width="87.5" height="17.5"/>
@@ -1142,5 +1301,8 @@
         <image name="ic_profile_plash_holder" width="100" height="100"/>
         <image name="ic_right_birthday" width="20" height="17"/>
         <image name="ic_signup_background" width="375" height="241"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
     </resources>
 </document>
