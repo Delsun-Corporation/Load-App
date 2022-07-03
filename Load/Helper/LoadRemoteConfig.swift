@@ -19,7 +19,7 @@ class LoadRemoteConfig {
         
         remoteConfig.fetch { status, error in
             guard error == nil else {
-                print("Cannot fetch remote config \(error)")
+                print("Cannot fetch remote config: \(error?.localizedDescription ?? "")")
                 return
             }
             
@@ -30,5 +30,21 @@ class LoadRemoteConfig {
     
     static func startBooleanRemoteConfig(_ name: String) -> Bool {
         RemoteConfig.remoteConfig().configValue(forKey: name).boolValue
+    }
+    
+    static func startStringRemoteConfig(_ name: String) -> String {
+        RemoteConfig.remoteConfig().configValue(forKey: name).stringValue ?? ""
+    }
+    
+    static func startJsonRemoteConfig(_ name: String) -> Any? {
+        RemoteConfig.remoteConfig().configValue(forKey: name).jsonValue
+    }
+    
+    static func startDataRemoteConfig(_ name: String) -> Data {
+        RemoteConfig.remoteConfig().configValue(forKey: name).dataValue
+    }
+    
+    static func startNumberRemoteConfig(_ name: String) -> NSNumber {
+        RemoteConfig.remoteConfig().configValue(forKey: name).numberValue
     }
 }
