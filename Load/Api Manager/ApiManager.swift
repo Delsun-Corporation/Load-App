@@ -47,8 +47,9 @@ class ApiManager: NSObject {
         
         var headers:[String : String] = [:]
         if getUserDetail()?.success != nil {
-            let base64Credentials = (getUserDetail()?.data?.tokenType ?? "") + " " + (getUserDetail()?.data?.accessToken ?? "")
-            headers = ["Authorization": base64Credentials, "Content-Type": "application/json"]
+//            let base64Credentials = (getUserDetail()?.data?.tokenType ?? "") + " " + (getUserDetail()?.data?.accessToken ?? "")
+            print((getUserDetail()?.data?.accessToken ?? ""))
+            headers = ["Authorization": (getUserDetail()?.data?.accessToken ?? ""), "Content-Type": "application/json"]
         }
         else {
             headers = ["Content-Type": "application/json"]
@@ -56,7 +57,8 @@ class ApiManager: NSObject {
         print(headers)
         
         var base = isAuth ? BASE_URL_AUTH : BASE_URL
-        if name == "register" {
+        var baseAPIv2 = ["register", "register-full-profile", "forgot-password"]
+        if baseAPIv2.contains(name)  {
             base = BASE_URL_v2
         }
         let url = base + name
@@ -330,7 +332,10 @@ class ApiManager: NSObject {
         }
         print(headers)
         
-        let base = isAuth ? BASE_URL_AUTH : BASE_URL
+        var base = isAuth ? BASE_URL_AUTH : BASE_URL
+        if name == "register-full-profile" {
+            base = BASE_URL_v2
+        }
         let url = base + name
         print(url)
         print(params)
@@ -342,7 +347,6 @@ class ApiManager: NSObject {
             for (key, value) in params {
                 multipartFormData.append((value as? String)?.data(using: String.Encoding.utf8) ?? Data(), withName: key)
             }
-            print(multipartFormData)
         }, to: url, method:.post,
            headers:headers, encodingCompletion: { result in
             switch result {

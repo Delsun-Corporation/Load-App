@@ -48,8 +48,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         GMSPlacesClient.provideAPIKey(GOOGLE_MAP_KEY)
         self.setUpQuickLocationUpdate()
         if getUserDetail()?.success != nil {
-            self.apiCallForDynamicData()
-            self.sidemenu()
+            if getUserDetail()?.data?.user?.isProfileComplete ?? false {
+                self.apiCallForDynamicData()
+                self.sidemenu()
+            }
         }
         
         FirebaseApp.configure()
@@ -206,7 +208,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func apiCallForUpdateLatitudeLongitude() {
-        let param = ["id":getUserDetail()?.data!.user!.id!.stringValue, "latitude": String(self.lattitude), "longitude": String(self.longitude)] as [String : Any]
+        let param = ["id":getUserDetail()?.data!.user!.id?.stringValue ?? "0", "latitude": String(self.lattitude), "longitude": String(self.longitude)] as [String : Any]
         ApiManager.shared.MakePostAPI(name: UPDATE_LATITUDE_LONGITUDE, params: param as [String : Any], progress: false, vc: UIViewController(), isAuth: false) { (response, error) in
             if response != nil {
                 let json = JSON(response!)

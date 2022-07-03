@@ -82,23 +82,24 @@ class LoginViewModel {
                 print(json)
                 let result = LoginModelClass(JSON: json.dictionaryObject!)
                 if (result?.success)! {
-                    let name = result?.data?.user?.name
+                    let isProfileComplete = result?.data?.user?.isProfileComplete
                     let emailVerifiedAt = result?.data?.user?.emailVerifiedAt ?? ""
                     if emailVerifiedAt == "" {
                         makeToast(strMessage: getCommonString(key: "Please_verify_your_email_address_key"))
                     }
-                    else if name != "" && name != nil {
+                    else if !(isProfileComplete ?? false) {
+                        saveJSON(j: json, key: USER_DETAILS_KEY)
+                        let obj: SignUpSetupProfileVC = AppStoryboard.Main.instance.instantiateViewController(withIdentifier: "SignUpSetupProfileVC") as! SignUpSetupProfileVC
+                        obj.mainModelView.userEmail = view?.txtEmail.text?.toTrim() ?? ""
+                        obj.mainModelView.isComeLogin = true
+                        self.theController.navigationController?.pushViewController(obj, animated: true)
+                    }
+                    else {
                         saveJSON(j: json, key: USER_DETAILS_KEY)
 //                      let obj: TabbarVC = AppStoryboard.Home.instance.instantiateViewController(withIdentifier: "TabbarVC") as! TabbarVC
 //                        self.theController.present(obj, animated: true, completion: nil)
                         AppDelegate.shared?.sidemenu()
                         AppDelegate.shared?.apiCallForDynamicData()
-                    }
-                    else {
-                        let obj: SignUpSetupProfileVC = AppStoryboard.Main.instance.instantiateViewController(withIdentifier: "SignUpSetupProfileVC") as! SignUpSetupProfileVC
-                        obj.mainModelView.userId = (result?.data?.user?.id?.stringValue)!
-                        obj.mainModelView.isComeLogin = true
-                        self.theController.navigationController?.pushViewController(obj, animated: true)
                     }
                 }
                 else {

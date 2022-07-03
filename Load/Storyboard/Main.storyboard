@@ -30,13 +30,13 @@
                                 <rect key="frame" x="0.0" y="44" width="375" height="623"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SIGN IN" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pal-KH-ioe">
-                                        <rect key="frame" x="154.5" y="65" width="66.5" height="21.5"/>
+                                        <rect key="frame" x="154.5" y="65" width="66" height="21"/>
                                         <fontDescription key="fontDescription" name="SFUIText-Regular" family="SF UI Text" pointSize="18"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dQB-gc-tk3" customClass="CustomView" customModule="Load" customModuleProvider="target">
-                                        <rect key="frame" x="44" y="133.5" width="287" height="232"/>
+                                        <rect key="frame" x="44" y="133" width="287" height="232"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Cto-5x-pP7">
                                                 <rect key="frame" x="39" y="39" width="209" height="36"/>
@@ -151,7 +151,7 @@
                                         </userDefinedRuntimeAttributes>
                                     </view>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1hD-bo-dV1">
-                                        <rect key="frame" x="117.5" y="383" width="140" height="28"/>
+                                        <rect key="frame" x="120" y="382.5" width="135" height="28"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <fontDescription key="fontDescription" name="SFUIText-Regular" family="SF UI Text" pointSize="13"/>
                                         <state key="normal" title="Forgot your password?">
@@ -162,7 +162,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BmU-9V-ubn">
-                                        <rect key="frame" x="78.5" y="545" width="218" height="28"/>
+                                        <rect key="frame" x="82.5" y="545" width="210" height="28"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <fontDescription key="fontDescription" name="SFUIText-Regular" family="SF UI Text" pointSize="13"/>
                                         <state key="normal" title=" I don’t have Load account. Sign Up">
@@ -418,7 +418,7 @@
                                         </userDefinedRuntimeAttributes>
                                     </view>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aY4-cW-EbP">
-                                        <rect key="frame" x="72" y="589" width="231" height="28"/>
+                                        <rect key="frame" x="76.5" y="589" width="222" height="28"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <fontDescription key="fontDescription" name="SFUIText-Regular" family="SF UI Text" pointSize="13"/>
                                         <state key="normal" title="I already have a Load account. Sign in">
@@ -922,7 +922,7 @@
                                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Enter your full name" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Fp9-I4-p9k" customClass="CustomTextField" customModule="Load" customModuleProvider="target">
                                                                 <rect key="frame" x="5" y="5" width="90.5" height="35"/>
                                                                 <fontDescription key="fontDescription" name="SFUIText-Regular" family="SF UI Text" pointSize="13"/>
-                                                                <textInputTraits key="textInputTraits" textContentType="tel"/>
+                                                                <textInputTraits key="textInputTraits" keyboardType="phonePad" textContentType="tel"/>
                                                                 <userDefinedRuntimeAttributes>
                                                                     <userDefinedRuntimeAttribute type="number" keyPath="leftPaddingView">
                                                                         <integer key="value" value="15"/>
@@ -962,7 +962,7 @@
                                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Enter your full name" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="4HA-Us-Vpt" customClass="CustomTextField" customModule="Load" customModuleProvider="target">
                                                                 <rect key="frame" x="5" y="5" width="214.5" height="35"/>
                                                                 <fontDescription key="fontDescription" name="SFUIText-Regular" family="SF UI Text" pointSize="13"/>
-                                                                <textInputTraits key="textInputTraits" textContentType="tel"/>
+                                                                <textInputTraits key="textInputTraits" keyboardType="phonePad" textContentType="tel"/>
                                                                 <userDefinedRuntimeAttributes>
                                                                     <userDefinedRuntimeAttribute type="number" keyPath="leftPaddingView">
                                                                         <integer key="value" value="15"/>
@@ -1074,7 +1074,10 @@
                             <outlet property="viewDOBDropDown" destination="P7t-it-bwa" id="MlT-e6-tHe"/>
                             <outlet property="viewFirstName" destination="XTL-yS-CGN" id="hvD-FQ-tId"/>
                             <outlet property="viewHeight" destination="odf-IA-060" id="umk-M8-wvN"/>
+                            <outlet property="viewLocation" destination="4Rv-1b-wUT" id="h3t-RA-LcN"/>
                             <outlet property="viewNext" destination="bnz-bp-FK8" id="YdY-a2-vf6"/>
+                            <outlet property="viewPhoneArea" destination="Ftb-pO-6RV" id="mfb-t6-mF0"/>
+                            <outlet property="viewPhoneNumber" destination="sdX-Az-Lsb" id="ld8-08-311"/>
                             <outlet property="viewSex" destination="W7t-df-v6y" id="4dn-DN-7Xo"/>
                             <outlet property="viewSexDropDown" destination="uzh-Be-Wl1" id="vbz-dK-9K5"/>
                             <outlet property="viewWeight" destination="Y3H-DX-1wh" id="Xpk-nZ-g18"/>

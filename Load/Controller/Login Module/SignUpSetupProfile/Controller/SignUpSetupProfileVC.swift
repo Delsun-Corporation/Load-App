@@ -67,7 +67,7 @@ extension SignUpSetupProfileVC: UIImagePickerControllerDelegate, UINavigationCon
         self.mainView.imgProfile.image = profilePic
         self.mainModelView.profileImage = profilePic
         self.mainModelView.isProfileSelected = true
-        self.mainModelView.showNext(txtFullName:  self.mainView.txtFullName.text!)
+        self.mainModelView.showNext(txtFullName: self.mainView.txtFullName.text ?? "", txtPhoneArea: self.mainView.txtPhoneArea.text ?? "", txtPhoneNumber: self.mainView.txtPhoneNumber.text ?? "", txtLocation: self.mainView.txtLocation.text ?? "")
         self.dismiss(animated: true, completion: nil)
     }
     

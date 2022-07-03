@@ -37,7 +37,7 @@ class ResetPasswordViewModel {
         let view = (self.theController.view as? ResetPasswordView)
 
         let param = ["email":view?.txtEmail.text!]
-        ApiManager.shared.MakePostAPI(name: RESET_PASSWORD, params: param as [String : Any], vc: self.theController) { (response, error) in
+        ApiManager.shared.MakePostAPI(name: FORGOT_PASSWORD, params: param as [String : Any], vc: self.theController) { (response, error) in
             if response != nil {
                 let json = JSON(response!)
                 let success = json.getBool(key: .success)

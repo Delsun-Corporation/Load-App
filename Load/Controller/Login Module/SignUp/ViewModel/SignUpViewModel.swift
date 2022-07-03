@@ -60,9 +60,10 @@ class SignUpViewModel {
                 let json = JSON(response!)
                 let result = LoginModelClass(JSON: json.dictionaryObject!)
                 if result?.success ?? false {
-                    let obj: SignUpSetupProfileVC = AppStoryboard.Main.instance.instantiateViewController(withIdentifier: "SignUpSetupProfileVC") as! SignUpSetupProfileVC
-                    obj.mainModelView.userId = result?.data?.user?.id?.stringValue ?? ""
-                    self.theController.navigationController?.pushViewController(obj, animated: true)
+//                    let obj: SignUpSetupProfileVC = AppStoryboard.Main.instance.instantiateViewController(withIdentifier: "SignUpSetupProfileVC") as! SignUpSetupProfileVC
+//                    obj.mainModelView.userEmail = view?.txtEmail.text ?? ""
+//                    self.theController.navigationController?.pushViewController(obj, animated: true)
+                    self.theController.navigationController?.popToRootViewController(animated: true)
                 }
                 else {
                     makeToast(strMessage: result?.message ?? "")

@@ -20,8 +20,9 @@ let BASE_URL_v2 = SERVER_URL_v2 + "api/"
 
 //MARK: - URLS Names
 let LOGIN = "login"
-let RESET_PASSWORD = "reset-password"
+let FORGOT_PASSWORD = "forgot-password"
 let SIGN_UP = "register"
+let SIGN_UP_PROFILE = "register-full-profile"
 let GET_ALL_DATA = "get-all-data"
 let CREATE_TRAINING_LOG = "create-training-log"
 let GET_TRAINING_LOG = "get-training-log"

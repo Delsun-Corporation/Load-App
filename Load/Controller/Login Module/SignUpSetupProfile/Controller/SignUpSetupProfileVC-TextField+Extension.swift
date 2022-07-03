@@ -16,7 +16,7 @@ extension SignUpSetupProfileVC {
         if textField == self.mainView.txtFullName {
             self.mainView.viewFirstName.borderColors = txtAfterUpdate == "" ? UIColor.appThemeDarkGrayColor : UIColor.appthemeRedColor
             self.mainView.txtFullName.textColor = txtAfterUpdate == "" ? UIColor.appThemeDarkGrayColor : UIColor.appthemeRedColor
-            self.mainModelView.showNext(txtFullName: txtAfterUpdate)
+            self.mainModelView.showNext(txtFullName: txtAfterUpdate, txtPhoneArea: self.mainView.txtPhoneArea.text ?? "", txtPhoneNumber: self.mainView.txtPhoneNumber.text ?? "", txtLocation: self.mainView.txtLocation.text ?? "")
             return true
         }
         else if textField == self.mainView.txtHeight {
@@ -25,7 +25,7 @@ extension SignUpSetupProfileVC {
             
             self.mainView.txtHeight.textColor = txtAfterUpdate == "" ? UIColor.appthemeBlackColorAlpha30 : UIColor.appthemeRedColor
             
-            self.mainModelView.showNext(txtFullName: self.mainView.txtFullName.text ?? "")
+            self.mainModelView.showNext(txtFullName: self.mainView.txtFullName.text ?? "", txtPhoneArea: self.mainView.txtPhoneArea.text ?? "", txtPhoneNumber: self.mainView.txtPhoneNumber.text ?? "", txtLocation: self.mainView.txtLocation.text ?? "")
             
             return true
         }
@@ -33,7 +33,25 @@ extension SignUpSetupProfileVC {
             self.mainModelView.isWeightSelected = txtAfterUpdate.count != 0
             self.mainView.viewWeight.borderColors = txtAfterUpdate == "" ? UIColor.appthemeBlackColorAlpha30 : UIColor.appthemeRedColor
             self.mainView.txtWeight.textColor = txtAfterUpdate == "" ? UIColor.appthemeBlackColorAlpha30 : UIColor.appthemeRedColor
-            self.mainModelView.showNext(txtFullName: self.mainView.txtFullName.text ?? "")
+            self.mainModelView.showNext(txtFullName: self.mainView.txtFullName.text ?? "", txtPhoneArea: self.mainView.txtPhoneArea.text ?? "", txtPhoneNumber: self.mainView.txtPhoneNumber.text ?? "", txtLocation: self.mainView.txtLocation.text ?? "")
+            return true
+        }
+        else if textField == self.mainView.txtLocation {
+            self.mainView.viewLocation.borderColors = txtAfterUpdate == "" ? UIColor.appthemeBlackColorAlpha30 : UIColor.appthemeRedColor
+            self.mainView.txtLocation.textColor = txtAfterUpdate == "" ? UIColor.appthemeBlackColorAlpha30 : UIColor.appthemeRedColor
+            self.mainModelView.showNext(txtFullName: self.mainView.txtFullName.text ?? "", txtPhoneArea: self.mainView.txtPhoneArea.text ?? "", txtPhoneNumber: self.mainView.txtPhoneNumber.text ?? "", txtLocation: txtAfterUpdate)
+            return true
+        }
+        else if textField == self.mainView.txtPhoneArea {
+            self.mainView.viewPhoneArea.borderColors = txtAfterUpdate == "" ? UIColor.appthemeBlackColorAlpha30 : UIColor.appthemeRedColor
+            self.mainView.txtPhoneArea.textColor = txtAfterUpdate == "" ? UIColor.appthemeBlackColorAlpha30 : UIColor.appthemeRedColor
+            self.mainModelView.showNext(txtFullName: self.mainView.txtFullName.text ?? "", txtPhoneArea: txtAfterUpdate, txtPhoneNumber: self.mainView.txtPhoneNumber.text ?? "", txtLocation: self.mainView.txtLocation.text ?? "")
+            return true
+        }
+        else if textField == self.mainView.txtPhoneNumber {
+            self.mainView.viewPhoneNumber.borderColors = txtAfterUpdate == "" ? UIColor.appthemeBlackColorAlpha30 : UIColor.appthemeRedColor
+            self.mainView.txtPhoneNumber.textColor = txtAfterUpdate == "" ? UIColor.appthemeBlackColorAlpha30 : UIColor.appthemeRedColor
+            self.mainModelView.showNext(txtFullName: self.mainView.txtFullName.text ?? "", txtPhoneArea: self.mainView.txtPhoneArea.text ?? "", txtPhoneNumber: txtAfterUpdate, txtLocation: self.mainView.txtLocation.text ?? "")
             return true
         }
         return true

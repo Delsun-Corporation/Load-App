@@ -30,6 +30,9 @@ class SignUpSetupProfileView: UIView {
     @IBOutlet weak var viewSex: CustomView!
     @IBOutlet weak var viewHeight: CustomView!
     @IBOutlet weak var viewWeight: CustomView!
+    @IBOutlet weak var viewLocation: CustomView!
+    @IBOutlet weak var viewPhoneArea: CustomView!
+    @IBOutlet weak var viewPhoneNumber: CustomView!
     
     @IBOutlet weak var viewDOBDropDown: UIView!
     @IBOutlet weak var viewSexDropDown: UIView!

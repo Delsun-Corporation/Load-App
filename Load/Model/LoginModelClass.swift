@@ -23,7 +23,7 @@ class DataLogin: Mappable {
 
 	var user: User? 
 	var accessToken: String? 
-	var tokenType: String? 
+	var tokenType: String?
 
 	required init?(map: Map){ 
 	} 
@@ -33,7 +33,7 @@ class DataLogin: Mappable {
         // TODO: Uncomment for v1 API
 //		accessToken <- map["access_token"]
         accessToken <- map["token"]
-		tokenType <- map["token_type"] 
+		tokenType <- map["token_type"]
 	}
 } 
 
@@ -60,6 +60,7 @@ class User: Mappable {
     var isSnooze: NSNumber?
     var userSnoozeDetail: UserSnoozeDetail?
     var countryId: NSNumber?
+    var isProfileComplete: Bool = false
 
 	required init?(map: Map){ 
 	} 
@@ -86,6 +87,7 @@ class User: Mappable {
         isSnooze <- map["is_snooze"]
         userSnoozeDetail <- map["user_snooze_detail"]
         countryId <- map["country_id"]
+        isProfileComplete <- map["is_profile_complete"]
 	}
 } 
 
