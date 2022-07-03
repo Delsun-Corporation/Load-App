@@ -12,6 +12,7 @@ import SwiftyJSON
 //MARK: - v2 API Toggle
 let newApiConfig = false
 
+
 //MARK: - Main URLS
 //let SERVER_URL = "http://3.18.106.118/load/" //"http://192.168.0.108:1001"
 let SERVER_URL = "http://178.128.45.110/load/" //http://178.128.56.249/load/"
