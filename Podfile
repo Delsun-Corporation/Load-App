@@ -33,6 +33,8 @@ target 'Load' do
   pod 'RealmSwift'
   pod 'XCDYouTubeKit'
   pod 'Firebase/Crashlytics'
+  pod 'Firebase/RemoteConfig'
+  pod 'Firebase/Core'
   pod 'RxRelay'
   pod 'RxSwift'
   pod 'RxCocoa'

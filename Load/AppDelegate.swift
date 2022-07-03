@@ -14,8 +14,9 @@ import GoogleMaps
 import GooglePlacePicker
 import RealmSwift
 import Firebase
+import FirebaseCrashlytics
 
-@objc protocol updateLatLongDelegate : class {
+@objc protocol updateLatLongDelegate: AnyObject {
     func updatedLatLong(lat:Double,long:Double)
 }
 
@@ -61,7 +62,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let cachesDirectoryURL = NSURL(fileURLWithPath: cachesDirectoryPath)
         let fileURL = cachesDirectoryURL.appendingPathComponent("Default.realm")
         
-        print("fileUrl:\(fileURL)")
+        print("fileUrl:\(String(describing: fileURL))")
         
 //        let config = Realm.Configuration(fileURL: fileURL)
         
@@ -94,6 +95,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             UINavigationBar.appearance().standardAppearance = appearance
             UINavigationBar.appearance().scrollEdgeAppearance = appearance
         }
+        
+        LoadRemoteConfig.fetchRemoteConfig()
         
         // Override point for customization after application launch.
         return true
@@ -209,7 +212,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func apiCallForUpdateLatitudeLongitude() {
         guard let userID = getUserDetail()?.data?.user?.id?.stringValue else {
-            deleteJSON(key: USER_DETAILS_KEY)
+            _ = deleteJSON(key: USER_DETAILS_KEY)
             AppDelegate.shared?.openLoginScreen()
             return
         }
