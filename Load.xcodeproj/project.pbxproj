@@ -1208,6 +1208,7 @@
 		FF33207228153CF5007734BA /* RXScrollKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF33207128153CF5007734BA /* RXScrollKit.swift */; };
 		FF33207428153D0F007734BA /* RXViewKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF33207328153D0F007734BA /* RXViewKit.swift */; };
 		FF33207628153D32007734BA /* RXWebKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF33207528153D32007734BA /* RXWebKit.swift */; };
+		FFB9E2462871EAA400C7C51D /* LoadRemoteConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFB9E2452871EAA400C7C51D /* LoadRemoteConfig.swift */; };
 		FFCC8196286025C400BE8BCC /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = FFCC8195286025C400BE8BCC /* GoogleService-Info.plist */; };
 /* End PBXBuildFile section */
 
@@ -2446,6 +2447,7 @@
 		FF33207128153CF5007734BA /* RXScrollKit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RXScrollKit.swift; sourceTree = "<group>"; };
 		FF33207328153D0F007734BA /* RXViewKit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RXViewKit.swift; sourceTree = "<group>"; };
 		FF33207528153D32007734BA /* RXWebKit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RXWebKit.swift; sourceTree = "<group>"; };
+		FFB9E2452871EAA400C7C51D /* LoadRemoteConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadRemoteConfig.swift; sourceTree = "<group>"; };
 		FFBCEB2DFF37A1FD0D45CCBB /* Pods-Load.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Load.release.xcconfig"; path = "Target Support Files/Pods-Load/Pods-Load.release.xcconfig"; sourceTree = "<group>"; };
 		FFCC8195286025C400BE8BCC /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -4709,6 +4711,7 @@
 				1777D18E229D10EE00F6B2E2 /* Language.plist */,
 				884228BA252D89F900F28A02 /* checkmarkAnimation.swift */,
 				9DA0A14C28478B06008AA714 /* Alert.swift */,
+				FFB9E2452871EAA400C7C51D /* LoadRemoteConfig.swift */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -9724,6 +9727,7 @@
 				1754DBBB22B3B3E2000C8CF8 /* MultiSelectionView.swift in Sources */,
 				177387D122A25AE3002E31ED /* UIBezierPathExtension.swift in Sources */,
 				1780B32222AB6AC000647C58 /* LogPreviewResistanceViewModel.swift in Sources */,
+				FFB9E2462871EAA400C7C51D /* LoadRemoteConfig.swift in Sources */,
 				172D837023040E3D00C44830 /* ClientRequirementView.swift in Sources */,
 				175D96F9231FB3080094FE61 /* ProfessionalSelectAvailabilityViewModel.swift in Sources */,
 				175CE1B72339F035005335F7 /* CreateResistanceTrainingProgramDayCell.swift in Sources */,
