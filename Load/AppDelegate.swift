@@ -206,11 +206,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func apiCallForUpdateLatitudeLongitude() {
-        let param = ["id":getUserDetail()?.data!.user!.id!.stringValue, "latitude": String(self.lattitude), "longitude": String(self.longitude)] as [String : Any]
+        guard let userID = getUserDetail()?.data?.user?.id?.stringValue else {
+            deleteJSON(key: USER_DETAILS_KEY)
+            AppDelegate.shared?.openLoginScreen()
+            return
+        }
+        
+        let param = ["id": userID, "latitude": String(self.lattitude), "longitude": String(self.longitude)] as [String : Any]
         ApiManager.shared.MakePostAPI(name: UPDATE_LATITUDE_LONGITUDE, params: param as [String : Any], progress: false, vc: UIViewController(), isAuth: false) { (response, error) in
-            if response != nil {
-                let json = JSON(response!)
-//                print(json)
+            if let response = response {
+                _ = JSON(response)
+                // print(json)
             }
         }
     }
