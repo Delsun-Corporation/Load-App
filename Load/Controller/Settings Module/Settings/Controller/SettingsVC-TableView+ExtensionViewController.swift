@@ -59,11 +59,13 @@ extension SettingsVC :UITableViewDataSource, UITableViewDelegate {
             obj.hidesBottomBarWhenPushed = true
             self.navigationController?.pushViewController(obj, animated: true)
         }
-        else if indexPath.row == 9 {
+        else if indexPath.row == 10 {
             LogoutButtonAction()
         }
-        else if indexPath.row == 8{
-
+        else if indexPath.row == 9{
+            let obj = AppStoryboard.Main.instance.instantiateViewController(withIdentifier: "ChangePasswordVC") as! ChangePasswordVC
+            obj.hidesBottomBarWhenPushed = true
+            self.navigationController?.pushViewController(obj, animated: true)
         }
     }
 }

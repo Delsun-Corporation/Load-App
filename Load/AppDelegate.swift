@@ -40,6 +40,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+        FirebaseApp.configure()
+        
+        //MARK: - v2 API Toggle
+        let apiConfig = LoadRemoteConfig.startBooleanRemoteConfig("v2_server_endpoint_enabled")
+        newApiConfig = apiConfig
+        
         IQKeyboardManager.shared.enable = true
         IQKeyboardManager.shared.placeholderColor = UIColor.clear
         IQKeyboardManager.shared.toolbarTintColor = UIColor.appthemeOffRedColor
@@ -55,7 +61,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             }
         }
         
-        FirebaseApp.configure()
+        
         
         //add realm
         let cachesDirectoryPath = NSSearchPathForDirectoriesInDomains(.cachesDirectory, .userDomainMask, true)[0]
@@ -212,8 +218,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func apiCallForUpdateLatitudeLongitude() {
         guard let userID = getUserDetail()?.data?.user?.id?.stringValue else {
-            _ = deleteJSON(key: USER_DETAILS_KEY)
-            AppDelegate.shared?.openLoginScreen()
+            
+            // TODO: -This code is commented because it will delete user data if the id is not available (currently user id is not available on newer version
+//            _ = deleteJSON(key: USER_DETAILS_KEY)
+//            AppDelegate.shared?.openLoginScreen()
             return
         }
         
