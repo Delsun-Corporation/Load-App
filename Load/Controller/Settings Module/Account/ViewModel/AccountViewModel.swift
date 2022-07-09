@@ -100,7 +100,12 @@ class AccountViewModel {
                 let account = GetAllData?.data?.accounts
                 for data in account ?? [] {
                     if data.name?.lowercased() == "free" {
-                        self.apiCallForUpdateAccountType(accountId: (data.id?.intValue)!)
+                        if let _id = data.id {
+                            self.apiCallForUpdateAccountType(accountId: _id.intValue)
+                        }
+                        else if let _id = data.idStr {
+                            self.apiCallForUpdateAccountType(accountIdStr: _id)
+                        }
                     }
                 }
             }))
@@ -114,7 +119,12 @@ class AccountViewModel {
                 let account = GetAllData?.data?.accounts
                 for data in account ?? [] {
                     if data.name?.lowercased() == "premium" {
-                        self.apiCallForUpdateAccountType(accountId: (data.id?.intValue)!)
+                        if let _id = data.id {
+                            self.apiCallForUpdateAccountType(accountId: _id.intValue)
+                        }
+                        else if let _id = data.idStr {
+                            self.apiCallForUpdateAccountType(accountIdStr: _id)
+                        }
                     }
                 }
             }))
@@ -128,7 +138,12 @@ class AccountViewModel {
                 let account = GetAllData?.data?.accounts
                 for data in account ?? [] {
                     if data.name?.lowercased() == "professional" {
-                        self.apiCallForUpdateAccountType(accountId: (data.id?.intValue)!)
+                        if let _id = data.id {
+                            self.apiCallForUpdateAccountType(accountId: _id.intValue)
+                        }
+                        else if let _id = data.idStr {
+                            self.apiCallForUpdateAccountType(accountIdStr: _id)
+                        }
                     }
                 }
             }))
@@ -143,8 +158,14 @@ class AccountViewModel {
         })
     }
     
-    func apiCallForUpdateAccountType(accountId:Int) {
-        let param = ["account_id":accountId] as [String : Any]
+    func apiCallForUpdateAccountType(accountId: Int? = nil, accountIdStr: String? = nil) {
+        var param = ["account_id":accountId ?? 0] as [String : Any]
+        if let _id = accountId {
+            param = ["account_id": _id] as [String : Any]
+        }
+        else if let _id = accountIdStr {
+            param = ["account_id": _id] as [String : Any]
+        }
         ApiManager.shared.MakePostAPI(name: UPDATE_ACCOUNT_DATA, params: param as [String : Any], progress: false, vc: self.theController, isAuth: false) { (response, error) in
             if response != nil {
                 let json = JSON(response!)
@@ -153,7 +174,13 @@ class AccountViewModel {
                 makeToast(strMessage: message)
                 var jsonData = getUserDetailJSON()
                 print(json)
-                jsonData["data"]["user"].setIntValue(key: .account_id, value: accountId)
+                if let _id = accountId {
+                    jsonData["data"]["user"].setIntValue(key: .account_id, value: _id)
+                }
+                else if let _id = accountIdStr {
+                    jsonData["data"]["user"].setValue(key: .account_id, value: _id)
+                }
+                
                 print(jsonData)
                 saveJSON(j: jsonData, key: USER_DETAILS_KEY)
             }
@@ -162,6 +189,7 @@ class AccountViewModel {
     
     func apiCallForUpdateAccountSnooze(isSnooze:Bool, startDate:String, endDate: String) {
         var param = ["is_snooze":isSnooze, "start_date":startDate, "end_date":endDate] as [String : Any]
+        print("This is start date \(startDate)")
         if startDate == "" {
             param.removeValue(forKey: "start_date")
             param.removeValue(forKey: "end_date")

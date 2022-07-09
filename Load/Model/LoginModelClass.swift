@@ -41,7 +41,7 @@ class DataLogin: Mappable {
 	}
 } 
 
-class User: Mappable { 
+class User: Mappable {
 
 	var id: NSNumber? 
 	var name: String? 
@@ -54,8 +54,9 @@ class User: Mappable {
 	var photo: String? 
 	var membershipCode: String? 
 	var userType: Any? 
-	var accountId: Int? 
-	var isActive: NSNumber? 
+	var accountId: Int?
+    var accountIdStr: String?
+	var isActive: NSNumber?
 	var expiredAt: Any? 
 	var createdAt: String? 
 	var updatedAt: String?
@@ -80,8 +81,9 @@ class User: Mappable {
         weight <- map["weight"]
 		photo <- map["photo"] 
 		membershipCode <- map["membership_code"] 
-		userType <- map["user_type"] 
-		accountId <- map["account_id"] 
+		userType <- map["user_type"]
+        accountIdStr <- map["account_id"]
+        accountId <- map["account_id"]
 		isActive <- map["is_active"] 
 		expiredAt <- map["expired_at"] 
 		createdAt <- map["created_at"] 
@@ -97,7 +99,7 @@ class User: Mappable {
 
 class UserSnoozeDetail: Mappable {
     
-    var id: NSNumber?
+    var id: String?
     var userId: NSNumber?
     var startDate: String?
     var endDate: String?
@@ -106,7 +108,7 @@ class UserSnoozeDetail: Mappable {
     }
     
     func mapping(map: Map) {
-        id <- map["id"]
+        id <- map["_id"]
         userId <- map["user_id"]
         startDate <- map["start_date"]
         endDate <- map["end_date"]

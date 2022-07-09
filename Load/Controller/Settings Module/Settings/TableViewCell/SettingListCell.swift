@@ -37,7 +37,12 @@ class SettingListCell: UITableViewCell {
 
         if indexPath.row == 1 {
             self.lblType.isHidden = false
-            self.lblType.text = getAccountName(id: getUserDetail()?.data?.user?.accountId ?? 0)
+            if let _accountId = getUserDetail()?.data?.user?.accountId {
+                self.lblType.text = getAccountName(id: _accountId)
+            }
+            else if let _accountId = getUserDetail()?.data?.user?.accountIdStr {
+                self.lblType.text = getAccountName(idStr: _accountId)
+            }
         }
         else if indexPath.row == 3 {
             self.lblType.isHidden = false

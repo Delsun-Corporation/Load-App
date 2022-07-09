@@ -32,7 +32,12 @@ class AccountView: UIView {
         self.setupFont()
         self.viewDate.isHidden = true
         self.lblDescription.isHidden = false
-        self.lblTypeOfAccountValue.text = getAccountName(id: getUserDetail()?.data?.user?.accountId ?? 0)
+        if let _accountId = getUserDetail()?.data?.user?.accountId {
+            self.lblTypeOfAccountValue.text = getAccountName(id: _accountId)
+        }
+        else if let _accountId = getUserDetail()?.data?.user?.accountIdStr {
+            self.lblTypeOfAccountValue.text = getAccountName(idStr: _accountId)
+        }
         self.btnSnooze.isSelected = getUserDetail()?.data?.user?.isSnooze?.intValue == 0 ? false : true
         if self.btnSnooze.isSelected {
             if let startDate = getUserDetail()?.data?.user?.userSnoozeDetail?.startDate {

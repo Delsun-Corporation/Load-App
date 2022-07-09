@@ -10,7 +10,7 @@ import Foundation
 import SwiftyJSON
 
 //MARK: - v2 API Toggle
-var newApiConfig = true
+var newApiConfig = LoadRemoteConfig.startBooleanRemoteConfig("v2_server_endpoint_enabled")
 
 
 //MARK: - Main URLS
@@ -57,8 +57,8 @@ let FOLLOW_UNFOLLOW_USER = "follow-unfollow-user"
 let FEED_LIKE = "feed-like"
 let COMMENT_LIST = "comment-list"
 let CREATE_COMMENT = "create-comment"
-let UPDATE_ACCOUNT_DATA = "update-account-type"
-let UPDATE_ACCOUNT_SNOOZE = "update-account-snooze"
+let UPDATE_ACCOUNT_DATA = newApiConfig ? "setting/update-account-type" : "update-account-type"
+let UPDATE_ACCOUNT_SNOOZE = newApiConfig ? "setting/update-account-snooze": "update-account-snooze"
 let NOTIFICATION_LIST = "notification-list"
 let NOTIFICATION_READ = "notification-read"
 let GET_CLIENT_BOOKED_DATES = "get-client-booked-dates"
