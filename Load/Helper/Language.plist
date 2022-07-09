@@ -915,5 +915,11 @@ and your training goal.</string>
 	<string>Phone Area</string>
 	<key>Phone_number_key</key>
 	<string>Phone Number</string>
+	<key>Change_Password_key</key>
+	<string>CHANGE PASSWORD</string>
+	<key>Change_Password_Button_key</key>
+	<string>Change Password</string>
+	<key>Change_Password_Success_key</key>
+	<string>Password Changed Successfully</string>
 </dict>
 </plist>

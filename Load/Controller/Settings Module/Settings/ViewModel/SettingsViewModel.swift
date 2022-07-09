@@ -12,7 +12,7 @@ class SettingsViewModel {
 
     //MARK:- Variables
     fileprivate weak var theController:SettingsVC!
-    let titleArray: [String] = ["Name", "Account", "Load Centre", "Training", "Notifications", "Help and Support", "Privacy Policy", "Refer and Earn", "Contact us", "Log out"]
+    let titleArray: [String] = ["Name", "Account", "Load Centre", "Training", "Notifications", "Help and Support", "Privacy Policy", "Refer and Earn", "Contact us", "Change Password", "Log out"]
 
     //MARK:- Functions
     init(theController:SettingsVC) {

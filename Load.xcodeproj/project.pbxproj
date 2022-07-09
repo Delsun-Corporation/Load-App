@@ -993,6 +993,9 @@
 		17FFA7872327AF48001683BC /* SelectFormAutoSendCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 17FFA7852327AF48001683BC /* SelectFormAutoSendCell.xib */; };
 		17FFA78A2327AF66001683BC /* SelectFormQuesionsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17FFA7882327AF66001683BC /* SelectFormQuesionsCell.swift */; };
 		17FFA78B2327AF66001683BC /* SelectFormQuesionsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 17FFA7892327AF66001683BC /* SelectFormQuesionsCell.xib */; };
+		3664A8122876FAD3004AE289 /* ChangePasswordVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3664A8112876FAD3004AE289 /* ChangePasswordVC.swift */; };
+		3664A8142876FB02004AE289 /* ChangePasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3664A8132876FB02004AE289 /* ChangePasswordView.swift */; };
+		3664A8162876FB0F004AE289 /* ChangePasswordViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3664A8152876FB0F004AE289 /* ChangePasswordViewModel.swift */; };
 		6FA081C9DA9F2A48CA9A27F1 /* Pods_LoadTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FAD7576D5564869F4B46C789 /* Pods_LoadTests.framework */; };
 		881020582475514F0042FAB3 /* ViewAllLoadCenterTblCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881020562475514F0042FAB3 /* ViewAllLoadCenterTblCell.swift */; };
 		881020592475514F0042FAB3 /* ViewAllLoadCenterTblCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 881020572475514F0042FAB3 /* ViewAllLoadCenterTblCell.xib */; };
@@ -2228,6 +2231,9 @@
 		17FFA7882327AF66001683BC /* SelectFormQuesionsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectFormQuesionsCell.swift; sourceTree = "<group>"; };
 		17FFA7892327AF66001683BC /* SelectFormQuesionsCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SelectFormQuesionsCell.xib; sourceTree = "<group>"; };
 		2022BE8BEF84AFFDA977CB4B /* Pods_Load_LoadUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Load_LoadUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		3664A8112876FAD3004AE289 /* ChangePasswordVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePasswordVC.swift; sourceTree = "<group>"; };
+		3664A8132876FB02004AE289 /* ChangePasswordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePasswordView.swift; sourceTree = "<group>"; };
+		3664A8152876FB0F004AE289 /* ChangePasswordViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePasswordViewModel.swift; sourceTree = "<group>"; };
 		733CFAFC3082300D2627DD12 /* Pods-LoadTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LoadTests.release.xcconfig"; path = "Target Support Files/Pods-LoadTests/Pods-LoadTests.release.xcconfig"; sourceTree = "<group>"; };
 		7C1F53CBEAD831E083F259A4 /* Pods-Load-LoadUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Load-LoadUITests.release.xcconfig"; path = "Target Support Files/Pods-Load-LoadUITests/Pods-Load-LoadUITests.release.xcconfig"; sourceTree = "<group>"; };
 		81517431560B5CD848EA078F /* Pods-LoadTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LoadTests.debug.xcconfig"; path = "Target Support Files/Pods-LoadTests/Pods-LoadTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -4663,6 +4669,7 @@
 		1777D184229D0C5A00F6B2E2 /* Login Module */ = {
 			isa = PBXGroup;
 			children = (
+				3664A80D2876FA95004AE289 /* ChangePassword */,
 				1777D1C4229D4E2600F6B2E2 /* SignUpSetupProfile */,
 				1777D1B8229D400F00F6B2E2 /* SignUp */,
 				1777D1AE229D320B00F6B2E2 /* Reset Password */,
@@ -7346,6 +7353,40 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		3664A80D2876FA95004AE289 /* ChangePassword */ = {
+			isa = PBXGroup;
+			children = (
+				3664A8102876FAB8004AE289 /* ViewModel */,
+				3664A80F2876FAB1004AE289 /* View */,
+				3664A80E2876FAA9004AE289 /* Controller */,
+			);
+			path = ChangePassword;
+			sourceTree = "<group>";
+		};
+		3664A80E2876FAA9004AE289 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				3664A8112876FAD3004AE289 /* ChangePasswordVC.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		3664A80F2876FAB1004AE289 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				3664A8132876FB02004AE289 /* ChangePasswordView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		3664A8102876FAB8004AE289 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				3664A8152876FB0F004AE289 /* ChangePasswordViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
 		88102055247551230042FAB3 /* TableViewCell */ = {
 			isa = PBXGroup;
 			children = (
@@ -9713,6 +9754,7 @@
 				17E5363922B2626E0058A7A4 /* LibraryExercisePreviewProgressionsVC.swift in Sources */,
 				8878BA3F2422323E00572554 /* MultipleImagesBookmarkTblCell.swift in Sources */,
 				174792B22330953D00FA0588 /* CardioTrainingProgramPreviewViewModel.swift in Sources */,
+				3664A8122876FAD3004AE289 /* ChangePasswordVC.swift in Sources */,
 				17846E8B22B204B300D33115 /* AddExerciseFinishViewModel.swift in Sources */,
 				179CC80A22EEE72A005197D6 /* ChatVC.swift in Sources */,
 				17F507D6230FFC8C009AA763 /* ViewNavWhite.swift in Sources */,
@@ -9838,6 +9880,7 @@
 				883D789824C567CF000FADEA /* PhysicalActivity_TableView.swift in Sources */,
 				17EA1092231E64210090FAD0 /* FilterActivityHeaderView.swift in Sources */,
 				17AC0CC823B63014002061D3 /* TypesOfTrainingSelectionView.swift in Sources */,
+				3664A8162876FB0F004AE289 /* ChangePasswordViewModel.swift in Sources */,
 				D32A207826298F0900752CCF /* SelectLocationProgramVc.swift in Sources */,
 				1780B32822AB820300647C58 /* ResistanceExercisePreviewHeaderView.swift in Sources */,
 				D3287695262003B500003C80 /* PhysicalActivityInfoView.swift in Sources */,
@@ -10226,6 +10269,7 @@
 				17FE70CF22DEF05300D6F744 /* FilterSpecializationViewModel.swift in Sources */,
 				1754DBC322B3B4A2000C8CF8 /* MultiSelectionCell.swift in Sources */,
 				888F42002420E42900790175 /* CalendarTrainingLogSummaryVc.swift in Sources */,
+				3664A8142876FB02004AE289 /* ChangePasswordView.swift in Sources */,
 				1771E2D1232F9039004C8954 /* CreateCardioTrainingProgramHeaderCell.swift in Sources */,
 				175CE1C3233A0FDB005335F7 /* ResistanceTrainingProgramPreviewView.swift in Sources */,
 				D39F9C38268C634B005B167E /* UserProfileFollowListView.swift in Sources */,
