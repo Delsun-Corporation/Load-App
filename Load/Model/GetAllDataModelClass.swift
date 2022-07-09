@@ -349,8 +349,9 @@ class Accounts: Mappable {
 	var updatedAt: String? 
 	var name: String? 
 	var createdAt: String? 
-	var id: NSNumber? 
-	var code: String? 
+	var id: NSNumber?
+    var idStr: String?
+	var code: String?
 	var freeTrialDays: NSNumber? 
 
 	required init?(map: Map){ 
@@ -360,8 +361,9 @@ class Accounts: Mappable {
 		isActive <- map["is_active"] 
 		updatedAt <- map["updated_at"] 
 		name <- map["name"] 
-		createdAt <- map["created_at"] 
-		id <- map["id"] 
+		createdAt <- map["created_at"]
+        idStr <- map["_id"]
+        id <- map["id"]
 		code <- map["code"] 
 		freeTrialDays <- map["free_trial_days"] 
 	}

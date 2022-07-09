@@ -211,15 +211,15 @@ class PremiumViewModel: ProfessionalRequirementDelegate, FilterActivitySelectedD
     
     func updatePremium() {
         self.theController.resetNavigationBar()
-        self.apiCallSettingCreateUpdatePrimium(about: self.txtAbout, specializationIds: self.selectedArray, languageIds: self.languagesId!)
+        self.apiCallSettingCreateUpdatePrimium(about: self.txtAbout, specializationIds: self.selectedArray, languageIds: self.languagesId)
     }
     
-    func apiCallSettingCreateUpdatePrimium(about: String, specializationIds: [Int], languageIds: Int, isLoading: Bool = true) {
+    func apiCallSettingCreateUpdatePrimium(about: String, specializationIds: [Int], languageIds: Int?, isLoading: Bool = true) {
         
         var param = [
             "about": about,
             "specialization_ids" : specializationIds,
-            "language_ids": [languageIds],
+            "language_ids": [languageIds ?? 0],
             "is_auto_topup": self.isAutoTopup ?? false,
             "auto_topup_amount": self.autoTopupAmount ?? "",
             "minimum_balance": self.minimumBalance ?? "" ,

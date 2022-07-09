@@ -73,7 +73,8 @@ class PremiumCell: UITableViewCell, UITextFieldDelegate {
             else {
                 if self.languagesId != nil {
                     self.txtValue.text = self.languages
-                    for (index, data) in (GetAllData?.data?.languages?.enumerated())! {
+                    let languagesDummy: [Languages] = []
+                    for (index, data) in (GetAllData?.data?.languages?.enumerated()) ?? languagesDummy.enumerated() {
                         if self.languagesId == data.id?.intValue {
                             self.pickerView.selectRow(index, inComponent: 0, animated: false)
                         }

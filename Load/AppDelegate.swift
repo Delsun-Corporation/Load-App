@@ -43,8 +43,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         FirebaseApp.configure()
         
         //MARK: - v2 API Toggle
-        let apiConfig = LoadRemoteConfig.startBooleanRemoteConfig("v2_server_endpoint_enabled")
-        newApiConfig = apiConfig
+//        let apiConfig = LoadRemoteConfig.startBooleanRemoteConfig("v2_server_endpoint_enabled")
+//        newApiConfig = apiConfig
         
         IQKeyboardManager.shared.enable = true
         IQKeyboardManager.shared.placeholderColor = UIColor.clear

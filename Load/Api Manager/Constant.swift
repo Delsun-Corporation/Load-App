@@ -344,13 +344,23 @@ func getLanguagesName(id:Int) -> String {
     return name
 }
 
-func getAccountName(id:Int) -> String {
+func getAccountName(id: Int? = nil, idStr: String? = nil) -> String {
     var name: String = "Free"
-    for data in GetAllData?.data?.accounts ?? [] {
-        if id == data.id?.intValue, let _name = data.name {
-            name = _name.capitalized
+    if let _id = id {
+        for data in GetAllData?.data?.accounts ?? [] {
+            if _id == data.id?.intValue, let _name = data.name {
+                name = _name.capitalized
+            }
         }
     }
+    else if let _id = idStr {
+        for data in GetAllData?.data?.accounts ?? [] {
+            if _id == data.idStr, let _name = data.name {
+                name = _name.capitalized
+            }
+        }
+    }
+    
     return name
 }
 
