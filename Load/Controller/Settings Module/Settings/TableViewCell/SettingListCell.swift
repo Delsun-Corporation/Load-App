@@ -46,7 +46,7 @@ class SettingListCell: UITableViewCell {
         else if indexPath.row == 8 {
             self.imgNext.isHidden = true
         }
-        else if indexPath.row == 9 {
+        else if indexPath.row == 10 {
             self.imgNext.isHidden = true
             self.imgLine.isHidden = true
         }
