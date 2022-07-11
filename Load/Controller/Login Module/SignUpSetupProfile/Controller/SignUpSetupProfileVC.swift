@@ -58,6 +58,10 @@ class SignUpSetupProfileVC: UIViewController, UITextFieldDelegate {
     @IBAction func btnWeightClicked(_ sender: Any) {
         self.mainView.txtWeight.becomeFirstResponder()
     }
+    
+    @IBAction func btnLocationClicked(_ sender: Any) {
+        self.mainModelView.cpvInternal.showCountriesList(from: self)
+    }
 }
 
 //MARK:- ImagePickerController

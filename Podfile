@@ -39,6 +39,7 @@ target 'Load' do
   pod 'RxSwift'
   pod 'RxCocoa'
   pod 'EasyPeasy'
+  pod 'CountryPickerView'
 
   target 'LoadTests' do
     inherit! :search_paths

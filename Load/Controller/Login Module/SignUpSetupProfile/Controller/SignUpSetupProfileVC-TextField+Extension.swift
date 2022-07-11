@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CountryPickerView
 
 extension SignUpSetupProfileVC {
     //MARK:- TextField Delegates
@@ -55,5 +56,17 @@ extension SignUpSetupProfileVC {
             return true
         }
         return true
+    }
+}
+
+
+extension SignUpSetupProfileVC: CountryPickerViewDelegate, CountryPickerViewDataSource {
+    func countryPickerView(_ countryPickerView: CountryPickerView, didSelectCountry country: Country) {
+        self.mainView.txtLocation.text = country.name
+        self.mainView.txtPhoneArea.text = country.phoneCode
+    }
+    
+    func navigationTitle(in countryPickerView: CountryPickerView) -> String? {
+        return "Select a Country"
     }
 }

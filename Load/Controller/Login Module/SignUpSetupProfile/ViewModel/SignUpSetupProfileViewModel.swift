@@ -8,6 +8,7 @@
 
 import UIKit
 import DropDown
+import CountryPickerView
 import SwiftyJSON
 
 class SignUpSetupProfileViewModel {
@@ -18,6 +19,7 @@ class SignUpSetupProfileViewModel {
     let sexDropDown = DropDown()
     let heightDropDown = DropDown()
     let weightDropDown = DropDown()
+    let cpvInternal = CountryPickerView()
     
     var sexArray: [String] = ["Male","Female", "Other"]
     var heightArray: [String] = []
@@ -54,6 +56,7 @@ class SignUpSetupProfileViewModel {
         }
         self.DOBSetup()
         self.sexDropDownSetupUI()
+        self.countryPickerSetupUI()
         let view = (self.theController.view as? SignUpSetupProfileView)
 
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(imageTapped(gesture:)))
@@ -162,6 +165,11 @@ class SignUpSetupProfileViewModel {
         sexDropDown.bottomOffset = CGPoint(x: 0, y: sexDropDown.anchorView?.plainView.bounds.height ?? 0)
     }
     
+    func countryPickerSetupUI() {
+        cpvInternal.delegate = theController.self
+        cpvInternal.dataSource = theController.self
+    }
+    
     func showNext(txtFullName:String, txtPhoneArea: String, txtPhoneNumber: String, txtLocation: String) {
         let view = (self.theController.view as? SignUpSetupProfileView)
 
@@ -241,3 +249,4 @@ class SignUpSetupProfileViewModel {
         }
     }
 }
+

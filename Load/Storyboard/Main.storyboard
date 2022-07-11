@@ -151,7 +151,7 @@
                                         </userDefinedRuntimeAttributes>
                                     </view>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1hD-bo-dV1">
-                                        <rect key="frame" x="120" y="382.5" width="135" height="28"/>
+                                        <rect key="frame" x="117.5" y="382.5" width="140" height="28"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <fontDescription key="fontDescription" name="SFUIText-Regular" family="SF UI Text" pointSize="13"/>
                                         <state key="normal" title="Forgot your password?">
@@ -162,7 +162,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BmU-9V-ubn">
-                                        <rect key="frame" x="82.5" y="545" width="210" height="28"/>
+                                        <rect key="frame" x="78.5" y="545" width="218" height="28"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <fontDescription key="fontDescription" name="SFUIText-Regular" family="SF UI Text" pointSize="13"/>
                                         <state key="normal" title=" I don’t have Load account. Sign Up">
@@ -418,7 +418,7 @@
                                         </userDefinedRuntimeAttributes>
                                     </view>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aY4-cW-EbP">
-                                        <rect key="frame" x="76.5" y="589" width="222" height="28"/>
+                                        <rect key="frame" x="72" y="589" width="231" height="28"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <fontDescription key="fontDescription" name="SFUIText-Regular" family="SF UI Text" pointSize="13"/>
                                         <state key="normal" title="I already have a Load account. Sign in">
@@ -840,7 +840,7 @@
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4Rv-1b-wUT" customClass="CustomView" customModule="Load" customModuleProvider="target">
                                                 <rect key="frame" x="20" y="203" width="335" height="45"/>
                                                 <subviews>
-                                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Enter your full name" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="pwO-Pg-6mt" customClass="CustomTextField" customModule="Load" customModuleProvider="target">
+                                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Location" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="pwO-Pg-6mt" customClass="CustomTextField" customModule="Load" customModuleProvider="target">
                                                         <rect key="frame" x="5" y="5" width="325" height="35"/>
                                                         <fontDescription key="fontDescription" name="SFUIText-Regular" family="SF UI Text" pointSize="13"/>
                                                         <textInputTraits key="textInputTraits"/>
@@ -850,14 +850,40 @@
                                                             </userDefinedRuntimeAttribute>
                                                         </userDefinedRuntimeAttributes>
                                                     </textField>
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Wg1-nt-JhR">
+                                                        <rect key="frame" x="290" y="0.0" width="45" height="45"/>
+                                                        <subviews>
+                                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_down_arrow" translatesAutoresizingMaskIntoConstraints="NO" id="Q2S-oH-849">
+                                                                <rect key="frame" x="15" y="17" width="15" height="11"/>
+                                                            </imageView>
+                                                        </subviews>
+                                                        <color key="backgroundColor" red="0.87843137250000003" green="0.87843137250000003" blue="0.88235294119999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="45" id="IVP-N0-s6V"/>
+                                                            <constraint firstAttribute="height" constant="45" id="ejt-cv-m33"/>
+                                                            <constraint firstItem="Q2S-oH-849" firstAttribute="centerY" secondItem="Wg1-nt-JhR" secondAttribute="centerY" id="jUp-9w-kVQ"/>
+                                                            <constraint firstAttribute="width" constant="45" id="sUD-EI-8wM"/>
+                                                            <constraint firstItem="Q2S-oH-849" firstAttribute="centerX" secondItem="Wg1-nt-JhR" secondAttribute="centerX" id="tbm-kn-7OV"/>
+                                                        </constraints>
+                                                    </view>
+                                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Tnc-9B-Se4">
+                                                        <rect key="frame" x="0.0" y="0.0" width="290" height="45"/>
+                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                        <connections>
+                                                            <action selector="btnLocationClicked:" destination="Oan-BQ-4U1" eventType="touchUpInside" id="Vfk-gy-ZB5"/>
+                                                        </connections>
+                                                    </button>
                                                 </subviews>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="45" id="13N-qt-HIP"/>
                                                     <constraint firstAttribute="trailing" secondItem="pwO-Pg-6mt" secondAttribute="trailing" constant="5" id="2Dm-Ap-g5Z"/>
+                                                    <constraint firstItem="Wg1-nt-JhR" firstAttribute="top" secondItem="4Rv-1b-wUT" secondAttribute="top" id="5b4-sL-J6w"/>
                                                     <constraint firstItem="pwO-Pg-6mt" firstAttribute="leading" secondItem="4Rv-1b-wUT" secondAttribute="leading" constant="5" id="NRl-P9-Xdm"/>
                                                     <constraint firstAttribute="bottom" secondItem="pwO-Pg-6mt" secondAttribute="bottom" constant="5" id="O6t-xF-Xs2"/>
                                                     <constraint firstItem="pwO-Pg-6mt" firstAttribute="top" secondItem="4Rv-1b-wUT" secondAttribute="top" constant="5" id="bji-fs-Q9a"/>
+                                                    <constraint firstAttribute="bottom" secondItem="Wg1-nt-JhR" secondAttribute="bottom" id="gen-bB-MgB"/>
+                                                    <constraint firstAttribute="trailing" secondItem="Wg1-nt-JhR" secondAttribute="trailing" id="rW1-bO-yp4"/>
                                                 </constraints>
                                                 <userDefinedRuntimeAttributes>
                                                     <userDefinedRuntimeAttribute type="color" keyPath="borderColors">
@@ -1279,7 +1305,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="CHANGE PASSWORD" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0De-2d-VpD">
-                                        <rect key="frame" x="97" y="65" width="181" height="21"/>
+                                        <rect key="frame" x="96.5" y="65" width="182.5" height="21"/>
                                         <fontDescription key="fontDescription" name="SFUIText-Regular" family="SF UI Text" pointSize="18"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
@@ -1491,7 +1517,7 @@
             <size key="intrinsicContentSize" width="93" height="17.5"/>
         </designable>
         <designable name="pwO-Pg-6mt">
-            <size key="intrinsicContentSize" width="138" height="17.5"/>
+            <size key="intrinsicContentSize" width="67.5" height="17.5"/>
         </designable>
         <designable name="tSb-b8-Z9c">
             <size key="intrinsicContentSize" width="87.5" height="17.5"/>
