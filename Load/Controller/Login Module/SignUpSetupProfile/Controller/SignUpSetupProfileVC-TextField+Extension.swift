@@ -68,7 +68,7 @@ extension SignUpSetupProfileVC {
 extension SignUpSetupProfileVC: CountryPickerViewDelegate, CountryPickerViewDataSource {
     func countryPickerView(_ countryPickerView: CountryPickerView, didSelectCountry country: Country) {
         self.mainView.txtLocation.text = country.name
-        self.mainView.txtPhoneArea.insertText(country.phoneCode)
+        self.mainView.txtPhoneArea.text = country.phoneCode
         self.mainView.viewPhoneArea.borderColors = UIColor.appthemeRedColor
         self.mainView.txtPhoneArea.textColor = UIColor.appthemeRedColor
         self.mainView.viewLocation.borderColors = UIColor.appthemeRedColor

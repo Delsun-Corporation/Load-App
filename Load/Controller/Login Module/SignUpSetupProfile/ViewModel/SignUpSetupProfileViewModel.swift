@@ -143,7 +143,7 @@ class SignUpSetupProfileViewModel {
         view?.viewDOB.borderColors = UIColor.appthemeRedColor
         view?.viewDOBDropDown.backgroundColor = UIColor.appthemeRedColor
         view?.txtDOB.textColor = UIColor.appthemeRedColor
-        view?.imgDOBDropDown.isHidden = false
+        view?.imgDOBDropDown.image = UIImage(named: "ic_right_birthday")
         self.showNext()
     }
     
