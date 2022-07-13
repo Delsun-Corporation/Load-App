@@ -8,6 +8,7 @@
 
 import UIKit
 import DropDown
+import CountryPickerView
 import SwiftyJSON
 
 class SignUpSetupProfileViewModel {
@@ -18,6 +19,10 @@ class SignUpSetupProfileViewModel {
     let sexDropDown = DropDown()
     let heightDropDown = DropDown()
     let weightDropDown = DropDown()
+    let cpvInternal = CountryPickerView()
+    
+    let heightPickerView: UIPickerView = UIPickerView()
+    let weightPickerView: UIPickerView = UIPickerView()
     
     var sexArray: [String] = ["Male","Female", "Other"]
     var heightArray: [String] = []
@@ -54,6 +59,9 @@ class SignUpSetupProfileViewModel {
         }
         self.DOBSetup()
         self.sexDropDownSetupUI()
+        self.countryPickerSetupUI()
+        self.heightPickerSetup()
+        self.weightPickerSetup()
         let view = (self.theController.view as? SignUpSetupProfileView)
 
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(imageTapped(gesture:)))
@@ -135,8 +143,28 @@ class SignUpSetupProfileViewModel {
         view?.viewDOB.borderColors = UIColor.appthemeRedColor
         view?.viewDOBDropDown.backgroundColor = UIColor.appthemeRedColor
         view?.txtDOB.textColor = UIColor.appthemeRedColor
-        view?.imgDOBDropDown.isHidden = false
-        self.showNext(txtFullName: view?.txtFullName.text ?? "", txtPhoneArea: view?.txtPhoneArea.text ?? "", txtPhoneNumber: view?.txtPhoneNumber.text ?? "", txtLocation: view?.txtLocation.text ?? "")
+        view?.imgDOBDropDown.image = UIImage(named: "ic_right_birthday")
+        self.showNext()
+    }
+    
+    func heightPickerSetup() {
+        let view = (self.theController.view as? SignUpSetupProfileView)
+        
+        heightPickerView.delegate = theController.self
+        heightPickerView.dataSource = theController.self
+        view?.txtHeight.inputView = heightPickerView
+        
+        heightPickerView.backgroundColor = UIColor.white
+    }
+    
+    func weightPickerSetup() {
+        let view = (self.theController.view as? SignUpSetupProfileView)
+        
+        weightPickerView.delegate = theController.self
+        weightPickerView.dataSource = theController.self
+        view?.txtWeight.inputView = weightPickerView
+        
+        weightPickerView.backgroundColor = UIColor.white
     }
     
     func sexDropDownSetupUI() {
@@ -154,7 +182,7 @@ class SignUpSetupProfileViewModel {
             view?.txtSex.textColor = UIColor.appthemeRedColor
             view?.viewSexDropDown.backgroundColor = UIColor.appthemeRedColor
             view?.imgSexDropDown.image = UIImage(named: "ic_right_birthday")
-            self.showNext(txtFullName: view?.txtFullName.text ?? "", txtPhoneArea: view?.txtPhoneArea.text ?? "", txtPhoneNumber: view?.txtPhoneNumber.text ?? "", txtLocation: view?.txtLocation.text ?? "")
+            self.showNext()
             
         }
         sexDropDown.backgroundColor = .white
@@ -162,10 +190,21 @@ class SignUpSetupProfileViewModel {
         sexDropDown.bottomOffset = CGPoint(x: 0, y: sexDropDown.anchorView?.plainView.bounds.height ?? 0)
     }
     
-    func showNext(txtFullName:String, txtPhoneArea: String, txtPhoneNumber: String, txtLocation: String) {
+    func countryPickerSetupUI() {
+        cpvInternal.delegate = theController.self
+        cpvInternal.dataSource = theController.self
+    }
+    
+    func showNext() {
         let view = (self.theController.view as? SignUpSetupProfileView)
 
-        if txtFullName != "" && isProfileSelected && isDOBSelected
+        let txtFirstName = view?.txtFirstName.text
+        let txtLastName = view?.txtLastName.text
+        let txtPhoneArea = view?.txtPhoneArea.text
+        let txtPhoneNumber = view?.txtPhoneNumber.text
+        let txtLocation = view?.txtLocation.text
+        
+        if txtFirstName != "" && txtLastName != "" && isProfileSelected && isDOBSelected
              && isSexSelected && isHeightSelected && isWeightSelected && txtPhoneArea != "" && txtPhoneNumber != "" && txtLocation != "" {
             view?.viewNext.backgroundColor = UIColor.appthemeRedColor
             view?.btnNext.isUserInteractionEnabled = true
@@ -182,7 +221,10 @@ class SignUpSetupProfileViewModel {
         if !self.isProfileSelected {
             makeToast(strMessage: getCommonString(key: "Select_profile_picture_key"))
         }
-        else if (view?.txtFullName.text?.toTrim() ?? "") == "" {
+        else if (view?.txtFirstName.text?.toTrim() ?? "") == "" {
+            makeToast(strMessage: getCommonString(key: "Enter_fullname_key"))
+        }
+        else if (view?.txtLastName.text?.toTrim() ?? "") == "" {
             makeToast(strMessage: getCommonString(key: "Enter_fullname_key"))
         }
         else if !self.isDOBSelected {
@@ -209,7 +251,18 @@ class SignUpSetupProfileViewModel {
         let weightInt: Int = Int(view?.txtWeight.text ?? "0") ?? 0
         let heightInt: Int = Int(view?.txtHeight.text ?? "0") ?? 0
 
-        let param = ["name":view?.txtFullName.text! ?? "", "date_of_birth":self.strDOB, "gender" : self.checkGender(str: (view?.txtSex.text?.toTrim() ?? "")), "weight" : weightInt, "height" : heightInt, "location" : view?.txtLocation.text ?? "", "phone_area" : view?.txtPhoneArea.text ?? "", "phone_number" : view?.txtPhoneNumber.text ?? "", "email": self.userEmail] as [String : Any]
+        let fullName = (view?.txtFirstName.text ?? "") + " " + (view?.txtLastName.text ?? "")
+        
+        let param = [
+            "name": fullName,
+            "date_of_birth": self.strDOB,
+            "gender" : self.checkGender(str: (view?.txtSex.text?.toTrim() ?? "")),
+            "weight" : weightInt,
+            "height" : heightInt,
+            "location" : view?.txtLocation.text ?? "",
+            "phone_area" : view?.txtPhoneArea.text ?? "",
+            "phone_number" : view?.txtPhoneNumber.text ?? "",
+            "email": self.userEmail] as [String : Any]
         
         ApiManager.shared.MakePostAPI(name: SIGN_UP_PROFILE, params: param as [String : Any], vc: self.theController) { (response, error) in
             if response != nil {

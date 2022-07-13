@@ -53,6 +53,7 @@ class LoginViewModel {
                     let result = LoginModelClass(JSON: json.dictionaryObject!)
                     if (result?.success)! {
                         let isProfileComplete = result?.data?.user?.isProfileComplete
+                        print("⚠️", result?.data?.user?.emailVerifiedAt)
                         let emailVerifiedAt = result?.data?.user?.emailVerifiedAt ?? ""
                         if emailVerifiedAt == "" {
                             makeToast(strMessage: getCommonString(key: "Please_verify_your_email_address_key"))

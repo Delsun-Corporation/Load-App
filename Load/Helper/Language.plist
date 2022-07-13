@@ -84,6 +84,8 @@
 	<string>Now the maximum number of guests</string>
 	<key>Sex_key</key>
 	<string>Sex</string>
+	<key>Gender_key</key>
+	<string>Gender</string>
 	<key>Fill_up_the_basics_key</key>
 	<string>Fill up the basics</string>
 	<key>Please_select_event_type_key</key>
@@ -253,6 +255,10 @@ and your training goal.</string>
 	<string>Let’s get more detailed</string>
 	<key>Enter_your_full_name_key</key>
 	<string>Enter your full name</string>
+	<key>First_name_key</key>
+	<string>First name</string>
+	<key>Last_name_key</key>
+	<string>Last name</string>
 	<key>Kg_key</key>
 	<string>Kg</string>
 	<key>Fill_in_your_training_goal_key</key>
@@ -326,7 +332,7 @@ and your training goal.</string>
 	<key>Please_select_end_date_key</key>
 	<string>Please select end date</string>
 	<key>Please_verify_your_email_address_key</key>
-	<string>Please verify your email address first then login at here again.</string>
+	<string>Please verify your email address first then try logging in again.</string>
 	<key>Billing_information_key</key>
 	<string>Billing information</string>
 	<key>Please_add_some_exercise_key</key>
@@ -913,6 +919,8 @@ and your training goal.</string>
 	<string>By setting as compulsary, Premium user will not be able to book any sessions before filling up their PAR-Q form. </string>
 	<key>Phone_area_key</key>
 	<string>Phone Area</string>
+	<key>Country_code_key</key>
+	<string>Country Code</string>
 	<key>Phone_number_key</key>
 	<string>Phone Number</string>
 	<key>Change_Password_key</key>

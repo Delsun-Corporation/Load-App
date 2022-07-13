@@ -27,7 +27,8 @@ class SignUpSetupProfileVC: UIViewController, UITextFieldDelegate {
     
     //MARK:- Functions
     func setupUI() {
-        self.mainView.txtFullName.delegate = self
+        self.mainView.txtFirstName.delegate = self
+        self.mainView.txtLastName.delegate = self
         self.mainView.txtHeight.delegate = self
         self.mainView.txtWeight.delegate = self
         self.mainView.txtLocation.delegate = self
@@ -58,6 +59,10 @@ class SignUpSetupProfileVC: UIViewController, UITextFieldDelegate {
     @IBAction func btnWeightClicked(_ sender: Any) {
         self.mainView.txtWeight.becomeFirstResponder()
     }
+    
+    @IBAction func btnLocationClicked(_ sender: Any) {
+        self.mainModelView.cpvInternal.showCountriesList(from: self)
+    }
 }
 
 //MARK:- ImagePickerController
@@ -67,7 +72,7 @@ extension SignUpSetupProfileVC: UIImagePickerControllerDelegate, UINavigationCon
         self.mainView.imgProfile.image = profilePic
         self.mainModelView.profileImage = profilePic
         self.mainModelView.isProfileSelected = true
-        self.mainModelView.showNext(txtFullName: self.mainView.txtFullName.text ?? "", txtPhoneArea: self.mainView.txtPhoneArea.text ?? "", txtPhoneNumber: self.mainView.txtPhoneNumber.text ?? "", txtLocation: self.mainView.txtLocation.text ?? "")
+        self.mainModelView.showNext()
         self.dismiss(animated: true, completion: nil)
     }
     
