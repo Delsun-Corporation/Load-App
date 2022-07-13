@@ -30,6 +30,7 @@ class ProfileModelClass: Mappable {
     var countryDetail: CountryDetail?
     var isSnooze: NSNumber?
     var userSnoozeDetail: UserSnoozeDetail?
+    var location: String?
 
 	required init?(map: Map){ 
 	} 
@@ -38,12 +39,15 @@ class ProfileModelClass: Mappable {
 		gender <- map["gender"] 
 		expiredAt <- map["expired_at"] 
 		updatedAt <- map["updated_at"] 
-		isProfileComplete <- map["is_profile_complete"] 
+		isProfileComplete <- map["is_profile_complete"]
+        createdAt <- map["createdAt"]
 		createdAt <- map["created_at"] 
 		goal <- map["goal"] 
 		dateOfBirth <- map["date_of_birth"] 
-		weight <- map["weight"] 
+		weight <- map["weight"]
+        mobile <- map["phone_number"]
 		mobile <- map["mobile"]
+        countryCode <- map["phone_area"]
         countryCode <- map["country_code"]
 		userType <- map["user_type"] 
 		photo <- map["photo"] 
@@ -62,6 +66,7 @@ class ProfileModelClass: Mappable {
         countryDetail <- map["country_detail"]
         isSnooze <- map["is_snooze"]
         userSnoozeDetail <- map["user_snooze_detail"]
+        location <- map["location"]
 	}
 } 
 

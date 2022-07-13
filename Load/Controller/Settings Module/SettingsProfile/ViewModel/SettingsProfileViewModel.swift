@@ -121,26 +121,51 @@ class SettingsProfileViewModel {
     }
     
     func apiCallGetUserDetail() {
-        let param = ["": ""] as [String : Any]
+        var param = ["": ""] as [String : Any]
         
-        ApiManager.shared.MakeGetAPI(name: USER + "/" + (getUserDetail()?.data?.user?.id?.stringValue)!, params: param as [String : Any], vc: self.theController, isAuth: false, completionHandler: { (response, error) in
-            if response != nil {
-                let json = JSON(response!)
-                print(json)
-                let success = json.getBool(key: .success)
-                if success {
-                    let data = json.getDictionary(key: .data)
-                    self.profileDetails = ProfileModelClass(JSON: data.dictionaryObject!)
-                    self.DOBSetup()
-                    self.showUserDetails()
-                    self.updateData()
-                }
-                else {
-                    let message = json.getString(key: .message)
-                    makeToast(strMessage: message)
-                }
+        if newApiConfig {
+            if let id = getUserDetail()?.data?.user?.id?.intValue {
+                param = ["id": id] as [String : Any]
             }
-        })
+            ApiManager.shared.MakeGetAPI(name: USER, params: param as [String : Any], vc: self.theController, isAuth: false, completionHandler: { (response, error) in
+                if response != nil {
+                    let json = JSON(response!)
+                    print("This is json \(json)")
+                    let success = json.getBool(key: .success)
+                    if success {
+                        let data = json.getDictionary(key: .data)
+                        self.profileDetails = ProfileModelClass(JSON: data.dictionaryObject!)
+                        self.DOBSetup()
+                        self.showUserDetails()
+                        self.updateData()
+                    }
+                    else {
+                        let message = json.getString(key: .message)
+                        makeToast(strMessage: message)
+                    }
+                }
+            })
+        }
+        else {
+            ApiManager.shared.MakeGetAPI(name: USER + "/" + (getUserDetail()?.data?.user?.id?.stringValue)!, params: param as [String : Any], vc: self.theController, isAuth: false, completionHandler: { (response, error) in
+                if response != nil {
+                    let json = JSON(response!)
+                    print(json)
+                    let success = json.getBool(key: .success)
+                    if success {
+                        let data = json.getDictionary(key: .data)
+                        self.profileDetails = ProfileModelClass(JSON: data.dictionaryObject!)
+                        self.DOBSetup()
+                        self.showUserDetails()
+                        self.updateData()
+                    }
+                    else {
+                        let message = json.getString(key: .message)
+                        makeToast(strMessage: message)
+                    }
+                }
+            })
+        }
     }
     
     func validateDetails() {
@@ -226,14 +251,15 @@ class SettingsProfileViewModel {
         let date = (self.profileDetails?.dateOfBirth!)!
         
         view?.txtDOB.text = convertDateFormater(date, format: "dd-MM-yyyy", dateFormat: "dd / MM / yyyy")
-        view?.txtLocation.text = self.profileDetails?.countryDetail?.name
+        view?.txtLocation.text = self.profileDetails?.location
         self.locationId = self.profileDetails?.countryDetail?.id?.stringValue ?? ""
 
         view?.txtCode.text = self.profileDetails?.countryCode
         view?.txtMobile.text = self.profileDetails?.mobile
         view?.txtEmail.text = self.profileDetails?.email
         view?.txtFacebook.text = self.profileDetails?.facebook
-        view?.lblMemberSince.text = convertDateFormater((self.profileDetails?.createdAt)!, dateFormat: "MMM yyyy")
+        let format = newApiConfig ? "yyyy-MM-dd'T'HH:mm:ss.SZ" : "yyyy-MM-dd HH:mm:ss"
+        view?.lblMemberSince.text = convertDateFormater((self.profileDetails?.createdAt) ?? Date().iso8601, format: format, dateFormat: "MMM yyyy")
         view?.lblAccountType.text = self.profileDetails?.accountDetail?.name
         if self.profileDetails?.emailVerifiedAt == nil {
             view?.imgEmail.isHidden = true

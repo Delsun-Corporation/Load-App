@@ -58,7 +58,7 @@ class SettingsProfileVC: UIViewController, CountryCodeDelegate {
         if self.mainView.txtLocation.text?.toTrim() == "" {
             let model = GetAllData?.data?.countries?.first
             self.mainView.txtLocation.text =  model?.name
-            self.mainModelView.locationId = (model?.id?.stringValue)!
+            self.mainModelView.locationId = (model?.id?.stringValue) ?? "0"
         }
         self.mainView.txtLocation.becomeFirstResponder()
     }

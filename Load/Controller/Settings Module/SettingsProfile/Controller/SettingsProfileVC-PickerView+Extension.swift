@@ -16,7 +16,7 @@ extension SettingsProfileVC: UIPickerViewDataSource, UIPickerViewDelegate {
     }
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return (GetAllData?.data?.countries?.count)!
+        return (GetAllData?.data?.countries?.count) ?? 0
     }
     
     func pickerView(_ pickerView: UIPickerView, rowHeightForComponent component: Int) -> CGFloat {
