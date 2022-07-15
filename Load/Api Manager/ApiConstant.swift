@@ -10,9 +10,7 @@ import Foundation
 import SwiftyJSON
 
 //MARK: - v2 API Toggle
-//var newApiConfig = LoadRemoteConfig.startBooleanRemoteConfig("v2_server_endpoint_enabled")
-var newApiConfig = true
-
+var newApiConfig = LoadRemoteConfig.startBooleanRemoteConfig("v2_server_endpoint_enabled")
 
 //MARK: - Main URLS
 //let SERVER_URL = "http://3.18.106.118/load/" //"http://192.168.0.108:1001"
