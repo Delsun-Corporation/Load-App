@@ -8,6 +8,7 @@
 
 import UIKit
 import SwiftyJSON
+import CountryPickerView
 import Foundation
 
 class SettingsProfileViewModel {
@@ -24,6 +25,7 @@ class SettingsProfileViewModel {
     var countryName: String = "United States"
     var countryCode: String = "US"
     let pickerView = UIPickerView()
+    let cpvInternal = CountryPickerView()
    
     //MARK:- Functions
     init(theController:SettingsProfileVC) {
@@ -120,6 +122,11 @@ class SettingsProfileViewModel {
         self.strDOB = dateFormatter.string(from: sender.date)
     }
     
+    func countryPickerSetupUI() {
+        cpvInternal.delegate = theController.self
+        cpvInternal.dataSource = theController.self
+    }
+    
     func apiCallGetUserDetail() {
         var param = ["": ""] as [String : Any]
         
@@ -136,6 +143,7 @@ class SettingsProfileViewModel {
                         let data = json.getDictionary(key: .data)
                         self.profileDetails = ProfileModelClass(JSON: data.dictionaryObject!)
                         self.DOBSetup()
+                        self.countryPickerSetupUI()
                         self.showUserDetails()
                         self.updateData()
                     }

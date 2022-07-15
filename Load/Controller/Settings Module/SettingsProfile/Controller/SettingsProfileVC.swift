@@ -55,12 +55,7 @@ class SettingsProfileVC: UIViewController, CountryCodeDelegate {
     }
     
     @IBAction func btnLocationClicked(_ sender: Any) {
-        if self.mainView.txtLocation.text?.toTrim() == "" {
-            let model = GetAllData?.data?.countries?.first
-            self.mainView.txtLocation.text =  model?.name
-            self.mainModelView.locationId = (model?.id?.stringValue) ?? "0"
-        }
-        self.mainView.txtLocation.becomeFirstResponder()
+        self.mainModelView.cpvInternal.showCountriesList(from: self)
     }
     
     @IBAction func btnEditClicked(_ sender: UIButton) {

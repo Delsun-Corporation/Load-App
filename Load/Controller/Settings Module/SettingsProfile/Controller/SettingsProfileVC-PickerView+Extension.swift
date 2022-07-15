@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CountryPickerView
 
 extension SettingsProfileVC: UIPickerViewDataSource, UIPickerViewDelegate {
 
@@ -41,5 +42,16 @@ extension SettingsProfileVC: UIPickerViewDataSource, UIPickerViewDelegate {
         let model = GetAllData?.data?.countries![row]
         self.mainView.txtLocation.text =  model?.name
         self.mainModelView.locationId = (model?.id?.stringValue)!
+    }
+}
+
+extension SettingsProfileVC: CountryPickerViewDelegate, CountryPickerViewDataSource {
+    func countryPickerView(_ countryPickerView: CountryPickerView, didSelectCountry country: Country) {
+        self.mainView.txtLocation.text = country.name
+        self.mainView.txtCode.text = country.phoneCode
+    }
+    
+    func navigationTitle(in countryPickerView: CountryPickerView) -> String? {
+        return "Select a Country"
     }
 }
