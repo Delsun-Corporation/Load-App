@@ -15,7 +15,8 @@ class SignUpSetupProfileView: UIView {
     @IBOutlet weak var imgProfile: CustomImageView!
     @IBOutlet weak var lblProfile: UILabel!
     
-    @IBOutlet weak var txtFullName: CustomTextField!
+    @IBOutlet weak var txtFirstName: CustomTextField!
+    @IBOutlet weak var txtLastName: CustomTextField!
     @IBOutlet weak var txtDOB: CustomTextField!
     
     @IBOutlet weak var txtSex: CustomTextField!
@@ -26,6 +27,7 @@ class SignUpSetupProfileView: UIView {
     @IBOutlet weak var txtPhoneNumber: CustomTextField!
     
     @IBOutlet weak var viewFirstName: CustomView!
+    @IBOutlet weak var viewLastName: CustomView!
     @IBOutlet weak var viewDOB: CustomView!
     @IBOutlet weak var viewSex: CustomView!
     @IBOutlet weak var viewHeight: CustomView!
@@ -36,11 +38,16 @@ class SignUpSetupProfileView: UIView {
     
     @IBOutlet weak var viewDOBDropDown: UIView!
     @IBOutlet weak var viewSexDropDown: UIView!
+    @IBOutlet weak var viewHeightDropDown: UIView!
+    @IBOutlet weak var viewWeightDropDown: UIView!
+    @IBOutlet weak var viewLocationDropDown: UIView!
     
     @IBOutlet weak var imgDOBDropDown: UIImageView!
     @IBOutlet weak var imgSexDropDown: UIImageView!
-
-
+    @IBOutlet weak var imgHeightDropDown: UIImageView!
+    @IBOutlet weak var imgWeightDropDown: UIImageView!
+    @IBOutlet weak var imgLocationDropDown: UIImageView!
+    
     @IBOutlet weak var viewNext: UIView!
     
     @IBOutlet weak var btnSex: UIButton!
@@ -57,7 +64,8 @@ class SignUpSetupProfileView: UIView {
     func setupFont() {
         self.lblCreateAccount.font = themeFont(size: 18, fontname: .Regular)
         self.lblProfile.font = themeFont(size: 18, fontname: .Regular)
-        self.txtFullName.font = themeFont(size: 13, fontname: .Regular)
+        self.txtFirstName.font = themeFont(size: 13, fontname: .Regular)
+        self.txtLastName.font = themeFont(size: 13, fontname: .Regular)
         self.txtDOB.font = themeFont(size: 13, fontname: .Regular)
         self.txtSex.font = themeFont(size: 13, fontname: .Regular)
         self.txtHeight.font = themeFont(size: 13, fontname: .Regular)
@@ -69,7 +77,8 @@ class SignUpSetupProfileView: UIView {
         
         self.lblCreateAccount.setColor(color: .appthemeWhiteColor)
         self.lblProfile.setColor(color: .appthemeWhiteColor)
-        self.txtFullName.setColor(color: .appthemeBlackColor)
+        self.txtFirstName.setColor(color: .appthemeBlackColor)
+        self.txtLastName.setColor(color: .appthemeBlackColor)
         self.txtDOB.setColor(color: .appthemeBlackColor)
         self.txtSex.setColor(color: .appthemeBlackColor)
         self.txtHeight.setColor(color: .appthemeBlackColor)
@@ -81,13 +90,14 @@ class SignUpSetupProfileView: UIView {
         
         self.lblCreateAccount.text = getCommonString(key: "Create_Account_key")
         self.lblProfile.text = getCommonString(key: "Profile_key")
-        self.txtFullName.placeholder = getCommonString(key: "Enter_your_full_name_key")
+        self.txtFirstName.placeholder = getCommonString(key: "First_name_key")
+        self.txtLastName.placeholder = getCommonString(key: "Last_name_key")
         self.txtDOB.placeholder = getCommonString(key: "Date_of_Birth_key")
-        self.txtSex.placeholder = getCommonString(key: "Sex_key")
+        self.txtSex.placeholder = getCommonString(key: "Gender_key")
         self.txtHeight.placeholder = getCommonString(key: "Height_key")
         self.txtWeight.placeholder = getCommonString(key: "Weight_key")
         self.txtLocation.placeholder = getCommonString(key: "Location_key")
-        self.txtPhoneArea.placeholder = getCommonString(key: "Phone_area_key")
+        self.txtPhoneArea.placeholder = getCommonString(key: "Country_code_key")
         self.txtPhoneNumber.placeholder = getCommonString(key: "Phone_number_key")
         self.btnNext.setTitle(str: getCommonString(key: "Next_key"))
     }

@@ -57,7 +57,7 @@ class LoginViewModel {
                         if emailVerifiedAt == "" {
                             makeToast(strMessage: getCommonString(key: "Please_verify_your_email_address_key"))
                         }
-                        else if !(isProfileComplete ?? false) {
+                        else if (isProfileComplete ?? false) {
                             saveJSON(j: json, key: USER_DETAILS_KEY)
                             let obj: SignUpSetupProfileVC = AppStoryboard.Main.instance.instantiateViewController(withIdentifier: "SignUpSetupProfileVC") as! SignUpSetupProfileVC
                             obj.mainModelView.userEmail = view?.txtEmail.text?.toTrim() ?? ""

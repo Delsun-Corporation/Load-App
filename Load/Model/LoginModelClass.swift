@@ -32,7 +32,7 @@ class DataLogin: Mappable {
 		user <- map["user"]
         // TODO: Uncomment for v1 API
         if newApiConfig {
-            accessToken <- map["token"]
+            accessToken <- map["user"]["token"]
         }
         else {
             accessToken <- map["access_token"]

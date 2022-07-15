@@ -6,6 +6,7 @@ PODS:
   - BubblePictures (2.1.3):
     - SDWebImage
   - CarbonKit (2.3.1)
+  - CountryPickerView (3.3.0)
   - DropDown (2.3.13)
   - EasyPeasy (1.10.0)
   - Firebase/Core (9.1.0):
@@ -237,6 +238,7 @@ DEPENDENCIES:
   - AlamofireSwiftyJSON
   - BubblePictures
   - CarbonKit
+  - CountryPickerView
   - DropDown
   - EasyPeasy
   - Firebase/Core
@@ -272,6 +274,7 @@ SPEC REPOS:
     - AlamofireSwiftyJSON
     - BubblePictures
     - CarbonKit
+    - CountryPickerView
     - DropDown
     - EasyPeasy
     - Firebase
@@ -322,6 +325,7 @@ SPEC CHECKSUMS:
   AlamofireSwiftyJSON: 74ee3804bed06d07857daf1eeb1615c85dba3997
   BubblePictures: 5e8a56185ff58f57847ced8d9c45a02a977d96c7
   CarbonKit: b60e24dbdb47179990d5e074efa87ab819c8de98
+  CountryPickerView: 6322ada32a80b0cd721b0267282a5c24f406f263
   DropDown: 8a2116376c1981888557f72ec2ffc9a5e0e456ec
   EasyPeasy: b9b1bae024d21a7dfa9bad26d6826d88348cc6f1
   Firebase: 91c243d75573ac6e7c9735ec859b72bffb61347d
@@ -367,6 +371,6 @@ SPEC CHECKSUMS:
   VENTokenField: 5a19b838fb97f040e3d4c93f584b4adeaf3fc1ee
   XCDYouTubeKit: b120aced3d8638ffb570c5450cddb5a1dac448c7
 
-PODFILE CHECKSUM: c3929d7ad41fe202c95e2c8fa7f90143a5c7f4a3
+PODFILE CHECKSUM: a364e8f62a3f77ab65c5a0203e8e049ff23c3941
 
-COCOAPODS: 1.11.3
+COCOAPODS: 1.11.2
