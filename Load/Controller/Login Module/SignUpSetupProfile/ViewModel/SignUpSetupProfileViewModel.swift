@@ -112,7 +112,8 @@ class SignUpSetupProfileViewModel {
         let view = (self.theController.view as? SignUpSetupProfileView)
 
         let datePickerView:UIDatePicker = UIDatePicker()
-        datePickerView.datePickerMode = UIDatePicker.Mode.date
+        datePickerView.datePickerMode = .date
+        datePickerView.locale = Locale(identifier: "en_GB")
         datePickerView.setValue(UIColor.appthemeOffRedColor, forKeyPath: "textColor")
         datePickerView.maximumDate = Date()
         view?.txtDOB.inputView = datePickerView
@@ -210,7 +211,7 @@ class SignUpSetupProfileViewModel {
             view?.btnNext.isUserInteractionEnabled = true
         }
         else {
-            view?.viewNext.backgroundColor = UIColor.appThemeDarkGrayColor
+            view?.viewNext.backgroundColor = UIColor.appthemeGrayColor
             view?.btnNext.isUserInteractionEnabled = false
         }
     }
