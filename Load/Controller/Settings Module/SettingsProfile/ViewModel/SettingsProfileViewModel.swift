@@ -223,7 +223,7 @@ class SettingsProfileViewModel {
                 param["id"] = id
             }
             print("This is param for edit profile \(param)")
-            ApiManager.shared.MakePostWithImageAPI(name: USER_UPDATE, params: param as [String : Any], images: images, vc: self.theController, isAuth: false, completionHandler: { (response, error) in
+            ApiManager.shared.MakePostAPI(name: USER_UPDATE, params: param as [String : Any], vc: self.theController, isAuth: false, completionHandler: { (response, error) in
                 if response != nil {
                     let json = JSON(response!)
                     print(json)
