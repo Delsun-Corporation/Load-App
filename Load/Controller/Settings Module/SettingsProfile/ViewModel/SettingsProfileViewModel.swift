@@ -215,25 +215,49 @@ class SettingsProfileViewModel {
     func apiCallUpdateUserDetail(name:String, email:String
         , countryCode:String, mobile:String, dateOfBirth:String, countryId:String, facebook: String, images:[UIImage]) {
         
-        let param = ["name": name, "email": email, "country_code": countryCode, "mobile": mobile, "date_of_birth": convertDateFormater(dateOfBirth, format: "dd / MM / yyyy", dateFormat: "dd-MM-yyyy"), "country_id": countryId, "facebook": facebook] as [String : Any]
+        var param = ["name": name, "email": email, "country_code": countryCode, "mobile": mobile, "date_of_birth": convertDateFormater(dateOfBirth, format: "dd / MM / yyyy", dateFormat: "dd-MM-yyyy"), "country_id": countryId, "facebook": facebook] as [String : Any]
         print(param)
         
-        ApiManager.shared.MakePostWithImageAPI(name: USER_UPDATE + "/" + (getUserDetail()?.data?.user?.id?.stringValue)!, params: param as [String : Any], images: images, vc: self.theController, isAuth: false, completionHandler: { (response, error) in
-            if response != nil {
-                let json = JSON(response!)
-                print(json)
-                let success = json.getBool(key: .success)
-                if success {
-                    let data = json.getDictionary(key: .data)
-                    self.profileDetails = ProfileModelClass(JSON: data.dictionaryObject!)
-                    self.updateData(isBack: true)
-                }
-                else {
-                    let message = json.getString(key: .message)
-                    makeToast(strMessage: message)
-                }
+        if (newApiConfig) {
+            if let id = getUserDetail()?.data?.user?.id?.intValue {
+                param["id"] = id
             }
-        })
+            print("This is param for edit profile \(param)")
+            ApiManager.shared.MakePostWithImageAPI(name: USER_UPDATE, params: param as [String : Any], images: images, vc: self.theController, isAuth: false, completionHandler: { (response, error) in
+                if response != nil {
+                    let json = JSON(response!)
+                    print(json)
+                    let success = json.getBool(key: .success)
+                    if success {
+                        let data = json.getDictionary(key: .data)
+                        self.profileDetails = ProfileModelClass(JSON: data.dictionaryObject!)
+                        self.updateData(isBack: true)
+                    }
+                    else {
+                        let message = json.getString(key: .message)
+                        makeToast(strMessage: message)
+                    }
+                }
+            })
+        }
+        else {
+            ApiManager.shared.MakePostWithImageAPI(name: USER_UPDATE + "/" + (getUserDetail()?.data?.user?.id?.stringValue)!, params: param as [String : Any], images: images, vc: self.theController, isAuth: false, completionHandler: { (response, error) in
+                if response != nil {
+                    let json = JSON(response!)
+                    print(json)
+                    let success = json.getBool(key: .success)
+                    if success {
+                        let data = json.getDictionary(key: .data)
+                        self.profileDetails = ProfileModelClass(JSON: data.dictionaryObject!)
+                        self.updateData(isBack: true)
+                    }
+                    else {
+                        let message = json.getString(key: .message)
+                        makeToast(strMessage: message)
+                    }
+                }
+            })
+        }
     }
     
     func showUserDetails() {
