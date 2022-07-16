@@ -9,7 +9,8 @@
 import Foundation
 
 class ChangePasswordVC: UIViewController {
-    
+    var email = ""
+    var isFromOTP = false
     //MARK:- Variables
     lazy var mainView: ChangePasswordView = { [unowned self] in
         return self.view as! ChangePasswordView
@@ -22,10 +23,11 @@ class ChangePasswordVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.mainView.setupUI()
+        self.mainView.txtEmail.text = email
         // Do any additional setup after loading the view.
     }
     
     @IBAction func btnSignUpClicked(_ sender: Any) {
-        self.mainModelView.ValidateDetails()
+        self.mainModelView.ValidateDetails(isFromOTP: isFromOTP)
     }
 }

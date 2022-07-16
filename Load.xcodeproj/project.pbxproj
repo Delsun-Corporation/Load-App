@@ -996,6 +996,14 @@
 		3664A8122876FAD3004AE289 /* ChangePasswordVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3664A8112876FAD3004AE289 /* ChangePasswordVC.swift */; };
 		3664A8142876FB02004AE289 /* ChangePasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3664A8132876FB02004AE289 /* ChangePasswordView.swift */; };
 		3664A8162876FB0F004AE289 /* ChangePasswordViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3664A8152876FB0F004AE289 /* ChangePasswordViewModel.swift */; };
+		36AEDA63287EFE04003FE849 /* OTPStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 36AEDA62287EFE04003FE849 /* OTPStoryboard.storyboard */; };
+		36AEDA65287EFE13003FE849 /* OTPResetPasswordViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36AEDA64287EFE13003FE849 /* OTPResetPasswordViewModel.swift */; };
+		36AEDA67287EFE1F003FE849 /* OTPResetPasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36AEDA66287EFE1F003FE849 /* OTPResetPasswordView.swift */; };
+		36AEDA69287EFE2E003FE849 /* OTPResetPasswordVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36AEDA68287EFE2E003FE849 /* OTPResetPasswordVC.swift */; };
+		36AEDA74287F0A8A003FE849 /* AEOTPTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36AEDA73287F0A8A003FE849 /* AEOTPTextField.swift */; };
+		36AEDA76287F0A8D003FE849 /* AEOTPTextFieldDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36AEDA75287F0A8D003FE849 /* AEOTPTextFieldDelegate.swift */; };
+		36AEDA78287F0A91003FE849 /* AEOTPTextFieldImplementation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36AEDA77287F0A91003FE849 /* AEOTPTextFieldImplementation.swift */; };
+		36AEDA7A287F0A94003FE849 /* AEOTPTextFieldImplementationProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36AEDA79287F0A94003FE849 /* AEOTPTextFieldImplementationProtocol.swift */; };
 		6FA081C9DA9F2A48CA9A27F1 /* Pods_LoadTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FAD7576D5564869F4B46C789 /* Pods_LoadTests.framework */; };
 		881020582475514F0042FAB3 /* ViewAllLoadCenterTblCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881020562475514F0042FAB3 /* ViewAllLoadCenterTblCell.swift */; };
 		881020592475514F0042FAB3 /* ViewAllLoadCenterTblCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 881020572475514F0042FAB3 /* ViewAllLoadCenterTblCell.xib */; };
@@ -2234,6 +2242,14 @@
 		3664A8112876FAD3004AE289 /* ChangePasswordVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePasswordVC.swift; sourceTree = "<group>"; };
 		3664A8132876FB02004AE289 /* ChangePasswordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePasswordView.swift; sourceTree = "<group>"; };
 		3664A8152876FB0F004AE289 /* ChangePasswordViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePasswordViewModel.swift; sourceTree = "<group>"; };
+		36AEDA62287EFE04003FE849 /* OTPStoryboard.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = OTPStoryboard.storyboard; sourceTree = "<group>"; };
+		36AEDA64287EFE13003FE849 /* OTPResetPasswordViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OTPResetPasswordViewModel.swift; sourceTree = "<group>"; };
+		36AEDA66287EFE1F003FE849 /* OTPResetPasswordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OTPResetPasswordView.swift; sourceTree = "<group>"; };
+		36AEDA68287EFE2E003FE849 /* OTPResetPasswordVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OTPResetPasswordVC.swift; sourceTree = "<group>"; };
+		36AEDA73287F0A8A003FE849 /* AEOTPTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AEOTPTextField.swift; sourceTree = "<group>"; };
+		36AEDA75287F0A8D003FE849 /* AEOTPTextFieldDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AEOTPTextFieldDelegate.swift; sourceTree = "<group>"; };
+		36AEDA77287F0A91003FE849 /* AEOTPTextFieldImplementation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AEOTPTextFieldImplementation.swift; sourceTree = "<group>"; };
+		36AEDA79287F0A94003FE849 /* AEOTPTextFieldImplementationProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AEOTPTextFieldImplementationProtocol.swift; sourceTree = "<group>"; };
 		733CFAFC3082300D2627DD12 /* Pods-LoadTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LoadTests.release.xcconfig"; path = "Target Support Files/Pods-LoadTests/Pods-LoadTests.release.xcconfig"; sourceTree = "<group>"; };
 		7C1F53CBEAD831E083F259A4 /* Pods-Load-LoadUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Load-LoadUITests.release.xcconfig"; path = "Target Support Files/Pods-Load-LoadUITests/Pods-Load-LoadUITests.release.xcconfig"; sourceTree = "<group>"; };
 		81517431560B5CD848EA078F /* Pods-LoadTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LoadTests.debug.xcconfig"; path = "Target Support Files/Pods-LoadTests/Pods-LoadTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -4669,6 +4685,7 @@
 		1777D184229D0C5A00F6B2E2 /* Login Module */ = {
 			isa = PBXGroup;
 			children = (
+				36AEDA5E287EFDB7003FE849 /* OTPResetPassword */,
 				3664A80D2876FA95004AE289 /* ChangePassword */,
 				1777D1C4229D4E2600F6B2E2 /* SignUpSetupProfile */,
 				1777D1B8229D400F00F6B2E2 /* SignUp */,
@@ -4715,6 +4732,7 @@
 		1777D18D229D10E400F6B2E2 /* Helper */ = {
 			isa = PBXGroup;
 			children = (
+				36AEDA6A287F0500003FE849 /* OTPTextField */,
 				1777D18E229D10EE00F6B2E2 /* Language.plist */,
 				884228BA252D89F900F28A02 /* checkmarkAnimation.swift */,
 				9DA0A14C28478B06008AA714 /* Alert.swift */,
@@ -7387,6 +7405,52 @@
 			path = ViewModel;
 			sourceTree = "<group>";
 		};
+		36AEDA5E287EFDB7003FE849 /* OTPResetPassword */ = {
+			isa = PBXGroup;
+			children = (
+				36AEDA61287EFDE6003FE849 /* Controller */,
+				36AEDA60287EFDCD003FE849 /* ViewModel */,
+				36AEDA5F287EFDC8003FE849 /* View */,
+			);
+			path = OTPResetPassword;
+			sourceTree = "<group>";
+		};
+		36AEDA5F287EFDC8003FE849 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				36AEDA66287EFE1F003FE849 /* OTPResetPasswordView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		36AEDA60287EFDCD003FE849 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				36AEDA64287EFE13003FE849 /* OTPResetPasswordViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		36AEDA61287EFDE6003FE849 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				36AEDA62287EFE04003FE849 /* OTPStoryboard.storyboard */,
+				36AEDA68287EFE2E003FE849 /* OTPResetPasswordVC.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		36AEDA6A287F0500003FE849 /* OTPTextField */ = {
+			isa = PBXGroup;
+			children = (
+				36AEDA73287F0A8A003FE849 /* AEOTPTextField.swift */,
+				36AEDA75287F0A8D003FE849 /* AEOTPTextFieldDelegate.swift */,
+				36AEDA77287F0A91003FE849 /* AEOTPTextFieldImplementation.swift */,
+				36AEDA79287F0A94003FE849 /* AEOTPTextFieldImplementationProtocol.swift */,
+			);
+			path = OTPTextField;
+			sourceTree = "<group>";
+		};
 		88102055247551230042FAB3 /* TableViewCell */ = {
 			isa = PBXGroup;
 			children = (
@@ -9103,6 +9167,7 @@
 				1780123A22BB9B8700888B67 /* ListingUserCell.xib in Resources */,
 				174AA3F822C5D7970079B315 /* PlaceResultTableViewCell.xib in Resources */,
 				17081B0C22E96536004127CD /* AZ.png in Resources */,
+				36AEDA63287EFE04003FE849 /* OTPStoryboard.storyboard in Resources */,
 				17081AB222E96535004127CD /* HN.png in Resources */,
 				17081A9C22E96535004127CD /* PN.png in Resources */,
 				17081AA022E96535004127CD /* KW.png in Resources */,
@@ -9556,6 +9621,7 @@
 				D32876AD26200D7000003C80 /* PhysicalActivityInfo + TableViewDelegate.swift in Sources */,
 				1757EDCD22A7CBDF00C68174 /* ExerciseResistanceCell.swift in Sources */,
 				171C5178231D235C0091A7FD /* ProfessionalRequirementViewModel.swift in Sources */,
+				36AEDA74287F0A8A003FE849 /* AEOTPTextField.swift in Sources */,
 				1757EDA022A7849C00C68174 /* LibraryExerciseView.swift in Sources */,
 				882D72F3229261BA0016115E /* CalendarTrainingLogResistanceSummaryVc.swift in Sources */,
 				1771E2B7232F4584004C8954 /* PresetTrainingProgramViewModel.swift in Sources */,
@@ -9758,6 +9824,7 @@
 				17846E8B22B204B300D33115 /* AddExerciseFinishViewModel.swift in Sources */,
 				179CC80A22EEE72A005197D6 /* ChatVC.swift in Sources */,
 				17F507D6230FFC8C009AA763 /* ViewNavWhite.swift in Sources */,
+				36AEDA65287EFE13003FE849 /* OTPResetPasswordViewModel.swift in Sources */,
 				175BE90422A12D070025ECF4 /* TrainingListFooterCell.swift in Sources */,
 				1777D1C1229D406100F6B2E2 /* SignUpViewModel.swift in Sources */,
 				1780124522BBB21900888B67 /* EventViewModel.swift in Sources */,
@@ -9974,6 +10041,7 @@
 				17F22D4F2328B0FD00C72964 /* BillingInformationView.swift in Sources */,
 				88358A642477A362001A31CE /* ResistanceSummaryDataModel.swift in Sources */,
 				173DDCDC22E5D2E600FC94B6 /* SettingsProfileView.swift in Sources */,
+				36AEDA78287F0A91003FE849 /* AEOTPTextFieldImplementation.swift in Sources */,
 				8878BA2D2421E71800572554 /* CardioSummaryHeadeTblCell.swift in Sources */,
 				175CE1A92339EBA6005335F7 /* CreateResistanceTrainingProgramViewModel.swift in Sources */,
 				177387BF22A236FC002E31ED /* ChartView.swift in Sources */,
@@ -10037,6 +10105,7 @@
 				D32876902620039E00003C80 /* PhysicalActivityInfoVc.swift in Sources */,
 				17FFA76423275E50001683BC /* CredentialsVC.swift in Sources */,
 				176B786C22B0CBD4005B5B25 /* LibraryExerciseListMainVC-TableView+Extension.swift in Sources */,
+				36AEDA76287F0A8D003FE849 /* AEOTPTextFieldDelegate.swift in Sources */,
 				178B0FB12306D4C900322955 /* CreateEventFinishVC-TableView+Extension.swift in Sources */,
 				1702557522FE7C0F00070E09 /* NotificationViewModel.swift in Sources */,
 				1752835222AA3F35009DA37B /* LogPreviewViewModel.swift in Sources */,
@@ -10071,6 +10140,7 @@
 				175BE91222A136D70025ECF4 /* ViewPager.swift in Sources */,
 				1717FA0622EAC79300E49B98 /* MessagesVC.swift in Sources */,
 				888A249823BDA46500DCBC9E /* EquipmentSelectionVC-TableView+Extension.swift in Sources */,
+				36AEDA69287EFE2E003FE849 /* OTPResetPasswordVC.swift in Sources */,
 				888F42062420E4D400790175 /* CalendarTrainingLogSummaryView.swift in Sources */,
 				1721B7A02319188C00BA3968 /* TrainingSettingsVC.swift in Sources */,
 				1712AD5922EC1CA2006B2A2A /* NewMessageView.swift in Sources */,
@@ -10218,6 +10288,7 @@
 				172D837E230422E700C44830 /* MZSelectableLabel.m in Sources */,
 				88BA294425F6282B00012BEF /* LoadVimeoVideoVc.swift in Sources */,
 				17B2BA8F230A5DA40034D6F7 /* CreateEventStepFiveView.swift in Sources */,
+				36AEDA7A287F0A94003FE849 /* AEOTPTextFieldImplementationProtocol.swift in Sources */,
 				1758287122EFFE030071B0EF /* TrainingLogCell.swift in Sources */,
 				172D83772304108E00C44830 /* ClientRequirementCell.swift in Sources */,
 				1777D160229D0BAC00F6B2E2 /* UIColor+Extension.swift in Sources */,
@@ -10232,6 +10303,7 @@
 				8878BA362422252D00572554 /* BookmarkLoadCenterView.swift in Sources */,
 				1777D161229D0BAC00F6B2E2 /* UIButton+Extension.swift in Sources */,
 				1780121A22BB57A900888B67 /* CardioFeedsCell.swift in Sources */,
+				36AEDA67287EFE1F003FE849 /* OTPResetPasswordView.swift in Sources */,
 				1772226C22E2D72400AC53A8 /* ListingModelClass.swift in Sources */,
 				17F8F6AE232114D700525ADC /* PremiumViewModel.swift in Sources */,
 				17D1134B22C9EDBA004600B4 /* OtherUserProfileDetailsVC.swift in Sources */,
