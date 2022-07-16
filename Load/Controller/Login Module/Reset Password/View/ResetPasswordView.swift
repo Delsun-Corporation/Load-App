@@ -31,6 +31,6 @@ class ResetPasswordView: UIView {
         
         self.lblResetPassword.text = getCommonString(key: "RESET_PASSWORD_key")
         self.txtEmail.placeholder = getCommonString(key: "Email_Address_key")
-        self.btnRetrievePassword.setTitle(str: getCommonString(key: "Retrieve_Password_key"))
+        self.btnRetrievePassword.setTitle(str: getCommonString(key: "Submit_key"))
     }
 }

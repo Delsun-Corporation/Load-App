@@ -41,15 +41,17 @@ class AccountView: UIView {
         self.btnSnooze.isSelected = getUserDetail()?.data?.user?.isSnooze?.intValue == 0 ? false : true
         if self.btnSnooze.isSelected {
             if let startDate = getUserDetail()?.data?.user?.userSnoozeDetail?.startDate {
-                let date: Date = convertDate(startDate, dateFormat: "yyyy-MM-dd HH:mm:ss")
+                let date: Date = convertDate(startDate, dateFormat: "yyyy-MM-dd'T'HH:mm:ss.SZ")
+                print(date)
                 theController.mainModelView.selectedDateStart = date
-                self.txtStartDate.text = convertDateFormater(startDate, format: "yyyy-MM-dd HH:mm:ss", dateFormat: "MM/dd/yyyy")
+                self.txtStartDate.text = convertDateFormater(startDate, format: "yyyy-MM-dd'T'HH:mm:ss.SZ", dateFormat: "MM/dd/yyyy")
             }
             
             if let endDate = getUserDetail()?.data?.user?.userSnoozeDetail?.endDate {
-                let date: Date = convertDate(endDate, dateFormat: "yyyy-MM-dd HH:mm:ss")
+                let date: Date = convertDate(endDate, dateFormat: "yyyy-MM-dd'T'HH:mm:ss.SZ")
+                print(date)
                 theController.mainModelView.selectedDateEnd = date
-                self.txtEndDate.text = convertDateFormater(endDate, format: "yyyy-MM-dd HH:mm:ss", dateFormat: "MM/dd/yyyy")
+                self.txtEndDate.text = convertDateFormater(endDate, format: "yyyy-MM-dd'T'HH:mm:ss.SZ", dateFormat: "MM/dd/yyyy")
             }
         }
         self.viewDate.isHidden = self.btnSnooze.isSelected ? false : true

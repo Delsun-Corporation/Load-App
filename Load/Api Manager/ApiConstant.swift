@@ -12,7 +12,6 @@ import SwiftyJSON
 //MARK: - v2 API Toggle
 var newApiConfig = LoadRemoteConfig.startBooleanRemoteConfig("v2_server_endpoint_enabled")
 
-
 //MARK: - Main URLS
 //let SERVER_URL = "http://3.18.106.118/load/" //"http://192.168.0.108:1001"
 let SERVER_URL = "http://178.128.45.110/load/" //http://178.128.56.249/load/"
@@ -48,8 +47,8 @@ let LOAD_CENTER_FEED_SEARCH_LIST = "load-center-feed-search-list"
 let LOAD_CENTER_EVENT_SHOW = "load-center-event-show"
 let TRAININIG_LOG_LIST = "training-log-list"
 let USERS_LIST = "users-list"
-let USER = "user"
-let USER_UPDATE = "user-update"
+let USER = newApiConfig ? "setting/user" : "user"
+let USER_UPDATE = newApiConfig ? "setting/user-update" : "user-update"
 let MESSAGES_USER_LIST = "messages-user-list"
 let USER_LIST = "users-list"
 let PROFESSIONAL_PROFILE_SHOW = "professional-profile-show"
