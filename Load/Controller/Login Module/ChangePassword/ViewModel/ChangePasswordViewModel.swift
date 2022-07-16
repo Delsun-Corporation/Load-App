@@ -18,7 +18,7 @@ class ChangePasswordViewModel {
         self.theController = theController
     }
 
-    func ValidateDetails() {
+    func ValidateDetails(isFromOTP: Bool) {
         let view = (self.theController.view as? ChangePasswordView)
 
         if view!.txtEmail.text == "" {
@@ -40,15 +40,20 @@ class ChangePasswordViewModel {
             makeToast(strMessage: getCommonString(key: "Password_not_match_key"))
         }
         else {
-            self.apiCall()
+            self.apiCall(isFromOTP: isFromOTP)
         }
     }
     
-    func apiCall() {
+    func apiCall(isFromOTP: Bool) {
         let view = (self.theController.view as? ChangePasswordView)
-        var param: [String: String] = [:]
+        var param: [String: Any] = [:]
         if (newApiConfig) {
-            param = ["email":view?.txtEmail.text ?? "", "password":view?.txtPassword.text ?? ""]
+            if isFromOTP {
+                param = ["email":view?.txtEmail.text ?? "", "password":view?.txtPassword.text ?? "", "is_from_otp": isFromOTP]
+            }
+            else {
+                param = ["email":view?.txtEmail.text ?? "", "password":view?.txtPassword.text ?? ""]
+            }
         }
         else {
             param = ["email":view?.txtEmail.text ?? "", "password":view?.txtPassword.text ?? "", "confirm_password":view?.txtPassword.text ?? "", "step" : "1"]
@@ -60,7 +65,12 @@ class ChangePasswordViewModel {
                 let result = LoginModelClass(JSON: json.dictionaryObject!)
                 if result?.success ?? false {
                     makeToast(strMessage: getCommonString(key: "Change_Password_Success_key"))
-                    self.theController.navigationController?.popViewController(animated: true)
+                    if isFromOTP {
+                        self.theController.navigationController?.popToRootViewController(animated: true)
+                    }
+                    else {
+                        self.theController.navigationController?.popViewController(animated: true)
+                    }
                 }
                 else {
                     makeToast(strMessage: result?.message ?? "")

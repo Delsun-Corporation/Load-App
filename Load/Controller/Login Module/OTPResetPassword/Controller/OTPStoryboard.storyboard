@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="SFUIText-Regular.ttf">
+            <string>SFUIText-Regular</string>
+        </array>
+    </customFonts>
+    <scenes>
+        <!--Reset PasswordVC-->
+        <scene sceneID="s0d-6b-0kx">
+            <objects>
+                <viewController storyboardIdentifier="OTPResetPasswordVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Y6W-OH-hqX" customClass="OTPResetPasswordVC" customModule="Load" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="5EZ-qb-Rvc" customClass="OTPResetPasswordView" customModule="Load" customModuleProvider="target">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_login_bg" translatesAutoresizingMaskIntoConstraints="NO" id="h6B-VD-hCv">
+                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="INPUT OTP" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xBX-jL-wEa">
+                                <rect key="frame" x="159" y="155.5" width="96" height="21"/>
+                                <fontDescription key="fontDescription" name="SFUIText-Regular" family="SF UI Text" pointSize="18"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="KH2-Eb-bwL" customClass="AEOTPTextField" customModule="Load" customModuleProvider="target">
+                                <rect key="frame" x="20" y="196.5" width="374" height="60"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="60" id="f6B-3I-A46"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ned-RG-NkK">
+                                <rect key="frame" x="164.5" y="276.5" width="85" height="30"/>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal" title="Resend OTP">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="btnActionResendCode:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="Gno-FU-FLC"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="bottom" secondItem="h6B-VD-hCv" secondAttribute="bottom" id="Bau-BA-zmK"/>
+                            <constraint firstItem="KH2-Eb-bwL" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="20" id="JiJ-z5-ytG"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="h6B-VD-hCv" secondAttribute="trailing" id="LFe-8G-fcs"/>
+                            <constraint firstItem="h6B-VD-hCv" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="VWS-do-ORa"/>
+                            <constraint firstItem="xBX-jL-wEa" firstAttribute="centerX" secondItem="h6B-VD-hCv" secondAttribute="centerX" id="XGv-RM-9NZ"/>
+                            <constraint firstItem="KH2-Eb-bwL" firstAttribute="centerY" secondItem="h6B-VD-hCv" secondAttribute="centerY" multiplier="0.5" id="bTD-9h-OF3"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="KH2-Eb-bwL" secondAttribute="trailing" constant="20" id="czA-X0-qiq"/>
+                            <constraint firstItem="h6B-VD-hCv" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" id="efV-kO-Zpc"/>
+                            <constraint firstItem="KH2-Eb-bwL" firstAttribute="top" secondItem="xBX-jL-wEa" secondAttribute="bottom" constant="20" id="fAx-3c-C2M"/>
+                            <constraint firstItem="ned-RG-NkK" firstAttribute="top" secondItem="KH2-Eb-bwL" secondAttribute="bottom" constant="20" id="hSO-Ga-nwx"/>
+                            <constraint firstItem="ned-RG-NkK" firstAttribute="centerX" secondItem="KH2-Eb-bwL" secondAttribute="centerX" id="uKC-Yh-rlm"/>
+                        </constraints>
+                        <connections>
+                            <outlet property="btnResendOTP" destination="ned-RG-NkK" id="tXu-Zs-qMs"/>
+                            <outlet property="lblInputOTP" destination="xBX-jL-wEa" id="eg3-Qp-Yev"/>
+                            <outlet property="txtOTP" destination="KH2-Eb-bwL" id="7AB-hY-rrn"/>
+                        </connections>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="111.59420289855073" y="72.991071428571431"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="ic_login_bg" width="375" height="667"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

@@ -44,7 +44,12 @@ class ResetPasswordViewModel {
                 let msg = json.getString(key: .message)
                 makeToast(strMessage: msg)
                 if success {
-                    self.theController.navigationController?.popViewController(animated: true)
+                    
+                    let obj: OTPResetPasswordVC = AppStoryboard.OTP.instance.instantiateViewController(withIdentifier: "OTPResetPasswordVC") as! OTPResetPasswordVC
+                    obj.email = view?.txtEmail.text ?? ""
+                    self.theController.navigationController?.pushViewController(obj, animated: true)
+                    
+//                    self.theController.navigationController?.popViewController(animated: true)
                 }
             }
         }
