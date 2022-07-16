@@ -921,5 +921,7 @@ and your training goal.</string>
 	<string>Change Password</string>
 	<key>Change_Password_Success_key</key>
 	<string>Password Changed Successfully</string>
+	<key>Input_Otp_key</key>
+	<string>INPUT OTP</string>
 </dict>
 </plist>

@@ -465,6 +465,7 @@ enum AppStoryboard : String {
     case Settings = "Settings"
     case Messages = "Messages"
     case SideMenu = "SideMenu"
+    case OTP = "OTPStoryboard"
     var instance : UIStoryboard {
         return UIStoryboard(name: self.rawValue, bundle: Bundle.main)
     }
