@@ -14,17 +14,28 @@ class ProfessionalActivityView: UIView {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var lblSelectionMsg: UILabel!
     
+    var isViewValid = true
+    
     //MARK: - Functions
     func setupUI(theController:ProfessionalActivityVC) {
         self.tableView.register(UINib(nibName: "FilterActivityCell", bundle: nil), forCellReuseIdentifier: "FilterActivityCell")
-        let data = (GetAllData?.data?.specializations)!
-        let array = data.sorted(by: { (data1, data2) -> Bool in
-            return data1.name!.lowercased() < data2.name!.lowercased()
+        let data = (GetAllData?.data?.specializations)
+        let array = data?.sorted(by: { (data1, data2) -> Bool in
+            guard let name1 = data1.name,
+                  let name2 = data2.name else {
+                isViewValid = false
+                return false
+            }
+            return name1.lowercased() < name2.lowercased()
         })
-        let firstLetters = array.map { String($0.name!.first!) }
+        let firstLetters = array?.map { String($0.name!.first!) } ?? [String]()
         for char in removeDublicate(array: firstLetters) {
-            let filter = array.filter { (value) -> Bool in
-                return value.name!.first == char.first
+            let filter = array?.filter { (value) -> Bool in
+                guard let name = value.name else {
+                    isViewValid = false
+                    return false
+                }
+                return name.first == char.first
             }
             let model = FilterActivityModelClass()
             model.title = char
