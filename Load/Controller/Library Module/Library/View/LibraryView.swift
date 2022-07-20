@@ -81,7 +81,9 @@ class LibraryView: UIView, CarbonTabSwipeNavigationDelegate, UITextFieldDelegate
         let vc = AppStoryboard.Library.instance.instantiateViewController(withIdentifier: "LibraryExerciseListMainVC") as! LibraryExerciseListMainVC
         
         let categoryArray = GetAllData?.data?.getSortedCategory()
-        vc.mainModelView.category = categoryArray?[Int(index)]
+        if let categoryArray = categoryArray, index < categoryArray.count {
+            vc.mainModelView.category = categoryArray[Int(index)]
+        }
         vc.mainModelView.isFilter = self.txtSearch.text! != ""
         vc.mainModelView.searchText = self.txtSearch.text!
         return vc
