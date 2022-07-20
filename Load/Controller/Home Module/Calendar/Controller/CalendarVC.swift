@@ -26,7 +26,12 @@ class CalendarVC: UIViewController {
         self.navigationController?.setColor()
         self.mainView.setupUI(theDelegate: self)
         self.mainModelView.setupData()
-        
+        SJSwiftSideMenuController.enableSwipeGestureWithMenuSide(menuSide: .LEFT)
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        SJSwiftSideMenuController.enableSwipeGestureWithMenuSide(menuSide: .NONE)
     }
   
     @IBAction func btnSideMenuClicked(_ sender: Any) {
