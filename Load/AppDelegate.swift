@@ -119,7 +119,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         SJSwiftSideMenuController.setUpNavigation(rootController: rootVC, leftMenuController: sideVC_L, rightMenuController: nil, leftMenuType: .SlideView, rightMenuType: .SlideView)
         
-        SJSwiftSideMenuController.enableSwipeGestureWithMenuSide(menuSide: .LEFT)
+        SJSwiftSideMenuController.enableSwipeGestureWithMenuSide(menuSide: .NONE)
         
         SJSwiftSideMenuController.enableDimbackground = true
         SJSwiftSideMenuController.leftMenuWidth = UIScreen.main.bounds.width - 80
