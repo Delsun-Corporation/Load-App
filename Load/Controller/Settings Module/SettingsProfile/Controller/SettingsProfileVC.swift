@@ -30,6 +30,7 @@ class SettingsProfileVC: UIViewController, CountryCodeDelegate {
         self.mainModelView.IsEditable(isEnable: self.mainModelView.isEdited)
         
         self.setUpNavigationBarTitle(strTitle: "",isShadow: false)
+        self.navigationController?.setColor()
         setNavigationForIndoor()
 
     }

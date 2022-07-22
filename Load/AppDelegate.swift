@@ -96,8 +96,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
         if #available(iOS 15, *) {
             let appearance = UINavigationBarAppearance()
-            appearance.configureWithTransparentBackground()
-            appearance.backgroundImage = UIImage(named: "ic_header")?.resizableImage(withCapInsets: UIEdgeInsets.zero, resizingMode: .stretch)
+            appearance.configureWithDefaultBackground()
             UINavigationBar.appearance().standardAppearance = appearance
             UINavigationBar.appearance().scrollEdgeAppearance = appearance
         }

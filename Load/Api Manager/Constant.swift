@@ -764,14 +764,47 @@ extension UINavigationController {
     }
     
     func setColor() {
-        self.navigationBar.setBackgroundImage(UIImage(named: "ic_header")?.resizeImage(targetSize: CGSize(width: UIScreen.main.bounds.width, height: 85), customHeight: getBarHeight()), for: .default)
+        if #available(iOS 15, *) {
+            let appearance = UINavigationBarAppearance()
+            appearance.configureWithDefaultBackground()
+            appearance.backgroundImage = UIImage(named: "ic_header")?.resizableImage(withCapInsets: UIEdgeInsets.zero, resizingMode: .stretch)
+            
+            // Apply white color to all the nav bar buttons.
+            let barButtonItemAppearance = UIBarButtonItemAppearance(style: .plain)
+            barButtonItemAppearance.normal.titleTextAttributes = [.foregroundColor: UIColor.white]
+            barButtonItemAppearance.disabled.titleTextAttributes = [.foregroundColor: UIColor.lightText]
+            barButtonItemAppearance.highlighted.titleTextAttributes = [.foregroundColor: UIColor.label]
+            barButtonItemAppearance.focused.titleTextAttributes = [.foregroundColor: UIColor.white]
+            appearance.buttonAppearance = barButtonItemAppearance
+            appearance.backButtonAppearance = barButtonItemAppearance
+            appearance.doneButtonAppearance = barButtonItemAppearance
+            
+            appearance.titleTextAttributes = [.foregroundColor: UIColor.white]
+            appearance.largeTitleTextAttributes = [.foregroundColor: UIColor.white]
+            
+            UINavigationBar.appearance().standardAppearance = appearance
+            UINavigationBar.appearance().scrollEdgeAppearance = appearance
+            navigationBar.standardAppearance = appearance
+            navigationBar.scrollEdgeAppearance = appearance
+            
+        }
+        navigationBar.tintColor = .white
+        navigationBar.barTintColor = .white
         self.navigationBar.isTranslucent = false
     }
     
     func setWhiteColor() {
-        self.navigationBar.shadowImage = UIImage()
+        if #available(iOS 15, *) {
+            let appearance = UINavigationBarAppearance()
+            appearance.configureWithDefaultBackground()
+            appearance.backgroundImage = nil
+            appearance.backgroundColor = .white
+            UINavigationBar.appearance().standardAppearance = appearance
+            UINavigationBar.appearance().scrollEdgeAppearance = appearance
+            navigationBar.standardAppearance = appearance
+            navigationBar.scrollEdgeAppearance = appearance
+        }
         self.navigationBar.backgroundColor = .white
-        self.navigationBar.setBackgroundImage(UIImage(), for: .default)
         self.navigationBar.isTranslucent = false
     }
     
@@ -782,6 +815,15 @@ extension UINavigationController {
     }
     
     func setClearColor() {
+        if #available(iOS 15, *) {
+            let appearance = UINavigationBarAppearance()
+            appearance.configureWithTransparentBackground()
+            appearance.backgroundImage = nil
+            appearance.backgroundColor = .white
+            navigationBar.standardAppearance = appearance
+            navigationBar.scrollEdgeAppearance = appearance
+        }
+        
         self.navigationBar.shadowImage = UIImage()
         self.navigationBar.backgroundColor = .clear
         self.navigationBar.setBackgroundImage(UIImage(), for: .default)
@@ -1579,4 +1621,28 @@ func setVibration(){
 
     UIImpactFeedbackGenerator(style: .heavy).impactOccurred()
     
+}
+
+extension UIApplication {
+    static var statusBarHeight: CGFloat {
+        if #available(iOS 13.0, *) {
+            let window = shared.windows.filter { $0.isKeyWindow }.first
+            return window?.windowScene?.statusBarManager?.statusBarFrame.height ?? 0
+        }
+        return shared.statusBarFrame.height
+    }
+}
+
+struct ScreenUtils {
+    static var width: CGFloat {
+        return UIScreen.main.bounds.width
+    }
+    
+    static var height: CGFloat {
+        return UIScreen.main.bounds.height
+    }
+    
+    static var statusBarHeight: CGFloat {
+        return UIApplication.statusBarHeight
+    }
 }
