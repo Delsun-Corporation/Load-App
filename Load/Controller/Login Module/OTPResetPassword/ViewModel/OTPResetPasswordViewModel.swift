@@ -40,7 +40,6 @@ class OTPResetPasswordViewModel {
                 let json = JSON(response!)
                 let success = json.getBool(key: .success)
                 let msg = json.getString(key: .message)
-                makeToast(strMessage: msg)
                 
                 if success {
                     let obj: ChangePasswordVC = AppStoryboard.Main.instance.instantiateViewController(withIdentifier: "ChangePasswordVC") as! ChangePasswordVC
@@ -52,6 +51,7 @@ class OTPResetPasswordViewModel {
                     self.theController.navigationController?.setViewControllers(viewControllers, animated: true)
                 }
                 else {
+                    makeToast(strMessage: msg)
                     completion(false)
                 }
             }
