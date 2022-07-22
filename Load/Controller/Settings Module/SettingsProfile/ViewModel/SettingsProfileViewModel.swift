@@ -36,6 +36,7 @@ class SettingsProfileViewModel {
         pickerView.backgroundColor = UIColor.white
         (self.theController.view as? SettingsProfileView)?.txtLocation.inputView = pickerView
         self.apiCallGetUserDetail()
+        self.countryPickerSetupUI()
 //        self.IsEditable(isEnable: false)
 //        self.DOBSetup()
         let view = (self.theController.view as? SettingsProfileView)
@@ -143,7 +144,6 @@ class SettingsProfileViewModel {
                         let data = json.getDictionary(key: .data)
                         self.profileDetails = ProfileModelClass(JSON: data.dictionaryObject!)
                         self.DOBSetup()
-                        self.countryPickerSetupUI()
                         self.showUserDetails()
                         self.updateData()
                     }
