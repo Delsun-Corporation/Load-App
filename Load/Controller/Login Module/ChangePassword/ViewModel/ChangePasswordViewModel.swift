@@ -22,22 +22,52 @@ class ChangePasswordViewModel {
         let view = (self.theController.view as? ChangePasswordView)
 
         if view!.txtEmail.text == "" {
-            makeToast(strMessage: getCommonString(key: "Enter_email_address_key"))
+            let alert = UIAlertController(title: "Warning", message: getCommonString(key: "Enter_email_address_key"), preferredStyle: .alert)
+            let action = UIAlertAction(title: "Ok", style: .default, handler: { _ in
+                alert.dismiss(animated: true, completion: nil)
+            })
+            alert.addAction(action)
+            self.theController.present(alert, animated: true)
         }
         else if !isValidEmail(testStr: view!.txtEmail.text!) {
-            makeToast(strMessage: getCommonString(key: "Enter_valid_email_address_key"))
+            let alert = UIAlertController(title: "Warning", message: getCommonString(key: "Enter_valid_email_address_key"), preferredStyle: .alert)
+            let action = UIAlertAction(title: "Ok", style: .default, handler: { _ in
+                alert.dismiss(animated: true, completion: nil)
+            })
+            alert.addAction(action)
+            self.theController.present(alert, animated: true)
         }
         else if view!.txtPassword.text == "" {
-            makeToast(strMessage: getCommonString(key: "Enter_password_key"))
+            let alert = UIAlertController(title: "Warning", message: getCommonString(key: "Enter_password_key"), preferredStyle: .alert)
+            let action = UIAlertAction(title: "Ok", style: .default, handler: { _ in
+                alert.dismiss(animated: true, completion: nil)
+            })
+            alert.addAction(action)
+            self.theController.present(alert, animated: true)
         }
         else if view!.txtPassword.text!.count < 8 {
-            makeToast(strMessage: getCommonString(key: "Enter_password_minimum_8_characters_key"))
+            let alert = UIAlertController(title: "Warning", message: getCommonString(key: "Enter_password_minimum_8_characters_key"), preferredStyle: .alert)
+            let action = UIAlertAction(title: "Ok", style: .default, handler: { _ in
+                alert.dismiss(animated: true, completion: nil)
+            })
+            alert.addAction(action)
+            self.theController.present(alert, animated: true)
         }
         else if view!.txtConfirmPassword.text == "" {
-            makeToast(strMessage: getCommonString(key: "Enter_confirm_password_key"))
+            let alert = UIAlertController(title: "Warning", message: getCommonString(key: "Enter_confirm_password_key"), preferredStyle: .alert)
+            let action = UIAlertAction(title: "Ok", style: .default, handler: { _ in
+                alert.dismiss(animated: true, completion: nil)
+            })
+            alert.addAction(action)
+            self.theController.present(alert, animated: true)
         }
         else if view!.txtPassword.text != view!.txtConfirmPassword.text {
-            makeToast(strMessage: getCommonString(key: "Password_not_match_key"))
+            let alert = UIAlertController(title: "Warning", message: getCommonString(key: "Password_not_match_key"), preferredStyle: .alert)
+            let action = UIAlertAction(title: "Ok", style: .default, handler: { _ in
+                alert.dismiss(animated: true, completion: nil)
+            })
+            alert.addAction(action)
+            self.theController.present(alert, animated: true)
         }
         else {
             self.apiCall(isFromOTP: isFromOTP)
@@ -64,16 +94,27 @@ class ChangePasswordViewModel {
                 let json = JSON(response!)
                 let result = LoginModelClass(JSON: json.dictionaryObject!)
                 if result?.success ?? false {
-                    makeToast(strMessage: getCommonString(key: "Change_Password_Success_key"))
-                    if isFromOTP {
-                        self.theController.navigationController?.popToRootViewController(animated: true)
-                    }
-                    else {
-                        self.theController.navigationController?.popViewController(animated: true)
-                    }
+                    let alert = UIAlertController(title: "Success", message: getCommonString(key: "Change_Password_Success_key"), preferredStyle: .alert)
+                    let action = UIAlertAction(title: "Ok", style: .default, handler: { _ in
+                        alert.dismiss(animated: true, completion: nil)
+                        if isFromOTP {
+                            self.theController.navigationController?.popToRootViewController(animated: true)
+                        }
+                        else {
+                            self.theController.navigationController?.popViewController(animated: true)
+                        }
+                    })
+                    alert.addAction(action)
+                    self.theController.present(alert, animated: true)
                 }
                 else {
-                    makeToast(strMessage: result?.message ?? "")
+                    let alert = UIAlertController(title: "Error", message: result?.message ?? "An error has occured. Please try again later.", preferredStyle: .alert)
+                    let action = UIAlertAction(title: "Ok", style: .default, handler: { _ in
+                        alert.dismiss(animated: true, completion: nil)
+                        
+                    })
+                    alert.addAction(action)
+                    self.theController.present(alert, animated: true)
                 }
             }
         }
