@@ -64,7 +64,13 @@ class SignUpViewModel {
                 let result = LoginModelClass(JSON: json.dictionaryObject!)
                 if result?.success ?? false {
                     if (newApiConfig) {
-                        self.theController.navigationController?.popToRootViewController(animated: true)
+                        let alert = UIAlertController(title: "Success", message: result?.message ?? "An activation link has been sent to your email.", preferredStyle: .alert)
+                        let action = UIAlertAction(title: "Ok", style: .default, handler: { _ in
+                            alert.dismiss(animated: true, completion: nil)
+                            self.theController.navigationController?.popToRootViewController(animated: true)
+                        })
+                        alert.addAction(action)
+                        self.theController.present(alert, animated: true)
                     }
                     else {
                         let obj: SignUpSetupProfileVC = AppStoryboard.Main.instance.instantiateViewController(withIdentifier: "SignUpSetupProfileVC") as! SignUpSetupProfileVC
@@ -73,7 +79,12 @@ class SignUpViewModel {
                     }
                 }
                 else {
-                    makeToast(strMessage: result?.message ?? "")
+                    let alert = UIAlertController(title: "Error", message: result?.message ?? "An error has occured. Please try again later.", preferredStyle: .alert)
+                    let action = UIAlertAction(title: "Ok", style: .default, handler: { _ in
+                        alert.dismiss(animated: true, completion: nil)
+                    })
+                    alert.addAction(action)
+                    self.theController.present(alert, animated: true)
                 }
             }
         }
