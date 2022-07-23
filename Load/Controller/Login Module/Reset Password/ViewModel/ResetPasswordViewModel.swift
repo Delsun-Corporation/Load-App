@@ -22,10 +22,20 @@ class ResetPasswordViewModel {
     func ValidateDetails() {
         let view = (self.theController.view as? ResetPasswordView)
         if  view?.txtEmail.text == "" {
-            makeToast(strMessage: getCommonString(key: "Enter_email_address_key"))
+            let alert = UIAlertController(title: "Warning", message: getCommonString(key: "Enter_email_address_key"), preferredStyle: .alert)
+            let action = UIAlertAction(title: "Ok", style: .default, handler: { _ in
+                alert.dismiss(animated: true, completion: nil)
+            })
+            alert.addAction(action)
+            self.theController.present(alert, animated: true)
         }
         else if !isValidEmail(testStr: view!.txtEmail.text!) {
-            makeToast(strMessage: getCommonString(key: "Enter_valid_email_address_key"))
+            let alert = UIAlertController(title: "Warning", message: getCommonString(key: "Enter_valid_email_address_key"), preferredStyle: .alert)
+            let action = UIAlertAction(title: "Ok", style: .default, handler: { _ in
+                alert.dismiss(animated: true, completion: nil)
+            })
+            alert.addAction(action)
+            self.theController.present(alert, animated: true)
         }
         else {
             self.apiCall()
@@ -42,15 +52,36 @@ class ResetPasswordViewModel {
                 let json = JSON(response!)
                 let success = json.getBool(key: .success)
                 let msg = json.getString(key: .message)
-                makeToast(strMessage: msg)
                 if success {
+                    let alert = UIAlertController(title: "Success", message: msg, preferredStyle: .alert)
+                    let action = UIAlertAction(title: "Ok", style: .default, handler: { _ in
+                        alert.dismiss(animated: true, completion: nil)
+                        let obj: OTPResetPasswordVC = AppStoryboard.OTP.instance.instantiateViewController(withIdentifier: "OTPResetPasswordVC") as! OTPResetPasswordVC
+                        obj.email = view?.txtEmail.text ?? ""
+                        self.theController.navigationController?.pushViewController(obj, animated: true)
+                    })
+                    alert.addAction(action)
+                    self.theController.present(alert, animated: true)
                     
-                    let obj: OTPResetPasswordVC = AppStoryboard.OTP.instance.instantiateViewController(withIdentifier: "OTPResetPasswordVC") as! OTPResetPasswordVC
-                    obj.email = view?.txtEmail.text ?? ""
-                    self.theController.navigationController?.pushViewController(obj, animated: true)
                     
 //                    self.theController.navigationController?.popViewController(animated: true)
                 }
+                else {
+                    let alert = UIAlertController(title: "Error", message: msg, preferredStyle: .alert)
+                    let action = UIAlertAction(title: "Ok", style: .default, handler: { _ in
+                        alert.dismiss(animated: true, completion: nil)
+                    })
+                    alert.addAction(action)
+                    self.theController.present(alert, animated: true)
+                }
+            }
+            else {
+                let alert = UIAlertController(title: "Error", message: "An error has occured. Please try again later", preferredStyle: .alert)
+                let action = UIAlertAction(title: "Ok", style: .default, handler: { _ in
+                    alert.dismiss(animated: true, completion: nil)
+                })
+                alert.addAction(action)
+                self.theController.present(alert, animated: true)
             }
         }
     }
