@@ -22,52 +22,22 @@ class ChangePasswordViewModel {
         let view = (self.theController.view as? ChangePasswordView)
 
         if view!.txtEmail.text == "" {
-            let alert = UIAlertController(title: "Warning", message: getCommonString(key: "Enter_email_address_key"), preferredStyle: .alert)
-            let action = UIAlertAction(title: "Ok", style: .default, handler: { _ in
-                alert.dismiss(animated: true, completion: nil)
-            })
-            alert.addAction(action)
-            self.theController.present(alert, animated: true)
+            makeToast(strMessage: getCommonString(key: "Enter_email_address_key"))
         }
         else if !isValidEmail(testStr: view!.txtEmail.text!) {
-            let alert = UIAlertController(title: "Warning", message: getCommonString(key: "Enter_valid_email_address_key"), preferredStyle: .alert)
-            let action = UIAlertAction(title: "Ok", style: .default, handler: { _ in
-                alert.dismiss(animated: true, completion: nil)
-            })
-            alert.addAction(action)
-            self.theController.present(alert, animated: true)
+            makeToast(strMessage: getCommonString(key: "Enter_valid_email_address_key"))
         }
         else if view!.txtPassword.text == "" {
-            let alert = UIAlertController(title: "Warning", message: getCommonString(key: "Enter_password_key"), preferredStyle: .alert)
-            let action = UIAlertAction(title: "Ok", style: .default, handler: { _ in
-                alert.dismiss(animated: true, completion: nil)
-            })
-            alert.addAction(action)
-            self.theController.present(alert, animated: true)
+            makeToast(strMessage: getCommonString(key: "Enter_password_key"))
         }
         else if view!.txtPassword.text!.count < 8 {
-            let alert = UIAlertController(title: "Warning", message: getCommonString(key: "Enter_password_minimum_8_characters_key"), preferredStyle: .alert)
-            let action = UIAlertAction(title: "Ok", style: .default, handler: { _ in
-                alert.dismiss(animated: true, completion: nil)
-            })
-            alert.addAction(action)
-            self.theController.present(alert, animated: true)
+            makeToast(strMessage: getCommonString(key: "Enter_password_minimum_8_characters_key"))
         }
         else if view!.txtConfirmPassword.text == "" {
-            let alert = UIAlertController(title: "Warning", message: getCommonString(key: "Enter_confirm_password_key"), preferredStyle: .alert)
-            let action = UIAlertAction(title: "Ok", style: .default, handler: { _ in
-                alert.dismiss(animated: true, completion: nil)
-            })
-            alert.addAction(action)
-            self.theController.present(alert, animated: true)
+            makeToast(strMessage: getCommonString(key: "Enter_confirm_password_key"))
         }
         else if view!.txtPassword.text != view!.txtConfirmPassword.text {
-            let alert = UIAlertController(title: "Warning", message: getCommonString(key: "Password_not_match_key"), preferredStyle: .alert)
-            let action = UIAlertAction(title: "Ok", style: .default, handler: { _ in
-                alert.dismiss(animated: true, completion: nil)
-            })
-            alert.addAction(action)
-            self.theController.present(alert, animated: true)
+            makeToast(strMessage: getCommonString(key: "Password_not_match_key"))
         }
         else {
             self.apiCall(isFromOTP: isFromOTP)
@@ -108,13 +78,7 @@ class ChangePasswordViewModel {
                     self.theController.present(alert, animated: true)
                 }
                 else {
-                    let alert = UIAlertController(title: "Error", message: result?.message ?? "An error has occured. Please try again later.", preferredStyle: .alert)
-                    let action = UIAlertAction(title: "Ok", style: .default, handler: { _ in
-                        alert.dismiss(animated: true, completion: nil)
-                        
-                    })
-                    alert.addAction(action)
-                    self.theController.present(alert, animated: true)
+                    makeToast(strMessage: result?.message ?? "An error has occured. Please try again later.")
                 }
             }
         }

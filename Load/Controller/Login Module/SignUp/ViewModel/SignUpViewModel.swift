@@ -25,66 +25,31 @@ class SignUpViewModel {
 
         if view!.txtEmail.text == "" {
             message = getCommonString(key: "Enter_email_address_key")
-            let alert = UIAlertController(title: "Warning", message: message, preferredStyle: .alert)
-            let action = UIAlertAction(title: "Ok", style: .default, handler: { _ in
-                alert.dismiss(animated: true, completion: nil)
-            })
-            alert.addAction(action)
-            self.theController.present(alert, animated: true)
+            makeToast(strMessage: message)
         }
         else if !isValidEmail(testStr: view!.txtEmail.text!) {
             message = getCommonString(key: "Enter_valid_email_address_key")
-            let alert = UIAlertController(title: "Warning", message: message, preferredStyle: .alert)
-            let action = UIAlertAction(title: "Ok", style: .default, handler: { _ in
-                alert.dismiss(animated: true, completion: nil)
-            })
-            alert.addAction(action)
-            self.theController.present(alert, animated: true)
+            makeToast(strMessage: message)
         }
         else if view!.txtPassword.text == "" {
             message = getCommonString(key: "Enter_password_key")
-            let alert = UIAlertController(title: "Warning", message: message, preferredStyle: .alert)
-            let action = UIAlertAction(title: "Ok", style: .default, handler: { _ in
-                alert.dismiss(animated: true, completion: nil)
-            })
-            alert.addAction(action)
-            self.theController.present(alert, animated: true)
+            makeToast(strMessage: message)
         }
         else if view!.txtPassword.text!.count < 8 {
             message = getCommonString(key: "Enter_password_minimum_8_characters_key")
-            let alert = UIAlertController(title: "Warning", message: message, preferredStyle: .alert)
-            let action = UIAlertAction(title: "Ok", style: .default, handler: { _ in
-                alert.dismiss(animated: true, completion: nil)
-            })
-            alert.addAction(action)
-            self.theController.present(alert, animated: true)
+            makeToast(strMessage: message)
         }
         else if view!.txtConfirmPassword.text == "" {
             message = getCommonString(key: "Enter_confirm_password_key")
-            let alert = UIAlertController(title: "Warning", message: message, preferredStyle: .alert)
-            let action = UIAlertAction(title: "Ok", style: .default, handler: { _ in
-                alert.dismiss(animated: true, completion: nil)
-            })
-            alert.addAction(action)
-            self.theController.present(alert, animated: true)
+            makeToast(strMessage: message)
         }
         else if view!.txtPassword.text != view!.txtConfirmPassword.text {
             message = getCommonString(key: "Password_not_match_key")
-            let alert = UIAlertController(title: "Warning", message: message, preferredStyle: .alert)
-            let action = UIAlertAction(title: "Ok", style: .default, handler: { _ in
-                alert.dismiss(animated: true, completion: nil)
-            })
-            alert.addAction(action)
-            self.theController.present(alert, animated: true)
+            makeToast(strMessage: message)
         }
         else if !isAccepted {
             message = getCommonString(key: "Please_accept_terms_key")
-            let alert = UIAlertController(title: "Warning", message: message, preferredStyle: .alert)
-            let action = UIAlertAction(title: "Ok", style: .default, handler: { _ in
-                alert.dismiss(animated: true, completion: nil)
-            })
-            alert.addAction(action)
-            self.theController.present(alert, animated: true)
+            makeToast(strMessage: message)
         }
         else {
             self.apiCall()
@@ -124,12 +89,7 @@ class SignUpViewModel {
                     }
                 }
                 else {
-                    let alert = UIAlertController(title: "Error", message: result?.message ?? "An error has occured. Please try again later.", preferredStyle: .alert)
-                    let action = UIAlertAction(title: "Ok", style: .default, handler: { _ in
-                        alert.dismiss(animated: true, completion: nil)
-                    })
-                    alert.addAction(action)
-                    self.theController.present(alert, animated: true)
+                    makeToast(strMessage: result?.message ?? "An error has occured. Please try again later.")
                 }
             }
         }
