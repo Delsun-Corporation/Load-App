@@ -36,8 +36,16 @@ class PremiumViewModel: ProfessionalRequirementDelegate, FilterActivitySelectedD
         self.theController = theController
     }
     
+    func apiCallGet(isLoading: Bool = false) {
+        if newApiConfig {
+            apiCallGetSettingPrimiumV2(isLoading: isLoading)
+            return
+        }
+        self.apiCallGetSettingPrimium(isLoading: isLoading)
+    }
+    
     func setupUI() {
-        self.apiCallGetSettingPrimium()
+        apiCallGet()
         self.apiCallOAuth2Token(progress: false)
     }
     
@@ -138,7 +146,7 @@ class PremiumViewModel: ProfessionalRequirementDelegate, FilterActivitySelectedD
     func BillingInformationReload(isUpdated: Bool) {
         if isUpdated {
             if self.theController.btnSave.isHidden {
-                self.apiCallGetSettingPrimium(isLoading: false)
+                self.apiCallGet(isLoading: false)
             }
         }
     }
@@ -148,8 +156,6 @@ class PremiumViewModel: ProfessionalRequirementDelegate, FilterActivitySelectedD
             self.theController.resetNavigationBar()
         }
         self.txtAbout = text
-        
-        let _ = validateDetails()
     }
     
     func FilterActivitySelectedDidFinish(ids: [Int], names: [String]) {
@@ -180,15 +186,12 @@ class PremiumViewModel: ProfessionalRequirementDelegate, FilterActivitySelectedD
         self.isAutoTopup = isAutoTopup
         self.autoTopupAmount = autoTopupAmount
         self.minimumBalance = minimumBalance
-        updatePremium()
     }
     
     //MARK:- Permission delegate
     func selectedPermissionForPremium(viewMyProfile: String, viewMyFeed: String) {
         self.selectedViewMyProfile = viewMyProfile
         self.selectedViewMyFeed = viewMyFeed
-        
-        self.apiCallSettingCreateUpdatePrimium(about: self.txtAbout, specializationIds: self.selectedArray, languageIds: self.languagesId ?? 0)
     }
 
     
@@ -215,11 +218,12 @@ class PremiumViewModel: ProfessionalRequirementDelegate, FilterActivitySelectedD
     }
     
     func apiCallSettingCreateUpdatePrimium(about: String, specializationIds: [Int], languageIds: Int?, isLoading: Bool = true) {
-        
+        let endpointName = newApiConfig ? "setting/\(SETTING_CREATE_UPDATE_PRIMIUM)" : SETTING_CREATE_UPDATE_PRIMIUM
+        let languageIdKey = newApiConfig ? "language_id" : "language_ids"
         var param = [
             "about": about,
             "specialization_ids" : specializationIds,
-            "language_ids": [languageIds ?? 0],
+            languageIdKey: newApiConfig ? languageIds ?? 0 : [languageIds ?? 0],
             "is_auto_topup": self.isAutoTopup ?? false,
             "auto_topup_amount": self.autoTopupAmount ?? "",
             "minimum_balance": self.minimumBalance ?? "" ,
@@ -242,7 +246,7 @@ class PremiumViewModel: ProfessionalRequirementDelegate, FilterActivitySelectedD
             param.removeValue(forKey: "credit_card_id")
         }
         print(param)
-        let endpointName = newApiConfig ? "setting/\(SETTING_CREATE_UPDATE_PRIMIUM)" : SETTING_CREATE_UPDATE_PRIMIUM
+        
         ApiManager.shared.MakePostAPI(name: endpointName, params: param as [String : Any], progress: isLoading, vc: self.theController, isAuth: false, completionHandler: { (response, error) in
             if response != nil {
                 let json = JSON(response!)
@@ -277,12 +281,51 @@ class PremiumViewModel: ProfessionalRequirementDelegate, FilterActivitySelectedD
         })
     }
     
+    func apiCallGetSettingPrimiumV2(isLoading: Bool = true) {
+        
+        let param = ["": ""] as [String : Any]
+        print(param)
+        
+        ApiManager.shared.MakeGetAPI(name: "setting/\(GET_SETTING_PRIMIUM)", params: param as [String : Any], progress: isLoading, vc: self.theController, isAuth: false, completionHandler: { (response, error) in
+            if response != nil {
+                let json = JSON(response!)
+                print(json)
+                let success = json.getBool(key: .success)
+                if success {
+                    let data = json.getDictionary(key: .data)
+                    let view = (self.theController.view as? PremiumView)
+                    self.premiumResponse = PremiumModelClass(JSON: data.dictionaryObject!)
+                    
+                    self.txtAbout = self.premiumResponse?.about ?? ""
+                    for language in GetAllData?.data?.languages ?? [] where self.premiumResponse?.languageId == language.id?.intValue {
+                        self.languagesId = language.id?.intValue
+                        self.languages = language.name ?? ""
+                    }
+                    
+                    self.isAutoTopup = self.premiumResponse?.isAutoTopup
+                    self.autoTopupAmount = self.premiumResponse?.autoTopupAmount?.stringValue
+                    
+                    self.selectedViewMyProfile = self.premiumResponse?.viewPremiumProfile ?? ""
+                    self.selectedViewMyFeed = self.premiumResponse?.viewPremiumFeed ?? ""
+                    
+                    self.selectedArray.removeAll()
+                    self.selectedNameArray.removeAll()
+                    for data in GetAllData?.data?.specializations ?? [] where data.id == self.premiumResponse?.id {
+                        self.selectedArray.append(data.id?.intValue ?? 0)
+                        self.selectedNameArray.append(data.name ?? "")
+                    }
+                    view?.tableView.reloadData()
+                }
+            }
+        })
+    }
+    
     func apiCallGetSettingPrimium(isLoading: Bool = true) {
         
         let param = ["": ""] as [String : Any]        
         print(param)
-        let endpointName = newApiConfig ? "setting/\(GET_SETTING_PRIMIUM)" : GET_SETTING_PRIMIUM
-        ApiManager.shared.MakeGetAPI(name: endpointName, params: param as [String : Any], progress: isLoading, vc: self.theController, isAuth: false, completionHandler: { (response, error) in
+        
+        ApiManager.shared.MakeGetAPI(name: GET_SETTING_PRIMIUM, params: param as [String : Any], progress: isLoading, vc: self.theController, isAuth: false, completionHandler: { (response, error) in
             if response != nil {
                 let json = JSON(response!)
                 print(json)
