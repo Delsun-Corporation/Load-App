@@ -29,10 +29,16 @@ class SettingsProfileVC: UIViewController, CountryCodeDelegate {
         self.mainModelView.isEdited = true
         self.mainModelView.IsEditable(isEnable: self.mainModelView.isEdited)
         
+        self.navigationController?.navigationBar.isHidden = true
         self.setUpNavigationBarTitle(strTitle: "",isShadow: false)
         self.navigationController?.setColor()
         setNavigationForIndoor()
 
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        self.navigationController?.navigationBar.isHidden = false
     }
     
     func setNavigationForIndoor(){

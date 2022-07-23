@@ -275,7 +275,7 @@ class SettingsProfileViewModel {
     
     func showUserDetails() {
         let view = (self.theController.view as? SettingsProfileView)
-        view?.imgProfile.sd_setImage(with: self.profileDetails?.photo?.toURL(), completed: nil)
+        view?.imgProfile.sd_setImage(with: self.profileDetails?.photo?.toURL(), placeholderImage: UIImage(named: "ic_placeholder"))
         view?.lblNameTitle.text = self.profileDetails?.name ?? ""
         let fullNameArr = self.profileDetails?.name!.split{$0 == " "}.map(String.init)
         if (fullNameArr?.count)! > 0 {

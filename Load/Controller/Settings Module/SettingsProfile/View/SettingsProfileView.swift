@@ -43,10 +43,13 @@ class SettingsProfileView: UIView {
     @IBOutlet weak var btnGender: UIButton!
     @IBOutlet weak var btnLocation: UIButton!
     
+    @IBOutlet weak var headerView: UIImageView!
+    
     //MARK:- Functions
     func setupUI(theController: SettingsProfileVC) {
         self.layoutIfNeeded()
         self.setupFont()
+        self.setupHeaderView()
     }
     
     func setupFont() {
@@ -90,5 +93,13 @@ class SettingsProfileView: UIView {
         self.txtMobile.setColor(color: .appthemeBlackColor)
         self.lblEmail.setColor(color: .appthemeBlackColor)
         self.txtEmail.setColor(color: .appthemeBlackColor)
+    }
+    
+    func setupHeaderView() {
+        headerView.layer.shadowColor = UIColor.lightGray.cgColor
+        headerView.layer.shadowOpacity = 0.4
+        headerView.layer.shadowOffset = CGSize(width: 0.0, height: 7)
+        headerView.layer.shadowRadius = 7
+        headerView.layer.masksToBounds = false
     }
 }
