@@ -204,8 +204,8 @@ class AccountViewModel {
                 if isSnooze {
                     print(startDate)
                     print(endDate)
-                    let sDate = self.selectedDateStart?.toString(dateFormat: "yyyy-MM-dd HH:mm:ss")
-                    let eDate = self.selectedDateEnd?.toString(dateFormat: "yyyy-MM-dd HH:mm:ss")
+                    let sDate = self.selectedDateStart?.toString(dateFormat: "yyyy-MM-dd'T'HH:mm:ss.SZ")
+                    let eDate = self.selectedDateEnd?.toString(dateFormat: "yyyy-MM-dd'T'HH:mm:ss.SZ")
                     if jsonData["data"]["user"]["user_snooze_detail"].isEmpty {
                         jsonData["data"]["user"]["user_snooze_detail"] = JSON()
                         jsonData["data"]["user"]["user_snooze_detail"].setValue(key: .start_date, value: sDate!)
