@@ -84,28 +84,83 @@ extension SignUpSetupProfileVC: CountryPickerViewDelegate, CountryPickerViewData
 
 extension SignUpSetupProfileVC: UIPickerViewDelegate, UIPickerViewDataSource {
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
-        return 1
+        return 2
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusing view: UIView?) -> UIView {
+        let myView = PickerView.instanceFromNib() as! PickerView
+        myView.setupUI()
+        myView.imgIcon.image = nil
+        
+        if pickerView == self.mainModelView.heightPickerView {
+            if component == 0{
+                myView.lblText.text = mainModelView.heightArray[row]
+            }
+            else {
+                myView.lblText.text = String(self.mainModelView.arrayDecimal[row])
+            }
+        }
+        else {
+            if component == 0{
+                myView.lblText.text = mainModelView.weightArray[row]
+            }
+            else {
+                myView.lblText.text = String(self.mainModelView.arrayDecimal[row])
+            }
+        }
+        return myView
     }
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        
         switch pickerView {
-        case mainModelView.heightPickerView:
-            return mainModelView.heightArray.count
-        case mainModelView.weightPickerView:
-            return mainModelView.weightArray.count
-        default:
-            return 0
+            case mainModelView.heightPickerView:
+                if component == 0 {
+                    return mainModelView.heightArray.count
+                }
+                else {
+                    return mainModelView.arrayDecimal.count
+                }
+                
+            case mainModelView.weightPickerView:
+                if component == 0 {
+                    return mainModelView.weightArray.count
+                }
+                else {
+                    return mainModelView.arrayDecimal.count
+                }
+                
+            default:
+                return 0
         }
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, widthForComponent component: Int) -> CGFloat {
+        
+        return CGFloat(120) - 5
     }
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         switch pickerView {
         case mainModelView.heightPickerView:
-            guard row <= mainModelView.heightArray.count else { return "0" }
-            return mainModelView.heightArray[row]
+            if component == 0 {
+                guard row <= mainModelView.heightArray.count else { return "0" }
+                return mainModelView.heightArray[row]
+            }
+            else {
+                guard row <= mainModelView.arrayDecimal.count else { return "0" }
+                return String(mainModelView.arrayDecimal[row])
+            }
         case mainModelView.weightPickerView:
-            guard row <= mainModelView.weightArray.count else { return "0" }
-            return mainModelView.weightArray[row]
+            if component == 0 {
+                guard row <= mainModelView.weightArray.count else { return "0" }
+                return mainModelView.weightArray[row]
+            }
+            else {
+                guard row <= mainModelView.arrayDecimal.count else { return "0" }
+                return String(mainModelView.arrayDecimal[row])
+            }
+            
         default:
             return nil
         }
@@ -115,8 +170,15 @@ extension SignUpSetupProfileVC: UIPickerViewDelegate, UIPickerViewDataSource {
         switch pickerView {
         case mainModelView.heightPickerView:
             guard row <= mainModelView.heightArray.count else { return }
+            if component == 0{
+                mainModelView.firstComponentHeight = mainModelView.heightArray[row]
+            }
+            else {
+                mainModelView.secondComponentHeight = String(mainModelView.arrayDecimal[row])
+            }
+            
             self.mainModelView.isHeightSelected = true
-            self.mainView.txtHeight.text = mainModelView.heightArray[row] + " cm"
+            self.mainView.txtHeight.text = "\(mainModelView.firstComponentHeight).\(mainModelView.secondComponentHeight) cm"
             self.mainView.viewHeight.borderColors = UIColor.appthemeRedColor
             self.mainView.viewHeightDropDown.backgroundColor = UIColor.appthemeRedColor
             self.mainView.txtHeight.textColor = UIColor.appthemeRedColor
@@ -124,8 +186,14 @@ extension SignUpSetupProfileVC: UIPickerViewDelegate, UIPickerViewDataSource {
             return
         case mainModelView.weightPickerView:
             guard row <= mainModelView.weightArray.count else { return }
+            if component == 0{
+                mainModelView.firstComponentWeight = mainModelView.weightArray[row]
+            }
+            else {
+                mainModelView.secondComponentWeight = String(mainModelView.arrayDecimal[row])
+            }
             self.mainModelView.isWeightSelected = true
-            self.mainView.txtWeight.text = mainModelView.weightArray[row] + " kg"
+            self.mainView.txtWeight.text = "\(mainModelView.firstComponentWeight).\(mainModelView.secondComponentWeight) kg"
             self.mainView.viewWeight.borderColors = UIColor.appthemeRedColor
             self.mainView.viewWeightDropDown.backgroundColor = UIColor.appthemeRedColor
             self.mainView.txtWeight.textColor = UIColor.appthemeRedColor
