@@ -5511,6 +5511,7 @@
 		1794E0D1229D08BF000FB37F /* Load */ = {
 			isa = PBXGroup;
 			children = (
+				FF1E0728288B11F600933A19 /* Custom View */,
 				1777D17B229D0C1F00F6B2E2 /* Api Manager */,
 				1794E0D2229D08BF000FB37F /* AppDelegate.swift */,
 				1794E0DC229D08C0000FB37F /* Assets.xcassets */,
@@ -8846,6 +8847,13 @@
 				D3B098D1268EF03C004F2BCC /* ChartPremiumUserProfileDetailsVc.xib */,
 			);
 			path = XIB;
+			sourceTree = "<group>";
+		};
+		FF1E0728288B11F600933A19 /* Custom View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "Custom View";
 			sourceTree = "<group>";
 		};
 		FF33206428153BD3007734BA /* MXScroll */ = {
