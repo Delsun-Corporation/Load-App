@@ -22,20 +22,10 @@ class ResetPasswordViewModel {
     func ValidateDetails() {
         let view = (self.theController.view as? ResetPasswordView)
         if  view?.txtEmail.text == "" {
-            let alert = UIAlertController(title: "Warning", message: getCommonString(key: "Enter_email_address_key"), preferredStyle: .alert)
-            let action = UIAlertAction(title: "Ok", style: .default, handler: { _ in
-                alert.dismiss(animated: true, completion: nil)
-            })
-            alert.addAction(action)
-            self.theController.present(alert, animated: true)
+            makeToast(strMessage: getCommonString(key: "Enter_email_address_key"))
         }
         else if !isValidEmail(testStr: view!.txtEmail.text!) {
-            let alert = UIAlertController(title: "Warning", message: getCommonString(key: "Enter_valid_email_address_key"), preferredStyle: .alert)
-            let action = UIAlertAction(title: "Ok", style: .default, handler: { _ in
-                alert.dismiss(animated: true, completion: nil)
-            })
-            alert.addAction(action)
-            self.theController.present(alert, animated: true)
+            makeToast(strMessage: getCommonString(key: "Enter_valid_email_address_key"))
         }
         else {
             self.apiCall()
@@ -67,21 +57,11 @@ class ResetPasswordViewModel {
 //                    self.theController.navigationController?.popViewController(animated: true)
                 }
                 else {
-                    let alert = UIAlertController(title: "Error", message: msg, preferredStyle: .alert)
-                    let action = UIAlertAction(title: "Ok", style: .default, handler: { _ in
-                        alert.dismiss(animated: true, completion: nil)
-                    })
-                    alert.addAction(action)
-                    self.theController.present(alert, animated: true)
+                    makeToast(strMessage: msg)
                 }
             }
             else {
-                let alert = UIAlertController(title: "Error", message: "An error has occured. Please try again later", preferredStyle: .alert)
-                let action = UIAlertAction(title: "Ok", style: .default, handler: { _ in
-                    alert.dismiss(animated: true, completion: nil)
-                })
-                alert.addAction(action)
-                self.theController.present(alert, animated: true)
+                makeToast(strMessage: "An error has occured. Please try again later")
             }
         }
     }
