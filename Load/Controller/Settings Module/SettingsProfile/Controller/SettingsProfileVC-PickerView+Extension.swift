@@ -17,31 +17,30 @@ extension SettingsProfileVC: UIPickerViewDataSource, UIPickerViewDelegate {
     }
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return (GetAllData?.data?.countries?.count) ?? 0
+        switch pickerView {
+        case mainModelView.genderPickerView:
+            return genderArray().count
+        default:
+            return 0
+        }
     }
     
-    func pickerView(_ pickerView: UIPickerView, rowHeightForComponent component: Int) -> CGFloat {
-        return 30
-    }
-    
-    func pickerView(_ pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusing view: UIView?) -> UIView {
-        
-//for view in pickerView.subviews{
-//                view.backgroundColor = UIColor.clear
-//            }
-        
-        let myView = PickerView.instanceFromNib() as! PickerView
-        myView.setupUI()
-        myView.imgIcon.image = nil
-        let model = GetAllData?.data?.countries![row]
-        myView.lblText.text = model?.name
-        return myView
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        switch pickerView {
+        case mainModelView.genderPickerView:
+            return mainModelView.genderArr[row]
+        default:
+            return nil
+        }
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        let model = GetAllData?.data?.countries![row]
-        self.mainView.txtLocation.text =  model?.name
-        self.mainModelView.locationId = (model?.id?.stringValue)!
+        switch pickerView {
+        case mainModelView.genderPickerView:
+            self.mainView.txtGender.text = mainModelView.genderArr[row]
+        default:
+            return
+        }
     }
 }
 
@@ -49,6 +48,7 @@ extension SettingsProfileVC: CountryPickerViewDelegate, CountryPickerViewDataSou
     func countryPickerView(_ countryPickerView: CountryPickerView, didSelectCountry country: Country) {
         self.mainView.txtLocation.text = country.name
         self.mainView.txtCode.text = country.phoneCode
+        self.mainModelView.locationId = country.code
     }
     
     func navigationTitle(in countryPickerView: CountryPickerView) -> String? {

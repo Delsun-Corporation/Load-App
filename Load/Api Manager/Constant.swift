@@ -241,6 +241,7 @@ func genderArray() -> [String] {
     var array:[String] = [String]()
     array.append("Male")
     array.append("Female")
+    array.append("Other")
     return array
 }
 
