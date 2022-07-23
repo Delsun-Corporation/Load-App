@@ -147,6 +147,7 @@ enum APIKeys: String {
     case race_time = "race_time"
     case contact1 = "contact_1"
     case contact2 = "contact_2"
+    case gender = "gender"
 }
 
 

@@ -55,6 +55,10 @@ class SettingsProfileVC: UIViewController, CountryCodeDelegate {
         self.mainView.txtDOB.becomeFirstResponder()
     }
     
+    @IBAction func btnGenderClicked(_ sender: Any) {
+        self.mainView.txtGender.becomeFirstResponder()
+    }
+    
     @IBAction func btnLocationClicked(_ sender: Any) {
         self.mainModelView.cpvInternal.showCountriesList(from: self)
     }

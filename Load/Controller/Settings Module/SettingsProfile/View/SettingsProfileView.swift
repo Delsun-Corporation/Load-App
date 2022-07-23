@@ -20,6 +20,8 @@ class SettingsProfileView: UIView {
     @IBOutlet weak var txtLastName: UITextField!
     @IBOutlet weak var lblDOB: UILabel!
     @IBOutlet weak var txtDOB: UITextField!
+    @IBOutlet weak var lblGender: UILabel!
+    @IBOutlet weak var txtGender: UITextField!
     @IBOutlet weak var lblLocation: UILabel!
     @IBOutlet weak var txtLocation: UITextField!
     @IBOutlet weak var lblPhone: UILabel!
@@ -27,8 +29,6 @@ class SettingsProfileView: UIView {
     @IBOutlet weak var txtMobile: UITextField!
     @IBOutlet weak var lblEmail: UILabel!
     @IBOutlet weak var txtEmail: UITextField!
-    @IBOutlet weak var lblFacebook: UILabel!
-    @IBOutlet weak var txtFacebook: UITextField!
     
     @IBOutlet weak var lblMemberSinceTitle: UILabel!
     @IBOutlet weak var lblMemberSince: UILabel!
@@ -38,16 +38,15 @@ class SettingsProfileView: UIView {
     
     @IBOutlet weak var imgPhone: UIImageView!
     @IBOutlet weak var imgEmail: UIImageView!
-    @IBOutlet weak var imgFacebook: UIImageView!
       
     @IBOutlet weak var btnCountryCode: UIButton!
+    @IBOutlet weak var btnGender: UIButton!
     @IBOutlet weak var btnLocation: UIButton!
     
     //MARK:- Functions
     func setupUI(theController: SettingsProfileVC) {
         self.layoutIfNeeded()
         self.setupFont()
-        imgFacebook.isHidden = true
     }
     
     func setupFont() {
@@ -60,6 +59,8 @@ class SettingsProfileView: UIView {
         self.txtLastName.font = themeFont(size: 15, fontname: .ProximaNovaRegular)
         self.lblDOB.font = themeFont(size: 15, fontname: .ProximaNovaRegular)
         self.txtDOB.font = themeFont(size: 15, fontname: .ProximaNovaRegular)
+        self.lblGender.font = themeFont(size: 15, fontname: .ProximaNovaRegular)
+        self.txtGender.font = themeFont(size: 15, fontname: .ProximaNovaRegular)
         self.lblLocation.font = themeFont(size: 15, fontname: .ProximaNovaRegular)
         self.txtLocation.font = themeFont(size: 15, fontname: .ProximaNovaRegular)
         self.lblPhone.font = themeFont(size: 15, fontname: .ProximaNovaRegular)
@@ -67,8 +68,6 @@ class SettingsProfileView: UIView {
         self.txtMobile.font = themeFont(size: 15, fontname: .ProximaNovaRegular)
         self.lblEmail.font = themeFont(size: 15, fontname: .ProximaNovaRegular)
         self.txtEmail.font = themeFont(size: 15, fontname: .ProximaNovaRegular)
-        self.lblFacebook.font = themeFont(size: 15, fontname: .ProximaNovaRegular)
-        self.txtFacebook.font = themeFont(size: 15, fontname: .ProximaNovaRegular)
         
         self.lblMemberSinceTitle.font = themeFont(size: 13, fontname: .ProximaNovaRegular)
         self.lblMemberSince.font = themeFont(size: 15, fontname: .ProximaNovaRegular)
@@ -82,6 +81,8 @@ class SettingsProfileView: UIView {
         self.txtLastName.setColor(color: .appthemeBlackColor)
         self.lblDOB.setColor(color: .appthemeBlackColor)
         self.txtDOB.setColor(color: UIColor.black.withAlphaComponent(0.5))
+        self.lblGender.setColor(color: .appthemeBlackColor)
+        self.txtGender.setColor(color: .appthemeBlackColor)
         self.lblLocation.setColor(color: .appthemeBlackColor)
         self.txtLocation.setColor(color: .appthemeBlackColor)
         self.lblPhone.setColor(color: .appthemeBlackColor)
@@ -89,7 +90,5 @@ class SettingsProfileView: UIView {
         self.txtMobile.setColor(color: .appthemeBlackColor)
         self.lblEmail.setColor(color: .appthemeBlackColor)
         self.txtEmail.setColor(color: .appthemeBlackColor)
-        self.lblFacebook.setColor(color: .appthemeBlackColor)
-        self.txtFacebook.setColor(color: .appthemeBlackColor)
     }
 }
