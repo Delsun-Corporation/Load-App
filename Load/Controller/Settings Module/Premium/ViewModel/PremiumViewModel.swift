@@ -242,8 +242,8 @@ class PremiumViewModel: ProfessionalRequirementDelegate, FilterActivitySelectedD
             param.removeValue(forKey: "credit_card_id")
         }
         print(param)
-        
-        ApiManager.shared.MakePostAPI(name: SETTING_CREATE_UPDATE_PRIMIUM, params: param as [String : Any], progress: isLoading, vc: self.theController, isAuth: false, completionHandler: { (response, error) in
+        let endpointName = newApiConfig ? "setting/\(SETTING_CREATE_UPDATE_PRIMIUM)" : SETTING_CREATE_UPDATE_PRIMIUM
+        ApiManager.shared.MakePostAPI(name: endpointName, params: param as [String : Any], progress: isLoading, vc: self.theController, isAuth: false, completionHandler: { (response, error) in
             if response != nil {
                 let json = JSON(response!)
                 print(json)
@@ -281,8 +281,8 @@ class PremiumViewModel: ProfessionalRequirementDelegate, FilterActivitySelectedD
         
         let param = ["": ""] as [String : Any]        
         print(param)
-        
-        ApiManager.shared.MakeGetAPI(name: GET_SETTING_PRIMIUM, params: param as [String : Any], progress: isLoading, vc: self.theController, isAuth: false, completionHandler: { (response, error) in
+        let endpointName = newApiConfig ? "setting/\(GET_SETTING_PRIMIUM)" : GET_SETTING_PRIMIUM
+        ApiManager.shared.MakeGetAPI(name: endpointName, params: param as [String : Any], progress: isLoading, vc: self.theController, isAuth: false, completionHandler: { (response, error) in
             if response != nil {
                 let json = JSON(response!)
                 print(json)
