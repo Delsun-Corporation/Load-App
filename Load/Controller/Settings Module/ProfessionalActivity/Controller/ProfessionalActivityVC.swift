@@ -60,7 +60,9 @@ class ProfessionalActivityVC: UIViewController {
     
     //MARK:- @IBAction
     func btnCloseClicked() {
-        saveData()
+        if mainView.isViewValid {
+            saveData()
+        }
     }
     
     func btnSelectClicked() {

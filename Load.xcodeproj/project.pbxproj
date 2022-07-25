@@ -5382,29 +5382,6 @@
 			path = ViewModel;
 			sourceTree = "<group>";
 		};
-		17864ED922BA4F2100845432 /* Profile */ = {
-			isa = PBXGroup;
-			children = (
-				17864EDB22BA4F4100845432 /* New Group1 */,
-				17864EDA22BA4F3D00845432 /* New Group */,
-			);
-			path = Profile;
-			sourceTree = "<group>";
-		};
-		17864EDA22BA4F3D00845432 /* New Group */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = "New Group";
-			sourceTree = "<group>";
-		};
-		17864EDB22BA4F4100845432 /* New Group1 */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = "New Group1";
-			sourceTree = "<group>";
-		};
 		178B0F982306AD3E00322955 /* CreateEventStepThree */ = {
 			isa = PBXGroup;
 			children = (
@@ -5511,7 +5488,6 @@
 		1794E0D1229D08BF000FB37F /* Load */ = {
 			isa = PBXGroup;
 			children = (
-				FF1E0728288B11F600933A19 /* Custom View */,
 				1777D17B229D0C1F00F6B2E2 /* Api Manager */,
 				1794E0D2229D08BF000FB37F /* AppDelegate.swift */,
 				1794E0DC229D08C0000FB37F /* Assets.xcassets */,
@@ -6985,7 +6961,6 @@
 			isa = PBXGroup;
 			children = (
 				1754257D22F3F02200944BFC /* Sidemenu */,
-				17864ED922BA4F2100845432 /* Profile */,
 				17F9BAA222A52219000D8221 /* SwitchAccountVC */,
 				17FA32BA229EA02E00CCC00C /* TabviewController */,
 				17FA32B6229E9C3E00CCC00C /* Calendar */,
@@ -8847,13 +8822,6 @@
 				D3B098D1268EF03C004F2BCC /* ChartPremiumUserProfileDetailsVc.xib */,
 			);
 			path = XIB;
-			sourceTree = "<group>";
-		};
-		FF1E0728288B11F600933A19 /* Custom View */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = "Custom View";
 			sourceTree = "<group>";
 		};
 		FF33206428153BD3007734BA /* MXScroll */ = {
