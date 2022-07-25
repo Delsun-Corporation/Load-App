@@ -64,16 +64,21 @@ class ChangePasswordViewModel {
                 let json = JSON(response!)
                 let result = LoginModelClass(JSON: json.dictionaryObject!)
                 if result?.success ?? false {
-                    makeToast(strMessage: getCommonString(key: "Change_Password_Success_key"))
-                    if isFromOTP {
-                        self.theController.navigationController?.popToRootViewController(animated: true)
-                    }
-                    else {
-                        self.theController.navigationController?.popViewController(animated: true)
-                    }
+                    let alert = UIAlertController(title: "Success", message: getCommonString(key: "Change_Password_Success_key"), preferredStyle: .alert)
+                    let action = UIAlertAction(title: "Ok", style: .default, handler: { _ in
+                        alert.dismiss(animated: true, completion: nil)
+                        if isFromOTP {
+                            self.theController.navigationController?.popToRootViewController(animated: true)
+                        }
+                        else {
+                            self.theController.navigationController?.popViewController(animated: true)
+                        }
+                    })
+                    alert.addAction(action)
+                    self.theController.present(alert, animated: true)
                 }
                 else {
-                    makeToast(strMessage: result?.message ?? "")
+                    makeToast(strMessage: result?.message ?? "An error has occured. Please try again later.")
                 }
             }
         }

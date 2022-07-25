@@ -96,8 +96,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
         if #available(iOS 15, *) {
             let appearance = UINavigationBarAppearance()
-            appearance.configureWithTransparentBackground()
-            appearance.backgroundImage = UIImage(named: "ic_header")?.resizableImage(withCapInsets: UIEdgeInsets.zero, resizingMode: .stretch)
+            appearance.configureWithDefaultBackground()
             UINavigationBar.appearance().standardAppearance = appearance
             UINavigationBar.appearance().scrollEdgeAppearance = appearance
         }
@@ -119,7 +118,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         SJSwiftSideMenuController.setUpNavigation(rootController: rootVC, leftMenuController: sideVC_L, rightMenuController: nil, leftMenuType: .SlideView, rightMenuType: .SlideView)
         
-        SJSwiftSideMenuController.enableSwipeGestureWithMenuSide(menuSide: .LEFT)
+        SJSwiftSideMenuController.enableSwipeGestureWithMenuSide(menuSide: .NONE)
         
         SJSwiftSideMenuController.enableDimbackground = true
         SJSwiftSideMenuController.leftMenuWidth = UIScreen.main.bounds.width - 80

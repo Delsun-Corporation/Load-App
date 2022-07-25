@@ -29,9 +29,16 @@ class SettingsProfileVC: UIViewController, CountryCodeDelegate {
         self.mainModelView.isEdited = true
         self.mainModelView.IsEditable(isEnable: self.mainModelView.isEdited)
         
+        self.navigationController?.navigationBar.isHidden = true
         self.setUpNavigationBarTitle(strTitle: "",isShadow: false)
+        self.navigationController?.setColor()
         setNavigationForIndoor()
 
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        self.navigationController?.navigationBar.isHidden = false
     }
     
     func setNavigationForIndoor(){
@@ -52,6 +59,10 @@ class SettingsProfileVC: UIViewController, CountryCodeDelegate {
     
     @IBAction func btnDOBClicked(_ sender: Any) {
         self.mainView.txtDOB.becomeFirstResponder()
+    }
+    
+    @IBAction func btnGenderClicked(_ sender: Any) {
+        self.mainView.txtGender.becomeFirstResponder()
     }
     
     @IBAction func btnLocationClicked(_ sender: Any) {

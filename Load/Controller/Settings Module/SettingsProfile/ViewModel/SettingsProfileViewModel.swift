@@ -24,25 +24,27 @@ class SettingsProfileViewModel {
     var countryDialCode: String = "+1"
     var countryName: String = "United States"
     var countryCode: String = "US"
-    let pickerView = UIPickerView()
+    let genderPickerView = UIPickerView()
     let cpvInternal = CountryPickerView()
-   
+    
+    lazy var genderArr: [String] = {
+        return genderArray()
+    }()
+    
     //MARK:- Functions
     init(theController:SettingsProfileVC) {
         self.theController = theController
     }
     func setupUI() {
-        pickerView.delegate = self.theController
-        pickerView.backgroundColor = UIColor.white
-        (self.theController.view as? SettingsProfileView)?.txtLocation.inputView = pickerView
-        self.apiCallGetUserDetail()
-//        self.IsEditable(isEnable: false)
-//        self.DOBSetup()
         let view = (self.theController.view as? SettingsProfileView)
         view?.txtEmail.isUserInteractionEnabled = false
         view?.txtMobile.isUserInteractionEnabled = false
         view?.txtCode.isUserInteractionEnabled = false
         view?.btnCountryCode.isUserInteractionEnabled = false
+        
+        self.apiCallGetUserDetail()
+        self.countryPickerSetupUI()
+        self.genderPickerSetupUI()
     }
     
     func addImagePicker() {
@@ -127,6 +129,16 @@ class SettingsProfileViewModel {
         cpvInternal.dataSource = theController.self
     }
     
+    func genderPickerSetupUI() {
+        let view = (self.theController.view as? SettingsProfileView)
+        
+        genderPickerView.delegate = theController.self
+        genderPickerView.dataSource = theController.self
+        view?.txtGender.inputView = genderPickerView
+        
+        genderPickerView.backgroundColor = UIColor.white
+    }
+    
     func apiCallGetUserDetail() {
         var param = ["": ""] as [String : Any]
         
@@ -143,7 +155,6 @@ class SettingsProfileViewModel {
                         let data = json.getDictionary(key: .data)
                         self.profileDetails = ProfileModelClass(JSON: data.dictionaryObject!)
                         self.DOBSetup()
-                        self.countryPickerSetupUI()
                         self.showUserDetails()
                         self.updateData()
                     }
@@ -179,43 +190,45 @@ class SettingsProfileViewModel {
     func validateDetails() {
         let view = (self.theController.view as? SettingsProfileView)
 
-        let fName = view?.txtFirstName.text?.toTrim()
-        let lName = view?.txtLastName.text?.toTrim()
-        let DOB = view?.txtDOB.text?.toTrim()
-        let location = view?.txtLocation.text?.toTrim()
-        let code = view?.txtCode.text?.toTrim()
-        let mobile = view?.txtMobile.text?.toTrim()
-        let facebook = view?.txtFacebook.text?.toTrim()
-        let email = view?.txtEmail.text?.toTrim()
+        let fName = view?.txtFirstName.text?.toTrim() ?? ""
+        let lName = view?.txtLastName.text?.toTrim() ?? ""
+        let DOB = view?.txtDOB.text?.toTrim() ?? ""
+        let gender = view?.txtGender.text?.toTrim() ?? ""
+        let location = view?.txtLocation.text?.toTrim() ?? ""
+        let code = view?.txtCode.text?.toTrim() ?? ""
+        let mobile = view?.txtMobile.text?.toTrim() ?? ""
+        let email = view?.txtEmail.text?.toTrim() ?? ""
 
-        if fName == "" {
-            makeToast(strMessage: getCommonString(key: "Please_enter_firstname_key"))
-        }
-        else if lName == "" {
-            makeToast(strMessage: getCommonString(key: "Please_enter_lastname_key"))
-        }
-        else if DOB == "" {
-            makeToast(strMessage: getCommonString(key: "Select_DOB_key"))
-        }
-        else if location == "" {
-            makeToast(strMessage: getCommonString(key: "Please_select_location_key"))
-        }
-        else if code == "" {
-            makeToast(strMessage: getCommonString(key: "Please_select_country_code_key"))
-        }
-        else if mobile == "" {
-            makeToast(strMessage: getCommonString(key: "Please_enter_mobile_number_key"))
-        }
-        else {
+//        if fName == "" {
+//            makeToast(strMessage: getCommonString(key: "Please_enter_firstname_key"))
+//        }
+//        else if lName == "" {
+//            makeToast(strMessage: getCommonString(key: "Please_enter_lastname_key"))
+//        }
+//        else if DOB == "" {
+//            makeToast(strMessage: getCommonString(key: "Select_DOB_key"))
+//        }
+//        else if gender == "" {
+//            makeToast(strMessage: getCommonString(key: "Please_select_location_key"))
+//        }
+//        else if location == "" {
+//            makeToast(strMessage: getCommonString(key: "Please_select_location_key"))
+//        }
+//        else if code == "" {
+//            makeToast(strMessage: getCommonString(key: "Please_select_country_code_key"))
+//        }
+//        else if mobile == "" {
+//            makeToast(strMessage: getCommonString(key: "Please_enter_mobile_number_key"))
+//        }
+//        else {
             let img = self.images == nil ? [] : [self.images!]
-            apiCallUpdateUserDetail(name: fName! + " " + lName!, email: email!, countryCode: code!, mobile: mobile!, dateOfBirth: DOB!, countryId: self.locationId, facebook: facebook!, images: img)
-        }
+            apiCallUpdateUserDetail(name: fName + " " + lName, email: email, gender: gender, countryCode: code, mobile: mobile, dateOfBirth: DOB, countryId: self.locationId, images: img)
+//        }
     }
     
-    func apiCallUpdateUserDetail(name:String, email:String
-        , countryCode:String, mobile:String, dateOfBirth:String, countryId:String, facebook: String, images:[UIImage]) {
+    func apiCallUpdateUserDetail(name:String, email:String, gender: String, countryCode:String, mobile:String, dateOfBirth:String, countryId:String, images:[UIImage]) {
         
-        var param = ["name": name, "email": email, "country_code": countryCode, "mobile": mobile, "date_of_birth": convertDateFormater(dateOfBirth, format: "dd / MM / yyyy", dateFormat: "dd-MM-yyyy"), "country_id": countryId, "facebook": facebook] as [String : Any]
+        var param = ["name": name, "email": email, "country_code": countryCode, "gender": gender, "mobile": mobile, "date_of_birth": convertDateFormater(dateOfBirth, format: "dd / MM / yyyy", dateFormat: "dd-MM-yyyy"), "country_id": countryId] as [String : Any]
         print(param)
         
         if (newApiConfig) {
@@ -262,7 +275,7 @@ class SettingsProfileViewModel {
     
     func showUserDetails() {
         let view = (self.theController.view as? SettingsProfileView)
-        view?.imgProfile.sd_setImage(with: self.profileDetails?.photo?.toURL(), completed: nil)
+        view?.imgProfile.sd_setImage(with: self.profileDetails?.photo?.toURL(), placeholderImage: UIImage(named: "ic_placeholder"))
         view?.lblNameTitle.text = self.profileDetails?.name ?? ""
         let fullNameArr = self.profileDetails?.name!.split{$0 == " "}.map(String.init)
         if (fullNameArr?.count)! > 0 {
@@ -284,12 +297,12 @@ class SettingsProfileViewModel {
         
         view?.txtDOB.text = convertDateFormater(date, format: "dd-MM-yyyy", dateFormat: "dd / MM / yyyy")
         view?.txtLocation.text = self.profileDetails?.location
+        view?.txtGender.text = self.profileDetails?.gender
         self.locationId = self.profileDetails?.countryDetail?.id?.stringValue ?? ""
 
         view?.txtCode.text = self.profileDetails?.countryCode
         view?.txtMobile.text = self.profileDetails?.mobile
         view?.txtEmail.text = self.profileDetails?.email
-        view?.txtFacebook.text = self.profileDetails?.facebook
         let format = newApiConfig ? "yyyy-MM-dd'T'HH:mm:ss.SZ" : "yyyy-MM-dd HH:mm:ss"
         view?.lblMemberSince.text = convertDateFormater((self.profileDetails?.createdAt) ?? Date().iso8601, format: format, dateFormat: "MMM yyyy")
         view?.lblAccountType.text = self.profileDetails?.accountDetail?.name
@@ -316,7 +329,6 @@ class SettingsProfileViewModel {
 //        view?.btnCountryCode.isUserInteractionEnabled = isEnable
         view?.btnLocation.isUserInteractionEnabled = isEnable
 //        view?.txtMobile.isUserInteractionEnabled = isEnable
-        view?.txtFacebook.isUserInteractionEnabled = isEnable
         view?.imgProfile.isUserInteractionEnabled = isEnable
     }
     
@@ -327,9 +339,9 @@ class SettingsProfileViewModel {
         json["data"]["user"].setValue(key: .photo, value: self.profileDetails?.photo ?? "")
         json["data"]["user"].setValue(key: .country_code, value: self.profileDetails?.countryCode ?? "+1")
         json["data"]["user"].setValue(key: .mobile, value: self.profileDetails?.mobile ?? "")
+        json["data"]["user"].setValue(key: .gender, value: self.profileDetails?.gender ?? "")
         json["data"]["user"].setValue(key: .date_of_birth, value: self.profileDetails?.dateOfBirth ?? "")
         json["data"]["user"].setNumberValue(key: .country_id, value: self.profileDetails?.countryId ?? 0)
-        json["data"]["user"].setValue(key: .facebook, value: self.profileDetails?.facebook ?? "")
         json["data"]["user"].setIntValue(key: .account_id, value: self.profileDetails?.accountDetail?.id?.intValue ?? 0)
         
         json["data"]["user"].setIntValue(key: .is_snooze, value: self.profileDetails?.isSnooze?.intValue ?? 0)

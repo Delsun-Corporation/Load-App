@@ -62,6 +62,7 @@ import UIKit
         self.layer.masksToBounds = false
         self.updateProperties()
         self.updateShadowPath()
+        self.sd_setImage(with: nil, placeholderImage: UIImage(named: "ic_placeholder"))
     }
     
     /**

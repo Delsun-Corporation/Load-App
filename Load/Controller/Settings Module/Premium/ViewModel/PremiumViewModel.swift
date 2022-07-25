@@ -36,8 +36,16 @@ class PremiumViewModel: ProfessionalRequirementDelegate, FilterActivitySelectedD
         self.theController = theController
     }
     
+    func apiCallGet(isLoading: Bool = false) {
+        if newApiConfig {
+            apiCallGetSettingPrimiumV2(isLoading: isLoading)
+            return
+        }
+        self.apiCallGetSettingPrimium(isLoading: isLoading)
+    }
+    
     func setupUI() {
-        self.apiCallGetSettingPrimium()
+        apiCallGet()
         self.apiCallOAuth2Token(progress: false)
     }
     
@@ -96,11 +104,6 @@ class PremiumViewModel: ProfessionalRequirementDelegate, FilterActivitySelectedD
         obj.mainModelView.navigationHeader = titleHeader
         obj.mainModelView.selectedViewMyProfile = self.selectedViewMyProfile
         obj.mainModelView.selectedViewMyFeed = self.selectedViewMyFeed
-//        obj.mainModelView.placeholder = getCommonString(key: "About_key")
-//        if self.txtAbout != "" {
-//            obj.mainView.txtTextView.text = self.txtAbout
-//        }
-//        obj.mainModelView.isScreen = 3
         self.theController.navigationController?.pushViewController(obj, animated: true)
     }
 
@@ -138,7 +141,7 @@ class PremiumViewModel: ProfessionalRequirementDelegate, FilterActivitySelectedD
     func BillingInformationReload(isUpdated: Bool) {
         if isUpdated {
             if self.theController.btnSave.isHidden {
-                self.apiCallGetSettingPrimium(isLoading: false)
+                self.apiCallGet(isLoading: false)
             }
         }
     }
@@ -148,8 +151,7 @@ class PremiumViewModel: ProfessionalRequirementDelegate, FilterActivitySelectedD
             self.theController.resetNavigationBar()
         }
         self.txtAbout = text
-        
-        let _ = validateDetails()
+        updatePremium()
     }
     
     func FilterActivitySelectedDidFinish(ids: [Int], names: [String]) {
@@ -170,7 +172,7 @@ class PremiumViewModel: ProfessionalRequirementDelegate, FilterActivitySelectedD
         self.setupNavigationbar(title: getCommonString(key: "Premium_key"))
         self.theController.navigationController?.setWhiteColor()
         self.theController.navigationController?.addShadow()
-
+        updatePremium()
     }
     
     func AutoTopUpFinish(isAutoTopup: Bool?, autoTopupAmount: String?, minimumBalance :String?) {
@@ -187,8 +189,7 @@ class PremiumViewModel: ProfessionalRequirementDelegate, FilterActivitySelectedD
     func selectedPermissionForPremium(viewMyProfile: String, viewMyFeed: String) {
         self.selectedViewMyProfile = viewMyProfile
         self.selectedViewMyFeed = viewMyFeed
-        
-        self.apiCallSettingCreateUpdatePrimium(about: self.txtAbout, specializationIds: self.selectedArray, languageIds: self.languagesId ?? 0)
+        updatePremium()
     }
 
     
@@ -211,15 +212,58 @@ class PremiumViewModel: ProfessionalRequirementDelegate, FilterActivitySelectedD
     
     func updatePremium() {
         self.theController.resetNavigationBar()
+        if newApiConfig {
+            self.apiCallSettingCreateUpdatePrimiumV2(about: self.txtAbout, specializationIds: self.selectedArray, languageIds: self.languagesId)
+            return
+        }
         self.apiCallSettingCreateUpdatePrimium(about: self.txtAbout, specializationIds: self.selectedArray, languageIds: self.languagesId)
     }
     
-    func apiCallSettingCreateUpdatePrimium(about: String, specializationIds: [Int], languageIds: Int?, isLoading: Bool = true) {
-        
+    func apiCallSettingCreateUpdatePrimiumV2(about: String, specializationIds: [Int], languageIds: Int?, isLoading: Bool = true) {
         var param = [
             "about": about,
             "specialization_ids" : specializationIds,
-            "language_ids": [languageIds ?? 0],
+            "language_id": newApiConfig ? languageIds ?? 0 : [languageIds ?? 0],
+            "is_auto_topup": self.isAutoTopup ?? false,
+            "auto_topup_amount": self.autoTopupAmount ?? "",
+            "minimum_balance": self.minimumBalance ?? "" ,
+            "is_card_default": self.creditCardIdDefault == nil ? false : true,
+            "credit_card_id": self.creditCardIdDefault ?? "",
+            "premium_profile_permission" : self.selectedViewMyProfile,
+            "feed_permission": self.selectedViewMyFeed
+        ] as [String : Any]
+        
+        if self.isAutoTopup == nil {
+            param.removeValue(forKey: "is_auto_topup")
+        }
+        
+        if self.autoTopupAmount == nil {
+            param.removeValue(forKey: "auto_topup_amount")
+        }
+        
+        if self.creditCardIdDefault == nil {
+            param.removeValue(forKey: "is_card_default")
+            param.removeValue(forKey: "credit_card_id")
+        }
+        print(param)
+        
+        ApiManager.shared.MakePostAPI(name: "setting/\(SETTING_CREATE_UPDATE_PRIMIUM)", params: param as [String : Any], progress: isLoading, vc: self.theController, isAuth: false, completionHandler: { (response, error) in
+            if response != nil {
+                let json = JSON(response!)
+                print(json)
+                let success = json.getBool(key: .success)
+                if success {
+                    print("Success Save Premium View Model!")
+                }
+            }
+        })
+    }
+    
+    func apiCallSettingCreateUpdatePrimium(about: String, specializationIds: [Int], languageIds: Int?, isLoading: Bool = true) {
+        var param = [
+            "about": about,
+            "specialization_ids" : specializationIds,
+            "language_ids": newApiConfig ? languageIds ?? 0 : [languageIds ?? 0],
             "is_auto_topup": self.isAutoTopup ?? false,
             "auto_topup_amount": self.autoTopupAmount ?? "",
             "minimum_balance": self.minimumBalance ?? "" ,
@@ -270,6 +314,47 @@ class PremiumViewModel: ProfessionalRequirementDelegate, FilterActivitySelectedD
                     for data in self.premiumResponse?.specializationDetails ?? [] {
                         self.selectedArray.append(data.id?.intValue ?? 0)
                         self.selectedNameArray.append(data.name ?? "")
+                    }
+                    view?.tableView.reloadData()
+                }
+            }
+        })
+    }
+    
+    func apiCallGetSettingPrimiumV2(isLoading: Bool = true) {
+        
+        let param = ["": ""] as [String : Any]
+        print(param)
+        
+        ApiManager.shared.MakeGetAPI(name: "setting/\(GET_SETTING_PRIMIUM)", params: param as [String : Any], progress: isLoading, vc: self.theController, isAuth: false, completionHandler: { (response, error) in
+            if response != nil {
+                let json = JSON(response!)
+                print(json)
+                let success = json.getBool(key: .success)
+                if success {
+                    let data = json.getDictionary(key: .data)
+                    let view = (self.theController.view as? PremiumView)
+                    self.premiumResponse = PremiumModelClass(JSON: data.dictionaryObject!)
+                    
+                    self.txtAbout = self.premiumResponse?.about ?? ""
+                    for language in GetAllData?.data?.languages ?? [] where self.premiumResponse?.languageId == language.id?.intValue {
+                        self.languagesId = language.id?.intValue
+                        self.languages = language.name ?? ""
+                    }
+                    
+                    self.isAutoTopup = self.premiumResponse?.isAutoTopup
+                    self.autoTopupAmount = self.premiumResponse?.autoTopupAmount?.stringValue
+                    
+                    self.selectedViewMyProfile = self.premiumResponse?.viewPremiumProfile ?? ""
+                    self.selectedViewMyFeed = self.premiumResponse?.viewPremiumFeed ?? ""
+                    
+                    self.selectedArray.removeAll()
+                    self.selectedNameArray.removeAll()
+                    for data in GetAllData?.data?.specializations ?? [] {
+                        for id in self.premiumResponse?.specializationIds ?? [] where id == (data.id?.intValue ?? 0) {
+                            self.selectedArray.append(id)
+                            self.selectedNameArray.append(data.name ?? "")
+                        }
                     }
                     view?.tableView.reloadData()
                 }

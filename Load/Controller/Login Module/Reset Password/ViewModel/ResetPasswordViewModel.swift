@@ -42,15 +42,26 @@ class ResetPasswordViewModel {
                 let json = JSON(response!)
                 let success = json.getBool(key: .success)
                 let msg = json.getString(key: .message)
-                makeToast(strMessage: msg)
                 if success {
+                    let alert = UIAlertController(title: "Success", message: msg, preferredStyle: .alert)
+                    let action = UIAlertAction(title: "Ok", style: .default, handler: { _ in
+                        alert.dismiss(animated: true, completion: nil)
+                        let obj: OTPResetPasswordVC = AppStoryboard.OTP.instance.instantiateViewController(withIdentifier: "OTPResetPasswordVC") as! OTPResetPasswordVC
+                        obj.email = view?.txtEmail.text ?? ""
+                        self.theController.navigationController?.pushViewController(obj, animated: true)
+                    })
+                    alert.addAction(action)
+                    self.theController.present(alert, animated: true)
                     
-                    let obj: OTPResetPasswordVC = AppStoryboard.OTP.instance.instantiateViewController(withIdentifier: "OTPResetPasswordVC") as! OTPResetPasswordVC
-                    obj.email = view?.txtEmail.text ?? ""
-                    self.theController.navigationController?.pushViewController(obj, animated: true)
                     
 //                    self.theController.navigationController?.popViewController(animated: true)
                 }
+                else {
+                    makeToast(strMessage: msg)
+                }
+            }
+            else {
+                makeToast(strMessage: "An error has occured. Please try again later")
             }
         }
     }

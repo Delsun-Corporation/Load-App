@@ -31,12 +31,6 @@ class LibraryVC: UIViewController {
         super.viewWillAppear(animated)
         setUpNavigationBarTitle(strTitle: "Library")
         self.navigationController?.setColor()
-        SJSwiftSideMenuController.enableSwipeGestureWithMenuSide(menuSide: .NONE)
-    }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        SJSwiftSideMenuController.enableSwipeGestureWithMenuSide(menuSide: .LEFT)
     }
     
     //MARK:- @IBAction

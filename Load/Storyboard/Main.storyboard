@@ -9,6 +9,9 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
+        <array key="Proxima-Nova-Regular.ttf">
+            <string>ProximaNova-Regular</string>
+        </array>
         <array key="SFUIText-Regular.ttf">
             <string>SFUIText-Regular</string>
         </array>
@@ -229,6 +232,12 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9xf-Na-90k">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <subviews>
+                                    <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fg6-Ls-sES">
+                                        <rect key="frame" x="67" y="269" width="240" height="128"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <viewLayoutGuide key="contentLayoutGuide" id="Dbx-Zt-Wj8"/>
+                                        <viewLayoutGuide key="frameLayoutGuide" id="glC-uI-jzk"/>
+                                    </scrollView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SIGN UP" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="abY-SK-yiO">
                                         <rect key="frame" x="151" y="65" width="73" height="21"/>
                                         <fontDescription key="fontDescription" name="SFUIText-Regular" family="SF UI Text" pointSize="18"/>
@@ -236,7 +245,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Gfe-3Q-ahj" customClass="CustomView" customModule="Load" customModuleProvider="target">
-                                        <rect key="frame" x="44" y="133" width="287" height="348"/>
+                                        <rect key="frame" x="44" y="133" width="287" height="371"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TVX-xl-xrZ">
                                                 <rect key="frame" x="39" y="39" width="209" height="36"/>
@@ -323,7 +332,7 @@
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="otY-wN-jvd">
-                                                <rect key="frame" x="47.5" y="223" width="192" height="24"/>
+                                                <rect key="frame" x="47.5" y="266" width="192" height="24"/>
                                                 <subviews>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="u3o-c1-Yci">
                                                         <rect key="frame" x="5" y="1" width="17" height="22"/>
@@ -357,7 +366,7 @@
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lh4-3s-ndw">
-                                                <rect key="frame" x="39" y="259" width="209" height="37"/>
+                                                <rect key="frame" x="39" y="302" width="209" height="37"/>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FhK-tS-hH4">
                                                         <rect key="frame" x="0.0" y="0.0" width="209" height="37"/>
@@ -392,6 +401,16 @@
                                                     <constraint firstAttribute="bottom" secondItem="FhK-tS-hH4" secondAttribute="bottom" id="hMv-KQ-iCB"/>
                                                 </constraints>
                                             </view>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" minimumFontSize="8" translatesAutoresizingMaskIntoConstraints="NO" id="WjX-vl-hj1">
+                                                <rect key="frame" x="39" y="195" width="209" height="49"/>
+                                                <string key="text">Password should include at least:
+- 8 characters in length
+- 1 number
+- 1 lower or upper case letter</string>
+                                                <fontDescription key="fontDescription" name="ProximaNova-Regular" family="Proxima Nova" pointSize="11"/>
+                                                <color key="textColor" white="0.0" alpha="0.5" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
@@ -399,17 +418,20 @@
                                             <constraint firstItem="lh4-3s-ndw" firstAttribute="leading" secondItem="Gfe-3Q-ahj" secondAttribute="leading" constant="39" id="6zD-0I-kRn"/>
                                             <constraint firstAttribute="trailing" secondItem="TVX-xl-xrZ" secondAttribute="trailing" constant="39" id="APw-MG-J8c"/>
                                             <constraint firstAttribute="trailing" secondItem="lh4-3s-ndw" secondAttribute="trailing" constant="39" id="HyY-4a-2Ox"/>
-                                            <constraint firstAttribute="bottom" secondItem="lh4-3s-ndw" secondAttribute="bottom" constant="52" id="LqM-q1-GyS"/>
+                                            <constraint firstAttribute="bottom" secondItem="lh4-3s-ndw" secondAttribute="bottom" constant="32" id="LqM-q1-GyS"/>
                                             <constraint firstItem="otY-wN-jvd" firstAttribute="centerX" secondItem="Gfe-3Q-ahj" secondAttribute="centerX" id="QkN-gt-zng"/>
+                                            <constraint firstItem="WjX-vl-hj1" firstAttribute="top" secondItem="Max-p0-3FM" secondAttribute="bottom" constant="12" id="TCg-Pn-3jg"/>
+                                            <constraint firstItem="WjX-vl-hj1" firstAttribute="leading" secondItem="Max-p0-3FM" secondAttribute="leading" id="Uwo-he-gd2"/>
                                             <constraint firstAttribute="trailing" secondItem="i2M-mc-m4Q" secondAttribute="trailing" constant="39" id="afJ-Wj-y14"/>
                                             <constraint firstItem="Max-p0-3FM" firstAttribute="leading" secondItem="Gfe-3Q-ahj" secondAttribute="leading" constant="39" id="cjr-9L-HMp"/>
                                             <constraint firstItem="TVX-xl-xrZ" firstAttribute="top" secondItem="Gfe-3Q-ahj" secondAttribute="top" constant="39" id="d2J-OG-f78"/>
-                                            <constraint firstItem="otY-wN-jvd" firstAttribute="top" secondItem="Max-p0-3FM" secondAttribute="bottom" constant="40" id="dKg-iv-szd"/>
+                                            <constraint firstItem="otY-wN-jvd" firstAttribute="top" secondItem="WjX-vl-hj1" secondAttribute="bottom" constant="22" id="i8p-tB-ves"/>
                                             <constraint firstItem="i2M-mc-m4Q" firstAttribute="top" secondItem="TVX-xl-xrZ" secondAttribute="bottom" constant="18" id="pF1-NR-wJY"/>
                                             <constraint firstItem="lh4-3s-ndw" firstAttribute="top" secondItem="otY-wN-jvd" secondAttribute="bottom" constant="12" id="qbE-qo-hbo"/>
                                             <constraint firstAttribute="trailing" secondItem="Max-p0-3FM" secondAttribute="trailing" constant="39" id="rRv-fA-upy"/>
                                             <constraint firstItem="TVX-xl-xrZ" firstAttribute="leading" secondItem="Gfe-3Q-ahj" secondAttribute="leading" constant="39" id="sH4-J4-U4u"/>
                                             <constraint firstItem="i2M-mc-m4Q" firstAttribute="leading" secondItem="Gfe-3Q-ahj" secondAttribute="leading" constant="39" id="sfN-rm-u4V"/>
+                                            <constraint firstItem="WjX-vl-hj1" firstAttribute="trailing" secondItem="Max-p0-3FM" secondAttribute="trailing" id="vA9-YR-eKm"/>
                                         </constraints>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
@@ -434,11 +456,10 @@
                                     <constraint firstItem="Gfe-3Q-ahj" firstAttribute="leading" secondItem="9xf-Na-90k" secondAttribute="leading" constant="44" id="5an-lZ-BVr"/>
                                     <constraint firstItem="abY-SK-yiO" firstAttribute="top" secondItem="9xf-Na-90k" secondAttribute="top" constant="65" id="9E4-4a-Aal"/>
                                     <constraint firstItem="aY4-cW-EbP" firstAttribute="centerX" secondItem="9xf-Na-90k" secondAttribute="centerX" id="QEn-I6-OGe"/>
-                                    <constraint firstAttribute="bottom" secondItem="aY4-cW-EbP" secondAttribute="bottom" constant="50" id="Xc0-m9-AP3"/>
                                     <constraint firstItem="abY-SK-yiO" firstAttribute="centerX" secondItem="9xf-Na-90k" secondAttribute="centerX" id="Zje-BX-a3H"/>
                                     <constraint firstAttribute="trailing" secondItem="Gfe-3Q-ahj" secondAttribute="trailing" constant="44" id="beP-ve-7LH"/>
-                                    <constraint firstItem="aY4-cW-EbP" firstAttribute="top" relation="greaterThanOrEqual" secondItem="Gfe-3Q-ahj" secondAttribute="bottom" constant="15" id="cAt-wS-1lV"/>
                                     <constraint firstItem="Gfe-3Q-ahj" firstAttribute="top" secondItem="abY-SK-yiO" secondAttribute="bottom" constant="47" id="dee-su-VGb"/>
+                                    <constraint firstAttribute="bottom" secondItem="aY4-cW-EbP" secondAttribute="bottom" constant="50" id="tRx-SQ-8oV"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -469,7 +490,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="W2r-7f-LW6" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2409" y="27"/>
+            <point key="canvasLocation" x="2408.8000000000002" y="26.53673163418291"/>
         </scene>
         <!--Sign Up Setup ProfileVC-->
         <scene sceneID="2ul-uP-ay0">
@@ -1410,7 +1431,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="x5s-pk-Kfr" customClass="CustomView" customModule="Load" customModuleProvider="target">
-                                        <rect key="frame" x="44" y="133" width="287" height="348"/>
+                                        <rect key="frame" x="44" y="133" width="287" height="381"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ftn-az-Pcy">
                                                 <rect key="frame" x="39" y="39" width="209" height="36"/>
@@ -1497,7 +1518,7 @@
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xDR-my-ufx">
-                                                <rect key="frame" x="39" y="259" width="209" height="37"/>
+                                                <rect key="frame" x="39" y="292" width="209" height="37"/>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0r0-RV-1k4">
                                                         <rect key="frame" x="0.0" y="0.0" width="209" height="37"/>
@@ -1532,6 +1553,16 @@
                                                     <constraint firstAttribute="trailing" secondItem="0r0-RV-1k4" secondAttribute="trailing" id="Vxu-aB-7Xr"/>
                                                 </constraints>
                                             </view>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" minimumFontSize="8" translatesAutoresizingMaskIntoConstraints="NO" id="KXA-7k-CME">
+                                                <rect key="frame" x="39" y="205" width="209" height="50"/>
+                                                <string key="text">Password should include at least:
+- 8 characters in length
+- 1 number
+- 1 lower or upper case letter</string>
+                                                <fontDescription key="fontDescription" name="ProximaNova-Regular" family="Proxima Nova" pointSize="11"/>
+                                                <color key="textColor" white="0.0" alpha="0.5" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
@@ -1541,13 +1572,16 @@
                                             <constraint firstItem="pEl-QP-fGc" firstAttribute="top" secondItem="ftn-az-Pcy" secondAttribute="bottom" constant="18" id="KLT-Nw-gUP"/>
                                             <constraint firstAttribute="trailing" secondItem="aDv-wY-E1c" secondAttribute="trailing" constant="39" id="Lco-fi-w7z"/>
                                             <constraint firstItem="ftn-az-Pcy" firstAttribute="top" secondItem="x5s-pk-Kfr" secondAttribute="top" constant="39" id="Owc-F5-Jbn"/>
+                                            <constraint firstItem="KXA-7k-CME" firstAttribute="leading" secondItem="aDv-wY-E1c" secondAttribute="leading" id="QbF-TP-4P6"/>
+                                            <constraint firstItem="xDR-my-ufx" firstAttribute="top" secondItem="KXA-7k-CME" secondAttribute="bottom" constant="37" id="T7c-M8-cm8"/>
                                             <constraint firstItem="aDv-wY-E1c" firstAttribute="leading" secondItem="x5s-pk-Kfr" secondAttribute="leading" constant="39" id="WP7-Mf-2cX"/>
                                             <constraint firstItem="xDR-my-ufx" firstAttribute="leading" secondItem="x5s-pk-Kfr" secondAttribute="leading" constant="39" id="ehI-qR-cZ5"/>
                                             <constraint firstItem="pEl-QP-fGc" firstAttribute="leading" secondItem="x5s-pk-Kfr" secondAttribute="leading" constant="39" id="i3c-W4-wkm"/>
+                                            <constraint firstItem="KXA-7k-CME" firstAttribute="trailing" secondItem="aDv-wY-E1c" secondAttribute="trailing" id="mBj-bj-e9u"/>
                                             <constraint firstAttribute="trailing" secondItem="pEl-QP-fGc" secondAttribute="trailing" constant="39" id="pfM-v4-mea"/>
-                                            <constraint firstItem="xDR-my-ufx" firstAttribute="top" secondItem="aDv-wY-E1c" secondAttribute="bottom" constant="76" id="qZk-Ll-2bw"/>
                                             <constraint firstAttribute="trailing" secondItem="ftn-az-Pcy" secondAttribute="trailing" constant="39" id="r3G-m3-MUV"/>
                                             <constraint firstAttribute="bottom" secondItem="xDR-my-ufx" secondAttribute="bottom" constant="52" id="xUl-tl-cwo"/>
+                                            <constraint firstItem="KXA-7k-CME" firstAttribute="top" secondItem="aDv-wY-E1c" secondAttribute="bottom" constant="22" id="zZg-Ud-YtP"/>
                                         </constraints>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">

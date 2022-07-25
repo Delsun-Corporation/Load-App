@@ -23,11 +23,14 @@ class SignUpSetupProfileViewModel {
     
     let heightPickerView: UIPickerView = UIPickerView()
     let weightPickerView: UIPickerView = UIPickerView()
-    
+    var arrayDecimal = Array(stride(from: 0, to: 10, by: 1))
     var sexArray: [String] = ["Male","Female", "Other"]
     var heightArray: [String] = []
     var weightArray: [String] = []
-    
+    var firstComponentWeight = "0"
+    var secondComponentWeight = "0"
+    var firstComponentHeight = "0"
+    var secondComponentHeight = "0"
     var isProfileSelected:Bool = false
     var isDOBSelected:Bool = false
     var isSexSelected:Bool = false
@@ -53,9 +56,6 @@ class SignUpSetupProfileViewModel {
         }
         for i in 35..<121 {
             weightArray.append("\(i)")
-            if i != 120 {
-                weightArray.append("\(i).5")
-            }
         }
         self.DOBSetup()
         self.sexDropDownSetupUI()
@@ -150,6 +150,25 @@ class SignUpSetupProfileViewModel {
     
     func heightPickerSetup() {
         let view = (self.theController.view as? SignUpSetupProfileView)
+        let screenRest = UIScreen.main.bounds.width / 2
+        for index in 0..<2 {
+            let label = UILabel()
+            label.textAlignment = .center
+            label.tag = 100 + index
+            label.font = themeFont(size: 21, fontname: .Regular) //themeFont(size: 15, fontname: .ProximaNovaRegular)
+            if index == 0 {
+                let x = DEVICE_TYPE.IS_IPHONE_6 ? 98 : 108
+                label.frame = CGRect(x: (screenRest * CGFloat(index)) + CGFloat(x), y: (heightPickerView.frame.height - 30) / 2, width: screenRest, height: 30)
+                label.text = "."
+            }
+            else {
+                let x = DEVICE_TYPE.IS_IPHONE_6 ? -2 : 8
+                label.frame = CGRect(x: (screenRest * CGFloat(index)) - CGFloat(x), y: (heightPickerView.frame.height - 30) / 2, width: screenRest, height: 30)
+                label.text = "cm"
+            }
+            label.textColor = .appthemeRedColor
+            self.heightPickerView.addSubview(label)
+        }
         
         heightPickerView.delegate = theController.self
         heightPickerView.dataSource = theController.self
@@ -161,6 +180,25 @@ class SignUpSetupProfileViewModel {
     func weightPickerSetup() {
         let view = (self.theController.view as? SignUpSetupProfileView)
         
+        let screenRest = UIScreen.main.bounds.width / 2
+        for index in 0..<2 {
+            let label = UILabel()
+            label.textAlignment = .center
+            label.tag = 100 + index
+            label.font = themeFont(size: 21, fontname: .Regular) //themeFont(size: 15, fontname: .ProximaNovaRegular)
+            if index == 0 {
+                let x = DEVICE_TYPE.IS_IPHONE_6 ? 98 : 108
+                label.frame = CGRect(x: (screenRest * CGFloat(index)) + CGFloat(x), y: (weightPickerView.frame.height - 30) / 2, width: screenRest, height: 30)
+                label.text = "."
+            }
+            else {
+                let x = DEVICE_TYPE.IS_IPHONE_6 ? -2 : 8
+                label.frame = CGRect(x: (screenRest * CGFloat(index)) - CGFloat(x), y: (weightPickerView.frame.height - 30) / 2, width: screenRest, height: 30)
+                label.text = "kg"
+            }
+            label.textColor = .appthemeRedColor
+            self.weightPickerView.addSubview(label)
+        }
         weightPickerView.delegate = theController.self
         weightPickerView.dataSource = theController.self
         view?.txtWeight.inputView = weightPickerView
@@ -249,8 +287,11 @@ class SignUpSetupProfileViewModel {
     func apiCall() {
         let view = (self.theController.view as? SignUpSetupProfileView)
         
-        let weightInt: Int = Int(view?.txtWeight.text ?? "0") ?? 0
-        let heightInt: Int = Int(view?.txtHeight.text ?? "0") ?? 0
+        let weightInt: Double = Double(view?.txtWeight.text?.replace(target: " kg", withString: "") ?? "0.0") ?? 0.0
+        let heightInt: Double = Double(view?.txtHeight.text?.replace(target: " cm", withString: "") ?? "0.0") ?? 0.0
+        
+        print("This is weight int \(weightInt)")
+        print("This is height int \(heightInt)")
 
         let fullName = (view?.txtFirstName.text ?? "") + " " + (view?.txtLastName.text ?? "")
         
