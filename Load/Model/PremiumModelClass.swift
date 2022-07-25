@@ -1,12 +1,13 @@
 import Foundation 
-import ObjectMapper 
+import ObjectMapper
 
 class PremiumModelClass: Mappable { 
 
-	var specializationIds: [String]? 
+	var specializationIds: [Int]?
 	var updatedAt: String? 
 	var specializationDetails: [PremiumSpecializationDetails]?
-	var languageIds: [String]? 
+	var languageIds: [String]?
+    var languageId: Int?
 	var createdAt: String? 
 	var userDetail: PremiumUserDetail?
 	var userId: NSNumber? 
@@ -26,7 +27,8 @@ class PremiumModelClass: Mappable {
 		specializationIds <- map["specialization_ids"] 
 		updatedAt <- map["updated_at"] 
 		specializationDetails <- map["specialization_details"] 
-		languageIds <- map["language_ids"] 
+		languageIds <- map["language_ids"]
+        languageId <- map["language_id"]
 		createdAt <- map["created_at"] 
 		userDetail <- map["user_detail"] 
 		userId <- map["user_id"] 
