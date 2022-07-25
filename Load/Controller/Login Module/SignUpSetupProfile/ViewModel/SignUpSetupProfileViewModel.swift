@@ -150,20 +150,17 @@ class SignUpSetupProfileViewModel {
     
     func heightPickerSetup() {
         let view = (self.theController.view as? SignUpSetupProfileView)
-        let screenRest = UIScreen.main.bounds.width / 2
         for index in 0..<2 {
             let label = UILabel()
             label.textAlignment = .center
             label.tag = 100 + index
             label.font = themeFont(size: 21, fontname: .Regular) //themeFont(size: 15, fontname: .ProximaNovaRegular)
             if index == 0 {
-                let x = DEVICE_TYPE.IS_IPHONE_6 ? 98 : 108
-                label.frame = CGRect(x: (screenRest * CGFloat(index)) + CGFloat(x), y: (heightPickerView.frame.height - 30) / 2, width: screenRest, height: 30)
+                label.frame = CGRect(x: 0.47 * UIScreen.main.bounds.width, y: (heightPickerView.frame.height - 30) / 2, width: 0.1 * UIScreen.main.bounds.width, height: 30)
                 label.text = "."
             }
             else {
-                let x = DEVICE_TYPE.IS_IPHONE_6 ? -2 : 8
-                label.frame = CGRect(x: (screenRest * CGFloat(index)) - CGFloat(x), y: (heightPickerView.frame.height - 30) / 2, width: screenRest, height: 30)
+                label.frame = CGRect(x: 0.7 * UIScreen.main.bounds.width, y: (heightPickerView.frame.height - 30) / 2, width: 0.1 * UIScreen.main.bounds.width, height: 30)
                 label.text = "cm"
             }
             label.textColor = .appthemeRedColor
@@ -179,21 +176,17 @@ class SignUpSetupProfileViewModel {
     
     func weightPickerSetup() {
         let view = (self.theController.view as? SignUpSetupProfileView)
-        
-        let screenRest = UIScreen.main.bounds.width / 2
         for index in 0..<2 {
             let label = UILabel()
             label.textAlignment = .center
             label.tag = 100 + index
             label.font = themeFont(size: 21, fontname: .Regular) //themeFont(size: 15, fontname: .ProximaNovaRegular)
             if index == 0 {
-                let x = DEVICE_TYPE.IS_IPHONE_6 ? 98 : 108
-                label.frame = CGRect(x: (screenRest * CGFloat(index)) + CGFloat(x), y: (weightPickerView.frame.height - 30) / 2, width: screenRest, height: 30)
+                label.frame = CGRect(x: 0.47 * UIScreen.main.bounds.width, y: (heightPickerView.frame.height - 30) / 2, width: 0.1 * UIScreen.main.bounds.width, height: 30)
                 label.text = "."
             }
             else {
-                let x = DEVICE_TYPE.IS_IPHONE_6 ? -2 : 8
-                label.frame = CGRect(x: (screenRest * CGFloat(index)) - CGFloat(x), y: (weightPickerView.frame.height - 30) / 2, width: screenRest, height: 30)
+                label.frame = CGRect(x: 0.7 * UIScreen.main.bounds.width, y: (heightPickerView.frame.height - 30) / 2, width: 0.1 * UIScreen.main.bounds.width, height: 30)
                 label.text = "kg"
             }
             label.textColor = .appthemeRedColor

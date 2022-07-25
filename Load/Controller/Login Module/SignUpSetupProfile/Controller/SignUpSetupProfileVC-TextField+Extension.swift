@@ -136,8 +136,7 @@ extension SignUpSetupProfileVC: UIPickerViewDelegate, UIPickerViewDataSource {
     }
     
     func pickerView(_ pickerView: UIPickerView, widthForComponent component: Int) -> CGFloat {
-        
-        return CGFloat(120) - 5
+        return 0.2 * (UIScreen.main.bounds.width)
     }
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
