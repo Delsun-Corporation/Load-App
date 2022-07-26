@@ -105,8 +105,7 @@ class PremiumSpecializationDetails: Mappable {
 		name <- map["name"] 
 		code <- map["code"] 
 	}
-} 
-
+}
 
 class CardDetails: Mappable {
     

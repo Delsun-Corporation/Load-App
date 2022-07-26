@@ -123,7 +123,6 @@ class PremiumViewModel: ProfessionalRequirementDelegate, FilterActivitySelectedD
     func btnPremiumPaymentMethodClicked() {
         let obj = AppStoryboard.Settings.instance.instantiateViewController(withIdentifier: "PremiumPaymentMethodVc") as! PremiumPaymentMethodVc
         obj.mainModelView.accessToken = self.accessToken
-        obj.mainModelView.cardDetails = self.premiumResponse?.cardDetails ?? []
         self.theController.navigationController?.pushViewController(obj, animated: true)
     }
 

@@ -28,12 +28,18 @@ class PremiumPaymentMethodViewModel {
 
     //MARK: - SetupUI
     @objc func setupUI(){
+        if newApiConfig {
+            getCreditCardsList()
+            let view = (self.theController.view as? PremiumPaymentMethodView)
+            view?.tableView.reloadData()
+            return
+        }
         
         if cardDetails.count != 0 {
             for data in self.cardDetails {
                 if data.isDefault?.boolValue ?? false {
                     self.defaultCard = data.creditCardId ?? ""
-                    self.defaultCardID = Int(data.id ?? 0)
+                    self.defaultCardID = Int(truncating: data.id ?? 0)
                 }
                 
                 self.apiCallGetCreditCard(cardId: data.creditCardId ?? "")
@@ -41,6 +47,31 @@ class PremiumPaymentMethodViewModel {
         }
         let view = (self.theController.view as? PremiumPaymentMethodView)
         view?.tableView.reloadData()
+    }
+    
+    private func getCreditCardsList() {
+        ApiManager.shared.MakeGetAPI(name: "setting/get-credit-card",
+                                     params: [:],
+                                     vc: theController) { response, error in
+            if let response = response {
+                let json = JSON(response)
+                print(json)
+                let success = json.getBool(key: .success)
+                if success {
+                    let data = json.getArray(key: .data)
+                    for datum in data {
+                        guard let model = CardDetails(JSON: datum.dictionaryObject!) else {
+                            continue
+                        }
+                        self.cardDetails.append(model)
+                    }
+                }
+                
+                return
+            }
+            
+            makeToast(strMessage: error ?? "Something went wrong, please try again")
+        }
     }
     
     //MARK: - Setup navigation bar
