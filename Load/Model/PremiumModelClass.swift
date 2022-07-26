@@ -17,6 +17,7 @@ class PremiumModelClass: Mappable {
     var cardDetails: [CardDetails]?
     var isAutoTopup: Bool?
     var autoTopupAmount: NSNumber?
+    var minimumBalance: String?
     var viewPremiumProfile: String = ""
     var viewPremiumFeed: String = ""
 
@@ -40,6 +41,7 @@ class PremiumModelClass: Mappable {
         autoTopupAmount <- map["auto_topup_amount"]
         viewPremiumProfile <- map["premium_profile_permission"]
         viewPremiumFeed <- map["feed_permission"]
+        minimumBalance <- map["minimum_balance"]
 	}
 } 
 
