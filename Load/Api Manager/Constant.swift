@@ -36,6 +36,13 @@ var TEST_COVER_IMAGE_URL = "https://www.incimages.com/uploaded_files/image/970x4
 //Check vimeo video exist or not base url
 var strVimeoBaseURL = "https://vimeo.com/api/oembed.json?url="
 var strYoutubeBaseURL = "https://www.youtube.com/oembed?format=json&url="
+let serverDateFormatter: DateFormatter = {
+    let result = DateFormatter()
+    result.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SZ"
+    result.locale = Locale(identifier: "en_US_POSIX")
+    result.timeZone = TimeZone(secondsFromGMT: 0)
+    return result
+}()
 
 
 func getSecondsToHoursMinutesSeconds (seconds:Int) -> String {
