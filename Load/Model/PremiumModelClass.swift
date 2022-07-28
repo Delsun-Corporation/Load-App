@@ -109,22 +109,36 @@ class PremiumSpecializationDetails: Mappable {
 
 class CardDetails: Mappable {
     
-    var id: NSNumber?
+    var id: String?
     var creditCardId: String?
     var isDefault: NSNumber?
     var createdAt: String?
     var userId: NSNumber?
     var updatedAt: String?
+    var countryId: Int?
+    var postalCode: String?
+    var number: String?
+    var expiryDate: String?
+    var city: String?
+    var name: String?
+    var state: String?
     
     required init?(map: Map){
     }
     
     func mapping(map: Map) {
-        id <- map["id"]
+        id <- map["_id"]
         creditCardId <- map["credit_card_id"]
         isDefault <- map["is_default"]
         createdAt <- map["created_at"]
         userId <- map["user_id"]
         updatedAt <- map["updated_at"]
+        countryId <- map["country_id"]
+        postalCode <- map["postal_code"]
+        number <- map["credit_card_number"]
+        expiryDate <- map["expiry_date"]
+        city <- map["city"]
+        name <- map["name"]
+        state <- map["state_province_region"]
     }
 }

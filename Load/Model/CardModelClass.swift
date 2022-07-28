@@ -1,5 +1,5 @@
 import Foundation 
-import ObjectMapper 
+import ObjectMapper
 
 class CardModelClass: Mappable { 
 

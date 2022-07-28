@@ -25,6 +25,11 @@ class PremiumPaymentMethodViewModel {
     var defaultCard:String?
     var defaultCardID: Int?
     var accessToken: String = ""
+    lazy var creditCardDateFormatter: DateFormatter = {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "dd/yyyy"
+        return dateFormatter
+    }()
 
     //MARK: - SetupUI
     @objc func setupUI(){
@@ -39,7 +44,7 @@ class PremiumPaymentMethodViewModel {
             for data in self.cardDetails {
                 if data.isDefault?.boolValue ?? false {
                     self.defaultCard = data.creditCardId ?? ""
-                    self.defaultCardID = Int(truncating: data.id ?? 0)
+                    self.defaultCardID = Int(data.id ?? "0") ?? 0
                 }
                 
                 self.apiCallGetCreditCard(cardId: data.creditCardId ?? "")
@@ -52,7 +57,11 @@ class PremiumPaymentMethodViewModel {
     private func getCreditCardsList() {
         ApiManager.shared.MakeGetAPI(name: "setting/get-credit-card",
                                      params: [:],
-                                     vc: theController) { response, error in
+                                     vc: theController) { [weak self] response, error in
+            guard let self = self else {
+                return
+            }
+            
             if let response = response {
                 let json = JSON(response)
                 print(json)
@@ -64,7 +73,18 @@ class PremiumPaymentMethodViewModel {
                             continue
                         }
                         self.cardDetails.append(model)
+                        
                     }
+                    
+                    if self.cardDetails.count != 0 {
+                        for data in self.cardDetails where data.isDefault == true {
+                            self.defaultCard = data.id ?? ""
+                            self.defaultCardID = Int(data.id ?? "0") ?? 0
+                        }
+                    }
+                    let view = (self.theController.view as? PremiumPaymentMethodView)
+                    view?.tableView.reloadData()
+                    
                 }
                 
                 return
@@ -110,6 +130,10 @@ class PremiumPaymentMethodViewModel {
             self.theController.navigationController?.view.addSubview(vwnav)
             
         }
+    }
+    
+    func convertDateToCreditCardDateInString(_ date: Date) -> String {
+        creditCardDateFormatter.string(from: date)
     }
 
 }
