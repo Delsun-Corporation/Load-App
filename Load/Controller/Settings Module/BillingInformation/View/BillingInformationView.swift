@@ -33,14 +33,12 @@ class BillingInformationView: UIView {
         self.btnSave.setTitleColor(UIColor.white, for: .normal)
         self.btnSave.backgroundColor = UIColor.appthemeOffRedColor
         self.btnSave.titleLabel?.font = themeFont(size: 15, fontname: .ProximaNovaBold)
+        self.btnSave.isEnabled = true
+        self.btnSave.isUserInteractionEnabled = true
         
         self.tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 176, right: 0)
 
         self.vwBottom.alpha = 0.0
         self.vwBottom.isUserInteractionEnabled = false
-
-        self.btnSave.backgroundColor = UIColor.appthemeGrayColor
-        self.btnSave.isUserInteractionEnabled = false
-
     }
 }

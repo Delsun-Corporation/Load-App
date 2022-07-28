@@ -51,7 +51,11 @@ extension BillingInformationVC {
     }
     
     @IBAction func btnSaveClicked(_ sender: Any) {
-        self.mainModelView.validateDetails()
+        guard self.mainModelView.validateDetails() else {
+            return
+        }
+        
+        mainModelView.saveCard()
     }
     
 }

@@ -13,6 +13,9 @@ import MGSwipeTableCell
 extension PremiumPaymentMethodVc: UITableViewDelegate, UITableViewDataSource,AutoTopUpBillingCardDelegate {
    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if newApiConfig {
+            return 1 + self.mainModelView.cardDetails.count
+        }
         return 1 + self.mainModelView.cardNewDetails.count
     }
     
@@ -23,7 +26,7 @@ extension PremiumPaymentMethodVc: UITableViewDelegate, UITableViewDataSource,Aut
             cell.selectionStyle = .none
             cell.tag = indexPath.section
             cell.setupUI()
-            cell.imgRight.isHidden = self.mainModelView.cardNewDetails.count == 0 ? false : true
+            cell.imgRight.isHidden = true
             return cell
         }
         else {
@@ -32,6 +35,23 @@ extension PremiumPaymentMethodVc: UITableViewDelegate, UITableViewDataSource,Aut
             cell.tag = indexPath.section
             cell.btnCell.tag = indexPath.row
             cell.delegateAutoBilling = self
+            
+            if newApiConfig {
+                guard let expDate = mainModelView.cardDetails[indexPath.row - 1].expiryDate,
+                      let getDate = serverDateFormatter.date(from: expDate)
+                else {
+                    return UITableViewCell()
+                }
+                
+                let desc = "Expire on " + mainModelView.convertDateToCreditCardDateInString(getDate)
+                cell.setupUI(indexPath: indexPath,
+                             title: mainModelView.cardDetails[indexPath.row - 1].name ?? "First Card",
+                             text: desc,
+                             placeHolder: "")
+                cell.imgChecked.isHidden = !(self.mainModelView.defaultCard == mainModelView.cardDetails[indexPath.row - 1].id)
+                return cell
+            }
+            
             let model = self.mainModelView.cardNewDetails[indexPath.row - 1]
             let name = (model.firstName ?? "") + " " + (model.lastName ?? "")
             let number = model.number?.replace(target: "x", withString: "") ?? ""
@@ -40,7 +60,7 @@ extension PremiumPaymentMethodVc: UITableViewDelegate, UITableViewDataSource,Aut
             let desc = "Ending in \(number), Expire on " + month + "/" + year
             cell.setupUI(indexPath: indexPath, title: name, text: desc, placeHolder: "")
             
-            cell.imgChecked.isHidden = self.mainModelView.defaultCardID != Int(self.mainModelView.cardDetails[indexPath.row - 1].id ?? 0)
+            cell.imgChecked.isHidden = self.mainModelView.defaultCardID != Int(self.mainModelView.cardDetails[indexPath.row - 1].id  ?? "0") ?? 0
             
             cell.rightButtons = [MGSwipeButton(title: "", icon: UIImage(named:"ic_delete_width"), backgroundColor: UIColor.appthemeOffRedColor, callback: { (MGCell) -> Bool in
                 print("Delete API call here")
@@ -73,8 +93,19 @@ extension PremiumPaymentMethodVc: UITableViewDelegate, UITableViewDataSource,Aut
     }
     
     func AutoTopUpBillingCardButton(section: Int, row: Int) {
+        if newApiConfig {
+            self.mainModelView.defaultCard = self.mainModelView.cardDetails[row - 1].id ?? ""
+            self.mainModelView.defaultCardID = Int(self.mainModelView.cardDetails[row - 1].id ?? "0") ?? 0
+            UIView.performWithoutAnimation {
+                let content = self.mainView.tableView.contentOffset
+                self.mainView.tableView.reloadData {
+                    self.mainView.tableView.setContentOffset(content, animated: false)
+                }
+            }
+            return
+        }
         self.mainModelView.defaultCard = self.mainModelView.cardNewDetails[row - 1].id ?? ""
-        self.mainModelView.defaultCardID = Int(self.mainModelView.cardDetails[row - 1].id ?? 0)
+        self.mainModelView.defaultCardID = Int(self.mainModelView.cardDetails[row - 1].id ?? "0") ?? 0
         UIView.performWithoutAnimation {
             let content = self.mainView.tableView.contentOffset
             self.mainView.tableView.reloadData {

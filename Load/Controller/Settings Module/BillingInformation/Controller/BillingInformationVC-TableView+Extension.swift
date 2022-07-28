@@ -86,15 +86,6 @@ extension BillingInformationVC: UITableViewDelegate, UITableViewDataSource, Bill
             let content = self.mainView.tableView.contentOffset
             self.mainView.tableView.setContentOffset(content, animated: false)
         }
-
-        if self.mainModelView.validateDetails() {
-            self.mainView.btnSave.backgroundColor = UIColor.appthemeOffRedColor
-            self.mainView.btnSave.isUserInteractionEnabled = true
-        } else {
-            
-            self.mainView.btnSave.backgroundColor = UIColor.appthemeGrayColor
-            self.mainView.btnSave.isUserInteractionEnabled = false
-        }
         
     }
 }
