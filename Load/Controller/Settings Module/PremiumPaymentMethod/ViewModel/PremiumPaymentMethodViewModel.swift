@@ -78,13 +78,41 @@ class PremiumPaymentMethodViewModel {
                     
                     if self.cardDetails.count != 0 {
                         for data in self.cardDetails where data.isDefault == true {
-                            self.defaultCard = data.id ?? ""
+                            self.defaultCard = data.id
                             self.defaultCardID = Int(data.id ?? "0") ?? 0
                         }
                     }
                     let view = (self.theController.view as? PremiumPaymentMethodView)
                     view?.tableView.reloadData()
-                    
+                } else {
+                    makeToast(strMessage: error ?? "Something went wrong, please try again")
+                }
+                return
+            }
+            
+            makeToast(strMessage: error ?? "Something went wrong, please try again")
+        }
+    }
+    
+    func updateDefaultPaymentMethod() {
+        let param = [
+            "id": defaultCard ?? ""
+        ] as [String: Any]
+        ApiManager.shared.MakePostAPI(name: "setting/update-default-payment",
+                                      params: param,
+                                      vc: theController) { [weak self] response, error in
+            guard let self = self else {
+                return
+            }
+            
+            if let response = response {
+                let json = JSON(response)
+                print(json)
+                let success = json.getBool(key: .success)
+                if success {
+                    self.theController.backButtonAction()
+                } else {
+                    makeToast(strMessage: error ?? "Something went wrong, please try again")
                 }
                 
                 return
@@ -142,7 +170,11 @@ class PremiumPaymentMethodViewModel {
 extension PremiumPaymentMethodViewModel: CustomNavigationWithSaveButtonDelegate{
     
     func CustomNavigationClose() {
-        self.theController.backButtonAction()
+        guard defaultCard != nil else {
+            theController.navigationController?.popViewController(animated: true)
+            return
+        }
+        updateDefaultPaymentMethod()
     }
     
     func CustomNavigationSave() {

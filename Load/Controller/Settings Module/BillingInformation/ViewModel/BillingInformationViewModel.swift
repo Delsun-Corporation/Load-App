@@ -268,6 +268,7 @@ class BillingInformationViewModel {
                 
                 if success {
                     print("Success Saving Billing Information Model!")
+                    self.theController.navigationController?.popViewController(animated: true)
                 } else {
                     makeToast(strMessage: error ?? "Something went wrong")
                 }
