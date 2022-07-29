@@ -94,7 +94,7 @@ extension PremiumPaymentMethodVc: UITableViewDelegate, UITableViewDataSource,Aut
     
     func AutoTopUpBillingCardButton(section: Int, row: Int) {
         if newApiConfig {
-            self.mainModelView.defaultCard = self.mainModelView.cardDetails[row - 1].id ?? ""
+            self.mainModelView.defaultCard = self.mainModelView.cardDetails[row - 1].id
             self.mainModelView.defaultCardID = Int(self.mainModelView.cardDetails[row - 1].id ?? "0") ?? 0
             UIView.performWithoutAnimation {
                 let content = self.mainView.tableView.contentOffset

@@ -43,7 +43,7 @@ class PremiumPaymentMethodViewModel {
         if cardDetails.count != 0 {
             for data in self.cardDetails {
                 if data.isDefault?.boolValue ?? false {
-                    self.defaultCard = data.creditCardId ?? ""
+                    self.defaultCard = data.id
                     self.defaultCardID = Int(data.id ?? "0") ?? 0
                 }
                 
@@ -95,8 +95,13 @@ class PremiumPaymentMethodViewModel {
     }
     
     func updateDefaultPaymentMethod() {
+        guard let defaultCard = defaultCard else {
+            theController.navigationController?.popViewController(animated: true)
+            return
+        }
+        print("Default Card Id to send: \(defaultCard)")
         let param = [
-            "id": defaultCard ?? ""
+            "id": defaultCard
         ] as [String: Any]
         ApiManager.shared.MakePostAPI(name: "setting/update-default-payment",
                                       params: param,
@@ -112,7 +117,7 @@ class PremiumPaymentMethodViewModel {
                 if success {
                     self.theController.backButtonAction()
                 } else {
-                    makeToast(strMessage: error ?? "Something went wrong, please try again")
+                    makeToast(strMessage: json.getString(key: .message))
                 }
                 
                 return
@@ -170,10 +175,6 @@ class PremiumPaymentMethodViewModel {
 extension PremiumPaymentMethodViewModel: CustomNavigationWithSaveButtonDelegate{
     
     func CustomNavigationClose() {
-        guard defaultCard != nil else {
-            theController.navigationController?.popViewController(animated: true)
-            return
-        }
         updateDefaultPaymentMethod()
     }
     
