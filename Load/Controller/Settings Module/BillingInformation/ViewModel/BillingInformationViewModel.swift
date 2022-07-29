@@ -9,7 +9,7 @@
 import UIKit
 import SwiftyJSON
 
-protocol BillingInformationVCDelegate: class {
+protocol BillingInformationVCDelegate: AnyObject {
     func BillingInformationReload(isUpdated:Bool)
 }
 
@@ -49,75 +49,67 @@ class BillingInformationViewModel {
     }
     
     func validateDetails() -> Bool {
-        
         for data in self.cardArray {
             for (index, dataValue) in data.enumerated() {
                 if dataValue.toTrim() == "" && index != 0 && index != 5 && index != 6  {
                     if index == 1 {
-//                        makeToast(strMessage: "Please enter card number")
+                        makeToast(strMessage: "Please enter card number")
                         return false
                     }
                     else if index == 2 {
-//                        makeToast(strMessage: "Please enter full name")
+                        makeToast(strMessage: "Please enter full name")
                         return false
                     }
                     else if index == 3 {
-//                        makeToast(strMessage: "Please enter expiry date")
+                        makeToast(strMessage: "Please enter expiry date")
                         return false
                     }
                     else if index == 4 {
-//                        makeToast(strMessage: "Please enter CVV")
+                        makeToast(strMessage: "Please enter CVV")
                         return false
                     }
                     else if index == 7 {
-//                        makeToast(strMessage: "Please enter address")
+                        makeToast(strMessage: "Please enter address")
                         return false
                     }
                     else if index == 8 {
-//                        makeToast(strMessage: "Please enter country")
+                        makeToast(strMessage: "Please enter country")
                         return false
                     }
                     else if index == 9 {
-//                        makeToast(strMessage: "Please enter city")
+                        makeToast(strMessage: "Please enter city")
                         return false
                     }
                     else if index == 10 {
-//                        makeToast(strMessage: "Please enter state")
+                        makeToast(strMessage: "Please enter state")
                         return false
                     }
                     else if index == 11 {
-//                        makeToast(strMessage: "Please enter zip code")
+                        makeToast(strMessage: "Please enter zip code")
                         return false
                     }
                     return false
                 }
                 else {
-                    if index == 2 {
-                        let array = dataValue.toTrim().components(separatedBy: " ")
-                        if array.count == 1 {
-//                            makeToast(strMessage: "Please enter full name")
-                            return false
-                        }
-                    }
-                    else if index == 3 {
+                    if index == 3 {
                         let array = dataValue.toTrim().components(separatedBy: "/")
                         
                         print("Array : \(array)")
                         print("Array count : \(array.count)")
                         
                         if array.count == 0 {
-//                            makeToast(strMessage: "Please enter valid expiry date")
+                            makeToast(strMessage: "Please enter valid expiry date")
                             return false
                         }
                         else {
                             if array[0] > "31" {
-//                                makeToast(strMessage: "Please enter valid month")
+                                makeToast(strMessage: "Please enter valid month")
                                 return false
                             }
                             
                             if array.count == 2 {
                                 if array[1] < Date().year {
-    //                                makeToast(strMessage: "Please enter valid year")
+                                    makeToast(strMessage: "Please enter valid year")
                                     return false
                                 }
                             }
@@ -125,7 +117,7 @@ class BillingInformationViewModel {
                     }
                     else if index == 4 {
                         if dataValue.toTrim().count != 3 {
-//                            makeToast(strMessage: "Please enter valid CVV")
+                            makeToast(strMessage: "Please enter valid CVV")
                             return false
                         }
                     }
@@ -133,29 +125,47 @@ class BillingInformationViewModel {
             }
         }
         return true
-//        self.saveCard()
     }
     
     func saveCard() {
-        for data in self.cardArray {
-            let name =  data[2].toTrim().components(separatedBy: " ")
-            let expiryDate =  data[3].toTrim().components(separatedBy: "/")
-
-            let number = data[1].replace(target: " ", withString: "")
-            let firstName = name[0]
-            let lastName = name[1]
-            let expireMonth = expiryDate[0]
-            let expireYear = expiryDate[1]
-            let type = self.validateCardType(testCard: number)
-            let line1 = data[7]
-            let countryCode = data[8]
-            let city = data[9]
-            let state = data[10]
-            let postalCode = data[11]
-            let phone = ""
-            
-            self.apiCallSaveCreditCard(number: number, type: type, expireMonth: expireMonth, expireYear: expireYear, firstName: firstName, lastName: lastName, line1: line1, city: city, countryCode: countryCode, postalCode: postalCode, state: state, phone: phone)
+        var name =  [String]()
+        var expiryDate =  [String]()
+        var number = ""
+        var firstName = ""
+        var lastName = ""
+        var expireMonth = ""
+        var expireYear = ""
+        var type = ""
+        var line1 = ""
+        var countryCode = ""
+        var city = ""
+        var state = ""
+        var postalCode = ""
+        var phone = ""
+        
+//        for data in self.cardArray {
+//            name =  data[2].toTrim().components(separatedBy: " ")
+//            expiryDate =  data[3].toTrim().components(separatedBy: "/")
+//
+//            number = data[1].replace(target: " ", withString: "")
+//            firstName = name[0]
+//            lastName = name[1]
+//            expireMonth = expiryDate[0]
+//            expireYear = expiryDate[1]
+//            type = self.validateCardType(testCard: number)
+//            line1 = data[7]
+//            countryCode = data[8]
+//            city = data[9]
+//            state = data[10]
+//            postalCode = data[11]
+//            phone = ""
+//        }
+        
+        if newApiConfig {
+            apiCallSaveCreditCardV2(cardArray: cardArray)
+            return
         }
+        self.apiCallSaveCreditCard(number: number, type: type, expireMonth: expireMonth, expireYear: expireYear, firstName: firstName, lastName: lastName, line1: line1, city: city, countryCode: countryCode, postalCode: postalCode, state: state, phone: phone)
     }
     
     func apiCallOAuth2Token(progress:Bool = true) {
@@ -175,6 +185,98 @@ class BillingInformationViewModel {
                 print(self.accessToken)
             }
         })
+    }
+    
+    func convertExpiryDate(_ date: String) -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "dd/yyyy"
+        let fullDateYearFromString = dateFormatter.date(from: date) ?? Date()
+        return serverDateFormatter.string(from: fullDateYearFromString)
+    }
+    
+    private func getCountryId(_ string: String) -> Int {
+        var countryId = 1
+        for country in GetAllData?.data?.countries ?? [] where country.name == string {
+            countryId = country.id?.intValue ?? 0
+        }
+        return countryId
+    }
+    
+    func apiCallSaveCreditCardV2(cardArray: [[String]]) {
+        var creditCardNumber = ""
+        var expiryDate = ""
+        var name = ""
+        var address = ""
+        var countryId = 1
+        var city = ""
+        var stateProvinceRegion = ""
+        var postalCode = ""
+        var cvv = ""
+        
+        for data in cardArray {
+            for (index, dataValue) in data.enumerated() {
+                if index == 1 {
+                    creditCardNumber = dataValue
+                }
+                else if index == 2 {
+                    name = dataValue
+                }
+                else if index == 3 {
+                    expiryDate = dataValue
+                }
+                else if index == 4 {
+                    cvv = dataValue
+                }
+                else if index == 7 {
+                    address = dataValue
+                }
+                else if index == 8 {
+                    countryId = getCountryId(dataValue)
+                }
+                else if index == 9 {
+                    city = dataValue
+                }
+                else if index == 10 {
+                    stateProvinceRegion = dataValue
+                }
+                else if index == 11 {
+                    postalCode = dataValue
+                }
+            }
+        }
+        
+        let param = [
+            "credit_card_number": creditCardNumber,
+            "expiry_date": convertExpiryDate("\(expiryDate)"),
+            "name": name,
+            "address": address,
+            "country_id": countryId,
+            "city": city,
+            "state_province_region": stateProvinceRegion,
+            "postal_code": postalCode,
+            "cvv": cvv
+        ] as [String : Any]
+        print(JSON(param))
+        
+        ApiManager.shared.MakePostAPI(name: "setting/create-credit-card",
+                                      params: param,
+                                      vc: theController) { response, error in
+            if let response = response {
+                let json = JSON(response)
+                print(json)
+                let success = json.getBool(key: .success)
+                
+                if success {
+                    print("Success Saving Billing Information Model!")
+                    self.theController.navigationController?.popViewController(animated: true)
+                } else {
+                    makeToast(strMessage: error ?? "Something went wrong")
+                }
+                return
+            }
+            
+            makeToast(strMessage: error ?? "Something went wrong")
+        }
     }
     
     func apiCallSaveCreditCard(number:String, type:String, expireMonth:String, expireYear:String, firstName:String, lastName:String, line1:String, city:String, countryCode:String, postalCode:String, state:String, phone:String) {
