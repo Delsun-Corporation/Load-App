@@ -350,22 +350,34 @@ class ProfessionalLoadCenterViewModel: ProfessionalListDelegate, ProfessionalReq
         self.txtBasicRequirement = self.profileDetails?.basicRequirement ?? ""
         
         //3
-        for data in self.profileDetails?.amenities ?? [] {
-            for (index, dataValue) in self.amenitiesArray.enumerated() {
-                if data.name == (dataValue[0] as! String) {
-                    self.amenitiesArray[index][1] = data.value ?? false
+        if newApiConfig, let rawArray = profileDetails?.amenitiesV2 {
+            for data in rawArray {
+                for (index, dataValue) in self.amenitiesArray.enumerated() {
+                    if data == (dataValue[0] as? String) {
+                        self.amenitiesArray[index][1] = true
+                    }
                 }
             }
+            self.txtAmenitiesArray = rawArray.joined(separator: ", ")
+        } else {
+            for data in self.profileDetails?.amenities ?? [] {
+                for (index, dataValue) in self.amenitiesArray.enumerated() {
+                    if data.name == (dataValue[0] as! String) {
+                        self.amenitiesArray[index][1] = data.value ?? false
+                    }
+                }
+            }
+            
+            let array = amenitiesArray.filter({ (data) -> Bool in
+                return (data[1] as? Bool) == true
+            })
+            var str: [String] = []
+            for data in array {
+                str.append(data[0] as! String)
+            }
+            self.txtAmenitiesArray = str.joined(separator: ", ")
         }
         
-        let array = amenitiesArray.filter({ (data) -> Bool in
-            return (data[1] as? Bool) == true
-        })
-        var str: [String] = []
-        for data in array {
-            str.append(data[0] as! String)
-        }
-        self.txtAmenitiesArray = str.joined(separator: ", ")
         self.textArray[3][0] = self.txtAmenitiesArray
 
         // 4
@@ -406,6 +418,22 @@ class ProfessionalLoadCenterViewModel: ProfessionalListDelegate, ProfessionalReq
         return names
     }
     
+    // V2 amenities convertion
+    func convertAmenitiesToStringArray(_ amenityArray: NSMutableArray) -> [String] {
+        var newArray: [String] = []
+        for amenity in amenityArray {
+            
+            if let amenity = amenity as? NSDictionary {
+               if let value = amenity["value"] as? Int, value == 1,
+               let name = amenity["name"] as? String {
+                   newArray.append(name)
+               }
+            }
+        }
+        
+        return newArray
+    }
+    
     func apiCallUpdateList(profession:String,
                            introduction: String,
                            rate:Int,
@@ -432,6 +460,7 @@ class ProfessionalLoadCenterViewModel: ProfessionalListDelegate, ProfessionalReq
                            isAnswerd:Bool?) {
         print(amenities)
         print(CredentialsArray)
+        
         var param = ["profession": profession,
                      "introduction": introduction,
                      "rate": rate,
@@ -443,7 +472,7 @@ class ProfessionalLoadCenterViewModel: ProfessionalListDelegate, ProfessionalReq
                      "professional_type_id": professionalTypeId,
                      "session_maximum_clients": sessionMaximumClients,
                      "basic_requirement": basicRequirement,
-                     "amenities": amenities,
+                     "amenities": newApiConfig ? convertAmenitiesToStringArray(amenities) : amenities,
 //                     "payment_option_id": paymentOptionId,
                      "per_session_rate": perSessionRate,
                      "per_multiple_session_rate": perMultipleSessionRate,

@@ -15,6 +15,7 @@ class ProfessionalModelClass: Mappable {
 	var specializationIds: [String]? 
 	var currencyId: NSNumber? 
     var amenities: [Amenities]?
+    var amenitiesV2: [String]?
 	var languagesSpokenIds: [String]? 
 	var paymentOptionDetail: PaymentOptionDetail?
 	var currencyDetail: ProfessionalCurrencyDetail?
@@ -56,8 +57,8 @@ class ProfessionalModelClass: Mappable {
         locationName <- map["location_name"]
 		languagesWrittenIds <- map["languages_written_ids"] 
 		specializationIds <- map["specialization_ids"] 
-		currencyId <- map["currency_id"] 
-		amenities <- map["amenities"] 
+		currencyId <- map["currency_id"]
+        newApiConfig ? amenitiesV2 <- map["amenities"] : amenities <- map["amenities"]
 		languagesSpokenIds <- map["languages_spoken_ids"] 
 		paymentOptionDetail <- map["payment_option_detail"] 
 		currencyDetail <- map["currency_detail"] 
