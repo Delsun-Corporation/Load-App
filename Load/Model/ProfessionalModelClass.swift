@@ -12,7 +12,7 @@ class ProfessionalModelClass: Mappable {
 	var professionalTypeId: NSNumber?
     var locationName: String?
 	var languagesWrittenIds: [String]? 
-	var specializationIds: [String]? 
+	var specializationIds: [Int]?
 	var currencyId: NSNumber? 
     var amenities: [Amenities]?
     var amenitiesV2: [String]?
@@ -55,8 +55,8 @@ class ProfessionalModelClass: Mappable {
 		perMultipleSessionRate <- map["per_multiple_session_rate"] 
 		professionalTypeId <- map["professional_type_id"]
         locationName <- map["location_name"]
-		languagesWrittenIds <- map["languages_written_ids"] 
-		specializationIds <- map["specialization_ids"] 
+		languagesWrittenIds <- map["languages_written_ids"]
+        specializationIds <- map["specialization_ids"]
 		currencyId <- map["currency_id"]
         newApiConfig ? amenitiesV2 <- map["amenities"] : amenities <- map["amenities"]
 		languagesSpokenIds <- map["languages_spoken_ids"] 
@@ -176,7 +176,8 @@ class ProfessionalSpecializationDetails: Mappable {
 
 	var code: String? 
 	var name: String? 
-	var isActive: Bool? 
+	var isActive: Bool?
+    var isActiveV2: String?
 	var id: NSNumber? 
 	var createdAt: String?
 	var updatedAt: String? 
@@ -187,7 +188,7 @@ class ProfessionalSpecializationDetails: Mappable {
 	func mapping(map: Map) {
 		code <- map["code"] 
 		name <- map["name"] 
-		isActive <- map["is_active"] 
+        newApiConfig ? isActiveV2 <- map["is_active"] : isActive <- map["is_active"]
 		id <- map["id"] 
 		createdAt <- map["created_at"] 
 		updatedAt <- map["updated_at"] 

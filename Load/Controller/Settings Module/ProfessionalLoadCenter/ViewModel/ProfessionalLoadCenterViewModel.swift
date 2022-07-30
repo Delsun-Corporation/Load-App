@@ -321,11 +321,18 @@ class ProfessionalLoadCenterViewModel: ProfessionalListDelegate, ProfessionalReq
         self.selectedLongitude = Double(self.profileDetails?.userDetail?.longitude ?? "0.0") ?? 0.0
         self.txtIntroduction = self.profileDetails?.introduction ?? ""
         
+        
         let activity = self.profileDetails?.specializationDetails?.filter({ (model) -> Bool in
-            return model.isActive == true
+            if newApiConfig {
+                return model.isActiveV2 == "1"
+            }
+            else {
+                return model.isActive == true
+            }
         })
         self.ActivityArray = self.getSpecializationDetails(list: activity ?? [])
         self.ActivityNameArray = self.getSpecializationNameDetails(list: activity ?? [])
+        
         self.selectedLangSpoken = Int(self.profileDetails?.languagesSpokenIds?.first ?? "0") ?? 0
         self.selectedLangWriten = Int(self.profileDetails?.languagesWrittenIds?.first ?? "0") ?? 0
         self.CredentialsArray.removeAllObjects()
@@ -486,91 +493,91 @@ class ProfessionalLoadCenterViewModel: ProfessionalListDelegate, ProfessionalReq
                      "is_forms" : isForms ?? false,
                      "is_answerd" : isAnswerd ?? false
             ] as [String : Any]
-     
+            
         if profession == "" {
             param.removeValue(forKey: "profession")
         }
-        
+
         if introduction == "" {
             param.removeValue(forKey: "introduction")
         }
-        
+
         if rate == 0 {
             param.removeValue(forKey: "rate")
         }
-        
+
         if specializationIds.count == 0 {
             param.removeValue(forKey: "specialization_ids")
         }
-        
+
         if experienceAndAchievements == "" {
             param.removeValue(forKey: "experience_and_achievements")
         }
-        
+
         if languagesSpokenIds.first == 0 {
             param.removeValue(forKey: "languages_spoken_ids")
         }
-        
+
         if languagesWrittenIds.first == 0 {
             param.removeValue(forKey: "languages_written_ids")
         }
-        
+
         if sessionDuration == "" {
             param.removeValue(forKey: "session_duration")
         }
-        
+
         if professionalTypeId == 0 {
             param.removeValue(forKey: "professional_type_id")
         }
-        
+
         if sessionMaximumClients == "" {
             param.removeValue(forKey: "session_maximum_clients")
         }
-        
+
         if basicRequirement == "" {
             param.removeValue(forKey: "basic_requirement")
         }
-        
+
         if paymentOptionId == 0 {
             param.removeValue(forKey: "payment_option_id0")
         }
-        
+
         if perSessionRate == "" {
             param.removeValue(forKey: "per_session_rate")
         }
-        
+
         if perMultipleSessionRate == "" {
             param.removeValue(forKey: "per_multiple_session_rate")
         }
-        
+
         if days.count == 0 {
             param.removeValue(forKey: "days")
         }
         
-        if latitude == 0 {
-            param.removeValue(forKey: "latitude")
-        }
-        
-        if latitude == 0 {
-            param.removeValue(forKey: "latitude")
-        }
-        
-        if longitude == 0 {
-            param.removeValue(forKey: "longitude")
-        }
+//        if latitude == 0 {
+//            param.removeValue(forKey: "latitude")
+//        }
+//
+//        if latitude == 0 {
+//            param.removeValue(forKey: "latitude")
+//        }
+//
+//        if longitude == 0 {
+//            param.removeValue(forKey: "longitude")
+//        }
         
         if locationName == "" {
             param.removeValue(forKey: "location_name")
         }
-        
+
         if CredentialsArray.count == 0 {
             param.removeValue(forKey: "academic_credentials")
         }
-        
+
         if isForms == nil {
             param.removeValue(forKey: "is_forms")
         }
-        
+
         if isAnswerd == nil {
             param.removeValue(forKey: "is_answerd")
         }

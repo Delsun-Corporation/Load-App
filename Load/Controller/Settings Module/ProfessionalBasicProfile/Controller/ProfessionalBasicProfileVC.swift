@@ -136,6 +136,9 @@ class ProfessionalBasicProfileVC: UIViewController, ProfessionalRequirementDeleg
         getPlacemark(forLocation: CLLocation(latitude: selectedLocation.latitude, longitude: selectedLocation.longitude), completionHandler: { (placemark, address) in
             if placemark != nil {
                 self.mainView.txtLocation.text = address
+                self.mainModelView.selectedAddress = address ?? ""
+                self.mainModelView.selectedLatitude = selectedLocation.latitude
+                self.mainModelView.selectedLongitude = selectedLocation.longitude
             }
         })
     }
