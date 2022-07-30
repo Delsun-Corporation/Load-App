@@ -31,7 +31,8 @@ class ProfessionalModelClass: Mappable {
 	var sessionDuration: String? 
 	var paymentOptionId: NSNumber? 
 	var userId: NSNumber? 
-	var days: [String]? 
+	var days: [String]?
+    var sessionPerPackage: NSNumber?
 	var sessionMaximumClients: NSNumber? 
 	var basicRequirement: String?
 	var languagesWrittenDetails: [ProfessionalLanguagesWrittenDetails]?
@@ -74,7 +75,8 @@ class ProfessionalModelClass: Mappable {
 		sessionDuration <- map["session_duration"] 
 		paymentOptionId <- map["payment_option_id"] 
 		userId <- map["user_id"] 
-		days <- map["days"] 
+		days <- map["days"]
+        sessionPerPackage <- map["session_per_package"]
 		sessionMaximumClients <- map["session_maximum_clients"] 
 		basicRequirement <- map["basic_requirement"] 
 		languagesWrittenDetails <- map["languages_written_details"] 
