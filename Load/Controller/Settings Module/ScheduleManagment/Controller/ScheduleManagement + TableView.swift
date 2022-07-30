@@ -33,7 +33,7 @@ extension ScheduleManagmentVc : UITableViewDelegate, UITableViewDataSource{
                 data?.selected = 0
                 GetAllData?.data?.professionalScheduleAdvanceBooking?[i] = data!
             }
-            
+            // Not Working from Vikas
             GetAllData?.data?.professionalScheduleAdvanceBooking?[indexPath.row].selected = 1
         }
         
