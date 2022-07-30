@@ -261,7 +261,33 @@ class ProfessionalLoadCenterViewModel: ProfessionalListDelegate, ProfessionalReq
             amenitiesArray.add(dict)
         }
         print(JSON(amenitiesArray))
-        self.apiCallUpdateList(profession: self.selectedProfession, introduction: self.txtIntroduction, rate: 0, specializationIds: self.ActivityArray, experienceAndAchievements: "", languagesSpokenIds: [self.selectedLangSpoken], languagesWrittenIds: [self.selectedLangWriten], sessionDuration: self.txtDuration, professionalTypeId: self.txtTypesId, sessionMaximumClients: self.txtMaximumClient, basicRequirement: self.txtBasicRequirement, amenities: amenitiesArray, paymentOptionId: self.txtOptionsId, perSessionRate: self.txtPerSession, perMultipleSessionRate: self.txtPerMultipleSessions, isCustom: self.isCustom, days: self.AvailabilityArray, isAutoAccept: self.txtAutoAccept, latitude: self.selectedLatitude, longitude: self.selectedLongitude, locationName: self.locationString, CredentialsArray: self.CredentialsArray, isForms: self.isAutoForm, isAnswerd: self.isAgreeForm)
+        self.apiCallUpdateList(
+            profession: self.selectedProfession,
+            introduction: self.txtIntroduction,
+            rate: 0,
+            specializationIds: self.ActivityArray,
+            experienceAndAchievements: "",
+            languagesSpokenIds: [self.selectedLangSpoken],
+            languagesWrittenIds: [self.selectedLangWriten],
+            sessionDuration: self.txtDuration,
+            professionalTypeId: self.txtTypesId,
+            sessionPerPackage: Int(self.txtNumberOfSessionPerPackage) ?? 0,
+            sessionMaximumClients: Int(self.txtMaximumClient) ?? 0,
+            basicRequirement: self.txtBasicRequirement,
+            amenities: amenitiesArray,
+            paymentOptionId: self.txtOptionsId,
+            perSessionRate: self.txtPerSession,
+            perMultipleSessionRate: self.txtPerMultipleSessions,
+            isCustom: self.isCustom,
+            days: self.AvailabilityArray,
+            isAutoAccept: self.txtAutoAccept,
+            latitude: self.selectedLatitude,
+            longitude: self.selectedLongitude,
+            locationName: self.locationString,
+            CredentialsArray: self.CredentialsArray,
+            isForms: self.isAutoForm,
+            isAnswerd: self.isAgreeForm
+        )
     }
     
     func ProfessionalBasicProfileFinish(Profession: String, locationString:String, Latitude: Double, Longitude: Double, Introduction: String, ActivityArray: [Int], LangSpoken: Int, LangWriten: Int, CredentialsArray: NSMutableArray) {
@@ -321,12 +347,19 @@ class ProfessionalLoadCenterViewModel: ProfessionalListDelegate, ProfessionalReq
         self.selectedLongitude = Double(self.profileDetails?.userDetail?.longitude ?? "0.0") ?? 0.0
         self.txtIntroduction = self.profileDetails?.introduction ?? ""
         
+        
         let activity = self.profileDetails?.specializationDetails?.filter({ (model) -> Bool in
-            return model.isActive == true
+            if newApiConfig {
+                return model.isActiveV2 == "1"
+            }
+            else {
+                return model.isActive == true
+            }
         })
         self.ActivityArray = self.getSpecializationDetails(list: activity ?? [])
         self.ActivityNameArray = self.getSpecializationNameDetails(list: activity ?? [])
-        self.selectedLangSpoken = Int(self.profileDetails?.languagesSpokenIds?.first ?? "0") ?? 0
+        
+        self.selectedLangSpoken = self.profileDetails?.languagesSpokenIds?.first ?? 0
         self.selectedLangWriten = Int(self.profileDetails?.languagesWrittenIds?.first ?? "0") ?? 0
         self.CredentialsArray.removeAllObjects()
         for data in self.profileDetails?.academicCredentials ?? [] {
@@ -339,33 +372,57 @@ class ProfessionalLoadCenterViewModel: ProfessionalListDelegate, ProfessionalReq
         
         // 1
         self.txtDuration = self.profileDetails?.sessionDuration ?? ""
-        self.txtTypesId = self.profileDetails?.professionalTypeId?.intValue ?? 0
-        self.txtTypes = self.profileDetails?.professionalTypeDetail?.name ?? ""
+        let typeId = self.profileDetails?.professionalTypeId?.intValue ?? 0
+        self.txtTypesId = typeId
+        
+        if newApiConfig {
+            for (_, data) in (GetAllData?.data?.professionalTypes?.enumerated())! {
+                if typeId == data.id?.intValue {
+                    self.txtTypes = data.name ?? ""
+                }
+            }
+        } else {
+            self.txtTypes = self.profileDetails?.professionalTypeDetail?.name ?? ""
+        }
+        self.txtNumberOfSessionPerPackage = self.profileDetails?.sessionPerPackage?.stringValue ?? ""
         self.txtMaximumClient = self.profileDetails?.sessionMaximumClients?.stringValue ?? ""
         self.textArray[1][0] = self.txtDuration
         self.textArray[1][1] = self.txtTypes
+        self.textArray[1][2] = self.txtNumberOfSessionPerPackage
         self.textArray[1][3] = self.txtMaximumClient
         
         // 2
         self.txtBasicRequirement = self.profileDetails?.basicRequirement ?? ""
         
         //3
-        for data in self.profileDetails?.amenities ?? [] {
-            for (index, dataValue) in self.amenitiesArray.enumerated() {
-                if data.name == (dataValue[0] as! String) {
-                    self.amenitiesArray[index][1] = data.value ?? false
+        if newApiConfig, let rawArray = profileDetails?.amenitiesV2 {
+            for data in rawArray {
+                for (index, dataValue) in self.amenitiesArray.enumerated() {
+                    if data == (dataValue[0] as? String) {
+                        self.amenitiesArray[index][1] = true
+                    }
                 }
             }
+            self.txtAmenitiesArray = rawArray.joined(separator: ", ")
+        } else {
+            for data in self.profileDetails?.amenities ?? [] {
+                for (index, dataValue) in self.amenitiesArray.enumerated() {
+                    if data.name == (dataValue[0] as! String) {
+                        self.amenitiesArray[index][1] = data.value ?? false
+                    }
+                }
+            }
+            
+            let array = amenitiesArray.filter({ (data) -> Bool in
+                return (data[1] as? Bool) == true
+            })
+            var str: [String] = []
+            for data in array {
+                str.append(data[0] as! String)
+            }
+            self.txtAmenitiesArray = str.joined(separator: ", ")
         }
         
-        let array = amenitiesArray.filter({ (data) -> Bool in
-            return (data[1] as? Bool) == true
-        })
-        var str: [String] = []
-        for data in array {
-            str.append(data[0] as! String)
-        }
-        self.txtAmenitiesArray = str.joined(separator: ", ")
         self.textArray[3][0] = self.txtAmenitiesArray
 
         // 4
@@ -406,6 +463,22 @@ class ProfessionalLoadCenterViewModel: ProfessionalListDelegate, ProfessionalReq
         return names
     }
     
+    // V2 amenities convertion
+    func convertAmenitiesToStringArray(_ amenityArray: NSMutableArray) -> [String] {
+        var newArray: [String] = []
+        for amenity in amenityArray {
+            
+            if let amenity = amenity as? NSDictionary {
+               if let value = amenity["value"] as? Int, value == 1,
+               let name = amenity["name"] as? String {
+                   newArray.append(name)
+               }
+            }
+        }
+        
+        return newArray
+    }
+    
     func apiCallUpdateList(profession:String,
                            introduction: String,
                            rate:Int,
@@ -415,7 +488,8 @@ class ProfessionalLoadCenterViewModel: ProfessionalListDelegate, ProfessionalReq
                            languagesWrittenIds:[Int],
                            sessionDuration:String,
                            professionalTypeId:Int,
-                           sessionMaximumClients:String,
+                           sessionPerPackage: Int,
+                           sessionMaximumClients: Int,
                            basicRequirement:String,
                            amenities: NSMutableArray,
                            paymentOptionId:Int,
@@ -432,6 +506,7 @@ class ProfessionalLoadCenterViewModel: ProfessionalListDelegate, ProfessionalReq
                            isAnswerd:Bool?) {
         print(amenities)
         print(CredentialsArray)
+        
         var param = ["profession": profession,
                      "introduction": introduction,
                      "rate": rate,
@@ -441,9 +516,10 @@ class ProfessionalLoadCenterViewModel: ProfessionalListDelegate, ProfessionalReq
                      "languages_written_ids": languagesWrittenIds,
                      "session_duration": sessionDuration,
                      "professional_type_id": professionalTypeId,
+                     "session_per_package": sessionPerPackage,
                      "session_maximum_clients": sessionMaximumClients,
                      "basic_requirement": basicRequirement,
-                     "amenities": amenities,
+                     "amenities": newApiConfig ? convertAmenitiesToStringArray(amenities) : amenities,
 //                     "payment_option_id": paymentOptionId,
                      "per_session_rate": perSessionRate,
                      "per_multiple_session_rate": perMultipleSessionRate,
@@ -457,91 +533,87 @@ class ProfessionalLoadCenterViewModel: ProfessionalListDelegate, ProfessionalReq
                      "is_forms" : isForms ?? false,
                      "is_answerd" : isAnswerd ?? false
             ] as [String : Any]
-     
+            
         if profession == "" {
             param.removeValue(forKey: "profession")
         }
-        
+
         if introduction == "" {
             param.removeValue(forKey: "introduction")
         }
-        
+
         if rate == 0 {
             param.removeValue(forKey: "rate")
         }
-        
+
         if specializationIds.count == 0 {
             param.removeValue(forKey: "specialization_ids")
         }
-        
+
         if experienceAndAchievements == "" {
             param.removeValue(forKey: "experience_and_achievements")
         }
-        
+
         if languagesSpokenIds.first == 0 {
             param.removeValue(forKey: "languages_spoken_ids")
         }
-        
+
         if languagesWrittenIds.first == 0 {
             param.removeValue(forKey: "languages_written_ids")
         }
-        
+
         if sessionDuration == "" {
             param.removeValue(forKey: "session_duration")
         }
-        
+
         if professionalTypeId == 0 {
             param.removeValue(forKey: "professional_type_id")
-        }
-        
-        if sessionMaximumClients == "" {
-            param.removeValue(forKey: "session_maximum_clients")
         }
         
         if basicRequirement == "" {
             param.removeValue(forKey: "basic_requirement")
         }
-        
+
         if paymentOptionId == 0 {
             param.removeValue(forKey: "payment_option_id0")
         }
-        
+
         if perSessionRate == "" {
             param.removeValue(forKey: "per_session_rate")
         }
-        
+
         if perMultipleSessionRate == "" {
             param.removeValue(forKey: "per_multiple_session_rate")
         }
-        
+
         if days.count == 0 {
             param.removeValue(forKey: "days")
         }
         
-        if latitude == 0 {
-            param.removeValue(forKey: "latitude")
-        }
-        
-        if latitude == 0 {
-            param.removeValue(forKey: "latitude")
-        }
-        
-        if longitude == 0 {
-            param.removeValue(forKey: "longitude")
-        }
+//        if latitude == 0 {
+//            param.removeValue(forKey: "latitude")
+//        }
+//
+//        if latitude == 0 {
+//            param.removeValue(forKey: "latitude")
+//        }
+//
+//        if longitude == 0 {
+//            param.removeValue(forKey: "longitude")
+//        }
         
         if locationName == "" {
             param.removeValue(forKey: "location_name")
         }
-        
+
         if CredentialsArray.count == 0 {
             param.removeValue(forKey: "academic_credentials")
         }
-        
+
         if isForms == nil {
             param.removeValue(forKey: "is_forms")
         }
-        
+
         if isAnswerd == nil {
             param.removeValue(forKey: "is_answerd")
         }

@@ -128,20 +128,20 @@ class BillingInformationViewModel {
     }
     
     func saveCard() {
-        var name =  [String]()
-        var expiryDate =  [String]()
-        var number = ""
-        var firstName = ""
-        var lastName = ""
-        var expireMonth = ""
-        var expireYear = ""
-        var type = ""
-        var line1 = ""
-        var countryCode = ""
-        var city = ""
-        var state = ""
-        var postalCode = ""
-        var phone = ""
+        let _ =  [String]()
+        let _ =  [String]()
+        let number = ""
+        let firstName = ""
+        let lastName = ""
+        let expireMonth = ""
+        let expireYear = ""
+        let type = ""
+        let line1 = ""
+        let countryCode = ""
+        let city = ""
+        let state = ""
+        let postalCode = ""
+        let phone = ""
         
 //        for data in self.cardArray {
 //            name =  data[2].toTrim().components(separatedBy: " ")
