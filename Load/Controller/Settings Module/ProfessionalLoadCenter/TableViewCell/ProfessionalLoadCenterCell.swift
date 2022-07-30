@@ -111,6 +111,13 @@ class ProfessionalLoadCenterCell: UITableViewCell, UITextFieldDelegate {
                 
                 pickerViewTypes.delegate = self
                 pickerViewTypes.backgroundColor = UIColor.white
+                
+                for (index, data) in (GetAllData?.data?.professionalTypes?.enumerated())! {
+                    if self.professionalTypeId == data.id?.intValue {
+                        self.pickerViewTypes.selectRow(index, inComponent: 0, animated: false)
+                    }
+                }
+                
                 self.txtValue.inputView = pickerViewTypes
 
                 self.setView(btnCell: true, imgArrow: true, txtValue: false, btnUpload: true)
@@ -248,7 +255,7 @@ class ProfessionalLoadCenterCell: UITableViewCell, UITextFieldDelegate {
             }
             
         } else if self.tag == 1 && textField.tag == 1 {
-            
+            // HERE
             self.txtValue.text = self.textMainArrayForPickerValueCheck[textField.tag]
             for (index, data) in (GetAllData?.data?.professionalTypes?.enumerated())! {
                 if self.professionalTypeId == data.id?.intValue {

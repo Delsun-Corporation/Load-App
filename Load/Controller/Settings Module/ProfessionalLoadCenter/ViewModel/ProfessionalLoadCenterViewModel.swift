@@ -261,7 +261,33 @@ class ProfessionalLoadCenterViewModel: ProfessionalListDelegate, ProfessionalReq
             amenitiesArray.add(dict)
         }
         print(JSON(amenitiesArray))
-        self.apiCallUpdateList(profession: self.selectedProfession, introduction: self.txtIntroduction, rate: 0, specializationIds: self.ActivityArray, experienceAndAchievements: "", languagesSpokenIds: [self.selectedLangSpoken], languagesWrittenIds: [self.selectedLangWriten], sessionDuration: self.txtDuration, professionalTypeId: self.txtTypesId, sessionMaximumClients: self.txtMaximumClient, basicRequirement: self.txtBasicRequirement, amenities: amenitiesArray, paymentOptionId: self.txtOptionsId, perSessionRate: self.txtPerSession, perMultipleSessionRate: self.txtPerMultipleSessions, isCustom: self.isCustom, days: self.AvailabilityArray, isAutoAccept: self.txtAutoAccept, latitude: self.selectedLatitude, longitude: self.selectedLongitude, locationName: self.locationString, CredentialsArray: self.CredentialsArray, isForms: self.isAutoForm, isAnswerd: self.isAgreeForm)
+        self.apiCallUpdateList(
+            profession: self.selectedProfession,
+            introduction: self.txtIntroduction,
+            rate: 0,
+            specializationIds: self.ActivityArray,
+            experienceAndAchievements: "",
+            languagesSpokenIds: [self.selectedLangSpoken],
+            languagesWrittenIds: [self.selectedLangWriten],
+            sessionDuration: self.txtDuration,
+            professionalTypeId: self.txtTypesId,
+            sessionPerPackage: Int(self.txtNumberOfSessionPerPackage) ?? 0,
+            sessionMaximumClients: Int(self.txtMaximumClient) ?? 0,
+            basicRequirement: self.txtBasicRequirement,
+            amenities: amenitiesArray,
+            paymentOptionId: self.txtOptionsId,
+            perSessionRate: self.txtPerSession,
+            perMultipleSessionRate: self.txtPerMultipleSessions,
+            isCustom: self.isCustom,
+            days: self.AvailabilityArray,
+            isAutoAccept: self.txtAutoAccept,
+            latitude: self.selectedLatitude,
+            longitude: self.selectedLongitude,
+            locationName: self.locationString,
+            CredentialsArray: self.CredentialsArray,
+            isForms: self.isAutoForm,
+            isAnswerd: self.isAgreeForm
+        )
     }
     
     func ProfessionalBasicProfileFinish(Profession: String, locationString:String, Latitude: Double, Longitude: Double, Introduction: String, ActivityArray: [Int], LangSpoken: Int, LangWriten: Int, CredentialsArray: NSMutableArray) {
@@ -339,11 +365,23 @@ class ProfessionalLoadCenterViewModel: ProfessionalListDelegate, ProfessionalReq
         
         // 1
         self.txtDuration = self.profileDetails?.sessionDuration ?? ""
-        self.txtTypesId = self.profileDetails?.professionalTypeId?.intValue ?? 0
-        self.txtTypes = self.profileDetails?.professionalTypeDetail?.name ?? ""
+        let typeId = self.profileDetails?.professionalTypeId?.intValue ?? 0
+        self.txtTypesId = typeId
+        
+        if newApiConfig {
+            for (_, data) in (GetAllData?.data?.professionalTypes?.enumerated())! {
+                if typeId == data.id?.intValue {
+                    self.txtTypes = data.name ?? ""
+                }
+            }
+        } else {
+            self.txtTypes = self.profileDetails?.professionalTypeDetail?.name ?? ""
+        }
+        self.txtNumberOfSessionPerPackage = self.profileDetails?.sessionPerPackage?.stringValue ?? ""
         self.txtMaximumClient = self.profileDetails?.sessionMaximumClients?.stringValue ?? ""
         self.textArray[1][0] = self.txtDuration
         self.textArray[1][1] = self.txtTypes
+        self.textArray[1][2] = self.txtNumberOfSessionPerPackage
         self.textArray[1][3] = self.txtMaximumClient
         
         // 2
@@ -443,7 +481,8 @@ class ProfessionalLoadCenterViewModel: ProfessionalListDelegate, ProfessionalReq
                            languagesWrittenIds:[Int],
                            sessionDuration:String,
                            professionalTypeId:Int,
-                           sessionMaximumClients:String,
+                           sessionPerPackage: Int,
+                           sessionMaximumClients: Int,
                            basicRequirement:String,
                            amenities: NSMutableArray,
                            paymentOptionId:Int,
@@ -470,6 +509,7 @@ class ProfessionalLoadCenterViewModel: ProfessionalListDelegate, ProfessionalReq
                      "languages_written_ids": languagesWrittenIds,
                      "session_duration": sessionDuration,
                      "professional_type_id": professionalTypeId,
+                     "session_per_package": sessionPerPackage,
                      "session_maximum_clients": sessionMaximumClients,
                      "basic_requirement": basicRequirement,
                      "amenities": newApiConfig ? convertAmenitiesToStringArray(amenities) : amenities,
@@ -521,10 +561,6 @@ class ProfessionalLoadCenterViewModel: ProfessionalListDelegate, ProfessionalReq
         
         if professionalTypeId == 0 {
             param.removeValue(forKey: "professional_type_id")
-        }
-        
-        if sessionMaximumClients == "" {
-            param.removeValue(forKey: "session_maximum_clients")
         }
         
         if basicRequirement == "" {
