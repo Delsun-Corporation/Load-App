@@ -43,6 +43,9 @@ class ProfessionalModelClass: Mappable {
     var academicCredentials: [AcademicCredentials]?
     var isForms: Bool?
     var isAnswerd: Bool?
+    var isFormAutoSend: Bool?
+    var isFormCompulsary: Bool?
+    var isFormAgree: Bool?
 
 	required init?(map: Map){ 
 	} 
@@ -87,6 +90,9 @@ class ProfessionalModelClass: Mappable {
         academicCredentials <- map["academic_credentials"]
         isForms <- map["is_forms"]
         isAnswerd <- map["is_answerd"]
+        isFormAutoSend <- map["is_form_auto_send"]
+        isFormCompulsary <- map["is_form_compulsary"]
+        isFormAgree <- map["is_form_agree"]
 	}
 } 
 

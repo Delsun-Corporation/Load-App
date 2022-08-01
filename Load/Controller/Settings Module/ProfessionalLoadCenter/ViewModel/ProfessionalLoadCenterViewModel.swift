@@ -286,7 +286,9 @@ class ProfessionalLoadCenterViewModel: ProfessionalListDelegate, ProfessionalReq
             locationName: self.locationString,
             CredentialsArray: self.CredentialsArray,
             isForms: self.isAutoForm,
-            isAnswerd: self.isAgreeForm
+            isAnswerd: self.isAgreeForm,
+            isFormAutoSend: self.isAutoForm,
+            isFormCompulsary: self.isSetCompulsory
         )
     }
     
@@ -367,8 +369,8 @@ class ProfessionalLoadCenterViewModel: ProfessionalListDelegate, ProfessionalReq
             self.CredentialsArray.add(dict)
         }
         
-        self.isAgreeForm = self.profileDetails?.isForms
-        self.isAutoForm = self.profileDetails?.isAnswerd
+        self.isAutoForm = self.profileDetails?.isFormAutoSend
+        self.isSetCompulsory = self.profileDetails?.isFormCompulsary
         
         // 1
         self.txtDuration = self.profileDetails?.sessionDuration ?? ""
@@ -503,9 +505,10 @@ class ProfessionalLoadCenterViewModel: ProfessionalListDelegate, ProfessionalReq
                            locationName:String,
                            CredentialsArray: NSMutableArray,
                            isForms:Bool?,
-                           isAnswerd:Bool?) {
-        print(amenities)
-        print(CredentialsArray)
+                           isAnswerd:Bool?,
+                           isFormAutoSend: Bool?,
+                           isFormCompulsary: Bool?
+    ) {
         
         var param = ["profession": profession,
                      "introduction": introduction,
@@ -531,8 +534,10 @@ class ProfessionalLoadCenterViewModel: ProfessionalListDelegate, ProfessionalReq
                      "location_name": locationName,
                      "academic_credentials" : CredentialsArray,
                      "is_forms" : isForms ?? false,
-                     "is_answerd" : isAnswerd ?? false
-            ] as [String : Any]
+                     "is_answerd" : isAnswerd ?? false,
+                     "is_form_auto_send": isFormAutoSend,
+                     "is_form_compulsary": isFormCompulsary
+            ] as [String : Any?]
             
         if profession == "" {
             param.removeValue(forKey: "profession")
@@ -649,7 +654,7 @@ class ProfessionalLoadCenterViewModel: ProfessionalListDelegate, ProfessionalReq
         if self.isAgreeForm != isAgree || self.isAutoForm != isAuto {
             self.theController.btnSave.isHidden = false
         }
-        self.isAgreeForm = isAgree
+        
         self.isAutoForm = isAuto
         self.txtAutoAccept = isSetCompulsory ?? false
         
