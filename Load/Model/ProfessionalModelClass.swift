@@ -8,7 +8,7 @@ class ProfessionalModelClass: Mappable {
 	var cancellationPolicyId: NSNumber? 
 	var id: NSNumber? 
 	var rate: String? 
-	var perMultipleSessionRate: NSNumber? 
+	var perMultipleSessionRate: String?
 	var professionalTypeId: NSNumber?
     var locationName: String?
 	var languagesWrittenIds: [String]? 
@@ -21,7 +21,7 @@ class ProfessionalModelClass: Mappable {
 	var currencyDetail: ProfessionalCurrencyDetail?
 	var experienceAndAchievements: String? 
 	var generalRules: String? 
-	var perSessionRate: NSNumber?
+	var perSessionRate: String?
 	var createdAt: Any? 
 	var termsOfService: String? 
 	var academicAndCertifications: String? 

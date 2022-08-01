@@ -434,8 +434,8 @@ class ProfessionalLoadCenterViewModel: ProfessionalListDelegate, ProfessionalReq
         // 5
         self.txtOptionsId = self.profileDetails?.paymentOptionId?.intValue ?? 0
         self.txtOptions = self.profileDetails?.paymentOptionDetail?.name ?? ""
-        self.txtPerSession = self.profileDetails?.perSessionRate?.stringValue ?? ""
-        self.txtPerMultipleSessions = self.profileDetails?.perMultipleSessionRate?.stringValue ?? ""
+        self.txtPerSession = self.profileDetails?.perSessionRate ?? ""
+        self.txtPerMultipleSessions = self.profileDetails?.perMultipleSessionRate ?? ""
         
         //Remove payment
         //        self.textArray[5][0] = self.txtOptions
