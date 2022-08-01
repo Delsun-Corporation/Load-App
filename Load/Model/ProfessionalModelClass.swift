@@ -16,7 +16,7 @@ class ProfessionalModelClass: Mappable {
 	var currencyId: NSNumber? 
     var amenities: [Amenities]?
     var amenitiesV2: [String]?
-	var languagesSpokenIds: [String]? 
+	var languagesSpokenIds: [Int]?
 	var paymentOptionDetail: PaymentOptionDetail?
 	var currencyDetail: ProfessionalCurrencyDetail?
 	var experienceAndAchievements: String? 

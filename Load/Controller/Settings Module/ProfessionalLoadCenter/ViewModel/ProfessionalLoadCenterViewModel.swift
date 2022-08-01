@@ -361,7 +361,7 @@ class ProfessionalLoadCenterViewModel: ProfessionalListDelegate, ProfessionalReq
         self.ActivityArray = self.getSpecializationDetails(list: activity ?? [])
         self.ActivityNameArray = self.getSpecializationNameDetails(list: activity ?? [])
         
-        self.selectedLangSpoken = Int(self.profileDetails?.languagesSpokenIds?.first ?? "0") ?? 0
+        self.selectedLangSpoken = self.profileDetails?.languagesSpokenIds?.first ?? 0
         self.selectedLangWriten = Int(self.profileDetails?.languagesWrittenIds?.first ?? "0") ?? 0
         self.CredentialsArray.removeAllObjects()
         for data in self.profileDetails?.academicCredentials ?? [] {
