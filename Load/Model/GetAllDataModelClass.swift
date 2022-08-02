@@ -56,6 +56,7 @@ class DataGetAllDataModelClass: Mappable {
     var defaultBodyPartImageUrlFront: String?
     var defaultBodyPartImageUrlBack: String?
     var professionalScheduleAdvanceBooking: [ProfessionalScheduleAdvanceBooking]?
+    var timeInAdvance: [TimeInAdvance]?
 
 	required init?(map: Map){ 
 	} 
@@ -95,6 +96,7 @@ class DataGetAllDataModelClass: Mappable {
         defaultBodyPartImageUrlFront <- map["default_body_part_image_url_front"]
         defaultBodyPartImageUrlBack <- map["default_body_part_image_url_back"]
         professionalScheduleAdvanceBooking <- map["professional_schedule_advance_booking"]
+        timeInAdvance <- map["time_in_advance"]
 	}
     
     func getSortedCategory() -> [Category] {
@@ -103,6 +105,26 @@ class DataGetAllDataModelClass: Mappable {
         })
         return sortedCategory ?? []
     }
+}
+
+class TimeInAdvance: Mappable {
+    required init?(map: Map) {
+        //
+    }
+    
+    func mapping(map: Map) {
+        id <- map["_id"]
+        name <- map["name"]
+        code <- map["code"]
+        isActive <- map["is_active"]
+    }
+    
+    var id: String?
+    var name: String?
+    var code: String?
+    var isActive: Bool?
+    
+    
 }
 
 class Regions: Mappable {

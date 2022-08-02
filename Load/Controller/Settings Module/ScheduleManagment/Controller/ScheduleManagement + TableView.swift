@@ -16,7 +16,9 @@ extension ScheduleManagmentVc : UITableViewDelegate, UITableViewDataSource{
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "ScheduleManagementTblCell") as! ScheduleManagementTblCell
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "ScheduleManagementTblCell") as? ScheduleManagementTblCell else {
+            return UITableViewCell()
+        }
         
         cell.setupUI(data: GetAllData?.data?.professionalScheduleAdvanceBooking?[indexPath.row])
         cell.viewLine.isHidden = ((GetAllData?.data?.professionalScheduleAdvanceBooking?.count ?? 0)-1) == indexPath.row ? true : false
@@ -26,7 +28,7 @@ extension ScheduleManagmentVc : UITableViewDelegate, UITableViewDataSource{
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        if let array = GetAllData?.data?.professionalScheduleAdvanceBooking {
+        if let _ = GetAllData?.data?.professionalScheduleAdvanceBooking {
             
             for i in 0..<(GetAllData?.data?.professionalScheduleAdvanceBooking?.count ?? 0) {
                 let data = GetAllData?.data?.professionalScheduleAdvanceBooking?[i]
