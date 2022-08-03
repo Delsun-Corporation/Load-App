@@ -42,8 +42,8 @@ class SelectFormQuesionsCell: UITableViewCell {
     }
     
     func setupUI() {
-//        self.btnAns1.isUserInteractionEnabled = false
-//        self.btnAns2.isUserInteractionEnabled = false
+        self.btnAns1.isUserInteractionEnabled = false
+        self.btnAns2.isUserInteractionEnabled = false
 
         self.setupFont()
         self.lblTitle.text = "Physical Activity Readiness - Questionnaire"

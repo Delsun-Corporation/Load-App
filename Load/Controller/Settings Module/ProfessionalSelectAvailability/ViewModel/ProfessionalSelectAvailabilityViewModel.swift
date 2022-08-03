@@ -9,8 +9,8 @@
 import UIKit
 import SwiftyJSON
 
-protocol SelectAvailabilityDelegate: class {
-    func SelectAvailabilityFinish(isCustom:Bool, AvailabilityArray: [String])
+protocol SelectAvailabilityDelegate: AnyObject {
+    func SelectAvailabilityFinish(AvailabilityArray: [[String: Any]])
 }
 
 class ProfessionalSelectAvailabilityViewModel {
@@ -23,10 +23,11 @@ class ProfessionalSelectAvailabilityViewModel {
 
     var customArray:[String] = ["MONDAY", "TUESDAY", "WEDNESDAY", "THURSDAY", "FRIDAY", "SATURDAY", "SUNDAY"]
     var customArraySelected:[Bool] = [false, false, false, false, false, false, false]
+    var defaultHours: String = "00:00 AM - 00:00 PM"
     
     weak var delegate:SelectAvailabilityDelegate?
     
-    var nameArray: [String] = []
+    var availability: [ProfessionalAvailability]?
     
     //Calendar data
     var calendarArray: CalendarModelClass?
@@ -45,15 +46,20 @@ class ProfessionalSelectAvailabilityViewModel {
         
         let data = self.makeDateArray(date: currentShowMonth, position: currentShowMonth.startOfMonth().position(), PreviousCount: currentShowMonth.getPreviousMonth()!.count(), currentCount: currentShowMonth.startOfMonth().count())
         calendarArray = CalendarModelClass(JSON: JSON(data).dictionaryObject!)
-
-        if let view = self.theController.view as? ProfessionalSelectAvailabilityView {
-            view.lblMonthName.text = self.currentShowMonth.toString(dateFormat: "MMMM yyyy").uppercased()
-            view.tblCalendar.reloadData()
+        
+        guard let view = self.theController.view as? ProfessionalSelectAvailabilityView else {
+            return
         }
-
-        if nameArray.count != 0 {
-            self.showDetails()
+        view.lblMonthName.text = self.currentShowMonth.toString(dateFormat: "MMMM yyyy").uppercased()
+        view.tblCalendar.reloadData()
+        
+        if availability == nil || availability?.isEmpty == true {
+            makeMainArray()
+        } else {
+            showDetails()
         }
+        
+        view.tblShowData.reloadData()
     }
     
     func setupNavigationbar(title:String) {
@@ -105,50 +111,50 @@ class ProfessionalSelectAvailabilityViewModel {
         var innerDict = JSON()
         innerDict["name"].stringValue = "Monday"
         innerDict["selected_day"].boolValue = false
-        innerDict["openning_hours"].stringValue = ""
-        innerDict["break"].stringValue = ""
+        innerDict["openning_hours"].stringValue = defaultHours
+        innerDict["break"].stringValue = defaultHours
         InnerArray.append(innerDict)
         
         innerDict = JSON()
         innerDict["name"].stringValue = "Tuesday"
         innerDict["selected_day"].boolValue = false
-        innerDict["openning_hours"].stringValue = ""
-        innerDict["break"].stringValue = ""
+        innerDict["openning_hours"].stringValue = defaultHours
+        innerDict["break"].stringValue = defaultHours
         InnerArray.append(innerDict)
         
         innerDict = JSON()
         innerDict["name"].stringValue = "Wednesday"
         innerDict["selected_day"].boolValue = false
-        innerDict["openning_hours"].stringValue = ""
-        innerDict["break"].stringValue = ""
+        innerDict["openning_hours"].stringValue = defaultHours
+        innerDict["break"].stringValue = defaultHours
         InnerArray.append(innerDict)
         
         innerDict = JSON()
         innerDict["name"].stringValue = "Thursday"
         innerDict["selected_day"].boolValue = false
-        innerDict["openning_hours"].stringValue = ""
-        innerDict["break"].stringValue = ""
+        innerDict["openning_hours"].stringValue = defaultHours
+        innerDict["break"].stringValue = defaultHours
         InnerArray.append(innerDict)
         
         innerDict = JSON()
         innerDict["name"].stringValue = "Friday"
         innerDict["selected_day"].boolValue = false
-        innerDict["openning_hours"].stringValue = ""
-        innerDict["break"].stringValue = ""
+        innerDict["openning_hours"].stringValue = defaultHours
+        innerDict["break"].stringValue = defaultHours
         InnerArray.append(innerDict)
         
         innerDict = JSON()
         innerDict["name"].stringValue = "Saturday"
         innerDict["selected_day"].boolValue = false
-        innerDict["openning_hours"].stringValue = ""
-        innerDict["break"].stringValue = ""
+        innerDict["openning_hours"].stringValue = defaultHours
+        innerDict["break"].stringValue = defaultHours
         InnerArray.append(innerDict)
         
         innerDict = JSON()
         innerDict["name"].stringValue = "Sunday"
         innerDict["selected_day"].boolValue = false
-        innerDict["openning_hours"].stringValue = ""
-        innerDict["break"].stringValue = ""
+        innerDict["openning_hours"].stringValue = defaultHours
+        innerDict["break"].stringValue = defaultHours
         InnerArray.append(innerDict)
         
         dict["data"].arrayObject = InnerArray
@@ -166,36 +172,36 @@ class ProfessionalSelectAvailabilityViewModel {
         innerDict = JSON()
         innerDict["name"].stringValue = "Monday"
         innerDict["selected_day"].boolValue = false
-        innerDict["openning_hours"].stringValue = ""
-        innerDict["break"].stringValue = ""
+        innerDict["openning_hours"].stringValue = defaultHours
+        innerDict["break"].stringValue = defaultHours
         InnerArray.append(innerDict)
         
         innerDict = JSON()
         innerDict["name"].stringValue = "Tuesday"
         innerDict["selected_day"].boolValue = false
-        innerDict["openning_hours"].stringValue = ""
-        innerDict["break"].stringValue = ""
+        innerDict["openning_hours"].stringValue = defaultHours
+        innerDict["break"].stringValue = defaultHours
         InnerArray.append(innerDict)
         
         innerDict = JSON()
         innerDict["name"].stringValue = "Wednesday"
         innerDict["selected_day"].boolValue = false
-        innerDict["openning_hours"].stringValue = ""
-        innerDict["break"].stringValue = ""
+        innerDict["openning_hours"].stringValue = defaultHours
+        innerDict["break"].stringValue = defaultHours
         InnerArray.append(innerDict)
         
         innerDict = JSON()
         innerDict["name"].stringValue = "Thursday"
         innerDict["selected_day"].boolValue = false
-        innerDict["openning_hours"].stringValue = ""
-        innerDict["break"].stringValue = ""
+        innerDict["openning_hours"].stringValue = defaultHours
+        innerDict["break"].stringValue = defaultHours
         InnerArray.append(innerDict)
         
         innerDict = JSON()
         innerDict["name"].stringValue = "Friday"
         innerDict["selected_day"].boolValue = false
-        innerDict["openning_hours"].stringValue = ""
-        innerDict["break"].stringValue = ""
+        innerDict["openning_hours"].stringValue = defaultHours
+        innerDict["break"].stringValue = defaultHours
         InnerArray.append(innerDict)
         
         dict["data"].arrayObject = InnerArray
@@ -212,8 +218,8 @@ class ProfessionalSelectAvailabilityViewModel {
         
         innerDict = JSON()
         innerDict["name"].stringValue = ""
-        innerDict["openning_hours"].stringValue = ""
-        innerDict["break"].stringValue = ""
+        innerDict["openning_hours"].stringValue = defaultHours
+        innerDict["break"].stringValue = defaultHours
         InnerArray.append(innerDict)
 
         dict["data"].arrayObject = InnerArray
@@ -247,50 +253,50 @@ class ProfessionalSelectAvailabilityViewModel {
         innerDict = JSON()
         innerDict["name"].stringValue = "Monday"
         innerDict["selected_day"].boolValue = false
-        innerDict["openning_hours"].stringValue = ""
-        innerDict["break"].stringValue = ""
+        innerDict["openning_hours"].stringValue = defaultHours
+        innerDict["break"].stringValue = defaultHours
         InnerArray.append(innerDict)
         
         innerDict = JSON()
         innerDict["name"].stringValue = "Tuesday"
         innerDict["selected_day"].boolValue = false
-        innerDict["openning_hours"].stringValue = ""
-        innerDict["break"].stringValue = ""
+        innerDict["openning_hours"].stringValue = defaultHours
+        innerDict["break"].stringValue = defaultHours
         InnerArray.append(innerDict)
         
         innerDict = JSON()
         innerDict["name"].stringValue = "Wednesday"
         innerDict["selected_day"].boolValue = false
-        innerDict["openning_hours"].stringValue = ""
-        innerDict["break"].stringValue = ""
+        innerDict["openning_hours"].stringValue = defaultHours
+        innerDict["break"].stringValue = defaultHours
         InnerArray.append(innerDict)
         
         innerDict = JSON()
         innerDict["name"].stringValue = "Thursday"
         innerDict["selected_day"].boolValue = false
-        innerDict["openning_hours"].stringValue = ""
-        innerDict["break"].stringValue = ""
+        innerDict["openning_hours"].stringValue = defaultHours
+        innerDict["break"].stringValue = defaultHours
         InnerArray.append(innerDict)
         
         innerDict = JSON()
         innerDict["name"].stringValue = "Friday"
         innerDict["selected_day"].boolValue = false
-        innerDict["openning_hours"].stringValue = ""
-        innerDict["break"].stringValue = ""
+        innerDict["openning_hours"].stringValue = defaultHours
+        innerDict["break"].stringValue = defaultHours
         InnerArray.append(innerDict)
         
         innerDict = JSON()
         innerDict["name"].stringValue = "Saturday"
         innerDict["selected_day"].boolValue = false
-        innerDict["openning_hours"].stringValue = ""
-        innerDict["break"].stringValue = ""
+        innerDict["openning_hours"].stringValue = defaultHours
+        innerDict["break"].stringValue = defaultHours
         InnerArray.append(innerDict)
         
         innerDict = JSON()
         innerDict["name"].stringValue = "Sunday"
         innerDict["selected_day"].boolValue = false
-        innerDict["openning_hours"].stringValue = ""
-        innerDict["break"].stringValue = ""
+        innerDict["openning_hours"].stringValue = defaultHours
+        innerDict["break"].stringValue = defaultHours
         InnerArray.append(innerDict)
         
         dict["data"].arrayObject = InnerArray
@@ -301,51 +307,44 @@ class ProfessionalSelectAvailabilityViewModel {
     }
     
     func showDetails() {
-        var isCustom:Bool = true
-        for data in self.nameArray {
-            for (indexPath, dataValue) in self.headerArrayName.enumerated() {
-                if dataValue == data {
-                    headerArraySelected[indexPath] = true
-                    isCustom = false
-                }
-            }
+        guard let availability = availability else {
+            return
         }
-        
-        if isCustom {
-            self.headerArraySelected[4] = true
-            for data in self.nameArray {
-                for (indexPath, dataValue) in self.customArray.enumerated() {
-                    if dataValue == data {
-                        customArraySelected[indexPath] = true
-                        isCustom = false
-                    }
-                }
+
+        for object in availability {
+            var dict = JSON()
+            dict["title"].stringValue = object.title ?? ""
+            dict["selected"].boolValue = object.selected ?? false
+            
+            var InnerArray = [JSON]()
+            
+            for data in object.data ?? [] {
+                var innerDict = JSON()
+                innerDict["name"].stringValue = data.name ?? ""
+                innerDict["selected_day"].boolValue = data.selectedDay ?? false
+                innerDict["openning_hours"].stringValue = data.openingHours ?? defaultHours
+                innerDict["break"].stringValue = data.break ?? defaultHours
+                InnerArray.append(innerDict)
             }
+            
+            dict["data"].arrayObject = InnerArray
+            
+            self.arrayMain.append(dict)
         }
     }
     
     func getDetails() {
-        var isCustom:Bool = false
-        var nameArray: [String] = []
-        for (index, _) in self.headerArray.enumerated() {
-            if headerArraySelected[index] == true {
-                if index == 4 {
-                    isCustom = true
-                }
-                else {
-                    nameArray.append(headerArrayName[index])
-                }
-            }
+        var selectedArray: [[String: Any]] = []
+        
+        for object in arrayMain {
+            var _selectedArray: [String: Any] = [:]
+            _selectedArray["title"] = object["title"].stringValue
+            _selectedArray["selected"] = object["selected"].boolValue
+            _selectedArray["data"] = object["data"].arrayObject
+            selectedArray.append(_selectedArray)
         }
         
-        if isCustom {
-            for (index, _) in self.customArray.enumerated() {
-                if customArraySelected[index] == true {
-                    nameArray.append(customArray[index])
-                }
-            }
-        }
-        self.delegate?.SelectAvailabilityFinish(isCustom: isCustom, AvailabilityArray: nameArray)
+        self.delegate?.SelectAvailabilityFinish(AvailabilityArray: selectedArray)
     }
 }
 

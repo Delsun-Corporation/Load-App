@@ -8,7 +8,7 @@ class ProfessionalModelClass: Mappable {
 	var cancellationPolicyId: NSNumber? 
 	var id: NSNumber? 
 	var rate: String? 
-	var perMultipleSessionRate: NSNumber? 
+	var perMultipleSessionRate: String?
 	var professionalTypeId: NSNumber?
     var locationName: String?
 	var languagesWrittenIds: [String]? 
@@ -21,7 +21,7 @@ class ProfessionalModelClass: Mappable {
 	var currencyDetail: ProfessionalCurrencyDetail?
 	var experienceAndAchievements: String? 
 	var generalRules: String? 
-	var perSessionRate: NSNumber?
+	var perSessionRate: String?
 	var createdAt: Any? 
 	var termsOfService: String? 
 	var academicAndCertifications: String? 
@@ -31,7 +31,7 @@ class ProfessionalModelClass: Mappable {
 	var sessionDuration: String? 
 	var paymentOptionId: NSNumber? 
 	var userId: NSNumber? 
-	var days: [String]?
+	var days: [ProfessionalAvailability]?
     var sessionPerPackage: NSNumber?
 	var sessionMaximumClients: NSNumber? 
 	var basicRequirement: String?
@@ -43,6 +43,10 @@ class ProfessionalModelClass: Mappable {
     var academicCredentials: [AcademicCredentials]?
     var isForms: Bool?
     var isAnswerd: Bool?
+    var isFormAutoSend: Bool?
+    var isFormCompulsary: Bool?
+    var isFormAgree: Bool?
+    var scheduleManagement: ScheduleManagementAdvanceBooking?
 
 	required init?(map: Map){ 
 	} 
@@ -87,8 +91,62 @@ class ProfessionalModelClass: Mappable {
         academicCredentials <- map["academic_credentials"]
         isForms <- map["is_forms"]
         isAnswerd <- map["is_answerd"]
+        isFormAutoSend <- map["is_form_auto_send"]
+        isFormCompulsary <- map["is_form_compulsary"]
+        isFormAgree <- map["is_form_agree"]
+        scheduleManagement <- map["schedule_management"]
 	}
-} 
+}
+
+class ScheduleManagementAdvanceBooking: Mappable {
+    var id: Int?
+    var allowAdvanceBooking: Bool?
+    var isAutoAccept: Bool?
+    
+    required init?(map: Map) {
+        //
+    }
+    
+    func mapping(map: Map) {
+        id <- map["time_in_advance_id"]
+        allowAdvanceBooking <- map["allow_advance_booking"]
+        isAutoAccept <- map["is_schedule_auto_accept"]
+    }
+}
+
+class ProfessionalAvailability: Mappable {
+    required init?(map: Map) {
+        //
+    }
+    
+    func mapping(map: Map) {
+        title <- map["title"]
+        selected <- map["selected"]
+        data <- map["data"]
+    }
+    
+    var title: String?
+    var selected: Bool?
+    var data: [ProfessionalAvailabilitySelectedData]?
+}
+
+class ProfessionalAvailabilitySelectedData: Mappable {
+    required init?(map: Map) {
+        //
+    }
+    
+    func mapping(map: Map) {
+        `break` <- map["break"]
+        selectedDay <- map["selected_day"]
+        name <- map["name"]
+        openingHours <- map["openning_hours"]
+    }
+    
+    var openingHours: String?
+    var selectedDay: Bool?
+    var name: String?
+    var `break`: String?
+}
 
 class ProfessionalLanguagesSpokenDetails: Mappable {
 

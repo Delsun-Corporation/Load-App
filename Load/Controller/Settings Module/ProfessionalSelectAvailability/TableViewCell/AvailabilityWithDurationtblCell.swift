@@ -11,6 +11,7 @@ protocol AvailibilityDurationCellDelegate {
 }
 
 import UIKit
+import SwiftyJSON
 
 class AvailabilityWithDurationtblCell: UITableViewCell {
 
@@ -28,12 +29,16 @@ class AvailabilityWithDurationtblCell: UITableViewCell {
     @IBOutlet weak var txtBreak: UITextField!
     
     var sectionTag = 0
+    var indexPath: IndexPath?
     var delegateAvailibility : AvailibilityDurationCellDelegate?
+    
+    var onChangeOpeningHours: ((String, IndexPath) -> Void)?
+    var onChangeBreakHours: ((String, IndexPath) -> Void)?
     
     //MARK:- View life cycle
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+        txtOpeningHours.delegate = self
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -64,6 +69,18 @@ extension AvailabilityWithDurationtblCell: UITextFieldDelegate {
     }
     
     func textFieldDidEndEditing(_ textField: UITextField) {
+        if textField == txtOpeningHours {
+            guard let openingHours = txtOpeningHours.text, let indexPath = indexPath else {
+                return
+            }
+            onChangeOpeningHours?(openingHours, indexPath)
+        } else if textField == txtBreak {
+            guard let openingHours = txtBreak.text, let indexPath = indexPath else {
+                return
+            }
+            onChangeBreakHours?(openingHours, indexPath)
+        }
+        
     }
     
 }

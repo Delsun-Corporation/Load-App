@@ -9,7 +9,7 @@
 import UIKit
 import SwiftyJSON
 
-class ProfessionalLoadCenterViewModel: ProfessionalListDelegate, ProfessionalRequirementDelegate, ProfessionalBasicProfileDelegate, SelectAvailabilityDelegate, SelectFormDelegate {
+class ProfessionalLoadCenterViewModel: ProfessionalListDelegate, ProfessionalRequirementDelegate, ProfessionalBasicProfileDelegate, SelectAvailabilityDelegate, SelectFormDelegate, ScheduleManagementPageDelegate {
     
     //MARK:- Variables
     fileprivate weak var theController:ProfessionalLoadCenterVC!
@@ -69,12 +69,16 @@ class ProfessionalLoadCenterViewModel: ProfessionalListDelegate, ProfessionalReq
     var selectedLatitude:Double = 0.0
     var selectedLongitude:Double = 0.0
     var isCustom: Bool = false
-    var AvailabilityArray: [String] = []
+    var AvailabilityArray: [[String: Any]] = []
     var profileDetails:ProfessionalModelClass?
     var CredentialsArray: NSMutableArray = NSMutableArray()
     var isAgreeForm: Bool?
     var isAutoForm: Bool?
     var isSetCompulsory: Bool?
+    
+    var allowAdvanceBooking: Bool?
+    var timeAdvanceBookingId: Int?
+    var isAutoAcceptAdvanceBooking: Bool?
     
     //MARK:- Functions    
     init(theController:ProfessionalLoadCenterVC) {
@@ -197,13 +201,16 @@ class ProfessionalLoadCenterViewModel: ProfessionalListDelegate, ProfessionalReq
     func SelectAvailibilityClicked() {
         let obj = AppStoryboard.Settings.instance.instantiateViewController(withIdentifier: "ProfessionalSelectAvailabilityVC") as!ProfessionalSelectAvailabilityVC
         obj.mainModelView.delegate = self
-        obj.mainModelView.nameArray = self.AvailabilityArray
+        obj.mainModelView.availability = profileDetails?.days
         self.theController.navigationController?.pushViewController(obj, animated: true)
     }
     
     func scheduleManagment(){
         let obj = AppStoryboard.Settings.instance.instantiateViewController(withIdentifier: "ScheduleManagmentVc") as! ScheduleManagmentVc
-//        obj.mainModelView.delegate = self
+        obj.mainModelView.delegate = self
+        obj.mainModelView.allowAdvanceBooking = profileDetails?.scheduleManagement?.allowAdvanceBooking ?? false
+        obj.mainModelView.timeInAdvanceId = profileDetails?.scheduleManagement?.id
+        obj.mainModelView.isAutoAccept = profileDetails?.scheduleManagement?.isAutoAccept ?? false
         self.theController.navigationController?.pushViewController(obj, animated: true)
     }
     
@@ -251,6 +258,14 @@ class ProfessionalLoadCenterViewModel: ProfessionalListDelegate, ProfessionalReq
         saveDetails()
     }
     
+    func scheduleManagementFinish(allowAdvanceBooking: Bool, timeInAdvanceID: Int?, isAutoAccept: Bool) {
+        self.allowAdvanceBooking = allowAdvanceBooking
+        self.timeAdvanceBookingId = timeInAdvanceID
+        self.isAutoAcceptAdvanceBooking = isAutoAccept
+        
+        saveDetails()
+    }
+    
     func saveDetails() {
         self.theController.btnSave.isHidden = true
        
@@ -286,7 +301,12 @@ class ProfessionalLoadCenterViewModel: ProfessionalListDelegate, ProfessionalReq
             locationName: self.locationString,
             CredentialsArray: self.CredentialsArray,
             isForms: self.isAutoForm,
-            isAnswerd: self.isAgreeForm
+            isAnswerd: self.isAgreeForm,
+            isFormAutoSend: self.isAutoForm,
+            isFormCompulsary: self.isSetCompulsory,
+            allowAdvanceBooking: self.allowAdvanceBooking,
+            timeInAdvanceId: self.timeAdvanceBookingId,
+            isAutoAcceptAdvanceBooking: self.isAutoAcceptAdvanceBooking
         )
     }
     
@@ -307,14 +327,8 @@ class ProfessionalLoadCenterViewModel: ProfessionalListDelegate, ProfessionalReq
         saveDetails()
     }
     
-    func SelectAvailabilityFinish(isCustom: Bool, AvailabilityArray: [String]) {
-        if self.AvailabilityArray != AvailabilityArray {
-            self.theController.btnSave.isHidden = false
-        }
-
-        self.isCustom = isCustom
+    func SelectAvailabilityFinish(AvailabilityArray: [[String: Any]]) {
         self.AvailabilityArray = AvailabilityArray
-        
         saveDetails()
     }
     
@@ -367,8 +381,8 @@ class ProfessionalLoadCenterViewModel: ProfessionalListDelegate, ProfessionalReq
             self.CredentialsArray.add(dict)
         }
         
-        self.isAgreeForm = self.profileDetails?.isForms
-        self.isAutoForm = self.profileDetails?.isAnswerd
+        self.isAutoForm = self.profileDetails?.isFormAutoSend
+        self.isSetCompulsory = self.profileDetails?.isFormCompulsary
         
         // 1
         self.txtDuration = self.profileDetails?.sessionDuration ?? ""
@@ -432,8 +446,8 @@ class ProfessionalLoadCenterViewModel: ProfessionalListDelegate, ProfessionalReq
         // 5
         self.txtOptionsId = self.profileDetails?.paymentOptionId?.intValue ?? 0
         self.txtOptions = self.profileDetails?.paymentOptionDetail?.name ?? ""
-        self.txtPerSession = self.profileDetails?.perSessionRate?.stringValue ?? ""
-        self.txtPerMultipleSessions = self.profileDetails?.perMultipleSessionRate?.stringValue ?? ""
+        self.txtPerSession = self.profileDetails?.perSessionRate ?? ""
+        self.txtPerMultipleSessions = self.profileDetails?.perMultipleSessionRate ?? ""
         
         //Remove payment
         //        self.textArray[5][0] = self.txtOptions
@@ -442,7 +456,7 @@ class ProfessionalLoadCenterViewModel: ProfessionalListDelegate, ProfessionalReq
         
         // 6
         self.txtAutoAccept = self.profileDetails?.isAutoAccept?.boolValue ?? false
-        self.AvailabilityArray = self.profileDetails?.days ?? []
+//        self.AvailabilityArray = self.profileDetails?.days ?? []
         let view = (self.theController.view as? ProfessionalLoadCenterView)
         view?.tableView.reloadData()
     }
@@ -496,16 +510,20 @@ class ProfessionalLoadCenterViewModel: ProfessionalListDelegate, ProfessionalReq
                            perSessionRate:String,
                            perMultipleSessionRate:String,
                            isCustom:Bool,
-                           days:[String],
+                           days:[[String: Any]],
                            isAutoAccept:Bool,
                            latitude:Double,
                            longitude:Double,
                            locationName:String,
                            CredentialsArray: NSMutableArray,
                            isForms:Bool?,
-                           isAnswerd:Bool?) {
-        print(amenities)
-        print(CredentialsArray)
+                           isAnswerd:Bool?,
+                           isFormAutoSend: Bool?,
+                           isFormCompulsary: Bool?,
+                           allowAdvanceBooking: Bool?,
+                           timeInAdvanceId: Int?,
+                           isAutoAcceptAdvanceBooking: Bool?
+    ) {
         
         var param = ["profession": profession,
                      "introduction": introduction,
@@ -531,8 +549,15 @@ class ProfessionalLoadCenterViewModel: ProfessionalListDelegate, ProfessionalReq
                      "location_name": locationName,
                      "academic_credentials" : CredentialsArray,
                      "is_forms" : isForms ?? false,
-                     "is_answerd" : isAnswerd ?? false
-            ] as [String : Any]
+                     "is_answerd" : isAnswerd ?? false,
+                     "is_form_auto_send": isFormAutoSend,
+                     "is_form_compulsary": isFormCompulsary,
+                     "schedule_management": [
+                        "allow_advance_booking": allowAdvanceBooking ?? false,
+                        "time_in_advance_id": timeInAdvanceId,
+                        "is_schedule_auto_accept": isAutoAcceptAdvanceBooking
+                     ]
+            ] as [String : Any?]
             
         if profession == "" {
             param.removeValue(forKey: "profession")
@@ -628,8 +653,7 @@ class ProfessionalLoadCenterViewModel: ProfessionalListDelegate, ProfessionalReq
                 if success {
                     let data = json.getDictionary(key: .data)
                     self.profileDetails = ProfessionalModelClass(JSON: data.dictionaryObject!)
-//                    let view = (self.theController.view as? ProfessionalLoadCenterView)
-//                    view?.tableView.reloadData()
+                    self.getProfessionalDetails()
                 }
                 else {
 
@@ -649,7 +673,7 @@ class ProfessionalLoadCenterViewModel: ProfessionalListDelegate, ProfessionalReq
         if self.isAgreeForm != isAgree || self.isAutoForm != isAuto {
             self.theController.btnSave.isHidden = false
         }
-        self.isAgreeForm = isAgree
+        
         self.isAutoForm = isAuto
         self.txtAutoAccept = isSetCompulsory ?? false
         
