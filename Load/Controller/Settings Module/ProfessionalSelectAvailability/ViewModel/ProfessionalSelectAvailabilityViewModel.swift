@@ -33,6 +33,7 @@ class ProfessionalSelectAvailabilityViewModel {
     var calendarArray: CalendarModelClass?
     var currentShowMonth = Date()
     var isReloaded: [Bool] = [false, false, false, false, false, false]
+    var timeRangePickerData: [[DatePickerRangeDataModel]] = []
     
     var arrayMain = [JSON]()
 
@@ -97,6 +98,10 @@ class ProfessionalSelectAvailabilityViewModel {
             self.theController.navigationController?.view.addSubview(vwnav)
             
         }
+    }
+    
+    func createTimeRangePicketData() {
+        timeRangePickerData = DatePickerRangeDataModel.createData()
     }
     
     func makeMainArray(){

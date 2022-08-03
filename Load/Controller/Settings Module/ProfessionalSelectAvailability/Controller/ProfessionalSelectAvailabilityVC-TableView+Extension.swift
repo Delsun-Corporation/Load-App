@@ -8,78 +8,6 @@
 
 import UIKit
 
-/*
-extension ProfessionalSelectAvailabilityVC: UITableViewDelegate, UITableViewDataSource, ProfessionalAvailabilityHeaderDelegate, ProfessionalAvailabilityDelegate {
-    
-    //MARK:- TableView
-    func numberOfSections(in tableView: UITableView) -> Int {
-        return self.mainModelView.headerArray.count
-    }
-    
-    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 61
-    }
-    
-    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        return 3
-    }
-    
-    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let view = ProfessionalAvailabilityHeaderView.instanceFromNib() as! ProfessionalAvailabilityHeaderView
-        view.btnSwitch.tag = section
-        view.setupUI(title: self.mainModelView.headerArray[section], isSelected: self.mainModelView.headerArraySelected[section])
-        view.delegate = self
-        return view
-    }
-    
-    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
-        let view = ProfileFooterView.instanceFromNib() as? ProfileFooterView
-        view?.setupUI()
-        return view
-    }
-    
-    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 45
-    }
-    
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 45
-    }
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return section != 4 ? 0 : (self.mainModelView.headerArraySelected[4] ? self.mainModelView.customArray.count : 0)
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell: ProfessionalAvailabilityCell = self.mainView.tableView.dequeueReusableCell(withIdentifier: "ProfessionalAvailabilityCell") as! ProfessionalAvailabilityCell
-        cell.selectionStyle = .none
-        cell.tag = indexPath.row
-        cell.delegate = self
-        cell.setupUI(title: self.mainModelView.customArray[indexPath.row].lowercased().capitalized, isSelected: self.mainModelView.customArraySelected[indexPath.row])
-        cell.viewLine.isHidden = indexPath.row == (self.mainModelView.customArraySelected.count - 1)
-        return cell
-    }
-    
-    func ProfessionalAvailabilityHeaderFinish(tag: Int, isShow:Bool) {
-        for (index, _) in self.mainModelView.headerArraySelected.enumerated() {
-            self.mainModelView.headerArraySelected[index] = false
-        }
-        
-        for (index, _) in self.mainModelView.customArraySelected.enumerated() {
-            self.mainModelView.customArraySelected[index] = false
-        }
-        
-        self.mainModelView.headerArraySelected[tag] = isShow
-        self.mainView.tableView.reloadData()
-    }
-    
-    func ProfessionalAvailabilityCellFinish(tag: Int) {
-        self.mainModelView.customArraySelected[tag] = !self.mainModelView.customArraySelected[tag]
-        self.mainView.tableView.reloadData()
-    }
-}
-*/
-
 extension ProfessionalSelectAvailabilityVC: UITableViewDelegate, UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -195,6 +123,7 @@ extension ProfessionalSelectAvailabilityVC: UITableViewDelegate, UITableViewData
             cell.txtOpeningHours.text = dict["openning_hours"].stringValue
             cell.txtBreak.text = dict["break"].stringValue.isEmpty ? self.mainModelView.defaultHours : dict["break"].stringValue
             cell.indexPath = indexPath
+            cell.timeRangePickerData = mainModelView.timeRangePickerData
             cell.onChangeOpeningHours = { [weak self] openingHours, index in
                 self?.mainModelView.arrayMain[index.section]["data"][index.row]["openning_hours"].stringValue = openingHours
             }
