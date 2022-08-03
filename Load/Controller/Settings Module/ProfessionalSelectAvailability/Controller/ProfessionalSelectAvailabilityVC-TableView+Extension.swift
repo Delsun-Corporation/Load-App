@@ -192,6 +192,10 @@ extension ProfessionalSelectAvailabilityVC: UITableViewDelegate, UITableViewData
             cell.btnDaySelect.tag = indexPath.row
             cell.delegateAvailibility = self
             cell.lblDayName.text = dict["name"].stringValue
+            cell.indexPath = indexPath
+            cell.onChangeOpeningHours = { [weak self] openingHours, index in
+                self?.mainModelView.arrayMain[index.section]["data"][index.row]["openning_hours"].stringValue = openingHours
+            }
             
             if dict["selected_day"].boolValue == true {
                 cell.lblDayName.textColor = UIColor.appthemeOffRedColor
