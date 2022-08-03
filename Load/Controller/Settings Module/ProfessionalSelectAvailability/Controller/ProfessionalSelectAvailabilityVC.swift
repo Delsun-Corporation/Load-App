@@ -28,8 +28,6 @@ class ProfessionalSelectAvailabilityVC: UIViewController {
         super.viewDidLoad()
         self.mainView.setupUI(theController: self)
         self.mainModelView.setupUI()
-        
-        self.mainModelView.makeMainArray()
     }
     
     override func viewWillAppear(_ animated: Bool) {

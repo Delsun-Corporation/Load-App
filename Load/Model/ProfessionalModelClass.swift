@@ -31,7 +31,7 @@ class ProfessionalModelClass: Mappable {
 	var sessionDuration: String? 
 	var paymentOptionId: NSNumber? 
 	var userId: NSNumber? 
-	var days: [String]?
+	var days: [ProfessionalAvailability]?
     var sessionPerPackage: NSNumber?
 	var sessionMaximumClients: NSNumber? 
 	var basicRequirement: String?
@@ -94,7 +94,41 @@ class ProfessionalModelClass: Mappable {
         isFormCompulsary <- map["is_form_compulsary"]
         isFormAgree <- map["is_form_agree"]
 	}
-} 
+}
+
+class ProfessionalAvailability: Mappable {
+    required init?(map: Map) {
+        //
+    }
+    
+    func mapping(map: Map) {
+        title <- map["title"]
+        selected <- map["selected"]
+        data <- map["data"]
+    }
+    
+    var title: String?
+    var selected: Bool?
+    var data: [ProfessionalAvailabilitySelectedData]?
+}
+
+class ProfessionalAvailabilitySelectedData: Mappable {
+    required init?(map: Map) {
+        //
+    }
+    
+    func mapping(map: Map) {
+        `break` <- map["break"]
+        selectedDay <- map["selected_day"]
+        name <- map["name"]
+        openingHours <- map["openning_hours"]
+    }
+    
+    var openingHours: String?
+    var selectedDay: Bool?
+    var name: String?
+    var `break`: String?
+}
 
 class ProfessionalLanguagesSpokenDetails: Mappable {
 

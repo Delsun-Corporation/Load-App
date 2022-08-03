@@ -69,7 +69,7 @@ class ProfessionalLoadCenterViewModel: ProfessionalListDelegate, ProfessionalReq
     var selectedLatitude:Double = 0.0
     var selectedLongitude:Double = 0.0
     var isCustom: Bool = false
-    var AvailabilityArray: [String] = []
+    var AvailabilityArray: [[String: Any]] = []
     var profileDetails:ProfessionalModelClass?
     var CredentialsArray: NSMutableArray = NSMutableArray()
     var isAgreeForm: Bool?
@@ -197,7 +197,7 @@ class ProfessionalLoadCenterViewModel: ProfessionalListDelegate, ProfessionalReq
     func SelectAvailibilityClicked() {
         let obj = AppStoryboard.Settings.instance.instantiateViewController(withIdentifier: "ProfessionalSelectAvailabilityVC") as!ProfessionalSelectAvailabilityVC
         obj.mainModelView.delegate = self
-        obj.mainModelView.nameArray = self.AvailabilityArray
+        obj.mainModelView.availability = profileDetails?.days
         self.theController.navigationController?.pushViewController(obj, animated: true)
     }
     
@@ -309,14 +309,8 @@ class ProfessionalLoadCenterViewModel: ProfessionalListDelegate, ProfessionalReq
         saveDetails()
     }
     
-    func SelectAvailabilityFinish(isCustom: Bool, AvailabilityArray: [String]) {
-        if self.AvailabilityArray != AvailabilityArray {
-            self.theController.btnSave.isHidden = false
-        }
-
-        self.isCustom = isCustom
+    func SelectAvailabilityFinish(AvailabilityArray: [[String: Any]]) {
         self.AvailabilityArray = AvailabilityArray
-        
         saveDetails()
     }
     
@@ -444,7 +438,7 @@ class ProfessionalLoadCenterViewModel: ProfessionalListDelegate, ProfessionalReq
         
         // 6
         self.txtAutoAccept = self.profileDetails?.isAutoAccept?.boolValue ?? false
-        self.AvailabilityArray = self.profileDetails?.days ?? []
+//        self.AvailabilityArray = self.profileDetails?.days ?? []
         let view = (self.theController.view as? ProfessionalLoadCenterView)
         view?.tableView.reloadData()
     }
@@ -498,7 +492,7 @@ class ProfessionalLoadCenterViewModel: ProfessionalListDelegate, ProfessionalReq
                            perSessionRate:String,
                            perMultipleSessionRate:String,
                            isCustom:Bool,
-                           days:[String],
+                           days:[[String: Any]],
                            isAutoAccept:Bool,
                            latitude:Double,
                            longitude:Double,
@@ -633,8 +627,7 @@ class ProfessionalLoadCenterViewModel: ProfessionalListDelegate, ProfessionalReq
                 if success {
                     let data = json.getDictionary(key: .data)
                     self.profileDetails = ProfessionalModelClass(JSON: data.dictionaryObject!)
-//                    let view = (self.theController.view as? ProfessionalLoadCenterView)
-//                    view?.tableView.reloadData()
+                    self.getProfessionalDetails()
                 }
                 else {
 
