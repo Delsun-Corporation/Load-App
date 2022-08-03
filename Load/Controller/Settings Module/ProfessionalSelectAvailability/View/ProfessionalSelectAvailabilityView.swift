@@ -17,6 +17,7 @@ class ProfessionalSelectAvailabilityView: UIView {
     
     @IBOutlet weak var constraintTopOfTblCalendar: NSLayoutConstraint!
     @IBOutlet weak var tblShowData: UITableView!
+    
     //MARK: - Functions
     func setupUI(theController:ProfessionalSelectAvailabilityVC) {
         

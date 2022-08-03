@@ -27,10 +27,15 @@ class AvailabilityWithDurationtblCell: UITableViewCell {
     @IBOutlet weak var heightConstraintVwDuration: NSLayoutConstraint!
     @IBOutlet weak var txtOpeningHours: UITextField!
     @IBOutlet weak var txtBreak: UITextField!
+    lazy var timeRangePicker: UIPickerView = {
+        let view = UIPickerView()
+        return view
+    }()
     
     var sectionTag = 0
     var indexPath: IndexPath?
     var delegateAvailibility : AvailibilityDurationCellDelegate?
+    var timeRangePickerData = [[DatePickerRangeDataModel]]()
     
     var onChangeOpeningHours: ((String, IndexPath) -> Void)?
     var onChangeBreakHours: ((String, IndexPath) -> Void)?
@@ -38,13 +43,36 @@ class AvailabilityWithDurationtblCell: UITableViewCell {
     //MARK:- View life cycle
     override func awakeFromNib() {
         super.awakeFromNib()
-        txtOpeningHours.delegate = self
+        self.timeRangePicker.delegate = self
+        self.timeRangePicker.dataSource = self
+        txtOpeningHours.inputView = timeRangePicker
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 
         // Configure the view for the selected state
+    }
+    
+    private func getValueFromPickerView() -> String {
+        var selectedDict: [Int: String] = [:]
+        
+        for timeRange in 0..<timeRangePicker.numberOfComponents {
+            let selectedRow = timeRangePicker.selectedRow(inComponent: timeRange)
+            guard let viewInRow = timeRangePicker.view(forRow: selectedRow, forComponent: timeRange) as? LOADCustomPickerView,
+                  let text = viewInRow.titleLabel.text else {
+                continue
+            }
+            selectedDict[timeRange] = text
+        }
+        
+        // Convert dict to string for date time range
+        var parsedString = ""
+        for timeRange in 0..<timeRangePicker.numberOfComponents {
+            parsedString += "\(selectedDict[timeRange] ?? "")"
+        }
+        
+        return parsedString
     }
     
 }
@@ -70,6 +98,7 @@ extension AvailabilityWithDurationtblCell: UITextFieldDelegate {
     
     func textFieldDidEndEditing(_ textField: UITextField) {
         if textField == txtOpeningHours {
+            txtOpeningHours.text = getValueFromPickerView()
             guard let openingHours = txtOpeningHours.text, let indexPath = indexPath else {
                 return
             }
@@ -83,4 +112,22 @@ extension AvailabilityWithDurationtblCell: UITextFieldDelegate {
         
     }
     
+}
+
+extension AvailabilityWithDurationtblCell: UIPickerViewDelegate, UIPickerViewDataSource {
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        9
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        timeRangePickerData[component].count
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusing view: UIView?) -> UIView {
+        let view = LOADCustomPickerView()
+        view.titleLabel.font = themeFont(size: 18, fontname: .ProximaNovaRegular)
+        view.titleLabel.textColor = UIColor.appthemeOffRedColor
+        view.titleLabel.text = timeRangePickerData[component][row].title
+        return view
+    }
 }

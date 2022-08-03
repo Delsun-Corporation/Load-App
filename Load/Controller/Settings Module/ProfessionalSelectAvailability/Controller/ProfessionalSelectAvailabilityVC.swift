@@ -13,7 +13,7 @@ class ProfessionalSelectAvailabilityVC: UIViewController {
     //MARK:- Variables
     lazy var mainView: ProfessionalSelectAvailabilityView = { [unowned self] in
         return self.view as! ProfessionalSelectAvailabilityView
-        }()
+    }()
     
     lazy var mainModelView: ProfessionalSelectAvailabilityViewModel = {
         return ProfessionalSelectAvailabilityViewModel(theController: self)
@@ -28,6 +28,7 @@ class ProfessionalSelectAvailabilityVC: UIViewController {
         super.viewDidLoad()
         self.mainView.setupUI(theController: self)
         self.mainModelView.setupUI()
+        self.mainModelView.createTimeRangePicketData()
     }
     
     override func viewWillAppear(_ animated: Bool) {
