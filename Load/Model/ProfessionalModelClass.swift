@@ -46,6 +46,7 @@ class ProfessionalModelClass: Mappable {
     var isFormAutoSend: Bool?
     var isFormCompulsary: Bool?
     var isFormAgree: Bool?
+    var scheduleManagement: ScheduleManagementAdvanceBooking?
 
 	required init?(map: Map){ 
 	} 
@@ -93,7 +94,24 @@ class ProfessionalModelClass: Mappable {
         isFormAutoSend <- map["is_form_auto_send"]
         isFormCompulsary <- map["is_form_compulsary"]
         isFormAgree <- map["is_form_agree"]
+        scheduleManagement <- map["schedule_management"]
 	}
+}
+
+class ScheduleManagementAdvanceBooking: Mappable {
+    var id: Int?
+    var allowAdvanceBooking: Bool?
+    var isAutoAccept: Bool?
+    
+    required init?(map: Map) {
+        //
+    }
+    
+    func mapping(map: Map) {
+        id <- map["time_in_advance_id"]
+        allowAdvanceBooking <- map["allow_advance_booking"]
+        isAutoAccept <- map["is_schedule_auto_accept"]
+    }
 }
 
 class ProfessionalAvailability: Mappable {

@@ -9,7 +9,7 @@
 import UIKit
 import SwiftyJSON
 
-class ProfessionalLoadCenterViewModel: ProfessionalListDelegate, ProfessionalRequirementDelegate, ProfessionalBasicProfileDelegate, SelectAvailabilityDelegate, SelectFormDelegate {
+class ProfessionalLoadCenterViewModel: ProfessionalListDelegate, ProfessionalRequirementDelegate, ProfessionalBasicProfileDelegate, SelectAvailabilityDelegate, SelectFormDelegate, ScheduleManagementPageDelegate {
     
     //MARK:- Variables
     fileprivate weak var theController:ProfessionalLoadCenterVC!
@@ -75,6 +75,10 @@ class ProfessionalLoadCenterViewModel: ProfessionalListDelegate, ProfessionalReq
     var isAgreeForm: Bool?
     var isAutoForm: Bool?
     var isSetCompulsory: Bool?
+    
+    var allowAdvanceBooking: Bool?
+    var timeAdvanceBookingId: Int?
+    var isAutoAcceptAdvanceBooking: Bool?
     
     //MARK:- Functions    
     init(theController:ProfessionalLoadCenterVC) {
@@ -203,7 +207,10 @@ class ProfessionalLoadCenterViewModel: ProfessionalListDelegate, ProfessionalReq
     
     func scheduleManagment(){
         let obj = AppStoryboard.Settings.instance.instantiateViewController(withIdentifier: "ScheduleManagmentVc") as! ScheduleManagmentVc
-//        obj.mainModelView.delegate = self
+        obj.mainModelView.delegate = self
+        obj.mainModelView.allowAdvanceBooking = profileDetails?.scheduleManagement?.allowAdvanceBooking ?? false
+        obj.mainModelView.timeInAdvanceId = profileDetails?.scheduleManagement?.id
+        obj.mainModelView.isAutoAccept = profileDetails?.scheduleManagement?.isAutoAccept ?? false
         self.theController.navigationController?.pushViewController(obj, animated: true)
     }
     
@@ -251,6 +258,14 @@ class ProfessionalLoadCenterViewModel: ProfessionalListDelegate, ProfessionalReq
         saveDetails()
     }
     
+    func scheduleManagementFinish(allowAdvanceBooking: Bool, timeInAdvanceID: Int?, isAutoAccept: Bool) {
+        self.allowAdvanceBooking = allowAdvanceBooking
+        self.timeAdvanceBookingId = timeInAdvanceID
+        self.isAutoAcceptAdvanceBooking = isAutoAccept
+        
+        saveDetails()
+    }
+    
     func saveDetails() {
         self.theController.btnSave.isHidden = true
        
@@ -288,7 +303,10 @@ class ProfessionalLoadCenterViewModel: ProfessionalListDelegate, ProfessionalReq
             isForms: self.isAutoForm,
             isAnswerd: self.isAgreeForm,
             isFormAutoSend: self.isAutoForm,
-            isFormCompulsary: self.isSetCompulsory
+            isFormCompulsary: self.isSetCompulsory,
+            allowAdvanceBooking: self.allowAdvanceBooking,
+            timeInAdvanceId: self.timeAdvanceBookingId,
+            isAutoAcceptAdvanceBooking: self.isAutoAcceptAdvanceBooking
         )
     }
     
@@ -501,7 +519,10 @@ class ProfessionalLoadCenterViewModel: ProfessionalListDelegate, ProfessionalReq
                            isForms:Bool?,
                            isAnswerd:Bool?,
                            isFormAutoSend: Bool?,
-                           isFormCompulsary: Bool?
+                           isFormCompulsary: Bool?,
+                           allowAdvanceBooking: Bool?,
+                           timeInAdvanceId: Int?,
+                           isAutoAcceptAdvanceBooking: Bool?
     ) {
         
         var param = ["profession": profession,
@@ -530,7 +551,12 @@ class ProfessionalLoadCenterViewModel: ProfessionalListDelegate, ProfessionalReq
                      "is_forms" : isForms ?? false,
                      "is_answerd" : isAnswerd ?? false,
                      "is_form_auto_send": isFormAutoSend,
-                     "is_form_compulsary": isFormCompulsary
+                     "is_form_compulsary": isFormCompulsary,
+                     "schedule_management": [
+                        "allow_advance_booking": allowAdvanceBooking ?? false,
+                        "time_in_advance_id": timeInAdvanceId,
+                        "is_schedule_auto_accept": isAutoAcceptAdvanceBooking
+                     ]
             ] as [String : Any?]
             
         if profession == "" {

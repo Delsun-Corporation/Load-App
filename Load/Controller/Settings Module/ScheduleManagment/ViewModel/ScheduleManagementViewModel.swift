@@ -19,44 +19,20 @@ class ScheduleManagementViewModel {
     
     //MARK:- Variables
     fileprivate weak var theController:ScheduleManagmentVc!
+    weak var delegate: ScheduleManagementPageDelegate?
     
     //MARK:- Functions
     init(theController:ScheduleManagmentVc) {
         self.theController = theController
     }
     
-    var array = [JSON]()
+    var allowAdvanceBooking: Bool = false
+    var timeInAdvanceId: Int?
+    var isAutoAccept: Bool = false
     
-    func setupArray(){
-        
-        var dict = JSON()
-        dict["name"] = "2 weeks advanced booking"
-        dict["selected"] = 0
-        self.array.append(dict)
-        
-        dict = JSON()
-        dict["name"] = "1 month  advanced booking"
-        dict["selected"] = 0
-        self.array.append(dict)
-        
-        dict = JSON()
-        dict["name"] = "3 months advanced booking"
-        dict["selected"] = 0
-        self.array.append(dict)
-        
-        dict = JSON()
-        dict["name"] = "6 months advanced booking"
-        dict["selected"] = 0
-        self.array.append(dict)
-        
-    }
-
     //MARK: - Setup navigation delegate
     
     func setupNavigationbar(title:String) {
-        
-        setupArray()
-        
         self.theController.edgesForExtendedLayout = UIRectEdge.init(rawValue: 0)
         self.theController.navigationItem.hidesBackButton = true
         
@@ -98,7 +74,7 @@ class ScheduleManagementViewModel {
 extension ScheduleManagementViewModel: CustomNavigationWithSaveButtonDelegate{
     
     func CustomNavigationClose() {
-        self.theController.backButtonAction()
+        self.theController.btnBackClicked()
     }
     
     func CustomNavigationSave() {
