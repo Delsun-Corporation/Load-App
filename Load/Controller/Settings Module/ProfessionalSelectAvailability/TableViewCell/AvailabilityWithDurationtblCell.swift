@@ -33,6 +33,7 @@ class AvailabilityWithDurationtblCell: UITableViewCell {
     var delegateAvailibility : AvailibilityDurationCellDelegate?
     
     var onChangeOpeningHours: ((String, IndexPath) -> Void)?
+    var onChangeBreakHours: ((String, IndexPath) -> Void)?
     
     //MARK:- View life cycle
     override func awakeFromNib() {
@@ -68,10 +69,18 @@ extension AvailabilityWithDurationtblCell: UITextFieldDelegate {
     }
     
     func textFieldDidEndEditing(_ textField: UITextField) {
-        guard let openingHours = txtOpeningHours.text, let indexPath = indexPath else {
-            return
+        if textField == txtOpeningHours {
+            guard let openingHours = txtOpeningHours.text, let indexPath = indexPath else {
+                return
+            }
+            onChangeOpeningHours?(openingHours, indexPath)
+        } else if textField == txtBreak {
+            guard let openingHours = txtBreak.text, let indexPath = indexPath else {
+                return
+            }
+            onChangeBreakHours?(openingHours, indexPath)
         }
-        onChangeOpeningHours?(openingHours, indexPath)
+        
     }
     
 }

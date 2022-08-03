@@ -192,9 +192,15 @@ extension ProfessionalSelectAvailabilityVC: UITableViewDelegate, UITableViewData
             cell.btnDaySelect.tag = indexPath.row
             cell.delegateAvailibility = self
             cell.lblDayName.text = dict["name"].stringValue
+            cell.txtOpeningHours.text = dict["openning_hours"].stringValue
+            cell.txtBreak.text = dict["break"].stringValue.isEmpty ? self.mainModelView.defaultHours : dict["break"].stringValue
             cell.indexPath = indexPath
             cell.onChangeOpeningHours = { [weak self] openingHours, index in
                 self?.mainModelView.arrayMain[index.section]["data"][index.row]["openning_hours"].stringValue = openingHours
+            }
+            
+            cell.onChangeBreakHours = { [weak self] breakHours, index in
+                self?.mainModelView.arrayMain[index.section]["data"][index.row]["break"].stringValue = breakHours
             }
             
             if dict["selected_day"].boolValue == true {
