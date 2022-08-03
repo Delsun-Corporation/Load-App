@@ -45,10 +45,7 @@ class ProfessionalActivityVC: UIViewController {
     }
     
     private func saveData() {
-        if self.mainModelView.selectedArray.count == 0 {
-            makeToast(strMessage: getCommonString(key: "Please_select_categories_key"))
-        }
-        else if self.mainModelView.selectedArray.count > 3 {
+        if self.mainModelView.selectedArray.count > 3 {
             makeToast(strMessage: getCommonString(key: "Please_select_maximum_3_categories_key"))
         }
         else {

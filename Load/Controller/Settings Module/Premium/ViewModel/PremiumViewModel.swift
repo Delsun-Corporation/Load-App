@@ -412,21 +412,12 @@ class PremiumViewModel: ProfessionalRequirementDelegate, FilterActivitySelectedD
 extension PremiumViewModel: CustomNavigationWithSaveButtonDelegate{
     
     func CustomNavigationClose() {
-        guard validateDetails() == true else {
-            return
-        }
-        
         updatePremium()
         
         self.theController.btnCloseClicked()
     }
     
     func CustomNavigationSave() {
-        print("save")
-        guard validateDetails() == true else {
-            return
-        }
-        
         updatePremium()
     }
 

@@ -59,13 +59,9 @@ class CredentialsViewModel {
             let dict: NSDictionary = ["AwardingInstitution":data[0].toTrim(), "CourseOfStudy":data[1].toTrim()]
             array.add(dict)
         }
-        if isEmpty {
-            makeToast(strMessage: getCommonString(key: "Please_fill_all_details_key"))
-        }
-        else {
-            self.theController.navigationController?.popViewController(animated: true)
-            self.delegate?.CredentialsArrayFinish(array: array)
-        }
+        
+        self.theController.navigationController?.popViewController(animated: true)
+        self.delegate?.CredentialsArrayFinish(array: array)
     }
     
     func isEmptyData() -> Bool {
