@@ -807,11 +807,15 @@ extension UINavigationController {
             appearance.configureWithDefaultBackground()
             appearance.backgroundImage = nil
             appearance.backgroundColor = .white
+            appearance.titleTextAttributes = [.foregroundColor: UIColor.black]
+            appearance.largeTitleTextAttributes = [.foregroundColor: UIColor.black]
             UINavigationBar.appearance().standardAppearance = appearance
             UINavigationBar.appearance().scrollEdgeAppearance = appearance
             navigationBar.standardAppearance = appearance
             navigationBar.scrollEdgeAppearance = appearance
         }
+        navigationBar.tintColor = .black
+        navigationBar.barTintColor = .black
         self.navigationBar.backgroundColor = .white
         self.navigationBar.isTranslucent = false
     }

@@ -30,9 +30,8 @@ class MultiSelectionVC: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        self.mainModelView.setupNavigationbar(title: self.mainModelView.title)
+        setUpNavigationBarTitle(strTitle: self.mainModelView.title, color:UIColor.black)
         self.navigationController?.setWhiteColor()
-        self.navigationController?.addShadow()
 
     }
     

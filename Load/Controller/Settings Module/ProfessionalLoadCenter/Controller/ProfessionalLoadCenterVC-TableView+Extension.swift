@@ -236,12 +236,11 @@ extension ProfessionalLoadCenterVC:UITableViewDataSource, UITableViewDelegate, P
         self.mainView.tableView.reloadSections([3], with: .none)
         
         self.mainModelView.saveDetails()
-        self.mainModelView.setupNavigationbar(title: getCommonString(key: "Professional_key"))
 
     }
     
     func dismissPopupScreen(){
-        self.mainModelView.setupNavigationbar(title: getCommonString(key: "Professional_key"))
+        //
     }
     
     func ProfessionalAutoAcceptFinish(isSelected: Bool) {
@@ -258,9 +257,6 @@ extension ProfessionalLoadCenterVC:UITableViewDataSource, UITableViewDelegate, P
         if let viewWithTag = self.navigationController!.view.viewWithTag(102) {
             viewWithTag.removeFromSuperview()
         }
-
-        self.mainModelView.setupNavigationbar(title: getCommonString(key: "Professional_key"))
-
     }
     
     func attributedText(withString string: String, boldString: String, font: UIFont) -> NSAttributedString {

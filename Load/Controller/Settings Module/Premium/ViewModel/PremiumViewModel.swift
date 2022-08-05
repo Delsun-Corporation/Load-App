@@ -49,42 +49,6 @@ class PremiumViewModel: ProfessionalRequirementDelegate, FilterActivitySelectedD
         self.apiCallOAuth2Token(progress: false)
     }
     
-    func setupNavigationbar(title:String) {
-        self.theController.edgesForExtendedLayout = UIRectEdge.init(rawValue: 0)
-        self.theController.navigationItem.hidesBackButton = true
-        
-        if let vwnav = ViewNavMedium.instanceFromNib() as? ViewNavMedium {
-            
-            vwnav.imgBackground.isHidden = true
-            vwnav.btnback.isHidden = false
-            vwnav.btnSave.isHidden = self.theController.btnSave.isHidden
-            
-            var hightOfView = 0
-            if UIScreen.main.bounds.height >= 812 {
-                hightOfView = 44
-            }
-            else {
-                hightOfView = 20
-            }
-            
-            vwnav.frame = CGRect(x: 0, y: CGFloat(hightOfView), width: self.theController.navigationController?.navigationBar.frame.width ?? 320, height: vwnav.frame.height)
-            
-            let myMutableString = NSMutableAttributedString()
-            
-            let dict = [NSAttributedString.Key.font: themeFont(size: 16, fontname: .ProximaNovaBold)]
-            myMutableString.append(NSAttributedString(string: title, attributes: dict))
-            vwnav.lblTitle.attributedText = myMutableString
-            
-            vwnav.lblTitle.textColor = .black
-            
-            vwnav.tag = 102
-            vwnav.delegate = self
-            
-            self.theController.navigationController?.view.addSubview(vwnav)
-            
-        }
-    }
-    
     func btnAbountMeClicked(titleHeader: String) {
         let obj = AppStoryboard.Settings.instance.instantiateViewController(withIdentifier: "ProfessionalRequirementVC") as! ProfessionalRequirementVC
         obj.mainModelView.delegate = self
@@ -169,9 +133,6 @@ class PremiumViewModel: ProfessionalRequirementDelegate, FilterActivitySelectedD
             viewWithTag.removeFromSuperview()
         }
         
-        self.setupNavigationbar(title: getCommonString(key: "Premium_key"))
-        self.theController.navigationController?.setWhiteColor()
-        self.theController.navigationController?.addShadow()
         updatePremium()
     }
     
@@ -407,19 +368,4 @@ class PremiumViewModel: ProfessionalRequirementDelegate, FilterActivitySelectedD
             }
         })
     }
-}
-
-extension PremiumViewModel: CustomNavigationWithSaveButtonDelegate{
-    
-    func CustomNavigationClose() {
-        updatePremium()
-        
-        self.theController.btnCloseClicked()
-    }
-    
-    func CustomNavigationSave() {
-        updatePremium()
-    }
-
-
 }

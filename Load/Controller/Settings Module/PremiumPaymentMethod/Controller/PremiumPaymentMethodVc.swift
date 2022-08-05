@@ -31,9 +31,8 @@ class PremiumPaymentMethodVc: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        self.mainModelView.setupNavigationbar(title: getCommonString(key: "Payment_Method_key"))
+        setUpNavigationBarTitle(strTitle: getCommonString(key: "Payment_Method_key"), color: UIColor.black)
         self.navigationController?.setWhiteColor()
-        self.navigationController?.addShadow()
         
         NotificationCenter.default.addObserver(self, selector: #selector(self.mainModelView.setupUI), name: Notification.Name(NOTIFICATION_CENTER_LIST.LOAD_UPDATE_ADDED_BANK_CARD_RELOAD.rawValue), object: nil)
 
@@ -48,6 +47,9 @@ class PremiumPaymentMethodVc: UIViewController {
 
     }
     
+    @IBAction func btnBackAction() {
+        mainModelView.updateDefaultPaymentMethod()
+    }
     
     @IBAction func btnAddCardTapped(_ sender: UIButton) {
         let obj = AppStoryboard.Settings.instance.instantiateViewController(withIdentifier: "BillingInformationVC") as! BillingInformationVC

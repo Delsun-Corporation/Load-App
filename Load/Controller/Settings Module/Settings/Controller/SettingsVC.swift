@@ -25,7 +25,7 @@ class SettingsVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.layoutIfNeeded()
-//        self.setUpNavigationBarTitle(strTitle: getCommonString(key: "Settings_key").lowercased().capitalized, fontType: .ProximaNovaBold)
+        self.setUpNavigationBarTitle(strTitle: getCommonString(key: "Settings_key").lowercased().capitalized, fontType: .ProximaNovaBold)
         self.mainView.setupUI(theController: self)
     }
     
@@ -37,7 +37,7 @@ class SettingsVC: UIViewController {
             self.moveTraining()
         }
         
-        self.mainModelView.setupNavigationbar(title: getCommonString(key: "Settings_key").lowercased().capitalized)
+//        self.mainModelView.setupNavigationbar(title: getCommonString(key: "Settings_key").lowercased().capitalized)
 
     }
     

@@ -95,8 +95,6 @@ extension PremiumVC: UITableViewDelegate, UITableViewDataSource, PremiumCellDele
         
         if let viewWithTag = self.navigationController!.view.viewWithTag(102) {
             viewWithTag.removeFromSuperview()
-            
-            self.mainModelView.setupNavigationbar(title: getCommonString(key: "Premium_key"))
             self.navigationController?.setWhiteColor()
             self.navigationController?.addShadow()
         }

@@ -25,20 +25,18 @@ class PremiumVC: UIViewController {
     //MARK:- ViewDidLoad
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.view.layoutIfNeeded()
         self.btnSave.isHidden = true
         
         self.mainModelView.setupUI()
         self.mainView.setupUI(theController: self)
-    }
+    }   
     
     
 
     override func viewWillAppear(_ animated: Bool) {
-                
-        self.mainModelView.setupNavigationbar(title: getCommonString(key: "Premium_key"))
-
+        setUpNavigationBarTitle(strTitle: getCommonString(key: "Premium_key"), color:UIColor.black)
         self.navigationController?.setWhiteColor()
-        self.navigationController?.addShadow()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -55,7 +53,8 @@ class PremiumVC: UIViewController {
         }
     }
     
-    @IBAction func btnCloseClicked() {
+    @IBAction func btnCloseClicked(_ sender: Any) {
+        self.mainModelView.updatePremium()
         self.navigationController?.popViewController(animated: true)
     }
     

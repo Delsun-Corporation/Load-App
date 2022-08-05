@@ -16,9 +16,6 @@ extension AutoTopUpVC: UITableViewDelegate, UITableViewDataSource, AutoTopUpDele
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        if section == 0{
-            return 40
-        }
         return 1
     }
     
