@@ -66,11 +66,6 @@ class RaceTimeViewModel {
         view?.txtDistance.text = getRaceDistanceName(id: Int(self.raceDistanceId) ?? 0)
         view?.txtTime.text = self.raceTime
         
-        for (index, data) in (GetAllData?.data?.raceDistance?.enumerated())! {
-            if Int(self.raceDistanceId) ?? 0 == data.id?.intValue {
-                pickerViewDistance.selectRow(index, inComponent: 0, animated: false)
-            }
-        }
         if self.raceTime != ""{
             let timeArray = self.raceTime.components(separatedBy: ":")
             self.totalDays = timeArray[0]
@@ -79,6 +74,14 @@ class RaceTimeViewModel {
             pickerViewTime.selectRow(Int(timeArray[0]) ?? 0, inComponent: 0, animated: false)
             pickerViewTime.selectRow(Int(timeArray[1]) ?? 0, inComponent: 1, animated: false)
             pickerViewTime.selectRow(Int(timeArray[2]) ?? 0, inComponent: 2, animated: false)
+        }
+        
+        if let raceDistance = GetAllData?.data?.raceDistance?.enumerated() {
+            for (index, data) in raceDistance {
+                if Int(self.raceDistanceId) ?? 0 == data.id?.intValue {
+                    pickerViewDistance.selectRow(index, inComponent: 0, animated: false)
+                }
+            }
         }
     }
     

@@ -12,13 +12,11 @@ class TrainingSettingsView: UIView {
 
     //MARK:- @IBOutlet
     @IBOutlet weak var tableView: UITableView!
-    @IBOutlet weak var tableViewTopHeight: NSLayoutConstraint!
     
     //MARK:- Functions
     func setupUI(theController: TrainingSettingsVC) {
         self.tableView.register(UINib(nibName: "TrainingSettingsCell", bundle: nil), forCellReuseIdentifier: "TrainingSettingsCell")
         self.tableView.delegate = theController
         self.tableView.dataSource = theController
-        tableViewTopHeight.constant = 20
     }
 }

@@ -35,10 +35,8 @@ class HeartRateVc: UIViewController {
     }
 
     override func viewWillAppear(_ animated: Bool) {
-                
-        self.mainModelView.setupNavigationbar(title: getCommonString(key: "Heart_Rate_key"))
+        setUpNavigationBarTitle(strTitle: getCommonString(key: "Heart_Rate_key"), color: UIColor.black)
         self.navigationController?.setWhiteColor()
-        self.navigationController?.addShadow()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -47,6 +45,10 @@ class HeartRateVc: UIViewController {
         }
     }
 
+    @IBAction func btnBackClicked() {
+        self.mainModelView.delegate?.HeartRateFinish(HRMaxValue: (self.mainView.txtHRMaxValue.text ?? "").replacingOccurrences(of: " bpm", with: ""), HRRestValue: self.mainView.txtHRRestValue.text ?? "",isHrMaxIsEstimated: self.mainModelView.isHrMaxIsEstimated)
+        self.navigationController?.popViewController(animated: true)
+    }
 }
 
 //MARK: - IBAction method

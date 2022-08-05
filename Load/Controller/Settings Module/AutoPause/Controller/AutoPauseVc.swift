@@ -34,10 +34,8 @@ class AutoPauseVc: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-                
-        self.mainModelView.setupNavigationbar(title: getCommonString(key: "Auto-Pause_key"))
+        setUpNavigationBarTitle(strTitle: getCommonString(key: "Auto-Pause_key"), color: UIColor.black)
         self.navigationController?.setWhiteColor()
-        self.navigationController?.addShadow()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -46,6 +44,9 @@ class AutoPauseVc: UIViewController {
         }
     }
     
+    @IBAction func btnBackClicked() {
+        backButtonAction()
+    }
 }
 
 //MARK: - IBAction method

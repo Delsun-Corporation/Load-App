@@ -32,9 +32,8 @@ class TrainingSettingsVC: UIViewController, UnitstDelegate {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        self.mainModelView.setupNavigationbar(title: getCommonString(key: "Training_key"))
+        setUpNavigationBarTitle(strTitle: getCommonString(key: "Training_key"), color:UIColor.black)
         self.navigationController?.setWhiteColor()
-        self.navigationController?.removeShadow()
     }
     
     override func viewWillDisappear(_ animated: Bool) {

@@ -38,16 +38,18 @@ class BikeSettingVc: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        
-        self.mainModelView.setupNavigationbar(title: getCommonString(key: "Bike_Setting_key"))
+        setUpNavigationBarTitle(strTitle: getCommonString(key: "Bike_Setting_key"), color:UIColor.black)
         self.navigationController?.setWhiteColor()
-        self.navigationController?.addShadow()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         if let viewWithTag = self.navigationController!.view.viewWithTag(102) {
             viewWithTag.removeFromSuperview()
         }
+    }
+    
+    @IBAction func btnBackClicked() {
+        backButtonAction()
     }
     
 }
