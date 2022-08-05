@@ -30,10 +30,8 @@ class PhysicalActivityLevelVc: UIViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        self.mainModelView.setupNavigationbar(title: getCommonString(key: "Physical_Activity_Level_key"))
+        setUpNavigationBarTitle(strTitle: getCommonString(key: "Physical_Activity_Level_key"), color: UIColor.black)
         self.navigationController?.setWhiteColor()
-        self.navigationController?.addShadow()
-        
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -43,7 +41,6 @@ class PhysicalActivityLevelVc: UIViewController {
     }
     
     func moveToPhysicalActivityInfo() {
-        
         let obj = AppStoryboard.Settings.instance.instantiateViewController(withIdentifier: "PhysicalActivityInfoVc") as! PhysicalActivityInfoVc
         obj.mainModelView.profileDetails = self.mainModelView.profileDetails
         let nav = UINavigationController(rootViewController: obj)
@@ -51,5 +48,16 @@ class PhysicalActivityLevelVc: UIViewController {
         self.present(nav, animated: true, completion: nil)
         
     }
-
+    
+    @IBAction func btnBackClicked() {
+        if mainModelView.isUpdated{
+            mainModelView.delegateFinishActivityLevel?.selectedPhysicalActivity(id: mainModelView.selectedPhysicalActivityId)
+        }
+        
+        backButtonAction()
+    }
+    
+    @IBAction func btnInfoClicked() {
+        moveToPhysicalActivityInfo()
+    }
 }

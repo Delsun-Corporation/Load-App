@@ -61,12 +61,9 @@ class ScheduleManagmentVc: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-                
         self.mainView.tblAdvacneBooking.addObserver(self, forKeyPath: "contentSize", options: [.new], context: nil)
-
-        self.mainModelView.setupNavigationbar(title: getCommonString(key: "Schedule_management_key"))
+        setUpNavigationBarTitle(strTitle: getCommonString(key: "Schedule_management_key"), color:UIColor.black)
         self.navigationController?.setWhiteColor()
-        self.navigationController?.addShadow()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -88,7 +85,7 @@ class ScheduleManagmentVc: UIViewController {
     
     //MARK: - IBAction method
     
-    func btnBackClicked() {
+    @IBAction func btnBackClicked() {
         self.navigationController?.popViewController(animated: true)
         if self.mainModelView.allowAdvanceBooking {
             if let id = self.mainModelView.timeInAdvanceId {

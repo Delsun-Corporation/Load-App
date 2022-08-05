@@ -29,9 +29,9 @@ class LoadCenterSettingsVC: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         self.navigationController?.setColor()
-        self.mainModelView.setupNavigationbar(title: getCommonString(key: "Load_Center_key"))
-
-//        setUpNavigationBarTitle(strTitle: getCommonString(key: "Load_Center_key"))
+        
+//        self.mainModelView.setupNavigationbar(title: getCommonString(key: "Load_Center_key"))
+        setUpNavigationBarTitle(strTitle: getCommonString(key: "Load_Center_key"))
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -41,7 +41,7 @@ class LoadCenterSettingsVC: UIViewController {
     }
     
     //MARK:- @IBAction
-     func btnBackClicked() {
+    @IBAction func btnBackClicked(_ sender: Any) {
         self.navigationController?.popViewController(animated: true)
     }
     

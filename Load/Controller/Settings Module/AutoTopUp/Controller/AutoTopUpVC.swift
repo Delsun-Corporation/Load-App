@@ -27,9 +27,8 @@ class AutoTopUpVC: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        self.mainModelView.setupNavigationbar(title: getCommonString(key: "Auto_top_up_key"))
+        setUpNavigationBarTitle(strTitle: getCommonString(key: "Auto_top_up_key"), color:UIColor.black)
         self.navigationController?.setWhiteColor()
-        self.navigationController?.addShadow()
     }
     
     override func viewWillDisappear(_ animated: Bool) {

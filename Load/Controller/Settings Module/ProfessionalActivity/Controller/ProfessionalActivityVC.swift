@@ -31,10 +31,9 @@ class ProfessionalActivityVC: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        self.mainModelView.setupNavigationbar(title: getCommonString(key: "Activites_key"))
+        super.viewWillAppear(animated)
+        setUpNavigationBarTitle(strTitle: getCommonString(key: "Activites_key"), color: UIColor.black)
         self.navigationController?.setWhiteColor()
-        self.navigationController?.addShadow()
-
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -56,7 +55,7 @@ class ProfessionalActivityVC: UIViewController {
 
     
     //MARK:- @IBAction
-    func btnCloseClicked() {
+    @IBAction func btnCloseClicked() {
         if mainView.isViewValid {
             saveData()
         }

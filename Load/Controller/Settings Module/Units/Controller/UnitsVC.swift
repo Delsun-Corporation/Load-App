@@ -27,10 +27,8 @@ class UnitsVC: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-                
-        self.mainModelView.setupNavigationbar(title: getCommonString(key: "Unit_Measurement_key"))
+        setUpNavigationBarTitle(strTitle: getCommonString(key: "Unit_Measurement_key"), color:UIColor.black)
         self.navigationController?.setWhiteColor()
-        self.navigationController?.addShadow()
     }
     
     override func viewWillDisappear(_ animated: Bool) {

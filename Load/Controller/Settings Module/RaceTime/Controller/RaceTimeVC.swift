@@ -29,10 +29,8 @@ class RaceTimeVC: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-                
-        self.mainModelView.setupNavigationbar(title: getCommonString(key: "Running_Time_key"))
+        setUpNavigationBarTitle(strTitle: getCommonString(key: "Running_Time_key"), color: UIColor.black)
         self.navigationController?.setWhiteColor()
-        self.navigationController?.addShadow()
     }
     
     override func viewWillDisappear(_ animated: Bool) {

@@ -33,9 +33,8 @@ class PremiumPermissionVc: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        self.mainModelView.setupNavigationbar(title: self.mainModelView.navigationHeader)
+        setUpNavigationBarTitle(strTitle: self.mainModelView.navigationHeader, color: UIColor.black)
         self.navigationController?.setWhiteColor()
-        self.navigationController?.addShadow()
 
     }
     
@@ -50,6 +49,10 @@ class PremiumPermissionVc: UIViewController {
 
 //MARK:- IBAction method
 extension PremiumPermissionVc {
+    
+    @IBAction func btnBackClicked() {
+        self.navigationController?.popViewController(animated: true)
+    }
     
     @IBAction func btnSwitchSessionFeed(_ sender: UIButton) {
         sender.isSelected = !sender.isSelected

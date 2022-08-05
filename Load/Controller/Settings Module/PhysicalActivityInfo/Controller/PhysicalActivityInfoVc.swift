@@ -29,10 +29,8 @@ class PhysicalActivityInfoVc: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        self.navigationController?.addShadow()
-        self.mainModelView.setupNavigationbar(title: getCommonString(key: "Information_Guide_key"))
+        setUpNavigationBarTitle(strTitle: getCommonString(key: "Information_Guide_key"), color:UIColor.black)
         self.navigationController?.setWhiteColor()
-        self.navigationController?.addShadow()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -41,6 +39,9 @@ class PhysicalActivityInfoVc: UIViewController {
         }
     }
     
+    @IBAction func btnBackClicked() {
+        dismiss(animated: true, completion: nil)
+    }
 }
 
 //MARK: - IBAction

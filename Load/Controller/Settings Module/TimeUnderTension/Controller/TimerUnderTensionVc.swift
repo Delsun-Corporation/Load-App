@@ -32,9 +32,8 @@ class TimerUnderTensionVc: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        self.mainModelView.setupNavigationbar(title: getCommonString(key: "Time_Under_Tension_key"))
+        setUpNavigationBarTitle(strTitle: getCommonString(key: "Time_Under_Tension_key"), color:UIColor.black)
         self.navigationController?.setWhiteColor()
-        self.navigationController?.addShadow()
         
     }
     
@@ -44,6 +43,13 @@ class TimerUnderTensionVc: UIViewController {
         }
     }
     
+    @IBAction func btnBackClicked() {
+        backButtonAction()
+    }
+    
+    @IBAction func btnInfoClicked() {
+        redirectToInfoScreen()
+    }
 }
 
 //MARK: - IBAction method

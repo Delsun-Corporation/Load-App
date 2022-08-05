@@ -33,11 +33,8 @@ class ProfessionalRequirementVC: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        self.mainModelView.setupNavigationbar(title: self.mainModelView.navigationHeader)
-
+        setUpNavigationBarTitle(strTitle: self.mainModelView.navigationHeader, color:UIColor.black)
         self.navigationController?.setWhiteColor()
-        self.navigationController?.addShadow()
-
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -48,7 +45,7 @@ class ProfessionalRequirementVC: UIViewController {
     }
     
     //MARK:- @IBAction
-    func btnBackClicked() {
+    @IBAction func btnBackClicked() {
         self.navigationController?.popViewController(animated: true)
         self.mainModelView.delegate?.ProfessionalRequirementFinish(text: self.mainView.txtTextView.text.toTrim(), isScreen: self.mainModelView.isScreen)
     }

@@ -91,7 +91,7 @@ class DataGetAllDataModelClass: Mappable {
         availableTimes <- map["available_times"]
         paymentOptions <- map["payment_options"]
         professionalTypes <- map["professional_types"]
-        raceDistance <- map["race_distance"]
+        raceDistance <- map["settings_race_distances"]
         trainingFrequencies <- map["training_frequencies"]
         defaultBodyPartImageUrlFront <- map["default_body_part_image_url_front"]
         defaultBodyPartImageUrlBack <- map["default_body_part_image_url_back"]

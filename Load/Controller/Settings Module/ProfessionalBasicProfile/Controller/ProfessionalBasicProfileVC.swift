@@ -35,11 +35,8 @@ class ProfessionalBasicProfileVC: UIViewController, ProfessionalRequirementDeleg
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        
-        self.mainModelView.setupNavigationbar(title: getCommonString(key: "Basic_Profile_key"))
-        
+        setUpNavigationBarTitle(strTitle: getCommonString(key: "Basic_Profile_key"), color:UIColor.black)
         self.navigationController?.setWhiteColor()
-        self.navigationController?.addShadow()
         
     }
     
@@ -50,7 +47,7 @@ class ProfessionalBasicProfileVC: UIViewController, ProfessionalRequirementDeleg
     }
     
     //MARK:- @IBAction
-    func btnBackClicked() {
+    @IBAction func btnBackClicked() {
         self.navigationController?.popViewController(animated: true)
         self.mainModelView.delegate?.ProfessionalBasicProfileFinish(Profession: self.mainModelView.selectedProfession, locationString: self.mainModelView.selectedAddress, Latitude: self.mainModelView.selectedLatitude, Longitude: self.mainModelView.selectedLongitude, Introduction: self.mainModelView.txtIntroduction, ActivityArray: self.mainModelView.selectedArray, LangSpoken: self.mainModelView.selectedLangSpoken, LangWriten: self.mainModelView.selectedLangWriten, CredentialsArray: self.mainModelView.CredentialsArray)
     }

@@ -29,15 +29,11 @@ class ProfessionalLoadCenterVC: UIViewController {
         self.btnSave.isHidden = true
         self.mainView.setupUI(theController: self)
         self.mainModelView.setupUI()
-//        setUpNavigationBarTitle(strTitle: getCommonString(key: "Professional_key"), color: UIColor.black)
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {
-                
-        self.mainModelView.setupNavigationbar(title: getCommonString(key: "Professional_key"))
+        setUpNavigationBarTitle(strTitle: getCommonString(key: "Professional_key"), color:UIColor.black)
         self.navigationController?.setWhiteColor()
-        self.navigationController?.addShadow()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -48,7 +44,7 @@ class ProfessionalLoadCenterVC: UIViewController {
 
     
     //MARK:- @IBAction
-     func btnBackClicked() {
+    @IBAction func btnBackClicked(_ sender: Any) {
         mainModelView.saveDetails()
         self.navigationController?.popViewController(animated: true)
     }   

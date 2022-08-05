@@ -66,11 +66,6 @@ class RaceTimeViewModel {
         view?.txtDistance.text = getRaceDistanceName(id: Int(self.raceDistanceId) ?? 0)
         view?.txtTime.text = self.raceTime
         
-        for (index, data) in (GetAllData?.data?.raceDistance?.enumerated())! {
-            if Int(self.raceDistanceId) ?? 0 == data.id?.intValue {
-                pickerViewDistance.selectRow(index, inComponent: 0, animated: false)
-            }
-        }
         if self.raceTime != ""{
             let timeArray = self.raceTime.components(separatedBy: ":")
             self.totalDays = timeArray[0]
@@ -80,60 +75,13 @@ class RaceTimeViewModel {
             pickerViewTime.selectRow(Int(timeArray[1]) ?? 0, inComponent: 1, animated: false)
             pickerViewTime.selectRow(Int(timeArray[2]) ?? 0, inComponent: 2, animated: false)
         }
-    }
-    
-    //MARK: - Setup navigation bar
-    func setupNavigationbar(title:String) {
         
-        self.theController.edgesForExtendedLayout = UIRectEdge.init(rawValue: 0)
-        self.theController.navigationItem.hidesBackButton = true
-        
-        if let vwnav = ViewNavMedium.instanceFromNib() as? ViewNavMedium {
-            
-            vwnav.imgBackground.isHidden = true
-            vwnav.btnback.isHidden = false
-            vwnav.btnSave.isHidden = true
-            vwnav.btnSave.isHidden = true
-            
-            var hightOfView = 0
-            if UIScreen.main.bounds.height >= 812 {
-                hightOfView = 44
+        if let raceDistance = GetAllData?.data?.raceDistance?.enumerated() {
+            for (index, data) in raceDistance {
+                if Int(self.raceDistanceId) ?? 0 == data.id?.intValue {
+                    pickerViewDistance.selectRow(index, inComponent: 0, animated: false)
+                }
             }
-            else {
-                hightOfView = 20
-            }
-            
-            vwnav.frame = CGRect(x: 0, y: CGFloat(hightOfView), width: self.theController.navigationController?.navigationBar.frame.width ?? 320, height: vwnav.frame.height)
-            
-            let myMutableString = NSMutableAttributedString()
-            
-            let dict = [NSAttributedString.Key.font: themeFont(size: 16, fontname: .ProximaNovaBold)]
-            myMutableString.append(NSAttributedString(string: title, attributes: dict))
-            vwnav.lblTitle.attributedText = myMutableString
-            
-            vwnav.lblTitle.textColor = .black
-            
-            vwnav.tag = 102
-            vwnav.delegate = self
-            
-            self.theController.navigationController?.view.addSubview(vwnav)
-            
         }
     }
-
-}
-
-//MARK: - navigation delegate
-extension RaceTimeViewModel: CustomNavigationWithSaveButtonDelegate{
-    
-    func CustomNavigationClose() {
-        self.theController.backButtonAction()
-        self.delegate?.RaceTimeFinish(raceDistanceId: self.raceDistanceId, raceTime: self.raceTime)
-
-    }
-    
-    func CustomNavigationSave() {
-//        self.saveDetails()
-    }
-
 }

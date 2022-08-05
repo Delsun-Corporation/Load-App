@@ -32,10 +32,8 @@ class ProfessionalSelectAvailabilityVC: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-                
-        self.mainModelView.setupNavigationbar(title: getCommonString(key: "AVAILABILITY_key").capitalized)
+        setUpNavigationBarTitle(strTitle: getCommonString(key: "AVAILABILITY_key").capitalized, color:UIColor.black)
         self.navigationController?.setWhiteColor()
-        self.navigationController?.addShadow()
         
         setupKeyboard()
 
@@ -53,7 +51,10 @@ class ProfessionalSelectAvailabilityVC: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(_:)), name: UIResponder.keyboardWillHideNotification, object: nil)
     }
 
-
+    
+    @IBAction func btnBackClicked() {
+        self.navigationController?.popViewController(animated: true)
+    }
 }
 
 //MARK:- IBAction method
