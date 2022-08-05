@@ -1425,6 +1425,9 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <inset key="contentEdgeInsets" minX="0.0" minY="0.0" maxX="3" maxY="0.0"/>
                                 <state key="normal" image="ic_back"/>
+                                <connections>
+                                    <action selector="btnBackClicked" destination="0zz-QE-yFY" eventType="touchUpInside" id="q6T-Fu-5js"/>
+                                </connections>
                             </button>
                         </barButtonItem>
                     </navigationItem>
@@ -2277,7 +2280,7 @@
                                                         <rect key="frame" x="219.33333333333334" y="0.0" width="55.000000000000028" height="30"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="FRI" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gnu-7o-gow">
-                                                                <rect key="frame" x="21.999999999999972" y="15" width="11.333333333333336" height="9"/>
+                                                                <rect key="frame" x="21.333333333333314" y="15" width="12.666666666666664" height="9"/>
                                                                 <fontDescription key="fontDescription" name="ProximaNova-Regular" family="ProximaNova-Regular" pointSize="8"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
@@ -2308,7 +2311,7 @@
                                                         <rect key="frame" x="329" y="0.0" width="55" height="30"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SUN" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tqV-mY-de7">
-                                                                <rect key="frame" x="19.666666666666686" y="15" width="16" height="9"/>
+                                                                <rect key="frame" x="19" y="15" width="17" height="9"/>
                                                                 <fontDescription key="fontDescription" name="ProximaNova-Regular" family="ProximaNova-Regular" pointSize="8"/>
                                                                 <color key="textColor" red="0.99607843139999996" green="0.0" blue="0.070588235289999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <nil key="highlightedColor"/>
@@ -2743,7 +2746,7 @@
                                                                 </constraints>
                                                             </view>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Auto upload Sessions to Feed" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tMD-3k-uCO">
-                                                                <rect key="frame" x="23" y="30" width="197.33333333333334" height="18"/>
+                                                                <rect key="frame" x="23" y="30" width="199.33333333333334" height="18"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="18" id="cDa-KW-7ur"/>
                                                                 </constraints>
@@ -2776,7 +2779,7 @@
                                                         <rect key="frame" x="0.0" y="0.0" width="414" height="103"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Who can view my Premium Profile?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0Mn-o2-N3d">
-                                                                <rect key="frame" x="21.999999999999986" y="29" width="229.66666666666663" height="18"/>
+                                                                <rect key="frame" x="22" y="29" width="231" height="18"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="18" id="ZR0-4d-4HM"/>
                                                                 </constraints>
@@ -2825,7 +2828,7 @@
                                                         <rect key="frame" x="0.0" y="103" width="414" height="114"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Who can view my Feeds?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IAD-ud-Hye">
-                                                                <rect key="frame" x="22" y="30" width="166.66666666666666" height="18"/>
+                                                                <rect key="frame" x="22" y="30" width="169" height="18"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="18" id="IyL-EU-Rba"/>
                                                                 </constraints>
@@ -3248,7 +3251,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="k77-DJ-Txx">
-                                        <rect key="frame" x="0.0" y="10" width="414" height="726"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hTI-oL-e9G">
                                                 <rect key="frame" x="0.0" y="0.0" width="414" height="56"/>
@@ -3271,7 +3274,7 @@
                                                 </constraints>
                                             </view>
                                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="SQc-gn-Qcq">
-                                                <rect key="frame" x="0.0" y="56" width="414" height="670"/>
+                                                <rect key="frame" x="0.0" y="56" width="414" height="680"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             </tableView>
                                         </subviews>
@@ -3290,7 +3293,7 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="bottom" secondItem="k77-DJ-Txx" secondAttribute="bottom" id="8Nv-C0-zCw"/>
-                                    <constraint firstItem="k77-DJ-Txx" firstAttribute="top" secondItem="8dJ-Cf-NMv" secondAttribute="top" constant="10" id="CG5-px-Bw7"/>
+                                    <constraint firstItem="k77-DJ-Txx" firstAttribute="top" secondItem="8dJ-Cf-NMv" secondAttribute="top" id="CG5-px-Bw7"/>
                                     <constraint firstAttribute="trailing" secondItem="k77-DJ-Txx" secondAttribute="trailing" id="gNw-VR-Hny"/>
                                     <constraint firstItem="k77-DJ-Txx" firstAttribute="leading" secondItem="8dJ-Cf-NMv" secondAttribute="leading" id="s7Z-mm-zkH"/>
                                 </constraints>
@@ -3309,15 +3312,17 @@
                             <outlet property="tableView" destination="SQc-gn-Qcq" id="IOr-DP-bos"/>
                         </connections>
                     </view>
-                    <navigationItem key="navigationItem" id="v1Z-Wg-FJt">
-                        <barButtonItem key="rightBarButtonItem" style="plain" id="aOa-OY-wSh">
-                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="upL-Wy-e4P">
-                                <rect key="frame" x="339" y="11" width="20" height="22"/>
+                    <navigationItem key="navigationItem" id="cn0-9I-fBQ">
+                        <barButtonItem key="leftBarButtonItem" style="plain" id="ce0-3S-AbA">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="5sP-Xz-8F8">
+                                <rect key="frame" x="16" y="9" width="21" height="26"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="14"/>
-                                <state key="normal" title="Select">
-                                    <color key="titleColor" red="0.93725490199999995" green="0.2156862745" blue="0.36862745099999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                </state>
+                                <inset key="contentEdgeInsets" minX="0.0" minY="0.0" maxX="3" maxY="0.0"/>
+                                <state key="normal" image="ic_close_switch_screen_red"/>
+                                <connections>
+                                    <action selector="btnCancelClicked:" destination="IIU-NQ-VIB" eventType="touchUpInside" id="lAR-Os-B5Y"/>
+                                    <action selector="btnCloseClicked" destination="eCN-bZ-xtF" eventType="touchUpInside" id="1jm-nA-6bD"/>
+                                </connections>
                             </button>
                         </barButtonItem>
                     </navigationItem>
@@ -5262,7 +5267,7 @@
                                                 </constraints>
                                             </view>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Run Auto-Pause" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="scS-ix-4lS">
-                                                <rect key="frame" x="20.000000000000007" y="28" width="105.66666666666669" height="17"/>
+                                                <rect key="frame" x="20" y="28" width="107" height="17"/>
                                                 <fontDescription key="fontDescription" name="ProximaNova-Regular" family="Proxima Nova" pointSize="15"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -5316,7 +5321,7 @@
                                         </constraints>
                                     </view>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Auto-Pause will automatically pause your outdoor training log when no movement is detected after 10 seconds." textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5Va-CP-10u">
-                                        <rect key="frame" x="25" y="186" width="364" height="26.666666666666657"/>
+                                        <rect key="frame" x="25" y="186" width="364" height="27.333333333333343"/>
                                         <constraints>
                                             <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="15" id="WX9-Nu-bn1"/>
                                         </constraints>

@@ -27,10 +27,9 @@ class ProfessionalListVC: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        
-        self.mainModelView.setupNavigationbar(title: self.mainModelView.navHeader)
+        super.viewWillAppear(animated)
+        setUpNavigationBarTitle(strTitle: self.mainModelView.navHeader, color: UIColor.black)
         self.navigationController?.setWhiteColor()
-        self.navigationController?.addShadow()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -40,7 +39,7 @@ class ProfessionalListVC: UIViewController {
     }
     
     //MARK:- @IBAction
-    func btnBackClicked() {
+    @IBAction func btnBackClicked() {
         self.navigationController?.popViewController(animated: true)
         if self.mainModelView.selectedId != 0 {
             self.mainModelView.delegate?.ProfessionalListFinish(id: self.mainModelView.selectedId, title: self.mainModelView.selectedTitle, isScreenFor: self.mainModelView.isScreenFor)

@@ -120,25 +120,6 @@ class TrainingSettingsVC: UIViewController, UnitstDelegate {
         }
         self.navigationController?.pushViewController(obj, animated: true)
     }
-    
-    func navigationSaveButtonShowOrHide(){
-        
-        //Call this method if Client want to remove auto save functionality
-        //It is apply when write btnSave.isHidden = false
-        
-        if let viewWithTag = self.navigationController?.view.viewWithTag(102) {
-            viewWithTag.removeFromSuperview()
-            
-            self.mainModelView.setupNavigationbar(title: getCommonString(key: "Training_key"))
-            self.navigationController?.setWhiteColor()
-            self.navigationController?.removeShadow()
-
-        }
-
-//        if let vwnav = ViewNavMedium.instanceFromNib() as? ViewNavMedium {
-//            vwnav.btnSave.isHidden = self.btnSave.isHidden
-//        }
-    }
 }
 
 //MARK: - Heart Rate delegate

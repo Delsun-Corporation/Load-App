@@ -61,50 +61,6 @@ class TrainingSettingsViewModel: RaceTimeDelegate {
         self.apiCallGetSettingProgram(isLoading: true)
     }
     
-    func setupNavigationbar(title:String) {
-        
-        self.theController.edgesForExtendedLayout = UIRectEdge.init(rawValue: 0)
-        self.theController.navigationItem.hidesBackButton = true
-        
-        if let vwnav = ViewNavMedium.instanceFromNib() as? ViewNavMedium {
-            
-            vwnav.imgBackground.isHidden = true
-            vwnav.btnback.isHidden = false
-            vwnav.btnSave.isHidden = true
-            
-            //Call this method if Client want to remove auto save functionality
-            //It is apply when write btnSave.isHidden = false
-//            vwnav.btnSave.isHidden = self.theController.btnSave.isHidden
-//            if let viewWithTag = self.theController.navigationController!.view.viewWithTag(102) {
-//                self.theController.navigationSaveButtonShowOrHide()
-//            }
-            
-            var hightOfView = 0
-            if UIScreen.main.bounds.height >= 812 {
-                hightOfView = 44
-            }
-            else {
-                hightOfView = 20
-            }
-            
-            vwnav.frame = CGRect(x: 0, y: CGFloat(hightOfView), width: self.theController.navigationController?.navigationBar.frame.width ?? 320, height: 61)
-            
-            let myMutableString = NSMutableAttributedString()
-            
-            let dict = [NSAttributedString.Key.font: themeFont(size: 16, fontname: .ProximaNovaBold)]
-            myMutableString.append(NSAttributedString(string: title, attributes: dict))
-            vwnav.lblTitle.attributedText = myMutableString
-            
-            vwnav.lblTitle.textColor = .black
-            
-            vwnav.tag = 102
-            vwnav.delegate = self
-            
-            self.theController.navigationController?.view.addSubview(vwnav)
-            
-        }
-    }
-
     func apiCallGetSettingProgram(isLoading:Bool = true) {
         let param = ["": ""] as [String : Any]
         print(param)
@@ -332,20 +288,6 @@ class TrainingSettingsViewModel: RaceTimeDelegate {
         
         self.apiCallSettingCreateUpdateProgram()
 
-    }
-
-}
-
-
-//MARK: - navigation delegate
-extension TrainingSettingsViewModel: CustomNavigationWithSaveButtonDelegate{
-    
-    func CustomNavigationClose() {
-        self.theController.backButtonAction()
-    }
-    
-    func CustomNavigationSave() {
-        self.validateDetails()
     }
 
 }

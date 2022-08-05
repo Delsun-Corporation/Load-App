@@ -27,10 +27,8 @@ class BillingInformationVC: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        self.mainModelView.setupNavigationbar(title: getCommonString(key: "Billing_information_key"))
+        setUpNavigationBarTitle(strTitle: getCommonString(key: "Billing_information_key"), color: UIColor.black)
         self.navigationController?.setWhiteColor()
-        self.navigationController?.addShadow()
-
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -38,7 +36,6 @@ class BillingInformationVC: UIViewController {
             viewWithTag.removeFromSuperview()
         }
     }
-
 }
 
 //MARK:- IBAction method
