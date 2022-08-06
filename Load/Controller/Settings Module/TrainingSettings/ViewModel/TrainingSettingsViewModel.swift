@@ -30,6 +30,9 @@ class TrainingSettingsViewModel: RaceTimeDelegate {
     var txtTypes:String = ""
     var txtTypesId:Int = 0
     
+    var heightArray: [String] = []
+    var weightArray: [String] = []
+    
     var bikeWeight: CGFloat = 0.0
     var bikeWheelDiameter: CGFloat = 0.0
     var bikeFrontChainWheel = 0
