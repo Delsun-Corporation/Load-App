@@ -49,7 +49,8 @@ class BikeSettingVc: UIViewController {
     }
     
     @IBAction func btnBackClicked() {
-        backButtonAction()
+        self.mainModelView.delegateBike?.BikeData(bikeWeight: CGFloat((self.mainView.txtBikeWeight.text as? NSString ?? "0.0" as NSString).doubleValue), bikeWheelDiameter: CGFloat((self.mainView.txtBikeDiameter.text as? NSString ?? "0.0" as NSString).doubleValue), bikeFrontChainWheel: Int(self.mainView.txtFrontChainWheel.text ?? "0") ?? 0, rearFreeWheel: Int(self.mainView.txtRearFreeWheel.text ?? "0") ?? 0)
+        self.navigationController?.popViewController(animated: true)
     }
     
 }

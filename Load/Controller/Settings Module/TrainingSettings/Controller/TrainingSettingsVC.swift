@@ -128,11 +128,7 @@ extension TrainingSettingsVC: HeartRateDelegate {
     func HeartRateFinish(HRMaxValue: String, HRRestValue: String,isHrMaxIsEstimated:Bool) {
         print("HRMaxalue : \(HRMaxValue)")
         print("isHrMaxIsEstimated : \(isHrMaxIsEstimated)")
-
-        if self.mainModelView.txtHRMax != HRMaxValue || self.mainModelView.txtHRRest != HRRestValue{
-            self.btnSave.isHidden = false
-        }
-        
+        self.btnSave.isHidden = true
         self.mainModelView.txtHRMax = HRMaxValue
         self.mainModelView.txtHRRest = HRRestValue
         self.mainModelView.isHrMaxIsEstimated = isHrMaxIsEstimated
@@ -145,7 +141,7 @@ extension TrainingSettingsVC: HeartRateDelegate {
 //MARK: - Physical activityId
 extension TrainingSettingsVC: PhysicalAcitivtyFinishSelection{
     func selectedPhysicalActivity(id: Int) {
-        self.btnSave.isHidden = false
+        self.btnSave.isHidden = true
         self.mainModelView.selectedPhysicalActivityId = id
         self.mainModelView.apiCallSettingCreateUpdateProgram()
     }
@@ -158,10 +154,7 @@ extension TrainingSettingsVC: BikeSetttingSelectFinishDelegate{
     
     func BikeData(bikeWeight: CGFloat, bikeWheelDiameter: CGFloat, bikeFrontChainWheel: Int, rearFreeWheel: Int) {
         
-        if self.mainModelView.bikeWeight != bikeWeight || self.mainModelView.bikeWheelDiameter != bikeWheelDiameter || self.mainModelView.bikeFrontChainWheel != bikeFrontChainWheel || self.mainModelView.bikeRearFreeWheel != rearFreeWheel{
-            self.btnSave.isHidden = false
-        }
-        
+        self.btnSave.isHidden = true
         self.mainModelView.bikeWeight = bikeWeight
         self.mainModelView.bikeWheelDiameter = bikeWheelDiameter
         self.mainModelView.bikeFrontChainWheel = bikeFrontChainWheel
