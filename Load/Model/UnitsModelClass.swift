@@ -21,22 +21,22 @@ class UnitsModelClass: Mappable {
 
 class UnitsData: Mappable {
 
-	var id: Int = 0
+	var id: String?
 	var name: String? 
 	var code: String? 
 	var description: String? 
-	var isActive: NSNumber? 
+	var isActive: Bool?
 	var createdAt: String? 
 	var updatedAt: String?
     //For physical activity
     var title: String = ""
-    var isSelected = 0
+    var isSelected: Bool = false
 
 	required init?(map: Map){ 
 	} 
 
 	func mapping(map: Map) {
-		id <- map["id"] 
+		id <- map["_id"] 
 		name <- map["name"] 
 		code <- map["code"] 
 		description <- map["description"] 
@@ -45,7 +45,7 @@ class UnitsData: Mappable {
 		updatedAt <- map["updated_at"]
         
         title <- map["title"]
-        isSelected <- map["isSelected"]
+        isSelected <- map["is_selected"]
 	}
 } 
 

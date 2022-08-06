@@ -19,7 +19,7 @@ extension PhysicalActivityLevelVc: UITableViewDataSource,UITableViewDelegate{
         let cell = tableView.dequeueReusableCell(withIdentifier: "PhyscialActivityTblCell") as! PhyscialActivityTblCell
         
         if let data = self.mainModelView.profileDetails?.data?[indexPath.row]{
-            cell.setupUI(model: data, selectedId: self.mainModelView.selectedPhysicalActivityId)
+//            cell.setupUI(model: data, selectedId: self.mainModelView.selectedPhysicalActivityId)
         }
         
         if indexPath.row == (self.mainModelView.profileDetails?.data?.count ?? 0) - 1{
@@ -32,18 +32,18 @@ extension PhysicalActivityLevelVc: UITableViewDataSource,UITableViewDelegate{
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        for i in 0..<(self.mainModelView.profileDetails?.data?.count ?? 0){
-            if let dictData = self.mainModelView.profileDetails?.data?[i]{
-                dictData.isSelected = 0
-                self.mainModelView.profileDetails?.data?[i] = dictData
-            }
-        }
-        
-        self.mainModelView.profileDetails?.data?[indexPath.row].isSelected = 1
-        self.mainModelView.selectedPhysicalActivityId = Int(self.mainModelView.profileDetails?.data?[indexPath.row].id ?? 0)
-        self.mainModelView.isUpdated = true
-        
-        tableView.reloadData()
+//        for i in 0..<(self.mainModelView.profileDetails?.data?.count ?? 0){
+//            if let dictData = self.mainModelView.profileDetails?.data?[i]{
+//                dictData.isSelected = 0
+//                self.mainModelView.profileDetails?.data?[i] = dictData
+//            }
+//        }
+//        
+//        self.mainModelView.profileDetails?.data?[indexPath.row].isSelected = 1
+//        self.mainModelView.selectedPhysicalActivityId = Int(self.mainModelView.profileDetails?.data?[indexPath.row].id ?? 0)
+//        self.mainModelView.isUpdated = true
+//        
+//        tableView.reloadData()
         
     }
     

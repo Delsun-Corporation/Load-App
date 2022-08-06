@@ -41,7 +41,7 @@ class UnitsVC: UIViewController {
     @IBAction func btnBackClicked(_ sender: Any) {
         self.navigationController?.popViewController(animated: true)
         if self.mainModelView.isUpdated {
-            self.mainModelView.delegate?.UnitsFinish(id: self.mainModelView.selectedId, title: self.mainModelView.selectedTitle)
+            self.mainModelView.delegate?.UnitsFinish(id: self.mainModelView.selectedId, title: self.mainModelView.selectedTitle, units: mainModelView.convertTrainingUnitsDataToDict())
         }
     }
 }

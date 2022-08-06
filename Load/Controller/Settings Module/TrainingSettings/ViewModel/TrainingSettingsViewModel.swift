@@ -29,6 +29,7 @@ class TrainingSettingsViewModel: RaceTimeDelegate {
     var raceTime:String = ""
     var txtTypes:String = ""
     var txtTypesId:Int = 0
+    var units: [[String: Any]]?
     
     var heightArray: [String] = []
     var weightArray: [String] = []
@@ -188,6 +189,10 @@ class TrainingSettingsViewModel: RaceTimeDelegate {
         
         if raceTime == "" {
             param.removeValue(forKey: "race_time")
+        }
+        
+        if let units = units {
+            param["units"] = units
         }
         
 //        if self.vo2MaxCustomeValue == ""{

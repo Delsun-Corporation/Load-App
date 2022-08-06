@@ -10,7 +10,7 @@ import UIKit
 import SwiftyJSON
 
 protocol UnitstDelegate: AnyObject {
-    func UnitsFinish(id:Int, title:String)
+    func UnitsFinish(id: Int, title: String, units: [[String: Any]]?)
 }
 
 class UnitsViewModel {
@@ -30,6 +30,35 @@ class UnitsViewModel {
     
     func setupUI() {
         self.getUnitsList()
+    }
+    
+    func selectUnit(in unitIndex: Int) {
+        // Deselect all units beside the selected index first
+        guard let profileDetails = profileDetails?.data else {
+            return
+        }
+        
+        for (index, datum) in profileDetails.enumerated() {
+            datum.isSelected = index == unitIndex
+        }
+    }
+    
+    func convertTrainingUnitsDataToDict() -> [[String: Any]]? {
+        guard let profileDetails = profileDetails?.data, !profileDetails.isEmpty else {
+            return nil
+        }
+        var dictToSave = [[String: Any]]()
+        for datum in profileDetails {
+            let param = [
+                "title": datum.title,
+                "description": datum.description ?? "",
+                "is_selected": datum.isSelected
+            ] as [String : Any]
+            
+            dictToSave.append(param)
+        }
+        
+        return dictToSave
     }
     
     func getUnitsList() {

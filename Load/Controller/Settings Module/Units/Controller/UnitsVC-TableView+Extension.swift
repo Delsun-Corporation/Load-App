@@ -30,6 +30,7 @@ extension UnitsVC:UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         self.mainModelView.selectedId = (GetAllData?.data?.professionalTypes![indexPath.row].id?.intValue)!
         self.mainModelView.selectedTitle = (GetAllData?.data?.professionalTypes![indexPath.row].name)!
+        mainModelView.selectUnit(in: indexPath.row)
         self.mainModelView.isUpdated = true
         UIView.performWithoutAnimation {
             self.mainView.tableView.reloadData()

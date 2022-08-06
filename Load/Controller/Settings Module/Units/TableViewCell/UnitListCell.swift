@@ -28,9 +28,9 @@ class UnitListCell: UITableViewCell {
     
     func setupUI(model: UnitsData, selectedId:Int) {
         self.setupFont()
-        self.lblTitle.text = model.name
+        self.lblTitle.text = model.title
         self.lblSubTitle.text = model.description
-        self.imgCheckMark.isHidden = selectedId != model.id
+        self.imgCheckMark.isHidden = !model.isSelected
     }   
     
     func setupFont() {

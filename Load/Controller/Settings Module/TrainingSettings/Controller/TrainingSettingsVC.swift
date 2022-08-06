@@ -60,10 +60,11 @@ class TrainingSettingsVC: UIViewController, UnitstDelegate {
         self.navigationController?.pushViewController(obj, animated: true)
     }
     
-    func UnitsFinish(id: Int, title: String) {
+    func UnitsFinish(id: Int, title: String, units: [[String: Any]]?) {
         self.btnSave.isHidden = false
         self.mainModelView.txtTypesId = id
         self.mainModelView.txtTypes = title
+        self.mainModelView.units = units
         self.mainModelView.apiCallSettingCreateUpdateProgram()
     }
     
