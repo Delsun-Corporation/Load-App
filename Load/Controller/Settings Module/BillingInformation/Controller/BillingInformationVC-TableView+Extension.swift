@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CountryPickerView
 
 extension BillingInformationVC: UITableViewDelegate, UITableViewDataSource, BillingInformationDelegate {   
     
@@ -65,6 +66,7 @@ extension BillingInformationVC: UITableViewDelegate, UITableViewDataSource, Bill
                     cell.lblRequired.isHidden = true
                 }
                 cell.delegate = self
+                cell.viewController = self
                 cell.tag = indexPath.section
                 cell.txtValue.tag = indexPath.row
                 cell.setupUI(title: self.mainModelView.titleArray[indexPath.row], text: self.mainModelView.cardArray[indexPath.section][indexPath.row], placeHolder: self.mainModelView.placeHolderArray[indexPath.row])
