@@ -19,7 +19,7 @@ class SettingProgramModelClass: Mappable {
     var runAutoPause : Bool?
     var cycleAutoPause : Bool?
     var isHrMaxIsEstimated : Bool = true
-    var physicalAcitivityId = 0
+    var physicalAcitivityId: String?
     var VO2Max : NSNumber?
     var isVO2MaxIsEstimated : Bool = true
     

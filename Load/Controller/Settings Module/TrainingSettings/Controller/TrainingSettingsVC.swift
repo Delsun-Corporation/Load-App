@@ -140,7 +140,7 @@ extension TrainingSettingsVC: HeartRateDelegate {
 }
 //MARK: - Physical activityId
 extension TrainingSettingsVC: PhysicalAcitivtyFinishSelection{
-    func selectedPhysicalActivity(id: Int) {
+    func selectedPhysicalActivity(id: String) {
         self.btnSave.isHidden = true
         self.mainModelView.selectedPhysicalActivityId = id
         self.mainModelView.apiCallSettingCreateUpdateProgram()

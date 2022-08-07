@@ -41,7 +41,7 @@ class TrainingSettingsViewModel: RaceTimeDelegate {
     
     var isRunAutoPause = false
     var isCycleAutoPause = false
-    var selectedPhysicalActivityId = 0
+    var selectedPhysicalActivityId = ""
     var vo2MaxCustomeValue = ""
     var isVO2MaxIsEstimated = true
 
@@ -102,7 +102,7 @@ class TrainingSettingsViewModel: RaceTimeDelegate {
                     self.isRunAutoPause = self.trainingResponse?.runAutoPause ?? false
                     self.isCycleAutoPause = self.trainingResponse?.cycleAutoPause ?? false
                     
-                    self.selectedPhysicalActivityId = self.trainingResponse?.physicalAcitivityId ?? 0
+                    self.selectedPhysicalActivityId = self.trainingResponse?.physicalAcitivityId ?? ""
                     
                     self.bikeWeight = self.theController.setOneDigitWithFloorInCGFLoat(value: self.trainingResponse?.bikeWeight ?? 0.0)
                     
@@ -209,7 +209,7 @@ class TrainingSettingsViewModel: RaceTimeDelegate {
                     
                     self.isRunAutoPause = self.trainingResponse?.runAutoPause ?? false
                     self.isCycleAutoPause = self.trainingResponse?.cycleAutoPause ?? false
-                    self.selectedPhysicalActivityId = self.trainingResponse?.physicalAcitivityId ?? 0
+                    self.selectedPhysicalActivityId = self.trainingResponse?.physicalAcitivityId ?? ""
                     
                     self.bikeWeight = self.theController.setOneDigitWithFloorInCGFLoat(value: self.trainingResponse?.bikeWeight ?? 0.0)
                     
