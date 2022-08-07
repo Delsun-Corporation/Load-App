@@ -19,7 +19,7 @@ extension PhysicalActivityLevelVc: UITableViewDataSource,UITableViewDelegate{
         let cell = tableView.dequeueReusableCell(withIdentifier: "PhyscialActivityTblCell") as! PhyscialActivityTblCell
         
         if let data = self.mainModelView.profileDetails?.data?[indexPath.row]{
-//            cell.setupUI(model: data, selectedId: self.mainModelView.selectedPhysicalActivityId)
+            cell.setupUI(model: data)
         }
         
         if indexPath.row == (self.mainModelView.profileDetails?.data?.count ?? 0) - 1{
@@ -31,6 +31,11 @@ extension PhysicalActivityLevelVc: UITableViewDataSource,UITableViewDelegate{
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        mainModelView.selectUnit(in: indexPath.row)
+        self.mainModelView.isUpdated = true
+        UIView.performWithoutAnimation {
+            tableView.reloadData()
+        }
         
 //        for i in 0..<(self.mainModelView.profileDetails?.data?.count ?? 0){
 //            if let dictData = self.mainModelView.profileDetails?.data?[i]{

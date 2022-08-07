@@ -131,34 +131,11 @@ class TrainingSettingsViewModel: RaceTimeDelegate {
         let now = Date().toString(dateFormat: "yyyy")
         let birthday: String = convertDateFormater(date, format: "dd-MM-yyyy", dateFormat: "yyyy")
         let age = Int(now)! - Int(birthday)!
-//        let calendar = Calendar.current
-//        let ageComponents = calendar.dateComponents([.year], from: birthday, to: now)
-//        let age = ageComponents.year!
         let value = Int(206.9 - (0.67 * Double(age)))
         return "\(value)".replace(target: ".00", withString: "")
     }
     
     func apiCallSettingCreateUpdateProgram() {
-//        var param = ["hr_max": hrMax, "height": height, "weight": weight, "race_distance_id": raceDistanceId, "race_time": raceTime] as [String : Any]
-   /*
-        if self.txtHeight == "" {
-            makeToast(strMessage: getCommonString(key: "Please_enter_height_key"))
-            return
-        }
-        else if Int(self.txtHeight) == 0 {
-            makeToast(strMessage: getCommonString(key: "Please_enter_height_key"))
-            return
-        }
-        else if self.txtWeight == "" {
-            makeToast(strMessage: getCommonString(key: "Please_enter_weight_key"))
-            return
-        }
-        else if Int(self.txtWeight) == 0 {
-            makeToast(strMessage: getCommonString(key: "Please_enter_weight_key"))
-            return
-        }
-*/
-        
         var trainingUnitIds:[Int] = []
         if self.txtTypesId != 0 {
             trainingUnitIds.append(self.txtTypesId)
@@ -194,10 +171,6 @@ class TrainingSettingsViewModel: RaceTimeDelegate {
         if let units = units {
             param["units"] = units
         }
-        
-//        if self.vo2MaxCustomeValue == ""{
-//            param.removeValue(forKey: "vo2_max")
-//        }
         
         print(param)
         

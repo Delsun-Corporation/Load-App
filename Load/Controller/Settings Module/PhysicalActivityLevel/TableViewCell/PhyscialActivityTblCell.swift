@@ -34,9 +34,9 @@ class PhyscialActivityTblCell: UITableViewCell {
         lblName.textColor = .appthemeBlackColor
     }
     
-    func setupUI(model: UnitsData, isSelected: Bool) {
+    func setupUI(model: UnitsData) {
         self.lblName.text = model.title
-//        self.imgRightBlank.image = isSelected ? UIImage(named: "ic_lap_completed") : nil
+        imgRightBlank.image = model.isSelected ? UIImage(named: "ic_lap_completed") : nil
     }
     
 }

@@ -56,5 +56,16 @@ extension PhysicalActivityLevelViewModel {
             }
         })
     }
+    
+    func selectUnit(in unitIndex: Int) {
+        // Deselect all units beside the selected index first
+        guard let profileDetails = profileDetails?.data else {
+            return
+        }
+        
+        for (index, datum) in profileDetails.enumerated() {
+            datum.isSelected = index == unitIndex
+        }
+    }
 
 }
