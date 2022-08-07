@@ -35,12 +35,17 @@ class TimeUnderTensionList: Mappable {
 
 	func mapping(map: Map) {
 		id <- map["_id"]
-		intensity <- map["intensity"] 
+		intensity <- map["intensity"]
 		description <- map["description"] 
 		tempo <- map["tempo"]
 		userUpdatedTempo <- map["user_updated_tempo"]
         selectedIndex <- map["selected"]
         timeUnderTensionId <- map["time_under_tention_id"]
 	}
-} 
+}
+
+struct TimeUnderTensionPostViewModel {
+    let id: String
+    let userUpdatedTempo: String
+}
 

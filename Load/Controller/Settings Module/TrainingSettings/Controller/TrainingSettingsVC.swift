@@ -93,6 +93,7 @@ class TrainingSettingsVC: UIViewController, UnitstDelegate {
 
     func moveToTimeUnderTensionController(){
         let obj = AppStoryboard.Settings.instance.instantiateViewController(withIdentifier: "TimerUnderTensionVc") as! TimerUnderTensionVc
+        obj.mainModelView.setTimeUnderTensionDelegate(delegate: self.mainModelView)
         self.navigationController?.pushViewController(obj, animated: true)
     }
     

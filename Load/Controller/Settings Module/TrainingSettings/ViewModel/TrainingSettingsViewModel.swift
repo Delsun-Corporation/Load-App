@@ -44,6 +44,7 @@ class TrainingSettingsViewModel: RaceTimeDelegate {
     var vo2MaxCustomeValue = ""
     var isVO2MaxIsEstimated = true
 
+    var timeUnderTension: [[String: Any]] = []
     
     //MARK:- Functions
     init(theController:TrainingSettingsVC) {
@@ -152,7 +153,8 @@ class TrainingSettingsViewModel: RaceTimeDelegate {
                      "bike_weight": self.bikeWeight,
                      "bike_wheel_diameter" : self.bikeWheelDiameter,
                      "bike_front_chainwheel": self.bikeFrontChainWheel,
-                     "bike_rear_freewheel": self.bikeRearFreeWheel
+                     "bike_rear_freewheel": self.bikeRearFreeWheel,
+                     "time_under_tension": self.timeUnderTension
                     ] as [String : Any]
 
         if raceDistanceId == "" {
@@ -258,5 +260,18 @@ class TrainingSettingsViewModel: RaceTimeDelegate {
 
     }
 
+}
+
+extension TrainingSettingsViewModel: TimeUnderTensionViewModelDelegate {
+    func updateTimeUnderTension(timeUnderTension: [TimeUnderTensionPostViewModel]) {
+        for time in timeUnderTension {
+            self.timeUnderTension.append([
+                "id": time.id,
+                "user_updated_tempo": time.userUpdatedTempo
+            ])
+        }
+        
+        apiCallSettingCreateUpdateProgram()
+    }
 }
 

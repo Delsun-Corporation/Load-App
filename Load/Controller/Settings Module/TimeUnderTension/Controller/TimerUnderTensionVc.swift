@@ -44,6 +44,7 @@ class TimerUnderTensionVc: UIViewController {
     }
     
     @IBAction func btnBackClicked() {
+        mainModelView.saveTimeUnderTension()
         backButtonAction()
     }
     
