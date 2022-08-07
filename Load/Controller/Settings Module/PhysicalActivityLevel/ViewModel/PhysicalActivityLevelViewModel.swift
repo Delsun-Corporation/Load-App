@@ -7,7 +7,7 @@
 //
 
 protocol PhysicalAcitivtyFinishSelection {
-    func selectedPhysicalActivity(id: Int)
+    func selectedPhysicalActivity(id: String)
 }
 
 import Foundation
@@ -18,7 +18,7 @@ class PhysicalActivityLevelViewModel {
     //MARK:- Variables
     fileprivate weak var theController:PhysicalActivityLevelVc!
     var profileDetails: PhysicalActivityModelClass?
-    var selectedPhysicalActivityId = 0
+    var selectedPhysicalActivityId: String = "0"
     var isUpdated:Bool = false
     var delegateFinishActivityLevel : PhysicalAcitivtyFinishSelection?
     
@@ -55,6 +55,20 @@ extension PhysicalActivityLevelViewModel {
                 }
             }
         })
+    }
+    
+    func selectUnit(in unitIndex: Int) {
+        // Deselect all units beside the selected index first
+        guard let profileDetails = profileDetails?.data else {
+            return
+        }
+        
+        for (index, datum) in profileDetails.enumerated() {
+            datum.isSelected = index == unitIndex
+            if datum.isSelected {
+                selectedPhysicalActivityId = datum.id ?? "0"
+            }
+        }
     }
 
 }

@@ -29,17 +29,33 @@ class TrainingSettingsCell: UITableViewCell, UITextFieldDelegate {
     weak var delegate:TrainingSettingsDelegate?
     let arrayPlaceHolder: [String] = ["","cm", "kg", "",""]
     let arrayPlaceHolder2: [String] = ["","","ml/kg/min","",""]
-    
+    var heightArray: [String] = []
+    var weightArray: [String] = []
+    let arrayDecimal = Array(stride(from: 0, to: 10, by: 1))
     var VO2Value = ""
     var hrMax: CGFloat = 0.0
     var hrRest: CGFloat = 0.0
     let VO2PickerView = UIPickerView()
+    let heightPickerView: UIPickerView = UIPickerView()
+    let weightPickerView: UIPickerView = UIPickerView()
     var isVO2MaxIsEstimated = true
+    
+    var firstComponentHeight = "0"
+    var secondComponentHeight = "0"
+    
+    var firstComponentWeight = "0"
+    var secondComponentWeight = "0"
     
     //MARK:- Functions
     override func awakeFromNib() {
         super.awakeFromNib()
         
+        for i in 120..<201 {
+            heightArray.append("\(i)")
+        }
+        for i in 35..<121 {
+            weightArray.append("\(i)")
+        }
         self.txtValue.setAsNumericKeyboard(delegate: self,isUseHyphen:false)
         // Initialization code
     }
@@ -95,7 +111,7 @@ class TrainingSettingsCell: UITableViewCell, UITextFieldDelegate {
                 self.txtValue.isUserInteractionEnabled = false
             }
             else if indexPath.row == (title.count-1){
-                self.btnCell.isHidden = false
+                self.btnCell.isHidden = false 
                 self.imgArrow.isHidden = false
                 self.txtValue.isHidden = true
                 self.txtValue.isUserInteractionEnabled = false
@@ -106,6 +122,53 @@ class TrainingSettingsCell: UITableViewCell, UITextFieldDelegate {
                 self.txtValue.isHidden = false
 //                self.txtValue.placeholder = self.arrayPlaceHolder[indexPath.row]
                 self.lblUnit.text = self.arrayPlaceHolder[indexPath.row]
+                if indexPath.row == 1 {
+                    for index in 0..<2 {
+                        let label = UILabel()
+                        label.textAlignment = .center
+                        label.tag = 100 + index
+                        label.font = themeFont(size: 21, fontname: .Regular) //themeFont(size: 15, fontname: .ProximaNovaRegular)
+                        if index == 0 {
+                            label.frame = CGRect(x: 0.47 * UIScreen.main.bounds.width, y: (heightPickerView.frame.height - 30) / 2, width: 0.1 * UIScreen.main.bounds.width, height: 30)
+                            label.text = "."
+                        }
+                        else {
+                            label.frame = CGRect(x: 0.7 * UIScreen.main.bounds.width, y: (heightPickerView.frame.height - 30) / 2, width: 0.1 * UIScreen.main.bounds.width, height: 30)
+                            label.text = "cm"
+                        }
+                        label.textColor = .appthemeRedColor
+                        self.heightPickerView.addSubview(label)
+                    }
+                    
+                    heightPickerView.delegate = self
+                    heightPickerView.dataSource = self
+                    self.txtValue.inputView = heightPickerView
+                    
+                    heightPickerView.backgroundColor = UIColor.white
+                }
+                else if indexPath.row == 2 {
+                    for index in 0..<2 {
+                        let label = UILabel()
+                        label.textAlignment = .center
+                        label.tag = 100 + index
+                        label.font = themeFont(size: 21, fontname: .Regular) //themeFont(size: 15, fontname: .ProximaNovaRegular)
+                        if index == 0 {
+                            label.frame = CGRect(x: 0.47 * UIScreen.main.bounds.width, y: (heightPickerView.frame.height - 30) / 2, width: 0.1 * UIScreen.main.bounds.width, height: 30)
+                            label.text = "."
+                        }
+                        else {
+                            label.frame = CGRect(x: 0.7 * UIScreen.main.bounds.width, y: (heightPickerView.frame.height - 30) / 2, width: 0.1 * UIScreen.main.bounds.width, height: 30)
+                            label.text = "kg"
+                        }
+                        label.textColor = .appthemeRedColor
+                        self.weightPickerView.addSubview(label)
+                    }
+                    weightPickerView.delegate = self
+                    weightPickerView.dataSource = self
+                    self.txtValue.inputView = weightPickerView
+                    
+                    weightPickerView.backgroundColor = UIColor.white
+                }
                 self.txtValue.isUserInteractionEnabled = true
             }
         }
@@ -210,21 +273,47 @@ extension TrainingSettingsCell: NumericKeyboardDelegate {
 extension TrainingSettingsCell: UIPickerViewDataSource, UIPickerViewDelegate{
     
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        if pickerView == self.heightPickerView || pickerView == self.weightPickerView {
+            return 2
+        }
         return 1
     }
     
+    func pickerView(_ pickerView: UIPickerView, widthForComponent component: Int) -> CGFloat {
+        if pickerView == self.heightPickerView || pickerView == self.weightPickerView {
+            return 0.2 * (UIScreen.main.bounds.width)
+        }
+        return UIScreen.main.bounds.width
+    }
+    
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        if pickerView == self.heightPickerView {
+            if component == 0 {
+                return heightArray.count
+            }
+            else {
+                return arrayDecimal.count
+            }
+        }
+        else if pickerView == self.weightPickerView {
+            if component == 0 {
+                return weightArray.count
+            }
+            else {
+                return arrayDecimal.count
+            }
+        }
         return 2
     }
     
     func pickerView(_ pickerView: UIPickerView, rowHeightForComponent component: Int) -> CGFloat {
         return 30
     }
-    
+//
     func pickerView(_ pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusing view: UIView?) -> UIView {
-        
+
         if pickerView == self.VO2PickerView {
-            
+
             let myView = PickerView.instanceFromNib() as! PickerView
             myView.setupUI()
 
@@ -240,16 +329,41 @@ extension TrainingSettingsCell: UIPickerViewDataSource, UIPickerViewDelegate{
                 self.delegate?.TrainingSettingVO2MaxIsEstimated(isVO2MaxIsEstimated: self.isVO2MaxIsEstimated)
 
             }
-            
+
             return myView
-            
+
         }
-        
+        else if pickerView == self.heightPickerView {
+            let myView = PickerView.instanceFromNib() as! PickerView
+            myView.setupUI()
+            myView.imgIcon.image = nil
+            if component == 0{
+                myView.lblText.text = self.heightArray[row]
+            }
+            else {
+                myView.lblText.text = String(self.arrayDecimal[row])
+            }
+            return myView
+        }
+        else if pickerView == self.weightPickerView {
+            let myView = PickerView.instanceFromNib() as! PickerView
+            myView.setupUI()
+            myView.imgIcon.image = nil
+            if component == 0{
+                myView.lblText.text = self.weightArray[row]
+            }
+            else {
+                myView.lblText.text = String(self.arrayDecimal[row])
+            }
+            return myView
+        }
+
         return UIView()
-        
+
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        
         if pickerView == self.VO2PickerView {
             
             if row == 0 {
@@ -274,6 +388,26 @@ extension TrainingSettingsCell: UIPickerViewDataSource, UIPickerViewDelegate{
                 }
             }
             
+        }
+        else if pickerView == heightPickerView {
+            guard row <= heightArray.count else { return }
+            if component == 0 {
+                self.firstComponentHeight = heightArray[row]
+            }
+            else {
+                self.secondComponentHeight = String(arrayDecimal[row])
+            }
+            self.txtValue.text = "\(self.firstComponentHeight).\(self.secondComponentHeight)"
+        }
+        else if pickerView == weightPickerView {
+            guard row <= heightArray.count else { return }
+            if component == 0 {
+                self.firstComponentWeight = weightArray[row]
+            }
+            else {
+                self.secondComponentWeight = String(arrayDecimal[row])
+            }
+            self.txtValue.text = "\(self.firstComponentWeight).\(self.secondComponentWeight)"
         }
     }
 

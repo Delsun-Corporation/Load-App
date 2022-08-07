@@ -10,14 +10,14 @@ import UIKit
 import SwiftyJSON
 
 protocol UnitstDelegate: AnyObject {
-    func UnitsFinish(id:Int, title:String)
+    func UnitsFinish(id: String, title: String)
 }
 
 class UnitsViewModel {
     
     //MARK:- Variables
     fileprivate weak var theController:UnitsVC!
-    var selectedId:Int = 0
+    var selectedId: String = ""
     var selectedTitle:String = ""
     weak var delegate:UnitstDelegate?
     var profileDetails: UnitsModelClass?
@@ -30,6 +30,20 @@ class UnitsViewModel {
     
     func setupUI() {
         self.getUnitsList()
+    }
+    
+    func selectUnit(in unitIndex: Int) {
+        // Deselect all units beside the selected index first
+        guard let profileDetails = profileDetails?.data else {
+            return
+        }
+        
+        for (index, datum) in profileDetails.enumerated() {
+            datum.isSelected = index == unitIndex
+            if datum.isSelected {
+                selectedId = datum.id ?? "0"
+            }
+        }
     }
     
     func getUnitsList() {

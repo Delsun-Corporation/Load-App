@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 extension TimerUnderTensionVc: UITableViewDelegate, UITableViewDataSource {
     
@@ -64,7 +65,7 @@ extension TimerUnderTensionVc: TimeUnderTensionSelectionDelegate {
     
     func timeUnderTensionUpdatedData(index: Int, second1: String, second2: String, second3: String, second4: String) {
         
-        self.mainModelView.apiCallForUpdateDataList(index: index, tensionId: String(self.mainModelView.arrayTimeUnderTensionList[index].id), tempo1: second1, tempo2: second2, tempo3: second3, tempo4: second4,isSelected: self.mainModelView.arrayTimeUnderTensionList[index].selectedIndex)
+        self.mainModelView.apiCallForUpdateDataList(index: index, tensionId: String(self.mainModelView.arrayTimeUnderTensionList[index].id ?? "0"), tempo1: second1, tempo2: second2, tempo3: second3, tempo4: second4,isSelected: self.mainModelView.arrayTimeUnderTensionList[index].selectedIndex)
         
     }
     

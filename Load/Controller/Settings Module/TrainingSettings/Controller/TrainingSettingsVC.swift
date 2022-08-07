@@ -11,7 +11,6 @@ import UIKit
 class TrainingSettingsVC: UIViewController, UnitstDelegate {
   
     //MARK:- @IBOutlet
-    @IBOutlet weak var btnSave: UIButton!
     
     //MARK:- Variables
     lazy var mainView: TrainingSettingsView? = { [unowned self] in
@@ -26,7 +25,6 @@ class TrainingSettingsVC: UIViewController, UnitstDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         // this save button is set in default navigation bar not in custom
-        self.btnSave.isHidden = true
         self.mainView?.setupUI(theController: self)
         self.mainModelView.setupUI()
     }
@@ -48,10 +46,6 @@ class TrainingSettingsVC: UIViewController, UnitstDelegate {
         self.navigationController?.popViewController(animated: true)
     }
     
-    @IBAction func btnSaveClicked(_ sender: Any) {
-        self.mainModelView.validateDetails()
-    }
-    
     func openUnits() {
         let obj = AppStoryboard.Settings.instance.instantiateViewController(withIdentifier: "UnitsVC") as! UnitsVC
         obj.mainModelView.delegate = self
@@ -60,8 +54,7 @@ class TrainingSettingsVC: UIViewController, UnitstDelegate {
         self.navigationController?.pushViewController(obj, animated: true)
     }
     
-    func UnitsFinish(id: Int, title: String) {
-        self.btnSave.isHidden = false
+    func UnitsFinish(id: String, title: String) {
         self.mainModelView.txtTypesId = id
         self.mainModelView.txtTypes = title
         self.mainModelView.apiCallSettingCreateUpdateProgram()
@@ -100,6 +93,7 @@ class TrainingSettingsVC: UIViewController, UnitstDelegate {
 
     func moveToTimeUnderTensionController(){
         let obj = AppStoryboard.Settings.instance.instantiateViewController(withIdentifier: "TimerUnderTensionVc") as! TimerUnderTensionVc
+        obj.mainModelView.setTimeUnderTensionDelegate(delegate: self.mainModelView)
         self.navigationController?.pushViewController(obj, animated: true)
     }
     
@@ -112,7 +106,6 @@ class TrainingSettingsVC: UIViewController, UnitstDelegate {
             print("Run auto-pause:\(runAutoPause)")
             print("Cycle auto-pause:\(cycleAutoPause)")
             
-            self?.btnSave.isHidden = false
             self?.mainModelView.isRunAutoPause = runAutoPause
             self?.mainModelView.isCycleAutoPause = cycleAutoPause
             self?.mainModelView.apiCallSettingCreateUpdateProgram()
@@ -127,11 +120,6 @@ extension TrainingSettingsVC: HeartRateDelegate {
     func HeartRateFinish(HRMaxValue: String, HRRestValue: String,isHrMaxIsEstimated:Bool) {
         print("HRMaxalue : \(HRMaxValue)")
         print("isHrMaxIsEstimated : \(isHrMaxIsEstimated)")
-
-        if self.mainModelView.txtHRMax != HRMaxValue || self.mainModelView.txtHRRest != HRRestValue{
-            self.btnSave.isHidden = false
-        }
-        
         self.mainModelView.txtHRMax = HRMaxValue
         self.mainModelView.txtHRRest = HRRestValue
         self.mainModelView.isHrMaxIsEstimated = isHrMaxIsEstimated
@@ -143,8 +131,7 @@ extension TrainingSettingsVC: HeartRateDelegate {
 }
 //MARK: - Physical activityId
 extension TrainingSettingsVC: PhysicalAcitivtyFinishSelection{
-    func selectedPhysicalActivity(id: Int) {
-        self.btnSave.isHidden = false
+    func selectedPhysicalActivity(id: String) {
         self.mainModelView.selectedPhysicalActivityId = id
         self.mainModelView.apiCallSettingCreateUpdateProgram()
     }
@@ -156,10 +143,6 @@ extension TrainingSettingsVC: PhysicalAcitivtyFinishSelection{
 extension TrainingSettingsVC: BikeSetttingSelectFinishDelegate{
     
     func BikeData(bikeWeight: CGFloat, bikeWheelDiameter: CGFloat, bikeFrontChainWheel: Int, rearFreeWheel: Int) {
-        
-        if self.mainModelView.bikeWeight != bikeWeight || self.mainModelView.bikeWheelDiameter != bikeWheelDiameter || self.mainModelView.bikeFrontChainWheel != bikeFrontChainWheel || self.mainModelView.bikeRearFreeWheel != rearFreeWheel{
-            self.btnSave.isHidden = false
-        }
         
         self.mainModelView.bikeWeight = bikeWeight
         self.mainModelView.bikeWheelDiameter = bikeWheelDiameter

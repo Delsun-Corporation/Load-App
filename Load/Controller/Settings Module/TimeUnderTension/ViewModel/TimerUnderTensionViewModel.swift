@@ -9,19 +9,35 @@
 import Foundation
 import SwiftyJSON
 
+protocol TimeUnderTensionViewModelDelegate: AnyObject {
+    func updateTimeUnderTension(timeUnderTension: [TimeUnderTensionPostViewModel])
+}
+
 class TimeUnderTensionViewModel{
     
     fileprivate weak var theController:TimerUnderTensionVc!
+    private weak var timeUnderTensionDelegate: TimeUnderTensionViewModelDelegate?
+    
+    var arrayTimeUnderTensionList = [TimeUnderTensionList]()
 
     init(theController:TimerUnderTensionVc) {
         self.theController = theController
     }
     
-    var arrayTimeUnderTensionList = [TimeUnderTensionList]()
+    func setTimeUnderTensionDelegate(delegate: TimeUnderTensionViewModelDelegate?) {
+        timeUnderTensionDelegate = delegate
+    }
     
     //MARK:- SetupUI
     func setupUI(){
         self.apiCallForList()
+    }
+    
+    func saveTimeUnderTension() {
+        let modelToSave: [TimeUnderTensionPostViewModel] = arrayTimeUnderTensionList.map { model in
+                .init(id: model.id ?? "0", userUpdatedTempo: model.userUpdatedTempo)
+        }
+        timeUnderTensionDelegate?.updateTimeUnderTension(timeUnderTension: modelToSave)
     }
 }
 
@@ -56,6 +72,12 @@ extension TimeUnderTensionViewModel {
     }
     
     func apiCallForUpdateDataList(index: Int, tensionId: String, tempo1: String, tempo2: String, tempo3: String, tempo4: String,isSelected:Int) {
+        guard !newApiConfig else {
+            for data in arrayTimeUnderTensionList where data.id == tensionId {
+                data.userUpdatedTempo = "\(tempo1):\(tempo2):\(tempo3):\(tempo4)"
+            }
+            return
+        }
         
         let param = ["time_under_tention_id": tensionId,
                      "tempo1" : tempo1,
@@ -75,7 +97,7 @@ extension TimeUnderTensionViewModel {
 
                     if let model = TimeUnderTensionList(JSON: data.dictionaryObject!){
                         self.arrayTimeUnderTensionList[index] = model
-                        self.arrayTimeUnderTensionList[index].id = model.timeUnderTensionId
+                        self.arrayTimeUnderTensionList[index].id = model.id
                         self.arrayTimeUnderTensionList[index].selectedIndex = isSelected
                     }
                     

@@ -15,11 +15,11 @@ class SettingProgramModelClass: Mappable {
 	var updatedAt: String? 
 	var id: NSNumber? 
 	var weight: NSNumber? 
-    var trainingUnitIds: [String]?
+    var trainingUnitIds: String?
     var runAutoPause : Bool?
     var cycleAutoPause : Bool?
     var isHrMaxIsEstimated : Bool = true
-    var physicalAcitivityId = 0
+    var physicalAcitivityId: String?
     var VO2Max : NSNumber?
     var isVO2MaxIsEstimated : Bool = true
     

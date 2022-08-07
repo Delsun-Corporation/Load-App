@@ -28,7 +28,10 @@ class TrainingSettingsViewModel: RaceTimeDelegate {
     var raceDistanceId:String = ""
     var raceTime:String = ""
     var txtTypes:String = ""
-    var txtTypesId:Int = 0
+    var txtTypesId:String = ""
+    
+    var heightArray: [String] = []
+    var weightArray: [String] = []
     
     var bikeWeight: CGFloat = 0.0
     var bikeWheelDiameter: CGFloat = 0.0
@@ -37,10 +40,11 @@ class TrainingSettingsViewModel: RaceTimeDelegate {
     
     var isRunAutoPause = false
     var isCycleAutoPause = false
-    var selectedPhysicalActivityId = 0
+    var selectedPhysicalActivityId = ""
     var vo2MaxCustomeValue = ""
     var isVO2MaxIsEstimated = true
 
+    var timeUnderTension: [[String: Any]] = []
     
     //MARK:- Functions
     init(theController:TrainingSettingsVC) {
@@ -73,7 +77,7 @@ class TrainingSettingsViewModel: RaceTimeDelegate {
                 if success {
                     let data = json.getDictionary(key: .data)
                     self.trainingResponse = SettingProgramModelClass(JSON: data.dictionaryObject!)
-                    self.txtTypesId = Int(self.trainingResponse?.trainingUnitIds?.first ?? "0") ?? 0
+                    self.txtTypesId = self.trainingResponse?.trainingUnitIds ?? "0"
 //                    self.textArray[0][0] = self.trainingResponse?.hrMax?.stringValue ?? ""
                     /*
                     self.textArray[1][0] = (getUserDetail().data?.user?.dateOfBirth ?? "") == "" ? "" : self.getHRMax(date: getUserDetail().data?.user?.dateOfBirth ?? "")
@@ -98,7 +102,7 @@ class TrainingSettingsViewModel: RaceTimeDelegate {
                     self.isRunAutoPause = self.trainingResponse?.runAutoPause ?? false
                     self.isCycleAutoPause = self.trainingResponse?.cycleAutoPause ?? false
                     
-                    self.selectedPhysicalActivityId = self.trainingResponse?.physicalAcitivityId ?? 0
+                    self.selectedPhysicalActivityId = self.trainingResponse?.physicalAcitivityId ?? ""
                     
                     self.bikeWeight = self.theController.setOneDigitWithFloorInCGFLoat(value: self.trainingResponse?.bikeWeight ?? 0.0)
                     
@@ -127,44 +131,17 @@ class TrainingSettingsViewModel: RaceTimeDelegate {
         let now = Date().toString(dateFormat: "yyyy")
         let birthday: String = convertDateFormater(date, format: "dd-MM-yyyy", dateFormat: "yyyy")
         let age = Int(now)! - Int(birthday)!
-//        let calendar = Calendar.current
-//        let ageComponents = calendar.dateComponents([.year], from: birthday, to: now)
-//        let age = ageComponents.year!
         let value = Int(206.9 - (0.67 * Double(age)))
         return "\(value)".replace(target: ".00", withString: "")
     }
     
     func apiCallSettingCreateUpdateProgram() {
-//        var param = ["hr_max": hrMax, "height": height, "weight": weight, "race_distance_id": raceDistanceId, "race_time": raceTime] as [String : Any]
-   /*
-        if self.txtHeight == "" {
-            makeToast(strMessage: getCommonString(key: "Please_enter_height_key"))
-            return
-        }
-        else if Int(self.txtHeight) == 0 {
-            makeToast(strMessage: getCommonString(key: "Please_enter_height_key"))
-            return
-        }
-        else if self.txtWeight == "" {
-            makeToast(strMessage: getCommonString(key: "Please_enter_weight_key"))
-            return
-        }
-        else if Int(self.txtWeight) == 0 {
-            makeToast(strMessage: getCommonString(key: "Please_enter_weight_key"))
-            return
-        }
-*/
-        
-        var trainingUnitIds:[Int] = []
-        if self.txtTypesId != 0 {
-            trainingUnitIds.append(self.txtTypesId)
-        }
         
         var param = ["height": self.txtHeight,
                      "weight": self.txtWeight,
                      "race_distance_id": self.raceDistanceId,
                      "race_time": self.raceTime,
-                     "training_unit_ids" : trainingUnitIds,
+                     "training_unit_ids" : txtTypesId,
                      "run_auto_pause": self.isRunAutoPause,
                      "cycle_auto_pause": self.isCycleAutoPause,
                      "hr_max" : self.txtHRMax,
@@ -176,7 +153,8 @@ class TrainingSettingsViewModel: RaceTimeDelegate {
                      "bike_weight": self.bikeWeight,
                      "bike_wheel_diameter" : self.bikeWheelDiameter,
                      "bike_front_chainwheel": self.bikeFrontChainWheel,
-                     "bike_rear_freewheel": self.bikeRearFreeWheel
+                     "bike_rear_freewheel": self.bikeRearFreeWheel,
+                     "time_under_tension": self.timeUnderTension
                     ] as [String : Any]
 
         if raceDistanceId == "" {
@@ -186,10 +164,6 @@ class TrainingSettingsViewModel: RaceTimeDelegate {
         if raceTime == "" {
             param.removeValue(forKey: "race_time")
         }
-        
-//        if self.vo2MaxCustomeValue == ""{
-//            param.removeValue(forKey: "vo2_max")
-//        }
         
         print(param)
         
@@ -228,7 +202,7 @@ class TrainingSettingsViewModel: RaceTimeDelegate {
                     
                     self.isRunAutoPause = self.trainingResponse?.runAutoPause ?? false
                     self.isCycleAutoPause = self.trainingResponse?.cycleAutoPause ?? false
-                    self.selectedPhysicalActivityId = self.trainingResponse?.physicalAcitivityId ?? 0
+                    self.selectedPhysicalActivityId = self.trainingResponse?.physicalAcitivityId ?? ""
                     
                     self.bikeWeight = self.theController.setOneDigitWithFloorInCGFLoat(value: self.trainingResponse?.bikeWeight ?? 0.0)
                     
@@ -266,7 +240,6 @@ class TrainingSettingsViewModel: RaceTimeDelegate {
             makeToast(strMessage: getCommonString(key: "Please_enter_weight_key"))
         }
         else {
-            self.theController.btnSave.isHidden = true
             self.apiCallSettingCreateUpdateProgram()
         }
     }
@@ -280,9 +253,6 @@ class TrainingSettingsViewModel: RaceTimeDelegate {
     }
     
     func RaceTimeFinish(raceDistanceId: String, raceTime: String) {
-        if self.raceDistanceId != raceDistanceId || self.raceTime != raceTime {
-            self.theController.btnSave.isHidden = false
-        }
         self.raceDistanceId = raceDistanceId
         self.raceTime = raceTime
         
@@ -290,5 +260,18 @@ class TrainingSettingsViewModel: RaceTimeDelegate {
 
     }
 
+}
+
+extension TrainingSettingsViewModel: TimeUnderTensionViewModelDelegate {
+    func updateTimeUnderTension(timeUnderTension: [TimeUnderTensionPostViewModel]) {
+        for time in timeUnderTension {
+            self.timeUnderTension.append([
+                "id": time.id,
+                "user_updated_tempo": time.userUpdatedTempo
+            ])
+        }
+        
+        apiCallSettingCreateUpdateProgram()
+    }
 }
 
