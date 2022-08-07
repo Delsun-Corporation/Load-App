@@ -21,7 +21,7 @@ class TimeUnderTensionModel: Mappable {
 
 class TimeUnderTensionList: Mappable {
 
-	var id: Int = 0
+	var id: String?
 	var intensity: String = ""
 	var description: String = ""
 	var tempo: String = ""
@@ -34,10 +34,10 @@ class TimeUnderTensionList: Mappable {
 	} 
 
 	func mapping(map: Map) {
-		id <- map["id"] 
+		id <- map["_id"] 
 		intensity <- map["Intensity"] 
 		description <- map["description"] 
-		tempo <- map["Tempo"] 
+		tempo <- map["tempo"]
 		userUpdatedTempo <- map["user_updated_tempo"]
         selectedIndex <- map["selected"]
         timeUnderTensionId <- map["time_under_tention_id"]

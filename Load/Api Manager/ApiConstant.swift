@@ -108,7 +108,7 @@ let DELETE_TRAINING_PROGRAMS = "delete-training-programs"
 let ALL_PHYSICAL_ACTIVITY_LIST = newApiConfig ? "setting/all-physical-activity-level-list" :  "all-physical-activity-level-list"
 let GET_AND_UPDATE_CONFIRMATION_DATA_FOR_TRAINING_PROGRAM = "save-generated-calculation-training-program"
 let GET_TRAINING_PROGRAM_SUMMAARY_DETAILS = "get-training-program-summary-details"
-let TIME_UNDER_TENSION_LIST_SETTING = "time-under-tention"
+let TIME_UNDER_TENSION_LIST_SETTING = newApiConfig ? "setting/time-under-tention" : "time-under-tention"
 let TIME_UNDER_TENSION_UPDATE_DATA_SETTING = "time-under-tention-update"
 
 // Paypal
