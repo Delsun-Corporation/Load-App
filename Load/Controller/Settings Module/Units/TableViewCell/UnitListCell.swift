@@ -26,7 +26,7 @@ class UnitListCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
-    func setupUI(model: UnitsData, selectedId:Int) {
+    func setupUI(model: UnitsData) {
         self.setupFont()
         self.lblTitle.text = model.title
         self.lblSubTitle.text = model.description

@@ -28,8 +28,7 @@ class TrainingSettingsViewModel: RaceTimeDelegate {
     var raceDistanceId:String = ""
     var raceTime:String = ""
     var txtTypes:String = ""
-    var txtTypesId:Int = 0
-    var units: [[String: Any]]?
+    var txtTypesId:String = ""
     
     var heightArray: [String] = []
     var weightArray: [String] = []
@@ -77,7 +76,7 @@ class TrainingSettingsViewModel: RaceTimeDelegate {
                 if success {
                     let data = json.getDictionary(key: .data)
                     self.trainingResponse = SettingProgramModelClass(JSON: data.dictionaryObject!)
-                    self.txtTypesId = Int(self.trainingResponse?.trainingUnitIds?.first ?? "0") ?? 0
+                    self.txtTypesId = self.trainingResponse?.trainingUnitIds ?? "0"
 //                    self.textArray[0][0] = self.trainingResponse?.hrMax?.stringValue ?? ""
                     /*
                     self.textArray[1][0] = (getUserDetail().data?.user?.dateOfBirth ?? "") == "" ? "" : self.getHRMax(date: getUserDetail().data?.user?.dateOfBirth ?? "")
@@ -136,16 +135,12 @@ class TrainingSettingsViewModel: RaceTimeDelegate {
     }
     
     func apiCallSettingCreateUpdateProgram() {
-        var trainingUnitIds:[Int] = []
-        if self.txtTypesId != 0 {
-            trainingUnitIds.append(self.txtTypesId)
-        }
         
         var param = ["height": self.txtHeight,
                      "weight": self.txtWeight,
                      "race_distance_id": self.raceDistanceId,
                      "race_time": self.raceTime,
-                     "training_unit_ids" : trainingUnitIds,
+                     "training_unit_ids" : txtTypesId,
                      "run_auto_pause": self.isRunAutoPause,
                      "cycle_auto_pause": self.isCycleAutoPause,
                      "hr_max" : self.txtHRMax,
@@ -166,10 +161,6 @@ class TrainingSettingsViewModel: RaceTimeDelegate {
         
         if raceTime == "" {
             param.removeValue(forKey: "race_time")
-        }
-        
-        if let units = units {
-            param["units"] = units
         }
         
         print(param)

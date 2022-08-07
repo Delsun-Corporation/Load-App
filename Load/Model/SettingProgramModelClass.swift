@@ -15,7 +15,7 @@ class SettingProgramModelClass: Mappable {
 	var updatedAt: String? 
 	var id: NSNumber? 
 	var weight: NSNumber? 
-    var trainingUnitIds: [String]?
+    var trainingUnitIds: String?
     var runAutoPause : Bool?
     var cycleAutoPause : Bool?
     var isHrMaxIsEstimated : Bool = true

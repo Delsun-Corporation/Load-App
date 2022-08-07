@@ -19,17 +19,20 @@ extension UnitsVC:UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "UnitListCell") as! UnitListCell
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "UnitListCell") as? UnitListCell else {
+            return UITableViewCell()
+        }
         cell.tag = indexPath.row
         cell.selectionStyle = .none
-        let model = self.mainModelView.profileDetails?.data?[indexPath.row]
-        cell.setupUI(model: model!, selectedId: self.mainModelView.selectedId)
+        guard let model = self.mainModelView.profileDetails?.data?[indexPath.row] else {
+            return UITableViewCell()
+        }
+        
+        cell.setupUI(model: model)
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        self.mainModelView.selectedId = (GetAllData?.data?.professionalTypes![indexPath.row].id?.intValue)!
-        self.mainModelView.selectedTitle = (GetAllData?.data?.professionalTypes![indexPath.row].name)!
         mainModelView.selectUnit(in: indexPath.row)
         self.mainModelView.isUpdated = true
         UIView.performWithoutAnimation {

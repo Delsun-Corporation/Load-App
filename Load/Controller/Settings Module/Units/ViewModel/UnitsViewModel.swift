@@ -10,14 +10,14 @@ import UIKit
 import SwiftyJSON
 
 protocol UnitstDelegate: AnyObject {
-    func UnitsFinish(id: Int, title: String, units: [[String: Any]]?)
+    func UnitsFinish(id: String, title: String)
 }
 
 class UnitsViewModel {
     
     //MARK:- Variables
     fileprivate weak var theController:UnitsVC!
-    var selectedId:Int = 0
+    var selectedId: String = ""
     var selectedTitle:String = ""
     weak var delegate:UnitstDelegate?
     var profileDetails: UnitsModelClass?
@@ -40,25 +40,10 @@ class UnitsViewModel {
         
         for (index, datum) in profileDetails.enumerated() {
             datum.isSelected = index == unitIndex
+            if datum.isSelected {
+                selectedId = datum.id ?? "0"
+            }
         }
-    }
-    
-    func convertTrainingUnitsDataToDict() -> [[String: Any]]? {
-        guard let profileDetails = profileDetails?.data, !profileDetails.isEmpty else {
-            return nil
-        }
-        var dictToSave = [[String: Any]]()
-        for datum in profileDetails {
-            let param = [
-                "title": datum.title,
-                "description": datum.description ?? "",
-                "is_selected": datum.isSelected
-            ] as [String : Any]
-            
-            dictToSave.append(param)
-        }
-        
-        return dictToSave
     }
     
     func getUnitsList() {
