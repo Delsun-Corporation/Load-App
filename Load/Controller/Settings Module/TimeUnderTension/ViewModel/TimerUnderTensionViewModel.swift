@@ -75,7 +75,7 @@ extension TimeUnderTensionViewModel {
 
                     if let model = TimeUnderTensionList(JSON: data.dictionaryObject!){
                         self.arrayTimeUnderTensionList[index] = model
-                        self.arrayTimeUnderTensionList[index].id = model.timeUnderTensionId
+                        self.arrayTimeUnderTensionList[index].id = model.id
                         self.arrayTimeUnderTensionList[index].selectedIndex = isSelected
                     }
                     

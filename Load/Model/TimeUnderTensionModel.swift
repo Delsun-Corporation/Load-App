@@ -28,14 +28,14 @@ class TimeUnderTensionList: Mappable {
 	var userUpdatedTempo: String = ""
     var selectedIndex = 0
     //add time under tension id for update
-    var timeUnderTensionId: Int = 0
+    var timeUnderTensionId: String = ""
 
 	required init?(map: Map){ 
 	} 
 
 	func mapping(map: Map) {
-		id <- map["_id"] 
-		intensity <- map["Intensity"] 
+		id <- map["_id"]
+		intensity <- map["intensity"] 
 		description <- map["description"] 
 		tempo <- map["tempo"]
 		userUpdatedTempo <- map["user_updated_tempo"]
