@@ -57,7 +57,6 @@ extension TrainingSettingsVC:UITableViewDataSource, UITableViewDelegate, Trainin
     }
     
     func TrainingSettingsTextField(text: String, section: Int, row: Int) {
-        self.btnSave.isHidden = false
         
         if section == 0 {
             if row == 1 {

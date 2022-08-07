@@ -238,7 +238,6 @@ class TrainingSettingsViewModel: RaceTimeDelegate {
             makeToast(strMessage: getCommonString(key: "Please_enter_weight_key"))
         }
         else {
-            self.theController.btnSave.isHidden = true
             self.apiCallSettingCreateUpdateProgram()
         }
     }
@@ -252,9 +251,6 @@ class TrainingSettingsViewModel: RaceTimeDelegate {
     }
     
     func RaceTimeFinish(raceDistanceId: String, raceTime: String) {
-        if self.raceDistanceId != raceDistanceId || self.raceTime != raceTime {
-            self.theController.btnSave.isHidden = false
-        }
         self.raceDistanceId = raceDistanceId
         self.raceTime = raceTime
         

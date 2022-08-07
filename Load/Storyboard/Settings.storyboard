@@ -12,11 +12,11 @@
         <array key="Proxima-Nova-Bold.ttf">
             <string>ProximaNova-Bold</string>
         </array>
+        <array key="Proxima-Nova-Regular.ttf">
+            <string>ProximaNova-Regular</string>
+        </array>
         <array key="Proxima-Nova-Thin.ttf">
             <string>ProximaNova-Thin</string>
-        </array>
-        <array key="Proxima-nova.ttf">
-            <string>ProximaNova-Regular</string>
         </array>
         <array key="SFUIText-Regular.ttf">
             <string>SFUIText-Regular</string>
@@ -1313,23 +1313,7 @@
                                 </connections>
                             </button>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" style="plain" id="hDK-W4-Vzp">
-                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" id="0O4-EY-ugq">
-                                <rect key="frame" x="324" y="7" width="35" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="15"/>
-                                <state key="normal" title="Save">
-                                    <color key="titleColor" red="0.93725490199999995" green="0.2156862745" blue="0.36862745099999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                </state>
-                                <connections>
-                                    <action selector="btnSaveClicked:" destination="e7e-gA-RXV" eventType="touchUpInside" id="d2t-fs-gUv"/>
-                                </connections>
-                            </button>
-                        </barButtonItem>
                     </navigationItem>
-                    <connections>
-                        <outlet property="btnSave" destination="0O4-EY-ugq" id="wjd-z6-chY"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nal-wQ-rvb" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -2280,7 +2264,7 @@
                                                         <rect key="frame" x="219.33333333333334" y="0.0" width="55.000000000000028" height="30"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="FRI" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gnu-7o-gow">
-                                                                <rect key="frame" x="21.333333333333314" y="15" width="12.666666666666664" height="9"/>
+                                                                <rect key="frame" x="21.999999999999972" y="15" width="11.333333333333336" height="9"/>
                                                                 <fontDescription key="fontDescription" name="ProximaNova-Regular" family="ProximaNova-Regular" pointSize="8"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
@@ -2311,7 +2295,7 @@
                                                         <rect key="frame" x="329" y="0.0" width="55" height="30"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SUN" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tqV-mY-de7">
-                                                                <rect key="frame" x="19" y="15" width="17" height="9"/>
+                                                                <rect key="frame" x="19.666666666666686" y="15" width="16" height="9"/>
                                                                 <fontDescription key="fontDescription" name="ProximaNova-Regular" family="ProximaNova-Regular" pointSize="8"/>
                                                                 <color key="textColor" red="0.99607843139999996" green="0.0" blue="0.070588235289999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <nil key="highlightedColor"/>
@@ -2517,7 +2501,7 @@
                                                     <rect key="frame" x="219.33333333333334" y="0.0" width="55.000000000000028" height="30"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="FRI" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="npR-N6-Zxf">
-                                                            <rect key="frame" x="21.333333333333314" y="15" width="12.666666666666664" height="9"/>
+                                                            <rect key="frame" x="21.999999999999972" y="15" width="11.333333333333336" height="9"/>
                                                             <fontDescription key="fontDescription" name="ProximaNova-Regular" family="ProximaNova-Regular" pointSize="8"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
@@ -2548,7 +2532,7 @@
                                                     <rect key="frame" x="329" y="0.0" width="55" height="30"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SUN" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dLU-ea-5Fp">
-                                                            <rect key="frame" x="19" y="15" width="17" height="9"/>
+                                                            <rect key="frame" x="19.666666666666686" y="15" width="16" height="9"/>
                                                             <fontDescription key="fontDescription" name="ProximaNova-Regular" family="ProximaNova-Regular" pointSize="8"/>
                                                             <color key="textColor" red="0.99607843139999996" green="0.0" blue="0.070588235289999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <nil key="highlightedColor"/>
@@ -2746,7 +2730,7 @@
                                                                 </constraints>
                                                             </view>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Auto upload Sessions to Feed" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tMD-3k-uCO">
-                                                                <rect key="frame" x="23" y="30" width="199.33333333333334" height="18"/>
+                                                                <rect key="frame" x="23" y="30" width="197.33333333333334" height="18"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="18" id="cDa-KW-7ur"/>
                                                                 </constraints>
@@ -2779,7 +2763,7 @@
                                                         <rect key="frame" x="0.0" y="0.0" width="414" height="103"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Who can view my Premium Profile?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0Mn-o2-N3d">
-                                                                <rect key="frame" x="22" y="29" width="231" height="18"/>
+                                                                <rect key="frame" x="21.999999999999986" y="29" width="229.66666666666663" height="18"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="18" id="ZR0-4d-4HM"/>
                                                                 </constraints>
@@ -2828,7 +2812,7 @@
                                                         <rect key="frame" x="0.0" y="103" width="414" height="114"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Who can view my Feeds?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IAD-ud-Hye">
-                                                                <rect key="frame" x="22" y="30" width="169" height="18"/>
+                                                                <rect key="frame" x="22" y="30" width="166.66666666666666" height="18"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="18" id="IyL-EU-Rba"/>
                                                                 </constraints>
@@ -5267,7 +5251,7 @@
                                                 </constraints>
                                             </view>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Run Auto-Pause" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="scS-ix-4lS">
-                                                <rect key="frame" x="20" y="28" width="107" height="17"/>
+                                                <rect key="frame" x="20.000000000000007" y="28" width="105.66666666666669" height="17"/>
                                                 <fontDescription key="fontDescription" name="ProximaNova-Regular" family="Proxima Nova" pointSize="15"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -5321,7 +5305,7 @@
                                         </constraints>
                                     </view>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Auto-Pause will automatically pause your outdoor training log when no movement is detected after 10 seconds." textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5Va-CP-10u">
-                                        <rect key="frame" x="25" y="186" width="364" height="27.333333333333343"/>
+                                        <rect key="frame" x="25" y="186" width="364" height="26.666666666666657"/>
                                         <constraints>
                                             <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="15" id="WX9-Nu-bn1"/>
                                         </constraints>
@@ -5453,7 +5437,7 @@
                                                 </constraints>
                                             </view>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Top up amount" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JeP-6J-4oH">
-                                                <rect key="frame" x="24.999999999999993" y="200" width="98.333333333333314" height="18"/>
+                                                <rect key="frame" x="25" y="200" width="100" height="18"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="18" id="qeQ-iW-d9b"/>
                                                 </constraints>
@@ -5462,7 +5446,7 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="$ 100.00" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="NmN-FE-g1D">
-                                                <rect key="frame" x="138.33333333333334" y="195" width="257.66666666666663" height="30"/>
+                                                <rect key="frame" x="140" y="195" width="256" height="30"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="30" id="42G-Rx-QfW"/>
                                                 </constraints>
