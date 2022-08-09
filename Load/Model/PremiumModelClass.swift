@@ -7,7 +7,7 @@ class PremiumModelClass: Mappable {
 	var updatedAt: String? 
 	var specializationDetails: [PremiumSpecializationDetails]?
 	var languageIds: [String]?
-    var languageId: Int?
+    var languageId: [Int]?
 	var createdAt: String? 
 	var userDetail: PremiumUserDetail?
 	var userId: NSNumber? 

@@ -185,8 +185,6 @@ class PremiumViewModel: ProfessionalRequirementDelegate, FilterActivitySelectedD
             makeToast(strMessage: getCommonString(key: "Please_select_languages_key"))
             return false
         }
-        
-        return true
     }
     
     func updatePremium() {
@@ -305,12 +303,15 @@ class PremiumViewModel: ProfessionalRequirementDelegate, FilterActivitySelectedD
                     self.premiumResponse = PremiumModelClass(JSON: data.dictionaryObject!)
                     
                     self.txtAbout = self.premiumResponse?.about ?? ""
-                    for data in self.premiumResponse?.languageDetails ?? [] {
-                        if let id = data.id?.intValue, let name = data.name {
-                            self.languagesId.append(id)
-                            self.languages.append(name)
+                    self.languagesId = self.premiumResponse?.languageId ?? []
+                    for data in GetAllData?.data?.languages ?? [] {
+                        for languagesId in self.languagesId where languagesId == (data.id?.intValue) {
+                            if let name = data.name {
+                                self.languages.append(name)
+                            }
                         }
                     }
+                    self.languagesId = self.premiumResponse?.languageId ?? []
                     
                     self.isAutoTopup = self.premiumResponse?.isAutoTopup
                     self.autoTopupAmount = self.premiumResponse?.autoTopupAmount?.stringValue
