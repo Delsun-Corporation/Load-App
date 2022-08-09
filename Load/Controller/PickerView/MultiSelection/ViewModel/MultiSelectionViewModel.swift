@@ -81,7 +81,6 @@ class MultiSelectionViewModel {
 
 }
 
-
 extension MultiSelectionViewModel: CustomNavigationWithSaveButtonDelegate{
     
     func CustomNavigationClose() {
@@ -95,4 +94,3 @@ extension MultiSelectionViewModel: CustomNavigationWithSaveButtonDelegate{
     }
 
 }
-

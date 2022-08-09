@@ -15,8 +15,8 @@ class PremiumViewModel: ProfessionalRequirementDelegate, FilterActivitySelectedD
     fileprivate weak var theController:PremiumVC!
     let headerArray: [String] = [getCommonString(key: "Profile_key").uppercased(), getCommonString(key: "PAYMENT_key")]
     let titleArray: [[String]] = [[getCommonString(key: "About_me_key"), getCommonString(key: "Activites_key"), getCommonString(key: "Languages_key"), getCommonString(key: "Permissions_key")], [getCommonString(key: "Payment_Method_key"), getCommonString(key: "Auto_top_up_key")]]
-    var languages: String = ""
-    var languagesId: Int?
+    var languages: [String] = []
+    var languagesId: [Int] = []
     var txtAbout: String = ""
     var selectedArray:[Int] = [Int]()
     var selectedNameArray:[String] = [String]()
@@ -71,6 +71,25 @@ class PremiumViewModel: ProfessionalRequirementDelegate, FilterActivitySelectedD
         self.theController.navigationController?.pushViewController(obj, animated: true)
     }
 
+    func btnLanguageClicked(titleHeader: String) {
+        var dataEntry: [MultiSelectionDataEntry] = [MultiSelectionDataEntry]()
+        guard let languages = GetAllData?.data?.languages else { return }
+        
+        for data in languages {
+            guard let langId = data.id?.intValue else { return }
+            dataEntry.append(MultiSelectionDataEntry(
+                id: "\(langId)", title: data.name ?? "",
+                isSelected: languagesId.contains(where: { $0 == langId
+                }) ))
+        }
+        let obj = AppStoryboard.Settings.instance.instantiateViewController(withIdentifier: "MultiSelectionVC") as! MultiSelectionVC
+        obj.mainModelView.delegate = theController.self
+        obj.mainModelView.data = dataEntry
+        obj.mainModelView.title = titleHeader
+        let nav = UINavigationController(rootViewController: obj)
+        nav.modalPresentationStyle = .overFullScreen
+        self.theController.navigationController?.present(nav, animated: true, completion: nil)
+    }
     
     func btnActivityClicked() {
         let obj = AppStoryboard.Settings.instance.instantiateViewController(withIdentifier: "ProfessionalActivityVC") as! ProfessionalActivityVC
@@ -89,7 +108,6 @@ class PremiumViewModel: ProfessionalRequirementDelegate, FilterActivitySelectedD
         obj.mainModelView.accessToken = self.accessToken
         self.theController.navigationController?.pushViewController(obj, animated: true)
     }
-
     
     func btnAutoTopUpClicked() {
         let obj = AppStoryboard.Settings.instance.instantiateViewController(withIdentifier: "AutoTopUpVC") as! AutoTopUpVC
@@ -163,7 +181,7 @@ class PremiumViewModel: ProfessionalRequirementDelegate, FilterActivitySelectedD
             makeToast(strMessage: getCommonString(key: "Please_select_activity_key"))
             return false
         }
-        else if self.languagesId == nil {
+        else {
             makeToast(strMessage: getCommonString(key: "Please_select_languages_key"))
             return false
         }
@@ -172,6 +190,7 @@ class PremiumViewModel: ProfessionalRequirementDelegate, FilterActivitySelectedD
     }
     
     func updatePremium() {
+        theController.mainView.tableView.reloadData()
         self.theController.resetNavigationBar()
         if newApiConfig {
             self.apiCallSettingCreateUpdatePrimiumV2(about: self.txtAbout, specializationIds: self.selectedArray, languageIds: self.languagesId)
@@ -180,11 +199,11 @@ class PremiumViewModel: ProfessionalRequirementDelegate, FilterActivitySelectedD
         self.apiCallSettingCreateUpdatePrimium(about: self.txtAbout, specializationIds: self.selectedArray, languageIds: self.languagesId)
     }
     
-    func apiCallSettingCreateUpdatePrimiumV2(about: String, specializationIds: [Int], languageIds: Int?, isLoading: Bool = true) {
+    func apiCallSettingCreateUpdatePrimiumV2(about: String, specializationIds: [Int], languageIds: [Int], isLoading: Bool = true) {
         var param = [
             "about": about,
             "specialization_ids" : specializationIds,
-            "language_id": newApiConfig ? languageIds ?? 0 : [languageIds ?? 0],
+            "language_id": languageIds,
             "is_auto_topup": self.isAutoTopup ?? false,
             "auto_topup_amount": self.autoTopupAmount ?? "",
             "minimum_balance": self.minimumBalance ?? "" ,
@@ -220,11 +239,11 @@ class PremiumViewModel: ProfessionalRequirementDelegate, FilterActivitySelectedD
         })
     }
     
-    func apiCallSettingCreateUpdatePrimium(about: String, specializationIds: [Int], languageIds: Int?, isLoading: Bool = true) {
+    func apiCallSettingCreateUpdatePrimium(about: String, specializationIds: [Int], languageIds: [Int], isLoading: Bool = true) {
         let param = [
             "about": about,
             "specialization_ids" : specializationIds,
-            "language_ids": newApiConfig ? languageIds ?? 0 : [languageIds ?? 0],
+            "language_ids": languageIds,
             "is_auto_topup": self.isAutoTopup ?? false,
             "auto_topup_amount": self.autoTopupAmount ?? "",
             "minimum_balance": self.minimumBalance ?? "" ,
@@ -246,8 +265,10 @@ class PremiumViewModel: ProfessionalRequirementDelegate, FilterActivitySelectedD
                     
                     self.txtAbout = self.premiumResponse?.about ?? ""
                     for data in self.premiumResponse?.languageDetails ?? [] {
-                        self.languagesId = data.id?.intValue ?? 0
-                        self.languages = data.name ?? ""
+                        if let id = data.id?.intValue, let name = data.name {
+                            self.languagesId.append(id)
+                            self.languages.append(name)
+                        }
                     }
                     
                     self.isAutoTopup = self.premiumResponse?.isAutoTopup ?? nil
@@ -284,9 +305,11 @@ class PremiumViewModel: ProfessionalRequirementDelegate, FilterActivitySelectedD
                     self.premiumResponse = PremiumModelClass(JSON: data.dictionaryObject!)
                     
                     self.txtAbout = self.premiumResponse?.about ?? ""
-                    for language in GetAllData?.data?.languages ?? [] where self.premiumResponse?.languageId == language.id?.intValue {
-                        self.languagesId = language.id?.intValue
-                        self.languages = language.name ?? ""
+                    for data in self.premiumResponse?.languageDetails ?? [] {
+                        if let id = data.id?.intValue, let name = data.name {
+                            self.languagesId.append(id)
+                            self.languages.append(name)
+                        }
                     }
                     
                     self.isAutoTopup = self.premiumResponse?.isAutoTopup
@@ -326,9 +349,13 @@ class PremiumViewModel: ProfessionalRequirementDelegate, FilterActivitySelectedD
                     self.premiumResponse = PremiumModelClass(JSON: data.dictionaryObject!)
                     
                     self.txtAbout = self.premiumResponse?.about ?? ""
+                    self.languages.removeAll()
+                    self.languagesId.removeAll()
                     for data in self.premiumResponse?.languageDetails ?? [] {
-                        self.languagesId = data.id?.intValue ?? 0
-                        self.languages = data.name ?? ""
+                        if let id = data.id?.intValue, let name = data.name {
+                            self.languagesId.append(id)
+                            self.languages.append(name)
+                        }
                     }
                     
                     self.isAutoTopup = self.premiumResponse?.isAutoTopup ?? nil

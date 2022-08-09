@@ -9,7 +9,6 @@
 import UIKit
 
 class PremiumPermissionVc: UIViewController {
-
     
     //MARK:- Variables
     lazy var mainView: PremiumPermissionView = { [unowned self] in

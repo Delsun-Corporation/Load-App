@@ -9,8 +9,8 @@
 import UIKit
 import CoreLocation
 
-protocol ProfessionalBasicProfileDelegate: class {
-    func ProfessionalBasicProfileFinish(Profession:String, locationString:String, Latitude:Double, Longitude:Double, Introduction:String, ActivityArray:[Int], LangSpoken:Int, LangWriten:Int, CredentialsArray: NSMutableArray)
+protocol ProfessionalBasicProfileDelegate: AnyObject {
+    func ProfessionalBasicProfileFinish(Profession:String, locationString:String, Latitude:Double, Longitude:Double, Introduction:String, ActivityArray:[Int], LangSpoken:[Int], CredentialsArray: NSMutableArray)
 }
 
 class ProfessionalBasicProfileVC: UIViewController, ProfessionalRequirementDelegate, FilterActivitySelectedDelegate, MapViewSelectedDelegate {
@@ -49,7 +49,7 @@ class ProfessionalBasicProfileVC: UIViewController, ProfessionalRequirementDeleg
     //MARK:- @IBAction
     @IBAction func btnBackClicked() {
         self.navigationController?.popViewController(animated: true)
-        self.mainModelView.delegate?.ProfessionalBasicProfileFinish(Profession: self.mainModelView.selectedProfession, locationString: self.mainModelView.selectedAddress, Latitude: self.mainModelView.selectedLatitude, Longitude: self.mainModelView.selectedLongitude, Introduction: self.mainModelView.txtIntroduction, ActivityArray: self.mainModelView.selectedArray, LangSpoken: self.mainModelView.selectedLangSpoken, LangWriten: self.mainModelView.selectedLangWriten, CredentialsArray: self.mainModelView.CredentialsArray)
+        self.mainModelView.delegate?.ProfessionalBasicProfileFinish(Profession: self.mainModelView.selectedProfession, locationString: self.mainModelView.selectedAddress, Latitude: self.mainModelView.selectedLatitude, Longitude: self.mainModelView.selectedLongitude, Introduction: self.mainModelView.txtIntroduction, ActivityArray: self.mainModelView.selectedArray, LangSpoken: self.mainModelView.selectedLangSpoken, CredentialsArray: self.mainModelView.CredentialsArray)
     }
     
     @IBAction func btnProfessionClicked(_ sender: Any) {
@@ -94,15 +94,24 @@ class ProfessionalBasicProfileVC: UIViewController, ProfessionalRequirementDeleg
     }
     
     @IBAction func btnLanguageSpokenClicked(_ sender: Any) {
-        if self.mainView.txtLanguageSpoken.text?.toTrim() == "" {
-            self.mainView.txtLanguageSpoken.text = GetAllData?.data?.languages?.first?.name
-            self.mainModelView.selectedLangSpoken = GetAllData?.data?.languages?.first?.id?.intValue ?? 0
+        var dataEntry: [MultiSelectionDataEntry] = [MultiSelectionDataEntry]()
+        guard let languages = GetAllData?.data?.languages else { return }
+        
+        for data in languages {
+            guard let langId = data.id?.intValue else { return }
+            dataEntry.append(MultiSelectionDataEntry(
+                id: "\(langId)", title: data.name ?? "",
+                isSelected: mainModelView.selectedLangSpoken.contains(where: { $0 == langId
+                }) ))
         }
-        self.mainView.txtLanguageSpoken.becomeFirstResponder()
-    }
-    
-    @IBAction func btnLanguageWritenClicked(_ sender: Any) {
-        self.mainView.txtLanguageWriten.becomeFirstResponder()
+        
+        let obj = AppStoryboard.Settings.instance.instantiateViewController(withIdentifier: "MultiSelectionVC") as! MultiSelectionVC
+        obj.mainModelView.delegate = self
+        obj.mainModelView.data = dataEntry
+        obj.mainModelView.title = "Select Language"
+        let nav = UINavigationController(rootViewController: obj)
+        nav.modalPresentationStyle = .overFullScreen
+        self.navigationController?.present(nav, animated: true, completion: nil)
     }
     
     func ProfessionalRequirementFinish(text: String, isScreen:Int) {
