@@ -503,14 +503,14 @@ class ProfessionalLoadCenterViewModel: ProfessionalListDelegate, ProfessionalReq
                      "academic_credentials" : CredentialsArray,
                      "is_forms" : isForms ?? false,
                      "is_answerd" : isAnswerd ?? false,
-                     "is_form_auto_send": isFormAutoSend,
-                     "is_form_compulsary": isFormCompulsary,
+                     "is_form_auto_send": isFormAutoSend ?? false,
+                     "is_form_compulsary": isFormCompulsary ?? false,
                      "schedule_management": [
                         "allow_advance_booking": allowAdvanceBooking ?? false,
-                        "time_in_advance_id": timeInAdvanceId,
-                        "is_schedule_auto_accept": isAutoAcceptAdvanceBooking
+                        "time_in_advance_id": timeInAdvanceId ?? false,
+                        "is_schedule_auto_accept": isAutoAcceptAdvanceBooking ?? false
                      ]
-            ] as [String : Any?]
+            ] as [String : Any]
             
         if profession == "" {
             param.removeValue(forKey: "profession")

@@ -115,7 +115,7 @@ class PremiumViewModel: ProfessionalRequirementDelegate, FilterActivitySelectedD
         obj.mainModelView.accessToken = self.accessToken
         obj.mainModelView.cardDetails = self.premiumResponse?.cardDetails ?? []
         obj.mainModelView.isAutoTopup = isAutoTopup ?? false
-        obj.mainModelView.autoTopupAmount = "\(autoTopupAmount ?? "")"
+        obj.mainModelView.autoTopupAmount = autoTopupAmount
         obj.mainModelView.minimumBalance = minimumBalance
         self.theController.navigationController?.pushViewController(obj, animated: true)
     }
@@ -203,26 +203,49 @@ class PremiumViewModel: ProfessionalRequirementDelegate, FilterActivitySelectedD
             "specialization_ids" : specializationIds,
             "language_id": languageIds,
             "is_auto_topup": self.isAutoTopup ?? false,
-            "auto_topup_amount": self.autoTopupAmount ?? "",
-            "minimum_balance": self.minimumBalance ?? "" ,
             "is_card_default": self.creditCardIdDefault == nil ? false : true,
             "credit_card_id": self.creditCardIdDefault ?? "",
             "premium_profile_permission" : self.selectedViewMyProfile,
             "feed_permission": self.selectedViewMyFeed
         ] as [String : Any]
         
+        if about.isEmpty {
+            param.removeValue(forKey: "about")
+        }
+        
         if self.isAutoTopup == nil {
             param.removeValue(forKey: "is_auto_topup")
         }
         
-        if self.autoTopupAmount == nil {
-            param.removeValue(forKey: "auto_topup_amount")
+        if let topupAmount = self.autoTopupAmount?.floatValue {
+            param["auto_topup_amount"] = topupAmount
+        }
+        
+        if let minimumBalance = self.minimumBalance?.floatValue {
+            param["minimum_balance"] = minimumBalance
         }
         
         if self.creditCardIdDefault == nil {
             param.removeValue(forKey: "is_card_default")
             param.removeValue(forKey: "credit_card_id")
         }
+        
+        if specializationIds.isEmpty {
+            param.removeValue(forKey: "specialization_ids")
+        }
+        
+        if languageIds.isEmpty {
+            param.removeValue(forKey: "language_id")
+        }
+        
+        if selectedViewMyFeed.isEmpty {
+            param.removeValue(forKey: "feed_permission")
+        }
+        
+        if selectedViewMyProfile.isEmpty {
+            param.removeValue(forKey: "premium_profile_permission")
+        }
+        
         print(param)
         
         ApiManager.shared.MakePostAPI(name: "setting/\(SETTING_CREATE_UPDATE_PRIMIUM)", params: param as [String : Any], progress: isLoading, vc: self.theController, isAuth: false, completionHandler: { (response, error) in
@@ -315,7 +338,7 @@ class PremiumViewModel: ProfessionalRequirementDelegate, FilterActivitySelectedD
                     
                     self.isAutoTopup = self.premiumResponse?.isAutoTopup
                     self.autoTopupAmount = self.premiumResponse?.autoTopupAmount?.stringValue
-                    self.minimumBalance = self.premiumResponse?.minimumBalance
+                    self.minimumBalance = self.premiumResponse?.minimumBalance?.stringValue
                     
                     self.selectedViewMyProfile = self.premiumResponse?.viewPremiumProfile ?? ""
                     self.selectedViewMyFeed = self.premiumResponse?.viewPremiumFeed ?? ""

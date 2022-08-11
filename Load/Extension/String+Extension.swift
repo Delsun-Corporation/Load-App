@@ -81,8 +81,8 @@ public extension String
         return regex.firstMatch(in: self, options: [], range: NSMakeRange(0, self.count)) != nil
     }
     
-    var floatValue: CGFloat {
-        return CGFloat((self as NSString).floatValue)
+    var floatValue: Float {
+        return (self as NSString).floatValue
     }
     
     func separate(every stride: Int = 2, with separator: Character = " ") -> String {
