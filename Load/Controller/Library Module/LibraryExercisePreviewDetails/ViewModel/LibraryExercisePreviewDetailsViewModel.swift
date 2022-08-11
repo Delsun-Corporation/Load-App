@@ -81,9 +81,6 @@ class LibraryExercisePreviewDetailsViewModel {
         
         view?.lblTargetedMuscles.text = dataSetPerfectlyInLabel(text: getTargetedMusclesName(ids: self.list?.targetedMusclesIds ?? []))
         view?.lblActionForce.text = getActionForceName(id: self.list?.actionForceId ?? 0)
-        print("This is the action force ID \(self.list?.actionForceId)")
-        print("This is the mechanic ID \(self.list?.mechanicsId)")
-        print("This is the equipments ID \(self.list?.equipmentIds)")
         view?.lblEquipment.text = getEquipmentsNames(ids: self.list?.equipmentIds ?? [])
         view?.lblMotion.text = self.list?.motion ?? "Static"
         view?.lblMovement.text = self.list?.movement ?? "Bilateral"
@@ -100,8 +97,8 @@ class LibraryExercisePreviewDetailsViewModel {
         print("primaryIds:\(primaryIds)")
         print("secondaryIds:\(secondaryIds)")
         
-        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now()+0.1) {
-            self.showImages(primaryIds: primaryIds, secondaryIds: secondaryIds)
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.1) {
+            self.showImages(primaryIds: primaryIds.compactMap({ $0 }), secondaryIds: secondaryIds.compactMap({ $0 }))
         }
         
     }
