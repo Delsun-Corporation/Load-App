@@ -65,6 +65,7 @@ extension LibraryExerciseListMainVC: UITableViewDelegate, UITableViewDataSource 
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
 //        if self.mainModelView.category?.code?.lowercased() != "FAVORITE".lowercased() {
             let cell: LibraryExerciseListMainCell = self.mainView.tableView.dequeueReusableCell(withIdentifier: "LibraryExerciseListMainCell") as! LibraryExerciseListMainCell
             let array = self.mainModelView.isFilter ? self.mainModelView.filterListArray : self.mainModelView.listArray
@@ -89,6 +90,7 @@ extension LibraryExerciseListMainVC: UITableViewDelegate, UITableViewDataSource 
                     if self.mainModelView.category?.code?.lowercased() ?? "" != "FAVORITE".lowercased() {
                         tableView.reloadRows(at: [indexPath], with: .none)
                     }
+                    
                     guard let userId = getUserDetail()?.data?.user?.id?.intValue else {
                         return false
                     }
@@ -106,7 +108,10 @@ extension LibraryExerciseListMainVC: UITableViewDelegate, UITableViewDataSource 
                     if self.mainModelView.category?.code?.lowercased() ?? "" != "FAVORITE".lowercased() {
                         tableView.reloadRows(at: [indexPath], with: .none)
                     }
-                    self.LibraryFavoriteDidFinish(isFavorite: !isSelectedCell, id: libraryId, userId: 0, indexPath: indexPath)
+                    guard let userId = getUserDetail()?.data?.user?.id?.intValue else {
+                        return false
+                    }
+                    self.LibraryFavoriteDidFinish(isFavorite: !isSelectedCell, id: libraryId, userId: userId, indexPath: indexPath)
                     return true
                 })]
             }
