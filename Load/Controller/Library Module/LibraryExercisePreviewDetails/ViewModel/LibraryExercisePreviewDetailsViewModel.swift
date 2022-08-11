@@ -81,6 +81,9 @@ class LibraryExercisePreviewDetailsViewModel {
         
         view?.lblTargetedMuscles.text = dataSetPerfectlyInLabel(text: getTargetedMusclesName(ids: self.list?.targetedMusclesIds ?? []))
         view?.lblActionForce.text = getActionForceName(id: self.list?.actionForceId ?? 0)
+        print("This is the action force ID \(self.list?.actionForceId)")
+        print("This is the mechanic ID \(self.list?.mechanicsId)")
+        print("This is the equipments ID \(self.list?.equipmentIds)")
         view?.lblEquipment.text = getEquipmentsNames(ids: self.list?.equipmentIds ?? [])
         view?.lblMotion.text = self.list?.motion ?? "Static"
         view?.lblMovement.text = self.list?.movement ?? "Bilateral"
@@ -91,8 +94,8 @@ class LibraryExercisePreviewDetailsViewModel {
 //        if !(self.list?.exerciseLink == nil || self.list?.exerciseLink == ""){
             self.theController.textViewDidChange(view?.txtLink ?? UITextView())
 //        }
-        let primaryIds = self.list?.regionsPrimarySelectionIds.map { Int($0)!} ?? []
-        let secondaryIds = self.list?.regionsSecondarySelectionIds.map { Int($0)!} ?? []
+        let primaryIds = self.list?.regionsPrimarySelectionIds.compactMap { Int($0) } ?? []
+        let secondaryIds = self.list?.regionsSecondarySelectionIds.compactMap { Int($0) } ?? []
        
         print("primaryIds:\(primaryIds)")
         print("secondaryIds:\(secondaryIds)")

@@ -49,6 +49,7 @@ class ApiManager: NSObject {
         if getUserDetail()?.success != nil {
             let base64Credentials = (getUserDetail()?.data?.tokenType ?? "") + " " + (getUserDetail()?.data?.accessToken ?? "")
             if newApiConfig {
+                print("This is access token \(getUserDetail()?.data?.accessToken)")
                 headers = ["Authorization": (getUserDetail()?.data?.accessToken ?? ""), "Content-Type": "application/json"]
             }
             else {
