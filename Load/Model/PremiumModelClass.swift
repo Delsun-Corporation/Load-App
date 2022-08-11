@@ -6,18 +6,18 @@ class PremiumModelClass: Mappable {
 	var specializationIds: [Int]?
 	var updatedAt: String? 
 	var specializationDetails: [PremiumSpecializationDetails]?
-	var languageIds: [String]?
-    var languageId: Int?
+    var languageId: [Int]?
 	var createdAt: String? 
 	var userDetail: PremiumUserDetail?
-	var userId: NSNumber? 
+	var userId: NSNumber?
+    
 	var languageDetails: [LanguageDetails]? 
 	var about: String? 
 	var id: NSNumber? 
     var cardDetails: [CardDetails]?
     var isAutoTopup: Bool?
     var autoTopupAmount: NSNumber?
-    var minimumBalance: String?
+    var minimumBalance: NSNumber?
     var viewPremiumProfile: String = ""
     var viewPremiumFeed: String = ""
 
@@ -27,8 +27,7 @@ class PremiumModelClass: Mappable {
 	func mapping(map: Map) {
 		specializationIds <- map["specialization_ids"] 
 		updatedAt <- map["updated_at"] 
-		specializationDetails <- map["specialization_details"] 
-		languageIds <- map["language_ids"]
+		specializationDetails <- map["specialization_details"]
         languageId <- map["language_id"]
 		createdAt <- map["created_at"] 
 		userDetail <- map["user_detail"] 

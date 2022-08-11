@@ -329,7 +329,6 @@
 		171C5166231CD1CA0091A7FD /* ProfessionalBasicProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 171C5165231CD1CA0091A7FD /* ProfessionalBasicProfileView.swift */; };
 		171C5168231CD1D60091A7FD /* ProfessionalBasicProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 171C5167231CD1D60091A7FD /* ProfessionalBasicProfileViewModel.swift */; };
 		171C516A231CF4E60091A7FD /* ProfessionalBasicProfileVC-TableView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 171C5169231CF4E60091A7FD /* ProfessionalBasicProfileVC-TableView+Extension.swift */; };
-		171C516C231CFCF80091A7FD /* ProfessionalBasicProfileVC-PickerView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 171C516B231CFCF80091A7FD /* ProfessionalBasicProfileVC-PickerView+Extension.swift */; };
 		171C5174231D23390091A7FD /* ProfessionalRequirementVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 171C5173231D23390091A7FD /* ProfessionalRequirementVC.swift */; };
 		171C5176231D234C0091A7FD /* ProfessionalRequirementView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 171C5175231D234C0091A7FD /* ProfessionalRequirementView.swift */; };
 		171C5178231D235C0091A7FD /* ProfessionalRequirementViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 171C5177231D235C0091A7FD /* ProfessionalRequirementViewModel.swift */; };
@@ -1563,7 +1562,6 @@
 		171C5165231CD1CA0091A7FD /* ProfessionalBasicProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfessionalBasicProfileView.swift; sourceTree = "<group>"; };
 		171C5167231CD1D60091A7FD /* ProfessionalBasicProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfessionalBasicProfileViewModel.swift; sourceTree = "<group>"; };
 		171C5169231CF4E60091A7FD /* ProfessionalBasicProfileVC-TableView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ProfessionalBasicProfileVC-TableView+Extension.swift"; sourceTree = "<group>"; };
-		171C516B231CFCF80091A7FD /* ProfessionalBasicProfileVC-PickerView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ProfessionalBasicProfileVC-PickerView+Extension.swift"; sourceTree = "<group>"; };
 		171C5173231D23390091A7FD /* ProfessionalRequirementVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfessionalRequirementVC.swift; sourceTree = "<group>"; };
 		171C5175231D234C0091A7FD /* ProfessionalRequirementView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfessionalRequirementView.swift; sourceTree = "<group>"; };
 		171C5177231D235C0091A7FD /* ProfessionalRequirementViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfessionalRequirementViewModel.swift; sourceTree = "<group>"; };
@@ -3249,7 +3247,6 @@
 			children = (
 				171C5163231CD1410091A7FD /* ProfessionalBasicProfileVC.swift */,
 				171C5169231CF4E60091A7FD /* ProfessionalBasicProfileVC-TableView+Extension.swift */,
-				171C516B231CFCF80091A7FD /* ProfessionalBasicProfileVC-PickerView+Extension.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -9646,7 +9643,6 @@
 				D33A90812684A1BC0019A820 /* OtherUserProfileUpperViewModel.swift in Sources */,
 				178F6A1D229FDBCA00F0BD0B /* CalendarModelClass.swift in Sources */,
 				D33A907C2684A1A70019A820 /* OtherUserProfileUpperView.swift in Sources */,
-				171C516C231CFCF80091A7FD /* ProfessionalBasicProfileVC-PickerView+Extension.swift in Sources */,
 				17F02EE622A627D700252B14 /* CreateTrainingLogView.swift in Sources */,
 				8878BA382422254100572554 /* BookmarkLoadCenterViewModel.swift in Sources */,
 				D39F9C3F268C6381005B167E /* UserProfileFollowListTblCell.swift in Sources */,

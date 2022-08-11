@@ -37,22 +37,41 @@ extension PremiumVC: UITableViewDelegate, UITableViewDataSource, PremiumCellDele
         return self.mainModelView.titleArray[section].count
     }
     
+    func getActivitiesLabel() -> String {
+        let label = mainModelView.selectedNameArray.joined(separator: ", ")
+        return label
+    }
+    
+    func getLanguageLabel() -> String {
+        let label = mainModelView.languages.joined(separator: ", ")
+        return label
+    }
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: PremiumCell = self.mainView.tableView.dequeueReusableCell(withIdentifier: "PremiumCell") as! PremiumCell
         cell.selectionStyle = .none
         cell.tag = indexPath.row
         cell.delegate = self
-        if self.mainModelView.languagesId != nil {
-            cell.languagesId = self.mainModelView.languagesId
-            cell.languages = self.mainModelView.languages
+        
+        var cellValue: String? = nil
+        switch indexPath {
+        case IndexPath(row: 1, section: 0):
+            cellValue = getActivitiesLabel()
+        case IndexPath(row: 2, section: 0):
+            cellValue = getLanguageLabel()
+        default:
+            break
         }
-        cell.setupUI(indexPath: indexPath, title: self.mainModelView.titleArray[indexPath.section])        
+        
+        cell.setupUI(
+            indexPath: indexPath,
+            title: self.mainModelView.titleArray[indexPath.section],
+            value: cellValue
+        )
         return cell
     }
     
     func PremiumCellButton(section: Int, row: Int) {
-        
-        print("Title Name:\(self.mainModelView.titleArray[section][row])")
         
         if section == 0 {
             if row == 0 {
@@ -60,6 +79,9 @@ extension PremiumVC: UITableViewDelegate, UITableViewDataSource, PremiumCellDele
             }
             else if row == 1 {
                 self.mainModelView.btnActivityClicked()
+            }
+            else if row == 2 {
+                self.mainModelView.btnLanguageClicked(titleHeader: self.mainModelView.titleArray[section][row])
             }
             else if row == 3 {
                 self.mainModelView.btnPermissionClicked(titleHeader: self.mainModelView.titleArray[section][row])
@@ -77,18 +99,8 @@ extension PremiumVC: UITableViewDelegate, UITableViewDataSource, PremiumCellDele
     }
     
     func PremiumCellTextField(text:String, Id: Int, section: Int, row: Int) {
-        if self.mainModelView.languagesId != Id {
-            self.btnSave.isHidden = true
-            resetNavigationBar()
-            
-//            resetNavigationBar(btnSaveShow: false)
-            
-//            if let vwnav = ViewNavMedium.instanceFromNib() as? ViewNavMedium {
-//                vwnav.btnSave.isHidden = false
-//            }
-        }
-        self.mainModelView.languagesId = Id
-        self.mainModelView.languages = text
+//        self.mainModelView.languagesId = Id
+//        self.mainModelView.languages = text
     }
     
     func resetNavigationBar(){
@@ -101,4 +113,15 @@ extension PremiumVC: UITableViewDelegate, UITableViewDataSource, PremiumCellDele
     }
 }
 
+extension PremiumVC: MultiSelectionDelegate {
+    func dismissPopupScreen() {
+        //
+    }
+    
+    func MultiSelectionDidFinish(selectedData: [MultiSelectionDataEntry]) {
+        self.mainModelView.languagesId = selectedData.compactMap { Int($0.id) }
+        self.mainModelView.languages = selectedData.compactMap { $0.title }
+        mainView.tableView.reloadData()
+    }
 
+}

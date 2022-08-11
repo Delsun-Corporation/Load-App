@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -53,7 +53,7 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aiC-96-Jhq">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="98"/>
                                 <connections>
-                                    <action selector="btnCellClicked:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="P9x-fa-nli"/>
+                                    <action selector="btnCellClicked" destination="KGk-i7-Jjw" eventType="touchUpInside" id="VwZ-BT-24Q"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -86,7 +86,7 @@
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
-                <outlet property="btnCell" destination="aiC-96-Jhq" id="Axs-H0-UDz"/>
+                <outlet property="btnCell" destination="aiC-96-Jhq" id="8HF-D6-aWw"/>
                 <outlet property="lblRequired" destination="kCS-NL-yyI" id="guR-j8-XAE"/>
                 <outlet property="lblTitle" destination="MC9-Oz-cqv" id="OXq-D6-VGK"/>
                 <outlet property="txtValue" destination="Apw-gl-8EF" id="yOd-Lo-r9g"/>

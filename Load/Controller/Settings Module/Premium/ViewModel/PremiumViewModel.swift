@@ -15,8 +15,8 @@ class PremiumViewModel: ProfessionalRequirementDelegate, FilterActivitySelectedD
     fileprivate weak var theController:PremiumVC!
     let headerArray: [String] = [getCommonString(key: "Profile_key").uppercased(), getCommonString(key: "PAYMENT_key")]
     let titleArray: [[String]] = [[getCommonString(key: "About_me_key"), getCommonString(key: "Activites_key"), getCommonString(key: "Languages_key"), getCommonString(key: "Permissions_key")], [getCommonString(key: "Payment_Method_key"), getCommonString(key: "Auto_top_up_key")]]
-    var languages: String = ""
-    var languagesId: Int?
+    var languages: [String] = []
+    var languagesId: [Int] = []
     var txtAbout: String = ""
     var selectedArray:[Int] = [Int]()
     var selectedNameArray:[String] = [String]()
@@ -71,6 +71,25 @@ class PremiumViewModel: ProfessionalRequirementDelegate, FilterActivitySelectedD
         self.theController.navigationController?.pushViewController(obj, animated: true)
     }
 
+    func btnLanguageClicked(titleHeader: String) {
+        var dataEntry: [MultiSelectionDataEntry] = [MultiSelectionDataEntry]()
+        guard let languages = GetAllData?.data?.languages else { return }
+        
+        for data in languages {
+            guard let langId = data.id?.intValue else { return }
+            dataEntry.append(MultiSelectionDataEntry(
+                id: "\(langId)", title: data.name ?? "",
+                isSelected: languagesId.contains(where: { $0 == langId
+                }) ))
+        }
+        let obj = AppStoryboard.Settings.instance.instantiateViewController(withIdentifier: "MultiSelectionVC") as! MultiSelectionVC
+        obj.mainModelView.delegate = theController.self
+        obj.mainModelView.data = dataEntry
+        obj.mainModelView.title = titleHeader
+        let nav = UINavigationController(rootViewController: obj)
+        nav.modalPresentationStyle = .overFullScreen
+        self.theController.navigationController?.present(nav, animated: true, completion: nil)
+    }
     
     func btnActivityClicked() {
         let obj = AppStoryboard.Settings.instance.instantiateViewController(withIdentifier: "ProfessionalActivityVC") as! ProfessionalActivityVC
@@ -89,7 +108,6 @@ class PremiumViewModel: ProfessionalRequirementDelegate, FilterActivitySelectedD
         obj.mainModelView.accessToken = self.accessToken
         self.theController.navigationController?.pushViewController(obj, animated: true)
     }
-
     
     func btnAutoTopUpClicked() {
         let obj = AppStoryboard.Settings.instance.instantiateViewController(withIdentifier: "AutoTopUpVC") as! AutoTopUpVC
@@ -97,7 +115,7 @@ class PremiumViewModel: ProfessionalRequirementDelegate, FilterActivitySelectedD
         obj.mainModelView.accessToken = self.accessToken
         obj.mainModelView.cardDetails = self.premiumResponse?.cardDetails ?? []
         obj.mainModelView.isAutoTopup = isAutoTopup ?? false
-        obj.mainModelView.autoTopupAmount = "\(autoTopupAmount ?? "")"
+        obj.mainModelView.autoTopupAmount = autoTopupAmount
         obj.mainModelView.minimumBalance = minimumBalance
         self.theController.navigationController?.pushViewController(obj, animated: true)
     }
@@ -163,15 +181,14 @@ class PremiumViewModel: ProfessionalRequirementDelegate, FilterActivitySelectedD
             makeToast(strMessage: getCommonString(key: "Please_select_activity_key"))
             return false
         }
-        else if self.languagesId == nil {
+        else {
             makeToast(strMessage: getCommonString(key: "Please_select_languages_key"))
             return false
         }
-        
-        return true
     }
     
     func updatePremium() {
+        theController.mainView.tableView.reloadData()
         self.theController.resetNavigationBar()
         if newApiConfig {
             self.apiCallSettingCreateUpdatePrimiumV2(about: self.txtAbout, specializationIds: self.selectedArray, languageIds: self.languagesId)
@@ -180,32 +197,55 @@ class PremiumViewModel: ProfessionalRequirementDelegate, FilterActivitySelectedD
         self.apiCallSettingCreateUpdatePrimium(about: self.txtAbout, specializationIds: self.selectedArray, languageIds: self.languagesId)
     }
     
-    func apiCallSettingCreateUpdatePrimiumV2(about: String, specializationIds: [Int], languageIds: Int?, isLoading: Bool = true) {
+    func apiCallSettingCreateUpdatePrimiumV2(about: String, specializationIds: [Int], languageIds: [Int], isLoading: Bool = true) {
         var param = [
             "about": about,
             "specialization_ids" : specializationIds,
-            "language_id": newApiConfig ? languageIds ?? 0 : [languageIds ?? 0],
+            "language_id": languageIds,
             "is_auto_topup": self.isAutoTopup ?? false,
-            "auto_topup_amount": self.autoTopupAmount ?? "",
-            "minimum_balance": self.minimumBalance ?? "" ,
             "is_card_default": self.creditCardIdDefault == nil ? false : true,
             "credit_card_id": self.creditCardIdDefault ?? "",
             "premium_profile_permission" : self.selectedViewMyProfile,
             "feed_permission": self.selectedViewMyFeed
         ] as [String : Any]
         
+        if about.isEmpty {
+            param.removeValue(forKey: "about")
+        }
+        
         if self.isAutoTopup == nil {
             param.removeValue(forKey: "is_auto_topup")
         }
         
-        if self.autoTopupAmount == nil {
-            param.removeValue(forKey: "auto_topup_amount")
+        if let topupAmount = Double(self.autoTopupAmount ?? "") {
+            param["auto_topup_amount"] = topupAmount
+        }
+        
+        if let minimumBalance = Double(self.minimumBalance ?? "") {
+            param["minimum_balance"] = minimumBalance
         }
         
         if self.creditCardIdDefault == nil {
             param.removeValue(forKey: "is_card_default")
             param.removeValue(forKey: "credit_card_id")
         }
+        
+        if specializationIds.isEmpty {
+            param.removeValue(forKey: "specialization_ids")
+        }
+        
+        if languageIds.isEmpty {
+            param.removeValue(forKey: "language_id")
+        }
+        
+        if selectedViewMyFeed.isEmpty {
+            param.removeValue(forKey: "feed_permission")
+        }
+        
+        if selectedViewMyProfile.isEmpty {
+            param.removeValue(forKey: "premium_profile_permission")
+        }
+        
         print(param)
         
         ApiManager.shared.MakePostAPI(name: "setting/\(SETTING_CREATE_UPDATE_PRIMIUM)", params: param as [String : Any], progress: isLoading, vc: self.theController, isAuth: false, completionHandler: { (response, error) in
@@ -220,11 +260,11 @@ class PremiumViewModel: ProfessionalRequirementDelegate, FilterActivitySelectedD
         })
     }
     
-    func apiCallSettingCreateUpdatePrimium(about: String, specializationIds: [Int], languageIds: Int?, isLoading: Bool = true) {
+    func apiCallSettingCreateUpdatePrimium(about: String, specializationIds: [Int], languageIds: [Int], isLoading: Bool = true) {
         let param = [
             "about": about,
             "specialization_ids" : specializationIds,
-            "language_ids": newApiConfig ? languageIds ?? 0 : [languageIds ?? 0],
+            "language_ids": languageIds,
             "is_auto_topup": self.isAutoTopup ?? false,
             "auto_topup_amount": self.autoTopupAmount ?? "",
             "minimum_balance": self.minimumBalance ?? "" ,
@@ -246,8 +286,10 @@ class PremiumViewModel: ProfessionalRequirementDelegate, FilterActivitySelectedD
                     
                     self.txtAbout = self.premiumResponse?.about ?? ""
                     for data in self.premiumResponse?.languageDetails ?? [] {
-                        self.languagesId = data.id?.intValue ?? 0
-                        self.languages = data.name ?? ""
+                        if let id = data.id?.intValue, let name = data.name {
+                            self.languagesId.append(id)
+                            self.languages.append(name)
+                        }
                     }
                     
                     self.isAutoTopup = self.premiumResponse?.isAutoTopup ?? nil
@@ -284,14 +326,20 @@ class PremiumViewModel: ProfessionalRequirementDelegate, FilterActivitySelectedD
                     self.premiumResponse = PremiumModelClass(JSON: data.dictionaryObject!)
                     
                     self.txtAbout = self.premiumResponse?.about ?? ""
-                    for language in GetAllData?.data?.languages ?? [] where self.premiumResponse?.languageId == language.id?.intValue {
-                        self.languagesId = language.id?.intValue
-                        self.languages = language.name ?? ""
+                    self.languagesId = self.premiumResponse?.languageId ?? []
+                    for data in GetAllData?.data?.languages ?? [] {
+                        for languagesId in self.languagesId where languagesId == (data.id?.intValue) {
+                            if let name = data.name {
+                                self.languages.append(name)
+                            }
+                        }
                     }
+                    self.languagesId = self.premiumResponse?.languageId ?? []
                     
                     self.isAutoTopup = self.premiumResponse?.isAutoTopup
                     self.autoTopupAmount = self.premiumResponse?.autoTopupAmount?.stringValue
-                    self.minimumBalance = self.premiumResponse?.minimumBalance
+                    print("⚠️ ", self.autoTopupAmount, self.premiumResponse?.autoTopupAmount)
+                    self.minimumBalance = self.premiumResponse?.minimumBalance?.stringValue
                     
                     self.selectedViewMyProfile = self.premiumResponse?.viewPremiumProfile ?? ""
                     self.selectedViewMyFeed = self.premiumResponse?.viewPremiumFeed ?? ""
@@ -326,9 +374,13 @@ class PremiumViewModel: ProfessionalRequirementDelegate, FilterActivitySelectedD
                     self.premiumResponse = PremiumModelClass(JSON: data.dictionaryObject!)
                     
                     self.txtAbout = self.premiumResponse?.about ?? ""
+                    self.languages.removeAll()
+                    self.languagesId.removeAll()
                     for data in self.premiumResponse?.languageDetails ?? [] {
-                        self.languagesId = data.id?.intValue ?? 0
-                        self.languages = data.name ?? ""
+                        if let id = data.id?.intValue, let name = data.name {
+                            self.languagesId.append(id)
+                            self.languages.append(name)
+                        }
                     }
                     
                     self.isAutoTopup = self.premiumResponse?.isAutoTopup ?? nil

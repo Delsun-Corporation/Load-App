@@ -1,4 +1,4 @@
-//
+ //
 //  ProfessionalLoadCenterCell.swift
 //  Load
 //
@@ -24,9 +24,6 @@ class PremiumCell: UITableViewCell, UITextFieldDelegate {
     
     //MARK:- Variables
     weak var delegate:PremiumCellDelegate?
-    let pickerView = UIPickerView()
-    var languages: String?
-    var languagesId: Int?
     
     //MARK:- Functions
     override func awakeFromNib() {
@@ -40,17 +37,14 @@ class PremiumCell: UITableViewCell, UITextFieldDelegate {
         // Configure the view for the selected state
     }
     
-    func setupUI(indexPath: IndexPath, title: [String]) {
+    func setupUI(indexPath: IndexPath, title: [String], value: String? = nil) {
         self.tag = indexPath.section
         self.txtValue.tag = indexPath.row
         self.btnCell.tag = indexPath.row
         self.setupFont()
-        self.txtValue.text = ""
+        self.txtValue.text = value ?? ""
         self.txtValue.delegate = self
         self.txtValue.placeholder = "Select"
-        pickerView.delegate = self
-        pickerView.backgroundColor = UIColor.white
-        self.txtValue.inputView = pickerView
         
         if title.count == 0 || indexPath.row == (title.count - 1) {
             self.viewLine.isHidden = true
@@ -61,37 +55,22 @@ class PremiumCell: UITableViewCell, UITextFieldDelegate {
         self.lblTitle.text = title[indexPath.row]
         
         if indexPath.section == 0 {
-            if indexPath.row == 0 {
-                self.setView(btnCell: false, imgArrow: false, txtValue: true)
-            }
-            else if indexPath.row == 1 {
-                self.setView(btnCell: false, imgArrow: false, txtValue: true)
-            }
-            else if indexPath.row == 3{
-                self.setView(btnCell: false, imgArrow: false, txtValue: true)
-            }
-            else {
-                if self.languagesId != nil {
-                    self.txtValue.text = self.languages
-                    let languagesDummy: [Languages] = []
-                    for (index, data) in (GetAllData?.data?.languages?.enumerated()) ?? languagesDummy.enumerated() {
-                        if self.languagesId == data.id?.intValue {
-                            self.pickerView.selectRow(index, inComponent: 0, animated: false)
-                        }
-                    }
-                }
-                self.setView(btnCell: false, imgArrow: true, txtValue: false)
+            switch indexPath.row {
+            case 1, 2:
+                self.setView(btnCell: true, imgArrow: true, txtValue: true)
+            default:
+                self.setView(btnCell: true, imgArrow: true, txtValue: false)
             }
         }
         else  if indexPath.section == 1 {
-            self.setView(btnCell: false, imgArrow: false, txtValue: true)
+            self.setView(btnCell: true, imgArrow: true, txtValue: false)
         }
     }
     
-    func setView(btnCell:Bool, imgArrow:Bool, txtValue:Bool) {
-        self.btnCell.isHidden = btnCell
-        self.imgArrow.isHidden = imgArrow
-        self.txtValue.isHidden = txtValue
+    func setView(btnCell: Bool, imgArrow: Bool, txtValue: Bool) {
+        self.btnCell.isHidden = !btnCell
+        self.imgArrow.isHidden = !imgArrow
+        self.txtValue.isHidden = !txtValue
     }
     
     func setupFont() {
@@ -113,11 +92,6 @@ class PremiumCell: UITableViewCell, UITextFieldDelegate {
     
     //MARK:- @IBAction
     @IBAction func btnCellClicked(_ sender: UIButton) {
-        if self.tag == 0 && sender.tag == 2 {
-            self.txtValue.becomeFirstResponder()
-        }
-        else {
-            self.delegate?.PremiumCellButton(section: self.tag, row: sender.tag)
-        }
+        self.delegate?.PremiumCellButton(section: self.tag, row: sender.tag)
     }
 }

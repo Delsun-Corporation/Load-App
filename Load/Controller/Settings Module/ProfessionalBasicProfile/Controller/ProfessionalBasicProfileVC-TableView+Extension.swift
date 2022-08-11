@@ -40,3 +40,14 @@ extension ProfessionalBasicProfileVC:UITableViewDataSource, UITableViewDelegate,
         return true
     }
 }
+
+extension ProfessionalBasicProfileVC: MultiSelectionDelegate {
+    func dismissPopupScreen() {
+        //
+    }
+    
+    func MultiSelectionDidFinish(selectedData: [MultiSelectionDataEntry]) {
+        self.mainModelView.selectedLangSpoken = selectedData.compactMap { Int($0.id) }
+        self.mainModelView.showDetails()
+    }
+}

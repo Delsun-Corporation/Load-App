@@ -19,9 +19,6 @@ extension ProfessionalBasicProfileVC: UIPickerViewDataSource, UIPickerViewDelega
         if pickerView == self.mainModelView.langSpokenPickerView {
             return GetAllData?.data?.languages?.count ?? 0
         }
-        else if pickerView == self.mainModelView.langWritenPickerView {
-            return GetAllData?.data?.languages?.count ?? 0
-        }
         return 0
     }
     

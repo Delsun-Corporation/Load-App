@@ -32,9 +32,6 @@ class ProfessionalBasicProfileView: UIView, GMSMapViewDelegate {
     @IBOutlet weak var lblLanguageSpokenTitle: UILabel!
     @IBOutlet weak var txtLanguageSpoken: UITextField!
     
-    @IBOutlet weak var lblLanguageWritenTitle: UILabel!
-    @IBOutlet weak var txtLanguageWriten: UITextField!
-    
     @IBOutlet weak var locationTableView: UITableView!
     @IBOutlet weak var constraintTableViewHeight: NSLayoutConstraint! // 0
     
@@ -61,8 +58,6 @@ class ProfessionalBasicProfileView: UIView, GMSMapViewDelegate {
         self.lblAcademicTitle.font = themeFont(size: 15, fontname: .ProximaNovaRegular)
         self.lblLanguageSpokenTitle.font = themeFont(size: 15, fontname: .ProximaNovaRegular)
         self.txtLanguageSpoken.font = themeFont(size: 15, fontname: .ProximaNovaRegular)
-        self.lblLanguageWritenTitle.font = themeFont(size: 15, fontname: .ProximaNovaRegular)
-        self.txtLanguageWriten.font = themeFont(size: 15, fontname: .ProximaNovaRegular)
         
         self.lblProfessionTitle.setColor(color: .appthemeBlackColor)
         self.txtProfession.setColor(color: .appthemeBlackColorAlpha30)
@@ -74,8 +69,6 @@ class ProfessionalBasicProfileView: UIView, GMSMapViewDelegate {
         self.lblAcademicTitle.setColor(color: .appthemeBlackColor)
         self.lblLanguageSpokenTitle.setColor(color: .appthemeBlackColor)
         self.txtLanguageSpoken.setColor(color: .appthemeBlackColorAlpha30)
-        self.lblLanguageWritenTitle.setColor(color: .appthemeBlackColor)
-        self.txtLanguageWriten.setColor(color: .appthemeBlackColorAlpha30)
         
         self.lblProfessionTitle.text = getCommonString(key: "Profession_key")
         self.lblLocationTitle.text = getCommonString(key: "Location_key")
@@ -83,7 +76,6 @@ class ProfessionalBasicProfileView: UIView, GMSMapViewDelegate {
         self.lblActivityTitle.text = getCommonString(key: "Activites_key")
         self.lblAcademicTitle.text = getCommonString(key: "Credentials_key")
         self.lblLanguageSpokenTitle.text = getCommonString(key: "Language(s)_key")
-        self.lblLanguageWritenTitle.text = getCommonString(key: "Language_writen_key")
     }
     
     func mapView(_ mapView: GMSMapView, didTapAt coordinate: CLLocationCoordinate2D) {

@@ -62,8 +62,7 @@ class ProfessionalLoadCenterViewModel: ProfessionalListDelegate, ProfessionalReq
     var ActivityArray:[Int] = [Int]()
     var ActivityNameArray:[String] = [String]()
     var selectedProfession:String = ""
-    var selectedLangSpoken:Int = 0
-    var selectedLangWriten:Int = 0
+    var selectedLangSpoken: [Int] = []
     var txtIntroduction:String = ""
     var locationString:String = ""
     var selectedLatitude:Double = 0.0
@@ -97,7 +96,6 @@ class ProfessionalLoadCenterViewModel: ProfessionalListDelegate, ProfessionalReq
         obj.mainModelView.selectedNameArray = self.ActivityNameArray
         obj.mainModelView.selectedProfession = self.selectedProfession
         obj.mainModelView.selectedLangSpoken = self.selectedLangSpoken
-        obj.mainModelView.selectedLangWriten = self.selectedLangWriten
         obj.mainModelView.txtIntroduction = self.txtIntroduction
         obj.mainModelView.selectedAddress = self.locationString
         obj.mainModelView.selectedLatitude = self.selectedLatitude
@@ -244,8 +242,7 @@ class ProfessionalLoadCenterViewModel: ProfessionalListDelegate, ProfessionalReq
             rate: 0,
             specializationIds: self.ActivityArray,
             experienceAndAchievements: "",
-            languagesSpokenIds: [self.selectedLangSpoken],
-            languagesWrittenIds: [self.selectedLangWriten],
+            languagesSpokenIds: self.selectedLangSpoken,
             sessionDuration: self.txtDuration,
             professionalTypeId: self.txtTypesId,
             sessionPerPackage: Int(self.txtNumberOfSessionPerPackage) ?? 0,
@@ -272,10 +269,7 @@ class ProfessionalLoadCenterViewModel: ProfessionalListDelegate, ProfessionalReq
         )
     }
     
-    func ProfessionalBasicProfileFinish(Profession: String, locationString:String, Latitude: Double, Longitude: Double, Introduction: String, ActivityArray: [Int], LangSpoken: Int, LangWriten: Int, CredentialsArray: NSMutableArray) {
-        if self.selectedProfession != Profession || self.locationString != locationString || self.selectedLatitude != Latitude || self.selectedLongitude != selectedLongitude || self.txtIntroduction != Introduction || self.ActivityArray != ActivityArray ||  self.selectedLangSpoken != LangSpoken || self.selectedLangWriten != LangWriten || self.CredentialsArray != CredentialsArray {
-            self.theController.btnSave.isHidden = false
-        }
+    func ProfessionalBasicProfileFinish(Profession: String, locationString:String, Latitude: Double, Longitude: Double, Introduction: String, ActivityArray: [Int], LangSpoken: [Int], CredentialsArray: NSMutableArray) {
         self.selectedProfession = Profession
         self.locationString = locationString
         self.selectedLatitude = Latitude
@@ -283,7 +277,6 @@ class ProfessionalLoadCenterViewModel: ProfessionalListDelegate, ProfessionalReq
         self.txtIntroduction = Introduction
         self.ActivityArray = ActivityArray
         self.selectedLangSpoken = LangSpoken
-        self.selectedLangWriten = LangWriten
         self.CredentialsArray = CredentialsArray
         
         saveDetails()
@@ -335,8 +328,8 @@ class ProfessionalLoadCenterViewModel: ProfessionalListDelegate, ProfessionalReq
         self.ActivityArray = self.getSpecializationDetails(list: activity ?? [])
         self.ActivityNameArray = self.getSpecializationNameDetails(list: activity ?? [])
         
-        self.selectedLangSpoken = self.profileDetails?.languagesSpokenIds?.first ?? 0
-        self.selectedLangWriten = Int(self.profileDetails?.languagesWrittenIds?.first ?? "0") ?? 0
+        self.selectedLangSpoken = self.profileDetails?.languagesSpokenIds ?? []
+        
         self.CredentialsArray.removeAllObjects()
         for data in self.profileDetails?.academicCredentials ?? [] {
             let dict: NSDictionary = ["AwardingInstitution":data.awardingInstitution ?? "", "CourseOfStudy": data.courseOfStudy ?? ""]
@@ -461,7 +454,6 @@ class ProfessionalLoadCenterViewModel: ProfessionalListDelegate, ProfessionalReq
                            specializationIds:[Int],
                            experienceAndAchievements:String,
                            languagesSpokenIds:[Int],
-                           languagesWrittenIds:[Int],
                            sessionDuration:String,
                            professionalTypeId:Int,
                            sessionPerPackage: Int,
@@ -493,7 +485,6 @@ class ProfessionalLoadCenterViewModel: ProfessionalListDelegate, ProfessionalReq
                      "specialization_ids": specializationIds,
                      "experience_and_achievements": experienceAndAchievements,
                      "languages_spoken_ids": languagesSpokenIds,
-                     "languages_written_ids": languagesWrittenIds,
                      "session_duration": sessionDuration,
                      "professional_type_id": professionalTypeId,
                      "session_per_package": sessionPerPackage,
@@ -512,14 +503,14 @@ class ProfessionalLoadCenterViewModel: ProfessionalListDelegate, ProfessionalReq
                      "academic_credentials" : CredentialsArray,
                      "is_forms" : isForms ?? false,
                      "is_answerd" : isAnswerd ?? false,
-                     "is_form_auto_send": isFormAutoSend,
-                     "is_form_compulsary": isFormCompulsary,
+                     "is_form_auto_send": isFormAutoSend ?? false,
+                     "is_form_compulsary": isFormCompulsary ?? false,
                      "schedule_management": [
                         "allow_advance_booking": allowAdvanceBooking ?? false,
-                        "time_in_advance_id": timeInAdvanceId,
-                        "is_schedule_auto_accept": isAutoAcceptAdvanceBooking
+                        "time_in_advance_id": timeInAdvanceId ?? false,
+                        "is_schedule_auto_accept": isAutoAcceptAdvanceBooking ?? false
                      ]
-            ] as [String : Any?]
+            ] as [String : Any]
             
         if profession == "" {
             param.removeValue(forKey: "profession")
@@ -543,10 +534,6 @@ class ProfessionalLoadCenterViewModel: ProfessionalListDelegate, ProfessionalReq
 
         if languagesSpokenIds.first == 0 {
             param.removeValue(forKey: "languages_spoken_ids")
-        }
-
-        if languagesWrittenIds.first == 0 {
-            param.removeValue(forKey: "languages_written_ids")
         }
 
         if sessionDuration == "" {

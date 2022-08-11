@@ -39,7 +39,10 @@ class AutoTopUpVC: UIViewController {
     
     //MARK:- @IBAction
     @IBAction func btnCloseClicked(_ sender: Any) {
-        self.mainModelView.delegate?.AutoTopUpFinish(isAutoTopup: self.mainModelView.isAutoTopup, autoTopupAmount: self.mainModelView.autoTopupAmount, minimumBalance: self.mainModelView.minimumBalance)
+        self.mainModelView.delegate?.AutoTopUpFinish(
+            isAutoTopup: self.mainModelView.isAutoTopup,
+            autoTopupAmount: mainModelView.autoTopupAmount,
+            minimumBalance: mainModelView.minimumBalance)
         self.navigationController?.popViewController(animated: true)
     }
 }

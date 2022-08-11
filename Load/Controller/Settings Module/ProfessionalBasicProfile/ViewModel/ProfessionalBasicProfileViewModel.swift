@@ -24,16 +24,13 @@ class ProfessionalBasicProfileViewModel: CredentialsArrayDelegate {
     let clearButton = UIButton(frame: CGRect(x: 0, y: 0, width: 16, height: 16))
     let placesClient = GMSPlacesClient()
     var isSelectedText = false
-    let langSpokenPickerView = UIPickerView()
-    let langWritenPickerView = UIPickerView()
     
     var filterArray:[FilterActivityModelClass] = [FilterActivityModelClass]()
     var selectedArray:[Int] = [Int]()
     var selectedNameArray:[String] = [String]()
     
     var selectedProfession:String = ""
-    var selectedLangSpoken:Int = 0
-    var selectedLangWriten:Int = 0
+    var selectedLangSpoken: [Int] = []
     var txtIntroduction:String = ""
     var selectedLatitude:Double = 0.0
     var selectedLongitude:Double = 0.0
@@ -45,14 +42,8 @@ class ProfessionalBasicProfileViewModel: CredentialsArrayDelegate {
     }
     
     func setupUI() {
-        let view = (self.theController.view as? ProfessionalBasicProfileView)        
-        langSpokenPickerView.delegate = theController
-        langSpokenPickerView.backgroundColor = UIColor.white
-        view?.txtLanguageSpoken.inputView = langSpokenPickerView
+        let view = (self.theController.view as? ProfessionalBasicProfileView)
         
-        langWritenPickerView.delegate = theController
-        langWritenPickerView.backgroundColor = UIColor.white
-        view?.txtLanguageWriten.inputView = langWritenPickerView
         if self.selectedLatitude != 0 {
             setUpPinOnMap(lat: self.selectedLatitude, long:self.selectedLongitude, flag: 0)
         }
@@ -87,9 +78,19 @@ class ProfessionalBasicProfileViewModel: CredentialsArrayDelegate {
         let view = (self.theController.view as? ProfessionalBasicProfileView)
         view?.txtProfession.text = self.selectedProfession
         view?.lblIntroduction.text = self.txtIntroduction
-        view?.txtLanguageSpoken.text = getLanguagesName(id: self.selectedLangSpoken)
-        view?.txtLanguageWriten.text = getLanguagesName(id: self.selectedLangWriten)
+        view?.txtLanguageSpoken.text = getLanguageLabel()
         view?.txtLocation.text = self.selectedAddress
+    }
+    
+    private func getLanguageLabel() -> String {
+        var languages: [String] = []
+        
+        selectedLangSpoken.forEach { langId in
+            languages.append(getLanguagesName(id: langId))
+        }
+        
+        let label = languages.joined(separator: ", ")
+        return label
     }
     
     @objc func textFieldDidChange(textField: UITextField) {

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CountryPickerView
 
 class BillingInformationCardCell: UITableViewCell, UITextFieldDelegate {
 
@@ -18,9 +19,11 @@ class BillingInformationCardCell: UITableViewCell, UITextFieldDelegate {
     
     //MARK:- Variables
     weak var delegate:BillingInformationDelegate?
+    weak var viewController: UIViewController?
     var previousTextFieldContent: String?
     var previousSelection: UITextRange?
     let pickerView = UIPickerView()
+    let cpvInternal = CountryPickerView()
 
     //MARK:- Functions
     override func awakeFromNib() {
@@ -56,16 +59,30 @@ class BillingInformationCardCell: UITableViewCell, UITextFieldDelegate {
         }
         self.btnCell.isHidden = true
         if self.txtValue.tag == 8 {
+            self.btnCell.isHidden = false
             self.txtValue.delegate = self
-            pickerView.delegate = self
-            pickerView.dataSource = self
-            pickerView.backgroundColor = UIColor.white
-            self.txtValue.inputView = pickerView
+            self.txtValue.inputView = cpvInternal
             self.btnCell.isHidden = false
         }
         else {
             self.txtValue.inputView = nil
         }
+        
+        countryPickerSetupUI()
+    }
+    
+    @IBAction func btnCellClicked() {
+        if self.txtValue.tag == 8, let viewController = viewController {
+            print("AAAAAAAAAAAAAAAAA")
+            self.cpvInternal.showCountriesList(from: viewController)
+        } else {
+            print("BBBBBBBBBBBB")
+        }
+    }
+    
+    func countryPickerSetupUI() {
+        cpvInternal.delegate = self
+        cpvInternal.dataSource = self
     }
     
     func setupFont() {
@@ -270,5 +287,15 @@ extension BillingInformationCardCell: UIPickerViewDataSource, UIPickerViewDelega
         let activity = GetAllData?.data?.countries?[row]
         self.txtValue.text = activity?.name
         self.delegate?.BillingInformationTextFinish(text: activity?.code ?? "", row: self.txtValue.tag, section: self.tag)
+    }
+}
+extension BillingInformationCardCell: CountryPickerViewDelegate, CountryPickerViewDataSource {
+    func countryPickerView(_ countryPickerView: CountryPickerView, didSelectCountry country: Country) {
+        self.txtValue.text = country.name
+        self.delegate?.BillingInformationTextFinish(text: country.name, row: self.txtValue.tag, section: self.tag)
+    }
+    
+    func navigationTitle(in countryPickerView: CountryPickerView) -> String? {
+        return "Select a Country"
     }
 }
