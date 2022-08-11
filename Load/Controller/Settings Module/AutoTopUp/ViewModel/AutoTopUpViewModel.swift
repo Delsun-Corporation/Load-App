@@ -40,9 +40,8 @@ class AutoTopUpViewModel {
     }
     
     func setupUI() {
-        self.textArray[1][1] = String(autoTopupAmount ?? "")
-        
-        self.textArray[1][2] = String(minimumBalance ?? "")
+        self.textArray[1][1] = autoTopupAmount ?? ""
+        self.textArray[1][2] = minimumBalance ?? ""
         
         //TODO:- Remove from TopUp screen and move to PaymentMethod
         /*

@@ -82,7 +82,7 @@ public extension String
     }
     
     var floatValue: Float {
-        return (self as NSString).floatValue
+        return round((self as NSString).floatValue * 100) / 100.0
     }
     
     func separate(every stride: Int = 2, with separator: Character = " ") -> String {

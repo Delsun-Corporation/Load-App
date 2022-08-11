@@ -217,11 +217,11 @@ class PremiumViewModel: ProfessionalRequirementDelegate, FilterActivitySelectedD
             param.removeValue(forKey: "is_auto_topup")
         }
         
-        if let topupAmount = self.autoTopupAmount?.floatValue {
+        if let topupAmount = Double(self.autoTopupAmount ?? "") {
             param["auto_topup_amount"] = topupAmount
         }
         
-        if let minimumBalance = self.minimumBalance?.floatValue {
+        if let minimumBalance = Double(self.minimumBalance ?? "") {
             param["minimum_balance"] = minimumBalance
         }
         
@@ -338,6 +338,7 @@ class PremiumViewModel: ProfessionalRequirementDelegate, FilterActivitySelectedD
                     
                     self.isAutoTopup = self.premiumResponse?.isAutoTopup
                     self.autoTopupAmount = self.premiumResponse?.autoTopupAmount?.stringValue
+                    print("⚠️ ", self.autoTopupAmount, self.premiumResponse?.autoTopupAmount)
                     self.minimumBalance = self.premiumResponse?.minimumBalance?.stringValue
                     
                     self.selectedViewMyProfile = self.premiumResponse?.viewPremiumProfile ?? ""
