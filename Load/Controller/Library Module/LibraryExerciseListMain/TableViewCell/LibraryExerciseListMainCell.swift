@@ -33,7 +33,12 @@ class LibraryExerciseListMainCell: MGSwipeTableCell {
         self.setupFont()
         self.libraryId = ("\(data.id ?? 0)")
         self.lblExercise.text = data.exerciseName
-        self.lblMechanics.text = data.mechanicDetail?.name
+        if newApiConfig {
+            self.lblMechanics.text = getMechanicsName(id: data.mechanicsId ?? 0)
+        }
+        else {
+            self.lblMechanics.text = data.mechanicDetail?.name
+        }
         self.isSelectedCell = data.isFavorite?.boolValue ?? false
     }
     

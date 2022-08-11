@@ -10,6 +10,7 @@ import Foundation
 import SwiftyJSON
 
 //MARK: - v2 API Toggle
+//var newApiConfig = false
 var newApiConfig = LoadRemoteConfig.startBooleanRemoteConfig("v2_server_endpoint_enabled")
 
 //MARK: - Main URLS
@@ -36,7 +37,7 @@ let TRAINING_LOG_UPDATE = "training-log-update"
 let COMPLETE_TRAINING_LOG = "complete-training-log"
 let TRAINING_LOG_LIST = "training-log-list"
 let LIBRARY_CREATE = "library-create"
-let LIBRARY_LIST = "library-list"
+let LIBRARY_LIST = "\(newApiConfig ? "library/" : "")library-list"
 let LIBRARY_DELETE = "library-delete"
 let LIBRARY_SET_FAVORITE = "library-set-favorite"
 let LIBRARY_SHOW = "library-show"

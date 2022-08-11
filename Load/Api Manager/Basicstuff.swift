@@ -46,6 +46,7 @@ func makeToast(strMessage : String){
 func getUserDetail() -> LoginModelClass? {
     let userDetail = loadJSON(key: USER_DETAILS_KEY)
     let data = JSON(userDetail)
+    print("This is user data \(data)")
     return LoginModelClass(JSON: data.dictionaryObject ?? [String: Any]())
 }
 

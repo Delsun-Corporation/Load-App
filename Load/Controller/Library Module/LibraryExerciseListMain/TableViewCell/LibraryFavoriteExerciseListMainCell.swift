@@ -40,7 +40,12 @@ class LibraryFavoriteExerciseListMainCell: UITableViewCell {
         self.libraryId = (data.id?.stringValue)!
         self.userId = Int(data.userId ?? 0)
         self.lblExercise.text = data.exerciseName
-        self.lblMechanics.text = data.mechanicDetail?.name
+        if newApiConfig {
+            self.lblMechanics.text = getMechanicsName(id: data.mechanicsId ?? 0)
+        }
+        else {
+            self.lblMechanics.text = data.mechanicDetail?.name
+        }
         self.isSelectedCell = data.isFavorite?.boolValue ?? false
         let image = self.isSelectedCell ? UIImage(named: "ic_star_select") : UIImage(named: "ic_star_unselect")
         self.btnFavorite.setImage(image, for: .normal)

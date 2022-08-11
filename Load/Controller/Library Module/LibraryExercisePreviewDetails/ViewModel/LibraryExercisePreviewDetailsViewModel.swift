@@ -91,14 +91,14 @@ class LibraryExercisePreviewDetailsViewModel {
 //        if !(self.list?.exerciseLink == nil || self.list?.exerciseLink == ""){
             self.theController.textViewDidChange(view?.txtLink ?? UITextView())
 //        }
-        let primaryIds = self.list?.regionsPrimarySelectionIds.map { Int($0)!} ?? []
-        let secondaryIds = self.list?.regionsSecondarySelectionIds.map { Int($0)!} ?? []
+        let primaryIds = self.list?.regionsPrimarySelectionIds.compactMap { Int($0) } ?? []
+        let secondaryIds = self.list?.regionsSecondarySelectionIds.compactMap { Int($0) } ?? []
        
         print("primaryIds:\(primaryIds)")
         print("secondaryIds:\(secondaryIds)")
         
-        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now()+0.1) {
-            self.showImages(primaryIds: primaryIds, secondaryIds: secondaryIds)
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.1) {
+            self.showImages(primaryIds: primaryIds.compactMap({ $0 }), secondaryIds: secondaryIds.compactMap({ $0 }))
         }
         
     }

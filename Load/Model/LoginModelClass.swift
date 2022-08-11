@@ -30,7 +30,6 @@ class DataLogin: Mappable {
 
 	func mapping(map: Map) {
 		user <- map["user"]
-        // TODO: Uncomment for v1 API
         if newApiConfig {
             accessToken <- map["user"]["token"]
         }
