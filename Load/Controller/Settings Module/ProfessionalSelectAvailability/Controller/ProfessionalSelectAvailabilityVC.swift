@@ -53,6 +53,7 @@ class ProfessionalSelectAvailabilityVC: UIViewController {
 
     
     @IBAction func btnBackClicked() {
+        mainModelView.getDetails()
         self.navigationController?.popViewController(animated: true)
     }
 }

@@ -46,6 +46,7 @@ class AvailabilityWithDurationtblCell: UITableViewCell {
         self.timeRangePicker.delegate = self
         self.timeRangePicker.dataSource = self
         txtOpeningHours.inputView = timeRangePicker
+        txtBreak.inputView = timeRangePicker
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -69,7 +70,7 @@ class AvailabilityWithDurationtblCell: UITableViewCell {
         // Convert dict to string for date time range
         var parsedString = ""
         for timeRange in 0..<timeRangePicker.numberOfComponents {
-            parsedString += "\(selectedDict[timeRange] ?? "")"
+            parsedString += "\(selectedDict[timeRange] ?? "") "
         }
         
         return parsedString
@@ -104,10 +105,11 @@ extension AvailabilityWithDurationtblCell: UITextFieldDelegate {
             }
             onChangeOpeningHours?(openingHours, indexPath)
         } else if textField == txtBreak {
-            guard let openingHours = txtBreak.text, let indexPath = indexPath else {
+            txtBreak.text = getValueFromPickerView()
+            guard let breakHours = txtBreak.text, let indexPath = indexPath else {
                 return
             }
-            onChangeBreakHours?(openingHours, indexPath)
+            onChangeBreakHours?(breakHours, indexPath)
         }
         
     }
