@@ -10,7 +10,7 @@ import UIKit
 import AVKit
 import XCDYouTubeKit
 
-class AddExerciseVC: UIViewController, MultiSelectionDelegate, BackToScreenDelegate, RegionSelectionSelectedDelegate, EquipmenSelectedDelegate {
+class AddExerciseVC: UIViewController, BackToScreenDelegate, RegionSelectionSelectedDelegate, EquipmenSelectedDelegate {
         
     //MARK:- Variables
     lazy var mainView: AddExerciseView = { [unowned self] in
@@ -107,26 +107,21 @@ class AddExerciseVC: UIViewController, MultiSelectionDelegate, BackToScreenDeleg
     }
     
     @IBAction func btnTargetedMusclesClicked(_ sender: Any) {
+        var dataEntry: [MultiSelectionDataEntry] = [MultiSelectionDataEntry]()
+        guard let targetedMusclesArray = GetAllData?.data?.targetedMuscles else { return }
         
-        let vc = AppStoryboard.Library.instance.instantiateViewController(withIdentifier: "TargetMusclesVc") as! TargetMusclesVc
-        vc.isCheckController = .editable
-        vc.selectedTargetValue = mainView.txtTargetedMuscles.text ?? ""
-        vc.handlerTextReturn = {[weak self] (strValue) in
-            self?.mainView.txtTargetedMuscles.text = strValue
+        for data in targetedMusclesArray {
+            let isSelected = self.mainModelView.selectedTargetedMusclesId.contains((data.id) as! Int)
+            dataEntry.append(MultiSelectionDataEntry(id: (data.id?.stringValue)!, title: data.name!, isSelected: isSelected))
         }
-        self.navigationController?.pushViewController(vc, animated: true)
+        let obj = AppStoryboard.Library.instance.instantiateViewController(withIdentifier: "MultiSelectionVC") as! MultiSelectionVC
+        obj.mainModelView.delegate = self
+        obj.mainModelView.data = dataEntry
+        obj.mainModelView.title = getCommonString(key: "Targeted_Muscles_key")
         
-        //        var dataEntry: [MultiSelectionDataEntry] = [MultiSelectionDataEntry]()
-        //        for data in (GetAllData?.data?.targetedMuscles)! {
-        //            let isSelected = self.mainModelView.selectedTargetedMusclesId.contains((data.id?.stringValue)!)
-        //            dataEntry.append(MultiSelectionDataEntry(id: (data.id?.stringValue)!, title: data.name!, isSelected: isSelected))
-        //        }
-        //        let obj = MultiSelectionVC(nibName: "MultiSelectionVC", bundle: nil)
-        //        obj.mainModelView.delegate = self
-        //        obj.mainModelView.data = dataEntry
-        //        obj.mainModelView.title = getCommonString(key: "Targeted_Muscles_key")
-        //        obj.modalPresentationStyle = .overCurrentContext
-        //        self.present(obj, animated: false, completion: nil)
+        let nav = UINavigationController(rootViewController: obj)
+        nav.modalPresentationStyle = .overFullScreen
+        self.navigationController?.present(nav, animated: true, completion: nil)
     }
     
     @IBAction func btnActionForceClicked(_ sender: Any) {
@@ -271,22 +266,6 @@ class AddExerciseVC: UIViewController, MultiSelectionDelegate, BackToScreenDeleg
             mainView.btnNext.isUserInteractionEnabled = false
         }
     }
-
-    func MultiSelectionDidFinish(selectedData: [MultiSelectionDataEntry]) {
-        var data:[String] = [String]()
-        var selectedTargetedMusclesId: [String] = [String]()
-        
-        for model in selectedData {
-            data.append(model.title)
-            selectedTargetedMusclesId.append(model.id)
-        }
-        self.mainView.txtTargetedMuscles.text = data.joined(separator: ", ")
-        //        self.mainModelView.selectedTargetedMusclesId = selectedTargetedMusclesId
-    }
-    
-    func dismissPopupScreen(){
-        
-    }
     
     func BackToScreenDidFinish() {
         self.navigationController?.popViewController(animated: true)
@@ -310,7 +289,7 @@ class AddExerciseVC: UIViewController, MultiSelectionDelegate, BackToScreenDeleg
         self.mainModelView.selectedEquipmentNameArray = names
         self.mainModelView.equipmentIds.removeAll()
         for data in ids {
-            self.mainModelView.equipmentIds.append(String(data))
+            self.mainModelView.equipmentIds.append(data)
         }
         let formattedNameString = (names.map{String($0)}).joined(separator: ", ")
         self.mainView.txtEquipment.text = formattedNameString

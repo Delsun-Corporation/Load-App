@@ -7,7 +7,7 @@ class LibraryListPreviewModelClass: Mappable {
 	var actionForceId: NSNumber? 
 	var bodyPartId: NSNumber? 
 	var repetitionMax: [RepetitionMax]? 
-	var targetedMusclesIds: [String]?
+	var targetedMusclesIds: [Int]?
     var targetedMuscle: String?
 	var mechanicsId: NSNumber? 
 	var isFavorite: NSNumber? 
@@ -17,7 +17,7 @@ class LibraryListPreviewModelClass: Mappable {
 	var createdAt: String? 
 	var exerciseName: String? 
 	var isActive: NSNumber? 
-	var equipmentIds: [String]? 
+	var equipmentIds: [String]?
 	var userId: NSNumber?
     var exerciseLink: String?
     var categoryId: NSNumber?

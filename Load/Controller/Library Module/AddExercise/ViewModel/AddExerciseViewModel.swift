@@ -29,8 +29,8 @@ class AddExerciseViewModel {
     var subBodyPartId: String = ""
     var mechanicsId: String = ""
     var actionForceId: String = ""
-    var equipmentIds: [String] = []
-//    var selectedTargetedMusclesId: [String] = [String]()
+    var equipmentIds: [Int] = []
+    var selectedTargetedMusclesId: [Int] = []
     var isEdit:Bool = false
     var libraryId:String = ""
     var libraryPreviewModel : LibraryListPreviewModelClass?
@@ -84,17 +84,16 @@ class AddExerciseViewModel {
     }
     
     func showEditDetails() {
-        let view = (self.theController.view as? AddExerciseView)
-        let model = self.libraryPreviewModel
-        view?.txtExercise.text = model?.exerciseName
-        view?.txtRegion.text = getRegionNames(ids: model?.regionsIds ?? [])
+        guard let view = (self.theController.view as? AddExerciseView), let model = self.libraryPreviewModel else { return }
+        view.txtExercise.text = model.exerciseName
+        view.txtRegion.text = getRegionNames(ids: model.regionsIds )
         
         //MARK: - TODO: - Yash changes
-        self.selectedNameArray = view?.txtRegion.text?.components(separatedBy: ", ") ?? []
+        self.selectedNameArray = view.txtRegion.text?.components(separatedBy: ", ") ?? []
         print("selectedNameArray : \(self.selectedNameArray)")
         
-        view?.txtCategory.text = getCategoryName(id: model?.categoryId ?? 0)
-        view?.txtMechanics.text = getMechanicsName(id: model?.mechanicsId ?? 0)
+        view.txtCategory.text = getCategoryName(id: model.categoryId ?? 0)
+        view.txtMechanics.text = getMechanicsName(id: model.mechanicsId ?? 0)
         
 //        var array: [String] = []
 //        for data in model?.targetedMusclesIds ?? [] {
@@ -102,31 +101,31 @@ class AddExerciseViewModel {
 //        }
         
 //        view?.txtTargetedMuscles.text = getTargetedMusclesName(ids: model?.targetedMusclesIds ?? [])
-        view?.txtTargetedMuscles.text = model?.targetedMuscle ?? ""
-        view?.txtActionForce.text = getActionForceName(id: model?.actionForceId ?? 0)
-        view?.txtEquipment.text = getEquipmentsNames(ids: model?.equipmentIds ?? [])
-        view?.txtLink.text = model?.exerciseLink ?? ""
+        view.txtTargetedMuscles.text = model.targetedMuscle ?? ""
+        view.txtActionForce.text = getActionForceName(id: model.actionForceId ?? 0)
+        view.txtEquipment.text = getEquipmentsNames(ids: model.equipmentIds ?? [])
+        view.txtLink.text = model.exerciseLink ?? ""
 
-        self.categoryId = model?.categoryId?.stringValue ?? ""
-        self.selectedId = model?.categoryId ?? 0
+        self.categoryId = model.categoryId?.stringValue ?? ""
+        self.selectedId = model.categoryId ?? 0
         var arrayReg: [Int] = []
-        for data in model?.regionsIds ?? [] {
+        for data in model.regionsIds {
             arrayReg.append(Int(data) ?? 0)
         }
         self.selectedArray = arrayReg
-        self.regionId = model?.regionId?.stringValue ?? ""
-        self.subBodyPartId = model?.bodySubPartId?.stringValue ?? ""
-        self.mechanicsId = model?.mechanicsId?.stringValue ?? ""
-//        self.selectedTargetedMusclesId = model?.targetedMusclesIds ?? []
-        self.actionForceId = model?.actionForceId?.stringValue ?? ""
-        self.equipmentIds = model?.equipmentIds ?? []
+        self.regionId = model.regionId?.stringValue ?? ""
+        self.subBodyPartId = model.bodySubPartId?.stringValue ?? ""
+        self.mechanicsId = model.mechanicsId?.stringValue ?? ""
+        self.selectedTargetedMusclesId = model.targetedMusclesIds ?? []
+        self.actionForceId = model.actionForceId?.stringValue ?? ""
+        self.equipmentIds = model.equipmentIds?.compactMap { Int($0) } ?? []
         
         for data in self.equipmentIds {
-            self.selectedEquipmentArray.append(Int(data) ?? 0)
+            self.selectedEquipmentArray.append(Int(data) )
         }
 
-        if !(model?.exerciseLink == nil || model?.exerciseLink == ""){
-            self.theController.textViewDidChange(view?.txtLink ?? UITextView())
+        if !(model.exerciseLink == nil || model.exerciseLink == ""){
+            self.theController.textViewDidChange(view.txtLink ?? UITextView())
         }
         
         self.theController.changeColorAccordingToClickable()
@@ -179,7 +178,7 @@ class AddExerciseViewModel {
         obj.mainModelView.categoryId = self.categoryId
         obj.mainModelView.subBodyPartId = self.subBodyPartId
         obj.mainModelView.mechanicsId = self.mechanicsId
-//            obj.mainModelView.selectedTargetedMusclesId = self.selectedTargetedMusclesId
+        obj.mainModelView.selectedTargetedMusclesId = self.selectedTargetedMusclesId
         obj.mainModelView.targetedMuscle = view?.txtTargetedMuscles.text?.toTrim() ?? ""
         obj.mainModelView.actionForceId = self.actionForceId
         obj.mainModelView.equipmentIds = self.equipmentIds

@@ -136,11 +136,12 @@ extension AddExerciseVC: UIPickerViewDataSource, UIPickerViewDelegate {
             self.mainView.txtActionForce.text = activity?.name?.capitalized
             self.mainModelView.actionForceId = (activity?.id?.stringValue)!
         }
-        else if pickerView == self.mainModelView.equipmentPickerView {
-            let activity = GetAllData?.data?.equipments![row]
-            self.mainView.txtEquipment.text = activity?.name?.capitalized
+        else if pickerView == self.mainModelView.equipmentPickerView, let equipmentList = GetAllData?.data?.equipments,
+            let equipmentId = equipmentList[row].id?.intValue
+        {
+            self.mainView.txtEquipment.text = equipmentList[row].name?.capitalized
             self.mainModelView.equipmentIds.removeAll()
-            self.mainModelView.equipmentIds.append(activity?.id?.stringValue ?? "")
+            self.mainModelView.equipmentIds.append(equipmentId)
         }
         else if pickerView == self.mainModelView.motionPickerView {
             let activity = motionPickerValue[row]
@@ -166,5 +167,25 @@ extension AddExerciseVC: UIPickerViewDataSource, UIPickerViewDelegate {
         self.mainModelView.selectedNameArray = []
         self.mainView.txtRegion.text = ""
         self.mainModelView.showImages()
+    }
+}
+
+extension AddExerciseVC: MultiSelectionDelegate {
+
+    func MultiSelectionDidFinish(selectedData: [MultiSelectionDataEntry]) {
+        var data:[String] = [String]()
+        var selectedTargetedMusclesId: [Int] = []
+        
+        for model in selectedData {
+            guard let modelId = Int(model.id) else { return }
+            data.append(model.title)
+            selectedTargetedMusclesId.append(modelId)
+        }
+        self.mainView.txtTargetedMuscles.text = data.joined(separator: ", ")
+        self.mainModelView.selectedTargetedMusclesId = selectedTargetedMusclesId
+    }
+    
+    func dismissPopupScreen(){
+        
     }
 }
