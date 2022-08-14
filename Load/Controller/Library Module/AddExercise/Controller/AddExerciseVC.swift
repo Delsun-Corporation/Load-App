@@ -406,8 +406,6 @@ extension AddExerciseVC : UIScrollViewDelegate{
         }
         
         if self.mainView.scrollView.panGestureRecognizer.translation(in: scrollView).y > 0{
-            print("Up")
-
             UIView.animate(withDuration: 0.2, delay: 0.0, options: UIView.AnimationOptions.curveEaseOut, animations: {
                 
                 [self.mainView.vwNext].forEach { (vw) in
@@ -422,14 +420,8 @@ extension AddExerciseVC : UIScrollViewDelegate{
         }
         else{
             
-            if (scrollView.contentOffset.y > 0 && scrollView.contentOffset.y < (scrollView.contentSize.height - scrollView.frame.size.height)){
-                print("middle")
-            }else{
-                
-                if (scrollView.contentOffset.y >= (scrollView.contentSize.height - scrollView.frame.size.height)) {
-                    scrollEndMethod()
-                }
-
+            if (scrollView.contentOffset.y >= (scrollView.contentSize.height - scrollView.frame.size.height)) {
+                scrollEndMethod()
             }
         }
     }
