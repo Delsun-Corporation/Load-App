@@ -290,9 +290,12 @@ extension UIViewController : NVActivityIndicatorViewable
         }
     }
 
-    func checkYouTubeURLWithAPI(urlString:String,completion:@escaping(_ data: JSON?) -> Void){
+    func checkYouTubeURLWithAPI(urlString:String, completion: @escaping(_ data: JSON?) -> Void){
+        
+        print("masuk function")
         
         guard ReachabilityTest.isConnectedToNetwork() else {
+            print("masuk else")
             makeToast(strMessage: "No internet connection available")
             return
         }
@@ -300,6 +303,7 @@ extension UIViewController : NVActivityIndicatorViewable
         ApiManager.shared.MakeGetAPIWithoutBaseURLAndAuth(name: strYoutubeBaseURL + urlString, progress: false, vc: UIViewController()) { (response, error) in
             
             print("Response:\(response)")
+            print("Error: \(error)")
             
             if response != nil {
                 let json = JSON(response!)

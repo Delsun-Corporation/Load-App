@@ -171,9 +171,9 @@ extension ResistanceConfirmationPageViewModel{
             ] as [String : Any]
         
         if userId == 0{
-            param["common_libraries_id"] = id
+            param["common_libraries_id"] = Int(id)
         }else{
-            param["libraries_id"] = id
+            param["libraries_id"] = Int(id)
         }
         
         print(JSON(param))

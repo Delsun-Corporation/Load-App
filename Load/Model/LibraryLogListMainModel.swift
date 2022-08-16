@@ -36,6 +36,7 @@ class LibraryLogList: Mappable {
     var selected:Bool = false
     var exercisesArray:[ResistanceExerciseModelClass] = [ResistanceExerciseModelClass]()
     var repetitionMax: [RepetitionMax]?
+    var selectedRM: Int?
     var isShowAlertOrNot:Bool = false
     var regionsPrimarySelectionIds: [String] = []
     var regionsSecondarySelectionIds: [String] = []
@@ -64,6 +65,7 @@ class LibraryLogList: Mappable {
         bodyImageType <- map["body_image_type"]
         updatedAt <- map["updated_at"]
         regionsIds <- map["regions_ids"]
+        selectedRM <- map["selected_rm"]
         subHeaderId <- map["sub_header_id"]
         isFavorite <- map["is_favorite"]
         selected <- map["selected"]

@@ -203,7 +203,7 @@ class LibraryExercisePreviewDetailsViewModel {
     
     func apiCallCommonUpdateLibrary(txtData:String) {
         let param = [
-            "common_libraries_id": "\(self.list?.id ?? 0)",
+            "common_libraries_id": self.list?.id ?? 0,
             "exercise_link" : txtData,
             ] as [String : Any]
         print(JSON(param))

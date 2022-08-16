@@ -91,7 +91,8 @@ extension PasteLinkVC: UITextFieldDelegate{
                     self.apiCallCustomExerciseUpdateLink(txtData: textField.text?.toTrim() ?? "")
                 }
                 
-            }else{
+            }
+            else{
                 
                 if self.strLibraryId == 0{
                     self.apiCallCommonUpdateLibrary(txtData: "")
@@ -108,24 +109,17 @@ extension PasteLinkVC: UITextFieldDelegate{
         
         if textField.text?.toTrim() != "" && textField.text?.count ?? 0 > 18{
             
-            if textField.text?.lowercased().contains("youtube".lowercased()) ?? false{
+            if (textField.text?.lowercased().contains("youtu.be".lowercased()) ?? false || textField.text?.lowercased().contains("youtube".lowercased()) ?? false) {
                 
-                if textField.text?.count ?? 0 > 31{
-                    print("check youtube url")
-                    
-                    self.checkYouTubeURLWithAPI(urlString: textField.text?.toTrim() ?? ""){ [weak self] json in
-                        
-                        if json == nil{
-                            
-                            self?.isValidURL = false
-                        }else{
-                            self?.isValidURL = true
-                        }
-                        
+                self.checkYouTubeURLWithAPI(urlString: textField.text?.toTrim() ?? "") { [weak self] json in
+                    print("This is youtube json \(json)")
+                    if json == nil{
+                        self?.isValidURL = false
                     }
-                
-                }else{
-                    self.isValidURL = false
+                    else{
+                        self?.isValidURL = true
+                    }
+                    
                 }
                 
             }else if textField.text?.lowercased().contains("vimeo".lowercased()) ?? false{
@@ -144,11 +138,11 @@ extension PasteLinkVC: UITextFieldDelegate{
                 }
                 
             }else{
+                print("Masuk ke else di bawah")
                // makeToast(strMessage: getCommonString(key: "Please_input_links_from_Youtube_or_Vimeo_key"))
             }
         }else{
             self.isValidURL = false
-        
         }
     }
     
@@ -160,7 +154,7 @@ extension PasteLinkVC{
     
     func apiCallCommonUpdateLibrary(txtData:String) {
         let param = [
-            "common_libraries_id": self.strCommonLibraryId,
+            "common_libraries_id": Int(self.strCommonLibraryId),
             "exercise_link" : self.txtLink.text,
             ] as [String : Any]
         print(JSON(param))

@@ -34,9 +34,20 @@ class LibraryExercisePreviewRecordsViewModel {
         
         self.showBtnShow(isShow: false)
         if list != nil {
-            self.list?.repetitionMax = self.getCommanRM()
-            view?.tableView.reloadData()
-            self.apiCallCustomCommonLibraryDetails(id: "\(self.list?.id ?? 0)")
+            if newApiConfig {
+                view?.lblRM.text = "\(list?.selectedRM ?? 1) RM"
+                self.selectedRM = list?.selectedRM ?? 1
+                view?.txtKG.text = self.list?.repetitionMax?[self.selectedRM - 1].estWeight?.replace(target: ".0", withString: "") ?? "0"
+                
+                if view?.lblRM.text == "10 RM"{
+                    self.pickerView.selectRow(1, inComponent: 0, animated: false)
+                }
+            }
+            else {
+                self.list?.repetitionMax = self.getCommanRM()
+                view?.tableView.reloadData()
+                self.apiCallCustomCommonLibraryDetails(id: "\(self.list?.id ?? 0)")
+            }
         }
         else {
             view?.lblRM.text = (self.libraryPreviewModel?.selectedRM ?? "") + " RM"
@@ -169,7 +180,7 @@ class LibraryExercisePreviewRecordsViewModel {
     
     func apiCallCommonUpdateLibrary(id:String, selectedRM:Int, repetitionMax: NSMutableArray) {
         let param = [
-            "common_libraries_id": id,
+            "common_libraries_id": Int(id),
             "selected_rm" : selectedRM,
             "repetition_max": repetitionMax
             ] as [String : Any]
