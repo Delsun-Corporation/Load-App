@@ -168,19 +168,11 @@ extension LibraryExercisePreviewDetailsVC: UITextViewDelegate{
     
     func textViewDidEndEditing(_ textView: UITextView) {
         
-        if !self.mainView.btnLink.isSelected{
-            makeToast(strMessage: getCommonString(key: "Please_input_links_from_Youtube_or_Vimeo_key"))
-        }
-        
         if textView.text.toTrim() == ""{
             
         }else{
+            self.mainModelView.apiCallCommonUpdateLibrary(txtData: textView.text.toTrim())
             
-            if self.mainView.btnLink.isSelected{
-                self.mainModelView.apiCallCommonUpdateLibrary(txtData: textView.text.toTrim())
-            }else{
-                self.mainModelView.apiCallCommonUpdateLibrary(txtData: "")
-            }
         }
     }
     

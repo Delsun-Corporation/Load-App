@@ -341,24 +341,19 @@ extension AddExerciseVC: UITextViewDelegate{
         
         if textView.text.toTrim() != "" && textView.text.count > 18{
             
-            if textView.text.lowercased().contains("youtube".lowercased()){
+            if textView.text.lowercased().contains("youtube".lowercased()) || textView.text.lowercased().contains("youtu.be".lowercased()){
                 
-                if textView.text.count > 31{
-                    print("check youtube url")
+                print("check youtube url")
+                
+                self.checkYouTubeURLWithAPI(urlString: textView.text.toTrim()){ [weak self] json in
                     
-                    self.checkYouTubeURLWithAPI(urlString: textView.text.toTrim()){ [weak self] json in
-                        
-                        if json == nil{
-                            self?.mainView.btnLinkEnableDisable.isSelected = false
-                        }else{
-                            self?.mainView.btnLinkEnableDisable.isSelected = true
-                        }
-                        
-                        self?.changeColorAccordingToClickable()
+                    if json == nil{
+                        self?.mainView.btnLinkEnableDisable.isSelected = false
+                    }else{
+                        self?.mainView.btnLinkEnableDisable.isSelected = true
                     }
-                
-                }else{
-                    self.mainView.btnLinkEnableDisable.isSelected = false
+                    
+                    self?.changeColorAccordingToClickable()
                 }
                 
             }else if textView.text.lowercased().contains("vimeo".lowercased()){

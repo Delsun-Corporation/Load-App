@@ -169,7 +169,7 @@ class LibraryExercisePreviewRecordsViewModel {
     
     func apiCallCommonUpdateLibrary(id:String, selectedRM:Int, repetitionMax: NSMutableArray) {
         let param = [
-            "common_libraries_id": id,
+            "common_libraries_id": Int(id),
             "selected_rm" : selectedRM,
             "repetition_max": repetitionMax
             ] as [String : Any]
