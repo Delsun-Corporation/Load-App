@@ -450,6 +450,24 @@ func getEquipmentsNames(ids:[String]) -> String {
     return name
 }
 
+func getEquipmentsNames(ids:[Int]) -> String {
+    var name: String = ""
+    
+    for dataId in ids {
+        for data in GetAllData?.data?.equipments ?? [] {
+            if dataId == data.id?.intValue {
+                if name == "" {
+                    name += data.name ?? ""
+                }
+                else {
+                    name += ", " + (data.name ?? "")
+                }
+            }
+        }
+    }
+    
+    return name
+}
 
 func showAccountType(index:Int) -> String {
     if index == 0 {

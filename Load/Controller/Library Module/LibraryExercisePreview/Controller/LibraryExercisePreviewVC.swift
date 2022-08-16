@@ -30,9 +30,7 @@ class LibraryExercisePreviewVC: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        if self.mainView.listComman != nil {
-            self.btnEdit.isHidden = true
-        }
+        self.btnEdit.isHidden = self.mainView.listComman?.userId == nil
         
         self.mainModelView.handlerForExerciseName = {[weak self] (strTitle) in
             self?.setUpNavigationBarTitle(strTitle: strTitle)

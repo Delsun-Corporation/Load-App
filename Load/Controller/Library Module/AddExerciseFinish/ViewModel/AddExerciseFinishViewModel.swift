@@ -9,7 +9,7 @@
 import UIKit
 import SwiftyJSON
 
-protocol BackToScreenDelegate: class {
+protocol BackToScreenDelegate: AnyObject {
     func BackToScreenDidFinish()
 }
 
@@ -19,6 +19,8 @@ class AddExerciseFinishViewModel {
     fileprivate weak var theController:AddExerciseFinishVC!
     var RepetitionMax: [RepetitionMaxModelClass] = [RepetitionMaxModelClass]()
     
+    var motion: String = ""
+    var movement: String = ""
     var isOpen:Bool = false
     var txtExercise: String = ""
     var regionIds: [Int] = []
@@ -26,8 +28,8 @@ class AddExerciseFinishViewModel {
     var subBodyPartId: String = ""
     var mechanicsId: String = ""
     var actionForceId: String = ""
-    var equipmentIds: [String] = []
-    //    var selectedTargetedMusclesId: [String] = [String]()
+    var equipmentIds: [Int] = []
+    var selectedTargetedMusclesId: [Int] = []
     var targetedMuscle: String = ""
     var isEdit:Bool = false
     var libraryId:String = ""
@@ -81,11 +83,11 @@ class AddExerciseFinishViewModel {
     func createLibrary() {
         let repetitionMax: NSMutableArray = NSMutableArray()
         for data in self.RepetitionMax {
-            let dict: NSDictionary = ["name":data.name!, "est_weight":data.estWeight!.stringValue, "act_weight":data.actWeight!.stringValue]
+            let dict: NSDictionary = ["name":data.name ?? "", "est_weight":data.estWeight?.stringValue ?? "", "act_weight":data.actWeight?.stringValue ?? ""]
             repetitionMax.add(dict)
         }
         
-        apiCallLibraryCreate(exercise: self.txtExercise, regionIds: self.regionIds, categoryId: self.categoryId, subBodyPartId: self.subBodyPartId, mechanicsId: self.mechanicsId, targetedMuscle: self.targetedMuscle, actionForceId: self.actionForceId, equipmentIds: self.equipmentIds, repetitionMax: repetitionMax, exerciseLink: self.exerciseLink, selectedRM: self.selectedRM)
+        apiCallLibraryCreate(exercise: self.txtExercise, regionIds: self.regionIds, categoryId: self.categoryId, subBodyPartId: self.subBodyPartId, mechanicsId: self.mechanicsId, targetedMusclesIds: self.selectedTargetedMusclesId, actionForceId: self.actionForceId, equipmentIds: self.equipmentIds, repetitionMax: repetitionMax, exerciseLink: self.exerciseLink, selectedRM: self.selectedRM, motion: motion, movement: movement)
     }
     
     func editLibrary() {
@@ -95,10 +97,10 @@ class AddExerciseFinishViewModel {
             repetitionMax.add(dict)
         }
         
-        apiCallUpdateLibrary(id: (self.libraryPreviewModel?.id?.stringValue)!, exercise: self.txtExercise, regionIds: self.regionIds, categoryId: self.categoryId, subBodyPartId: self.subBodyPartId, mechanicsId: self.mechanicsId, targetedMuscle: self.targetedMuscle, actionForceId: self.actionForceId, equipmentIds: self.equipmentIds, repetitionMax: repetitionMax, isFavorite: (self.libraryPreviewModel?.isFavorite?.stringValue)!, isActive: (self.libraryPreviewModel?.isActive?.stringValue)!, exerciseLink: self.exerciseLink)
+        apiCallUpdateLibrary(id: (self.libraryPreviewModel?.id?.stringValue)!, exercise: self.txtExercise, regionIds: self.regionIds, categoryId: self.categoryId, subBodyPartId: self.subBodyPartId, mechanicsId: self.mechanicsId, targetedMusclesIds: self.selectedTargetedMusclesId, actionForceId: self.actionForceId, equipmentIds: self.equipmentIds, repetitionMax: repetitionMax, isFavorite: (self.libraryPreviewModel?.isFavorite?.stringValue)!, isActive: (self.libraryPreviewModel?.isActive?.stringValue)!, exerciseLink: self.exerciseLink)
     }
     
-    func apiCallLibraryCreate(exercise: String, regionIds: [Int], categoryId: String, subBodyPartId: String, mechanicsId: String, targetedMuscle: String, actionForceId: String, equipmentIds: [String], repetitionMax: NSMutableArray, exerciseLink:String, selectedRM:Int) {
+    func apiCallLibraryCreate(exercise: String, regionIds: [Int], categoryId: String, subBodyPartId: String, mechanicsId: String, targetedMusclesIds: [Int], actionForceId: String, equipmentIds: [Int], repetitionMax: NSMutableArray, exerciseLink: String, selectedRM: Int, motion: String, movement: String) {
         
         var param = [
             "exercise_name": exercise,
@@ -106,21 +108,23 @@ class AddExerciseFinishViewModel {
             "regions_ids": regionIds,
             "category_id": categoryId,
             "mechanics_id": mechanicsId,
-            //            "targeted_muscles_ids": targetedMusclesId,
+            "targeted_muscles_ids": targetedMusclesIds,
             "targeted_muscle": targetedMuscle,
             "action_force_id": actionForceId,
             "equipment_ids": equipmentIds,
             "repetition_max": repetitionMax,
             "exercise_link" :exerciseLink,
-            "selected_rm" : selectedRM
-            ] as [String : Any]
+            "selected_rm" : selectedRM,
+            "motion": motion,
+            "movement": movement
+        ] as [String : Any]
         
         if mechanicsId == "" {
             param.removeValue(forKey: "mechanics_id")
         }
         
-        if targetedMuscle == "" {
-            param.removeValue(forKey: "targeted_muscle")
+        if targetedMusclesIds.isEmpty {
+            param.removeValue(forKey: "targeted_muscles_ids")
         }
         
         if actionForceId == "" {
@@ -155,7 +159,7 @@ class AddExerciseFinishViewModel {
         }
     }
     
-    func apiCallUpdateLibrary(id:String, exercise: String, regionIds: [Int], categoryId: String, subBodyPartId: String, mechanicsId: String, targetedMuscle: String, actionForceId: String, equipmentIds: [String], repetitionMax: NSMutableArray, isFavorite: String, isActive: String, exerciseLink:String) {
+    func apiCallUpdateLibrary(id:String, exercise: String, regionIds: [Int], categoryId: String, subBodyPartId: String, mechanicsId: String, targetedMusclesIds: [Int], actionForceId: String, equipmentIds: [Int], repetitionMax: NSMutableArray, isFavorite: String, isActive: String, exerciseLink:String) {
         
         var param = [
             "exercise_name": exercise,
@@ -163,8 +167,7 @@ class AddExerciseFinishViewModel {
             "regions_ids": regionIds,
             "category_id": categoryId,
             "mechanics_id": mechanicsId,
-            //            "targeted_muscles_ids": targetedMusclesId,
-            "targeted_muscle": targetedMuscle,
+            "targeted_muscles_ids": targetedMusclesIds,
             "action_force_id": actionForceId,
             "equipment_ids": equipmentIds,
             "repetition_max": repetitionMax,
@@ -178,8 +181,8 @@ class AddExerciseFinishViewModel {
             param.removeValue(forKey: "mechanics_id")
         }
         
-        if targetedMuscle == "" {
-            param.removeValue(forKey: "targeted_muscle")
+        if targetedMusclesIds.isEmpty {
+            param.removeValue(forKey: "targeted_muscles_ids")
         }
         
         if actionForceId == "" {

@@ -7,7 +7,7 @@
 //
 
 import UIKit
-protocol MultiSelectionDelegate: class {
+protocol MultiSelectionDelegate: AnyObject {
     func dismissPopupScreen()
     func MultiSelectionDidFinish(selectedData: [MultiSelectionDataEntry])
 }
@@ -56,7 +56,7 @@ class MultiSelectionVC: UIViewController {
 
     //MARK:- @IBAction
     @IBAction func btnCancelClicked(_ sender: Any) {
-        self.dismiss(animated: false, completion: nil)
+        self.dismiss(animated: true, completion: nil)
         self.mainModelView.delegate?.dismissPopupScreen()
         saveUpdatedData()
     }

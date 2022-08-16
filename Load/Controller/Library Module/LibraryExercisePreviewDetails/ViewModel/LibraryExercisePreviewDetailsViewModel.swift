@@ -43,7 +43,7 @@ class LibraryExercisePreviewDetailsViewModel {
     }
     
     func showDetails() {
-        
+        print("⚠️", self.libraryPreviewModel?.equipmentIds)
         let view = (self.theController.view as? LibraryExercisePreviewDetailsView)
         view?.lblExercise.text = self.libraryPreviewModel?.exerciseName
         view?.lblMechanics.text = getMechanicsName(id: self.libraryPreviewModel?.mechanicsId ?? 0)
@@ -71,6 +71,7 @@ class LibraryExercisePreviewDetailsViewModel {
     }
     
     func showDetailsList() {
+        print("⚠️", self.list?.equipmentIds)
         let view = (self.theController.view as? LibraryExercisePreviewDetailsView)
         view?.lblExercise.text = self.list?.exerciseName
         view?.lblMechanics.text = getMechanicsName(id: self.list?.mechanicsId ?? 0)

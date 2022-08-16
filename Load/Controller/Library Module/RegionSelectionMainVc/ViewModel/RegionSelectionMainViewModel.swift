@@ -71,8 +71,15 @@ class RegionSelectionMainViewModel {
     func passSortedArray(index:Int) -> RegionSelectionModelClass{
         
         let data = (GetAllData?.data?.regions)!.filter { (model) -> Bool in
-            return model.parentId == self.selectedId
+            
+            // For power region, show all body parts
+            if let selectedId = selectedId, selectedId == 0 {
+                return true
+            } else {
+                return model.parentId == self.selectedId
+            }
         }
+        
         let array = data.sorted(by: { (data1, data2) -> Bool in
             return data1.name!.lowercased() < data2.name!.lowercased()
         })
