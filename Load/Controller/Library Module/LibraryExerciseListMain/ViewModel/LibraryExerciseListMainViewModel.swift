@@ -406,7 +406,11 @@ class LibraryExerciseListMainViewModel {
         let okAction = UIAlertAction(title: getCommonString(key: "Yes_key"), style: UIAlertAction.Style.default) { (result : UIAlertAction) -> Void in
             
             self.apiCallLibraryListDelete(id: "\(model.id ?? 0)")
-            self.listArray?.list![indexPath.section].data?.remove(at: indexPath.row)
+            if let filterListArray = self.filterListArray {
+                filterListArray.list?[indexPath.section].data?.remove(at: indexPath.row)
+            } else if let listArray = self.listArray {
+                listArray.list?[indexPath.section].data?.remove(at: indexPath.row)
+            }
             tableView.reloadSections([indexPath.section], with: .none)
         }
         

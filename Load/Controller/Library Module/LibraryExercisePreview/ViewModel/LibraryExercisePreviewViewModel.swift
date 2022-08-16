@@ -27,18 +27,10 @@ class LibraryExercisePreviewViewModel {
     }
     
     func setupUI() {
-       
-        print("Library Id : \(libraryId)")
-        
-        if libraryId != "" {
-            theController.mainModelView.apiCallLibraryShow(id: self.libraryId)
-        }
-        else {
-            let view = (self.theController.view as? LibraryExercisePreviewView)
-            //TODO: - Yash changes
-            self.handlerForExerciseName(theController.mainView.listComman?.exerciseName ?? "")
-            view?.setupUICarbonTab(theController: self.theController)
-        }
+        let view = (self.theController.view as? LibraryExercisePreviewView)
+        //TODO: - Yash changes
+        self.handlerForExerciseName(theController.mainView.listComman?.exerciseName ?? "")
+        view?.setupUICarbonTab(theController: self.theController)
     }
     
 }

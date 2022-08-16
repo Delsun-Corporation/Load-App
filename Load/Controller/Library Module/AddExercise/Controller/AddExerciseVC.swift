@@ -126,7 +126,7 @@ class AddExerciseVC: UIViewController, BackToScreenDelegate, RegionSelectionSele
     
     @IBAction func btnActionForceClicked(_ sender: Any) {
         if self.mainView.txtActionForce.text?.toTrim() == "" {
-            let activity = self.mainModelView.getActionForce(motion: selectedMotion)?.first
+            let activity = self.mainModelView.getActionForce(motion: mainView.txtMotion.text ?? "")?.first
             self.mainView.txtActionForce.text = activity?.name?.capitalized
             self.mainModelView.actionForceId = activity?.id?.stringValue ?? ""
         }

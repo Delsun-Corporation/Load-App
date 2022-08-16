@@ -21,7 +21,7 @@ class LibraryLogList: Mappable {
     var createdAt: String?
     var mechanicsId: NSNumber?
     var actionForceId: NSNumber?
-    var equipmentIds: [Int]?
+    var equipmentIds: [String]?
     var targetedMusclesIds: [String]?
     var id: Int?
     var userId: Int?

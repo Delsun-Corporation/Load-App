@@ -50,10 +50,6 @@ class AddExerciseViewModel {
     func setupUI() {
         let view = (self.theController.view as? AddExerciseView)
         
-//        regionPickerView.delegate = theController
-//        regionPickerView.backgroundColor = UIColor.white
-//        view?.txtRegion.inputView = regionPickerView
-        
         partPickerView.delegate = theController
         partPickerView.backgroundColor = UIColor.white
         view?.txtCategory.inputView = partPickerView
@@ -186,6 +182,8 @@ class AddExerciseViewModel {
         obj.mainModelView.libraryId = self.libraryId
         obj.mainModelView.exerciseLink = view?.txtLink.text?.toTrim() ?? ""
         obj.mainModelView.libraryPreviewModel = self.libraryPreviewModel
+        obj.mainModelView.motion = view?.txtMotion.text ?? ""
+        obj.mainModelView.movement = view?.txtMovement.text ?? ""
         self.theController.navigationController?.pushViewController(obj, animated: true)
     }
 

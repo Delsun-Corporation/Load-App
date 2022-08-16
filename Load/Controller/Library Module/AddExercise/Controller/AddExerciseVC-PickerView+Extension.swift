@@ -7,9 +7,6 @@
 //
 
 import UIKit
-
-var selectedMotion: String = ""
-
 extension AddExerciseVC: UIPickerViewDataSource, UIPickerViewDelegate {
     
     // MARK: UIPickerViewDelegate
@@ -28,7 +25,7 @@ extension AddExerciseVC: UIPickerViewDataSource, UIPickerViewDelegate {
             return GetAllData?.data?.mechanics?.count ?? 0
         }        
         else if pickerView == self.mainModelView.actionForcePickerView {
-            return self.mainModelView.getActionForce(motion: selectedMotion)?.count ?? 0
+            return self.mainModelView.getActionForce(motion: mainView.txtMotion.text ?? "")?.count ?? 0
         }
         else if pickerView == self.mainModelView.equipmentPickerView {
             return GetAllData?.data?.equipments?.count ?? 0
@@ -76,7 +73,7 @@ extension AddExerciseVC: UIPickerViewDataSource, UIPickerViewDelegate {
             return myView
         }
         else if pickerView == self.mainModelView.actionForcePickerView {
-            let activity = self.mainModelView.getActionForce(motion: selectedMotion)?[row]
+            let activity = self.mainModelView.getActionForce(motion: mainView.txtMotion.text ?? "")?[row]
             let myView = PickerView.instanceFromNib() as! PickerView
             myView.setupUI()
             myView.imgIcon.image = nil
@@ -132,7 +129,7 @@ extension AddExerciseVC: UIPickerViewDataSource, UIPickerViewDelegate {
             self.mainModelView.mechanicsId = (activity?.id?.stringValue)!
         }
         else if pickerView == self.mainModelView.actionForcePickerView {
-            let activity = self.mainModelView.getActionForce(motion: selectedMotion)?[row]
+            let activity = self.mainModelView.getActionForce(motion: mainView.txtMotion.text ?? "")?[row]
             self.mainView.txtActionForce.text = activity?.name?.capitalized
             self.mainModelView.actionForceId = (activity?.id?.stringValue)!
         }
@@ -145,16 +142,16 @@ extension AddExerciseVC: UIPickerViewDataSource, UIPickerViewDelegate {
         }
         else if pickerView == self.mainModelView.motionPickerView {
             let activity = motionPickerValue[row]
-            selectedMotion = activity
+            mainView.txtMotion.text = activity
             
-            let activityForces = self.mainModelView.getActionForce(motion: selectedMotion)
+            let activityForces = self.mainModelView.getActionForce(motion: mainView.txtMotion.text ?? "")
             if let activityForce = activityForces {
                 self.mainView.txtActionForce.text = activityForce.first?.name?.capitalized
                 self.mainModelView.actionForceId = (activityForce.first?.id?.stringValue) ?? "3"
             }
             
             self.mainModelView.actionForcePickerView.reloadAllComponents()
-            self.mainView.txtMotion.text = selectedMotion.capitalized
+            self.mainView.txtMotion.text = mainView.txtMotion.text ?? "".capitalized
         } else if pickerView == self.mainModelView.movementPickerView {
             let activity = movementPickerValue[row]
             self.mainView.txtMovement.text = activity.capitalized

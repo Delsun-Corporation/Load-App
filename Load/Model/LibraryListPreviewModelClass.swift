@@ -17,7 +17,7 @@ class LibraryListPreviewModelClass: Mappable {
 	var createdAt: String? 
 	var exerciseName: String? 
 	var isActive: NSNumber? 
-	var equipmentIds: [String]?
+	var equipmentIds: [Int]?
 	var userId: NSNumber?
     var exerciseLink: String?
     var categoryId: NSNumber?
