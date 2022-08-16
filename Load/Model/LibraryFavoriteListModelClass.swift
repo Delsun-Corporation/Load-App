@@ -22,7 +22,7 @@ class FavoriteList: Mappable {
     var createdAt: String?
     var mechanicsId: NSNumber?
     var actionForceId: NSNumber?
-    var equipmentIds: [String]?
+    var equipmentIds: [Int]?
     var targetedMusclesIds: [String]?
     var id: NSNumber?
     var userId: NSNumber?

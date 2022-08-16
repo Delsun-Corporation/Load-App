@@ -65,110 +65,67 @@ extension LibraryExerciseListMainVC: UITableViewDelegate, UITableViewDataSource 
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-//        if self.mainModelView.category?.code?.lowercased() != "FAVORITE".lowercased() {
-            let cell: LibraryExerciseListMainCell = self.mainView.tableView.dequeueReusableCell(withIdentifier: "LibraryExerciseListMainCell") as! LibraryExerciseListMainCell
-            let array = self.mainModelView.isFilter ? self.mainModelView.filterListArray : self.mainModelView.listArray
-            let model = (array?.list?[indexPath.section].data?[indexPath.row])
-            
-            cell.selectionStyle = .none
-            cell.tag = indexPath.row
-            
-            let isSelectedCell = model?.isFavorite?.boolValue ?? false
-            let image = isSelectedCell ? UIImage(named: "ic_star_select_long") : UIImage(named: "ic_star_unselect_long")
-            let libraryId = "\(model?.id ?? 0)"
-            if model?.userId != nil {
-                cell.rightButtons = [MGSwipeButton(title: "", icon: UIImage(named:"ic_delete_width"), backgroundColor: UIColor.appthemeOffRedColor, callback: { (MGCell) -> Bool in
-                    self.mainModelView.deleteRecords(model: model!, indexPath: indexPath, tableView: tableView)
+        let cell: LibraryExerciseListMainCell = self.mainView.tableView.dequeueReusableCell(withIdentifier: "LibraryExerciseListMainCell") as! LibraryExerciseListMainCell
+        let array = self.mainModelView.isFilter ? self.mainModelView.filterListArray : self.mainModelView.listArray
+        
+        guard let datas = array?.list?[indexPath.section].data,
+              indexPath.row < datas.count else { return UITableViewCell() }
+        
+        let model = datas[indexPath.row]
+        
+        cell.selectionStyle = .none
+        cell.tag = indexPath.row
+        
+        let isSelectedCell = model.isFavorite?.boolValue ?? false
+        let image = isSelectedCell ? UIImage(named: "ic_star_select_long") : UIImage(named: "ic_star_unselect_long")
+        let libraryId = "\(model.id ?? 0)"
+        if model.userId != nil {
+            cell.rightButtons = [MGSwipeButton(title: "", icon: UIImage(named:"ic_delete_width"), backgroundColor: UIColor.appthemeOffRedColor, callback: { (MGCell) -> Bool in
+                self.mainModelView.deleteRecords(model: model, indexPath: indexPath, tableView: tableView)
+                return false
+            }), MGSwipeButton(title: "", icon: image, backgroundColor: UIColor.appthemeBlackColorAlpha5, callback: { (MGCell) -> Bool in
+                if self.mainModelView.isFilter {                        self.mainModelView.filterListArray?.list![indexPath.section].data?[indexPath.row].isFavorite = model.isFavorite == 0 ? 1 : 0
+                }
+                else {
+                    self.mainModelView.listArray?.list![indexPath.section].data?[indexPath.row].isFavorite = model.isFavorite == 0 ? 1 : 0
+                }
+                if self.mainModelView.category?.code?.lowercased() ?? "" != "FAVORITE".lowercased() {
+                    tableView.reloadRows(at: [indexPath], with: .none)
+                }
+                guard let userId = getUserDetail()?.data?.user?.id?.intValue else {
                     return false
-                }), MGSwipeButton(title: "", icon: image, backgroundColor: UIColor.appthemeBlackColorAlpha5, callback: { (MGCell) -> Bool in
-                    if self.mainModelView.isFilter {                        self.mainModelView.filterListArray?.list![indexPath.section].data?[indexPath.row].isFavorite = model?.isFavorite == 0 ? 1 : 0
-                    }
-                    else {
-                        self.mainModelView.listArray?.list![indexPath.section].data?[indexPath.row].isFavorite = model?.isFavorite == 0 ? 1 : 0
-                    }
-                    if self.mainModelView.category?.code?.lowercased() ?? "" != "FAVORITE".lowercased() {
-                        tableView.reloadRows(at: [indexPath], with: .none)
-                    }
-                    guard let userId = getUserDetail()?.data?.user?.id?.intValue else {
-                        return false
-                    }
-                    self.LibraryFavoriteDidFinish(isFavorite: !isSelectedCell, id: libraryId, userId: userId, indexPath: indexPath)
-                    return true
-                })]
-            }
-            else {
-                cell.rightButtons = [MGSwipeButton(title: "", icon: image, backgroundColor: UIColor.appthemeBlackColorAlpha5, callback: { (MGCell) -> Bool in
-                    if self.mainModelView.isFilter {                        self.mainModelView.filterListArray?.list![indexPath.section].data?[indexPath.row].isFavorite = model?.isFavorite == 0 ? 1 : 0
-                    }
-                    else {
-                        self.mainModelView.listArray?.list![indexPath.section].data?[indexPath.row].isFavorite = model?.isFavorite == 0 ? 1 : 0
-                    }
-                    if self.mainModelView.category?.code?.lowercased() ?? "" != "FAVORITE".lowercased() {
-                        tableView.reloadRows(at: [indexPath], with: .none)
-                    }
-                    self.LibraryFavoriteDidFinish(isFavorite: !isSelectedCell, id: libraryId, userId: 0, indexPath: indexPath)
-                    return true
-                })]
-            }
-            
-            cell.setupUI(data: model!)
-            return cell
-//        }
-//        else {
-//            print(indexPath.row)
-//            let cell: LibraryFavoriteExerciseListMainCell = self.mainView.tableView.dequeueReusableCell(withIdentifier: "LibraryFavoriteExerciseListMainCell") as! LibraryFavoriteExerciseListMainCell
-//            let array = self.mainModelView.isFilter ? self.mainModelView.filterListFavoriteArray : self.mainModelView.listFavoriteArray
-//            let model = array?.list?[indexPath.row]
-//            cell.selectionStyle = .none
-//            cell.tag = indexPath.row
-//
-//            cell.setupUI(data: model!)
-//            cell.delegateFavorite = self
-//            return cell
-//        }
+                }
+                self.LibraryFavoriteDidFinish(isFavorite: !isSelectedCell, id: libraryId, userId: userId, indexPath: indexPath)
+                return true
+            })]
+        }
+        else {
+            cell.rightButtons = [MGSwipeButton(title: "", icon: image, backgroundColor: UIColor.appthemeBlackColorAlpha5, callback: { (MGCell) -> Bool in
+                if self.mainModelView.isFilter {                        self.mainModelView.filterListArray?.list![indexPath.section].data?[indexPath.row].isFavorite = model.isFavorite == 0 ? 1 : 0
+                }
+                else {
+                    self.mainModelView.listArray?.list![indexPath.section].data?[indexPath.row].isFavorite = model.isFavorite == 0 ? 1 : 0
+                }
+                if self.mainModelView.category?.code?.lowercased() ?? "" != "FAVORITE".lowercased() {
+                    tableView.reloadRows(at: [indexPath], with: .none)
+                }
+                self.LibraryFavoriteDidFinish(isFavorite: !isSelectedCell, id: libraryId, userId: 0, indexPath: indexPath)
+                return true
+            })]
+        }
+        
+        cell.setupUI(data: model)
+        return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        if self.mainModelView.category?.code?.lowercased() != "FAVORITE".lowercased() {
-            let array = self.mainModelView.isFilter ? self.mainModelView.filterListArray : self.mainModelView.listArray
-            let model = (array?.list![indexPath.section].data![indexPath.row])!
-            if model.userId != nil {
-                let obj: LibraryExercisePreviewVC = AppStoryboard.Library.instance.instantiateViewController(withIdentifier: "LibraryExercisePreviewVC") as! LibraryExercisePreviewVC
-                obj.mainModelView.libraryId = "\(model.id ?? 0)"
-                obj.hidesBottomBarWhenPushed = true
-                self.navigationController?.pushViewController(obj, animated: true)
-            }
-            else {
-                let obj: LibraryExercisePreviewVC = AppStoryboard.Library.instance.instantiateViewController(withIdentifier: "LibraryExercisePreviewVC") as! LibraryExercisePreviewVC
-                obj.mainView.listComman = model
-                obj.hidesBottomBarWhenPushed = true
-                self.navigationController?.pushViewController(obj, animated: true)
-                
-                //                let obj: LibraryExercisePreviewDetailsVC = AppStoryboard.Library.instance.instantiateViewController(withIdentifier: "LibraryExercisePreviewDetailsVC") as! LibraryExercisePreviewDetailsVC
-                //                obj.mainModelView.list = model
-                //                obj.mainModelView.isLinkHide = true
-                //                obj.hidesBottomBarWhenPushed = true
-                //                self.navigationController?.pushViewController(obj, animated: true)
-            }
-//        }
-//        else {
-//            let array = self.mainModelView.isFilter ? self.mainModelView.filterListFavoriteArray : self.mainModelView.listFavoriteArray
-//            let model = (array?.list![indexPath.row])!
-//            if model.userId != nil {
-//                let obj: LibraryExercisePreviewVC = AppStoryboard.Library.instance.instantiateViewController(withIdentifier: "LibraryExercisePreviewVC") as! LibraryExercisePreviewVC
-//                obj.mainModelView.libraryId = (model.id?.stringValue)!
-//                obj.hidesBottomBarWhenPushed = true
-//                self.navigationController?.pushViewController(obj, animated: true)
-//            }
-//            else {
-//                let obj: LibraryExercisePreviewDetailsVC = AppStoryboard.Library.instance.instantiateViewController(withIdentifier: "LibraryExercisePreviewDetailsVC") as! LibraryExercisePreviewDetailsVC
-//                obj.mainModelView.favoritelist = model
-////                obj.mainModelView.isLinkHide = true
-//                obj.mainModelView.isDefaultExercise = true
-//                obj.hidesBottomBarWhenPushed = true
-//                self.navigationController?.pushViewController(obj, animated: true)
-//            }
-//        }
+        let array = self.mainModelView.isFilter ? self.mainModelView.filterListArray : self.mainModelView.listArray
+        let model = (array?.list![indexPath.section].data![indexPath.row])!
+        
+        let obj: LibraryExercisePreviewVC = AppStoryboard.Library.instance.instantiateViewController(withIdentifier: "LibraryExercisePreviewVC") as! LibraryExercisePreviewVC
+        obj.mainView.listComman = model
+        obj.hidesBottomBarWhenPushed = true
+        self.navigationController?.pushViewController(obj, animated: true)
     } 
     
     func LibraryFavoriteDidFinish(isFavorite: Bool, id: String, userId: Int , indexPath: IndexPath) {

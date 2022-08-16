@@ -131,7 +131,7 @@ class LibraryExercisePreviewRecordsViewModel {
         }
     }
     
-    func apiCallUpdateLibrary(id:String, exercise: String, regionIds: [String], categoryId: String, subBodyPartId: String, mechanicsId: String, targetedMusclesId: [String], actionForceId: String, equipmentIds: [String], repetitionMax: NSMutableArray, isFavorite: String, isActive: String, exerciseLink:String, selectedRM:Int) {
+    func apiCallUpdateLibrary(id:String, exercise: String, regionIds: [String], categoryId: String, subBodyPartId: String, mechanicsId: String, targetedMusclesId: [String], actionForceId: String, equipmentIds: [Int], repetitionMax: NSMutableArray, isFavorite: String, isActive: String, exerciseLink:String, selectedRM:Int) {
         
         let param = [
             "exercise_name": exercise,
