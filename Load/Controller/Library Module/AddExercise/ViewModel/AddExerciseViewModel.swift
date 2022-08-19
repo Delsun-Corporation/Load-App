@@ -33,7 +33,7 @@ class AddExerciseViewModel {
     var selectedTargetedMusclesId: [Int] = []
     var isEdit:Bool = false
     var libraryId:String = ""
-    var libraryPreviewModel : LibraryListPreviewModelClass?
+    var libraryPreviewModel: LibraryLogList?
     var selectedArray:[Int] = [Int]()
     var selectedSubBodyPartIdArray:[Int] = [Int]()
     var selectedNameArray:[String] = [String]()
@@ -82,7 +82,7 @@ class AddExerciseViewModel {
     func showEditDetails() {
         guard let view = (self.theController.view as? AddExerciseView), let model = self.libraryPreviewModel else { return }
         view.txtExercise.text = model.exerciseName
-        view.txtRegion.text = getRegionNames(ids: model.regionsIds )
+        view.txtRegion.text = getRegionNames(ids: model.regionsIds ?? [] )
         
         //MARK: - TODO: - Yash changes
         self.selectedNameArray = view.txtRegion.text?.components(separatedBy: ", ") ?? []
@@ -90,14 +90,15 @@ class AddExerciseViewModel {
         
         view.txtCategory.text = getCategoryName(id: model.categoryId ?? 0)
         view.txtMechanics.text = getMechanicsName(id: model.mechanicsId ?? 0)
+        view.txtMotion.text = model.motion
+        view.txtMovement.text = model.movement
         
-//        var array: [String] = []
-//        for data in model?.targetedMusclesIds ?? [] {
-//            array.append("\(data)")
-//        }
+        var array: [String] = []
+        for data in model.targetedMusclesIds ?? [] {
+            array.append("\(data)")
+        }
         
-//        view?.txtTargetedMuscles.text = getTargetedMusclesName(ids: model?.targetedMusclesIds ?? [])
-        view.txtTargetedMuscles.text = model.targetedMuscle ?? ""
+        view.txtTargetedMuscles.text = getTargetedMusclesName(ids: model.targetedMusclesIds ?? [])
         view.txtActionForce.text = getActionForceName(id: model.actionForceId ?? 0)
         view.txtEquipment.text = getEquipmentsNames(ids: model.equipmentIds ?? [])
         view.txtLink.text = model.exerciseLink ?? ""
@@ -105,14 +106,18 @@ class AddExerciseViewModel {
         self.categoryId = model.categoryId?.stringValue ?? ""
         self.selectedId = model.categoryId ?? 0
         var arrayReg: [Int] = []
-        for data in model.regionsIds {
-            arrayReg.append(Int(data) ?? 0)
+        
+        if let regionIds = model.regionsIds {
+            for data in regionIds {
+                arrayReg.append(Int(data) ?? 0)
+            }
         }
+        
         self.selectedArray = arrayReg
-        self.regionId = model.regionId?.stringValue ?? ""
-        self.subBodyPartId = model.bodySubPartId?.stringValue ?? ""
+//        self.regionId = model.regionsIds
+        // self.subBodyPartId = model.bodySubPartId?.stringValue ?? ""
         self.mechanicsId = model.mechanicsId?.stringValue ?? ""
-        self.selectedTargetedMusclesId = model.targetedMusclesIds ?? []
+        self.selectedTargetedMusclesId = model.targetedMusclesIds?.compactMap { Int($0) } ?? []
         self.actionForceId = model.actionForceId?.stringValue ?? ""
         self.equipmentIds = model.equipmentIds?.compactMap { Int($0) } ?? []
         

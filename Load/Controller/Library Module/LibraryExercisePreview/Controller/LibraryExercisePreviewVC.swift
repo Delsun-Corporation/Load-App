@@ -26,7 +26,7 @@ class LibraryExercisePreviewVC: UIViewController {
         super.viewDidLoad()
         
         self.mainView.setupUI(theController: self)
-        
+        NotificationCenter.default.addObserver(self, selector: #selector(reloadPreviewData), name: Notification.Name(NOTIFICATION_CENTER_LIST.LIBRARY_LIST_NOTIFICATION.rawValue), object: nil)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -49,7 +49,11 @@ class LibraryExercisePreviewVC: UIViewController {
         let obj: AddExerciseVC = AppStoryboard.Library.instance.instantiateViewController(withIdentifier: "AddExerciseVC") as! AddExerciseVC
         obj.mainModelView.isEdit = true
         obj.mainModelView.libraryId = self.mainModelView.libraryId
-        obj.mainModelView.libraryPreviewModel = self.mainModelView.libraryPreviewModel
+        obj.mainModelView.libraryPreviewModel = self.mainView.listComman
         self.navigationController?.pushViewController(obj, animated: true)
+    }
+    
+    @objc func reloadPreviewData() {
+        self.navigationController?.popToRootViewController(animated: false)
     }
 }

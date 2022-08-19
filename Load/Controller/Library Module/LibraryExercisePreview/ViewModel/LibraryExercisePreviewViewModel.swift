@@ -18,7 +18,6 @@ class LibraryExercisePreviewViewModel {
     var items = NSArray()
     var carbonTabSwipeNavigation = CarbonTabSwipeNavigation()
     var libraryId: String = ""
-    var libraryPreviewModel : LibraryListPreviewModelClass?
     
     var handlerForExerciseName : (String) -> Void = {_ in}
 
@@ -33,38 +32,4 @@ class LibraryExercisePreviewViewModel {
         view?.setupUICarbonTab(theController: self.theController)
     }
     
-}
-
-//MARK: - API calling
-
-extension LibraryExercisePreviewViewModel{
-    
-    //For custom library show
-    func apiCallLibraryShow(id: String) {
-        
-        let param = ["" : ""] as [String : Any]
-        
-        ApiManager.shared.MakeGetAPI(name: LIBRARY_SHOW + "/" + id, params: param as [String : Any], vc: self.theController, isAuth:false) { (response, error) in
-            if response != nil {
-                let json = JSON(response!)
-                print(json)
-                let success = json.getBool(key: .success)
-                if success {
-                    let data = json.getDictionary(key: .data)
-                    let model = LibraryListPreviewModelClass(JSON: data.dictionaryObject!)
-                    self.libraryPreviewModel = model
-                    let view = (self.theController.view as? LibraryExercisePreviewView)
-                    view?.libraryPreviewModel = model
-                    //TODO: - Yash Changes
-                    print("Model : \(String(describing: model?.exerciseName))")
-                    self.handlerForExerciseName(model?.exerciseName ?? "")
-                    view?.setupUICarbonTab(theController: self.theController)
-                }
-                else {
-                    let view = (self.theController.view as? LibraryExerciseListMainView)
-                    view?.tableView.reloadData()
-                }
-            }
-        }
-    }
 }
