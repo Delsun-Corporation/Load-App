@@ -818,9 +818,9 @@ extension UINavigationController {
             self.navigationBar.setBackgroundImage(UIImage(named: "ic_header")?.resizeImage(targetSize: CGSize(width: UIScreen.main.bounds.width, height: 85), customHeight: getBarHeight()), for: .default)
             self.navigationBar.isTranslucent = false
         }
-        navigationBar.tintColor = .white
-        navigationBar.barTintColor = .white
-        self.navigationBar.isTranslucent = false
+//        navigationBar.tintColor = .white
+//        navigationBar.barTintColor = .white
+//        self.navigationBar.isTranslucent = false
     }
     
     func setWhiteColor() {
@@ -836,10 +836,16 @@ extension UINavigationController {
             navigationBar.standardAppearance = appearance
             navigationBar.scrollEdgeAppearance = appearance
         }
-        navigationBar.tintColor = .black
-        navigationBar.barTintColor = .black
-        self.navigationBar.backgroundColor = .white
-        self.navigationBar.isTranslucent = false
+        else {
+            self.navigationBar.shadowImage = UIImage()
+            self.navigationBar.backgroundColor = .white
+            self.navigationBar.setBackgroundImage(UIImage(), for: .default)
+            self.navigationBar.isTranslucent = false
+        }
+//        navigationBar.tintColor = .black
+//        navigationBar.barTintColor = .black
+//        self.navigationBar.backgroundColor = .white
+//        self.navigationBar.isTranslucent = false
     }
     
     func setWhiteColorWithLine() {
