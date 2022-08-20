@@ -34,7 +34,7 @@ class AddExerciseFinishViewModel {
     var isEdit:Bool = false
     var libraryId:String = ""
     var exerciseLink:String = ""
-    var libraryPreviewModel : LibraryListPreviewModelClass?
+    var libraryPreviewModel : LibraryLogList?
     weak var delegate:BackToScreenDelegate?
 //    var RMArray: [Int] = [100, 95, 93, 90, 87, 85, 83, 80, 77, 75, 70, 67, 65]
     var RMArray: [Int] = [100, 96, 93, 91, 88, 85, 83, 80, 77, 75, 72, 69,67, 64,61,59,56,53,51,48]
@@ -53,9 +53,9 @@ class AddExerciseFinishViewModel {
         pickerView.dataSource = self.theController
         pickerView.backgroundColor = UIColor.white
         view?.txtRM.inputView = pickerView
-        if self.isEdit {
-            view?.lblRM.text = (self.libraryPreviewModel?.selectedRM ?? "") + " RM"
-            self.selectedRM = Int(self.libraryPreviewModel?.selectedRM ?? "1") ?? 1
+        if self.isEdit, let selectedRM = libraryPreviewModel?.selectedRM {
+            view?.lblRM.text = "\(selectedRM) RM"
+            self.selectedRM = selectedRM
             view?.txtKG.text = self.libraryPreviewModel?.repetitionMax?[self.selectedRM - 1].estWeight?.replace(target: ".0", withString: "") ?? "0"
         }
         else {
@@ -91,13 +91,16 @@ class AddExerciseFinishViewModel {
     }
     
     func editLibrary() {
+        guard let id = libraryPreviewModel?.id else { return }
         let repetitionMax: NSMutableArray = NSMutableArray()
-        for data in (self.libraryPreviewModel?.repetitionMax)! {
-            let dict: NSDictionary = ["name":data.name!, "est_weight":data.estWeight!, "act_weight":data.actWeight!]
-            repetitionMax.add(dict)
+        if let rmArray = libraryPreviewModel?.repetitionMax {
+            for data in rmArray {
+                let dict: NSDictionary = ["name": data.name ?? "", "est_weight": data.estWeight, "act_weight": data.actWeight]
+                repetitionMax.add(dict)
+            }
         }
         
-        apiCallUpdateLibrary(id: (self.libraryPreviewModel?.id?.stringValue)!, exercise: self.txtExercise, regionIds: self.regionIds, categoryId: self.categoryId, subBodyPartId: self.subBodyPartId, mechanicsId: self.mechanicsId, targetedMusclesIds: self.selectedTargetedMusclesId, actionForceId: self.actionForceId, equipmentIds: self.equipmentIds, repetitionMax: repetitionMax, isFavorite: (self.libraryPreviewModel?.isFavorite?.stringValue)!, isActive: (self.libraryPreviewModel?.isActive?.stringValue)!, exerciseLink: self.exerciseLink)
+        apiCallUpdateLibrary(id: id, exercise: self.txtExercise, regionIds: self.regionIds, categoryId: self.categoryId, subBodyPartId: self.subBodyPartId, mechanicsId: self.mechanicsId, targetedMusclesIds: self.selectedTargetedMusclesId, actionForceId: self.actionForceId, equipmentIds: self.equipmentIds, repetitionMax: repetitionMax, exerciseLink: self.exerciseLink, selectedRM: self.selectedRM, motion: motion, movement: movement)
     }
     
     func apiCallLibraryCreate(exercise: String, regionIds: [Int], categoryId: String, subBodyPartId: String, mechanicsId: String, targetedMusclesIds: [Int], actionForceId: String, equipmentIds: [Int], repetitionMax: NSMutableArray, exerciseLink: String, selectedRM: Int, motion: String, movement: String) {
@@ -148,9 +151,14 @@ class AddExerciseFinishViewModel {
                 let message = json.getString(key: .message)
                 
                 if success {
-                    NotificationCenter.default.post(name: NSNotification.Name(rawValue: NOTIFICATION_CENTER_LIST.LIBRARY_LIST_NOTIFICATION.rawValue), object: nil)
-                    
-                    self.theController.navigationController?.popToRootViewController(animated: true)
+                    let alert = UIAlertController(title: "Success", message: "New Exercise has been successfully added", preferredStyle: .alert)
+                    let action = UIAlertAction(title: "Ok", style: .default, handler: { _ in
+                        alert.dismiss(animated: true, completion: nil)
+                        NotificationCenter.default.post(name: NSNotification.Name(rawValue: NOTIFICATION_CENTER_LIST.LIBRARY_LIST_NOTIFICATION.rawValue), object: nil)
+                        self.theController.navigationController?.popToRootViewController(animated: true)
+                    })
+                    alert.addAction(action)
+                    self.theController.present(alert, animated: true)
                 }
                 else {
                     makeToast(strMessage: message)
@@ -159,7 +167,7 @@ class AddExerciseFinishViewModel {
         }
     }
     
-    func apiCallUpdateLibrary(id:String, exercise: String, regionIds: [Int], categoryId: String, subBodyPartId: String, mechanicsId: String, targetedMusclesIds: [Int], actionForceId: String, equipmentIds: [Int], repetitionMax: NSMutableArray, isFavorite: String, isActive: String, exerciseLink:String) {
+    func apiCallUpdateLibrary(id: Int, exercise: String, regionIds: [Int], categoryId: String, subBodyPartId: String, mechanicsId: String, targetedMusclesIds: [Int], actionForceId: String, equipmentIds: [Int], repetitionMax: NSMutableArray, exerciseLink:String, selectedRM: Int, motion: String, movement: String) {
         
         var param = [
             "exercise_name": exercise,
@@ -171,10 +179,10 @@ class AddExerciseFinishViewModel {
             "action_force_id": actionForceId,
             "equipment_ids": equipmentIds,
             "repetition_max": repetitionMax,
-            "is_favorite": isFavorite,
-            "is_active": isActive,
             "exercise_link" :exerciseLink,
-            "selected_rm" : selectedRM
+            "selected_rm" : selectedRM,
+            "motion": motion,
+            "movement": movement
             ] as [String : Any]
         
         if mechanicsId == "" {
@@ -193,22 +201,28 @@ class AddExerciseFinishViewModel {
             param.removeValue(forKey: "equipment_ids")
         }
         
-//        if exerciseLink == "" {
-//            param.removeValue(forKey: "exercise_link")
-//        }
+        if exerciseLink == "" {
+            param.removeValue(forKey: "exercise_link")
+        }
         
         print(JSON(param))
         
-        ApiManager.shared.MakePutAPI(name: LIBRARY_UPDATE + "/" + id, params: param as [String : Any], vc: self.theController, isAuth:false) { (response, error) in
+        ApiManager.shared.MakePutAPI(name: LIBRARY_UPDATE + "/\(id)", params: param as [String : Any], vc: self.theController, isAuth:false) { (response, error) in
             if response != nil {
                 let json = JSON(response!)
                 let success = json.getBool(key: .success)
                 let message = json.getString(key: .message)
                 
                 if success {
-                    NotificationCenter.default.post(name: NSNotification.Name(rawValue: NOTIFICATION_CENTER_LIST.LIBRARY_LIST_NOTIFICATION.rawValue), object: nil)
-                    self.theController.navigationController?.popViewController(animated: false)
-                    self.delegate?.BackToScreenDidFinish()
+                    let alert = UIAlertController(title: "Success", message: "Library Exercise has been successfully edited", preferredStyle: .alert)
+                    let action = UIAlertAction(title: "Ok", style: .default, handler: { _ in
+                        alert.dismiss(animated: true, completion: nil)
+                        NotificationCenter.default.post(name: NSNotification.Name(rawValue: NOTIFICATION_CENTER_LIST.LIBRARY_LIST_NOTIFICATION.rawValue), object: nil)
+                        self.theController.navigationController?.popViewController(animated: false)
+                        self.delegate?.BackToScreenDidFinish()
+                    })
+                    alert.addAction(action)
+                    self.theController.present(alert, animated: true)
                 }
                 else {
                     makeToast(strMessage: message)
@@ -363,5 +377,21 @@ class AddExerciseFinishViewModel {
                 "act_weight": 0
             ],
         ])
+    }
+}
+
+extension UIApplication {
+    class func getTopViewController(base: UIViewController? = UIApplication.shared.keyWindow?.rootViewController) -> UIViewController? {
+        
+        if let nav = base as? UINavigationController {
+            return getTopViewController(base: nav.visibleViewController)
+            
+        } else if let tab = base as? UITabBarController, let selected = tab.selectedViewController {
+            return getTopViewController(base: selected)
+            
+        } else if let presented = base?.presentedViewController {
+            return getTopViewController(base: presented)
+        }
+        return base
     }
 }

@@ -16,7 +16,6 @@ class LibraryExercisePreviewView: UIView, CarbonTabSwipeNavigationDelegate {
 
     
     // MARK: Variables
-    var libraryPreviewModel : LibraryListPreviewModelClass?
     var listComman: LibraryLogList?
 
     // MARK: Functions
@@ -68,35 +67,16 @@ class LibraryExercisePreviewView: UIView, CarbonTabSwipeNavigationDelegate {
         switch index {
         case 0:
             let vc = AppStoryboard.Library.instance.instantiateViewController(withIdentifier: "LibraryExercisePreviewDetailsVC") as! LibraryExercisePreviewDetailsVC
-            if self.libraryPreviewModel != nil {
-                vc.mainModelView.libraryPreviewModel = self.libraryPreviewModel
-            }
-            else {
-                //Default exercise
                 vc.mainModelView.list = self.listComman
                 vc.mainModelView.isDefaultExercise = true
-//                vc.mainModelView.isLinkHide = true
-            }
             return vc
         case 1 :
             let vc = AppStoryboard.Library.instance.instantiateViewController(withIdentifier: "LibraryExercisePreviewRecordsVC") as! LibraryExercisePreviewRecordsVC
-            if self.libraryPreviewModel != nil {
-                vc.mainModelView.libraryPreviewModel = self.libraryPreviewModel
-            }
-            else {
-                //default exercise
                 vc.mainModelView.list = self.listComman
-            }
             return vc
         case 2 :
             let vc = AppStoryboard.Library.instance.instantiateViewController(withIdentifier: "LibraryExercisePreviewProgressionsVC") as! LibraryExercisePreviewProgressionsVC
-            if self.libraryPreviewModel != nil {
-                vc.mainModelView.libraryPreviewModel = self.libraryPreviewModel
-            }
-            else {
-                //Default exercise
                 vc.mainModelView.list = self.listComman
-            }
             return vc
         default:
             let vc = UIViewController()

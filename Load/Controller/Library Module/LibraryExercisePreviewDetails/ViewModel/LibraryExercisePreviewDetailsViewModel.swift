@@ -15,7 +15,6 @@ class LibraryExercisePreviewDetailsViewModel {
    
     //MARK:- Variables
     fileprivate weak var theController:LibraryExercisePreviewDetailsVC!
-    var libraryPreviewModel : LibraryListPreviewModelClass?
     var list: LibraryLogList?
     var favoritelist: FavoriteList?
     var isLinkHide:Bool = false
@@ -31,43 +30,13 @@ class LibraryExercisePreviewDetailsViewModel {
             view?.viewLinkHeight.constant = 0
             view?.viewLink.isHidden = true
         }
-        if libraryPreviewModel != nil {
-            self.showDetails()
-        }
-        else if list != nil {
+        
+        if list != nil {
             self.showDetailsList()
         }
         else if favoritelist != nil {
             self.showDetailsFavoritelist()
         }
-    }
-    
-    func showDetails() {
-        print("⚠️", self.libraryPreviewModel?.equipmentIds)
-        let view = (self.theController.view as? LibraryExercisePreviewDetailsView)
-        view?.lblExercise.text = self.libraryPreviewModel?.exerciseName
-        view?.lblMechanics.text = getMechanicsName(id: self.libraryPreviewModel?.mechanicsId ?? 0)
-        
-//        var array: [String] = []
-//        for data in self.libraryPreviewModel?.targetedMusclesIds ?? [] {
-//            array.append("\(data)")
-//        }
-//        view?.lblTargetedMuscles.text = getTargetedMusclesName(ids: self.libraryPreviewModel?.targetedMusclesIds ?? [])
-        view?.lblTargetedMuscles.text = self.dataSetPerfectlyInLabel(text: self.libraryPreviewModel?.targetedMuscle ?? "")
-        view?.lblActionForce.text = getActionForceName(id: self.libraryPreviewModel?.actionForceId ?? 0)
-        view?.lblEquipment.text = getEquipmentsNames(ids: self.libraryPreviewModel?.equipmentIds ?? []) //getEquipmentsName(id: self.libraryPreviewModel?.equipmentId ?? 0)
-//        view?.lblLink.text = self.libraryPreviewModel?.exerciseLink ?? ""
-        
-        view?.txtLink.text = self.libraryPreviewModel?.exerciseLink ?? ""
-        view?.txtLink.isUserInteractionEnabled = false
-        self.theController.textViewDidChange(view?.txtLink ?? UITextView())
-        
-        let regionIds = self.libraryPreviewModel?.regionsIds.map { Int($0)!} ?? []
-        
-        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now()+0.1) {
-            self.showImages(regionIds: regionIds)
-        }
-
     }
     
     func showDetailsList() {
