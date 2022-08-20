@@ -814,6 +814,10 @@ extension UINavigationController {
             navigationBar.scrollEdgeAppearance = appearance
             
         }
+        else {
+            self.navigationBar.setBackgroundImage(UIImage(named: "ic_header")?.resizeImage(targetSize: CGSize(width: UIScreen.main.bounds.width, height: 85), customHeight: getBarHeight()), for: .default)
+            self.navigationBar.isTranslucent = false
+        }
         navigationBar.tintColor = .white
         navigationBar.barTintColor = .white
         self.navigationBar.isTranslucent = false
