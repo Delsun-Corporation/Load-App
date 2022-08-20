@@ -80,6 +80,7 @@ extension LibraryExerciseListMainVC: UITableViewDelegate, UITableViewDataSource 
         let image = isSelectedCell ? UIImage(named: "ic_star_select_long") : UIImage(named: "ic_star_unselect_long")
         let libraryId = "\(model.id ?? 0)"
         if model.userId != nil {
+            print("User id nya nggak nil")
             cell.rightButtons = [MGSwipeButton(title: "", icon: UIImage(named:"ic_delete_width"), backgroundColor: UIColor.appthemeOffRedColor, callback: { (MGCell) -> Bool in
                 self.mainModelView.deleteRecords(model: model, indexPath: indexPath, tableView: tableView)
                 return false
@@ -100,6 +101,7 @@ extension LibraryExerciseListMainVC: UITableViewDelegate, UITableViewDataSource 
             })]
         }
         else {
+            print("User id nya nil")
             cell.rightButtons = [MGSwipeButton(title: "", icon: image, backgroundColor: UIColor.appthemeBlackColorAlpha5, callback: { (MGCell) -> Bool in
                 if self.mainModelView.isFilter {                        self.mainModelView.filterListArray?.list![indexPath.section].data?[indexPath.row].isFavorite = model.isFavorite == 0 ? 1 : 0
                 }
@@ -109,7 +111,10 @@ extension LibraryExerciseListMainVC: UITableViewDelegate, UITableViewDataSource 
                 if self.mainModelView.category?.code?.lowercased() ?? "" != "FAVORITE".lowercased() {
                     tableView.reloadRows(at: [indexPath], with: .none)
                 }
-                self.LibraryFavoriteDidFinish(isFavorite: !isSelectedCell, id: libraryId, userId: 0, indexPath: indexPath)
+                guard let userId = getUserDetail()?.data?.user?.id?.intValue else {
+                    return false
+                }
+                self.LibraryFavoriteDidFinish(isFavorite: !isSelectedCell, id: libraryId, userId: userId, indexPath: indexPath)
                 return true
             })]
         }
@@ -131,6 +136,7 @@ extension LibraryExerciseListMainVC: UITableViewDelegate, UITableViewDataSource 
     func LibraryFavoriteDidFinish(isFavorite: Bool, id: String, userId: Int , indexPath: IndexPath) {
         
         self.mainModelView.apiCallFavorite(id: id, isFavorite: isFavorite, userId: userId, status: self.mainModelView.category?.code?.lowercased() ?? "", indexPath: indexPath, tableView: self.mainView.tableView)
+        print("Test User ID when favorite \(userId)")
     }
     
     func isMultiple(array: [ListLibraryList], name: String) -> Bool {
