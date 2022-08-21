@@ -41,6 +41,7 @@ extension SettingsVC :UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.row == 0 {
             let obj = AppStoryboard.Settings.instance.instantiateViewController(withIdentifier: "SettingsProfileVC") as! SettingsProfileVC
+            obj.mainModelView.delegate = self.mainModelView
             obj.hidesBottomBarWhenPushed = true
             self.navigationController?.pushViewController(obj, animated: true)
         }

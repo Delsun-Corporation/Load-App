@@ -11,6 +11,10 @@ import SwiftyJSON
 import CountryPickerView
 import Foundation
 
+protocol SettingProfileViewModelDelegate: AnyObject {
+    func refreshDataAfterUpdateProfile()
+}
+
 class SettingsProfileViewModel {
     
     //MARK:- Variables
@@ -26,6 +30,7 @@ class SettingsProfileViewModel {
     var countryCode: String = "US"
     let genderPickerView = UIPickerView()
     let cpvInternal = CountryPickerView()
+    weak var delegate: SettingProfileViewModelDelegate?
     
     lazy var genderArr: [String] = {
         return genderArray()
@@ -340,6 +345,7 @@ class SettingsProfileViewModel {
         }
         print(json)
         saveJSON(j: json, key: USER_DETAILS_KEY)
+        delegate?.refreshDataAfterUpdateProfile()
         
         if isBack {
             DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
