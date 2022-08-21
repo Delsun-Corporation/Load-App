@@ -14,13 +14,13 @@ import Foundation
 class SettingsProfileViewModel {
     
     //MARK:- Variables
-    fileprivate weak var theController:SettingsProfileVC!    
+    fileprivate weak var theController:SettingsProfileVC!
     var profileDetails: ProfileModelClass?
     var strDOB:String = ""
     var isEdited:Bool = false
     var locationId: String = ""
     var images: UIImage?
-
+    
     var countryDialCode: String = "+1"
     var countryName: String = "United States"
     var countryCode: String = "US"
@@ -45,6 +45,11 @@ class SettingsProfileViewModel {
         self.apiCallGetUserDetail()
         self.countryPickerSetupUI()
         self.genderPickerSetupUI()
+        self.addImagePicker()
+    }
+    
+    func onLabelChangePictureTapped() {
+        showActionSheet()
     }
     
     func addImagePicker() {
@@ -94,7 +99,7 @@ class SettingsProfileViewModel {
     }
     
     func DOBSetup() {
-        let view = (self.theController.view as? SettingsProfileView)        
+        let view = (self.theController.view as? SettingsProfileView)
         let datePickerView:UIDatePicker = UIDatePicker()
         datePickerView.datePickerMode = UIDatePicker.Mode.date
         
@@ -105,7 +110,7 @@ class SettingsProfileViewModel {
         }
         
         datePickerView.backgroundColor = UIColor.white
-
+        
         datePickerView.setValue(UIColor.appthemeOffRedColor, forKeyPath: "textColor")
         let convertToDate = convertDate(self.profileDetails?.dateOfBirth ?? "", dateFormat:  "dd-MM-yyyy")
         datePickerView.setDate(convertToDate, animated: false)
@@ -120,7 +125,7 @@ class SettingsProfileViewModel {
         dateFormatter.timeStyle = DateFormatter.Style.none
         let view = (self.theController.view as? SettingsProfileView)
         dateFormatter.dateFormat = "dd / MM / yyyy"
-        view?.txtDOB.text = dateFormatter.string(from: sender.date)        
+        view?.txtDOB.text = dateFormatter.string(from: sender.date)
         self.strDOB = dateFormatter.string(from: sender.date)
     }
     
@@ -189,41 +194,17 @@ class SettingsProfileViewModel {
     
     func validateDetails() {
         let view = (self.theController.view as? SettingsProfileView)
-
+        
         let fName = view?.txtFirstName.text?.toTrim() ?? ""
         let lName = view?.txtLastName.text?.toTrim() ?? ""
         let DOB = view?.txtDOB.text?.toTrim() ?? ""
         let gender = view?.txtGender.text?.toTrim() ?? ""
-        let location = view?.txtLocation.text?.toTrim() ?? ""
         let code = view?.txtCode.text?.toTrim() ?? ""
         let mobile = view?.txtMobile.text?.toTrim() ?? ""
         let email = view?.txtEmail.text?.toTrim() ?? ""
-
-//        if fName == "" {
-//            makeToast(strMessage: getCommonString(key: "Please_enter_firstname_key"))
-//        }
-//        else if lName == "" {
-//            makeToast(strMessage: getCommonString(key: "Please_enter_lastname_key"))
-//        }
-//        else if DOB == "" {
-//            makeToast(strMessage: getCommonString(key: "Select_DOB_key"))
-//        }
-//        else if gender == "" {
-//            makeToast(strMessage: getCommonString(key: "Please_select_location_key"))
-//        }
-//        else if location == "" {
-//            makeToast(strMessage: getCommonString(key: "Please_select_location_key"))
-//        }
-//        else if code == "" {
-//            makeToast(strMessage: getCommonString(key: "Please_select_country_code_key"))
-//        }
-//        else if mobile == "" {
-//            makeToast(strMessage: getCommonString(key: "Please_enter_mobile_number_key"))
-//        }
-//        else {
-            let img = self.images == nil ? [] : [self.images!]
-            apiCallUpdateUserDetail(name: fName + " " + lName, email: email, gender: gender, countryCode: code, mobile: mobile, dateOfBirth: DOB, countryId: self.locationId, images: img)
-//        }
+        
+        let img = self.images == nil ? [] : [self.images!]
+        apiCallUpdateUserDetail(name: fName + " " + lName, email: email, gender: gender, countryCode: code, mobile: mobile, dateOfBirth: DOB, countryId: self.locationId, images: img)
     }
     
     func apiCallUpdateUserDetail(name:String, email:String, gender: String, countryCode:String, mobile:String, dateOfBirth:String, countryId:String, images:[UIImage]) {
@@ -236,7 +217,7 @@ class SettingsProfileViewModel {
                 param["id"] = id
             }
             print("This is param for edit profile \(param)")
-            ApiManager.shared.MakePostAPI(name: USER_UPDATE, params: param as [String : Any], vc: self.theController, isAuth: false, completionHandler: { (response, error) in
+            ApiManager.shared.MakePostAPI(name: USER_UPDATE, params: param as [String : Any], progress: false, vc: self.theController, isAuth: false, completionHandler: { (response, error) in
                 if response != nil {
                     let json = JSON(response!)
                     print(json)
@@ -244,7 +225,7 @@ class SettingsProfileViewModel {
                     if success {
                         let data = json.getDictionary(key: .data)
                         self.profileDetails = ProfileModelClass(JSON: data.dictionaryObject!)
-                        self.updateData(isBack: true)
+                        self.updateData(isBack: false)
                     }
                     else {
                         let message = json.getString(key: .message)
@@ -299,7 +280,7 @@ class SettingsProfileViewModel {
         view?.txtLocation.text = self.profileDetails?.location
         view?.txtGender.text = self.profileDetails?.gender
         self.locationId = self.profileDetails?.countryDetail?.id?.stringValue ?? ""
-
+        
         view?.txtCode.text = self.profileDetails?.countryCode
         view?.txtMobile.text = self.profileDetails?.mobile
         view?.txtEmail.text = self.profileDetails?.email
@@ -325,11 +306,7 @@ class SettingsProfileViewModel {
         view?.txtLastName.isUserInteractionEnabled = isEnable
         view?.txtDOB.isUserInteractionEnabled = isEnable
         view?.txtLocation.isUserInteractionEnabled = isEnable
-//        view?.txtCode.isUserInteractionEnabled = isEnable
-//        view?.btnCountryCode.isUserInteractionEnabled = isEnable
         view?.btnLocation.isUserInteractionEnabled = isEnable
-//        view?.txtMobile.isUserInteractionEnabled = isEnable
-        view?.imgProfile.isUserInteractionEnabled = isEnable
     }
     
     func updateData(isBack:Bool = false) {
@@ -346,7 +323,7 @@ class SettingsProfileViewModel {
         
         json["data"]["user"].setIntValue(key: .is_snooze, value: self.profileDetails?.isSnooze?.intValue ?? 0)
         json["data"]["user"].setIntValue(key: .country_id, value: self.profileDetails?.countryId?.intValue ?? 0)
-
+        
         if self.profileDetails?.isSnooze?.intValue == 1 {
             if json["data"]["user"]["user_snooze_detail"].isEmpty {
                 json["data"]["user"]["user_snooze_detail"] = JSON()
@@ -363,7 +340,7 @@ class SettingsProfileViewModel {
         }
         print(json)
         saveJSON(j: json, key: USER_DETAILS_KEY)
-
+        
         if isBack {
             DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
                 self.theController.navigationController?.popViewController(animated: true)

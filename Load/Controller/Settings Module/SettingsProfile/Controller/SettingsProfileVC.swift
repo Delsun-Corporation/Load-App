@@ -42,19 +42,16 @@ class SettingsProfileVC: UIViewController, CountryCodeDelegate {
     }
     
     func setNavigationForIndoor(){
-        
-        let navigationBarHeight: CGFloat = self.navigationController?.navigationBar.frame.height ?? 66
         self.navigationController?.navigationBar.setBackgroundImage(UIImage(named: "Topheader")?.resizableImage(withCapInsets: UIEdgeInsets(top: 0, left: 0, bottom: 0 ,right: 0), resizingMode: .stretch), for: .default)
         self.navigationController?.navigationBar.shadowImage = UIImage(named: "")
         self.navigationController?.navigationBar.setValue(true, forKey: "hidesShadow")
 
     }
-
     
     //MARK:- @IBAction
     @IBAction func btnBackClicked(_ sender: Any) {
-//        self.navigationController?.popViewController(animated: true)
         self.mainModelView.validateDetails()
+        self.navigationController?.popViewController(animated: true)
     }
     
     @IBAction func btnDOBClicked(_ sender: Any) {
@@ -70,22 +67,22 @@ class SettingsProfileVC: UIViewController, CountryCodeDelegate {
     }
     
     @IBAction func btnEditClicked(_ sender: UIButton) {
-        if !self.mainModelView.isEdited {
-            sender.setTitle(str: "Save")
-            sender.setImage(nil, for: .normal)
-            sender.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
-            setUpNavigationBarTitle(strTitle: "Edit Profile", color: UIColor.appthemeRedColor)
-            self.mainModelView.addImagePicker()
-        }
-        else {
-            self.mainModelView.validateDetails()
-//            sender.setTitle(str: "")
-//            sender.setImage(UIImage(named: "ic_edit_red"), for: .normal)
-//            sender.frame = CGRect(x: 0, y: 0, width: 20, height: 30)
-//            setUpNavigationBarTitle(strTitle: "")
-        }
-        self.mainModelView.isEdited = true
-        self.mainModelView.IsEditable(isEnable: self.mainModelView.isEdited)
+        //        if !self.mainModelView.isEdited {
+        //            sender.setTitle(str: "Save")
+        //            sender.setImage(nil, for: .normal)
+        //            sender.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
+        //            setUpNavigationBarTitle(strTitle: "Edit Profile", color: UIColor.appthemeRedColor)
+        //            self.mainModelView.addImagePicker()
+        //        }
+        //        else {
+        //            self.mainModelView.validateDetails()
+        ////            sender.setTitle(str: "")
+        ////            sender.setImage(UIImage(named: "ic_edit_red"), for: .normal)
+        ////            sender.frame = CGRect(x: 0, y: 0, width: 20, height: 30)
+        ////            setUpNavigationBarTitle(strTitle: "")
+        //        }
+        //        self.mainModelView.isEdited = true
+        //        self.mainModelView.IsEditable(isEnable: self.mainModelView.isEdited)
     }
     
     @IBAction func btnCountryCodeClicked(_ sender: Any) {
@@ -93,6 +90,14 @@ class SettingsProfileVC: UIViewController, CountryCodeDelegate {
         obj.modalPresentationStyle = .overCurrentContext
         obj.mainModelView.delegate = self
         self.present(obj, animated:  false, completion: nil)
+    }
+    
+    @objc func onLabelChangePictureTapped(_ sender: Any) {
+        mainModelView.onLabelChangePictureTapped()
+    }
+    
+    @objc func imageTapped(_ sender: Any) {
+        mainModelView.onLabelChangePictureTapped()
     }
     
     func CountryCodeDidFinish(data: JSON) {
