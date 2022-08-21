@@ -47,15 +47,8 @@ class CredentialsViewModel {
     }
     
     func validateDetails() {
-        var isEmpty:Bool = false
         let array: NSMutableArray = NSMutableArray()
         for data in self.textArray {
-            if data[0].toTrim() == "" {
-                isEmpty = true
-            }
-            if data[1].toTrim() == "" {
-                isEmpty = true
-            }
             let dict: NSDictionary = ["AwardingInstitution":data[0].toTrim(), "CourseOfStudy":data[1].toTrim()]
             array.add(dict)
         }

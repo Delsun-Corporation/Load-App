@@ -8,7 +8,7 @@
 
 import UIKit
 
-protocol CredentialsDelegate: class {
+protocol CredentialsDelegate: AnyObject {
     func CredentialsAddFinish()
     func CredentialsTextFinish(text:String, row:Int, section:Int)
     func CredentialsDeleteFinish(tag:Int)
