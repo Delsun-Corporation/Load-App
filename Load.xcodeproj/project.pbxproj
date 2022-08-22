@@ -1221,6 +1221,7 @@
 		FF4D2E97289AC668000B932B /* LOADCustomPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF4D2E96289AC667000B932B /* LOADCustomPickerView.swift */; };
 		FF4D2E99289AC99D000B932B /* DatePickerRangeDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF4D2E98289AC99D000B932B /* DatePickerRangeDataModel.swift */; };
 		FF6787C628B22E60007DBC80 /* SettingsViewModel+SettingsProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF6787C528B22E60007DBC80 /* SettingsViewModel+SettingsProfileViewModel.swift */; };
+		FF6787CA28B350FE007DBC80 /* UIImage + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF6787C928B350FE007DBC80 /* UIImage + Extension.swift */; };
 		FFB9E2462871EAA400C7C51D /* LoadRemoteConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFB9E2452871EAA400C7C51D /* LoadRemoteConfig.swift */; };
 		FFCC8196286025C400BE8BCC /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = FFCC8195286025C400BE8BCC /* GoogleService-Info.plist */; };
 /* End PBXBuildFile section */
@@ -2473,6 +2474,7 @@
 		FF4D2E96289AC667000B932B /* LOADCustomPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LOADCustomPickerView.swift; sourceTree = "<group>"; };
 		FF4D2E98289AC99D000B932B /* DatePickerRangeDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatePickerRangeDataModel.swift; sourceTree = "<group>"; };
 		FF6787C528B22E60007DBC80 /* SettingsViewModel+SettingsProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SettingsViewModel+SettingsProfileViewModel.swift"; sourceTree = "<group>"; };
+		FF6787C928B350FE007DBC80 /* UIImage + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage + Extension.swift"; sourceTree = "<group>"; };
 		FFB9E2452871EAA400C7C51D /* LoadRemoteConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadRemoteConfig.swift; sourceTree = "<group>"; };
 		FFBCEB2DFF37A1FD0D45CCBB /* Pods-Load.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Load.release.xcconfig"; path = "Target Support Files/Pods-Load/Pods-Load.release.xcconfig"; sourceTree = "<group>"; };
 		FFCC8195286025C400BE8BCC /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -4524,6 +4526,7 @@
 				1777D15D229D0BAC00F6B2E2 /* Date + Extension.swift */,
 				1777D15E229D0BAC00F6B2E2 /* UITextField + Extension.swift */,
 				88487AB5243DE3EC0062C0D4 /* UITableViewCell + Extension.swift */,
+				FF6787C928B350FE007DBC80 /* UIImage + Extension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -10223,6 +10226,7 @@
 				17A38BDA2316433D00C25EA3 /* ClientBookedDatesModelClass.swift in Sources */,
 				1721B7AE231921F800BA3968 /* TrainingSettingsCell.swift in Sources */,
 				FF33207228153CF5007734BA /* RXScrollKit.swift in Sources */,
+				FF6787CA28B350FE007DBC80 /* UIImage + Extension.swift in Sources */,
 				17F9BAA522A52222000D8221 /* SwitchAccountVC.swift in Sources */,
 				1717FA0A22EAC7AD00E49B98 /* MessagesViewModel.swift in Sources */,
 				1780122622BB847F00888B67 /* ListingsView.swift in Sources */,

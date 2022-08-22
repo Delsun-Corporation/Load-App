@@ -70,7 +70,6 @@ class ApiManager: NSObject {
         }
         let url = base + name
         print(url)
-        print(params)
         Alamofire.request(url, method: .post, parameters: params, encoding: JSONEncoding.default, headers: headers).responseJSON { (response) in
             print(response)
             

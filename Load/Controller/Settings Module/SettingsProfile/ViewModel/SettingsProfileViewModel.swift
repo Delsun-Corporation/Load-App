@@ -208,20 +208,23 @@ class SettingsProfileViewModel {
         let mobile = view?.txtMobile.text?.toTrim() ?? ""
         let email = view?.txtEmail.text?.toTrim() ?? ""
         
-        let img = self.images == nil ? [] : [self.images!]
-        apiCallUpdateUserDetail(name: fName + " " + lName, email: email, gender: gender, countryCode: code, mobile: mobile, dateOfBirth: DOB, countryId: self.locationId, images: img)
+        let img = self.images
+        apiCallUpdateUserDetail(name: fName + " " + lName, email: email, gender: gender, countryCode: code, mobile: mobile, dateOfBirth: DOB, countryId: self.locationId, image: img)
     }
     
-    func apiCallUpdateUserDetail(name:String, email:String, gender: String, countryCode:String, mobile:String, dateOfBirth:String, countryId:String, images:[UIImage]) {
+    func apiCallUpdateUserDetail(name:String, email:String, gender: String, countryCode:String, mobile:String, dateOfBirth:String, countryId:String, image: UIImage?) {
         
         var param = ["name": name, "email": email, "country_code": countryCode, "gender": gender, "mobile": mobile, "date_of_birth": convertDateFormater(dateOfBirth, format: "dd / MM / yyyy", dateFormat: "dd-MM-yyyy"), "country_id": countryId] as [String : Any]
-        print(param)
+        // Convert Image to Base64 first
+        if let image = image,
+            let base64Image = image.convertToBase64() {
+            param["profile_image"] = base64Image
+        }
         
         if (newApiConfig) {
             if let id = getUserDetail()?.data?.user?.id?.intValue {
                 param["id"] = id
             }
-            print("This is param for edit profile \(param)")
             ApiManager.shared.MakePostAPI(name: USER_UPDATE, params: param as [String : Any], progress: false, vc: self.theController, isAuth: false, completionHandler: { (response, error) in
                 if response != nil {
                     let json = JSON(response!)
@@ -240,7 +243,7 @@ class SettingsProfileViewModel {
             })
         }
         else {
-            ApiManager.shared.MakePostWithImageAPI(name: USER_UPDATE + "/" + (getUserDetail()?.data?.user?.id?.stringValue)!, params: param as [String : Any], images: images, vc: self.theController, isAuth: false, completionHandler: { (response, error) in
+            ApiManager.shared.MakePostWithImageAPI(name: USER_UPDATE + "/" + (getUserDetail()?.data?.user?.id?.stringValue)!, params: param as [String : Any], images: [images ?? UIImage()], vc: self.theController, isAuth: false, completionHandler: { (response, error) in
                 if response != nil {
                     let json = JSON(response!)
                     print(json)
