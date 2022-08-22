@@ -8,7 +8,11 @@
 
 import UIKit
 
-class SidemenuViewModel {
+protocol SideMenuViewModelDelegate: AnyObject {
+    func refreshData()
+}
+
+class SidemenuViewModel: SideMenuViewModelDelegate {
 
     //MARK:- Variables
     fileprivate weak var theController:SidemenuVC!
@@ -17,5 +21,9 @@ class SidemenuViewModel {
     //MARK:- Functions
     init(theController:SidemenuVC) {
         self.theController = theController
+    }
+    
+    func refreshData() {
+        theController.mainView.tableView.reloadData()
     }
 }

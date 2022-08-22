@@ -30,7 +30,7 @@ class SettingsProfileViewModel {
     var countryCode: String = "US"
     let genderPickerView = UIPickerView()
     let cpvInternal = CountryPickerView()
-    weak var delegate: SettingProfileViewModelDelegate?
+    var delegate: SettingProfileViewModelDelegate?
     
     lazy var genderArr: [String] = {
         return genderArray()
@@ -225,7 +225,7 @@ class SettingsProfileViewModel {
             if let id = getUserDetail()?.data?.user?.id?.intValue {
                 param["id"] = id
             }
-            ApiManager.shared.MakePostAPI(name: USER_UPDATE, params: param as [String : Any], progress: false, vc: self.theController, isAuth: false, completionHandler: { (response, error) in
+            ApiManager.shared.MakePostAPI(name: USER_UPDATE, params: param as [String : Any], progress: true, vc: self.theController, isAuth: false, completionHandler: { (response, error) in
                 if response != nil {
                     let json = JSON(response!)
                     print(json)
@@ -233,7 +233,7 @@ class SettingsProfileViewModel {
                     if success {
                         let data = json.getDictionary(key: .data)
                         self.profileDetails = ProfileModelClass(JSON: data.dictionaryObject!)
-                        self.updateData(isBack: false)
+                        self.updateData(isBack: true)
                     }
                     else {
                         let message = json.getString(key: .message)
@@ -348,7 +348,11 @@ class SettingsProfileViewModel {
         }
         print(json)
         saveJSON(j: json, key: USER_DETAILS_KEY)
+        // Update page before
         delegate?.refreshDataAfterUpdateProfile()
+        delegate = nil
+        // Update side menu
+        AppDelegate.shared?.sideMenu?.refreshData()
         
         if isBack {
             DispatchQueue.main.asyncAfter(deadline: .now() + 1) {

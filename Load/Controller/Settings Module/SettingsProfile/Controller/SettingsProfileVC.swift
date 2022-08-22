@@ -51,7 +51,6 @@ class SettingsProfileVC: UIViewController, CountryCodeDelegate {
     //MARK:- @IBAction
     @IBAction func btnBackClicked(_ sender: Any) {
         self.mainModelView.validateDetails()
-        self.navigationController?.popViewController(animated: true)
     }
     
     @IBAction func btnDOBClicked(_ sender: Any) {
