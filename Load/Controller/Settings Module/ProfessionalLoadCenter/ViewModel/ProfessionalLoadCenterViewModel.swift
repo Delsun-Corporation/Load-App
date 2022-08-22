@@ -33,7 +33,7 @@ class ProfessionalLoadCenterViewModel: ProfessionalListDelegate, ProfessionalReq
     
     var textArray: [[String]] = [[""], ["", "", "",""], ["", ""], [""], [""], [ "", ""], ["", ""]]
     
-    var placeHolderArray: [[String]] = [[""], ["00", "Select","", "##"], ["", ""], ["Towel and drinks"], [""], ["$", "$"], ["", ""]]
+    var placeHolderArray: [[String]] = [[""], ["00", "Select","", ""], ["", ""], ["Towel and drinks"], [""], ["$", "$"], ["", ""]]
     
     var amenitiesArray:[[Any]] = [["Drinking water",false], ["Air conditioning",false], ["Towel",false], ["Locker",false], ["Shower room",false], ["Soap and shampoo",false], ["Changing Room",false], ["First aid kit",false]]
 
