@@ -111,9 +111,19 @@ class SettingsProfileVC: UIViewController, CountryCodeDelegate {
 extension SettingsProfileVC : UIImagePickerControllerDelegate,UINavigationControllerDelegate {
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         dismiss(animated: true, completion: nil)
-        let selectedImage = info[UIImagePickerController.InfoKey.originalImage]
-        self.mainModelView.images = (selectedImage as! UIImage)
-        self.mainView.imgProfile.image = selectedImage as? UIImage
+        let selectedImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage
+        self.mainView.imgProfile.image = selectedImage
+        if let picture = selectedImage {
+            self.mainModelView.images = picture
+            let resizedPicture = picture.resizeImage(image: picture, targetSize: CGSize(width: 400.0, height: 400.0))
+            if resizedPicture.jpegData(compressionQuality: 0.2)?.count ?? 5000000 < 5000000 {
+                self.mainModelView.images = resizedPicture
+            }
+            else {
+                makeToast(strMessage: "File size should be lower than 5 MB")
+            }
+        }
+        
     }
     
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
