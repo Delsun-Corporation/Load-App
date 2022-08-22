@@ -69,11 +69,24 @@ class SignUpSetupProfileVC: UIViewController, UITextFieldDelegate {
 extension SignUpSetupProfileVC: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         let profilePic = info[UIImagePickerController.InfoKey.editedImage] as? UIImage
-        self.mainView.imgProfile.image = profilePic
-        self.mainModelView.profileImage = profilePic
-        self.mainModelView.isProfileSelected = true
-        self.mainModelView.showNext()
         self.dismiss(animated: true, completion: nil)
+        if let picture = profilePic {
+            let resizedPicture = picture.resizeImage(image: picture, targetSize: CGSize(width: 400.0, height: 400.0))
+            if resizedPicture.jpegData(compressionQuality: 0.2)?.count ?? 5000000 < 5000000 {
+                self.mainView.imgProfile.image = resizedPicture
+                self.mainModelView.profileImage = resizedPicture
+                self.mainModelView.isProfileSelected = true
+                self.mainModelView.showNext()
+            }
+            else {
+                makeToast(strMessage: "File size should be lower than 5 MB")
+            }
+        }
+//        self.mainView.imgProfile.image = profilePic
+//        self.mainModelView.profileImage = profilePic
+//        self.mainModelView.isProfileSelected = true
+//        self.mainModelView.showNext()
+//        self.dismiss(animated: true, completion: nil)
     }
     
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
