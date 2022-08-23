@@ -203,26 +203,6 @@ extension ProfessionalLoadCenterVC:UITableViewDataSource, UITableViewDelegate, P
                 cell.pickerViewSessionPerPackage.selectRow(0, inComponent: 0, animated: false)
             }
         }
-        
-        if let cell = self.mainView.tableView.cellForRow(at: IndexPath(row: 3, section: 1)) as? ProfessionalLoadCenterCell {
-            
-            if text.lowercased() == "Package".lowercased() || text.lowercased() == "Single and package".lowercased() {
-                cell.txtValue.isUserInteractionEnabled = true
-                cell.txtValue.textColor = .appthemeBlackColor
-                cell.lblTitle.textColor = .appthemeBlackColor
-                self.mainModelView.textArray[1][3] = "1"
-                self.mainModelView.txtMaximumClient = "1"
-                cell.txtValue.text = "1"
-            } else {
-                cell.txtValue.isUserInteractionEnabled = false
-                cell.lblTitle.textColor = .gray
-                cell.txtValue.textColor = .gray
-                self.mainModelView.textArray[1][3] = ""
-                self.mainModelView.txtMaximumClient = ""
-                cell.txtValue.text = "0"
-                cell.pickerViewNumberOfClients.selectRow(0, inComponent: 0, animated: false)
-            }
-        }
     }
     
     func getTypeId(strTypeName:String) -> Int {
