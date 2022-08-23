@@ -8,7 +8,7 @@
 
 import UIKit
 
-protocol CredentialsArrayDelegate: class {
+protocol CredentialsArrayDelegate: AnyObject {
     func CredentialsArrayFinish(array:NSMutableArray)
 }
 
@@ -94,6 +94,9 @@ extension CredentialsVC: UITableViewDelegate, UITableViewDataSource, Credentials
     
     func CredentialsDeleteFinish(tag: Int) {
         if self.mainModelView.textArray.count == 1 {
+            self.mainModelView.textArray.removeAll()
+            self.mainModelView.textArray.append(["", ""])
+            self.mainView.tableView.reloadData()
             return
         }
         self.mainModelView.textArray.remove(at: tag)

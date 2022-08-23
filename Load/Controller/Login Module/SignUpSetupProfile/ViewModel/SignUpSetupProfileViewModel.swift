@@ -288,7 +288,7 @@ class SignUpSetupProfileViewModel {
 
         let fullName = (view?.txtFirstName.text ?? "") + " " + (view?.txtLastName.text ?? "")
         
-        let param = [
+        var param = [
             "name": fullName,
             "date_of_birth": self.strDOB,
             "gender" : self.checkGender(str: (view?.txtSex.text?.toTrim() ?? "")),
@@ -298,6 +298,11 @@ class SignUpSetupProfileViewModel {
             "phone_area" : view?.txtPhoneArea.text ?? "",
             "phone_number" : view?.txtPhoneNumber.text ?? "",
             "email": self.userEmail] as [String : Any]
+        
+        if let image = profileImage,
+           let base64Image = image.convertToBase64() {
+            param["profile_image"] = base64Image
+        }
         
         ApiManager.shared.MakePostAPI(name: SIGN_UP_PROFILE, params: param as [String : Any], vc: self.theController) { (response, error) in
             if response != nil {

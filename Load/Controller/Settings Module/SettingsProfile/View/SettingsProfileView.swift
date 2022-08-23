@@ -45,11 +45,21 @@ class SettingsProfileView: UIView {
     
     @IBOutlet weak var headerView: UIImageView!
     
+    weak var controller: SettingsProfileVC?
+    
     //MARK:- Functions
     func setupUI(theController: SettingsProfileVC) {
         self.layoutIfNeeded()
+        controller = theController
         self.setupFont()
         self.setupHeaderView()
+        self.setupHandler()
+    }
+    
+    func setupHandler() {
+        lblChangeProfile.isUserInteractionEnabled = true
+        let touchListener = UITapGestureRecognizer(target: controller, action: #selector(controller?.onLabelChangePictureTapped(_:)))
+        lblChangeProfile.addGestureRecognizer(touchListener)
     }
     
     func setupFont() {

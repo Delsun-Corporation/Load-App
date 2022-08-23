@@ -88,11 +88,11 @@ class ProfessionalLoadCenterCell: UITableViewCell, UITextFieldDelegate {
             self.setView(btnCell: false, imgArrow: false, txtValue: true, btnUpload: true)
         }
         else if indexPath.section == 1 {
-            
+            // Session details
             self.txtValue.tintColor = UIColor.clear
             
             if indexPath.row == 0 {
-                
+                // Duration field
                 if text[indexPath.row] == ""{
                     self.lblMinForDuration.text = "mins"
                     self.constraintTxtTrainling.constant = 62
@@ -108,11 +108,15 @@ class ProfessionalLoadCenterCell: UITableViewCell, UITextFieldDelegate {
                 self.setView(btnCell: true, imgArrow: true, txtValue: false, btnUpload: true)
 
             } else if indexPath.row == 1 {
-                
+                // Type field
                 pickerViewTypes.delegate = self
                 pickerViewTypes.backgroundColor = UIColor.white
                 
-                for (index, data) in (GetAllData?.data?.professionalTypes?.enumerated())! {
+                guard let professionalTypeArr = GetAllData?.data?.professionalTypes?.enumerated() else { return }
+                
+                self.pickerViewTypes.selectRow(0, inComponent: 0, animated: false)
+                
+                for (index, data) in professionalTypeArr {
                     if self.professionalTypeId == data.id?.intValue {
                         self.pickerViewTypes.selectRow(index, inComponent: 0, animated: false)
                     }
@@ -123,6 +127,7 @@ class ProfessionalLoadCenterCell: UITableViewCell, UITextFieldDelegate {
                 self.setView(btnCell: true, imgArrow: true, txtValue: false, btnUpload: true)
                 
             } else if indexPath.row == 2 {
+                // Session field
                 self.setView(btnCell: true, imgArrow: true, txtValue: false, btnUpload: true)
                 
                 if text[1].lowercased() == "Package".lowercased() || text[1].lowercased() == "Single and package".lowercased() {
@@ -141,12 +146,21 @@ class ProfessionalLoadCenterCell: UITableViewCell, UITextFieldDelegate {
                 }
                 
             } else if indexPath.row == 3{
-             
-                pickerViewNumberOfClients.delegate = self
-                pickerViewNumberOfClients.backgroundColor = .white
-                self.txtValue.inputView = pickerViewNumberOfClients
-                
                 self.setView(btnCell: true, imgArrow: true, txtValue: false, btnUpload: true)
+                
+                if text[1].lowercased() == "Package".lowercased() || text[1].lowercased() == "Single and package".lowercased() {
+                    self.txtValue.isUserInteractionEnabled = true
+                    self.lblTitle.textColor = .appthemeBlackColor
+                    self.txtValue.textColor = .appthemeBlackColor
+                    
+                    pickerViewNumberOfClients.delegate = self
+                    pickerViewNumberOfClients.backgroundColor = .white
+                    self.txtValue.inputView = pickerViewNumberOfClients
+                } else {
+                    self.txtValue.isUserInteractionEnabled = false
+                    self.lblTitle.textColor = .appthemeGrayColor
+                    self.txtValue.textColor = .appthemeGrayColor
+                }
 
             }
             else {
@@ -222,23 +236,15 @@ class ProfessionalLoadCenterCell: UITableViewCell, UITextFieldDelegate {
     
     func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
         
-        print("Tag : \(self.tag)")
-        print("TextField Tag : \(textField.tag)")
-        
-        if self.tag == 1 && textField.tag == 0{
-            
-            print("textField text:\(textField.text)")
-            
+        if self.tag == 1 && textField.tag == 0 {
+            // Duration scroller
             if textField.text == "" {
                 self.lblMinForDuration.text = ""
                 self.constraintTxtTrainling.constant = 25
                 self.pickerViewDuration.selectRow(0, inComponent: 0, animated: false)
                 self.pickerViewDuration.selectRow(0, inComponent: 1, animated: false)
-                
                 self.txtValue.text = selectedHours + " hr " + selectedMinute + " mins"
-
             } else {
-                
                 if let array = textField.text?.split(separator: " "){
                         
                     if array.count == 4{
@@ -255,7 +261,7 @@ class ProfessionalLoadCenterCell: UITableViewCell, UITextFieldDelegate {
             }
             
         } else if self.tag == 1 && textField.tag == 1 {
-            // HERE
+            // Type scroller
             self.txtValue.text = self.textMainArrayForPickerValueCheck[textField.tag]
             for (index, data) in (GetAllData?.data?.professionalTypes?.enumerated())! {
                 if self.professionalTypeId == data.id?.intValue {
@@ -263,8 +269,18 @@ class ProfessionalLoadCenterCell: UITableViewCell, UITextFieldDelegate {
                 }
             }
             
-        } else if self.tag == 1 && textField.tag == 3{
+        } else if self.tag == 1 && textField.tag == 2{
+            // Session number scroller
+            if self.txtValue.text?.toTrim() == "" {
+                self.pickerViewSessionPerPackage.selectRow(0, inComponent: 0, animated: false)
+            } else if let intValue = Int(self.txtValue.text ?? "") {
+                self.txtValue.text = self.textMainArrayForPickerValueCheck[textField.tag]
+                let index = self.arraySessionPerPackage.firstIndex(of: intValue) ?? 0
+                self.pickerViewSessionPerPackage.selectRow(index, inComponent: 0, animated: false)
+            }
             
+        } else if self.tag == 1 && textField.tag == 3{
+            // Client number scroller
             if self.txtValue.text?.toTrim() == "" {
                 self.pickerViewNumberOfClients.selectRow(0, inComponent: 0, animated: false)
             } else {
@@ -275,8 +291,7 @@ class ProfessionalLoadCenterCell: UITableViewCell, UITextFieldDelegate {
                 
             }
             
-        }
-        else if self.tag == 5 {
+        } else if self.tag == 5 {
             let str = self.txtValue.text?.replacingOccurrences(of: "$", with: "")
             self.txtValue.text = str
         }

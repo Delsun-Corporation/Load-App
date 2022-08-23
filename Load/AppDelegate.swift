@@ -30,6 +30,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var locationManager = CLLocationManager()
     var lattitude  = Double()
     var longitude = Double()
+    var sideMenu: SideMenuViewModelDelegate?
 
     var isUpdated:Bool = false
     
@@ -113,6 +114,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let storyBoard = UIStoryboard(name: "Home", bundle: nil)
         
         let sideVC_L : SidemenuVC = (storyBoard.instantiateViewController(withIdentifier: "SidemenuVC") as? SidemenuVC)!
+        sideMenu = sideVC_L.mainModelView
         
         let rootVC : TabbarVC = AppStoryboard.Home.instance.instantiateViewController(withIdentifier: "TabbarVC") as! TabbarVC
         

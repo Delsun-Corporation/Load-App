@@ -12,11 +12,11 @@
         <array key="Proxima-Nova-Bold.ttf">
             <string>ProximaNova-Bold</string>
         </array>
-        <array key="Proxima-Nova-Regular.ttf">
-            <string>ProximaNova-Regular</string>
-        </array>
         <array key="Proxima-Nova-Thin.ttf">
             <string>ProximaNova-Thin</string>
+        </array>
+        <array key="Proxima-nova.ttf">
+            <string>ProximaNova-Regular</string>
         </array>
         <array key="SFUIText-Regular.ttf">
             <string>SFUIText-Regular</string>
@@ -3589,12 +3589,15 @@
                                                 <rect key="frame" x="0.0" y="613" width="375" height="68"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Language(s)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="86b-Ic-xJO">
-                                                        <rect key="frame" x="20" y="25" width="84.666666666666671" height="18"/>
+                                                        <rect key="frame" x="20" y="25" width="120" height="18"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" priority="750" constant="120" id="5C4-CA-M57"/>
+                                                        </constraints>
                                                         <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="15"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Select" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="lGl-KG-HHF">
-                                                        <rect key="frame" x="114.66666666666667" y="24.666666666666629" width="240.33333333333331" height="19"/>
+                                                        <rect key="frame" x="150" y="24.666666666666629" width="205" height="19"/>
                                                         <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="15"/>
                                                         <textInputTraits key="textInputTraits"/>
                                                     </textField>
