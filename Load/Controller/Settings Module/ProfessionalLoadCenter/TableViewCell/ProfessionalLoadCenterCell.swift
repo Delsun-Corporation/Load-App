@@ -147,21 +147,13 @@ class ProfessionalLoadCenterCell: UITableViewCell, UITextFieldDelegate {
                 
             } else if indexPath.row == 3{
                 self.setView(btnCell: true, imgArrow: true, txtValue: false, btnUpload: true)
+                self.txtValue.isUserInteractionEnabled = true
+                self.lblTitle.textColor = .appthemeBlackColor
+                self.txtValue.textColor = .appthemeBlackColor
                 
-                if text[1].lowercased() == "Package".lowercased() || text[1].lowercased() == "Single and package".lowercased() {
-                    self.txtValue.isUserInteractionEnabled = true
-                    self.lblTitle.textColor = .appthemeBlackColor
-                    self.txtValue.textColor = .appthemeBlackColor
-                    
-                    pickerViewNumberOfClients.delegate = self
-                    pickerViewNumberOfClients.backgroundColor = .white
-                    self.txtValue.inputView = pickerViewNumberOfClients
-                } else {
-                    self.txtValue.isUserInteractionEnabled = false
-                    self.lblTitle.textColor = .appthemeGrayColor
-                    self.txtValue.textColor = .appthemeGrayColor
-                }
-
+                pickerViewNumberOfClients.delegate = self
+                pickerViewNumberOfClients.backgroundColor = .white
+                self.txtValue.inputView = pickerViewNumberOfClients
             }
             else {
                 self.setView(btnCell: true, imgArrow: true, txtValue: false, btnUpload: true)
