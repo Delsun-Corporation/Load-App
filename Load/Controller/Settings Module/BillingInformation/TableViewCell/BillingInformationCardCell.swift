@@ -119,6 +119,14 @@ class BillingInformationCardCell: UITableViewCell, UITextFieldDelegate {
             }
         }
         
+        // Check if textfield is for ZIP code
+        if self.txtValue.tag == 11 {
+            let maxLength = 6
+            guard txtAfterUpdate.count <= maxLength else {
+                return false
+            }
+        }
+        
         let  char = string.cString(using: String.Encoding.utf8)!
         let isBackSpace = strcmp(char, "\\b")
         
@@ -131,8 +139,8 @@ class BillingInformationCardCell: UITableViewCell, UITextFieldDelegate {
             return self.isValidName(testStr: txtAfterUpdate)
         }
         
-        if self.txtValue.tag == 3 && isBackSpace != -92{
-            if txtAfterUpdate.count == 8 {
+        if self.txtValue.tag == 3 && isBackSpace != -92 {
+            if txtAfterUpdate.count == 6 {
                 return false
             }
             if txtAfterUpdate.count == 2 {
