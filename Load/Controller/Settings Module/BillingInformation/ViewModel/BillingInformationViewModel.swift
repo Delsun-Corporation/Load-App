@@ -18,7 +18,7 @@ class BillingInformationViewModel {
     //MARK:- Variables
     fileprivate weak var theController:BillingInformationVC!
     let titleArray: [String] = ["BILLING INFORMATION", "Credit card number", "Cardholder name", "Expiry date", "CVV", "PAYMENT ADDRESS", "This is the address that is specifically associated with your payment methods", "Address", "Country", "City", "State / Province / Region", "Zip / Postal Code", ""]
-    let placeHolderArray: [String] = ["" , "0000 0000 0000 0000", "cardholder name", "mm / yyyy", "000", "", "", "Address", "Country", "City", "State / Province / Region", "000000", ""]
+    let placeHolderArray: [String] = ["" , "0000 0000 0000 0000", "cardholder name", "mm/yy", "000", "", "", "Address", "Country", "City", "State / Province / Region", "000000", ""]
 
     var cardArray: [[String]] = [["", "", "", "", "", "", "", "", "", "", "", ""]]
     var accessToken: String = ""
