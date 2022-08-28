@@ -43,6 +43,8 @@ extension TrainingSettingsVC:UITableViewDataSource, UITableViewDelegate, Trainin
         cell.tag = indexPath.section
         cell.btnCell.tag = indexPath.row
         cell.delegate = self
+        cell.defaultWeight = mainModelView.txtWeight
+        cell.defaultHeight = mainModelView.txtHeight
         cell.txtValue.tag = indexPath.row
         cell.isVO2MaxIsEstimated = self.mainModelView.trainingResponse?.isVO2MaxIsEstimated ?? true
         cell.hrMax = (self.mainModelView.trainingResponse?.hrMax?.stringValue ?? "").toFloat()
