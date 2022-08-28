@@ -54,6 +54,7 @@ class PremiumPaymentMethodVc: UIViewController {
     @IBAction func btnAddCardTapped(_ sender: UIButton) {
         let obj = AppStoryboard.Settings.instance.instantiateViewController(withIdentifier: "BillingInformationVC") as! BillingInformationVC
         obj.mainModelView.delegate = self
+        obj.mainModelView.premiumPaymentMethodDelegate = mainModelView
         obj.mainModelView.accessToken = self.mainModelView.accessToken
         self.navigationController?.pushViewController(obj, animated: true)
     }

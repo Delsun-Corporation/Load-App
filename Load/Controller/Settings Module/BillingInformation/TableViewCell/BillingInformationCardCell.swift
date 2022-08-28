@@ -10,7 +10,7 @@ import UIKit
 import CountryPickerView
 
 class BillingInformationCardCell: UITableViewCell, UITextFieldDelegate {
-
+    
     //MARK:- @IBOutlet
     @IBOutlet weak var lblTitle: UILabel!
     @IBOutlet weak var txtValue: UITextField!
@@ -24,16 +24,16 @@ class BillingInformationCardCell: UITableViewCell, UITextFieldDelegate {
     var previousSelection: UITextRange?
     let pickerView = UIPickerView()
     let cpvInternal = CountryPickerView()
-
+    
     //MARK:- Functions
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
     }
-
+    
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
+        
         // Configure the view for the selected state
     }
     
@@ -66,6 +66,7 @@ class BillingInformationCardCell: UITableViewCell, UITextFieldDelegate {
         }
         else {
             self.txtValue.inputView = nil
+            self.txtValue.delegate = self
         }
         
         countryPickerSetupUI()
@@ -73,10 +74,9 @@ class BillingInformationCardCell: UITableViewCell, UITextFieldDelegate {
     
     @IBAction func btnCellClicked() {
         if self.txtValue.tag == 8, let viewController = viewController {
-            print("AAAAAAAAAAAAAAAAA")
             self.cpvInternal.showCountriesList(from: viewController)
         } else {
-            print("BBBBBBBBBBBB")
+            // Nothing to do
         }
     }
     
@@ -89,7 +89,7 @@ class BillingInformationCardCell: UITableViewCell, UITextFieldDelegate {
         self.lblTitle.font = themeFont(size: 15, fontname: .ProximaNovaRegular)
         self.txtValue.font = themeFont(size: 15, fontname: .ProximaNovaRegular)
         self.lblRequired.font = themeFont(size: 15, fontname: .ProximaNovaRegular)
-
+        
         self.lblTitle.setColor(color: .appthemeBlackColor)
         self.txtValue.setColor(color: .appthemeBlackColor)
         self.lblRequired.setColor(color: .appthemeRedColor)
@@ -103,29 +103,44 @@ class BillingInformationCardCell: UITableViewCell, UITextFieldDelegate {
             self.txtValue.text = activity?.name
             self.delegate?.BillingInformationTextFinish(text: activity?.code ?? "", row: self.txtValue.tag, section: self.tag)
         }
-
+        
         return true
     }
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         let textFieldText: NSString = (textField.text ?? "") as NSString
         var txtAfterUpdate = textFieldText.replacingCharacters(in: range, with: string)
-        print(txtAfterUpdate)
+        
+        // Check if textfield is for card number input, if yes, set max character to 16
+        if self.txtValue.tag == 1 {
+            let maxLength = 19
+            guard txtAfterUpdate.count <= maxLength else {
+                return false
+            }
+        }
+        
+        // Check if textfield is for ZIP code
+        if self.txtValue.tag == 11 {
+            let maxLength = 6
+            guard txtAfterUpdate.count <= maxLength else {
+                return false
+            }
+        }
         
         let  char = string.cString(using: String.Encoding.utf8)!
         let isBackSpace = strcmp(char, "\\b")
         
         if (isBackSpace == -92) {
-//            println("Backspace was pressed")
+            //            println("Backspace was pressed")
         }
         
         if self.txtValue.tag == 2 {
             self.delegate?.BillingInformationTextFinish(text: txtAfterUpdate, row: self.txtValue.tag, section: self.tag)
             return self.isValidName(testStr: txtAfterUpdate)
-        }        
+        }
         
-        if self.txtValue.tag == 3 && isBackSpace != -92{
-            if txtAfterUpdate.count == 8 {
+        if self.txtValue.tag == 3 && isBackSpace != -92 {
+            if txtAfterUpdate.count == 6 {
                 return false
             }
             if txtAfterUpdate.count == 2 {
@@ -137,7 +152,7 @@ class BillingInformationCardCell: UITableViewCell, UITextFieldDelegate {
         }
         
         if self.txtValue.tag == 4 {
-                if txtAfterUpdate.count == 4 {
+            if txtAfterUpdate.count == 4 {
                 return false
             }
         }
@@ -157,8 +172,8 @@ class BillingInformationCardCell: UITableViewCell, UITextFieldDelegate {
         }
         
         if cardNumberWithoutSpaces.count > 16 {
-            textField.text = previousTextFieldContent
-            textField.selectedTextRange = previousSelection
+            //            textField.text = previousTextFieldContent
+            //            textField.selectedTextRange = previousSelection
             return
         }
         
@@ -194,33 +209,33 @@ class BillingInformationCardCell: UITableViewCell, UITextFieldDelegate {
         // https://baymard.com/checkout-usability/credit-card-patterns
         
         // UATP cards have 4-5-6 (XXXX-XXXXX-XXXXXX) format
-        let is456 = string.hasPrefix("1")
+        // Uncomment line below to use 456 format
+        //        let is456 = string.hasPrefix("1")
         
         // These prefixes reliably indicate either a 4-6-5 or 4-6-4 card. We treat all these
         // as 4-6-5-4 to err on the side of always letting the user type more digits.
-        let is465 = [
-            // Amex
-            "34", "37",
-            
-            // Diners Club
-            "300", "301", "302", "303", "304", "305", "309", "36", "38", "39"
-            ].contains { string.hasPrefix($0) }
+        // Uncomment line below to use 465 format
+        //        let is465 = [
+        //            // Amex
+        //            "34", "37",
+        //
+        //            // Diners Club
+        //            "300", "301", "302", "303", "304", "305", "309", "36", "38", "39"
+        //            ].contains { string.hasPrefix($0) }
         
         // In all other cases, assume 4-4-4-4-3.
         // This won't always be correct; for instance, Maestro has 4-4-5 cards according
         // to https://baymard.com/checkout-usability/credit-card-patterns, but I don't
         // know what prefixes identify particular formats.
-        let is4444 = !(is456 || is465)
+        let is4444 = true
         
         var stringWithAddedSpaces = ""
         let cursorPositionInSpacelessString = cursorPosition
         
         for i in 0..<string.count {
-            let needs465Spacing = (is465 && (i == 4 || i == 10 || i == 15))
-            let needs456Spacing = (is456 && (i == 4 || i == 9 || i == 15))
             let needs4444Spacing = (is4444 && i > 0 && (i % 4) == 0)
             
-            if needs465Spacing || needs456Spacing || needs4444Spacing {
+            if needs4444Spacing {
                 stringWithAddedSpaces.append(" ")
                 
                 if i < cursorPositionInSpacelessString {
@@ -272,9 +287,9 @@ extension BillingInformationCardCell: UIPickerViewDataSource, UIPickerViewDelega
     
     func pickerView(_ pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusing view: UIView?) -> UIView {
         
-//for view in pickerView.subviews{
-//                view.backgroundColor = UIColor.clear
-//            }        
+        //for view in pickerView.subviews{
+        //                view.backgroundColor = UIColor.clear
+        //            }
         let activity = GetAllData?.data?.countries?[row]
         let myView = PickerView.instanceFromNib() as! PickerView
         myView.setupUI()

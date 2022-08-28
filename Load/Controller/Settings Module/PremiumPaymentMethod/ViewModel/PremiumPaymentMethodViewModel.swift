@@ -9,6 +9,10 @@
 import Foundation
 import SwiftyJSON
 
+protocol PremiumPaymenMethodViewModelDelegate: AnyObject {
+    func refreshListFromApi()
+}
+
 class PremiumPaymentMethodViewModel {
   
     //MARK:- Variables
@@ -135,7 +139,11 @@ class PremiumPaymentMethodViewModel {
 
 //MARK:- API calling
 
-extension PremiumPaymentMethodViewModel {
+extension PremiumPaymentMethodViewModel: PremiumPaymenMethodViewModelDelegate {
+    func refreshListFromApi() {
+        cardDetails.removeAll()
+        getCreditCardsList()
+    }
     
     func apiCallGetCreditCard(cardId:String) {
         let param = ["": ""]

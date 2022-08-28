@@ -18,12 +18,13 @@ class BillingInformationViewModel {
     //MARK:- Variables
     fileprivate weak var theController:BillingInformationVC!
     let titleArray: [String] = ["BILLING INFORMATION", "Credit card number", "Cardholder name", "Expiry date", "CVV", "PAYMENT ADDRESS", "This is the address that is specifically associated with your payment methods", "Address", "Country", "City", "State / Province / Region", "Zip / Postal Code", ""]
-    let placeHolderArray: [String] = ["" , "0000 0000 0000 0000", "cardholder name", "mm / yyyy", "000", "", "", "Address", "Country", "City", "State / Province / Region", "000000", ""]
+    let placeHolderArray: [String] = ["" , "0000 0000 0000 0000", "cardholder name", "mm/yy", "000", "", "", "Address", "Country", "City", "State / Province / Region", "000000", ""]
 
     var cardArray: [[String]] = [["", "", "", "", "", "", "", "", "", "", "", ""]]
     var accessToken: String = ""
     var isUpdated: Bool = false
     weak var delegate:BillingInformationVCDelegate?
+    weak var premiumPaymentMethodDelegate: PremiumPaymenMethodViewModelDelegate?
     
     //MARK:- Functions
     init(theController:BillingInformationVC) {
@@ -212,6 +213,7 @@ class BillingInformationViewModel {
         var stateProvinceRegion = ""
         var postalCode = ""
         var cvv = ""
+        var countryName = ""
         
         for data in cardArray {
             for (index, dataValue) in data.enumerated() {
@@ -232,6 +234,7 @@ class BillingInformationViewModel {
                 }
                 else if index == 8 {
                     countryId = getCountryId(dataValue)
+                    countryName = getCountryName(id: countryId as NSNumber)
                 }
                 else if index == 9 {
                     city = dataValue
@@ -254,6 +257,7 @@ class BillingInformationViewModel {
             "city": city,
             "state_province_region": stateProvinceRegion,
             "postal_code": postalCode,
+            "country_name": countryName,
             "cvv": cvv
         ] as [String : Any]
         print(JSON(param))
@@ -268,6 +272,7 @@ class BillingInformationViewModel {
                 
                 if success {
                     print("Success Saving Billing Information Model!")
+                    self.premiumPaymentMethodDelegate?.refreshListFromApi()
                     self.theController.navigationController?.popViewController(animated: true)
                 } else {
                     makeToast(strMessage: error ?? "Something went wrong")
