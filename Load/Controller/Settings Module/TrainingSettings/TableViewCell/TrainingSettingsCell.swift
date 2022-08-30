@@ -232,6 +232,8 @@ class TrainingSettingsCell: UITableViewCell, UITextFieldDelegate {
         let defaultSecondIndex = arrayDecimal.firstIndex(of: secondDecimal) ?? 0
         weightPickerView.selectRow(defaultFirstIndex, inComponent: 0, animated: true)
         weightPickerView.selectRow(defaultSecondIndex, inComponent: 1, animated: true)
+        firstComponentWeight = firstDecimal
+        secondComponentWeight = "\(secondDecimal)"
     }
     
     func setHeightDefaultPickerValue() {
@@ -251,6 +253,8 @@ class TrainingSettingsCell: UITableViewCell, UITextFieldDelegate {
         let defaultSecondIndex = arrayDecimal.firstIndex(of: secondDecimal) ?? 0
         heightPickerView.selectRow(defaultFirstIndex, inComponent: 0, animated: true)
         heightPickerView.selectRow(defaultSecondIndex, inComponent: 1, animated: true)
+        firstComponentHeight = firstDecimal
+        secondComponentHeight = "\(secondDecimal)"
     }
     
     //MARK: - TextField Delegates
@@ -434,8 +438,7 @@ extension TrainingSettingsCell: UIPickerViewDataSource, UIPickerViewDelegate{
             guard row <= heightArray.count else { return }
             if component == 0 {
                 self.firstComponentHeight = heightArray[row]
-            }
-            else {
+            } else {
                 self.secondComponentHeight = String(arrayDecimal[row])
             }
             self.txtValue.text = "\(self.firstComponentHeight).\(self.secondComponentHeight)"
@@ -444,8 +447,8 @@ extension TrainingSettingsCell: UIPickerViewDataSource, UIPickerViewDelegate{
             guard row <= heightArray.count else { return }
             if component == 0 {
                 self.firstComponentWeight = weightArray[row]
-            }
-            else {
+                
+            } else {
                 self.secondComponentWeight = String(arrayDecimal[row])
             }
             self.txtValue.text = "\(self.firstComponentWeight).\(self.secondComponentWeight)"
