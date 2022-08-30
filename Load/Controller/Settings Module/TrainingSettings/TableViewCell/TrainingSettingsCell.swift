@@ -39,6 +39,8 @@ class TrainingSettingsCell: UITableViewCell, UITextFieldDelegate {
     let heightPickerView: UIPickerView = UIPickerView()
     let weightPickerView: UIPickerView = UIPickerView()
     var isVO2MaxIsEstimated = true
+    var defaultHeight = "120"
+    var defaultWeight = "35"
     
     var firstComponentHeight = "0"
     var secondComponentHeight = "0"
@@ -142,6 +144,7 @@ class TrainingSettingsCell: UITableViewCell, UITextFieldDelegate {
                     
                     heightPickerView.delegate = self
                     heightPickerView.dataSource = self
+                    setHeightDefaultPickerValue()
                     self.txtValue.inputView = heightPickerView
                     
                     heightPickerView.backgroundColor = UIColor.white
@@ -165,6 +168,7 @@ class TrainingSettingsCell: UITableViewCell, UITextFieldDelegate {
                     }
                     weightPickerView.delegate = self
                     weightPickerView.dataSource = self
+                    setWeightDefaultPickerValue()
                     self.txtValue.inputView = weightPickerView
                     
                     weightPickerView.backgroundColor = UIColor.white
@@ -212,10 +216,20 @@ class TrainingSettingsCell: UITableViewCell, UITextFieldDelegate {
         }
     }
     
+    func setWeightDefaultPickerValue() {
+        let defaultIndex = weightArray.firstIndex(of: defaultWeight) ?? 0
+        weightPickerView.selectRow(defaultIndex, inComponent: 0, animated: true)
+    }
+    
+    func setHeightDefaultPickerValue() {
+        let defaultIndex = heightArray.firstIndex(of: defaultHeight) ?? 0
+        heightPickerView.selectRow(defaultIndex, inComponent: 0, animated: true)
+    }
+    
     //MARK: - TextField Delegates
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        let textFieldText: NSString = (textField.text ?? "") as NSString
-        let txtAfterUpdate = textFieldText.replacingCharacters(in: range, with: string)
+//        let textFieldText: NSString = (textField.text ?? "") as NSString
+//        let txtAfterUpdate = textFieldText.replacingCharacters(in: range, with: string)
 //        self.delegate?.TrainingSettingsTextField(text: txtAfterUpdate, section: self.tag, row: self.txtValue.tag)
         return true
     }
