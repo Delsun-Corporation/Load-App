@@ -38,7 +38,9 @@ extension TrainingSettingsVC:UITableViewDataSource, UITableViewDelegate, Trainin
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "TrainingSettingsCell") as! TrainingSettingsCell
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "TrainingSettingsCell") as? TrainingSettingsCell else {
+            return UITableViewCell()
+        }
         cell.selectionStyle = .none
         cell.tag = indexPath.section
         cell.btnCell.tag = indexPath.row

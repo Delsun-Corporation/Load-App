@@ -8,7 +8,7 @@
 
 import UIKit
 
-protocol TrainingSettingsDelegate: class {
+protocol TrainingSettingsDelegate: AnyObject {
     func TrainingSettingsTextField(text:String, section:Int, row:Int)
     func TrainingSettingsTextFieldDismissed()
     func TrainingSettingsButton(section:Int, row:Int)
@@ -26,7 +26,7 @@ class TrainingSettingsCell: UITableViewCell, UITextFieldDelegate {
     @IBOutlet weak var lblUnit: UILabel!
     
     //MARK:- Variables
-    weak var delegate:TrainingSettingsDelegate?
+    weak var delegate: TrainingSettingsDelegate?
     let arrayPlaceHolder: [String] = ["","cm", "kg", "",""]
     let arrayPlaceHolder2: [String] = ["","","ml/kg/min","",""]
     var heightArray: [String] = []
@@ -39,8 +39,8 @@ class TrainingSettingsCell: UITableViewCell, UITextFieldDelegate {
     let heightPickerView: UIPickerView = UIPickerView()
     let weightPickerView: UIPickerView = UIPickerView()
     var isVO2MaxIsEstimated = true
-    var defaultHeight = "120"
-    var defaultWeight = "35"
+    var defaultHeight = "120.0"
+    var defaultWeight = "35.0"
     
     var firstComponentHeight = "0"
     var secondComponentHeight = "0"
@@ -81,9 +81,9 @@ class TrainingSettingsCell: UITableViewCell, UITextFieldDelegate {
         let doubleValue = Double(text[indexPath.row]) ?? 0.00
         let convertToDecimal = doubleValue.rounded(toPlaces: 1)
         
-        if convertToDecimal == 0.0{
+        if convertToDecimal == 0.0 {
             self.txtValue.text = ""
-        }else{
+        } else {
             self.txtValue.text = "\(convertToDecimal)".replace(target: ".0", withString: "")
         }
         
@@ -122,7 +122,6 @@ class TrainingSettingsCell: UITableViewCell, UITextFieldDelegate {
                 self.btnCell.isHidden = true
                 self.imgArrow.isHidden = true
                 self.txtValue.isHidden = false
-//                self.txtValue.placeholder = self.arrayPlaceHolder[indexPath.row]
                 self.lblUnit.text = self.arrayPlaceHolder[indexPath.row]
                 if indexPath.row == 1 {
                     for index in 0..<2 {
@@ -217,13 +216,41 @@ class TrainingSettingsCell: UITableViewCell, UITextFieldDelegate {
     }
     
     func setWeightDefaultPickerValue() {
-        let defaultIndex = weightArray.firstIndex(of: defaultWeight) ?? 0
-        weightPickerView.selectRow(defaultIndex, inComponent: 0, animated: true)
+        var firstDecimal: String = "35"
+        var secondDecimal: Int = 0
+        let _substring = defaultWeight.components(separatedBy: ".")
+        
+        if _substring.count > 0 {
+            firstDecimal = _substring[0]
+        }
+        
+        if _substring.count > 1 {
+            secondDecimal = Int(_substring[1]) ?? 0
+        }
+        
+        let defaultFirstIndex = weightArray.firstIndex(of: firstDecimal) ?? 0
+        let defaultSecondIndex = arrayDecimal.firstIndex(of: secondDecimal) ?? 0
+        weightPickerView.selectRow(defaultFirstIndex, inComponent: 0, animated: true)
+        weightPickerView.selectRow(defaultSecondIndex, inComponent: 1, animated: true)
     }
     
     func setHeightDefaultPickerValue() {
-        let defaultIndex = heightArray.firstIndex(of: defaultHeight) ?? 0
-        heightPickerView.selectRow(defaultIndex, inComponent: 0, animated: true)
+        var firstDecimal: String = "120"
+        var secondDecimal: Int = 0
+        let _substring = defaultHeight.components(separatedBy: ".")
+        
+        if _substring.count > 0 {
+            firstDecimal = _substring[0]
+        }
+        
+        if _substring.count > 1 {
+            secondDecimal = Int(_substring[1]) ?? 0
+        }
+        
+        let defaultFirstIndex = heightArray.firstIndex(of: firstDecimal) ?? 0
+        let defaultSecondIndex = arrayDecimal.firstIndex(of: secondDecimal) ?? 0
+        heightPickerView.selectRow(defaultFirstIndex, inComponent: 0, animated: true)
+        heightPickerView.selectRow(defaultSecondIndex, inComponent: 1, animated: true)
     }
     
     //MARK: - TextField Delegates

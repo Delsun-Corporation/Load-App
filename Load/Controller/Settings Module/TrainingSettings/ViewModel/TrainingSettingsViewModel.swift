@@ -223,10 +223,6 @@ class TrainingSettingsViewModel: RaceTimeDelegate {
     }
     
     func validateDetails() {
-//        if self.txtHRMax == "" {
-//            makeToast(strMessage: getCommonString(key: "Please_enter_HR_max_key"))
-//        }
-//        else
         if self.txtHeight == "" {
             makeToast(strMessage: getCommonString(key: "Please_enter_height_key"))
         }
