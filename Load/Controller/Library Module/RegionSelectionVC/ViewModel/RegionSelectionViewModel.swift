@@ -26,7 +26,7 @@ class RegionSelectionViewModel {
     var selectedBackArray: [Int] = [Int]()
     var selectedBackSubBodyPartIdArray:[Int] = [Int]()
     var selectedBackNameArray: [String] = [String]()
-    
+    var category: String = ""
     
     var sortedRegionSelectionModel = RegionSelectionModelClass()
     

@@ -102,6 +102,7 @@ class RegionSelectionMainView: UIView, CarbonTabSwipeNavigationDelegate {
         
         obj.mainModelView.delegate = innerVc
         obj.mainModelView.selectedId = innerVc.mainModelView.selectedId
+        obj.mainModelView.category = innerVc.strTitle
         obj.mainModelView.selectedSubBodyPartIdArray = innerVc.mainModelView.selectedSubBodyPartIdArray
         obj.currentIndex = Int(index)
         arr_corbonVC.append(obj)
