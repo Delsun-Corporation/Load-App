@@ -10,6 +10,7 @@ import UIKit
 
 extension RegionSelectionVC: UITableViewDelegate, UITableViewDataSource, RegionSelectionDelegate {
     
+    
     //MARK:- TableView
     func numberOfSections(in tableView: UITableView) -> Int {
         return self.mainModelView.filterArray.count
@@ -51,30 +52,73 @@ extension RegionSelectionVC: UITableViewDelegate, UITableViewDataSource, RegionS
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return (self.mainModelView.filterArray[section].activity?.count)!
+        if self.mainModelView.category == "Power" {
+            return (self.mainModelView.filterArray[section].activity?.count)! + 1
+        }
+        else {
+            return (self.mainModelView.filterArray[section].activity?.count)!
+        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: RegionSelectionCell = self.mainView.tableView.dequeueReusableCell(withIdentifier: "RegionSelectionCell") as! RegionSelectionCell
         cell.selectionStyle = .none
         cell.tag = indexPath.section
-        cell.index = indexPath.row
+        print("This is cell tag \(cell.tag)")
         cell.viewLine.isHidden = !self.mainModelView.isHeaderHide
         cell.delegate = self
-        if self.isMultiple(array: self.mainModelView.filterArray[indexPath.section].activity ?? [], name: (self.mainModelView.filterArray[indexPath.section].activity![indexPath.row].name ?? "")) {
-            cell.lblTitle.text = (self.mainModelView.filterArray[indexPath.section].activity![indexPath.row].name ?? "") + " (" + (self.mainModelView.filterArray[indexPath.section].activity![indexPath.row].type ?? "") + ")"
+        if self.mainModelView.category == "Power" {
+            if indexPath.row == 0 {
+                cell.index = -1
+                cell.lblTitle.text = "Select All"
+                var isSelectAllAlreadySelected = true
+                for region in self.mainModelView.filterArray[indexPath.section].activity! {
+                    let id = region.id?.intValue
+                    if !self.mainModelView.selectedArray.contains((id)!) {
+                        isSelectAllAlreadySelected = false
+                        break
+                    }
+                }
+                cell.showDefaults(isShow: isSelectAllAlreadySelected)
+            }
+            else {
+                cell.index = indexPath.row - 1
+                if self.isMultiple(array: self.mainModelView.filterArray[indexPath.section].activity ?? [], name: (self.mainModelView.filterArray[indexPath.section].activity![indexPath.row - 1].name ?? "")) {
+                    cell.lblTitle.text = (self.mainModelView.filterArray[indexPath.section].activity![indexPath.row - 1].name ?? "") + " (" + (self.mainModelView.filterArray[indexPath.section].activity![indexPath.row - 1].type ?? "") + ")"
+                }
+                else {
+                    cell.lblTitle.text = self.mainModelView.filterArray[indexPath.section].activity![indexPath.row - 1].name
+                }
+                let id = self.mainModelView.filterArray[indexPath.section].activity![indexPath.row - 1].id?.intValue
+                if self.mainModelView.selectedArray.contains((id)!) {
+                    cell.showDefaults(isShow: true)
+                }
+                else {
+                    cell.showDefaults(isShow: false)
+                }
+            }
+            
+            return cell
         }
         else {
-            cell.lblTitle.text = self.mainModelView.filterArray[indexPath.section].activity![indexPath.row].name
+            cell.index = indexPath.row
+            if self.isMultiple(array: self.mainModelView.filterArray[indexPath.section].activity ?? [], name: (self.mainModelView.filterArray[indexPath.section].activity![indexPath.row].name ?? "")) {
+                cell.lblTitle.text = (self.mainModelView.filterArray[indexPath.section].activity![indexPath.row].name ?? "") + " (" + (self.mainModelView.filterArray[indexPath.section].activity![indexPath.row].type ?? "") + ")"
+            }
+            else {
+                cell.lblTitle.text = self.mainModelView.filterArray[indexPath.section].activity![indexPath.row].name
+            }
+            let id = self.mainModelView.filterArray[indexPath.section].activity![indexPath.row].id?.intValue
+            if self.mainModelView.selectedArray.contains((id)!) {
+                cell.showDefaults(isShow: true)
+            }
+            else {
+                cell.showDefaults(isShow: false)
+            }
+            return cell
         }
-        let id = self.mainModelView.filterArray[indexPath.section].activity![indexPath.row].id?.intValue
-        if self.mainModelView.selectedArray.contains((id)!) {
-            cell.showDefaults(isShow: true)
-        }
-        else {
-            cell.showDefaults(isShow: false)
-        }
-        return cell
+        
+        
     }
     
     func isMultiple(array: [Regions], name: String) -> Bool {
@@ -111,6 +155,27 @@ extension RegionSelectionVC: UITableViewDelegate, UITableViewDataSource, RegionS
         
         self.mainModelView.delegate?.RegionSelectionSelectedDidFinish(ids: self.mainModelView.selectedArray, subIds: self.mainModelView.selectedSubBodyPartIdArray, names: self.mainModelView.selectedNameArray, currentIndex: 3)
         
+    }
+    
+    func SelectAll(isSelected: Bool, section: Int) {
+        for data in self.mainModelView.filterArray[section].activity ?? [] {
+            if let id = data.id?.intValue, let name = data.name {
+                if isSelected {
+                    self.mainModelView.selectedArray.append(id)
+                    self.mainModelView.selectedNameArray.append(name)
+                }
+                else {
+                    self.mainModelView.selectedArray.removeAll(where: {
+                        $0 == id
+                    })
+                    self.mainModelView.selectedNameArray.removeAll(where: {
+                        $0 == name
+                    })
+                }
+            }
+        }
+        self.mainView.tableView.reloadData()
+        self.mainModelView.delegate?.RegionSelectionSelectedDidFinish(ids: self.mainModelView.selectedArray, subIds: self.mainModelView.selectedSubBodyPartIdArray, names: self.mainModelView.selectedNameArray, currentIndex: 3)
     }
 }
 

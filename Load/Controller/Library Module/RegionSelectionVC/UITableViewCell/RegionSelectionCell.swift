@@ -10,6 +10,7 @@ import UIKit
 
 protocol RegionSelectionDelegate: class {
     func RegionSelectionDidFinish(section:Int, index:Int)
+    func SelectAll(isSelected: Bool, section: Int)
 }
 
 class RegionSelectionCell: UITableViewCell {
@@ -51,8 +52,13 @@ class RegionSelectionCell: UITableViewCell {
     //MARK:- @IBAction
     @IBAction func btnSelectClicked(_ sender: Any) {
         self.ischecked = !self.ischecked
-        self.imgCheck.isHidden = !self.ischecked
-        self.lblTitle.textColor = self.ischecked ? UIColor.appthemeRedColor : UIColor.appthemeBlackColor
-        self.delegate?.RegionSelectionDidFinish(section: self.tag, index: self.index)
+        if self.index == -1 {
+            self.delegate?.SelectAll(isSelected: self.ischecked, section: self.tag)
+        }
+        else {
+            self.imgCheck.isHidden = !self.ischecked
+            self.lblTitle.textColor = self.ischecked ? UIColor.appthemeRedColor : UIColor.appthemeBlackColor
+            self.delegate?.RegionSelectionDidFinish(section: self.tag, index: self.index)
+        }
     }    
 }

@@ -9,6 +9,9 @@
 import UIKit
 
 extension TypesOfTrainingSelectionVC: UITableViewDelegate, UITableViewDataSource, RegionSelectionDelegate {
+    func SelectAll(isSelected: Bool, section: Int) {
+        
+    }
     
     //MARK:- TableView
     func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
