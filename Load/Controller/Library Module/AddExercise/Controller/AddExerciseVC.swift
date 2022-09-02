@@ -112,8 +112,9 @@ class AddExerciseVC: UIViewController, BackToScreenDelegate, RegionSelectionSele
         
         for data in targetedMusclesArray {
             let isSelected = self.mainModelView.selectedTargetedMusclesId.contains((data.id) as! Int)
-            dataEntry.append(MultiSelectionDataEntry(id: (data.id?.stringValue)!, title: data.name!, isSelected: isSelected))
+            dataEntry.append(MultiSelectionDataEntry(id: (data.id?.stringValue ?? ""), title: data.name ?? "", isSelected: isSelected))
         }
+        
         let obj = AppStoryboard.Library.instance.instantiateViewController(withIdentifier: "MultiSelectionVC") as! MultiSelectionVC
         obj.mainModelView.delegate = self
         obj.mainModelView.data = dataEntry
@@ -122,6 +123,11 @@ class AddExerciseVC: UIViewController, BackToScreenDelegate, RegionSelectionSele
         let nav = UINavigationController(rootViewController: obj)
         nav.modalPresentationStyle = .overFullScreen
         self.navigationController?.present(nav, animated: true, completion: nil)
+    }
+    
+    func updateTargetedMuscles(nameArr: [String], idArr: [Int]) {
+        self.mainView.txtTargetedMuscles.text = nameArr.joined(separator: ", ")
+        self.mainModelView.selectedTargetedMusclesId = idArr
     }
     
     @IBAction func btnActionForceClicked(_ sender: Any) {

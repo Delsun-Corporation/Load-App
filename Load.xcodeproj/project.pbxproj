@@ -1128,6 +1128,11 @@
 		88FA5C6924754B5E0001569A /* ListingViewAllLoadCenterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88FA5C6824754B5E0001569A /* ListingViewAllLoadCenterView.swift */; };
 		88FB7E3F2434AC370078E75F /* ExerciseCardioCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88FB7E3D2434AC2F0078E75F /* ExerciseCardioCell.swift */; };
 		88FB7E402434AC370078E75F /* ExerciseCardioCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88FB7E3E2434AC350078E75F /* ExerciseCardioCell.xib */; };
+		9D0F1CEB28BC4D14006725E2 /* TargetedMusclesListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D0F1CEA28BC4D14006725E2 /* TargetedMusclesListViewModel.swift */; };
+		9D0F1CED28BC4D97006725E2 /* TargetedMusclesListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D0F1CEC28BC4D96006725E2 /* TargetedMusclesListView.swift */; };
+		9D0F1CEF28BC4DA5006725E2 /* TargetedMusclesListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D0F1CEE28BC4DA5006725E2 /* TargetedMusclesListVC.swift */; };
+		9D0F1CF228BC65D9006725E2 /* TargetedMusclesListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D0F1CF128BC65D9006725E2 /* TargetedMusclesListCell.swift */; };
+		9D0F1CF428BC930D006725E2 /* TargetedMusclesListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9D0F1CF328BC930D006725E2 /* TargetedMusclesListCell.xib */; };
 		9DA0A14D28478B06008AA714 /* Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DA0A14C28478B06008AA714 /* Alert.swift */; };
 		A2A24D64B80DB69FBE4DE671 /* Pods_Load.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B6D7BE59BC4797D4E12A051 /* Pods_Load.framework */; };
 		D30AD573265B5642005F4293 /* TrainingProgramConfirmationPageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D30AD56E265B5642005F4293 /* TrainingProgramConfirmationPageViewModel.swift */; };
@@ -2382,6 +2387,11 @@
 		88FB7E3D2434AC2F0078E75F /* ExerciseCardioCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExerciseCardioCell.swift; sourceTree = "<group>"; };
 		88FB7E3E2434AC350078E75F /* ExerciseCardioCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ExerciseCardioCell.xib; sourceTree = "<group>"; };
 		8B6D7BE59BC4797D4E12A051 /* Pods_Load.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Load.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		9D0F1CEA28BC4D14006725E2 /* TargetedMusclesListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TargetedMusclesListViewModel.swift; sourceTree = "<group>"; };
+		9D0F1CEC28BC4D96006725E2 /* TargetedMusclesListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TargetedMusclesListView.swift; sourceTree = "<group>"; };
+		9D0F1CEE28BC4DA5006725E2 /* TargetedMusclesListVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TargetedMusclesListVC.swift; sourceTree = "<group>"; };
+		9D0F1CF128BC65D9006725E2 /* TargetedMusclesListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TargetedMusclesListCell.swift; sourceTree = "<group>"; };
+		9D0F1CF328BC930D006725E2 /* TargetedMusclesListCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TargetedMusclesListCell.xib; sourceTree = "<group>"; };
 		9DA0A14C28478B06008AA714 /* Alert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alert.swift; sourceTree = "<group>"; };
 		A438B1956C13C08A8E08A5D0 /* Pods-Load.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Load.debug.xcconfig"; path = "Target Support Files/Pods-Load/Pods-Load.debug.xcconfig"; sourceTree = "<group>"; };
 		AEF3CE6647F016041B281000 /* Pods-Load-LoadUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Load-LoadUITests.debug.xcconfig"; path = "Target Support Files/Pods-Load-LoadUITests/Pods-Load-LoadUITests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -3871,6 +3881,7 @@
 		1757ED9622A783C200C68174 /* Library Module */ = {
 			isa = PBXGroup;
 			children = (
+				9D0F1CE628BC4C9F006725E2 /* TargetedMusclesListVC */,
 				88BA294125F627FC00012BEF /* LoadVimeoVideoVc */,
 				8860924E244EAF500025E7B4 /* TargetMusclesVc */,
 				88D9899223E424CA000A8785 /* RegionSelectionMainVc */,
@@ -8228,6 +8239,50 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		9D0F1CE628BC4C9F006725E2 /* TargetedMusclesListVC */ = {
+			isa = PBXGroup;
+			children = (
+				9D0F1CF028BC65C4006725E2 /* Cells */,
+				9D0F1CE728BC4CE1006725E2 /* View */,
+				9D0F1CE928BC4CF8006725E2 /* ViewModel */,
+				9D0F1CE828BC4CEE006725E2 /* Controller */,
+			);
+			path = TargetedMusclesListVC;
+			sourceTree = "<group>";
+		};
+		9D0F1CE728BC4CE1006725E2 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				9D0F1CEC28BC4D96006725E2 /* TargetedMusclesListView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		9D0F1CE828BC4CEE006725E2 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				9D0F1CEE28BC4DA5006725E2 /* TargetedMusclesListVC.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		9D0F1CE928BC4CF8006725E2 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				9D0F1CEA28BC4D14006725E2 /* TargetedMusclesListViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		9D0F1CF028BC65C4006725E2 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				9D0F1CF128BC65D9006725E2 /* TargetedMusclesListCell.swift */,
+				9D0F1CF328BC930D006725E2 /* TargetedMusclesListCell.xib */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
 		C6D7DA6641510354480C29A0 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -9014,6 +9069,7 @@
 				17EA1093231E64210090FAD0 /* FilterActivityHeaderView.xib in Resources */,
 				17FA32B4229E9B2E00CCC00C /* Home.storyboard in Resources */,
 				17081B1C22E96536004127CD /* BD.png in Resources */,
+				9D0F1CF428BC930D006725E2 /* TargetedMusclesListCell.xib in Resources */,
 				17081A7122E96534004127CD /* NL.png in Resources */,
 				1777D1A8229D1B7B00F6B2E2 /* SFUIText-Medium.ttf in Resources */,
 				17081A4422E96534004127CD /* CX.png in Resources */,
@@ -9625,6 +9681,7 @@
 				1712AD5722EC1C1F006B2A2A /* NewMessageVC.swift in Sources */,
 				1757EDBF22A7A14D00C68174 /* LibraryExerciseListHeaderView.swift in Sources */,
 				17FDC84623016F1900E3E796 /* CompletedSessionView.swift in Sources */,
+				9D0F1CEF28BC4DA5006725E2 /* TargetedMusclesListVC.swift in Sources */,
 				17B2BA91230A5DB10034D6F7 /* CreateEventStepFiveViewModel.swift in Sources */,
 				8829F66B25D6953E00B7D7D6 /* ResistanceConfirmationPageVc.swift in Sources */,
 				175CE1AB2339ECE1005335F7 /* CreateResistanceTrainingProgramVC-TableView+Extension.swift in Sources */,
@@ -9647,6 +9704,7 @@
 				17D1134D22C9EFC7004600B4 /* OtherUserProfileDetailsView.swift in Sources */,
 				17F425AE22DD89B800F79BC4 /* UserReviewVC.swift in Sources */,
 				D33A90812684A1BC0019A820 /* OtherUserProfileUpperViewModel.swift in Sources */,
+				9D0F1CEB28BC4D14006725E2 /* TargetedMusclesListViewModel.swift in Sources */,
 				178F6A1D229FDBCA00F0BD0B /* CalendarModelClass.swift in Sources */,
 				D33A907C2684A1A70019A820 /* OtherUserProfileUpperView.swift in Sources */,
 				17F02EE622A627D700252B14 /* CreateTrainingLogView.swift in Sources */,
@@ -9683,6 +9741,7 @@
 				179CC80222EEAB2B005197D6 /* NewMessageSelectVC-TableView+Extension.swift in Sources */,
 				17F9BAC022A53E15000D8221 /* CreateTrainingView.swift in Sources */,
 				1771E2D9232F9CFB004C8954 /* CreateCardioTrainingProgramDayCell.swift in Sources */,
+				9D0F1CF228BC65D9006725E2 /* TargetedMusclesListCell.swift in Sources */,
 				1777D18C229D0FDD00F6B2E2 /* LoginVC.swift in Sources */,
 				D39DDC86268B1B3600BE20CE /* PremiumUserProfileUpperViewModel.swift in Sources */,
 				889385D723EBF3E20041F6E0 /* FeedCommentVc+PickerView.swift in Sources */,
@@ -9793,6 +9852,7 @@
 				176B787E22B0DC3A005B5B25 /* AddExerciseView.swift in Sources */,
 				17703A3323A1F9440099B95D /* TrainingListProgramCell.swift in Sources */,
 				882D72F1229261A00016115E /* CalendarTrainingLogResistanceSummaryViewModel.swift in Sources */,
+				9D0F1CED28BC4D97006725E2 /* TargetedMusclesListView.swift in Sources */,
 				1779459523ADE8CE000154C9 /* CountDownView.swift in Sources */,
 				1772226922E2D0AA00AC53A8 /* CoachNeededCollectionViewCell.swift in Sources */,
 				17F507C1230FA258009AA763 /* CheckAvailibityVC.swift in Sources */,

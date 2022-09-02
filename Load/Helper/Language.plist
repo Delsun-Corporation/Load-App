@@ -48,6 +48,8 @@
 	<string>This week</string>
 	<key>Targeted_Muscles_key</key>
 	<string>Targeted Muscles</string>
+	<key>Select_Targeted_Muscles_key</key>
+	<string>Select Targeted Muscles</string>
 	<key>Select_sex_key</key>
 	<string>Please select sex.</string>
 	<key>Please_select_date_key</key>
