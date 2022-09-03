@@ -9,7 +9,7 @@
 import UIKit
 import SwiftyJSON
 import Alamofire
-
+import FirebaseAnalytics
 
 class LibraryExercisePreviewDetailsViewModel {
    
@@ -67,10 +67,13 @@ class LibraryExercisePreviewDetailsViewModel {
         print("primaryIds:\(primaryIds)")
         print("secondaryIds:\(secondaryIds)")
         
-        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.1) {
-            self.showImages(primaryIds: primaryIds.compactMap({ $0 }), secondaryIds: secondaryIds.compactMap({ $0 }))
-        }
-        
+        self.theController.mainView.imgMainFront.sd_setImage(with: GetAllData?.data?.defaultBodyPartImageUrlFront?.toURL(), completed: { (_,_,_,_) in
+            
+            self.theController.mainView.imgMainBack.sd_setImage(with: GetAllData?.data?.defaultBodyPartImageUrlBack?.toURL(), completed: { (_,_,_,_) in
+                
+                self.showImages(primaryIds: primaryIds.compactMap({ $0 }), secondaryIds: secondaryIds.compactMap({ $0 }))
+            })
+        })
     }
     
     func showDetailsFavoritelist() {
@@ -107,7 +110,13 @@ class LibraryExercisePreviewDetailsViewModel {
                 imageView.contentMode = .scaleAspectFit
                 imageView.frame = CGRect(x: 0, y: 0, width: (view?.viewImage.bounds.width ?? 0), height: (view?.viewImage.bounds.height ?? 0))
                 view?.viewImage.addSubview(imageView)
-                imageView.sd_setImage(with: images.image?.toURL(), completed: nil)}
+                imageView.sd_setImage(with: images.image?.toURL(), completed: { (_,error,_,_) in
+                    if let error = error as? NSError {
+                        print("⚠️", error.localizedDescription)
+                        Analytics.logEvent("library_images_error", parameters: ["message": error.localizedDescription])
+                    }
+                })
+            }
         }
         
         let filter2 = GetAllData?.data?.regions?.filter({ (model) -> Bool in

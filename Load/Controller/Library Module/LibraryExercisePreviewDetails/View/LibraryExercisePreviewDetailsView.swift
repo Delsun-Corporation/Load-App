@@ -54,8 +54,6 @@ class LibraryExercisePreviewDetailsView: UIView {
     //MARK:- Functions
     func setupUI(theController: LibraryExercisePreviewDetailsVC) {
         self.setupFont()
-        self.imgMainFront.sd_setImage(with: GetAllData?.data?.defaultBodyPartImageUrlFront?.toURL(), completed: nil)
-        self.imgMainBack.sd_setImage(with: GetAllData?.data?.defaultBodyPartImageUrlBack?.toURL(), completed: nil)
         
         self.lblPrimaryMusculer.text = getCommonString(key: "Primary_Muscle_key")
         self.lblSecondaryMuscule.text = getCommonString(key: "Secondary_Muscle_key")
