@@ -52,10 +52,6 @@ class TrainingSettingsViewModel: RaceTimeDelegate {
     }
     
     func setupUI() {
-        /*
-        self.textArray[1][0] = (getUserDetail().data?.user?.dateOfBirth ?? "") == "" ? "" : self.getHRMax(date: getUserDetail().data?.user?.dateOfBirth ?? "")
-        self.txtHRMax = self.textArray[1][0]
-        */
         self.textArray[0][1] = getUserDetail()?.data?.user?.height?.stringValue ?? ""
         self.txtHeight = self.textArray[0][1]
         
@@ -78,10 +74,6 @@ class TrainingSettingsViewModel: RaceTimeDelegate {
                     let data = json.getDictionary(key: .data)
                     self.trainingResponse = SettingProgramModelClass(JSON: data.dictionaryObject!)
                     self.txtTypesId = self.trainingResponse?.trainingUnitIds ?? "0"
-//                    self.textArray[0][0] = self.trainingResponse?.hrMax?.stringValue ?? ""
-                    /*
-                    self.textArray[1][0] = (getUserDetail().data?.user?.dateOfBirth ?? "") == "" ? "" : self.getHRMax(date: getUserDetail().data?.user?.dateOfBirth ?? "")
-                     */
                     self.textArray[0][1] = self.trainingResponse?.height?.stringValue ?? ""
                     self.textArray[0][2] = self.trainingResponse?.weight?.stringValue ?? ""
                     self.textArray[1][2] = self.trainingResponse?.VO2Max?.stringValue ?? ""
@@ -90,9 +82,6 @@ class TrainingSettingsViewModel: RaceTimeDelegate {
                     self.txtHRRest = self.trainingResponse?.hrRest?.stringValue ?? ""
                     self.isHrMaxIsEstimated = self.trainingResponse?.isHrMaxIsEstimated ?? true
                     
-//                    let txtHRMax = self.trainingResponse?.hrMax?.doubleValue ?? 0
-//                    self.txtHRMax = txtHRMax == 0 ? self.textArray[0][0] : "\(txtHRMax.rounded(toPlaces: 0))".replace(target: ".0", withString: "")
-//                    self.textArray[0][0] = self.txtHRMax
                     self.txtHeight = self.trainingResponse?.height?.stringValue ?? ""
                     self.txtWeight = self.trainingResponse?.weight?.stringValue ?? ""
                     self.raceDistanceId = self.trainingResponse?.raceDistanceId?.stringValue ?? ""
@@ -175,11 +164,6 @@ class TrainingSettingsViewModel: RaceTimeDelegate {
                 if success {
                     let data = json.getDictionary(key: .data)
                     self.trainingResponse = SettingProgramModelClass(JSON: data.dictionaryObject!)
-//                    self.textArray[0][0] = self.trainingResponse?.hrMax?.stringValue ?? ""
-                   
-                    /*
-                    self.textArray[1][0] = (getUserDetail().data?.user?.dateOfBirth ?? "") == "" ? "" : self.getHRMax(date: getUserDetail().data?.user?.dateOfBirth ?? "")
-                    */
                     
                     self.textArray[0][1] = self.trainingResponse?.height?.stringValue ?? ""
                     self.textArray[0][2] = self.trainingResponse?.weight?.stringValue ?? ""
@@ -189,11 +173,6 @@ class TrainingSettingsViewModel: RaceTimeDelegate {
                     self.txtHRRest = self.trainingResponse?.hrRest?.stringValue ?? ""
 
                     self.isHrMaxIsEstimated = self.trainingResponse?.isHrMaxIsEstimated ?? true
-                    
-//                    self.txtHRMax = txtHRMax == 0 ? self.textArray[0][0] : "\(txtHRMax.rounded(toPlaces: 0))".replace(target: ".0", withString: "")
-//                    self.textArray[0][0] = self.txtHRMax
-
-//                    self.txtHRMax = self.textArray[0][0]//self.trainingResponse?.hrMax?.stringValue ?? ""
                     self.txtHeight = self.trainingResponse?.height?.stringValue ?? ""
                     self.txtWeight = self.trainingResponse?.weight?.stringValue ?? ""
                     self.raceDistanceId = self.trainingResponse?.raceDistanceId?.stringValue ?? ""

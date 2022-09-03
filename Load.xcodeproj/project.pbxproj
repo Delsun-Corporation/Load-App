@@ -1209,6 +1209,7 @@
 		D3B098C8268ED0D3004F2BCC /* EventPremiumCollectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D3B098C6268ED0D3004F2BCC /* EventPremiumCollectionCell.xib */; };
 		D3B098D2268EF03D004F2BCC /* ChartPremiumUserProfileDetailsVc.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3B098D0268EF03C004F2BCC /* ChartPremiumUserProfileDetailsVc.swift */; };
 		D3B098D3268EF03D004F2BCC /* ChartPremiumUserProfileDetailsVc.xib in Resources */ = {isa = PBXBuildFile; fileRef = D3B098D1268EF03C004F2BCC /* ChartPremiumUserProfileDetailsVc.xib */; };
+		FF2DCDEA28C3419C0011F5CA /* TrainingSettingsCellViewData.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF2DCDE928C3419C0011F5CA /* TrainingSettingsCellViewData.swift */; };
 		FF33206628153BF7007734BA /* MSSegment.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF33206528153BF6007734BA /* MSSegment.swift */; };
 		FF33206828153C34007734BA /* MXContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF33206728153C34007734BA /* MXContentView.swift */; };
 		FF33206A28153C7B007734BA /* MXScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF33206928153C7B007734BA /* MXScrollView.swift */; };
@@ -2462,6 +2463,7 @@
 		D3B098D0268EF03C004F2BCC /* ChartPremiumUserProfileDetailsVc.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartPremiumUserProfileDetailsVc.swift; sourceTree = "<group>"; };
 		D3B098D1268EF03C004F2BCC /* ChartPremiumUserProfileDetailsVc.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChartPremiumUserProfileDetailsVc.xib; sourceTree = "<group>"; };
 		FAD7576D5564869F4B46C789 /* Pods_LoadTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LoadTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		FF2DCDE928C3419C0011F5CA /* TrainingSettingsCellViewData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainingSettingsCellViewData.swift; sourceTree = "<group>"; };
 		FF33206528153BF6007734BA /* MSSegment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MSSegment.swift; sourceTree = "<group>"; };
 		FF33206728153C34007734BA /* MXContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MXContentView.swift; sourceTree = "<group>"; };
 		FF33206928153C7B007734BA /* MXScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MXScrollView.swift; sourceTree = "<group>"; };
@@ -3371,6 +3373,7 @@
 			isa = PBXGroup;
 			children = (
 				1721B7A3231918AB00BA3968 /* TrainingSettingsViewModel.swift */,
+				FF2DCDE928C3419C0011F5CA /* TrainingSettingsCellViewData.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -9711,6 +9714,7 @@
 				173DDCC522E5775200FC94B6 /* SettingsVC.swift in Sources */,
 				17E5363B22B262820058A7A4 /* LibraryExercisePreviewProgressionsView.swift in Sources */,
 				179507F92344AD8B000590FF /* TrainingPreviewViewModel.swift in Sources */,
+				FF2DCDEA28C3419C0011F5CA /* TrainingSettingsCellViewData.swift in Sources */,
 				1766CD9922C233A400AF5201 /* CreateEventStepOneVC.swift in Sources */,
 				882B627924C2D254005F4113 /* PhysicalActivityLevelVc.swift in Sources */,
 				1712AD5B22EC1E61006B2A2A /* NewMessageViewModel.swift in Sources */,

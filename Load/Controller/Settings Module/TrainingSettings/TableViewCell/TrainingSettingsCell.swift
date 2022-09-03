@@ -62,13 +62,33 @@ class TrainingSettingsCell: UITableViewCell, UITextFieldDelegate {
         // Initialization code
     }
     
+    func setupCell(viewData: TrainingSettingsCellViewData) {
+        selectionStyle = .none
+        if viewData.weight != "" {
+            defaultWeight = viewData.weight
+        }
+        if viewData.height != "" {
+            defaultHeight = viewData.height
+        }
+        tag = viewData.cellTag
+        btnCell.tag = viewData.btnCellTag
+        delegate = viewData.delegate
+        txtValue.tag = viewData.txtValueTag
+        isVO2MaxIsEstimated = viewData.isVO2Estimated
+        hrMax = viewData.hrMax
+        hrRest = viewData.hrRest
+        setupUI(indexPath: viewData.indexPath,
+                title: viewData.model,
+                text: viewData.text)
+    }
+    
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
         
         // Configure the view for the selected state
     }
     
-    func setupUI(indexPath: IndexPath, title: [String], text:[String]) {
+    private func setupUI(indexPath: IndexPath, title: [String], text:[String]) {
         self.setupFont()
         self.txtValue.delegate = self
         if title.count == 0 || indexPath.row == (title.count - 1) {
@@ -271,12 +291,13 @@ class TrainingSettingsCell: UITableViewCell, UITextFieldDelegate {
         if textFieldText != ""{
             print("TextFieldText Inner:\(textFieldText)")
             self.delegate?.TrainingSettingsTextField(text: textFieldText, section: self.tag, row: self.txtValue.tag)
+            self.delegate?.TrainingSettingsTextFieldDismissed()
         }
         
         //set for show pickerView
-        if self.tag == 1 && textField.tag == 2{
+        if self.tag == 1 && textField.tag == 2 {
             self.txtValue.inputView = self.VO2PickerView
-        }else if self.tag == 0 && textField.tag == 3{
+        } else if self.tag == 0 && textField.tag == 3 {
             self.delegate?.TrainingSettingsTextFieldDismissed()
         }
 
