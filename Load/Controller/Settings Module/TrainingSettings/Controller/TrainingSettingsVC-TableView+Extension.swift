@@ -38,19 +38,22 @@ extension TrainingSettingsVC:UITableViewDataSource, UITableViewDelegate, Trainin
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "TrainingSettingsCell") as! TrainingSettingsCell
-        cell.selectionStyle = .none
-        cell.tag = indexPath.section
-        cell.btnCell.tag = indexPath.row
-        cell.delegate = self
-        cell.defaultWeight = mainModelView.txtWeight
-        cell.defaultHeight = mainModelView.txtHeight
-        cell.txtValue.tag = indexPath.row
-        cell.isVO2MaxIsEstimated = self.mainModelView.trainingResponse?.isVO2MaxIsEstimated ?? true
-        cell.hrMax = (self.mainModelView.trainingResponse?.hrMax?.stringValue ?? "").toFloat()
-        cell.hrRest = (self.mainModelView.trainingResponse?.hrRest?.stringValue ?? "").toFloat()
-        let model = self.mainModelView.titleArray[indexPath.section]
-        cell.setupUI(indexPath: indexPath, title: model, text: self.mainModelView.textArray[indexPath.section])
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "TrainingSettingsCell") as? TrainingSettingsCell else {
+            return UITableViewCell()
+        }
+        let cellViewData = TrainingSettingsCellViewData(cellTag: indexPath.section,
+                                                        btnCellTag: indexPath.row,
+                                                        txtValueTag: indexPath.row,
+                                                        delegate: self,
+                                                        height: mainModelView.txtHeight,
+                                                        weight: mainModelView.txtWeight,
+                                                        isVO2Estimated: self.mainModelView.trainingResponse?.isVO2MaxIsEstimated ?? true,
+                                                        hrMax: (self.mainModelView.trainingResponse?.hrMax?.stringValue ?? "").toFloat(),
+                                                        hrRest: (self.mainModelView.trainingResponse?.hrRest?.stringValue ?? "").toFloat(),
+                                                        model: self.mainModelView.titleArray[indexPath.section],
+                                                        indexPath: indexPath,
+                                                        text: self.mainModelView.textArray[indexPath.section])
+        cell.setupCell(viewData: cellViewData)
         return cell
     }
     
@@ -69,14 +72,15 @@ extension TrainingSettingsVC:UITableViewDataSource, UITableViewDelegate, Trainin
                 self.mainModelView.txtWeight = text
                 self.mainModelView.textArray[0][2] = text
             }
-            //            self.mainView.tableView.reloadRows(at: [IndexPath(row: 2, section: 1)], with: .none)
+            
+//            self.mainView.tableView.reloadRows(at: [IndexPath(row: 2, section: 1)], with: .none)
         }
         else if section == 1 {
             self.mainModelView.textArray[1][2] = text
             
-            if self.mainModelView.isVO2MaxIsEstimated == true{
+            if self.mainModelView.isVO2MaxIsEstimated == true {
                 
-            }else{
+            } else {
                 self.mainModelView.vo2MaxCustomeValue = text
             }
             
