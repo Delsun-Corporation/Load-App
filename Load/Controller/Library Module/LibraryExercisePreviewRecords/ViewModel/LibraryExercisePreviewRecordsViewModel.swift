@@ -37,7 +37,20 @@ class LibraryExercisePreviewRecordsViewModel {
             if newApiConfig {
                 view?.lblRM.text = "\(list?.selectedRM ?? 1) RM"
                 self.selectedRM = list?.selectedRM ?? 1
-                view?.txtKG.text = self.list?.repetitionMax?[self.selectedRM - 1].estWeight?.replace(target: ".0", withString: "") ?? "0"
+                if let repMax = self.list?.repetitionMax {
+                    if repMax.isEmpty {
+                        self.list?.repetitionMax = self.getCommanRM()
+                        view?.txtKG.text = "0"
+                    }
+                    else {
+                        view?.txtKG.text = repMax[self.selectedRM - 1].estWeight?.replace(target: ".0", withString: "") ?? "0"
+                    }
+                }
+                else {
+                    self.list?.repetitionMax = self.getCommanRM()
+                    view?.tableView.reloadData()
+                    self.apiCallCustomCommonLibraryDetails(id: "\(self.list?.id ?? 0)")
+                }
                 
                 if view?.lblRM.text == "10 RM"{
                     self.pickerView.selectRow(1, inComponent: 0, animated: false)
