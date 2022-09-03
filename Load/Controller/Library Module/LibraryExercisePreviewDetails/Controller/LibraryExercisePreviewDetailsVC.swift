@@ -36,10 +36,19 @@ class LibraryExercisePreviewDetailsVC: UIViewController {
     
     @IBAction func btnTargetMuscleTapped(_ sender: UIButton) {
         
-        let vc = AppStoryboard.Library.instance.instantiateViewController(withIdentifier: "TargetMusclesVc") as! TargetMusclesVc
-        vc.isCheckController = .onlyShow
-        vc.selectedTargetValue = mainView.lblTargetedMuscles.text ?? ""
-        self.navigationController?.pushViewController(vc, animated: true)
+        guard let targetedMuscleIds: [Int] = mainModelView.list?.targetedMusclesIds?.compactMap({ Int($0) }) else { return }
+        
+        let obj = AppStoryboard.Library.instance.instantiateViewController(withIdentifier: "TargetedMusclesListVC") as! TargetedMusclesListVC
+        obj.mainModelView.selectedTargetedMusclesId = targetedMuscleIds
+        obj.mainModelView.title = getCommonString(key: "Targeted_Muscles_key")
+        obj.mainModelView.isEditable = false
+        obj.hidesBottomBarWhenPushed = true
+        self.navigationController?.pushViewController(obj, animated: true)
+        
+//        let vc = AppStoryboard.Library.instance.instantiateViewController(withIdentifier: "TargetMusclesVc") as! TargetMusclesVc
+//        vc.isCheckController = .onlyShow
+//        vc.selectedTargetValue = mainView.lblTargetedMuscles.text ?? ""
+//        self.navigationController?.pushViewController(vc, animated: true)
     }
     
     @IBAction func btnLinkTapped(_ sender: UIButton) {
