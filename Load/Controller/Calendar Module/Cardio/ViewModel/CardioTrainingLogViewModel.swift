@@ -317,7 +317,7 @@ class CardioTrainingLogViewModel: DismissPreviewDelegate {
             return logModel.trainingActivityIds?.contains(self.activityId) ?? false
         })
         
-        var filter = findDataAccordingActivityID?.filter({ (model) -> Bool in
+        let filter = findDataAccordingActivityID?.filter({ (model) -> Bool in
             return model.trainingIntensityIds?.contains(self.intensityId) ?? false
         })
         
@@ -370,8 +370,6 @@ class CardioTrainingLogViewModel: DismissPreviewDelegate {
                 if model.laps == "" {
                     isAllFieled = false
                 }
-                
-                print("Activity Name : \(view?.txtActivity.text?.trimmingCharacters(in: .whitespacesAndNewlines).lowercased())")
                 /*
                 if view?.txtActivity.text?.trimmingCharacters(in: .whitespacesAndNewlines).lowercased() !=  "Run (Indoor)".lowercased() && view?.txtActivity.text?.trimmingCharacters(in: .whitespacesAndNewlines).lowercased() != "Run (Outdoor)".lowercased(){
                     
@@ -388,7 +386,6 @@ class CardioTrainingLogViewModel: DismissPreviewDelegate {
                 let trainingGoalValue = view?.txtTrainingGoal.text?.toTrim().lowercased()
                 
                 let speedIntervals = "Speed Intervals".lowercased()
-                let lacateToleranceContinuous = "Lactate Tolerance (Continuous)".lowercased()
                 let lacateToleranceIntervals = "Lactate Tolerance (Intervals)".lowercased()
                 let aerobicIntervals = "Aerobic Intervals".lowercased()
                 let aerobicCapacity = "Aerobic Capacity".lowercased()
@@ -703,7 +700,6 @@ class CardioTrainingLogViewModel: DismissPreviewDelegate {
                     let trainingGoalValue = view?.txtTrainingGoal.text?.toTrim().lowercased()
                     
                     let speedIntervals = "Speed Intervals".lowercased()
-                    let lacateToleranceContinuous = "Lactate Tolerance (Continuous)".lowercased()
                     let lacateToleranceIntervals = "Lactate Tolerance (Intervals)".lowercased()
                     let aerobicIntervals = "Aerobic Intervals".lowercased()
                     let aerobicCapacity = "Aerobic Capacity".lowercased()
@@ -956,12 +952,9 @@ class CardioTrainingLogViewModel: DismissPreviewDelegate {
         ApiManager.shared.MakePostAPI(name: CREATE_TRAINING_LOG, params: param as [String : Any], vc: self.theController, isAuth:false) { (response, error) in
             if response != nil {
                 let json = JSON(response!)
-                print(json)
                 let success = json.getBool(key: .success)
                 if success {
                     let data = json.getDictionary(key: .data)
-                    print(data)
-                    let model = TrainingLogModelClass(JSON: data.dictionaryObject!)
                     if isSavedWorkout {
                         self.trainingId = "\(json.getDictionary(key: .data).getInt(key: .id))"
                         makeToast(strMessage: json.getString(key: .message))

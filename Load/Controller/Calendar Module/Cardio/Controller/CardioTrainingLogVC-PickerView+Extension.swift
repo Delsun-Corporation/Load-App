@@ -116,7 +116,7 @@ extension CardioTrainingLogVC: UIPickerViewDataSource, UIPickerViewDelegate {
             self.mainView.txtActivity.text = activity?.name?.capitalized ?? ""
             self.mainModelView.activityId = activity?.id?.stringValue ?? ""
             
-            print("txtActivity Name : \(self.mainView.txtActivity.text)")
+            print("txtActivity Name : \(self.mainView.txtActivity.text ?? "")")
             print("DidSelect Name : \(activity?.name?.capitalized ?? "")")
             
             self.mainView.txtIntensity.text = ""
@@ -173,6 +173,9 @@ extension CardioTrainingLogVC: UIPickerViewDataSource, UIPickerViewDelegate {
             self.mainModelView.targatHRPickerView.selectRow(0, inComponent: 0, animated: false)
         }
         else if pickerView == self.mainModelView.trainingGoalPickerView {
+            guard let cardio = GetAllData?.data?.trainingGoalLogCardio, cardio.isEmpty else {
+                return
+            }
             
             for i in 0..<self.mainModelView.exercisesArray.count{
                 self.mainModelView.exercisesArray[i].laps = ""
@@ -251,7 +254,7 @@ extension CardioTrainingLogVC: UIPickerViewDataSource, UIPickerViewDelegate {
         else if pickerView == self.mainModelView.stylePickerView{
            
             let style = GetAllData?.data?.trainingLogStyle![row]
-            self.mainModelView.selectedSwimmingStyle = String(Int(style?.id ?? 0))
+            self.mainModelView.selectedSwimmingStyle = String(Int(truncating: style?.id ?? 0))
             self.mainView.txtStyle.text = style?.name
             
         }
@@ -269,9 +272,7 @@ extension CardioTrainingLogVC: UIPickerViewDataSource, UIPickerViewDelegate {
             return false
         }) ?? false{
             
-//            print("Name  : \(selectedTrainingGoal?.name)")
-            print("ID : \(selectedTrainingGoal?.id)")
-            self.mainModelView.trainingGoalId = String(Int(selectedTrainingGoal?.id ?? NSNumber()))
+            self.mainModelView.trainingGoalId = String(Int(truncating: selectedTrainingGoal?.id ?? NSNumber()))
             self.mainModelView.getValidationFromId()
         }else{
             print("Not Found")
