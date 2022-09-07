@@ -67,13 +67,18 @@ class LibraryExercisePreviewDetailsViewModel {
         print("primaryIds:\(primaryIds)")
         print("secondaryIds:\(secondaryIds)")
         
-        self.theController.mainView.imgMainFront.sd_setImage(with: GetAllData?.data?.defaultBodyPartImageUrlFront?.toURL(), completed: { (_,_,_,_) in
-            
-            self.theController.mainView.imgMainBack.sd_setImage(with: GetAllData?.data?.defaultBodyPartImageUrlBack?.toURL(), completed: { (_,_,_,_) in
-                
-                self.showImages(primaryIds: primaryIds.compactMap({ $0 }), secondaryIds: secondaryIds.compactMap({ $0 }))
-            })
-        })
+        self.theController.mainView.imgMainFront.image = UIImage(named: "anatomy_front")
+        self.theController.mainView.imgMainBack.image = UIImage(named: "anatomy_back")
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+            self.showImages(primaryIds: primaryIds.compactMap({ $0 }), secondaryIds: secondaryIds.compactMap({ $0 }))
+        }
+//        self.theController.mainView.imgMainFront.sd_setImage(with: GetAllData?.data?.defaultBodyPartImageUrlFront?.toURL(), completed: { (_,_,_,_) in
+//
+//            self.theController.mainView.imgMainBack.sd_setImage(with: GetAllData?.data?.defaultBodyPartImageUrlBack?.toURL(), completed: { (_,_,_,_) in
+//
+//                self.showImages(primaryIds: primaryIds.compactMap({ $0 }), secondaryIds: secondaryIds.compactMap({ $0 }))
+//            })
+//        })
     }
     
     func showDetailsFavoritelist() {
