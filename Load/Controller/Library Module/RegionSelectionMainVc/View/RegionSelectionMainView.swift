@@ -27,8 +27,10 @@ class RegionSelectionMainView: UIView, CarbonTabSwipeNavigationDelegate {
     
     func setupUI(){
         
-        self.imgMainFront.sd_setImage(with: GetAllData?.data?.defaultBodyPartImageUrlFront?.toURL(), completed: nil)
-        self.imgMainBack.sd_setImage(with: GetAllData?.data?.defaultBodyPartImageUrlBack?.toURL(), completed: nil)
+//        self.imgMainFront.sd_setImage(with: GetAllData?.data?.defaultBodyPartImageUrlFront?.toURL(), completed: nil)
+//        self.imgMainBack.sd_setImage(with: GetAllData?.data?.defaultBodyPartImageUrlBack?.toURL(), completed: nil)
+        self.imgMainFront.image = UIImage(named: "anatomy_front")
+        self.imgMainBack.image = UIImage(named: "anatomy_back")
         
         self.lblPrimaryMusculer.text = getCommonString(key: "Primary_Muscle_key")
         self.lblSecondaryMuscule.text = getCommonString(key: "Secondary_Muscle_key")
