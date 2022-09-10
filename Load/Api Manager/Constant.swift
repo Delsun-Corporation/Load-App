@@ -1018,7 +1018,7 @@ extension String {
     func toFloat() -> CGFloat {
         
         if let n = NumberFormatter().number(from:self) {
-            return CGFloat(n)
+            return CGFloat(truncating: n)
         }
         return 0.0
     }

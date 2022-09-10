@@ -150,8 +150,6 @@ class CardioTrainingLogViewModel: DismissPreviewDelegate {
 //        else {
 //            self.isGoalCustom = true
 //        }
-        
-        print("TrainingId : \(self.previewData?.trainingGoalId?.stringValue)")
 
         if self.previewData?.trainingGoalId?.stringValue == "" || self.previewData?.trainingGoalId?.stringValue == nil || self.previewData?.trainingGoalId?.stringValue == "0"{
             
@@ -312,17 +310,14 @@ class CardioTrainingLogViewModel: DismissPreviewDelegate {
     }
     
     func getTrainingGoal() -> [TrainingGoalLogCardio] {
-        
         let findDataAccordingActivityID = GetAllData?.data?.trainingGoalLogCardio?.filter({ (logModel) -> Bool in
             return logModel.trainingActivityIds?.contains(self.activityId) ?? false
         })
         
-        var filter = findDataAccordingActivityID?.filter({ (model) -> Bool in
+        let filter = findDataAccordingActivityID?.filter({ (model) -> Bool in
             return model.trainingIntensityIds?.contains(self.intensityId) ?? false
         })
         
-//        let json = JSON([ "target_hr" : "0", "is_active" : true, "training_intensity_ids" : [], "code" : "CUSTOMIZE", "updated_at" : "2019-09-28 01:16:45", "display_at" : [ "LOG_CARDIO", "LOG_RESISTANCE", "PROGRAM_CARDIO", "PROGRAM_RESISTANCE" ], "id" : 0, "created_at" : "2019-05-29 13:00:00", "sequence" : 0, "name" : "Customize"])
-//        filter?.append(TrainingGoalLogCardio(JSON: json.dictionaryObject!)!)
         return filter ?? []
     }
     
@@ -370,8 +365,6 @@ class CardioTrainingLogViewModel: DismissPreviewDelegate {
                 if model.laps == "" {
                     isAllFieled = false
                 }
-                
-                print("Activity Name : \(view?.txtActivity.text?.trimmingCharacters(in: .whitespacesAndNewlines).lowercased())")
                 /*
                 if view?.txtActivity.text?.trimmingCharacters(in: .whitespacesAndNewlines).lowercased() !=  "Run (Indoor)".lowercased() && view?.txtActivity.text?.trimmingCharacters(in: .whitespacesAndNewlines).lowercased() != "Run (Outdoor)".lowercased(){
                     
@@ -388,7 +381,6 @@ class CardioTrainingLogViewModel: DismissPreviewDelegate {
                 let trainingGoalValue = view?.txtTrainingGoal.text?.toTrim().lowercased()
                 
                 let speedIntervals = "Speed Intervals".lowercased()
-                let lacateToleranceContinuous = "Lactate Tolerance (Continuous)".lowercased()
                 let lacateToleranceIntervals = "Lactate Tolerance (Intervals)".lowercased()
                 let aerobicIntervals = "Aerobic Intervals".lowercased()
                 let aerobicCapacity = "Aerobic Capacity".lowercased()
@@ -640,8 +632,6 @@ class CardioTrainingLogViewModel: DismissPreviewDelegate {
             return model.trainingActivityId == Int(self.activityId) && model.trainingGoalId == Int(self.trainingGoalId)
         }
         self.selectedCardioLogValidation = filter.first
-        
-        print("selcedCartdioLogValudation : \(self.selectedCardioLogValidation)")
     }
     
     
@@ -685,7 +675,6 @@ class CardioTrainingLogViewModel: DismissPreviewDelegate {
                         isAllFieled = false
                     }
                     
-                    print("Activity Name : \(view?.txtActivity.text?.trimmingCharacters(in: .whitespacesAndNewlines).lowercased())")
                     /*
                     if view?.txtActivity.text?.trimmingCharacters(in: .whitespacesAndNewlines).lowercased() !=  "Run (Indoor)".lowercased() && view?.txtActivity.text?.trimmingCharacters(in: .whitespacesAndNewlines).lowercased() != "Run (Outdoor)".lowercased(){
                         
@@ -703,7 +692,6 @@ class CardioTrainingLogViewModel: DismissPreviewDelegate {
                     let trainingGoalValue = view?.txtTrainingGoal.text?.toTrim().lowercased()
                     
                     let speedIntervals = "Speed Intervals".lowercased()
-                    let lacateToleranceContinuous = "Lactate Tolerance (Continuous)".lowercased()
                     let lacateToleranceIntervals = "Lactate Tolerance (Intervals)".lowercased()
                     let aerobicIntervals = "Aerobic Intervals".lowercased()
                     let aerobicCapacity = "Aerobic Capacity".lowercased()
@@ -894,28 +882,6 @@ class CardioTrainingLogViewModel: DismissPreviewDelegate {
             
               print("Exercise array : \(exerciseArray)")
             
-            //MARK: - Anil data set
-            /*
-            for model in self.exercisesArray {
-                if self.activityId == "1" {
-                    let dict: NSDictionary = ["laps": model.laps!, "speed": model.speed!, "pace": model.pace!, "percentage": model.percentage!, "duration": model.duration!, "distance": model.distance!, "rest": model.rest!, "is_completed": false]
-                    exerciseArray.add(dict)
-                }
-                else if self.activityId == "2" || self.activityId == "13" {
-                    let dict: NSDictionary = ["laps": model.laps!, "speed": model.speed!, "pace": model.pace!, "rpm": model.percentage!, "duration": model.duration!, "distance": model.distance!, "rest": model.rest!, "is_completed": false]
-                    exerciseArray.add(dict)
-                }
-                else if self.activityId == "3" {
-                    let dict: NSDictionary = ["laps": model.laps!, "speed": model.speed!, "pace": model.pace!, "percentage": model.percentage!, "duration": model.duration!, "distance": model.distance!, "rest": model.rest!, "is_completed": false]
-                    exerciseArray.add(dict)
-                }
-                else {
-                    let dict: NSDictionary = ["laps": model.laps!, "speed": model.speed!, "pace": model.pace!, "percentage": model.percentage!, "duration": model.duration!, "distance": model.distance!, "rest": model.rest!, "is_completed": false]
-                    exerciseArray.add(dict)
-                }
-            }
-            */
-            
             let txtName = view?.txtName.text ?? ""
             let txtNotes = view?.txtNotes.text ?? ""
             
@@ -956,12 +922,8 @@ class CardioTrainingLogViewModel: DismissPreviewDelegate {
         ApiManager.shared.MakePostAPI(name: CREATE_TRAINING_LOG, params: param as [String : Any], vc: self.theController, isAuth:false) { (response, error) in
             if response != nil {
                 let json = JSON(response!)
-                print(json)
                 let success = json.getBool(key: .success)
                 if success {
-                    let data = json.getDictionary(key: .data)
-                    print(data)
-                    let model = TrainingLogModelClass(JSON: data.dictionaryObject!)
                     if isSavedWorkout {
                         self.trainingId = "\(json.getDictionary(key: .data).getInt(key: .id))"
                         makeToast(strMessage: json.getString(key: .message))
@@ -970,17 +932,6 @@ class CardioTrainingLogViewModel: DismissPreviewDelegate {
                         
                         self.theController.dismiss(animated: true, completion: nil)
                         NotificationCenter.default.post(name: NSNotification.Name(rawValue: NOTIFICATION_CENTER_LIST.CALENDAR_RELOADING.rawValue), object: nil)
-                        
-                        //Old after flow changes
-                        
-//                        let obj: LogPreviewVC = AppStoryboard.Calendar.instance.instantiateViewController(withIdentifier: "LogPreviewVC") as! LogPreviewVC
-//                        obj.mainModelView.delegate = self
-//                        obj.mainModelView.previewData = model
-//                        obj.mainModelView.trainingLogId = String(Int(model?.id ?? 0))
-//                        let nav = UINavigationController(rootViewController: obj)
-//                        nav.modalPresentationStyle = .overCurrentContext
-//                        self.theController.present(nav, animated: true, completion: nil)
-//                        NotificationCenter.default.post(name: NSNotification.Name(rawValue: NOTIFICATION_CENTER_LIST.CALENDAR_RELOADING.rawValue), object: nil)
                     }
                 }
                 else {
@@ -998,24 +949,19 @@ class CardioTrainingLogViewModel: DismissPreviewDelegate {
         
         let exerciseArray: NSMutableArray = NSMutableArray()
 
-        for model in self.exercisesArray{
+        for model in self.exercisesArray {
             
-            let valueLaps = Int(model.laps!)
-            let valueDistance = model.distance == "" ? nil : model.distance?.toFloat()
-            let valueDuration = model.duration == "" ? nil : model.duration
-            let valueSpeed = model.speed == "" ? nil : model.speed?.toFloat()
-            let valuePace = model.pace == "" ? nil : model.pace
+            let valueLaps = Int(model.laps!) ?? 0
+            let valueDistance = model.distance?.toFloat() ?? 0
+            let valueDuration = model.duration ?? ""
+            let valueSpeed = model.speed?.toFloat() ?? 0
+            let valuePace = model.pace ?? ""
             
-            let valueRest = model.rest == "" ? nil : model.rest
-            let valueRPM = model.rpm == "" ? nil : Int(model.rpm ?? "0")
-            let valueWatt = model.watt == "" ? nil : Int(model.watt ?? "0")
-            
-            //Old
-//            let ValueLvl = model.lvl == "" ? nil : Int(model.lvl ?? "0")
-//            var valuePercentage = model.percentage == "" ? nil : model.percentage?.toFloat()
+            let valueRest = model.rest ?? ""
+            let valueRPM = model.rpm == "" ? 0 : Int(model.rpm ?? "0") ?? 0
+            let valueWatt = model.watt == "" ? 0 : Int(model.watt ?? "0") ?? 0
             
             //New
-            
             var ValueLvl : Int = 0
             var valuePercentage : CGFloat = 0.0
             
@@ -1059,7 +1005,7 @@ class CardioTrainingLogViewModel: DismissPreviewDelegate {
             switch view?.txtActivity.text?.toTrim().lowercased(){
                 
             case "Run (Outdoor)".lowercased():
-                let dict: NSDictionary = ["laps": valueLaps, "speed": valueSpeed , "pace": valuePace, "percentage": valuePercentage, "duration": valueDuration, "distance": valueDistance, "rest": valueRest, "is_completed": false]
+                let dict: NSDictionary = ["laps": valueLaps, "speed": valueSpeed, "pace": valuePace, "percentage": valuePercentage, "duration": valueDuration, "distance": valueDistance, "rest": valueRest, "is_completed": false]
                 exerciseArray.add(dict)
                 
             case "Run (Indoor)".lowercased():
@@ -1100,15 +1046,15 @@ class CardioTrainingLogViewModel: DismissPreviewDelegate {
         for model in (self.previewData?.exercise)!{
             
             let valueLaps = "\(model.laps!)"
-            let valueDistance = model.distance == nil ? nil : "\(model.distance ?? 0.0)"
-            let valueDuration = model.duration == nil ? nil : model.duration
-            let valueSpeed = model.speed == nil ? nil : "\(model.speed ?? 0.0)"
-            let valuePace = model.pace == nil ? nil : model.pace
-            let valuePercentage = model.percentage == nil ? nil : "\(model.percentage ?? 0.0)"
-            let valueRest = model.rest == nil ? nil : model.rest
-            let valueRPM = model.rpm == nil ? nil : "\(model.rpm ?? 0)"
-            let valueWatt = model.watt == nil ? nil : "\(model.watt ?? 0)"
-            let ValueLvl = model.lvl == nil ? nil : "\(model.lvl ?? 0)"
+            let valueDistance = "\(model.distance ?? 0.0)"
+            let valueDuration = model.duration ?? ""
+            let valueSpeed = "\(model.speed ?? 0.0)"
+            let valuePace = model.pace ?? ""
+            let valuePercentage = "\(model.percentage ?? 0.0)"
+            let valueRest = model.rest ?? ""
+            let valueRPM = "\(model.rpm ?? 0)"
+            let valueWatt = "\(model.watt ?? 0)"
+            let ValueLvl = "\(model.lvl ?? 0)"
             
             switch view?.txtActivity.text?.toTrim().lowercased(){
                 
@@ -1241,16 +1187,16 @@ class CardioTrainingLogViewModel: DismissPreviewDelegate {
             var no2 : Double = 0.0
             
             if activityID == "1" || activityID == "12"{
-                no1 = (Double(hrMax) ?? 0) * (Double(dataArray[0]) ?? 0) / 100
-                no2 = (Double(hrMax) ?? 0) * (Double(dataArray[1]) ?? 0) / 100
+                no1 = (Double(hrMax)) * (Double(dataArray[0]) ?? 0) / 100
+                no2 = (Double(hrMax)) * (Double(dataArray[1]) ?? 0) / 100
             }else if activityID == "2" || activityID == "4" || activityID == "13"{
                 
-                let minusValue = ((Double(hrMax) ?? 0) - ((Double(hrMax) ?? 0) * 0.05))
+                let minusValue = ((Double(hrMax)) - ((Double(hrMax)) * 0.05))
                 no1 = minusValue * (Double(dataArray[0]) ?? 0) / 100
                 no2 = minusValue * (Double(dataArray[1]) ?? 0) / 100
             }else if activityID == "3"{
-                no1 = ((Double(hrMax) ?? 0) - 12) * (Double(dataArray[0]) ?? 0) / 100
-                no2 = ((Double(hrMax) ?? 0) - 12) * (Double(dataArray[1]) ?? 0) / 100
+                no1 = ((Double(hrMax)) - 12) * (Double(dataArray[0]) ?? 0) / 100
+                no2 = ((Double(hrMax)) - 12) * (Double(dataArray[1]) ?? 0) / 100
             }
             
             print(no1)
@@ -1265,7 +1211,7 @@ class CardioTrainingLogViewModel: DismissPreviewDelegate {
         else {
             let hrMax = self.HRMaxValue
 //                (getUserDetail().data?.user?.dateOfBirth ?? "") == "" ? "0" : self.getHRMax(date: getUserDetail().data?.user?.dateOfBirth ?? "")
-            let no1 = (Double(hrMax) ?? 0) * (Double(hr == "" ? "0" : hr) ?? 0) / 100
+            let no1 = (Double(hrMax)) * (Double(hr == "" ? "0" : hr) ?? 0) / 100
             print(no1)
             let final1 = "\(no1.rounded(toPlaces: 1))".replace(target: ".0", withString: "")
             let final = "\(final1)"
