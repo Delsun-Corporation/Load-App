@@ -67,13 +67,7 @@ class LibraryExercisePreviewDetailsViewModel {
         print("primaryIds:\(primaryIds)")
         print("secondaryIds:\(secondaryIds)")
         
-        self.theController.mainView.imgMainFront.sd_setImage(with: GetAllData?.data?.defaultBodyPartImageUrlFront?.toURL(), completed: { (_,_,_,_) in
-            
-            self.theController.mainView.imgMainBack.sd_setImage(with: GetAllData?.data?.defaultBodyPartImageUrlBack?.toURL(), completed: { (_,_,_,_) in
-                
-                self.showImages(primaryIds: primaryIds.compactMap({ $0 }), secondaryIds: secondaryIds.compactMap({ $0 }))
-            })
-        })
+        self.showImages(primaryIds: primaryIds.compactMap({ $0 }), secondaryIds: secondaryIds.compactMap({ $0 }))
     }
     
     func showDetailsFavoritelist() {
