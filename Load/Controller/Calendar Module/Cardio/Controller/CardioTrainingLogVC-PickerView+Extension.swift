@@ -251,7 +251,7 @@ extension CardioTrainingLogVC: UIPickerViewDataSource, UIPickerViewDelegate {
                 }
             }
         }
-        else if pickerView == self.mainModelView.stylePickerView{
+        else if pickerView == self.mainModelView.stylePickerView {
            
             let style = GetAllData?.data?.trainingLogStyle![row]
             self.mainModelView.selectedSwimmingStyle = String(Int(truncating: style?.id ?? 0))
@@ -270,8 +270,7 @@ extension CardioTrainingLogVC: UIPickerViewDataSource, UIPickerViewDelegate {
                 return true
             }
             return false
-        }) ?? false{
-            
+        }) ?? false {
             self.mainModelView.trainingGoalId = String(Int(truncating: selectedTrainingGoal?.id ?? NSNumber()))
             self.mainModelView.getValidationFromId()
         }else{
