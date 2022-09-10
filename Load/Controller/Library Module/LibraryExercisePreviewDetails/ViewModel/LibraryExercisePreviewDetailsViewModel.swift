@@ -66,8 +66,9 @@ class LibraryExercisePreviewDetailsViewModel {
        
         print("primaryIds:\(primaryIds)")
         print("secondaryIds:\(secondaryIds)")
-        
-        self.showImages(primaryIds: primaryIds.compactMap({ $0 }), secondaryIds: secondaryIds.compactMap({ $0 }))
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+            self.showImages(primaryIds: primaryIds.compactMap({ $0 }), secondaryIds: secondaryIds.compactMap({ $0 }))
+        }
     }
     
     func showDetailsFavoritelist() {
