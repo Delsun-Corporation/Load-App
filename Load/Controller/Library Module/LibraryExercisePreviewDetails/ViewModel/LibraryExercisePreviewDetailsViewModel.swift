@@ -67,6 +67,7 @@ class LibraryExercisePreviewDetailsViewModel {
         print("primaryIds:\(primaryIds)")
         print("secondaryIds:\(secondaryIds)")
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+            ApiManager.shared.showProgress(vc: self.theController)
             self.showImages(primaryIds: primaryIds.compactMap({ $0 }), secondaryIds: secondaryIds.compactMap({ $0 }))
         }
     }
@@ -106,6 +107,7 @@ class LibraryExercisePreviewDetailsViewModel {
                 imageView.frame = CGRect(x: 0, y: 0, width: (view?.viewImage.bounds.width ?? 0), height: (view?.viewImage.bounds.height ?? 0))
                 view?.viewImage.addSubview(imageView)
                 imageView.sd_setImage(with: images.image?.toURL(), completed: { (_,error,_,_) in
+                    self.theController.stopAnimating()
                     if let error = error as? NSError {
                         print("⚠️", error.localizedDescription)
                         Analytics.logEvent("library_images_error", parameters: ["message": error.localizedDescription])
