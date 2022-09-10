@@ -310,7 +310,6 @@ class CardioTrainingLogViewModel: DismissPreviewDelegate {
     }
     
     func getTrainingGoal() -> [TrainingGoalLogCardio] {
-        
         let findDataAccordingActivityID = GetAllData?.data?.trainingGoalLogCardio?.filter({ (logModel) -> Bool in
             return logModel.trainingActivityIds?.contains(self.activityId) ?? false
         })
@@ -319,8 +318,6 @@ class CardioTrainingLogViewModel: DismissPreviewDelegate {
             return model.trainingIntensityIds?.contains(self.intensityId) ?? false
         })
         
-//        let json = JSON([ "target_hr" : "0", "is_active" : true, "training_intensity_ids" : [], "code" : "CUSTOMIZE", "updated_at" : "2019-09-28 01:16:45", "display_at" : [ "LOG_CARDIO", "LOG_RESISTANCE", "PROGRAM_CARDIO", "PROGRAM_RESISTANCE" ], "id" : 0, "created_at" : "2019-05-29 13:00:00", "sequence" : 0, "name" : "Customize"])
-//        filter?.append(TrainingGoalLogCardio(JSON: json.dictionaryObject!)!)
         return filter ?? []
     }
     
@@ -1194,7 +1191,7 @@ class CardioTrainingLogViewModel: DismissPreviewDelegate {
                 no2 = (Double(hrMax)) * (Double(dataArray[1]) ?? 0) / 100
             }else if activityID == "2" || activityID == "4" || activityID == "13"{
                 
-                let minusValue = ((Double(hrMax)) - ((Double(hrMax) ?? 0) * 0.05))
+                let minusValue = ((Double(hrMax)) - ((Double(hrMax)) * 0.05))
                 no1 = minusValue * (Double(dataArray[0]) ?? 0) / 100
                 no2 = minusValue * (Double(dataArray[1]) ?? 0) / 100
             }else if activityID == "3"{
