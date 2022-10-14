@@ -44,6 +44,12 @@ let serverDateFormatter: DateFormatter = {
     return result
 }()
 
+func LOADLog(_ message: Any) {
+    #if DEBUG
+    print("\(message)")
+    #endif
+}
+
 
 func getSecondsToHoursMinutesSeconds (seconds:Int) -> String {
     if seconds == 0 {
