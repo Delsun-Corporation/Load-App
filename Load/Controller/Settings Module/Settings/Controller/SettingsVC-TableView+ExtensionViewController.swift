@@ -33,38 +33,45 @@ extension SettingsVC :UITableViewDataSource, UITableViewDelegate {
         else {
             let cell = tableView.dequeueReusableCell(withIdentifier: "SettingListCell") as! SettingListCell
             cell.selectionStyle = .none
-            cell.setupUI(name: self.mainModelView.titleArray[indexPath.row], indexPath: indexPath)            
+            cell.setupUI(name: self.mainModelView.titleArray[indexPath.row].rawValue,
+                         indexPath: indexPath)
             return cell
         }
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if indexPath.row == 0 {
-            let obj = AppStoryboard.Settings.instance.instantiateViewController(withIdentifier: "SettingsProfileVC") as! SettingsProfileVC
-            obj.mainModelView.delegate = self.mainModelView
-            obj.hidesBottomBarWhenPushed = true
-            self.navigationController?.pushViewController(obj, animated: true)
-        }
-        else if indexPath.row == 1 {
+        switch mainModelView.titleArray[indexPath.row] {
+        case .account:
             let obj = AppStoryboard.Settings.instance.instantiateViewController(withIdentifier: "AccountVC") as! AccountVC
             obj.hidesBottomBarWhenPushed = true
             self.navigationController?.pushViewController(obj, animated: true)
-        }
-        else if indexPath.row == 2 {
+        case .loadCentre:
             let obj = AppStoryboard.Settings.instance.instantiateViewController(withIdentifier: "LoadCenterSettingsVC") as! LoadCenterSettingsVC
             obj.hidesBottomBarWhenPushed = true
             self.navigationController?.pushViewController(obj, animated: true)
-        }
-        else if indexPath.row == 3 {
+        case .training:
             let obj = AppStoryboard.Settings.instance.instantiateViewController(withIdentifier: "TrainingSettingsVC") as! TrainingSettingsVC
             obj.hidesBottomBarWhenPushed = true
             self.navigationController?.pushViewController(obj, animated: true)
-        }
-        else if indexPath.row == 10 {
-            LogoutButtonAction()
-        }
-        else if indexPath.row == 9{
+        case .notifications:
+            LOADLog("Notifications tapped")
+        case .helpAndSupport:
+            LOADLog("Help and support tapped")
+        case .privacyAndPolicy:
+            LOADLog("Privacy and policy tapped")
+        case .referAndEarn:
+            LOADLog("Refer and Earn tapped")
+        case .contactUs:
+            LOADLog("Contact us tapped")
+        case .changePassword:
             let obj = AppStoryboard.Main.instance.instantiateViewController(withIdentifier: "ChangePasswordVC") as! ChangePasswordVC
+            obj.hidesBottomBarWhenPushed = true
+            self.navigationController?.pushViewController(obj, animated: true)
+        case .logout:
+            LogoutButtonAction()
+        case .name:
+            let obj = AppStoryboard.Settings.instance.instantiateViewController(withIdentifier: "SettingsProfileVC") as! SettingsProfileVC
+            obj.mainModelView.delegate = self.mainModelView
             obj.hidesBottomBarWhenPushed = true
             self.navigationController?.pushViewController(obj, animated: true)
         }
