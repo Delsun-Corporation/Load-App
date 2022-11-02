@@ -131,8 +131,7 @@ class CardioTrainingLogViewModel: DismissPreviewDelegate {
         view.txtActivity.text = self.previewData?.trainingActivity?.name
         
         view.txtWhen.text =  convertDateFormater(self.previewData?.date ?? "", dateFormat: "EEEE, dd MMM yyyy 'at' hh:mm a")
-//            (self.previewData?.date)!.UTCToLocal(returnFormat: "EEEE, dd MMM yyyy 'at' hh:mm a")
-//
+        
         view.txtIntensity.text = self.previewData?.trainingIntensity?.name
         view.txtName.text = self.previewData?.workoutName
         let trainigGoalCustom = self.previewData?.trainingGoalCustom
@@ -141,15 +140,6 @@ class CardioTrainingLogViewModel: DismissPreviewDelegate {
         self.targatHR = (self.previewData?.targetedHr ?? "") + " bpm"
         
         view.txtNotes.text = self.previewData?.notes
-        
-//        if trainigGoalCustom == "" || trainigGoalCustom == nil {
-//            view.txtTargetHR.isUserInteractionEnabled = true
-//
-//            self.isGoalCustom = false
-//        }
-//        else {
-//            self.isGoalCustom = true
-//        }
 
         if self.previewData?.trainingGoalId?.stringValue == "" || self.previewData?.trainingGoalId?.stringValue == nil || self.previewData?.trainingGoalId?.stringValue == "0"{
             
@@ -281,9 +271,7 @@ class CardioTrainingLogViewModel: DismissPreviewDelegate {
             view?.txtWhen.text = dateFormatter.string(from: Date())
             self.selectedDate = DateToString(Formatter: "yyyy-MM-dd HH:mm:ss", date: Date())
             
-        }else{
-//            let convertToDate = convertDate(self.selectedDateFromCalendar, dateFormat:  "yyyy-MM-dd")
-            
+        } else {
             let convertToTime = DateToString(Formatter: "hh:mm a", date: Date())
             print("convertToTime: \(convertToTime)")
             
@@ -342,12 +330,6 @@ class CardioTrainingLogViewModel: DismissPreviewDelegate {
         else if view?.viewCustomTrainingGoal.isHidden == false {
             makeToast(strMessage: getCommonString(key: "Please_enter_custom_training_goal_key"))
         }
-            //        else if view?.txtTargetHR.text == "" {
-            //            makeToast(strMessage: getCommonString(key: "Please_select_target_hr_key"))
-            //        }
-            //        else if view?.txtNotes.text == "" {
-            //            makeToast(strMessage: getCommonString(key: "Please_enter_notes_key"))
-            //        }
         else if exercisesArray.count == 0 {
             makeToast(strMessage: getCommonString(key: "Please_add_some_exercise_key"))
         }
@@ -365,18 +347,6 @@ class CardioTrainingLogViewModel: DismissPreviewDelegate {
                 if model.laps == "" {
                     isAllFieled = false
                 }
-                /*
-                if view?.txtActivity.text?.trimmingCharacters(in: .whitespacesAndNewlines).lowercased() !=  "Run (Indoor)".lowercased() && view?.txtActivity.text?.trimmingCharacters(in: .whitespacesAndNewlines).lowercased() != "Run (Outdoor)".lowercased(){
-                    
-                    if model.percentage == "" {
-                        isAllFieled = false
-                    }
-                    
-                   if model.rest == "" || model.rest == nil {
-                        isAllFieled = false
-                    }
-                    
-                }*/
                 
                 let trainingGoalValue = view?.txtTrainingGoal.text?.toTrim().lowercased()
                 
@@ -456,11 +426,6 @@ class CardioTrainingLogViewModel: DismissPreviewDelegate {
                         }
                     }
                     
-                    //Lvl is comment becaus static value pass(CardioTrainingViewModel)(CardioTrainingLogVc)
-//                    if model.lvl == "" || model.lvl == nil {
-//                        isAllFieled = false
-//                    }
-                    
                     if (model.rpm == "" || model.rpm == nil) && self.isShowRPM {
                         isAllFieled = false
                     }
@@ -527,30 +492,6 @@ class CardioTrainingLogViewModel: DismissPreviewDelegate {
                         isAllFieled = false
                     }
                     
-//                    if (model.speed == "" || model.speed == nil) && self.isShowSpeed {
-//                        isAllFieled = false
-//                    }
-//
-//                    if (model.pace == "" || model.pace == nil) && !self.isShowSpeed {
-//                        isAllFieled = false
-//                    }
-//
-//                    if (model.rpm == "" || model.rpm == nil) && self.isShowRPM {
-//                        isAllFieled = false
-//                    }
-//
-//                    if (model.watt == "" || model.watt == nil) && !self.isShowRPM {
-//                        isAllFieled = false
-//                    }
-//
-//                    if model.lvl == "" || model.lvl == nil {
-//                        isAllFieled = false
-//                    }
-//
-//                   if model.rest == "" || model.rest == nil {
-//                        isAllFieled = false
-//                    }
-                    
                 default:
                     
                    if model.rest == "" || model.rest == nil {
@@ -565,7 +506,7 @@ class CardioTrainingLogViewModel: DismissPreviewDelegate {
                 }
             }
         }
-        print("Done")
+        LOADLog("Done")
         
         let exerciseArray: NSMutableArray = arrayForExerciseAccordingToActivity()
         
@@ -585,14 +526,12 @@ class CardioTrainingLogViewModel: DismissPreviewDelegate {
         else {
             param.removeValue(forKey: "training_goal_custom")
         }
-        print(JSON(param))
+        LOADLog(JSON(param))
         
         ApiManager.shared.MakePostAPI(name: CREATE_TRAINING_LOG, params: param as [String : Any], vc: self.theController, isAuth:false) { (response, error) in
             if response != nil {
                 let json = JSON(response!)
-                print(json)
-                //                let data = json.getDictionary(key: .data)
-                //                let model = TrainingLogModelClass(JSON: data.dictionaryObject!)
+                LOADLog(json)
                 self.trainingId = "\(json.getDictionary(key: .data).getInt(key: .id))"
                 SocketIOHandler.shared.shareFriendTrainingLog(toIds: [Int(toId)!], trainingLogId: Int(self.trainingId)!)
             }
@@ -639,32 +578,19 @@ class CardioTrainingLogViewModel: DismissPreviewDelegate {
         let view = (self.theController.view as? CardioTrainingLogView)
         if view?.txtActivity.text == "" {
             makeToast(strMessage: getCommonString(key: "Please_select_activity_key"))
-        }
-        else if view?.txtWhen.text == "" {
+        } else if view?.txtWhen.text == "" {
             makeToast(strMessage: getCommonString(key: "Please_select_date_key"))
-        }
-        else if view?.txtIntensity.text == "" {
+        } else if view?.txtIntensity.text == "" {
             makeToast(strMessage: getCommonString(key: "Please_select_intensity_key"))
-        }
-        else if view?.txtName.text == "" {
+        } else if view?.txtName.text == "" {
             makeToast(strMessage: getCommonString(key: "Please_enter_name_key"))
-        }
-        else if view?.txtTrainingGoal.text?.toTrim() == "" {
+        } else if view?.txtTrainingGoal.text?.toTrim() == "" {
             makeToast(strMessage: getCommonString(key: "Please_fill_in_your_training_goal_key"))
-        }
-        else if view?.txtActivity.text?.toTrim().lowercased() ?? "" == "Swimming".lowercased() && view?.txtStyle.text == ""{
+        } else if view?.txtActivity.text?.toTrim().lowercased() ?? "" == "Swimming".lowercased() && view?.txtStyle.text == ""{
             makeToast(strMessage: getCommonString(key: "Please_select_style_key"))
-        }
-        else if view?.viewCustomTrainingGoal.isHidden == false {
+        } else if view?.viewCustomTrainingGoal.isHidden == false {
             makeToast(strMessage: getCommonString(key: "Please_enter_custom_training_goal_key"))
-        }
-            //        else if view?.txtTargetHR.text == "" {
-            //            makeToast(strMessage: getCommonString(key: "Please_select_target_hr_key"))
-            //        }
-            //        else if view?.txtNotes.text == "" {
-            //            makeToast(strMessage: getCommonString(key: "Please_enter_notes_key"))
-            //        }
-        else if exercisesArray.count == 0 {
+        } else if exercisesArray.count == 0 {
             makeToast(strMessage: getCommonString(key: "Please_add_some_exercise_key"))
         }
         else {
@@ -674,20 +600,6 @@ class CardioTrainingLogViewModel: DismissPreviewDelegate {
                     if model.laps == "" || model.laps == nil{
                         isAllFieled = false
                     }
-                    
-                    /*
-                    if view?.txtActivity.text?.trimmingCharacters(in: .whitespacesAndNewlines).lowercased() !=  "Run (Indoor)".lowercased() && view?.txtActivity.text?.trimmingCharacters(in: .whitespacesAndNewlines).lowercased() != "Run (Outdoor)".lowercased(){
-                        
-                        if model.percentage == "" {
-                            isAllFieled = false
-                        }
-                        
-                       if model.rest == "" || model.rest == nil {
-                            isAllFieled = false
-                        }
-                        
-                    }*/
-                    
                     
                     let trainingGoalValue = view?.txtTrainingGoal.text?.toTrim().lowercased()
                     
@@ -767,11 +679,6 @@ class CardioTrainingLogViewModel: DismissPreviewDelegate {
                             }
                         }
                         
-                        //Lvl is comment because array create that time static value as per client requirment(CardioTrainingViewModel)(CardioTrainingLogVc)
-//                        if model.lvl == "" || model.lvl == nil{
-//                            isAllFieled = false
-//                        }
-                        
                         if (model.rpm == "" || model.rpm == nil) && self.isShowRPM {
                             isAllFieled = false
                         }
@@ -837,30 +744,6 @@ class CardioTrainingLogViewModel: DismissPreviewDelegate {
                         if (model.duration == "" || model.duration == nil) && !self.isShowDistance {
                             isAllFieled = false
                         }
-                        
-//                        if (model.speed == "" || model.speed == nil) && self.isShowSpeed {
-//                            isAllFieled = false
-//                        }
-//
-//                        if (model.pace == "" || model.pace == nil) && !self.isShowSpeed {
-//                            isAllFieled = false
-//                        }
-//
-//                        if (model.rpm == "" || model.rpm == nil) && self.isShowRPM {
-//                            isAllFieled = false
-//                        }
-//
-//                        if (model.watt == "" || model.watt == nil) && !self.isShowRPM {
-//                            isAllFieled = false
-//                        }
-//
-//                        if model.lvl == "" || model.lvl == nil {
-//                            isAllFieled = false
-//                        }
-//
-//                       if model.rest == "" || model.rest == nil {
-//                            isAllFieled = false
-//                        }
                         
                     default:
                         
@@ -1108,16 +991,8 @@ class CardioTrainingLogViewModel: DismissPreviewDelegate {
         var param = ["status":TRAINING_LOG_STATUS.CARDIO.rawValue, "user_id": userId, "date": date, "workout_name" : workoutName, "training_goal_id" : trainingGoalId, "training_intensity_id" : trainingIntensityId, "training_activity_id": trainingActivityId, "targeted_hr": targetedHr, "notes": notes, "is_saved_workout": isSavedWorkout, "exercise":exercise, "training_goal_custom": view?.txtTrainingGoal.text?.toTrim() ?? "","training_goal_custom_id": trainingGoalId] as [String : Any]
         
         //TODO: - yash comments old
-        /*if self.isGoalCustom {
-            param.removeValue(forKey: "training_goal_id")
-        }
-        else {
-            param.removeValue(forKey: "training_goal_custom")
-        }*/
-        
         //New set
         if self.isGoalCustom {
-           // param.removeValue(forKey: "training_goal_id")
             param["training_goal_id"] = 0
         }
         else {

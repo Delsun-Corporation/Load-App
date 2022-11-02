@@ -8,7 +8,7 @@
 
 import UIKit
 
-protocol AddRowDelegate: class {
+protocol AddRowDelegate: AnyObject {
     func AddRowClicked()
     func RemoveRowClicked()
 }

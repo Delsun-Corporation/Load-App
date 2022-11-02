@@ -38,7 +38,6 @@ class CardioTrainingLogView: UIView {
     @IBOutlet weak var lblStyleHeading: UILabel!
     @IBOutlet weak var txtStyle: UITextField!
     
-    //    @IBOutlet weak var lblLaps: UILabel!
     @IBOutlet weak var lblSpeed: UILabel!
     @IBOutlet weak var lblPercentage: UILabel!
     @IBOutlet weak var lblRPM: UILabel!
