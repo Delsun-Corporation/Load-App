@@ -33,14 +33,7 @@ class CreateTrainingProgramView: UIView {
     
     func setupFont() {
         self.lblTitle.font = themeFont(size: 13, fontname: .ProximaNovaRegular)
-//        self.lblResistanceTitle.font = themeFont(size: 15, fontname: .ProximaNovaRegular)
-//        self.lblCardioTitle.font = themeFont(size: 15, fontname: .ProximaNovaRegular)
-
         self.lblTitle.setColor(color: .appthemeBlackColor)
-//        self.lblResistanceTitle.setColor(color: .appthemeBlackColor)
-//        self.lblCardioTitle.setColor(color: .appthemeBlackColor)
-        
-//        self.lblTitle.text = getCommonString(key: "Select_type_of_program_you_want_to_create_key")
         self.lblResistanceTitle.text = getCommonString(key: "Resistance_key")
         self.lblCardioTitle.text = getCommonString(key: "Cardio_key")
         self.lblEditResistance.text = getCommonString(key: "Edit_Resistance_Program_key")

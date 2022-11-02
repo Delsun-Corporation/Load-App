@@ -57,12 +57,12 @@ class ExerciseCardioCell: UITableViewCell, UITextFieldDelegate {
     
     var arrayHourDuration : [String] = [] {
         didSet {
-            print("🍍 arrayHourDuration: ", arrayHourDuration)
+            LOADLog("🍍 arrayHourDuration: \(arrayHourDuration)")
         }
     }
     var arrayMinDuration : [String] = [] {
         didSet {
-            print("🍍 arrayMinDuration: ", arrayMinDuration)
+            LOADLog("🍍 arrayHourDuration: \(arrayMinDuration)")
         }
     }
     var arraySecDuration : [String] = []
@@ -1704,13 +1704,13 @@ class ExerciseCardioCell: UITableViewCell, UITextFieldDelegate {
                 let endValue = endValueArray.first
                 let incrementWith = endValueArray[1]
                 
-                print("startFrom  :\(startFrom)")
-                print("endValue  :\(endValue)")
-                print("incrementWith  :\(incrementWith)")
+                LOADLog("startFrom  :\(startFrom)")
+                LOADLog("endValue  :\(endValue)")
+                LOADLog("incrementWith  :\(incrementWith)")
                 
                 let floatStart = Int(String(startFrom ?? "")) ?? 0
                 let floatEnd = Int(String(endValue ?? "")) ?? 0
-                let floatIncrement = Int(String(incrementWith ?? "")) ?? 0
+                let floatIncrement = Int(String(incrementWith)) ?? 0
                 
                 let array = Array(stride(from: floatStart, to:floatEnd + floatIncrement, by: floatIncrement))
                 
