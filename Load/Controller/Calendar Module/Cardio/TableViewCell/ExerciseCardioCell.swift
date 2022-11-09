@@ -440,7 +440,7 @@ class ExerciseCardioCell: UITableViewCell, UITextFieldDelegate {
                         self.percentagePickerView.selectRow(0, inComponent: 1, animated: false)
                     }
                     
-                    self.calculatePercentageArray(data: self.selectedCardioValidationList?.percentageRange ?? "")
+                    let _ = self.calculatePercentageArray(data: self.selectedCardioValidationList?.percentageRange ?? "")
                     
                     if textField.text?.toTrim() == ""{
                         self.percentageFirstScrollIndex = 0
@@ -516,7 +516,7 @@ class ExerciseCardioCell: UITableViewCell, UITextFieldDelegate {
                 let firstIndex = array.firstIndex(where: {$0 == self.txtCyclingOutdoorPercentage.text}) ?? 0
                 self.percentagePickerView.selectRow(firstIndex, inComponent: 0, animated: false)
             } else {
-                self.calculatePercentageArray(data: self.selectedCardioValidationList?.percentageRange ?? "")
+                let _ = self.calculatePercentageArray(data: self.selectedCardioValidationList?.percentageRange ?? "")
                 if textField.text?.toTrim() == ""{
                     self.percentagePickerView.selectRow(0, inComponent: 0, animated: false)
                      self.percentagePickerView.selectRow(0, inComponent: 1, animated: false)
@@ -587,7 +587,7 @@ class ExerciseCardioCell: UITableViewCell, UITextFieldDelegate {
                     self.distancePickerView.selectRow(firstIndex, inComponent: 0, animated: false)
                  } else {
                     
-                    self.calculateDistanceArray(data: self.selectedCardioValidationList?.distanceRange ?? "")
+                    let _ = self.calculateDistanceArray(data: self.selectedCardioValidationList?.distanceRange ?? "")
                     
                     if textField.text?.toTrim() == ""{
                         self.distanceFirstData = 0
@@ -604,8 +604,6 @@ class ExerciseCardioCell: UITableViewCell, UITextFieldDelegate {
 
                             let firstIndex = self.arrayDistanceFirstData.firstIndex(where: {$0 == String(arrayDistance?[0] ?? "0")})
                             let secondIndex = self.arrayDistanceSecondData.firstIndex(where: {$0 == String(arrayDistance?[1] ?? "0")})
-
-                            print("FirstIndex:\(firstIndex) : secondINdex:\(secondIndex)")
 
                             self.distancePickerView.selectRow(firstIndex ?? 0, inComponent: 0, animated: false)
                             self.distancePickerView.selectRow(secondIndex ?? 0, inComponent: 1, animated: false)
@@ -638,14 +636,13 @@ class ExerciseCardioCell: UITableViewCell, UITextFieldDelegate {
                     let arrayDuration = calculateDurationArrayWithGap(data: self.selectedCardioValidationList?.durationRange ?? "", isShowHours: true)
                     
                     let firstIndex = arrayDuration.firstIndex(where: {$0 == String(self.txtDuration.text ?? "")})
-                    print("FirstIndex:\(firstIndex) ")
                     
                     self.durationPickerView.selectRow(firstIndex ?? 0, inComponent: 0, animated: false)
 
                     
                 }else{
                     
-                    calculateDurationArrayWithGap(data: self.selectedCardioValidationList?.durationRange ?? "", isShowHours: true)
+                    let _ = calculateDurationArrayWithGap(data: self.selectedCardioValidationList?.durationRange ?? "", isShowHours: true)
                     
                     if textField.text?.toTrim() == ""{
                         self.durationPickerView.selectRow(0, inComponent: 0, animated: false)
@@ -716,7 +713,6 @@ class ExerciseCardioCell: UITableViewCell, UITextFieldDelegate {
                     let arrayRest = calculateRestArrayWithGap(data: self.selectedCardioValidationList?.restRange ?? "", isShowHours: false)
                     
                     let firstIndex = arrayRest.firstIndex(where: {$0 == String(self.txtRest.text ?? "")})
-                    print("FirstIndex:\(firstIndex) ")
                     
                     self.RestPickerView.selectRow(firstIndex ?? 0, inComponent: 0, animated: false)
                 }
@@ -727,7 +723,7 @@ class ExerciseCardioCell: UITableViewCell, UITextFieldDelegate {
                     secRest = 0
                 }
                 
-                calculateRestArrayWithGap(data: self.selectedCardioValidationList?.restRange ?? "", isShowHours: false)
+                let _ = calculateRestArrayWithGap(data: self.selectedCardioValidationList?.restRange ?? "", isShowHours: false)
                     
                     let dataArray = txtRest.text?.split(separator: ":")
                     
@@ -738,8 +734,6 @@ class ExerciseCardioCell: UITableViewCell, UITextFieldDelegate {
 
                         let firstIndex = self.arrayMinRest.firstIndex(where: {$0 == String(firstData)})
                         let secondIndex = self.arraySecRest.firstIndex(where: {$0 == String(secondData)})
-
-                        print("FirstIndex:\(firstIndex) : secondINdex:\(secondIndex)")
 
                         self.RestPickerView.selectRow(firstIndex ?? 0, inComponent: 0, animated: false)
                         self.RestPickerView.selectRow(secondIndex ?? 0, inComponent: 1, animated: false)
@@ -1041,7 +1035,7 @@ class ExerciseCardioCell: UITableViewCell, UITextFieldDelegate {
     
     func calculateDistanceArray(data:String) -> [String] {
         if (data.contains("|")) {
-            var array: [String] = []
+            let array: [String] = []
             
             let dataArray = data.split(separator: "-")
             if dataArray.count == 2 {
@@ -1058,7 +1052,7 @@ class ExerciseCardioCell: UITableViewCell, UITextFieldDelegate {
                 
                 let floatStart = String(startFrom ?? "").toFloat()
                 let floatEnd = String(endValue ?? "").toFloat()
-                let floatIncrement = String(incrementWith ?? "").toFloat()
+                let floatIncrement = String(incrementWith).toFloat()
                 
                 let array = Array(stride(from: floatStart, to:floatEnd + floatIncrement, by: floatIncrement))
                 
@@ -1337,7 +1331,6 @@ class ExerciseCardioCell: UITableViewCell, UITextFieldDelegate {
                 let secondArray = dataWithGapValue?[0].split(separator: ":")
                 
                 let gapValue = dataWithGapValue?[1].split(separator: ":")
-                print("GapValue : \(gapValue)")
                 
                 let hrIncremnt = String(gapValue?[0] ?? "")
                 let minIncrement = String(gapValue?[1] ?? "")
@@ -1400,10 +1393,10 @@ class ExerciseCardioCell: UITableViewCell, UITextFieldDelegate {
             removeHrMinSecFromDuration()
             return array
             
-        }else{
+        } else {
             
-            var addTime:Double = 0 // AddTime set in second for increment
-            var array: [String] = []
+            let _: Double = 0 // AddTime set in second for increment
+            var _: [String] = []
             let dataArray = data?.split(separator: "-")
             
             if dataArray?.count == 2 {
@@ -1469,7 +1462,7 @@ class ExerciseCardioCell: UITableViewCell, UITextFieldDelegate {
     
     func setDurationPicker(){
         
-        let screen = UIScreen.main.bounds.width / 3
+        _ = UIScreen.main.bounds.width / 3
         for index in 0..<3 {
             let label = UILabel()
             label.textAlignment = .center
@@ -1537,7 +1530,6 @@ class ExerciseCardioCell: UITableViewCell, UITextFieldDelegate {
                     let secondArray = dataWithGapValue?[0].split(separator: ":")
                     
                     let gapValue = dataWithGapValue?[1].split(separator: ":")
-                    print("GapValue : \(gapValue)")
                     
                     let hrIncremnt = String(gapValue?[0] ?? "")
                     let minIncrement = String(gapValue?[1] ?? "")
@@ -1602,8 +1594,8 @@ class ExerciseCardioCell: UITableViewCell, UITextFieldDelegate {
                 
             }else{
                 
-                var addTime:Double = 0 // AddTime set in second for increment
-                var array: [String] = []
+                var _: Double = 0 // AddTime set in second for increment
+                var _: [String] = []
                 let dataArray = data?.split(separator: "-")
                 
                 if dataArray?.count == 2 {
@@ -1689,7 +1681,7 @@ class ExerciseCardioCell: UITableViewCell, UITextFieldDelegate {
     func calculateRPMWAttArray(data: String) -> [String]{
         
         if (data.contains("|")) {
-            var array: [String] = []
+            var _: [String] = []
             
             let dataArray = data.split(separator: "-")
             if dataArray.count == 2 {
@@ -1697,15 +1689,15 @@ class ExerciseCardioCell: UITableViewCell, UITextFieldDelegate {
                 let valueWithUnit = dataArray[1]
                 
                 let splitEndWithUnit = valueWithUnit.split(separator: "|")
-                let unit = splitEndWithUnit[1]
+                _ = splitEndWithUnit[1]
                 
                 let endValueArray = splitEndWithUnit[0].split(separator: ",")
                 
                 let endValue = endValueArray.first
                 let incrementWith = endValueArray[1]
                 
-                LOADLog("startFrom  :\(startFrom)")
-                LOADLog("endValue  :\(endValue)")
+                LOADLog("startFrom  :\(startFrom ?? "")")
+                LOADLog("endValue  :\(endValue ?? "")")
                 LOADLog("incrementWith  :\(incrementWith)")
                 
                 let floatStart = Int(String(startFrom ?? "")) ?? 0
