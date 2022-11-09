@@ -474,7 +474,7 @@ class ResistanceTrainingLogViewModel: DismissPreviewDelegate {
         ] as [String : Any]
         
         print(JSON(param))
-        ApiManager.shared.MakePostAPI(name: LOG_RESISTANCE_VALIDATION_LIST, params: param as [String : Any], progress: false, vc: self.theController, isAuth:false) { (response, error) in
+        ApiManager.shared.MakeGetAPI(name: LOG_RESISTANCE_VALIDATION_LIST, params: param as [String : Any], progress: false, vc: self.theController, isAuth:false) { (response, error) in
             if response != nil {
                 let json = JSON(response!)
                 print(json)
