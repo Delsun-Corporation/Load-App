@@ -8,7 +8,7 @@
 
 import UIKit
 
-protocol AddSubRowDelegate: class {
+protocol AddSubRowDelegate: AnyObject {
     func AddRowClicked(section:Int)
     func RemoveRowClicked(row:Int, section:Int)
     func ExerciseResistanceCellFinish(index:Int, section: Int, Weight:String, Reps:String, Duration:String, Rest:String)

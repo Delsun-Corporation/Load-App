@@ -43,7 +43,6 @@ class LibraryExerciseVC: UIViewController {
             for modelSub in model.list ?? [] {
                 for modelSub1 in modelSub.data ?? [] {
                     if modelSub1.selected {
-                        print("modelSub1 exerciseName:\(modelSub1.exerciseName)")
                         listArray.append(modelSub1)
                     }
                 }
@@ -53,7 +52,6 @@ class LibraryExerciseVC: UIViewController {
         for model in self.mainView.listFavoriteArray {
             for modelSub1 in model.list ?? [] {
                 if modelSub1.selected {
-                    print("modelSub1 exerciseName:\(modelSub1.exerciseName)")
                     let array = LibraryLogList(JSON: modelSub1.toJSON())
                     listArray.append(array!)
                 }

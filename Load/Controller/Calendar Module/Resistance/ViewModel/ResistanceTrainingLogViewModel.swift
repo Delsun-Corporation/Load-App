@@ -100,16 +100,6 @@ class ResistanceTrainingLogViewModel: DismissPreviewDelegate {
         view.txtName.text = self.previewData?.workoutName
         view.txtNotes.text = self.previewData?.notes ?? ""
         
-        /*
-        if trainigGoalCustom == "" || trainigGoalCustom == nil {
-            self.isGoalCustom = false
-        }
-        else {
-            self.isGoalCustom = true
-        }*/
-        
-        print("Training Goal name:\(self.previewData?.trainingGoal?.name)")
-        
         if self.previewData?.trainingGoalId?.stringValue == "" || self.previewData?.trainingGoalId?.stringValue == nil || self.previewData?.trainingGoalId?.stringValue == "0"{
             
             self.trainingGoalId = String(self.previewData!.trainingGoalCustomId)
@@ -474,7 +464,7 @@ class ResistanceTrainingLogViewModel: DismissPreviewDelegate {
         ] as [String : Any]
         
         print(JSON(param))
-        ApiManager.shared.MakePostAPI(name: LOG_RESISTANCE_VALIDATION_LIST, params: param as [String : Any], progress: false, vc: self.theController, isAuth:false) { (response, error) in
+        ApiManager.shared.MakeGetAPI(name: LOG_RESISTANCE_VALIDATION_LIST, params: param as [String : Any], progress: false, vc: self.theController, isAuth:false) { (response, error) in
             if response != nil {
                 let json = JSON(response!)
                 print(json)
@@ -506,7 +496,7 @@ class ResistanceTrainingLogViewModel: DismissPreviewDelegate {
                 let json = JSON(response!)
                 print(json)
                 let data = json.getDictionary(key: .data)
-                let model = TrainingLogResistanceModelClass(JSON: data.dictionaryObject!)
+                _ = TrainingLogResistanceModelClass(JSON: data.dictionaryObject!)
                 if isSavedWorkout {
                     self.trainingId = "\(json.getDictionary(key: .data).getInt(key: .id))"
                     makeToast(strMessage: json.getString(key: .message))

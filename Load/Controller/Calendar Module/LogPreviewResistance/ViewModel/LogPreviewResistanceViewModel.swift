@@ -46,13 +46,15 @@ class LogPreviewResistanceViewModel {
         let view = (self.theController.view as? LogPreviewResistanceView)
         
         var count:Int = 0
-        for (index, _) in (self.previewData?.exercise!.enumerated())! {
-            count += (self.previewData?.exercise![index].data!.count)!
+        if let exercises = previewData?.exercise {
+            for (index, _) in exercises.enumerated() {
+                count += previewData?.exercise?[index].data?.count ?? 0
+            }
         }
         
         self.totalLapCount = count
         
-        view?.heightTableView.constant = CGFloat(((self.previewData?.exercise!.count)! * 95) + (count * 77))
+        view?.heightTableView.constant = CGFloat((((self.previewData?.exercise?.count) ?? 0) * 95) + (count * 77))
         
         let section = self.theController.findSpecificIndextoShow().section
         let row = self.theController.findSpecificIndextoShow().row
@@ -63,7 +65,7 @@ class LogPreviewResistanceViewModel {
         view?.lblTargetedVolumeValue.text = "\(self.previewData?.targetedVolume ?? 0) \(self.previewData?.targetedVolumeUnit ?? "")"
         
         let image = self.previewData?.userDetail?.photo
-        view?.imgProfile.sd_setImage(with: URL(string: image!), completed: nil)
+        view?.imgProfile.sd_setImage(with: URL(string: image ?? ""), completed: nil)
         
         view?.imgActivity.image = view?.imgActivity.image?.withRenderingMode(.alwaysTemplate)
         view?.imgActivity.tintColor = UIColor.appthemeOffRedColor
