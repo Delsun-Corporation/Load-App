@@ -17,7 +17,8 @@ class SidemenuViewModel: SideMenuViewModelDelegate {
     //MARK:- Variables
     fileprivate weak var theController:SidemenuVC!
     let titleArray: [String] = ["Notifications", "Sessions", "Archivements", "Saved Workout", "Emergency", "Request"]
-
+    lazy var isWalletShowed = LoadRemoteConfig.startBooleanRemoteConfig("is_wallet_showed")
+    
     //MARK:- Functions
     init(theController:SidemenuVC) {
         self.theController = theController
