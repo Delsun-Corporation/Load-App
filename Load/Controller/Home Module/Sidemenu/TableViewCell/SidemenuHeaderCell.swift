@@ -31,6 +31,11 @@ class SidemenuHeaderCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
+    func configureCell(isWalletShowedUp: Bool) {
+        lblWallet.isHidden = !isWalletShowedUp
+        lblPrice.isHidden = !isWalletShowedUp
+    }
+    
     func setupUI() {
         self.setupFont()
         self.lblName.text = getUserDetail()?.data?.user?.name
