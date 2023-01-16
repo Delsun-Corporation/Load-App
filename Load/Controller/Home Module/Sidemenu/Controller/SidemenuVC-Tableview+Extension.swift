@@ -38,6 +38,7 @@ extension SidemenuVC: UITableViewDelegate, UITableViewDataSource {
             let cell: SidemenuHeaderCell = self.mainView.tableView.dequeueReusableCell(withIdentifier: "SidemenuHeaderCell") as! SidemenuHeaderCell
             cell.selectionStyle = .none
             cell.setupUI()
+            cell.configureCell(isWalletShowedUp: mainModelView.isWalletShowed)
             return cell
         }
         else {
