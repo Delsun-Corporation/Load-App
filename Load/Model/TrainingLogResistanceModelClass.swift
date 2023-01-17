@@ -6,7 +6,7 @@ class TrainingLogResistanceModelClass: Mappable {
 	var trainingActivityId: Any? 
 	var trainingIntensity: TrainingIntensityResistance?
 	var trainingGoal: TrainingGoalResistance?
-	var id: NSNumber? 
+	var id: String?
 	var targetedHr: Any? 
 	var createdAt: String? 
 	var date: String? 
@@ -38,7 +38,7 @@ class TrainingLogResistanceModelClass: Mappable {
 		trainingActivityId <- map["training_activity_id"] 
 		trainingIntensity <- map["training_intensity"] 
 		trainingGoal <- map["training_goal"] 
-		id <- map["id"] 
+		id <- map["_id"] 
 		targetedHr <- map["targeted_hr"] 
 		createdAt <- map["created_at"] 
 		date <- map["date"] 

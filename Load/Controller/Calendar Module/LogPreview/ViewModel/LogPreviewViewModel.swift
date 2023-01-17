@@ -550,7 +550,7 @@ class LogPreviewViewModel {
     func apiCallDeleteLog() {
         let param = ["":""]
         
-        ApiManager.shared.MakeGetAPI(name: TRAINING_LOG_DELETE + "/" + (self.previewData?.id)!, params: param, vc: self.theController, isAuth: false, completionHandler: { (response, error) in
+        ApiManager.shared.MakeDeleteAPI(name: TRAINING_LOG_DELETE + "/" + trainingLogId, params: param, vc: self.theController, isAuth: false, completionHandler: { (response, error) in
             if response != nil {
                 let json = JSON(response!)
                 print(json)
