@@ -117,7 +117,7 @@ class ResistanceTrainingLogViewModel: DismissPreviewDelegate {
         }
 
         self.intensityId = "\(self.previewData?.trainingIntensityId ?? 0)"
-        self.trainingId = self.previewData?.id?.stringValue ?? ""
+        self.trainingId = self.previewData?.id ?? ""
         self.selectedDate = self.previewData?.date ?? ""
         
         print(self.intensityId)
