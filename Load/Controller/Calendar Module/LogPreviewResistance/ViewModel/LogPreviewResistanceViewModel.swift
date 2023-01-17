@@ -69,7 +69,8 @@ class LogPreviewResistanceViewModel {
         
         view?.imgActivity.image = view?.imgActivity.image?.withRenderingMode(.alwaysTemplate)
         view?.imgActivity.tintColor = UIColor.appthemeOffRedColor
-        view?.lblDate.text = convertDateFormater(self.previewData?.date ?? "", dateFormat: "EEEE, dd MMM yyyy 'at' HH:mm a")
+        let trainingDate = serverDateFormatter.date(from: self.previewData?.date ?? "")
+        view?.lblDate.text = trainingDate?.toString(dateFormat: "EEEE, dd MMM yyyy 'at' hh:mm a")
         view?.lblWhen.text = self.previewData?.workoutName
         view?.lblSubTitle.text = self.previewData?.notes == "" ? "-" : self.previewData?.notes
 //        view?.lblName.text = self.previewData?.workoutName
