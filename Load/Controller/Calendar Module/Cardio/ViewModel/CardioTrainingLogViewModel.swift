@@ -154,7 +154,7 @@ class CardioTrainingLogViewModel: DismissPreviewDelegate {
         
         self.activityId = self.previewData?.trainingActivity?.id?.stringValue ?? ""
         self.intensityId = self.previewData?.trainingIntensityId?.stringValue ?? ""
-        self.trainingId = self.previewData?.id?.stringValue ?? ""
+        self.trainingId = self.previewData?.id ?? ""
         self.targatHRId = self.previewData?.targetedHr ?? ""
         self.selectedDate = self.previewData?.date ?? ""
         theController.hideShowHeaderAccordingToActivity(name : view.txtActivity.text ?? "")

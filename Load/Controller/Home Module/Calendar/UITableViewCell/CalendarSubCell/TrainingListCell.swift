@@ -44,7 +44,7 @@ class TrainingListCell: UITableViewCell {
     
     func setupUI(model: TrainingLogList) {
         
-        self.trainingId = model.id?.stringValue ?? ""
+        self.trainingId = model.id ?? ""
         self.isTrainingLog = true
         self.setupFont()
         
