@@ -43,7 +43,7 @@ extension CalendarTrainingLogResistanceSummaryViewModel{
         
         print(JSON(param))
         
-        ApiManager.shared.MakePostAPI(name: GET_TRAINING_LOG_SUMMAARY_DETAILS, params: param as [String : Any], vc: self.theController, isAuth:false) { (response, error) in
+        ApiManager.shared.MakeGetAPI(name: GET_TRAINING_LOG_SUMMAARY_DETAILS, params: param as [String : Any], vc: self.theController, isAuth:false) { (response, error) in
             if response != nil {
                 let json = JSON(response!)
                 print(json)

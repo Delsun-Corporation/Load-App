@@ -13,7 +13,7 @@ class TrainingLogModelClass: Mappable {
 	var status: String? 
 	var userDetail: UserDetail? 
 	var targetedHr: String? 
-	var id: NSNumber? 
+	var id: String?
 	var trainingActivityId: NSNumber?
     var trainingGoalCustom: String?
 	var trainingGoal: TrainingGoalLogModel?
@@ -44,7 +44,7 @@ class TrainingLogModelClass: Mappable {
 		status <- map["status"] 
 		userDetail <- map["user_detail"] 
 		targetedHr <- map["targeted_hr"] 
-		id <- map["id"] 
+		id <- map["_id"] 
 		trainingActivityId <- map["training_activity_id"] 
 		trainingGoal <- map["training_goal"]
         trainingGoalCustom <- map["training_goal_custom"]

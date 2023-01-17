@@ -407,7 +407,9 @@ extension CalendarVC: UITableViewDelegate, UITableViewDataSource, CalendarSelect
                     let cell: TrainingListCell = self.mainView.tableView.dequeueReusableCell(withIdentifier: "TrainingListCell") as! TrainingListCell
                     cell.tag = indexPath.row - 2
                     cell.delegate = self
-                    cell.setupUI(model: arr![indexPath.row - 2])
+                    if let model = arr?[indexPath.row - 2] {
+                        cell.setupUI(model: model)
+                    }
                     return cell
                 }
                 else {

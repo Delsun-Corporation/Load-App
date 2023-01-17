@@ -115,7 +115,7 @@ class RPESelectionViewModel: CustomNavigationDelegate{
                             return
                         }
                         
-                        let routeObjects = Array(routerArray).filter { $0.userId == getUserDetail()?.data?.user?.id?.stringValue && $0.activityId == Int(self.trainingLogId)}
+                        let routeObjects = Array(routerArray).filter { $0.userId == getUserDetail()?.data?.user?.id?.stringValue && $0.activityId == self.trainingLogId}
 
                         if routeObjects.count > 0 {
                             guard let routerLapArray = realm?.objects(LapDetails.self) else {

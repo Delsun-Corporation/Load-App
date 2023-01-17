@@ -290,7 +290,7 @@ class LogPreviewViewModel {
                         return
                     }
                     
-                    let routeObjects = Array(routerArray).filter { $0.userId == getUserDetail()?.data?.user?.id?.stringValue && $0.activityId == Int(self.trainingLogId)}
+                    let routeObjects = Array(routerArray).filter { $0.userId == getUserDetail()?.data?.user?.id?.stringValue && $0.activityId == self.trainingLogId}
                     
                     if routeObjects.count > 0 {
                         
@@ -343,7 +343,7 @@ class LogPreviewViewModel {
                     if self.previewData?.exercise?[self.currentWorkedIndex].isPause == true{
                         //Not need to add condition of Completed and Duration/Distnace because it's only add in Distnace condition added in StartWorkoutCardioVc
                         
-                        if let valueForIndoor = Defaults.value(forKey: "trainingLog Indoor \(Int(self.previewData?.id ?? 0))") as? Double{
+                        if let valueForIndoor = Defaults.value(forKey: "trainingLog Indoor \(self.previewData?.id ?? "")") as? Double{
                             self.coverdDistanceOfLapWithPedometer = CGFloat(valueForIndoor)
                         }
                     }
@@ -374,7 +374,7 @@ class LogPreviewViewModel {
     func apiCallForUpdate(isSavedWorkout: Bool) {
         let param = ["": ""] as [String : Any]
         
-        ApiManager.shared.MakeGetAPI(name: SAVE_TEMPLETE_TO_WORKOUT + "/" + (self.previewData?.id?.stringValue ?? ""), params: param as [String : Any], vc: self.theController, isAuth:false) { (response, error) in
+        ApiManager.shared.MakeGetAPI(name: SAVE_TEMPLETE_TO_WORKOUT + "/" + (self.previewData?.id ?? ""), params: param as [String : Any], vc: self.theController, isAuth:false) { (response, error) in
             if response != nil {
                 let json = JSON(response!)
                 print(json)
@@ -416,7 +416,7 @@ class LogPreviewViewModel {
                 return
             }
 
-            let routeObjects = Array(routerArray).filter { $0.userId == getUserDetail()?.data!.user!.id!.stringValue && $0.activityId == Int(programId)}
+            let routeObjects = Array(routerArray).filter { $0.userId == getUserDetail()?.data!.user!.id!.stringValue && $0.activityId == programId}
 
             if routeObjects.count > 0 {
                 param["outdoor_route_data"] = String(routeObjects[0].allTrackRoute)
@@ -549,7 +549,7 @@ class LogPreviewViewModel {
     func apiCallDeleteLog() {
         let param = ["":""]
         
-        ApiManager.shared.MakeGetAPI(name: TRAINING_LOG_DELETE + "/" + (self.previewData?.id?.stringValue)!, params: param, vc: self.theController, isAuth: false, completionHandler: { (response, error) in
+        ApiManager.shared.MakeGetAPI(name: TRAINING_LOG_DELETE + "/" + (self.previewData?.id)!, params: param, vc: self.theController, isAuth: false, completionHandler: { (response, error) in
             if response != nil {
                 let json = JSON(response!)
                 print(json)
@@ -859,7 +859,7 @@ extension LogPreviewViewModel{
         
         objActivityRouteData.id = activityIncrementId
         objActivityRouteData.userId = getUserDetail()?.data!.user!.id!.stringValue ?? ""
-        objActivityRouteData.activityId = (previewData.id?.intValue as? Int) ?? 0
+        objActivityRouteData.activityId = (previewData.id) ?? ""
         
         let arrayLap = self.previewData!.exercise ?? []
         
@@ -891,7 +891,7 @@ extension LogPreviewViewModel{
             return
         }
 
-        let routeObjects = Array(routerArray).filter { $0.userId == getUserDetail()?.data!.user!.id!.stringValue && $0.activityId == previewData.id?.intValue}
+        let routeObjects = Array(routerArray).filter { $0.userId == getUserDetail()?.data!.user!.id!.stringValue && $0.activityId == previewData.id}
         
         try! realm?.write{
             

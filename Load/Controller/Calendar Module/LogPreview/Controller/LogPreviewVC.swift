@@ -89,7 +89,7 @@ class LogPreviewVC: UIViewController, NewMessageSelectDelegate, CountDownViewDel
         guard let routerArray = realm?.objects(CardioActivityRoute.self) else {
             return
         }
-        let routeObjects = Array(routerArray).filter { $0.userId == getUserDetail()?.data!.user!.id!.stringValue && $0.activityId == Int(self.mainModelView.trainingLogId)}
+        let routeObjects = Array(routerArray).filter { $0.userId == getUserDetail()?.data!.user!.id!.stringValue && $0.activityId == self.mainModelView.trainingLogId}
 
         if routeObjects.count > 0{
             /*
@@ -693,7 +693,7 @@ class LogPreviewVC: UIViewController, NewMessageSelectDelegate, CountDownViewDel
                         return
                     }
                     
-                    let routeObjects = Array(routerArray).filter { $0.userId == getUserDetail()?.data!.user!.id!.stringValue && $0.activityId == Int(self.mainModelView.trainingLogId)}
+                    let routeObjects = Array(routerArray).filter { $0.userId == getUserDetail()?.data!.user!.id!.stringValue && $0.activityId == self.mainModelView.trainingLogId}
                     
                     if routeObjects.count > 0 {
                         
@@ -803,7 +803,7 @@ class LogPreviewVC: UIViewController, NewMessageSelectDelegate, CountDownViewDel
     }
     
     func NewMessageSelectDidFinish(name: String, id: String) {
-        SocketIOHandler.shared.shareFriendTrainingLog(toIds: [Int(id) ?? 0], trainingLogId: self.mainModelView.previewData?.id?.intValue ?? 0)
+//        SocketIOHandler.shared.shareFriendTrainingLog(toIds: [Int(id) ?? 0], trainingLogId: self.mainModelView.previewData?.id? ?? 0)
     }
     
     //MARK: - Other functions
@@ -1319,7 +1319,7 @@ extension LogPreviewVC{
             guard let routerArray = realm?.objects(CardioActivityRoute.self) else {
                 return
             }
-            let routeObjects = Array(routerArray).filter { $0.userId == getUserDetail()?.data!.user!.id!.stringValue && $0.activityId == Int(self.mainModelView.trainingLogId)}
+            let routeObjects = Array(routerArray).filter { $0.userId == getUserDetail()?.data!.user!.id!.stringValue && $0.activityId == self.mainModelView.trainingLogId}
             
             if self.mainModelView.previewData?.exercise?.count ?? 0 > 0{
                 
@@ -1732,7 +1732,7 @@ extension LogPreviewVC: updateLatLongDelegate{
                 guard let routerArray = realm?.objects(CardioActivityRoute.self) else {
                     return
                 }
-                let routeObjects = Array(routerArray).filter { $0.userId == getUserDetail()?.data!.user!.id!.stringValue && $0.activityId == Int(self.mainModelView.trainingLogId)}
+                let routeObjects = Array(routerArray).filter { $0.userId == getUserDetail()?.data!.user!.id!.stringValue && $0.activityId == self.mainModelView.trainingLogId}
                 
                 //When user click on End button that time user goes to 10 second timer so that time isPaused call and Loader continue
                 if self.isEndAlertShowing == true{
@@ -1850,7 +1850,7 @@ extension LogPreviewVC{
             return
         }
         
-        let routeObjects = Array(routerArray).filter { $0.userId == getUserDetail()?.data!.user!.id!.stringValue && $0.activityId == Int(self.mainModelView.trainingLogId)}
+        let routeObjects = Array(routerArray).filter { $0.userId == getUserDetail()?.data!.user!.id!.stringValue && $0.activityId == self.mainModelView.trainingLogId}
 
         if routeObjects.count > 0 {
             
@@ -1872,7 +1872,7 @@ extension LogPreviewVC{
         guard let routerArray = realm?.objects(CardioActivityRoute.self) else {
             return
         }
-        let routeObjects = Array(routerArray).filter { $0.userId == getUserDetail()?.data!.user!.id!.stringValue && $0.activityId == Int(self.mainModelView.trainingLogId)}
+        let routeObjects = Array(routerArray).filter { $0.userId == getUserDetail()?.data!.user!.id!.stringValue && $0.activityId == self.mainModelView.trainingLogId}
         
         if routeObjects.count > 0{
             
@@ -1925,7 +1925,7 @@ extension LogPreviewVC{
             guard let routerArray = realm?.objects(CardioActivityRoute.self) else {
                 return
             }
-            let routeObjects = Array(routerArray).filter { $0.userId == getUserDetail()?.data!.user!.id!.stringValue && $0.activityId == Int(self.mainModelView.trainingLogId)}
+            let routeObjects = Array(routerArray).filter { $0.userId == getUserDetail()?.data!.user!.id!.stringValue && $0.activityId == self.mainModelView.trainingLogId}
             
             if routeObjects.count > 0{
                 
@@ -2177,7 +2177,7 @@ extension LogPreviewVC{
                         return
                     }
                     
-                    let routeObjects = Array(routerArray).filter { $0.userId == getUserDetail()?.data?.user?.id?.stringValue && $0.activityId == Int(self.mainModelView.trainingLogId)}
+                    let routeObjects = Array(routerArray).filter { $0.userId == getUserDetail()?.data?.user?.id?.stringValue && $0.activityId == self.mainModelView.trainingLogId}
                     
                     if routeObjects.count > 0 {
                         
