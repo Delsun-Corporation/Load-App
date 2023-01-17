@@ -92,7 +92,8 @@ class LogPreviewViewModel {
              let imageActivity = self.previewData?.trainingActivity?.iconPathRed ?? ""
              view?.imgActivity.sd_setImage(with: URL(string: SERVER_URL + imageActivity), completed: nil)
             
-            view?.lblDate.text = convertDateFormater(self.previewData?.date ?? "", dateFormat: "EEEE, dd MMM yyyy 'at' hh:mm a")
+            let trainingDate = serverDateFormatter.date(from: self.previewData?.date ?? "")
+            view?.lblDate.text = trainingDate?.toString(dateFormat: "EEEE, dd MMM yyyy 'at' hh:mm a")
 //                (self.previewData?.date)!.UTCToLocal(returnFormat: "EEEE, dd MMM yyyy 'at' hh:mm a")
             
 //             view?.lblDate.text = convertDateFormater(self.previewData?.date ?? "", dateFormat: "EEEE, dd MMM yyyy 'at' HH:mm a")

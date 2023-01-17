@@ -106,7 +106,7 @@ class RPESelectionViewModel: CustomNavigationDelegate{
                     AppDelegate.shared?.delegateUpadateLatLong = nil
 
                     if self.controllerMoveFrom == .trainingLog{
-                        if let valueFound = Defaults.value(forKey: self.trainingLogId) {
+                        if Defaults.value(forKey: self.trainingLogId) != nil {
                             Defaults.removeObject(forKey: self.trainingLogId)
                             Defaults.synchronize()
                         }
