@@ -81,7 +81,8 @@ class ResistanceTrainingLogViewModel: DismissPreviewDelegate {
     func getValicationFromId() {
         let filter = self.resistanceValidationList.filter { (model) -> Bool in
             
-            return model.trainingIntensityId?.stringValue == self.intensityId && model.trainingGoalId?.stringValue == self.trainingGoalId
+            return model.trainingIntensityId?.stringValue == self.intensityId
+            // && model.trainingGoalId?.stringValue == self.trainingGoalId
         }
         self.selectedResistanceValidationList = filter.first
         
