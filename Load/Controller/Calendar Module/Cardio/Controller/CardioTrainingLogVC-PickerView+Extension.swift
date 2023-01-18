@@ -251,11 +251,10 @@ extension CardioTrainingLogVC: UIPickerViewDataSource, UIPickerViewDelegate {
                 }
             }
         }
-        else if pickerView == self.mainModelView.stylePickerView {
-           
-            let style = GetAllData?.data?.trainingLogStyle![row]
-            self.mainModelView.selectedSwimmingStyle = String(Int(truncating: style?.id ?? 0))
-            self.mainView.txtStyle.text = style?.name
+        else if pickerView == self.mainModelView.stylePickerView,
+                    let style = GetAllData?.data?.trainingLogStyle?[row] {
+            self.mainModelView.selectedSwimmingStyle = style.id ?? ""
+            self.mainView.txtStyle.text = style.name
             
         }
     }

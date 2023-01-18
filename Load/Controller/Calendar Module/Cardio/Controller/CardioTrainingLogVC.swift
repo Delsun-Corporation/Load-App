@@ -186,7 +186,7 @@ class CardioTrainingLogVC: UIViewController, NewMessageSelectDelegate, UITextFie
         if self.mainView.txtStyle.text == "" {
             let style = GetAllData?.data?.trainingLogStyle?.first
             self.mainView.txtStyle.text = style?.name?.capitalized ?? ""
-            self.mainModelView.selectedSwimmingStyle = String(Int(style?.id ?? 0))
+            self.mainModelView.selectedSwimmingStyle = style?.id ?? ""
         }
         self.mainView.txtStyle.becomeFirstResponder()
     }
