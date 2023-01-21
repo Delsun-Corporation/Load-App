@@ -474,10 +474,10 @@ class ResistanceTrainingLogViewModel: DismissPreviewDelegate {
         ] as [String : Any]
         
         print(JSON(param))
-        ApiManager.shared.MakePostAPI(name: LOG_RESISTANCE_VALIDATION_LIST, params: param as [String : Any], progress: false, vc: self.theController, isAuth:false) { (response, error) in
+        ApiManager.shared.MakeGetAPI(name: LOG_RESISTANCE_VALIDATION_LIST, params: param as [String : Any], progress: false, vc: self.theController, isAuth:false) { (response, error) in
             if response != nil {
                 let json = JSON(response!)
-                print(json)
+                print("This is json log resistance validation list \(json)")
                 let model = ResistanceValidationList(JSON: json.dictionaryObject!)
                 self.resistanceValidationList = model?.data ?? []
                 self.getValicationFromId()
@@ -610,14 +610,15 @@ class ResistanceTrainingLogViewModel: DismissPreviewDelegate {
         
         var param = [
             "repetition_max": repetitionMax,
-            "is_show_again_message" : isMsgShowAgain
+            "is_show_again_message" : isMsgShowAgain,
+            "common_libraries_id" :Int(id)
             ] as [String : Any]
         
-        if userId == 0{
-            param["common_libraries_id"] = Int(id)
-        }else{
-            param["libraries_id"] = Int(id)
-        }
+//        if userId == 0{
+//            param["common_libraries_id"] = Int(id)
+//        }else{
+//            param["libraries_id"] = Int(id)
+//        }
         
         print(JSON(param))
         

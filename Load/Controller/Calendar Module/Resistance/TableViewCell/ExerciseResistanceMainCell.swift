@@ -247,8 +247,7 @@ class ExerciseResistanceMainCell: UITableViewCell, UITableViewDelegate, UITableV
     }
     
     func showAlertForSaveInLibrary(reps: String, weight: String) {
-        
-        self.delegate?.addActWeightToRecordsAlertView(reps: reps, weight: weight,id: self.exercisesMainArray[self.tag].commonLibraryId == 0 ? self.exercisesMainArray[self.tag].libraryId : self.exercisesMainArray[self.tag].commonLibraryId , userId: self.exercisesMainArray[self.tag].commonLibraryId == 0 ?  Int(getUserDetail()?.data?.user?.id ?? 0) : 0, isShowAlertOrNot: self.exercisesMainArray[self.tag].isShowAlertOrNot,atIndex:self.tag)
+        self.delegate?.addActWeightToRecordsAlertView(reps: reps, weight: weight,id: self.exercisesMainArray[self.tag].id == 0 ? self.exercisesMainArray[self.tag].commonLibraryId : self.exercisesMainArray[self.tag].id ?? 0 , userId: self.exercisesMainArray[self.tag].commonLibraryId == 0 ?  Int(getUserDetail()?.data?.user?.id ?? 0) : 0, isShowAlertOrNot: self.exercisesMainArray[self.tag].isShowAlertOrNot,atIndex:self.tag)
     }
 
 }
