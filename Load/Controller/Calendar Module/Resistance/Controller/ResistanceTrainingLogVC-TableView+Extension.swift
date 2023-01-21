@@ -182,13 +182,15 @@ extension ResistanceTrainingLogVC: UITableViewDelegate, UITableViewDataSource, A
     }
 
     func addActWeightToRecordsAlertView(reps: String, weight: String, id: Int, userId: Int, isShowAlertOrNot: Bool, atIndex: Int) {
-                
+        print("David's debug id \(id)")
         if isShowAlertOrNot{
             
             let repitationMax = self.getDefaultJSON(reps: reps, weight: weight,atIndex : atIndex)
             self.mainModelView.apiCallUpdateLibraryAfterAlert(id: String(id), repetitionMax: repitationMax , isMsgShowAgain: true,userId:userId,atIndex: atIndex)
             
         }else{
+            print("David's debug reps \(reps)")
+            print("David's debug weight \(weight)")
             showCustomAlertVC(reps: reps, weight: weight, id: id, userId: userId,atIndex : atIndex)
         }
         
@@ -204,7 +206,7 @@ extension ResistanceTrainingLogVC: UITableViewDelegate, UITableViewDataSource, A
             print("isShowMsgDontShowAgain : \(isShowMsgDontShowAgain)")
             
             let repitationMax = self?.getDefaultJSON(reps: reps, weight: weight,atIndex:atIndex)
-            
+            print("David's debug select yes \(repitationMax)")
             self?.mainModelView.apiCallUpdateLibraryAfterAlert(id: String(id), repetitionMax: repitationMax ?? [], isMsgShowAgain: isShowMsgDontShowAgain,userId:userId,atIndex : atIndex)
             
         }
@@ -218,7 +220,7 @@ extension ResistanceTrainingLogVC: UITableViewDelegate, UITableViewDataSource, A
 
     func getDefaultJSON(reps: String, weight: String,atIndex: Int) -> NSMutableArray {
         
-        if let repetationMaxAvailable = self.mainModelView.exercisesMainArray[atIndex].repetitionMax{
+        if let repetationMaxAvailable = self.mainModelView.exercisesMainArray[atIndex].repetitionMax, !repetationMaxAvailable.isEmpty{
             
             print("repetationMaxAvailable : \(repetationMaxAvailable)")
             
