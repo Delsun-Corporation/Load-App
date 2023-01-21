@@ -9,15 +9,46 @@
 import UIKit
 
 class SettingsViewModel {
-
+    
+    enum Menu: String {
+        case name = "Name"
+        case account = "Account"
+        case loadCentre = "Load Centre"
+        case training = "Training"
+        case notifications = "Notifications"
+        case helpAndSupport = "Help and Support"
+        case privacyAndPolicy = "Privacy Policy"
+        case referAndEarn = "Refer and Earn"
+        case contactUs = "Contact Us"
+        case changePassword = "Change Password"
+        case logout = "Log out"
+    }
+    
     //MARK:- Variables
     weak var theController:SettingsVC!
     
-    let titleArray: [String] = ["Name", "Account", "Load Centre", "Training", "Notifications", "Help and Support", "Privacy Policy", "Refer and Earn", "Contact us", "Change Password", "Log out"]
-
+    private (set) var titleArray: [Menu] = []
+    
+    lazy var isReferralProgramActivated = LoadRemoteConfig.startBooleanRemoteConfig("is_referral_feature_activated")
+    
     //MARK:- Functions
     init(theController:SettingsVC) {
         self.theController = theController
+        createTitleArray()
+    }
+    
+    private func createTitleArray() {
+        titleArray = [.name,
+                      .account,
+                      .loadCentre,
+                      .training,
+                      .notifications,
+                      .helpAndSupport,
+                      .privacyAndPolicy,
+                      isReferralProgramActivated ? .referAndEarn : nil,
+                      .contactUs,
+                      .changePassword,
+                      .logout].compactMap({ $0 })
     }
     
     func setupNavigationbar(title:String) {
@@ -47,11 +78,11 @@ class SettingsViewModel {
             vwnav.lblTitle.attributedText = myMutableString
             
             vwnav.tag = 10222
-//            vwnav.delegate = self
+            //            vwnav.delegate = self
             self.theController.navigationController?.view.addSubview(vwnav)
             self.theController.navigationController?.setColor()
-
+            
         }
     }
-
+    
 }

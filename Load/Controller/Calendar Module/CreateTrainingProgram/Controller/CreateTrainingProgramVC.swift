@@ -9,11 +9,11 @@
 import UIKit
 
 class CreateTrainingProgramVC: UIViewController {
-
+    
     //MARK:- Variables
     lazy var mainView: CreateTrainingProgramView = { [unowned self] in
         return self.view as! CreateTrainingProgramView
-        }()
+    }()
     
     lazy var mainModelView: CreateTrainingProgramViewModel = {
         return CreateTrainingProgramViewModel(theController: self)
@@ -35,7 +35,7 @@ class CreateTrainingProgramVC: UIViewController {
     }
     
     override func viewWillDisappear(_ animated: Bool) {
-
+        
         NotificationCenter.default.removeObserver(self, name: Notification.Name(NOTIFICATION_CENTER_LIST.CALENDAR_RELOADING.rawValue), object: nil)
     }
     
@@ -44,12 +44,12 @@ class CreateTrainingProgramVC: UIViewController {
         
         //Old Flow
         /*
-        let obj = AppStoryboard.Calendar.instance.instantiateViewController(withIdentifier: "SelectTrainingProgramVC") as! SelectTrainingProgramVC
-        obj.mainModelView.isResistance = true
-        obj.mainModelView.navTitle = "How would you like to\nplan your strength program?"
-        let nav = UINavigationController(rootViewController: obj)
-        nav.modalPresentationStyle = .overCurrentContext
-        self.present(nav, animated: true, completion: nil)
+         let obj = AppStoryboard.Calendar.instance.instantiateViewController(withIdentifier: "SelectTrainingProgramVC") as! SelectTrainingProgramVC
+         obj.mainModelView.isResistance = true
+         obj.mainModelView.navTitle = "How would you like to\nplan your strength program?"
+         let nav = UINavigationController(rootViewController: obj)
+         nav.modalPresentationStyle = .overCurrentContext
+         self.present(nav, animated: true, completion: nil)
          */
         
         //New flow
@@ -71,12 +71,12 @@ class CreateTrainingProgramVC: UIViewController {
         
         //Old flow
         /*
-        let obj = AppStoryboard.Calendar.instance.instantiateViewController(withIdentifier: "SelectTrainingProgramVC") as! SelectTrainingProgramVC
-        obj.mainModelView.isResistance = false
-        obj.mainModelView.navTitle = "How would you like to\nplan your cardio program?"
-        let nav = UINavigationController(rootViewController: obj)
-        nav.modalPresentationStyle = .overCurrentContext
-        self.present(nav, animated: true, completion: nil)
+         let obj = AppStoryboard.Calendar.instance.instantiateViewController(withIdentifier: "SelectTrainingProgramVC") as! SelectTrainingProgramVC
+         obj.mainModelView.isResistance = false
+         obj.mainModelView.navTitle = "How would you like to\nplan your cardio program?"
+         let nav = UINavigationController(rootViewController: obj)
+         nav.modalPresentationStyle = .overCurrentContext
+         self.present(nav, animated: true, completion: nil)
          */
         
         //New flow
@@ -92,7 +92,7 @@ class CreateTrainingProgramVC: UIViewController {
         }else{
             
         }
-
+        
     }
     
     @IBAction func btnEditResistanceProgramTapped(_ sender: UIButton) {
@@ -114,7 +114,7 @@ class CreateTrainingProgramVC: UIViewController {
         [self.mainView.vwCardio,self.mainView.vwResistance,self.mainView.vwEditCardio,self.mainView.vwEditResistance,self.mainView.vwDeleteCardio,self.mainView.vwDeleteResistance].forEach { (vw) in
             vw?.isHidden = true
         }
-
+        
     }
     
     //MARK: - Other functions
@@ -136,7 +136,7 @@ class CreateTrainingProgramVC: UIViewController {
         alertController.addAction(okAction)
         alertController.addAction(cancelAction)
         self.present(alertController, animated: true, completion: nil)
-
+        
     }
 }
 
@@ -188,8 +188,6 @@ extension CreateTrainingProgramVC{
 //MARK: - DimissPreset screen delegate
 extension CreateTrainingProgramVC: dismissAndRefreshData{
     func dismissPreset() {
-        
-//        self.mainModelView.setupUI()
         self.dismiss(animated: false, completion: nil)
         self.mainModelView.delegateTrainingProgram?.onlyDismissTrainingProgram()
     }

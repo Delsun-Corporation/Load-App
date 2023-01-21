@@ -32,7 +32,7 @@ class TrainingLogList: Mappable {
     var trainingIntensity: TrainingLogIntensity?
     var trainingGoalId: NSNumber?
     var exercise: [TrainingLogExercise]?
-    var id: NSNumber?
+    var id: String?
     var trainingActivity: TrainingLogActivity?
     var trainingActivityId: NSNumber?
     var targetedHr: String?
@@ -68,7 +68,7 @@ class TrainingLogList: Mappable {
         trainingIntensity <- map["training_intensity"]
         trainingGoalId <- map["training_goal_id"]
         exercise <- map["exercise"]
-        id <- map["id"]
+        id <- map["_id"]
         trainingActivity <- map["training_activity"]
         trainingActivityId <- map["training_activity_id"]
         targetedHr <- map["targeted_hr"]

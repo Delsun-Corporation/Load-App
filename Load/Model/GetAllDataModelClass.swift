@@ -216,11 +216,11 @@ class TrainingIntensity: Mappable {
 class TrainingLogSwimmingStyle: Mappable{
     
     var code: String?
-    var isActive: NSNumber?
+    var isActive: Bool?
     var updatedAt: String?
     var name: String?
     var createdAt: String?
-    var id: NSNumber?
+    var id: String?
     
     required init?(map: Map){
     }
@@ -230,7 +230,7 @@ class TrainingLogSwimmingStyle: Mappable{
         updatedAt <- map["updated_at"]
         name <- map["name"]
         createdAt <- map["created_at"]
-        id <- map["id"]
+        id <- map["_id"]
         code <- map["code"]
     }
 }

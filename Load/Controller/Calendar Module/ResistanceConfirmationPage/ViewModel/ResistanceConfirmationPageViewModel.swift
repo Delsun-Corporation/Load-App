@@ -233,7 +233,7 @@ extension ResistanceConfirmationPageViewModel{
         ] as [String : Any]
         
         print(JSON(param))
-        ApiManager.shared.MakeGetAPI(name: LOG_RESISTANCE_VALIDATION_LIST, params: param as [String : Any], progress: false, vc: self.theController, isAuth:false) { (response, error) in
+        ApiManager.shared.MakeGetAPI(name: LOG_RESISTANCE_VALIDATION_LIST, params: param as [String : Any], vc: self.theController) { response, error in
             if response != nil {
                 let json = JSON(response!)
                 print("This is json log resistance validation list \(json)")

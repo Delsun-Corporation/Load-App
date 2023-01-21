@@ -81,7 +81,8 @@ class ResistanceTrainingLogViewModel: DismissPreviewDelegate {
     func getValicationFromId() {
         let filter = self.resistanceValidationList.filter { (model) -> Bool in
             
-            return model.trainingIntensityId?.stringValue == self.intensityId && model.trainingGoalId?.stringValue == self.trainingGoalId
+            return model.trainingIntensityId?.stringValue == self.intensityId
+            // && model.trainingGoalId?.stringValue == self.trainingGoalId
         }
         self.selectedResistanceValidationList = filter.first
         
@@ -100,16 +101,6 @@ class ResistanceTrainingLogViewModel: DismissPreviewDelegate {
         view.txtName.text = self.previewData?.workoutName
         view.txtNotes.text = self.previewData?.notes ?? ""
         
-        /*
-        if trainigGoalCustom == "" || trainigGoalCustom == nil {
-            self.isGoalCustom = false
-        }
-        else {
-            self.isGoalCustom = true
-        }*/
-        
-        print("Training Goal name:\(self.previewData?.trainingGoal?.name)")
-        
         if self.previewData?.trainingGoalId?.stringValue == "" || self.previewData?.trainingGoalId?.stringValue == nil || self.previewData?.trainingGoalId?.stringValue == "0"{
             
             self.trainingGoalId = String(self.previewData!.trainingGoalCustomId)
@@ -127,7 +118,7 @@ class ResistanceTrainingLogViewModel: DismissPreviewDelegate {
         }
 
         self.intensityId = "\(self.previewData?.trainingIntensityId ?? 0)"
-        self.trainingId = self.previewData?.id?.stringValue ?? ""
+        self.trainingId = self.previewData?.id ?? ""
         self.selectedDate = self.previewData?.date ?? ""
         
         print(self.intensityId)
@@ -506,7 +497,7 @@ class ResistanceTrainingLogViewModel: DismissPreviewDelegate {
                 let json = JSON(response!)
                 print(json)
                 let data = json.getDictionary(key: .data)
-                let model = TrainingLogResistanceModelClass(JSON: data.dictionaryObject!)
+                _ = TrainingLogResistanceModelClass(JSON: data.dictionaryObject!)
                 if isSavedWorkout {
                     self.trainingId = "\(json.getDictionary(key: .data).getInt(key: .id))"
                     makeToast(strMessage: json.getString(key: .message))

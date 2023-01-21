@@ -106,7 +106,7 @@ class RPESelectionViewModel: CustomNavigationDelegate{
                     AppDelegate.shared?.delegateUpadateLatLong = nil
 
                     if self.controllerMoveFrom == .trainingLog{
-                        if let valueFound = Defaults.value(forKey: self.trainingLogId) {
+                        if Defaults.value(forKey: self.trainingLogId) != nil {
                             Defaults.removeObject(forKey: self.trainingLogId)
                             Defaults.synchronize()
                         }
@@ -115,7 +115,7 @@ class RPESelectionViewModel: CustomNavigationDelegate{
                             return
                         }
                         
-                        let routeObjects = Array(routerArray).filter { $0.userId == getUserDetail()?.data?.user?.id?.stringValue && $0.activityId == Int(self.trainingLogId)}
+                        let routeObjects = Array(routerArray).filter { $0.userId == getUserDetail()?.data?.user?.id?.stringValue && $0.activityId == self.trainingLogId}
 
                         if routeObjects.count > 0 {
                             guard let routerLapArray = realm?.objects(LapDetails.self) else {

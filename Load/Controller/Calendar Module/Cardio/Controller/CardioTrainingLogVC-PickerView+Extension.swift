@@ -173,7 +173,7 @@ extension CardioTrainingLogVC: UIPickerViewDataSource, UIPickerViewDelegate {
             self.mainModelView.targatHRPickerView.selectRow(0, inComponent: 0, animated: false)
         }
         else if pickerView == self.mainModelView.trainingGoalPickerView {
-            guard let cardio = GetAllData?.data?.trainingGoalLogCardio, cardio.isEmpty else {
+            guard let cardio = GetAllData?.data?.trainingGoalLogCardio, !cardio.isEmpty else {
                 return
             }
             
@@ -196,7 +196,7 @@ extension CardioTrainingLogVC: UIPickerViewDataSource, UIPickerViewDelegate {
             self.mainModelView.selectedTrainingGoalName = name
             
             self.mainModelView.trainingGoalId = activity.id?.stringValue ?? ""
-            print("Training Goal Id : \(self.mainModelView.trainingGoalId)")
+            LOADLog("Training Goal Id : \(self.mainModelView.trainingGoalId)")
             
             if name.lowercased() != "customize" {
                 
@@ -251,11 +251,10 @@ extension CardioTrainingLogVC: UIPickerViewDataSource, UIPickerViewDelegate {
                 }
             }
         }
-        else if pickerView == self.mainModelView.stylePickerView {
-           
-            let style = GetAllData?.data?.trainingLogStyle![row]
-            self.mainModelView.selectedSwimmingStyle = String(Int(truncating: style?.id ?? 0))
-            self.mainView.txtStyle.text = style?.name
+        else if pickerView == self.mainModelView.stylePickerView,
+                    let style = GetAllData?.data?.trainingLogStyle?[row] {
+            self.mainModelView.selectedSwimmingStyle = style.id ?? ""
+            self.mainView.txtStyle.text = style.name
             
         }
     }

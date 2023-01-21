@@ -14,7 +14,7 @@ class CardioActivityRoute : Object{
     
     @objc dynamic var id = 0
     @objc dynamic var userId = ""
-    @objc dynamic var activityId = 0
+    @objc dynamic var activityId = ""
     @objc dynamic var allTrackRoute = ""
     @objc dynamic var totalCoveredDistance = 0.0
     @objc dynamic var secondLastIndex = 0

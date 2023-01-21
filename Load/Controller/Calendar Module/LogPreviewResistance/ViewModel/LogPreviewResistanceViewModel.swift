@@ -10,7 +10,7 @@ import UIKit
 import SDWebImage
 import SwiftyJSON
 
-protocol DismissPreviewDelegate:class {
+protocol DismissPreviewDelegate: AnyObject {
     func DismissPreviewDidFinish()
 }
 
@@ -46,13 +46,15 @@ class LogPreviewResistanceViewModel {
         let view = (self.theController.view as? LogPreviewResistanceView)
         
         var count:Int = 0
-        for (index, _) in (self.previewData?.exercise!.enumerated())! {
-            count += (self.previewData?.exercise![index].data!.count)!
+        if let exercises = previewData?.exercise {
+            for (index, _) in exercises.enumerated() {
+                count += previewData?.exercise?[index].data?.count ?? 0
+            }
         }
         
         self.totalLapCount = count
         
-        view?.heightTableView.constant = CGFloat(((self.previewData?.exercise!.count)! * 95) + (count * 77))
+        view?.heightTableView.constant = CGFloat((((self.previewData?.exercise?.count) ?? 0) * 95) + (count * 77))
         
         let section = self.theController.findSpecificIndextoShow().section
         let row = self.theController.findSpecificIndextoShow().row
@@ -63,11 +65,12 @@ class LogPreviewResistanceViewModel {
         view?.lblTargetedVolumeValue.text = "\(self.previewData?.targetedVolume ?? 0) \(self.previewData?.targetedVolumeUnit ?? "")"
         
         let image = self.previewData?.userDetail?.photo
-        view?.imgProfile.sd_setImage(with: URL(string: image!), completed: nil)
+        view?.imgProfile.sd_setImage(with: URL(string: image ?? ""), completed: nil)
         
         view?.imgActivity.image = view?.imgActivity.image?.withRenderingMode(.alwaysTemplate)
         view?.imgActivity.tintColor = UIColor.appthemeOffRedColor
-        view?.lblDate.text = convertDateFormater((self.previewData?.date)!, dateFormat: "EEEE, dd MMM yyyy 'at' HH:mm a")
+        let trainingDate = serverDateFormatter.date(from: self.previewData?.date ?? "")
+        view?.lblDate.text = trainingDate?.toString(dateFormat: "EEEE, dd MMM yyyy 'at' hh:mm a")
         view?.lblWhen.text = self.previewData?.workoutName
         view?.lblSubTitle.text = self.previewData?.notes == "" ? "-" : self.previewData?.notes
 //        view?.lblName.text = self.previewData?.workoutName
@@ -129,7 +132,7 @@ class LogPreviewResistanceViewModel {
     
     func checkIsExerciseStarted() -> Bool {
         for data in self.previewData?.exercise ?? [] {
-            if data.data?[0].startTime != ""{
+            if data.data?.isEmpty == false && data.data?[0].startTime != ""{
                 return true
             }
         }
@@ -158,7 +161,7 @@ class LogPreviewResistanceViewModel {
     func apiCallDeleteLog() {
         let param = ["":""]
         
-        ApiManager.shared.MakeGetAPI(name: TRAINING_LOG_DELETE + "/" + (self.previewData?.id?.stringValue)!, params: param, vc: self.theController, isAuth: false, completionHandler: { (response, error) in
+        ApiManager.shared.MakeDeleteAPI(name: TRAINING_LOG_DELETE + "/" + (self.previewData?.id ?? ""), params: param, vc: self.theController, isAuth: false, completionHandler: { (response, error) in
             if response != nil {
                 let json = JSON(response!)
                 print(json)
