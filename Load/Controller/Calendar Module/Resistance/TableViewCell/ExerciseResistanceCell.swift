@@ -295,8 +295,6 @@ class ExerciseResistanceCell: UITableViewCell, UITextFieldDelegate {
     
     func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
         
-        print("Data:\(self.selectedResistanceValidationList?.toJSON())")
-        
         if selectedResistanceValidationList == nil{
             return false
         }
@@ -348,8 +346,6 @@ class ExerciseResistanceCell: UITableViewCell, UITextFieldDelegate {
 
                         let firstIndex = Int(arrayWeigt?[0] ?? "")
                         let secondIndex = self.arrayDecimalForCustomTrainingGoal.firstIndex(where: {$0 == Int(arrayWeigt?[1] ?? "")})
-
-                        print("FirstIndex:\(firstIndex) : secondINdex:\(secondIndex)")
 
                         self.pickerViewWeight.selectRow(firstIndex ?? 0, inComponent: 0, animated: false)
                         self.pickerViewWeight.selectRow(secondIndex ?? 0, inComponent: 1, animated: false)
@@ -497,8 +493,6 @@ class ExerciseResistanceCell: UITableViewCell, UITextFieldDelegate {
                                     let firstIndex = self.arrayMinuteForDurationCustom.firstIndex(where: {$0 == Int(String(arrayDuration?[0] ?? "0"))})
                                     let secondIndex = self.arraySecondForDuratonCustom.firstIndex(where: {$0 == Int(String(arrayDuration?[1] ?? "0"))})
 
-                                    print("FirstIndex:\(firstIndex) : secondINdex:\(secondIndex)")
-
                                     self.pickerViewDuration.selectRow(firstIndex ?? 0, inComponent: 0, animated: false)
                                     self.pickerViewDuration.selectRow(secondIndex ?? 0, inComponent: 1, animated: false)
 
@@ -620,8 +614,6 @@ class ExerciseResistanceCell: UITableViewCell, UITextFieldDelegate {
 
                             let firstIndex = self.arrayMinuteForRestCustome.firstIndex(where: {$0 == Int(String(arrayRestCustom?[0] ?? "0"))})
                             let secondIndex = self.arraySecondForRestCustome.firstIndex(where: {$0 == Int(String(arrayRestCustom?[1] ?? "0"))})
-
-                            print("FirstIndex:\(firstIndex) : secondINdex:\(secondIndex)")
 
                             self.pickerViewRest.selectRow(firstIndex ?? 0, inComponent: 0, animated: false)
                             self.pickerViewRest.selectRow(secondIndex ?? 0, inComponent: 1, animated: false)
@@ -1005,8 +997,6 @@ class ExerciseResistanceCell: UITableViewCell, UITextFieldDelegate {
     }
     
     func calculateDurationArrayForRestCustomise(data:String?, isShowHours:Bool = true)  {
-        let addTime:Double = 15
-        var array: [String] = []
         let dataArray = data?.split(separator: "-")
         if dataArray?.count == 2 {
             
@@ -1067,7 +1057,6 @@ class ExerciseResistanceCell: UITableViewCell, UITextFieldDelegate {
     
     
     func calculateDurationArrayForDurationCustomise(data:String?, isShowHours:Bool = true)  {
-        var array: [String] = []
         let dataArray = data?.split(separator: "-")
         if dataArray?.count == 2 {
             
@@ -1756,8 +1745,8 @@ extension ExerciseResistanceCell: UIPickerViewDataSource, UIPickerViewDelegate {
                 return false
             })){
                 
-                print("Estimated Weight:\(selectedRPforWeight?.estWeight)")
-                print("Actual Weight:\(selectedRPforWeight?.actWeight)")
+                print("Estimated Weight:\(selectedRPforWeight?.estWeight ?? "")")
+                print("Actual Weight:\(selectedRPforWeight?.actWeight ?? "")")
                 
                 if selectedRPforWeight?.actWeight == "" || selectedRPforWeight?.actWeight == "0"{
                     if selectedRPforWeight?.estWeight == "" || selectedRPforWeight?.estWeight == "0"{
@@ -1785,8 +1774,8 @@ extension ExerciseResistanceCell: UIPickerViewDataSource, UIPickerViewDelegate {
 //                    return
 //                }
                 
-                print("Estimated Weight:\(selectedRPforWeight?.estWeight)")
-                print("Actual Weight:\(selectedRPforWeight?.actWeight)")
+                print("Estimated Weight:\(selectedRPforWeight?.estWeight ?? "")")
+                print("Actual Weight:\(selectedRPforWeight?.actWeight ?? "")")
 
                 if selectedRPforWeight?.actWeight == "" || selectedRPforWeight?.actWeight == "0"{
                     if selectedRPforWeight?.estWeight == "" || selectedRPforWeight?.estWeight == "0"{
@@ -1839,9 +1828,6 @@ extension ExerciseResistanceCell: UIPickerViewDataSource, UIPickerViewDelegate {
     }
     
     func changesRepsAndGetWeight(strSelectedReps:String) -> String{
-        
-        print("selectedResistanceWeightList JSONM:\(selectedResistanceWeightList?.toJSON())")
-        
         var selectedRPforWeight : RepetitionMax?
         
         if selectedResistanceWeightList?.count ?? 0 > 0 && self.selectedResistanceWeightList != nil{
@@ -1854,40 +1840,31 @@ extension ExerciseResistanceCell: UIPickerViewDataSource, UIPickerViewDelegate {
                 return false
             })){
                 
-                if selectedRPforWeight?.actWeight == "" || selectedRPforWeight?.actWeight == "0"{
-                    if selectedRPforWeight?.estWeight == "" || selectedRPforWeight?.estWeight == "0"{
-                        print("Both are blank")
-                        return ""
-                    }else{
+                // If selected RP from user is empty or nil
+                if selectedRPforWeight?.actWeight == "" || selectedRPforWeight?.actWeight == nil {
+                    // We will check for estimated weight first
+                    if let estWeight = selectedRPforWeight?.estWeight, !estWeight.isEmpty {
                         return selectedRPforWeight?.estWeight ?? ""
+                    } else {
+                        print("Both are blank, do nothing")
+                        return ""
                     }
-                }else{
+                } else {
                     return selectedRPforWeight?.actWeight ?? ""
                 }
-            }
-            else{
+            } else {
                 
                 let value = self.txtReps.text?.toTrim()
                 
-                //TODO: - Change here for according reps
-                
-//                if value == "13" || value == "14"{
-//                    selectedRPforWeight = selectedResistanceWeightList?[11]
-//                }else if value == "16" || value == "17" || value == "18" || value == "19" || value == "20"{
-//                    selectedRPforWeight = selectedResistanceWeightList?[12]
-//                }
-                
-                print("selectedRPForWeight:\(selectedRPforWeight)")
-                
-                if selectedRPforWeight?.actWeight == "" || selectedRPforWeight?.actWeight == "0"{
-                    if selectedRPforWeight?.estWeight == "" || selectedRPforWeight?.estWeight == "0"{
-                        print("Both are blank")
-                        return ""
-                    }else{
+                if selectedRPforWeight?.actWeight == "" || selectedRPforWeight?.actWeight == nil {
+                    // We will check for estimated weight first
+                    if let estWeight = selectedRPforWeight?.estWeight, !estWeight.isEmpty {
                         return selectedRPforWeight?.estWeight ?? ""
-                        
+                    } else {
+                        print("Both are blank, do nothing")
+                        return ""
                     }
-                }else{
+                } else {
                     return selectedRPforWeight?.actWeight ?? ""
                 }
             }
