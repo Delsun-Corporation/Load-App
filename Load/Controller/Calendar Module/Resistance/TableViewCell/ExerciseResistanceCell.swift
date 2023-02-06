@@ -1854,18 +1854,19 @@ extension ExerciseResistanceCell: UIPickerViewDataSource, UIPickerViewDelegate {
                 return false
             })){
                 
-                if selectedRPforWeight?.actWeight == "" || selectedRPforWeight?.actWeight == "0"{
-                    if selectedRPforWeight?.estWeight == "" || selectedRPforWeight?.estWeight == "0"{
-                        print("Both are blank")
-                        return ""
-                    }else{
+                // If selected RP from user is empty or nil
+                if selectedRPforWeight?.actWeight == "" || selectedRPforWeight?.actWeight == nil {
+                    // We will check for estimated weight first
+                    if let estWeight = selectedRPforWeight?.estWeight, !estWeight.isEmpty {
                         return selectedRPforWeight?.estWeight ?? ""
+                    } else {
+                        print("Both are blank, do nothing")
+                        return ""
                     }
-                }else{
+                } else {
                     return selectedRPforWeight?.actWeight ?? ""
                 }
-            }
-            else{
+            } else {
                 
                 let value = self.txtReps.text?.toTrim()
                 
@@ -1879,15 +1880,16 @@ extension ExerciseResistanceCell: UIPickerViewDataSource, UIPickerViewDelegate {
                 
                 print("selectedRPForWeight:\(selectedRPforWeight)")
                 
-                if selectedRPforWeight?.actWeight == "" || selectedRPforWeight?.actWeight == "0"{
-                    if selectedRPforWeight?.estWeight == "" || selectedRPforWeight?.estWeight == "0"{
-                        print("Both are blank")
-                        return ""
-                    }else{
+                // If selected RP from user is empty or nil
+                if selectedRPforWeight?.actWeight == "" || selectedRPforWeight?.actWeight == nil {
+                    // We will check for estimated weight first
+                    if let estWeight = selectedRPforWeight?.estWeight, !estWeight.isEmpty {
                         return selectedRPforWeight?.estWeight ?? ""
-                        
+                    } else {
+                        print("Both are blank, do nothing")
+                        return ""
                     }
-                }else{
+                } else {
                     return selectedRPforWeight?.actWeight ?? ""
                 }
             }
