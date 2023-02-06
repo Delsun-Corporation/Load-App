@@ -506,16 +506,6 @@ class ResistanceTrainingLogViewModel: DismissPreviewDelegate {
                     
                     self.theController.dismiss(animated: true, completion: nil)
                     NotificationCenter.default.post(name: NSNotification.Name(rawValue: NOTIFICATION_CENTER_LIST.CALENDAR_RELOADING.rawValue), object: nil)
-                    
-                    //Old flow
-                    /*
-                    let obj: LogPreviewResistanceVC = AppStoryboard.Calendar.instance.instantiateViewController(withIdentifier: "LogPreviewResistanceVC") as! LogPreviewResistanceVC
-                    obj.mainModelView.previewData = model
-                    obj.mainModelView.delegate = self
-                    let nav = UINavigationController(rootViewController: obj)
-                    nav.modalPresentationStyle = .overCurrentContext
-                    self.theController.present(nav, animated: true, completion: nil)
-                    NotificationCenter.default.post(name: NSNotification.Name(rawValue: NOTIFICATION_CENTER_LIST.CALENDAR_RELOADING.rawValue), object: nil)*/
                 }
             }
         }
