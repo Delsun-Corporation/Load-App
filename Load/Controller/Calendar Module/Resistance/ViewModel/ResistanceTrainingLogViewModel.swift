@@ -582,8 +582,7 @@ class ResistanceTrainingLogViewModel: DismissPreviewDelegate {
         let filter = GetAllData?.data?.trainingGoalLogResistance?.filter({ (model) -> Bool in
             return model.trainingIntensityIds?.contains(self.intensityId) ?? false
         })
-//        let json = JSON([ "target_hr" : "0", "is_active" : true, "training_intensity_ids" : [], "code" : "CUSTOMIZE", "updated_at" : "2019-09-28 01:16:45", "display_at" : [ "LOG_CARDIO", "LOG_RESISTANCE", "PROGRAM_CARDIO", "PROGRAM_RESISTANCE" ], "id" : 0, "created_at" : "2019-05-29 13:00:00", "sequence" : 0, "name" : "Customize"])
-//        filter?.append(TrainingGoalLogResistance(JSON: json.dictionaryObject!)!)
+        
         return filter ?? []
     }
     
@@ -591,17 +590,11 @@ class ResistanceTrainingLogViewModel: DismissPreviewDelegate {
         
         var param = [
             "repetition_max": repetitionMax,
-            "is_show_again_message" : isMsgShowAgain,
-            "common_libraries_id" :Int(id)
-            ] as [String : Any]
+            "is_show_again_message": isMsgShowAgain,
+            "common_libraries_id": Int(id)
+        ] as [String : Any]
         
-//        if userId == 0{
-//            param["common_libraries_id"] = Int(id)
-//        }else{
-//            param["libraries_id"] = Int(id)
-//        }
-        
-        print(JSON(param))
+        print("Resistance Training Log: library is \(param)")
         
         ApiManager.shared.MakePostAPI(name: CREATE_UPDATE_COMMON_LIBRARY_DETAILS, params: param as [String : Any],progress: false, vc: self.theController, isAuth:false) { (response, error) in
             if response != nil {

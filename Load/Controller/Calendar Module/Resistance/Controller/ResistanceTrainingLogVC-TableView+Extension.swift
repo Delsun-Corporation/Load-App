@@ -24,7 +24,7 @@ extension ResistanceTrainingLogVC: UITableViewDelegate, UITableViewDataSource, A
         return self.mainModelView.exercisesMainArray.count
     }
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {        
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: ExerciseResistanceMainCell = self.mainView.tableView.dequeueReusableCell(withIdentifier: "ExerciseResistanceMainCell") as! ExerciseResistanceMainCell
         cell.tableView.isEditing = indexPath.row == self.mainModelView.isEditRow ?? -1
         cell.exercisesMainArray = self.mainModelView.exercisesMainArray
@@ -48,7 +48,7 @@ extension ResistanceTrainingLogVC: UITableViewDelegate, UITableViewDataSource, A
         cell.setupUI()
         return cell
     }
-   
+    
     func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
         return .none
     }
@@ -80,7 +80,7 @@ extension ResistanceTrainingLogVC: UITableViewDelegate, UITableViewDataSource, A
         
         changeColorAccordingToClickable()
         print("Array : \(self.mainModelView.exercisesMainArray[section].toJSON())")
-
+        
     }
     
     func ExerciseResistanceCellFinish(index: Int, section: Int, Weight: String, Reps: String, Duration:String, Rest:String) {
@@ -92,7 +92,7 @@ extension ResistanceTrainingLogVC: UITableViewDelegate, UITableViewDataSource, A
         changeColorAccordingToClickable()
         
     }
- 
+    
     func ExerciseResistanceMainEditSection(section: Int) {
         self.mainModelView.showActionSheetSection(section: section)
         
@@ -118,7 +118,7 @@ extension ResistanceTrainingLogVC: UITableViewDelegate, UITableViewDataSource, A
     }
     
     func AddExerciseDidFinish(listArray: [LibraryExerciseModelClass]) {
-            
+        
     }
     
     func AddAllExerciseDidFinish(listArray: [LibraryLogList]) {
@@ -126,8 +126,8 @@ extension ResistanceTrainingLogVC: UITableViewDelegate, UITableViewDataSource, A
         //TODO: - Yash changes
         self.mainView.layoutIfNeeded()
         self.mainView.tableView.layoutIfNeeded()
-
-//        self.mainModelView.exercisesMainArray.removeAll()
+        
+        //        self.mainModelView.exercisesMainArray.removeAll()
         
         self.mainModelView.exercisesMainArray += listArray
         
@@ -147,7 +147,7 @@ extension ResistanceTrainingLogVC: UITableViewDelegate, UITableViewDataSource, A
                 }else{
                     self.mainModelView.isSelectedDuration.append(true)
                 }
-
+                
             }
             
             if self.mainModelView.exercisesMainArray[index].exercisesArray.count == 0{
@@ -162,7 +162,7 @@ extension ResistanceTrainingLogVC: UITableViewDelegate, UITableViewDataSource, A
         print("After selected Duration:\(self.mainModelView.isSelectedDuration)")
         
         self.mainView.tableViewHeight.constant = CGFloat((self.mainModelView.exercisesMainArray.count * 127) + (count * 73))
-//        self.mainModelView.exercisesMainArray = listArray
+        //        self.mainModelView.exercisesMainArray = listArray
         self.mainView.tableView.reloadData()
         
         self.changeColorAccordingToClickable()
@@ -180,15 +180,15 @@ extension ResistanceTrainingLogVC: UITableViewDelegate, UITableViewDataSource, A
     func ResistanceExerciseHeaderRepsSelected(tag: Int, isDuration: Bool) {
         self.mainModelView.isSelectedDuration[tag] = isDuration
     }
-
+    
     func addActWeightToRecordsAlertView(reps: String, weight: String, id: Int, userId: Int, isShowAlertOrNot: Bool, atIndex: Int) {
         print("David's debug id \(id)")
         if isShowAlertOrNot{
             
-            let repitationMax = self.getDefaultJSON(reps: reps, weight: weight,atIndex : atIndex)
-            self.mainModelView.apiCallUpdateLibraryAfterAlert(id: String(id), repetitionMax: repitationMax , isMsgShowAgain: true,userId:userId,atIndex: atIndex)
+            let repitationMax = self.getDefaultJSON(reps: reps, weight: weight, atIndex: atIndex)
+            self.mainModelView.apiCallUpdateLibraryAfterAlert(id: String(id), repetitionMax: repitationMax , isMsgShowAgain: true, userId:userId, atIndex: atIndex)
             
-        }else{
+        } else {
             print("David's debug reps \(reps)")
             print("David's debug weight \(weight)")
             showCustomAlertVC(reps: reps, weight: weight, id: id, userId: userId,atIndex : atIndex)
@@ -206,7 +206,7 @@ extension ResistanceTrainingLogVC: UITableViewDelegate, UITableViewDataSource, A
             print("isShowMsgDontShowAgain : \(isShowMsgDontShowAgain)")
             
             let repitationMax = self?.getDefaultJSON(reps: reps, weight: weight,atIndex:atIndex)
-            print("David's debug select yes \(repitationMax)")
+            
             self?.mainModelView.apiCallUpdateLibraryAfterAlert(id: String(id), repetitionMax: repitationMax ?? [], isMsgShowAgain: isShowMsgDontShowAgain,userId:userId,atIndex : atIndex)
             
         }
@@ -217,41 +217,34 @@ extension ResistanceTrainingLogVC: UITableViewDelegate, UITableViewDataSource, A
         
         self.present(obj, animated: false, completion: nil)
     }
-
-    func getDefaultJSON(reps: String, weight: String,atIndex: Int) -> NSMutableArray {
+    
+    func getDefaultJSON(reps: String, weight: String, atIndex: Int) -> NSMutableArray {
         
         if let repetationMaxAvailable = self.mainModelView.exercisesMainArray[atIndex].repetitionMax, !repetationMaxAvailable.isEmpty{
             
             print("repetationMaxAvailable : \(repetationMaxAvailable)")
             
-            var arrayData = repetationMaxAvailable
+            let arrayData = repetationMaxAvailable
             
-//            if reps == "13" || reps == "14"{
-//                arrayData[11].actWeight = weight
-//            }else if reps == "16" || reps == "17" || reps == "18" || reps == "19" || reps == "20"{
-//                arrayData[12].actWeight = weight
-//            }else{
-                for i in 0..<arrayData.count{
-                    
-                    if let name = arrayData[i].name?.replacingOccurrences(of: " RM", with: ""){
-                        if name == reps{
-                            arrayData[i].actWeight = weight
-                            break
-                        }
+            for i in 0..<arrayData.count {
+                
+                if let name = arrayData[i].name?.replacingOccurrences(of: " RM", with: "") {
+                    if name == reps {
+                        arrayData[i].actWeight = weight
+                        break
                     }
                 }
-//            }
-            
+            }
             
             let repetitionMax: NSMutableArray = NSMutableArray()
-           for data in arrayData {
-               let dict: NSDictionary = ["name":data.name!, "est_weight":data.estWeight!, "act_weight":data.actWeight!]
-               repetitionMax.add(dict)
-           }
+            for data in arrayData {
+                let dict: NSDictionary = ["name":data.name!, "est_weight":data.estWeight!, "act_weight":data.actWeight!]
+                repetitionMax.add(dict)
+            }
             
             return repetitionMax
             
-        }else{
+        } else {
             var arrayData = ([
                 [
                     "name": "1 RM",
@@ -355,29 +348,22 @@ extension ResistanceTrainingLogVC: UITableViewDelegate, UITableViewDataSource, A
                 ],
             ])
             
-            
-//            if reps == "13" || reps == "14"{
-//                arrayData[11]["act_weight"] = weight
-//            }else if reps == "16" || reps == "17" || reps == "18" || reps == "19" || reps == "20"{
-//                arrayData[12]["act_weight"] = weight
-//            }else{
-                for i in 0..<arrayData.count{
-                    
-                    print("i : \(i) value : \(arrayData[i])")
-                    
-                    if let name = arrayData[i]["name"]?.replacingOccurrences(of: " RM", with: ""){
-                        if name == reps{
-                            arrayData[i]["act_weight"] = weight
-                            break
-                        }
+            for i in 0..<arrayData.count{
+                
+                print("i : \(i) value : \(arrayData[i])")
+                
+                if let name = arrayData[i]["name"]?.replacingOccurrences(of: " RM", with: ""){
+                    if name == reps{
+                        arrayData[i]["act_weight"] = weight
+                        break
                     }
                 }
-//            }
+            }
             
             return NSMutableArray(array: arrayData)
             
         }
         
     }
-
+    
 }
