@@ -177,7 +177,6 @@ extension ResistanceConfirmationPageVc: UITableViewDelegate, UITableViewDataSour
     }
 
     func addActWeightToRecordsAlertView(reps: String, weight: String, id: Int, userId: Int, isShowAlertOrNot: Bool, atIndex: Int) {
-                
         if isShowAlertOrNot{
             
             let repitationMax = self.getDefaultJSON(reps: reps, weight: weight,atIndex : atIndex)
