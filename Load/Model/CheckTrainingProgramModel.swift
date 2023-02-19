@@ -21,16 +21,16 @@ class CheckTrainingProgramModel: Mappable {
 
 class checkTrainngProgramVisibilityData: Mappable {
 
-	var isResistanceCustomEdit: Int = 0
-	var isResistancePresetDelete: Int = 0
-	var isCardioCustomEdit: Int = 0
-	var isCardioPresetDelete: Int = 0
-	var isResistance: Int = 0
-	var isCardio: Int = 0
-    var isCardioPresetDeleteId = 0
-    var isResistancePresetDeleteId  = 0
-    var isCardioCustomEditId = 0
-    var isResistanceCustomEditId = 0
+	var isResistanceCustomEdit: Bool = false
+	var isResistancePresetDelete: Bool = false
+	var isCardioCustomEdit: Bool = false
+	var isCardioPresetDelete: Bool = false
+	var isResistance: Bool = false
+	var isCardio: Bool = false
+    var isCardioPresetDeleteId = false
+    var isResistancePresetDeleteId  = false
+    var isCardioCustomEditId = false
+    var isResistanceCustomEditId = false
     
 	required init?(map: Map){ 
 	} 
