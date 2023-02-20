@@ -85,7 +85,7 @@ extension SelectTrainingProgramVC{
         self.mainView.lblCardioTitle.text = getCommonString(key: "Customise_key")
         self.mainView.lblSubCardioTitle.text = getCommonString(key: "Customise_your_own_training_program_key")
         
-        if data?.isCardio == 1 || data?.isResistance == 1{
+        if data?.isCardio == true || data?.isResistance == true {
             self.isPresetClickable = true
             self.isCustomiseClickable = true
             
@@ -93,7 +93,7 @@ extension SelectTrainingProgramVC{
             title = "How would you like to\nplan your program?"
         }
 
-        if data?.isCardioCustomEdit == 1 || data?.isResistanceCustomEdit == 1{
+        if data?.isCardioCustomEdit == true || data?.isResistanceCustomEdit == true {
             self.isPresetClickable = false
             self.isCustomiseClickable = true
             
@@ -105,7 +105,7 @@ extension SelectTrainingProgramVC{
             title = "Make changes to your\ncurrent program"
         }
         
-        if data?.isCardioPresetDelete == 1 || data?.isResistancePresetDelete == 1{
+        if data?.isCardioPresetDelete == true || data?.isResistancePresetDelete == true {
             self.isPresetClickable = true
             self.isCustomiseClickable = false
             

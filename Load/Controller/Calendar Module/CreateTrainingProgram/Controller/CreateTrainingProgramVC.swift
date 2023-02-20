@@ -103,11 +103,11 @@ class CreateTrainingProgramVC: UIViewController {
     }
     
     @IBAction func btnDeleteResistanceProgramTapped(_ sender: UIButton) {
-        self.alertForDeleteProgramId(programId: self.mainModelView.dataCheckVisibility?.isResistancePresetDeleteId ?? 0)
+        self.alertForDeleteProgramId(programId: self.mainModelView.dataCheckVisibility?.resistancePresetDeleteId ?? 0)
     }
     
     @IBAction func btnDeleteCardioProgramTapped(_ sender: UIButton) {
-        self.alertForDeleteProgramId(programId: self.mainModelView.dataCheckVisibility?.isCardioPresetDeleteId ?? 0)
+        self.alertForDeleteProgramId(programId: self.mainModelView.dataCheckVisibility?.cardioPresetDeleteId ?? 0)
     }
     
     func hideAllView(){
@@ -148,33 +148,33 @@ extension CreateTrainingProgramVC{
         
         var title = ""
         
-        if self.mainModelView.dataCheckVisibility?.isCardio == 1{
+        if self.mainModelView.dataCheckVisibility?.isCardio == true {
             self.mainView.vwCardio.isHidden = false
             title = "Choose the mode of workout\nthat you’d like to create."
         }
         
-        if self.mainModelView.dataCheckVisibility?.isResistance == 1{
+        if self.mainModelView.dataCheckVisibility?.isResistance == true {
             self.mainView.vwResistance.isHidden = false
             title = "Choose the mode of workout\nthat you’d like to create."
         }
         
         if self.isPresetCickable == true{
-            if self.mainModelView.dataCheckVisibility?.isCardioPresetDelete == 1{
+            if self.mainModelView.dataCheckVisibility?.isCardioPresetDelete == true {
                 self.mainView.vwDeleteCardio.isHidden = false
                 title = "Make changes to your\ncurrent program"
             }
             
-            if self.mainModelView.dataCheckVisibility?.isResistancePresetDelete == 1{
+            if self.mainModelView.dataCheckVisibility?.isResistancePresetDelete == true {
                 self.mainView.vwDeleteResistance.isHidden = false
                 title = "Make changes to your\ncurrent program"
             }
         }else{
-            if self.mainModelView.dataCheckVisibility?.isCardioCustomEdit == 1{
+            if self.mainModelView.dataCheckVisibility?.isCardioCustomEdit == true {
                 self.mainView.vwEditCardio.isHidden = false
                 title = "Make changes to your\ncurrent program"
             }
             
-            if self.mainModelView.dataCheckVisibility?.isResistanceCustomEdit == 1{
+            if self.mainModelView.dataCheckVisibility?.isResistanceCustomEdit == true {
                 self.mainView.vwEditResistance.isHidden = false
                 title = "Make changes to your\ncurrent program"
             }
