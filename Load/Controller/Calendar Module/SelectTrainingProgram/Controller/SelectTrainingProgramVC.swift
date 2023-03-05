@@ -20,8 +20,8 @@ class SelectTrainingProgramVC: UIViewController {
         return SelectTrainingProgramViewModel(theController: self)
     }()
     
-    var isPresetClickable = false
-    var isCustomiseClickable = false
+    var isPresetClickable = true
+    var isCustomiseClickable = true
     //MARK:- Functions
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,23 +36,6 @@ class SelectTrainingProgramVC: UIViewController {
     
     //MARK:- @IBAction
     @IBAction func btnPresetClicked(_ sender: Any) {
-        
-        //Old flow
-        /*if self.mainModelView.isResistance {
-            let obj = AppStoryboard.Calendar.instance.instantiateViewController(withIdentifier: "PresetResistanceTrainingProgramVC") as! PresetResistanceTrainingProgramVC
-            let nav = UINavigationController(rootViewController: obj)
-            nav.modalPresentationStyle = .overCurrentContext
-            self.present(nav, animated: true, completion: nil)
-        }
-        else {
-            let obj = AppStoryboard.Calendar.instance.instantiateViewController(withIdentifier: "PresetTrainingProgramVC") as! PresetTrainingProgramVC
-            let nav = UINavigationContr		oller(rootViewController: obj)
-            nav.modalPresentationStyle = .overCurrentContext
-            self.present(nav, animated: true, completion: nil)
-        }*/
-        
-        //New flow
-        
         let obj = AppStoryboard.Calendar.instance.instantiateViewController(withIdentifier: "CreateTrainingProgramVC") as! CreateTrainingProgramVC
         obj.isPresetCickable = true
         obj.mainModelView.delegateTrainingProgram = self
@@ -79,7 +62,7 @@ extension SelectTrainingProgramVC{
     
     func setupData(data: checkTrainngProgramVisibilityData?){
         
-        var title = ""
+        var title: String = "How would you like to\nplan your program?"
         
         self.mainView.constraintSubCardioHeight.constant = 13
         self.mainView.lblCardioTitle.text = getCommonString(key: "Customise_key")
@@ -118,7 +101,7 @@ extension SelectTrainingProgramVC{
         self.mainView.vwCustomize.isHidden = false
 
         
-        if self.isPresetClickable == true{
+        if self.isPresetClickable == true {
             self.mainView.lblResistanceTitle.textColor = .appthemeOffRedColor
             self.mainView.btnPreset.isUserInteractionEnabled = true
             

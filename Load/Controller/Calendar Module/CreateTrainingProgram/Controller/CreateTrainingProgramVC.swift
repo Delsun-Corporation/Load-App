@@ -41,19 +41,6 @@ class CreateTrainingProgramVC: UIViewController {
     
     //MARK:- @IBAction
     @IBAction func btnResistanceClicked(_ sender: Any) {
-        
-        //Old Flow
-        /*
-         let obj = AppStoryboard.Calendar.instance.instantiateViewController(withIdentifier: "SelectTrainingProgramVC") as! SelectTrainingProgramVC
-         obj.mainModelView.isResistance = true
-         obj.mainModelView.navTitle = "How would you like to\nplan your strength program?"
-         let nav = UINavigationController(rootViewController: obj)
-         nav.modalPresentationStyle = .overCurrentContext
-         self.present(nav, animated: true, completion: nil)
-         */
-        
-        //New flow
-        
         //For Preset
         if self.isPresetCickable == true{
             let obj = AppStoryboard.Calendar.instance.instantiateViewController(withIdentifier: "PresetResistanceTrainingProgramVC") as! PresetResistanceTrainingProgramVC
@@ -68,28 +55,15 @@ class CreateTrainingProgramVC: UIViewController {
     }
     
     @IBAction func btnCardioClicked(_ sender: Any) {
-        
-        //Old flow
-        /*
-         let obj = AppStoryboard.Calendar.instance.instantiateViewController(withIdentifier: "SelectTrainingProgramVC") as! SelectTrainingProgramVC
-         obj.mainModelView.isResistance = false
-         obj.mainModelView.navTitle = "How would you like to\nplan your cardio program?"
-         let nav = UINavigationController(rootViewController: obj)
-         nav.modalPresentationStyle = .overCurrentContext
-         self.present(nav, animated: true, completion: nil)
-         */
-        
-        //New flow
-        
         //Create common delegate for PresetTrainingProgram and PresetResistanceTrainingProgram
         //For Preset
-        if self.isPresetCickable{
+        if self.isPresetCickable {
             let obj = AppStoryboard.Calendar.instance.instantiateViewController(withIdentifier: "PresetTrainingProgramVC") as! PresetTrainingProgramVC
             obj.mainModelView.delegateDismissPreset = self
             let nav = UINavigationController(rootViewController: obj)
             nav.modalPresentationStyle = .overCurrentContext
             self.present(nav, animated: true, completion: nil)
-        }else{
+        } else {
             
         }
         
