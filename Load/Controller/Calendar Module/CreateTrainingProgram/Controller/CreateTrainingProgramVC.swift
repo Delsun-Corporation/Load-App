@@ -120,7 +120,7 @@ extension CreateTrainingProgramVC{
     
     func setupData(){
         
-        var title = ""
+        var title = "Choose the mode of workout\nthat you’d like to create."
         
         if self.mainModelView.dataCheckVisibility?.isCardio == true {
             self.mainView.vwCardio.isHidden = false
@@ -132,7 +132,7 @@ extension CreateTrainingProgramVC{
             title = "Choose the mode of workout\nthat you’d like to create."
         }
         
-        if self.isPresetCickable == true{
+        if self.isPresetCickable == true {
             if self.mainModelView.dataCheckVisibility?.isCardioPresetDelete == true {
                 self.mainView.vwDeleteCardio.isHidden = false
                 title = "Make changes to your\ncurrent program"
@@ -142,7 +142,7 @@ extension CreateTrainingProgramVC{
                 self.mainView.vwDeleteResistance.isHidden = false
                 title = "Make changes to your\ncurrent program"
             }
-        }else{
+        } else {
             if self.mainModelView.dataCheckVisibility?.isCardioCustomEdit == true {
                 self.mainView.vwEditCardio.isHidden = false
                 title = "Make changes to your\ncurrent program"
