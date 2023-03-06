@@ -56,7 +56,7 @@ extension PresetTrainingProgramVC: UITableViewDelegate, UITableViewDataSource {
 
 extension PresetTrainingProgramVC: dismissPresetTrainingProgramScreenDelegate {
         
-    func dismissPresetTrainingProgramScreen(){
+    func dismissPresetTrainingProgramScreen() {
         self.dismiss(animated: false, completion: nil)
         self.mainModelView.delegateDismissPreset?.dismissPreset()
     }
