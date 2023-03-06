@@ -90,7 +90,6 @@ class CreateCardioTrainingProgramViewModel {
         ApiManager.shared.MakePostAPI(name: CHECK_PROGRAM_IS_AVAILABLE, params: param as [String : Any], progress: progress, vc: self.theController, isAuth: false, completionHandler: { (response, error) in
             if response != nil {
                 let json = JSON(response!)
-                print(json)
                 let success = json.getBool(key: .success)
                 if success {
                     self.btnNextClicked()

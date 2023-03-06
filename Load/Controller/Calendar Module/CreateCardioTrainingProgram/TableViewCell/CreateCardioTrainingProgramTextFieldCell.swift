@@ -8,7 +8,7 @@
 
 import UIKit
 
-protocol CreateCardioTrainingProgramTextFieldDelegate: class {
+protocol CreateCardioTrainingProgramTextFieldDelegate: AnyObject {
     func CreateCardioProgramFinish(text:String, isStartDate:Bool)
     func CreateCardioDateFinish(text:String, date: Date)
     func CreateCardioDayFinish(text:String, id: String, limit:Int)
