@@ -64,7 +64,7 @@ class CardioTrainingProgramPreviewViewModel {
                     NotificationCenter.default.post(name: NSNotification.Name(rawValue: NOTIFICATION_CENTER_LIST.CALENDAR_RELOADING.rawValue), object: nil)
                     self.theController.navigationController?.popToRootViewController(animated: true)
                     self.theController.delegateDismissCardioTrainingProgram?.dismissCreateCardioTrainingProgram()
-//                        makeToast(strMessage: message)
+                    
                     DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
                         AlertHelper.shared.showErrorMessage(title: "Success", message: message)
                     }
