@@ -173,11 +173,11 @@ class TrainingLogIntensity: Mappable {
 
 class TrainingProgramList: Mappable {
     
-    var presetTrainingProgramsId: NSNumber?
+    var presetTrainingProgramsId: String?
     var status: String?
     var startDate: String?
     var presetTrainingProgram: PresetTrainingProgram?
-    var trainingFrequenciesId: NSNumber?
+    var trainingFrequenciesId: String?
     var createdAt: String?
     var phases: Any?
     var userId: NSNumber?

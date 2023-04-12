@@ -48,7 +48,7 @@ class CardioTrainingProgramPreviewViewModel {
                       "type": TRAINING_LOG_STATUS.PRESET.rawValue,
                      "user_id": getUserDetail()?.data?.user?.id?.stringValue ?? "",
                       "training_frequencies_id": trainingFrequenciesId,
-                      "preset_training_programs_id": presetTrainingProgramsId,
+                      "preset_training_program_id": presetTrainingProgramsId,
                       "start_date": startDate.iso8601,
                       "end_date": endDate.iso8601,
                       "days": days] as [String : Any]
