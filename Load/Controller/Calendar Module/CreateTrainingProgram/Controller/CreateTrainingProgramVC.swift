@@ -41,19 +41,6 @@ class CreateTrainingProgramVC: UIViewController {
     
     //MARK:- @IBAction
     @IBAction func btnResistanceClicked(_ sender: Any) {
-        
-        //Old Flow
-        /*
-         let obj = AppStoryboard.Calendar.instance.instantiateViewController(withIdentifier: "SelectTrainingProgramVC") as! SelectTrainingProgramVC
-         obj.mainModelView.isResistance = true
-         obj.mainModelView.navTitle = "How would you like to\nplan your strength program?"
-         let nav = UINavigationController(rootViewController: obj)
-         nav.modalPresentationStyle = .overCurrentContext
-         self.present(nav, animated: true, completion: nil)
-         */
-        
-        //New flow
-        
         //For Preset
         if self.isPresetCickable == true{
             let obj = AppStoryboard.Calendar.instance.instantiateViewController(withIdentifier: "PresetResistanceTrainingProgramVC") as! PresetResistanceTrainingProgramVC
@@ -68,28 +55,15 @@ class CreateTrainingProgramVC: UIViewController {
     }
     
     @IBAction func btnCardioClicked(_ sender: Any) {
-        
-        //Old flow
-        /*
-         let obj = AppStoryboard.Calendar.instance.instantiateViewController(withIdentifier: "SelectTrainingProgramVC") as! SelectTrainingProgramVC
-         obj.mainModelView.isResistance = false
-         obj.mainModelView.navTitle = "How would you like to\nplan your cardio program?"
-         let nav = UINavigationController(rootViewController: obj)
-         nav.modalPresentationStyle = .overCurrentContext
-         self.present(nav, animated: true, completion: nil)
-         */
-        
-        //New flow
-        
         //Create common delegate for PresetTrainingProgram and PresetResistanceTrainingProgram
         //For Preset
-        if self.isPresetCickable{
+        if self.isPresetCickable {
             let obj = AppStoryboard.Calendar.instance.instantiateViewController(withIdentifier: "PresetTrainingProgramVC") as! PresetTrainingProgramVC
             obj.mainModelView.delegateDismissPreset = self
             let nav = UINavigationController(rootViewController: obj)
             nav.modalPresentationStyle = .overCurrentContext
             self.present(nav, animated: true, completion: nil)
-        }else{
+        } else {
             
         }
         
@@ -103,11 +77,11 @@ class CreateTrainingProgramVC: UIViewController {
     }
     
     @IBAction func btnDeleteResistanceProgramTapped(_ sender: UIButton) {
-        self.alertForDeleteProgramId(programId: self.mainModelView.dataCheckVisibility?.isResistancePresetDeleteId ?? 0)
+        self.alertForDeleteProgramId(programId: self.mainModelView.dataCheckVisibility?.resistancePresetDeleteId ?? 0)
     }
     
     @IBAction func btnDeleteCardioProgramTapped(_ sender: UIButton) {
-        self.alertForDeleteProgramId(programId: self.mainModelView.dataCheckVisibility?.isCardioPresetDeleteId ?? 0)
+        self.alertForDeleteProgramId(programId: self.mainModelView.dataCheckVisibility?.cardioPresetDeleteId ?? 0)
     }
     
     func hideAllView(){
@@ -146,35 +120,35 @@ extension CreateTrainingProgramVC{
     
     func setupData(){
         
-        var title = ""
+        var title = "Choose the mode of workout\nthat you’d like to create."
         
-        if self.mainModelView.dataCheckVisibility?.isCardio == 1{
+        if self.mainModelView.dataCheckVisibility?.isCardio == true {
             self.mainView.vwCardio.isHidden = false
             title = "Choose the mode of workout\nthat you’d like to create."
         }
         
-        if self.mainModelView.dataCheckVisibility?.isResistance == 1{
+        if self.mainModelView.dataCheckVisibility?.isResistance == true {
             self.mainView.vwResistance.isHidden = false
             title = "Choose the mode of workout\nthat you’d like to create."
         }
         
-        if self.isPresetCickable == true{
-            if self.mainModelView.dataCheckVisibility?.isCardioPresetDelete == 1{
+        if self.isPresetCickable == true {
+            if self.mainModelView.dataCheckVisibility?.isCardioPresetDelete == true {
                 self.mainView.vwDeleteCardio.isHidden = false
                 title = "Make changes to your\ncurrent program"
             }
             
-            if self.mainModelView.dataCheckVisibility?.isResistancePresetDelete == 1{
+            if self.mainModelView.dataCheckVisibility?.isResistancePresetDelete == true {
                 self.mainView.vwDeleteResistance.isHidden = false
                 title = "Make changes to your\ncurrent program"
             }
-        }else{
-            if self.mainModelView.dataCheckVisibility?.isCardioCustomEdit == 1{
+        } else {
+            if self.mainModelView.dataCheckVisibility?.isCardioCustomEdit == true {
                 self.mainView.vwEditCardio.isHidden = false
                 title = "Make changes to your\ncurrent program"
             }
             
-            if self.mainModelView.dataCheckVisibility?.isResistanceCustomEdit == 1{
+            if self.mainModelView.dataCheckVisibility?.isResistanceCustomEdit == true {
                 self.mainView.vwEditResistance.isHidden = false
                 title = "Make changes to your\ncurrent program"
             }

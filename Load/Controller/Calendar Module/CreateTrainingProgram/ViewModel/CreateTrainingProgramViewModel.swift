@@ -80,7 +80,7 @@ extension CreateTrainingProgramViewModel{
         
         print(JSON(param))
         
-        ApiManager.shared.MakePostAPI(name: TRAINING_PROGRAM_FLAGS, params: param as [String : Any], vc: self.theController, isAuth:false) { (response, error) in
+        ApiManager.shared.MakeGetAPI(name: TRAINING_PROGRAM_FLAGS, params: param as [String : Any], vc: self.theController, isAuth:false) { (response, error) in
             
             if response != nil {
                 let json = JSON(response!)

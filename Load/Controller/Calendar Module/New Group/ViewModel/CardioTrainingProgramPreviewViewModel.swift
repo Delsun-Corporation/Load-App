@@ -48,7 +48,7 @@ class CardioTrainingProgramPreviewViewModel {
                       "type": TRAINING_LOG_STATUS.PRESET.rawValue,
                      "user_id": getUserDetail()?.data?.user?.id?.stringValue ?? "",
                       "training_frequencies_id": trainingFrequenciesId,
-                      "preset_training_programs_id": presetTrainingProgramsId,
+                      "preset_training_program_id": presetTrainingProgramsId,
                       "start_date": startDate.iso8601,
                       "end_date": endDate.iso8601,
                       "days": days] as [String : Any]
@@ -64,7 +64,7 @@ class CardioTrainingProgramPreviewViewModel {
                     NotificationCenter.default.post(name: NSNotification.Name(rawValue: NOTIFICATION_CENTER_LIST.CALENDAR_RELOADING.rawValue), object: nil)
                     self.theController.navigationController?.popToRootViewController(animated: true)
                     self.theController.delegateDismissCardioTrainingProgram?.dismissCreateCardioTrainingProgram()
-//                        makeToast(strMessage: message)
+                    
                     DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
                         AlertHelper.shared.showErrorMessage(title: "Success", message: message)
                     }

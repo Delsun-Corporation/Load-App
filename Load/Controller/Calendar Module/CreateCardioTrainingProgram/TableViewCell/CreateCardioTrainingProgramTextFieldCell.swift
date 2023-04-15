@@ -8,7 +8,7 @@
 
 import UIKit
 
-protocol CreateCardioTrainingProgramTextFieldDelegate: class {
+protocol CreateCardioTrainingProgramTextFieldDelegate: AnyObject {
     func CreateCardioProgramFinish(text:String, isStartDate:Bool)
     func CreateCardioDateFinish(text:String, date: Date)
     func CreateCardioDayFinish(text:String, id: String, limit:Int)
@@ -179,10 +179,6 @@ extension CreateCardioTrainingProgramTextFieldCell: UIPickerViewDataSource, UIPi
     }
     
     func pickerView(_ pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusing view: UIView?) -> UIView {
-        
-//for view in pickerView.subviews{
-//                view.backgroundColor = UIColor.clear
-//            }
         if self.tag == 3 {
             let myView = PickerView.instanceFromNib() as! PickerView
             myView.setupUI()

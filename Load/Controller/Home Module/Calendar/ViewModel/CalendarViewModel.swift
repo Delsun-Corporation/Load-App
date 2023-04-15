@@ -121,22 +121,60 @@ class CalendarViewModel: SwitchAccountDelegate, SwitchAccountPickedDelegate, dis
                 
                 if success {
                     self.logList = TrainingLogListModelClass(JSON: data.dictionaryObject!)
+                    self.assignTrainingProgramGetAllData()
                     self.theController.tableReload()
                 }else{
                     self.logList = nil
                     self.theController.tableReload()
                 }
-                
-//                if self.expandedDate != "" {
-//                    DispatchQueue.main.asyncAfter(deadline: DispatchTime.now()+1.5) {
-//                        view?.tableView.reloadData()
-//                    }
-//                }
             }
             else {
                 print("Error message \(error)")
                 self.theController.tableReload()
             }
+        }
+    }
+    
+    func assignTrainingProgramGetAllData() {
+        for program in (logList?.trainingProgramList ?? []) {
+            // Search for preset
+            var preset: PresetTrainingProgram?
+            for _preset in (GetAllData?.data?.cardioPresetTrainingProgram ?? []) where _preset.id?.stringValue == program.presetTrainingProgramsId {
+                let tempPreset = PresetTrainingProgram(JSONString: "")
+                tempPreset?.id = _preset.id
+                tempPreset?.subtitle = _preset.subtitle
+                tempPreset?.status = _preset.status
+                tempPreset?.title = _preset.title
+                tempPreset?.weeks = _preset.weeks
+                if let tempPreset = tempPreset {
+                    preset = tempPreset
+                }
+            }
+            for __preset in (GetAllData?.data?.resistancePresetTrainingProgram ?? []) where __preset.id?.stringValue == program.presetTrainingProgramsId {
+                let tempPreset = PresetTrainingProgram(JSONString: "")
+                tempPreset?.id = __preset.id
+                tempPreset?.subtitle = __preset.subtitle
+                tempPreset?.status = __preset.status
+                tempPreset?.title = __preset.title
+                tempPreset?.weeks = __preset.weeks
+                if let tempPreset = tempPreset {
+                    preset = tempPreset
+                }
+            }
+            // Search for frequencies
+            var frequencies: TrainingLogFrequency?
+            for _frequencies in (GetAllData?.data?.trainingFrequencies ?? []) where _frequencies.id?.stringValue == program.trainingFrequenciesId {
+                let tempFreq = TrainingLogFrequency(JSONString: "")
+                tempFreq?.id = _frequencies.id
+                tempFreq?.maxDays = _frequencies.maxDays
+                tempFreq?.title = _frequencies.title
+                if let tempFreq = tempFreq {
+                    frequencies = tempFreq
+                }
+            }
+            
+            program.trainingFrequency = frequencies
+            program.presetTrainingProgram = preset
         }
     }
     

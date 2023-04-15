@@ -20,8 +20,8 @@ class SelectTrainingProgramVC: UIViewController {
         return SelectTrainingProgramViewModel(theController: self)
     }()
     
-    var isPresetClickable = false
-    var isCustomiseClickable = false
+    var isPresetClickable = true
+    var isCustomiseClickable = true
     //MARK:- Functions
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,23 +36,6 @@ class SelectTrainingProgramVC: UIViewController {
     
     //MARK:- @IBAction
     @IBAction func btnPresetClicked(_ sender: Any) {
-        
-        //Old flow
-        /*if self.mainModelView.isResistance {
-            let obj = AppStoryboard.Calendar.instance.instantiateViewController(withIdentifier: "PresetResistanceTrainingProgramVC") as! PresetResistanceTrainingProgramVC
-            let nav = UINavigationController(rootViewController: obj)
-            nav.modalPresentationStyle = .overCurrentContext
-            self.present(nav, animated: true, completion: nil)
-        }
-        else {
-            let obj = AppStoryboard.Calendar.instance.instantiateViewController(withIdentifier: "PresetTrainingProgramVC") as! PresetTrainingProgramVC
-            let nav = UINavigationContr		oller(rootViewController: obj)
-            nav.modalPresentationStyle = .overCurrentContext
-            self.present(nav, animated: true, completion: nil)
-        }*/
-        
-        //New flow
-        
         let obj = AppStoryboard.Calendar.instance.instantiateViewController(withIdentifier: "CreateTrainingProgramVC") as! CreateTrainingProgramVC
         obj.isPresetCickable = true
         obj.mainModelView.delegateTrainingProgram = self
@@ -79,13 +62,13 @@ extension SelectTrainingProgramVC{
     
     func setupData(data: checkTrainngProgramVisibilityData?){
         
-        var title = ""
+        var title: String = "How would you like to\nplan your program?"
         
         self.mainView.constraintSubCardioHeight.constant = 13
         self.mainView.lblCardioTitle.text = getCommonString(key: "Customise_key")
         self.mainView.lblSubCardioTitle.text = getCommonString(key: "Customise_your_own_training_program_key")
         
-        if data?.isCardio == 1 || data?.isResistance == 1{
+        if data?.isCardio == true || data?.isResistance == true {
             self.isPresetClickable = true
             self.isCustomiseClickable = true
             
@@ -93,7 +76,7 @@ extension SelectTrainingProgramVC{
             title = "How would you like to\nplan your program?"
         }
 
-        if data?.isCardioCustomEdit == 1 || data?.isResistanceCustomEdit == 1{
+        if data?.isCardioCustomEdit == true || data?.isResistanceCustomEdit == true {
             self.isPresetClickable = false
             self.isCustomiseClickable = true
             
@@ -105,7 +88,7 @@ extension SelectTrainingProgramVC{
             title = "Make changes to your\ncurrent program"
         }
         
-        if data?.isCardioPresetDelete == 1 || data?.isResistancePresetDelete == 1{
+        if data?.isCardioPresetDelete == true || data?.isResistancePresetDelete == true {
             self.isPresetClickable = true
             self.isCustomiseClickable = false
             
@@ -118,7 +101,7 @@ extension SelectTrainingProgramVC{
         self.mainView.vwCustomize.isHidden = false
 
         
-        if self.isPresetClickable == true{
+        if self.isPresetClickable == true {
             self.mainView.lblResistanceTitle.textColor = .appthemeOffRedColor
             self.mainView.btnPreset.isUserInteractionEnabled = true
             
