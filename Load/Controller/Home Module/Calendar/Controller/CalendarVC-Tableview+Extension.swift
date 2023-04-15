@@ -417,6 +417,9 @@ extension CalendarVC: UITableViewDelegate, UITableViewDataSource, CalendarSelect
                     let cell: TrainingListProgramCell = self.mainView.tableView.dequeueReusableCell(withIdentifier: "TrainingListProgramCell") as! TrainingListProgramCell
                     cell.tag = indexPath.row - indexArray1
                     cell.delegate = self
+                    guard arr1!.count > indexPath.row - indexArray1 else {
+                        return UITableViewCell()
+                    }
                     let (weekNo, dayNo) = self.getTrainingProgramWeekNo(tag: cell.tag, trainingId: arr1![indexPath.row - indexArray1].id?.stringValue ?? "")
                     
                     cell.setupUIForBlankData()
